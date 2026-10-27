@@ -1,0 +1,761 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "https://github.com/integromat/make-skills",
+    "pullRequest": 70,
+    "commit": "3dcad8e96a6e040e7eeaf344c16efec25685b5e8",
+    "license": "MIT"
+  },
+  "counts": {
+    "skillFiles": 122,
+    "references": 12,
+    "exampleFiles": 109,
+    "checkerFiles": 2
+  },
+  "entries": [
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/SKILL.md",
+      "target": "skills/make-custom-apps/SKILL.md",
+      "sha256": "d3967176d2d0a1ada45fe9e6f5bb3ae24de4db3cc282256c3ed46a6fcf28426c",
+      "bytes": 9621
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/README.md",
+      "target": "skills/make-custom-apps/examples/README.md",
+      "sha256": "5659931b91ba8869acc8181400059025edd90cb69a0e62dec643ffc3ad9df05b",
+      "bytes": 3290
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/README.md",
+      "target": "skills/make-custom-apps/examples/copied-snippets/README.md",
+      "sha256": "c90648ac52bfef2ae333637868bbf39e9fad2326094b7287be17c3fde88d77fa",
+      "bytes": 14491
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/base-basic.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/base-basic.imljson",
+      "sha256": "b41c4a4d6bf8a722ce7d695910a66e71e2d468f9957658881834c6c5a3d67eef",
+      "bytes": 267
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/base-bearer.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/base-bearer.imljson",
+      "sha256": "20c164a01d15c2778ca767234625a7857f93229696abf1733f46ddbc74b361d8",
+      "bytes": 376
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/base-custom-auth.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/base-custom-auth.imljson",
+      "sha256": "b5abb2806c7b406d05fae9bf97dfb655a82461851084c21043e52c313aa926cc",
+      "bytes": 298
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/base-global-query.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/base-global-query.imljson",
+      "sha256": "36295d6974b0813f43cee40ec86d49055184bb8dac037e847d046d40203d4f74",
+      "bytes": 115
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/base-two-environments.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/base-two-environments.imljson",
+      "sha256": "8a9940375d45cd8739b9a72318c5fd71d49ef66eb71c24eceeeaba0d1eb21f09",
+      "bytes": 109
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/json-headers.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/json-headers.imljson",
+      "sha256": "fdc290f9357280f230401ae868bd11c01250df5602fd82f92d0b298d4408fa0a",
+      "bytes": 96
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/base/sanitize-secrets.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/base/sanitize-secrets.imljson",
+      "sha256": "fc1e9453ff42e0b1267cfe27abbad098718c9480fc061132e716d43ddd821bce",
+      "bytes": 326
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/connections/api-key-parameters.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/connections/api-key-parameters.imljson",
+      "sha256": "cd0a9dae337b0ea22c6939c3f3a9d3e92898274b2a38db98caa507a7fa932de3",
+      "bytes": 137
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/connections/api-key-validation.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/connections/api-key-validation.imljson",
+      "sha256": "c8ab27ab92ba45b28e36b4f56bc25a95e73dc5e8addf91fed0b4926065cedbb5",
+      "bytes": 320
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/connections/rotating-refresh.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/connections/rotating-refresh.imljson",
+      "sha256": "902ebc8bce71ba75967a1c72bc0d4644783e90f1a32648dc5404215b173f3cf5",
+      "bytes": 814
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/manifest.json",
+      "target": "skills/make-custom-apps/examples/copied-snippets/manifest.json",
+      "sha256": "6d1bc5911889a18dce14a0f4874bdb4bd9307d048ea124933a3567ab2fb2410f",
+      "bytes": 70399
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/pagination/cursor-pagination.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/pagination/cursor-pagination.imljson",
+      "sha256": "d7736e551a4b7807f03649e4040478b927d538f093ad17137f58437938ff4a2c",
+      "bytes": 84
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/pagination/internal-cursor-pagination.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/pagination/internal-cursor-pagination.imljson",
+      "sha256": "bebd551bee6080ce8cb365789500c126a4318755110103af3c06f1d5573ab4c4",
+      "bytes": 133
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/pagination/next-link-pagination.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/pagination/next-link-pagination.imljson",
+      "sha256": "64f41ba0eef5dafd08734456d87de3866ca39eb99faece7682b61500d3eb1dbd",
+      "bytes": 87
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/pagination/offset-pagination.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/pagination/offset-pagination.imljson",
+      "sha256": "305771b5ca9cc663573a239680d3048ff25d43ba7bd7e3cff95eeea426be1dd9",
+      "bytes": 66
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/pagination/response-page-pagination.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/pagination/response-page-pagination.imljson",
+      "sha256": "972514dc817460afa151745754f8a4164f12398f4c95a9b45d796877ac6f4789",
+      "bytes": 257
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/active-boolean.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/active-boolean.imljson",
+      "sha256": "9c6919b96e0d37f2080710d85a4b7c06bbd837de9fab4464ee8742b8bdeea747",
+      "bytes": 123
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/address-collection.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/address-collection.imljson",
+      "sha256": "4d7b985b58f370ed01c8c4ba4456f2c794fdfe3be55e66c83d43354e706d64d0",
+      "bytes": 390
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/bounded-number.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/bounded-number.imljson",
+      "sha256": "bf51ad157d70d0016bf1d94b7e3f5e5a10b8e64db609b78279baf97ef6a52711",
+      "bytes": 155
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/collection-array.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/collection-array.imljson",
+      "sha256": "7e651c48b4e7726872123a02833c350903952e14a172e3020252159d190856a2",
+      "bytes": 453
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/currency-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/currency-select.imljson",
+      "sha256": "315d02d065d7c2e594396fa71a135a8aae382690054c90976094d56e6fbedfb5",
+      "bytes": 275
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/date-range.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/date-range.imljson",
+      "sha256": "878537ad00cb373cacda932c7c4a54c487b01b73bfbe5c07d645c94b183287c8",
+      "bytes": 255
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/date.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/date.imljson",
+      "sha256": "243975b7eb77740ee7276c5ece2fd18ed9df87500c54e2d24541b39daaecda78",
+      "bytes": 119
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/email.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/email.imljson",
+      "sha256": "a43702fcab53e71971e1407cc3f437e03b2b3a641b67975a76d6b4c9e924f1bb",
+      "bytes": 130
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/environment.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/environment.imljson",
+      "sha256": "559a6c5a89648c02b3e3ad997439ce78dcaf358e53ae19a0b3deb1163db77ae7",
+      "bytes": 274
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/file-buffer.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/file-buffer.imljson",
+      "sha256": "6aef5c2117c8dcae069bc7ae557882f48d085fc84c5f886f8a9e1785b0968171",
+      "bytes": 117
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/file-metadata.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/file-metadata.imljson",
+      "sha256": "8e7209dd47b783e06cfb608e7b5b4a839a567bdff2fdbbfc1a0263793d43f34f",
+      "bytes": 449
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/http-input-fields.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/http-input-fields.imljson",
+      "sha256": "e5c324795e49e9b111c57fb250361a12f5419653cb412a8a331e21c314ac4aeb",
+      "bytes": 795
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/multi-status-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/multi-status-select.imljson",
+      "sha256": "a5d3960cfbe7f103a819201c3ff4b58c6c9a7bff4c836ee2d18f7099baeaef2e",
+      "bytes": 361
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/multiline-text.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/multiline-text.imljson",
+      "sha256": "7654cb66d1136cc38712e023a56f9a480c2e9f57fe418b8cdb50da54c7e05c4c",
+      "bytes": 135
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/nested-notification-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/nested-notification-select.imljson",
+      "sha256": "f2f0f0d72d6155efcb12f8d5bd2d571a207423dd1c5582226993f24048a3fd33",
+      "bytes": 862
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/optional-text-default.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/optional-text-default.imljson",
+      "sha256": "8c10f1846a016de42f27428f5989d42ae6fcb04a6cc146e9d7dd901aa6743614",
+      "bytes": 112
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/password.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/password.imljson",
+      "sha256": "dfeb98bc05b30d777a575780220e7d54fe019fa2b093cc3962f957b763aa4e8d",
+      "bytes": 123
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/priority-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/priority-select.imljson",
+      "sha256": "6729d81a1ea3d8adff25b4bf5b33dcfcd8acc31b88b11e3a7c9f7b02c8cdf255",
+      "bytes": 372
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/required-text.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/required-text.imljson",
+      "sha256": "67bb7991ae42f8eaa496b714f600b165905787379ff2a771085d1617025c6356",
+      "bytes": 119
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/sort-direction.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/sort-direction.imljson",
+      "sha256": "48c7b09aeccf71d04d1562db73a475fd37a73879f1a86f35052ee434dac7113a",
+      "bytes": 237
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/sort-field.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/sort-field.imljson",
+      "sha256": "d471df6d8ec24e205570a564967350c09f47935f90972788cc34ac46042522b7",
+      "bytes": 379
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/ssl-boolean.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/ssl-boolean.imljson",
+      "sha256": "b65c1ba17cb2edc1d96c56716bb69f4897056debb812c87cd1b34842a471dc6d",
+      "bytes": 120
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/text-array.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/text-array.imljson",
+      "sha256": "8eb718ca4f32a0d97a0899f81b3097091d1075b42dce206ef61b16619f51c21e",
+      "bytes": 146
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/timeout-number.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/timeout-number.imljson",
+      "sha256": "f8f70cb926517facd0fbc708bdbdc90236e8223a286a928198808ea7594ff082",
+      "bytes": 143
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/url.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/url.imljson",
+      "sha256": "5e88488267851f0ee6502f0117ffef84417bec00a246df6612ace5d698289695",
+      "bytes": 152
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/username.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/username.imljson",
+      "sha256": "aab8f45995f29d6381e5f5906798fc67e194a12cee7bb0dec9249446e795a2ec",
+      "bytes": 119
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/validated-inputs.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/validated-inputs.imljson",
+      "sha256": "b98c9fa9fc511cbca1766b43840212aaaae4c28755746657409b24945368831d",
+      "bytes": 408
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/parameters/zero-quantity.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/parameters/zero-quantity.imljson",
+      "sha256": "2e26c1ebeff919cba09a8e79b9fa65f89be615523d86767cdc2cf4ec016bbfac",
+      "bytes": 118
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/qa/function-test-plan.json",
+      "target": "skills/make-custom-apps/examples/copied-snippets/qa/function-test-plan.json",
+      "sha256": "3dc9c410a1a452740fceeee9e4e93baaff1dee42bb49113edd81d3944604ed87",
+      "bytes": 233
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/qa/pagination-test-plan.json",
+      "target": "skills/make-custom-apps/examples/copied-snippets/qa/pagination-test-plan.json",
+      "sha256": "3a1099c480daae3f0000b3c99036d4a7ed00e47c27a672e9f5368b0ec009aa69",
+      "bytes": 471
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/qa/parameter-change-plan.json",
+      "target": "skills/make-custom-apps/examples/copied-snippets/qa/parameter-change-plan.json",
+      "sha256": "a93adbd42c741c51a493ef3946f3f53b1481572905bcd41f3f6008de24215eb5",
+      "bytes": 306
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/qa/rpc-test-plan.json",
+      "target": "skills/make-custom-apps/examples/copied-snippets/qa/rpc-test-plan.json",
+      "sha256": "e1d1a975db73b312b520f37a6fd6ecb47413cdde01d944964af5fed780eacb01",
+      "bytes": 330
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/action-post.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/action-post.imljson",
+      "sha256": "f5f3acb29e47d261d3ed7226722055798f70d9da28f88bd38e964293e5618ef8",
+      "bytes": 186
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/bounded-async-poll.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/bounded-async-poll.imljson",
+      "sha256": "880ca14ab3e7ad94463f8d728054449dadee9bc30745bdf5883007788a107fb3",
+      "bytes": 710
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/delete-item.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/delete-item.imljson",
+      "sha256": "192de4cb48babe17c0b2fcf12b61db8b1cea1c21c5877f15a5be395e6f66387e",
+      "bytes": 198
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/get-item.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/get-item.imljson",
+      "sha256": "4368e78af70e73829e0867629af4d427c248e24b3586376d307fe61cdcab0973",
+      "bytes": 114
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/message-inputs.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/message-inputs.imljson",
+      "sha256": "031e5b7d585179d6fb15b5b2635e77e1c330632c689a11775f852a7a298409b9",
+      "bytes": 210
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/message-interface.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/message-interface.imljson",
+      "sha256": "2f10b808102be5488718eb7ab1647f93475557717173aa122004d205fe6ff9a4",
+      "bytes": 179
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/message-request.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/message-request.imljson",
+      "sha256": "6df9951cd34ea824d1c6310872f605c58571d6ac9f3db0a5540e874e78db1c99",
+      "bytes": 272
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/requests/post-preserving-false.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/requests/post-preserving-false.imljson",
+      "sha256": "2a59b750ef18efc66ce2865fc71627ea5182a5bd5022f6a775b7428cc5c07ac5",
+      "bytes": 362
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/direct-output.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/direct-output.imljson",
+      "sha256": "de1bfd9e0eb7c7c22038842e56e13ffd2cbadb334b688c73f11d0ee8ea8dc511",
+      "bytes": 49
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/flat-interface.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/flat-interface.imljson",
+      "sha256": "aab44545b54febeb0af04a7e496fabca481b3e6dfd6acb1097ec38180716d834",
+      "bytes": 370
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/internal-search-response.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/internal-search-response.imljson",
+      "sha256": "275c427f8d64a35515933bcd2c856a44546c0b2bcaceafb2189f7ab5afb7fd67",
+      "bytes": 151
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/iterated-tag-output.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/iterated-tag-output.imljson",
+      "sha256": "16f5b90cabbfe4082ff60d69d00ce95ad1201b7feb662f04c1b888b800daa556",
+      "bytes": 182
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/nested-error-message.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/nested-error-message.imljson",
+      "sha256": "a915d7cf71c9d7d93082fd0b9703487253351f4a44bc94e56dc8e1488450aa28",
+      "bytes": 139
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/nested-interface.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/nested-interface.imljson",
+      "sha256": "0f0b691152b0884f885d847516e0581703da97f35411cf37dd8606a66d3b1e53",
+      "bytes": 713
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/nested-output.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/nested-output.imljson",
+      "sha256": "2ce8d03d2a2e953d4feeb99fba6517fe569a12fd7c27605da2d205f7e46ef99a",
+      "bytes": 235
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/projected-output.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/projected-output.imljson",
+      "sha256": "8901b468a185d8b453a5250be781ddd7a9733bf055e7dd8ced4b7aba19a17098",
+      "bytes": 180
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/status-specific-errors.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/status-specific-errors.imljson",
+      "sha256": "6d90892f7df0f50961e14defc1de213da2bf3664706cc65c59ea93c90e6cfdb8",
+      "bytes": 749
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/responses/wrapped-output.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/responses/wrapped-output.imljson",
+      "sha256": "d7d69241632db53800caa1d83220b5ee6786cd7afa456377457a3f892d9edad4",
+      "bytes": 75
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/base-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/base-select.imljson",
+      "sha256": "0b04eef68fc10e0c1b2edeed92b7212d6a65c8a4acabb8169af152242aaa14b2",
+      "bytes": 110
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/bases-rpc.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/bases-rpc.imljson",
+      "sha256": "57e9114857c639caab1de93341266dee65d5347910a6d9352119913d76dea0ef",
+      "bytes": 355
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/categories-rpc.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/categories-rpc.imljson",
+      "sha256": "2514f1f7c1f118935c244c7c84478307b229c301f190509076fe84e6359150c5",
+      "bytes": 276
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/dynamic-category-select.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/dynamic-category-select.imljson",
+      "sha256": "3ead211791d58b4056471983d2cfdb5d09eba393345be0ff3512030f1b0d82d5",
+      "bytes": 179
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/statuses-rpc.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/statuses-rpc.imljson",
+      "sha256": "3e721241147fd57c2bbef6de96f19ed3ff3213f1a6e27d4eccfde41bef62082a",
+      "bytes": 180
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/copied-snippets/rpcs/users-rpc.imljson",
+      "target": "skills/make-custom-apps/examples/copied-snippets/rpcs/users-rpc.imljson",
+      "sha256": "6fc976f2fc29ac9726c11ac73d861b4de69ae0abc01312abc9ef37463e19e78e",
+      "bytes": 258
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/README.md",
+      "target": "skills/make-custom-apps/examples/custom-iml/README.md",
+      "sha256": "07e49aec12961a253f329225276aa778fb8f6fe567ce8c76fb731611f5f027d2",
+      "bytes": 3513
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/default-if-null.test.mjs",
+      "target": "skills/make-custom-apps/examples/custom-iml/default-if-null.test.mjs",
+      "sha256": "cdd97e5dda6fe3605f50f40153555a5ce625aa5dfd7accfc30a2366ce7c48d10",
+      "bytes": 1843
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/defaultIfNull.js",
+      "target": "skills/make-custom-apps/examples/custom-iml/defaultIfNull.js",
+      "sha256": "40b0e98794d926194483e950db361e1a45d3423175e68cd2c192197d6fbacc91",
+      "bytes": 467
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/expect.imljson",
+      "target": "skills/make-custom-apps/examples/custom-iml/expect.imljson",
+      "sha256": "d8296d68f4595c8f9ba1effb71002df5b59c9a1feb0a8c51e7f390d58c948413",
+      "bytes": 198
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/interface.imljson",
+      "target": "skills/make-custom-apps/examples/custom-iml/interface.imljson",
+      "sha256": "5437e76289c0a9cd5886339a5a7a0514476c01f16dc7a0bcc028d380da96b3a2",
+      "bytes": 152
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/output.imljson",
+      "target": "skills/make-custom-apps/examples/custom-iml/output.imljson",
+      "sha256": "2f85ce424baeea8b7b998c8f4225fc201f9c912c1d45cbaff904d2681d1a0890",
+      "bytes": 115
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/custom-iml/samples.imljson",
+      "target": "skills/make-custom-apps/examples/custom-iml/samples.imljson",
+      "sha256": "53a046a4996799ab57b98d2a1c93a5cd43f1a0db1bd202df637a14647b600204",
+      "bytes": 36
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/dropbox-oauth/README.md",
+      "target": "skills/make-custom-apps/examples/dropbox-oauth/README.md",
+      "sha256": "acc6bc83605f820e7b790a5310971ef9428c61982bacef8f3e27e9cc40a329bc",
+      "bytes": 3606
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/dropbox-oauth/api.imljson",
+      "target": "skills/make-custom-apps/examples/dropbox-oauth/api.imljson",
+      "sha256": "de0887a9146a854287ec3a0d40a0c5e75255442d54190a98989e4c073abee3b2",
+      "bytes": 2341
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/dropbox-oauth/common.example.json",
+      "target": "skills/make-custom-apps/examples/dropbox-oauth/common.example.json",
+      "sha256": "91d27ef759945c9c5ccf2c6f3cfdf491812d86b752bb28b3f1b514e53f6a1b82",
+      "bytes": 102
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/dropbox-oauth/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/dropbox-oauth/parameters.imljson",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/dropbox-oauth/scope.imljson",
+      "target": "skills/make-custom-apps/examples/dropbox-oauth/scope.imljson",
+      "sha256": "8c40accba67f50c15b2b907f7e1d1158d38bc183bb10bf8f4fbebdf3a6a05eb7",
+      "bytes": 26
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/README.md",
+      "target": "skills/make-custom-apps/examples/github-polling/README.md",
+      "sha256": "1188d4382347bd2e9e22b6b316997dd4652f442af1ee99fa1b3457c1c5e8e590",
+      "bytes": 3768
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/api.imljson",
+      "target": "skills/make-custom-apps/examples/github-polling/api.imljson",
+      "sha256": "431dac73085f0c07b6b780a3ecfc20d2a9e6e95d929f880c5a147003ad8a06f7",
+      "bytes": 914
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/epoch.imljson",
+      "target": "skills/make-custom-apps/examples/github-polling/epoch.imljson",
+      "sha256": "46779e0bd6d7f62a38c5097d2502587310508f9864c487365622cc9c0a6c72ec",
+      "bytes": 161
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/interface.imljson",
+      "target": "skills/make-custom-apps/examples/github-polling/interface.imljson",
+      "sha256": "448a27b3056b8df1475af494b849d18631a2e72135bac89e13ee10cce819d74c",
+      "bytes": 389
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/github-polling/parameters.imljson",
+      "sha256": "e49f4d4b72c95f58a10bc7f9c68805c61c8590cb52fc1298161d5201632d21de",
+      "bytes": 690
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-polling/samples.imljson",
+      "target": "skills/make-custom-apps/examples/github-polling/samples.imljson",
+      "sha256": "b2ef80c64cc5f8ab65e9c4550889d3581114590f45d7ea23392a2ccbec40aa76",
+      "bytes": 136
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/README.md",
+      "target": "skills/make-custom-apps/examples/github-search/README.md",
+      "sha256": "d3d6003eff7ae98fdcda487f74743a68fc32ad267cefdebdfbb2ab440f9288e3",
+      "bytes": 3401
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/api.imljson",
+      "target": "skills/make-custom-apps/examples/github-search/api.imljson",
+      "sha256": "cedcb4b19d10f51d843c92a2f5bd4211937c0e490a8c0ca0f6d14da29fd5fbfa",
+      "bytes": 953
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/expect.imljson",
+      "target": "skills/make-custom-apps/examples/github-search/expect.imljson",
+      "sha256": "49ffc8d0c88c88301fc6e6ea065a2027401937ba3b59e86e5e73e564e325eaeb",
+      "bytes": 471
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/interface.imljson",
+      "target": "skills/make-custom-apps/examples/github-search/interface.imljson",
+      "sha256": "748f9334ce6a5a613b1b10d696340f0a0dbc78e820bdcf2088b45386f1a79741",
+      "bytes": 397
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/github-search/parameters.imljson",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-search/samples.imljson",
+      "target": "skills/make-custom-apps/examples/github-search/samples.imljson",
+      "sha256": "a466064b35b424d875a97e7f90dbd8413419c7f96aa29109f074161f514b07f8",
+      "bytes": 145
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/README.md",
+      "target": "skills/make-custom-apps/examples/github-webhook/README.md",
+      "sha256": "82de66116f96beb1210bcf5309eabf2ed49f7ed688c1417b82e72d9edbfe6612",
+      "bytes": 5811
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/connection/api.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/connection/api.imljson",
+      "sha256": "922b715bd83b1d3b76d4996056b11aecc949f691a6f178f0b48c884ad5241440",
+      "bytes": 542
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/connection/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/connection/parameters.imljson",
+      "sha256": "da6103f59ab3a32e6bfbbfe1689c82833a4bd1f4ee3ba774d7622491abdc37e8",
+      "bytes": 123
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/trigger/api.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/trigger/api.imljson",
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "bytes": 3
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/trigger/interface.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/trigger/interface.imljson",
+      "sha256": "fb2bd4684d2e509120e7a017e51fd5e7474133c067ac729eccf0ba5b883f34fb",
+      "bytes": 381
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/trigger/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/trigger/parameters.imljson",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/trigger/samples.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/trigger/samples.imljson",
+      "sha256": "4e2b922a5b6038c21e7677c1fe20f7a70d566600edb097c04dc1ab6385176782",
+      "bytes": 98
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/webhook/api.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/webhook/api.imljson",
+      "sha256": "653406997fb36317f5a69a232991f8978f2734003aa9549bacfb6b8f519529fd",
+      "bytes": 568
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/webhook/attach.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/webhook/attach.imljson",
+      "sha256": "81f17087daf4a08dd3551d843eab6f1ad9b6e2a326a3cb1b92577e45adb82e35",
+      "bytes": 997
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/webhook/detach.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/webhook/detach.imljson",
+      "sha256": "ef384c355d963697d7491873c203b1f2bbe6f99709b1dd3ead8aa075a740fe34",
+      "bytes": 461
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/examples/github-webhook/webhook/parameters.imljson",
+      "target": "skills/make-custom-apps/examples/github-webhook/webhook/parameters.imljson",
+      "sha256": "919e15c09b076720ebe0ee37d933b59f56f64fa671388fd2417314685681f2e4",
+      "bytes": 671
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/base-and-connections.md",
+      "target": "skills/make-custom-apps/references/base-and-connections.md",
+      "sha256": "3700aa8ff90ea3681d8c04de665bcd3c755e9e8ecdb9d133c5c48fa71250d0a3",
+      "bytes": 9681
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/iml-functions.md",
+      "target": "skills/make-custom-apps/references/iml-functions.md",
+      "sha256": "13206b6f0fbe906a2499113148443bb126a7402ad57481147c31ac36d8d9291d",
+      "bytes": 8062
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/maintenance.md",
+      "target": "skills/make-custom-apps/references/maintenance.md",
+      "sha256": "bf756f471f37bb9f7442ff0ea4d1d9d987dfafe97a6e73ad0d854b94ea711340",
+      "bytes": 9806
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/modules-and-pagination.md",
+      "target": "skills/make-custom-apps/references/modules-and-pagination.md",
+      "sha256": "c55d7495b16b7b21930c9df813025532ba70003f57b6cd8c715709daf875ab7b",
+      "bytes": 8568
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/parameters-and-rpcs.md",
+      "target": "skills/make-custom-apps/references/parameters-and-rpcs.md",
+      "sha256": "2423863b3ce409ef45cc49175234987b38912487ec486eff5fc94d709cd6a545",
+      "bytes": 8709
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/requests-and-responses.md",
+      "target": "skills/make-custom-apps/references/requests-and-responses.md",
+      "sha256": "0ddc255e1a2b13b8c31c31f93ce0d982b770d876f750786685c5c5b53f3ae2c4",
+      "bytes": 9720
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/research-and-inventory.md",
+      "target": "skills/make-custom-apps/references/research-and-inventory.md",
+      "sha256": "0495df7a13b074f4d674d24cb08712caa8db0d8ec68c36e432e62dba719b5213",
+      "bytes": 9415
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/review-and-qa.md",
+      "target": "skills/make-custom-apps/references/review-and-qa.md",
+      "sha256": "09de56602b8953aef228dd666f12185dccd2500bfb8f9f58e353db73e8728cbc",
+      "bytes": 11316
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/sdk-endpoints.md",
+      "target": "skills/make-custom-apps/references/sdk-endpoints.md",
+      "sha256": "8bcf0470061643485c400aa5a839e0ad1bf367dbb6cbc1e04378408fadad568b",
+      "bytes": 7260
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/source-hierarchy.md",
+      "target": "skills/make-custom-apps/references/source-hierarchy.md",
+      "sha256": "01d98021a3c78e829a33fb502cecd14df8efbe321530c5366cafa2112cf3fe7a",
+      "bytes": 7015
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/tooling-and-release.md",
+      "target": "skills/make-custom-apps/references/tooling-and-release.md",
+      "sha256": "869529f2b6791813a17572dbfb7429959dc2dcac56ff5241475a7f837146e17b",
+      "bytes": 15180
+    },
+    {
+      "source": "plugins/make-skills-codex/skills/make-custom-apps/references/webhooks-and-polling.md",
+      "target": "skills/make-custom-apps/references/webhooks-and-polling.md",
+      "sha256": "b3aced2e80c18e0b354844b6f33433c971e725e290c64c4aa8914507d0b723e5",
+      "bytes": 8684
+    },
+    {
+      "source": "scripts/check-custom-app-examples.mjs",
+      "target": "scripts/check-custom-app-examples.mjs",
+      "sha256": "afa275c29b082e627ee6634661253a2523024a743c97c554b353b9ff184ae988",
+      "bytes": 15850
+    },
+    {
+      "source": "scripts/check-custom-app-examples.test.mjs",
+      "target": "scripts/check-custom-app-examples.test.mjs",
+      "sha256": "787363f32dae15728a3bde02ecaa9eca2c163798fca1fa1a15642a3aceb36338",
+      "bytes": 8948
+    }
+  ]
+}
