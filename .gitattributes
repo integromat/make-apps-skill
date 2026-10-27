@@ -1,0 +1,9 @@
+# Preserve imported source bytes.
+skills/make-custom-apps/** -text
+provenance/pr70-baseline.json -text
+LICENSE -text
+.github/CODEOWNERS -text
+
+# Hash-pinned checker adaptations use LF on every checkout.
+scripts/*.mjs text eol=lf
+*.zip binary

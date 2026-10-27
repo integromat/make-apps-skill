@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 export const DEFAULT_EXAMPLES = fileURLToPath(new URL(
-  '../plugins/make-skills-codex/skills/make-custom-apps/examples/', import.meta.url,
+  '../skills/make-custom-apps/examples/', import.meta.url,
 ));
 
 function filesUnder(root) {

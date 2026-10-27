@@ -84,7 +84,7 @@ This version is a verified baseline, not a claim about the latest release or per
    for provider mutations. Report missing provider credentials or unexecuted cases separately.
 
 For **Endpoint execution**, use **`@makehq/endpoints-sdk`** and the existing
-[execution skill](../../make-endpoints/SKILL.md). Its `SdkTransport` can wrap the platform SDK's `Make`
+[execution skill](https://github.com/integromat/make-skills/blob/main/skills/make-endpoints/SKILL.md). Its `SdkTransport` can wrap the platform SDK's `Make`
 client, but calling an Endpoint does not upload the app or validate its other components.[49] Install it
 only when execution is in scope, and verify its own version, runtime requirement, organization enablement,
 team and compatible connection. The platform SDK's `make.sdk.endpoints` authoring methods remain subject

@@ -1,0 +1,20 @@
+{
+  "name": "make-custom-apps-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable Make app-authoring skill; offline static, unit and packaging checks only.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "npm run check:examples",
+    "check:examples": "node scripts/check-custom-app-examples.mjs",
+    "check:custom-apps": "node --test scripts/check-custom-app-examples.test.mjs && node scripts/check-custom-app-examples.mjs",
+    "test": "npm run test:node && npm run test:package",
+    "test:node": "node --test scripts/check-custom-app-examples.test.mjs tests/*.test.mjs",
+    "test:package": "python3 -B -m unittest discover -s tests -p \"test_*.py\" -v",
+    "build": "python3 scripts/build-skill.py",
+    "check-build": "python3 scripts/build-skill.py --check"
+  }
+}

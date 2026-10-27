@@ -9,8 +9,8 @@ metadata:
 
 Owns SDK app definitions/lifecycle, including app IML functions. Excludes native apps, platform-SDK
 development, organization Custom Functions. Scenarios →
-[make-scenario-building](../make-scenario-building/SKILL.md); Endpoint execution →
-[make-endpoints](../make-endpoints/SKILL.md). No required model/editor/private KB/company account.
+[make-scenario-building](https://github.com/integromat/make-skills/blob/main/skills/make-scenario-building/SKILL.md); Endpoint execution →
+[make-endpoints](https://github.com/integromat/make-skills/blob/main/skills/make-endpoints/SKILL.md). No required model/editor/private KB/company account.
 Skill installation grants neither tools nor permissions; package installation grants no permissions,
 runtime enablement or publication.
 

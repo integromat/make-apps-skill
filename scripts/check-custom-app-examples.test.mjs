@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const checker = fileURLToPath(new URL('./check-custom-app-examples.mjs', import.meta.url));
-const examples = fileURLToPath(new URL('../plugins/make-skills-codex/skills/make-custom-apps/examples/', import.meta.url));
+const examples = fileURLToPath(new URL('../skills/make-custom-apps/examples/', import.meta.url));
 
 function run(root) {
   return spawnSync(process.execPath, [checker, ...(root ? ['--examples-root', root] : [])], {
@@ -32,6 +32,10 @@ function changeJson(root, file, mutate) {
   mutate(value);
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 }
+
+test('uses the dedicated repository canonical examples as regression fixtures', () => {
+  assert.equal(examples, fileURLToPath(new URL('../skills/make-custom-apps/examples/', import.meta.url)));
+});
 
 test('checks shipped JSON and runs the actual helper tests from another working directory', () => {
   const result = run();

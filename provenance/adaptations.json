@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "target": "scripts/check-custom-app-examples.mjs",
+      "originalSha256": "afa275c29b082e627ee6634661253a2523024a743c97c554b353b9ff184ae988",
+      "currentSha256": "2cf1cedaddf60c213bb6e2ea19104a750c42704f20d0bde92ba4225706b914fe",
+      "reason": "Resolve the default examples root from the dedicated repository's canonical skills/make-custom-apps directory; preserve the inherited checks and helper runner."
+    },
+    {
+      "target": "scripts/check-custom-app-examples.test.mjs",
+      "originalSha256": "787363f32dae15728a3bde02ecaa9eca2c163798fca1fa1a15642a3aceb36338",
+      "currentSha256": "4362f4c96ff3ba6cad71f47428d7768420242030cac0e8d7b67680e6a051b1e8",
+      "reason": "Point regression fixtures at the canonical skill and assert that dedicated-repository path; retain all inherited regression tests, foreign-working-directory checks and actual helper tests."
+    },
+    {
+      "target": "skills/make-custom-apps/SKILL.md",
+      "originalSha256": "d3967176d2d0a1ada45fe9e6f5bb3ae24de4db3cc282256c3ed46a6fcf28426c",
+      "currentSha256": "59f63f2f3400c8751fdabd46e47c1466ac1018108ab82b7fcb57e06cd5447588",
+      "reason": "Replace former sibling-skill links with canonical make-skills repository URLs for standalone installation; retain all other source content."
+    },
+    {
+      "target": "skills/make-custom-apps/references/tooling-and-release.md",
+      "originalSha256": "869529f2b6791813a17572dbfb7429959dc2dcac56ff5241475a7f837146e17b",
+      "currentSha256": "e550ccfc8c16c2f2fd106745e623f5b39879f5f98c8b4f1e5aa4d8913fe2bda1",
+      "reason": "Replace former sibling-skill links with canonical make-skills repository URLs for standalone installation; retain all other source content."
+    }
+  ]
+}
