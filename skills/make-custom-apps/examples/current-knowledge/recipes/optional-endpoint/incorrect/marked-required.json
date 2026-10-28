@@ -1,0 +1,18 @@
+{
+  "note": "Incorrect: the Endpoint is treated as a required part of an ordinary module app.",
+  "optional": false,
+  "endpoint": {
+    "inputParameters": [
+      { "name": "recordId", "type": "text", "label": "Record ID", "required": true }
+    ],
+    "api": {
+      "method": "GET",
+      "url": "https://api.example.invalid/v1/records/{{parameters.recordId}}",
+      "response": { "output": "{{body}}" }
+    },
+    "outputParameters": [
+      { "name": "id", "type": "text", "label": "ID" },
+      { "name": "title", "type": "text", "label": "Title" }
+    ]
+  }
+}

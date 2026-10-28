@@ -1,0 +1,14 @@
+{
+  "note": "Synthetic forms. Labels are human wording, distinct from machine names. Case or spacing differences between a label and its name are cosmetic and not flagged. A required field stays visible; an optional tuning field may sit under advanced settings; the secret-named connection field uses type password.",
+  "connectionParameters": [
+    { "name": "apiKey", "type": "password", "label": "API key", "required": true }
+  ],
+  "parameters": [
+    { "name": "displayName", "type": "text", "label": "Display name", "required": true },
+    { "name": "timeoutSeconds", "type": "number", "label": "Timeout in seconds", "required": false, "advanced": true }
+  ],
+  "interface": [
+    { "name": "id", "type": "text", "label": "ID" },
+    { "name": "displayName", "type": "text", "label": "Display name" }
+  ]
+}

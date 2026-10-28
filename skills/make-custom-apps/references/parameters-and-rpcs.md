@@ -142,6 +142,20 @@ Sources: [Dynamic fields](https://developers.make.com/custom-apps-documentation/
 [Dynamic interface](https://developers.make.com/custom-apps-documentation/component-blocks/interface.md#dynamic-interface-using-rpc),
 [Dynamic samples](https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-sample-rpc.md).
 
+## Current-knowledge guides
+
+Open the guide for the question at hand; each carries sources, applicability, exceptions and
+authored synthetic correct/incorrect fixtures (static teaching material, not runtime proof).
+
+- Selector mode, dependent options, options vs schema RPCs:
+  [selectors and mode](../examples/current-knowledge/guides/selectors-mode.md).
+- RPC limit, page size and one-based pages (a recommendation, not a provider cap):
+  [RPC page budgets](../examples/current-knowledge/guides/rpc-page-budgets.md).
+- Required flags, interface drift, falsy values:
+  [interfaces and required flags](../examples/current-knowledge/guides/interfaces-required.md).
+- Labels and field visibility (cosmetic wording vs behavior):
+  [labels and visibility](../examples/current-knowledge/guides/labels-visibility.md).
+
 ## Verification gate
 
 - Resolve every `rpc://` reference and custom helper against a defined component.

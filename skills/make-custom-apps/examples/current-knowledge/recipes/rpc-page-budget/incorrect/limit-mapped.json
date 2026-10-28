@@ -1,0 +1,16 @@
+{
+  "note": "Incorrect: the RPC limit is a mapped expression instead of a fixed number.",
+  "budget": { "pageSize": 100, "maxPages": 5, "maxRecords": 500 },
+  "rpc": {
+    "api": {
+      "url": "https://api.example.invalid/v1/people",
+      "qs": { "page": 1, "limit": 100 },
+      "pagination": { "qs": { "page": "{{pagination.page}}" } },
+      "response": {
+        "iterate": "{{body.people}}",
+        "limit": "{{parameters.limit}}",
+        "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+      }
+    }
+  }
+}

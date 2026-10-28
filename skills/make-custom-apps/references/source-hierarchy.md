@@ -89,6 +89,12 @@ Declare whether each example is a component-section template, a static/unit-test
 live-tested app. Sample JSON is not an observed API response unless a real authorized call produced it;
 fixture data must be labeled as such.
 
+## Current-knowledge guide
+
+Claim status, source requirements, strength-from-documentation (never from frequency) and separate
+static/upload/provider/publication gates:
+[compatibility and evidence](../examples/current-knowledge/guides/compatibility-evidence.md).
+
 ## Portability and evidence limits
 
 A local naming convention, generator, editor, model, module-count preference, or upload wrapper is not a

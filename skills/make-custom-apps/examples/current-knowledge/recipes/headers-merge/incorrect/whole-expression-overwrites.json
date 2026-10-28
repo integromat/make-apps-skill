@@ -1,0 +1,20 @@
+{
+  "note": "Incorrect: a whole-expression headers value replaces the Base collection, yet the expectation still lists the inherited Authorization and User-Agent headers.",
+  "base": {
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "synthetic-app/1",
+      "Authorization": "Bearer {{connection.accessToken}}"
+    }
+  },
+  "request": {
+    "headers": "{{traceHeaders()}}",
+    "spreadProduces": { "X-Trace": "t-1" }
+  },
+  "expectedEffectiveHeaders": {
+    "accept": "application/json",
+    "user-agent": "synthetic-app/1",
+    "authorization": "Bearer {{connection.accessToken}}",
+    "x-trace": "t-1"
+  }
+}

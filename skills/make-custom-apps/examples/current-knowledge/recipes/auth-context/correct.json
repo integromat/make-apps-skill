@@ -1,0 +1,42 @@
+{
+  "note": "Synthetic auth contexts. Base and module requests read the saved connection as connection.*. Connection token and refresh requests may legitimately read submitted or stored values through the data, connection, parameters and common aliases; those aliases are context-dependent and are not treated as errors. A request must never read a response-only variable such as body. Every secret-bearing request or response path is listed in log.sanitize. The module-level Authorization header is shown only so the context rule can be tested; Base normally carries authorization.",
+  "base": {
+    "headers": { "Authorization": "Bearer {{connection.accessToken}}" },
+    "log": { "sanitize": ["request.headers.authorization"] }
+  },
+  "module": {
+    "api": { "headers": { "Authorization": "Bearer {{connection.accessToken}}" } }
+  },
+  "connection": {
+    "token": {
+      "url": "https://auth.example.invalid/oauth/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": {
+        "grant_type": "client_credentials",
+        "client_id": "{{parameters.clientId}}",
+        "client_secret": "{{parameters.clientSecret}}"
+      },
+      "response": { "data": { "accessToken": "{{body.access_token}}" } },
+      "log": { "sanitize": ["request.body.client_secret", "response.body.access_token"] }
+    },
+    "refresh": {
+      "url": "https://auth.example.invalid/oauth/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": {
+        "grant_type": "refresh_token",
+        "refresh_token": "{{connection.refreshToken}}",
+        "client_id": "{{parameters.clientId}}",
+        "client_secret": "{{parameters.clientSecret}}"
+      },
+      "response": { "data": { "accessToken": "{{body.access_token}}", "refreshToken": "{{body.refresh_token}}" } },
+      "log": {
+        "sanitize": [
+          "request.body.refresh_token", "request.body.client_secret",
+          "response.body.access_token", "response.body.refresh_token"
+        ]
+      }
+    }
+  }
+}

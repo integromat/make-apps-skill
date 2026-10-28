@@ -1,0 +1,23 @@
+{
+  "note": "Incorrect: the interface advertises a status field that the response.output projection never emits.",
+  "expect": [
+    { "name": "ticketId", "type": "text", "label": "Ticket", "required": true },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "api": {
+    "method": "PATCH",
+    "url": "https://api.example.invalid/v1/tickets/{{parameters.ticketId}}",
+    "body": { "title": "{{parameters.title}}", "archived": "{{parameters.archived}}" },
+    "response": {
+      "output": { "id": "{{body.id}}", "title": "{{body.title}}", "archived": "{{body.archived}}" }
+    }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Ticket ID" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" },
+    { "name": "status", "type": "text", "label": "Status" }
+  ],
+  "samples": { "id": "t-100", "title": "Example title", "archived": false }
+}

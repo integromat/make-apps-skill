@@ -1,0 +1,14 @@
+{
+  "note": "Incorrect: a required input is placed under advanced settings, hiding something the module cannot run without.",
+  "connectionParameters": [
+    { "name": "apiKey", "type": "password", "label": "API key", "required": true }
+  ],
+  "parameters": [
+    { "name": "displayName", "type": "text", "label": "Display name", "required": true },
+    { "name": "timeoutSeconds", "type": "number", "label": "Timeout in seconds", "advanced": true, "required": true }
+  ],
+  "interface": [
+    { "name": "id", "type": "text", "label": "ID" },
+    { "name": "displayName", "type": "text", "label": "Display name" }
+  ]
+}

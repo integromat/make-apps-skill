@@ -1,0 +1,16 @@
+{
+  "note": "Incorrect: pagination.page already holds the next page number (2 after the first request); adding 1 skips a page for a one-based provider.",
+  "budget": { "pageSize": 100, "maxPages": 5, "maxRecords": 500 },
+  "rpc": {
+    "api": {
+      "url": "https://api.example.invalid/v1/people",
+      "qs": { "page": 1, "limit": 100 },
+      "pagination": { "qs": { "page": "{{pagination.page + 1}}" } },
+      "response": {
+        "iterate": "{{body.people}}",
+        "limit": 300,
+        "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+      }
+    }
+  }
+}

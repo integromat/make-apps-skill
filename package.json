@@ -8,7 +8,8 @@
     "node": ">=22"
   },
   "scripts": {
-    "check": "npm run check:examples",
+    "check": "npm run check:examples && npm run check:current-knowledge",
+    "check:current-knowledge": "node scripts/check-current-knowledge.mjs",
     "check:examples": "node scripts/check-custom-app-examples.mjs",
     "check:custom-apps": "node --test scripts/check-custom-app-examples.test.mjs && node scripts/check-custom-app-examples.mjs",
     "test": "npm run test:node && npm run test:package",

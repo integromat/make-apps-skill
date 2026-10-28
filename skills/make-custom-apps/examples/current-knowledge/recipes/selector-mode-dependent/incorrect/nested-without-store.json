@@ -1,0 +1,47 @@
+{
+  "note": "Incorrect: a parent selector declares nested children but its options have no store, so the nested selector cannot load from the parent value.",
+  "moduleKind": "get",
+  "parameters": [
+    { "name": "projectId", "type": "select", "label": "Project", "required": true, "mode": "edit", "options": "rpc://listProjects" },
+    {
+      "name": "workspaceId", "type": "select", "label": "Workspace", "required": true, "mappable": false,
+      "options": {
+        "nested": [
+          { "name": "boardId", "type": "select", "label": "Board", "required": true, "options": "rpc://listBoards" }
+        ]
+      }
+    }
+  ],
+  "rpcs": {
+    "listProjects": {
+      "kind": "options",
+      "api": {
+        "url": "https://api.example.invalid/v1/projects",
+        "response": { "iterate": "{{body.projects}}", "limit": 300, "output": { "label": "{{item.name}}", "value": "{{item.id}}" } }
+      }
+    },
+    "listWorkspaces": {
+      "kind": "options",
+      "api": {
+        "url": "https://api.example.invalid/v1/workspaces",
+        "response": { "iterate": "{{body.workspaces}}", "limit": 300, "output": { "label": "{{item.name}}", "value": "{{item.id}}" } }
+      }
+    },
+    "listBoards": {
+      "kind": "options",
+      "api": {
+        "url": "https://api.example.invalid/v1/boards",
+        "qs": { "workspace": "{{parameters.workspaceId}}" },
+        "response": { "iterate": "{{body.boards}}", "limit": 300, "output": { "label": "{{item.name}}", "value": "{{item.id}}" } }
+      }
+    },
+    "describeFields": {
+      "kind": "fields",
+      "api": {
+        "url": "https://api.example.invalid/v1/field-definitions",
+        "response": { "iterate": "{{body.fields}}", "output": { "name": "{{item.key}}", "label": "{{item.title}}", "type": "{{item.type}}" } }
+      }
+    }
+  },
+  "interface": ["rpc://describeFields"]
+}

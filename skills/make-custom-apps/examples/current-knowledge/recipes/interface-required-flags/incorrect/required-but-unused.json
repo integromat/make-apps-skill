@@ -1,0 +1,23 @@
+{
+  "note": "Incorrect: a required input is declared but no declared consumer (main request, RPC, dynamic interface or helper argument) uses it, so users must fill a field that has no effect.",
+  "expect": [
+    { "name": "ticketId", "type": "text", "label": "Ticket", "required": true },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" },
+    { "name": "reason", "type": "text", "label": "Reason", "required": true }
+  ],
+  "api": {
+    "method": "PATCH",
+    "url": "https://api.example.invalid/v1/tickets/{{parameters.ticketId}}",
+    "body": { "title": "{{parameters.title}}", "archived": "{{parameters.archived}}" },
+    "response": {
+      "output": { "id": "{{body.id}}", "title": "{{body.title}}", "archived": "{{body.archived}}" }
+    }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Ticket ID" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "samples": { "id": "t-100", "title": "Example title", "archived": false }
+}

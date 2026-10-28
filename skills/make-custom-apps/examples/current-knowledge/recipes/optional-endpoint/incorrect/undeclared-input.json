@@ -1,0 +1,18 @@
+{
+  "note": "Incorrect: the Endpoint request reads parameters.recordKey, an input that its inputParameters section never declares. Synthetic wrapper fixture, not a whole deployable definition.",
+  "optional": true,
+  "endpoint": {
+    "inputParameters": [
+      { "name": "recordId", "type": "text", "label": "Record ID", "required": true }
+    ],
+    "api": {
+      "method": "GET",
+      "url": "https://api.example.invalid/v1/records/{{parameters.recordKey}}",
+      "response": { "output": "{{body}}" }
+    },
+    "outputParameters": [
+      { "name": "id", "type": "text", "label": "ID" },
+      { "name": "title", "type": "text", "label": "Title" }
+    ]
+  }
+}

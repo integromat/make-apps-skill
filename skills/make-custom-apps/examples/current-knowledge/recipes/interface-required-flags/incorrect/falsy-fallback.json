@@ -1,0 +1,22 @@
+{
+  "note": "Incorrect: the || fallback is applied to an optional boolean, so an intentional false is indistinguishable from an empty value.",
+  "expect": [
+    { "name": "ticketId", "type": "text", "label": "Ticket", "required": true },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "api": {
+    "method": "PATCH",
+    "url": "https://api.example.invalid/v1/tickets/{{parameters.ticketId}}",
+    "body": { "title": "{{parameters.title}}", "archived": "{{parameters.archived || true}}" },
+    "response": {
+      "output": { "id": "{{body.id}}", "title": "{{body.title}}", "archived": "{{body.archived}}" }
+    }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Ticket ID" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "samples": { "id": "t-100", "title": "Example title", "archived": false }
+}

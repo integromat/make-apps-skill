@@ -93,6 +93,11 @@ use a separate helper if Endpoint-specific normalization would change existing m
 [maintenance](maintenance.md) and [release](tooling-and-release.md) gates. Report definition review/readback,
 actual runtime assertions and publication separately.
 
+## Current-knowledge guide
+
+An Endpoint is an optional addition; a module-only app is complete without one. See
+[optional Endpoints](../examples/current-knowledge/guides/optional-endpoints.md).
+
 ## Sources
 
 [1] https://raw.githubusercontent.com/integromat/make-typescript-sdk/a21b6b60de71ca96341da76b5329eff83c9ebc2a/src/endpoints/sdk/endpoints.ts

@@ -1,0 +1,20 @@
+{
+  "note": "Synthetic wrapper fixture, not a whole deployable definition. An Endpoint is an optional addition to an app that already works through modules; no module-only app requires one. inputParameters is the section that DECLARES the inputs; the request IML reads each declared input as parameters.NAME.",
+  "optional": true,
+  "endpoint": {
+    "inputParameters": [
+      { "name": "recordId", "type": "text", "label": "Record ID", "required": true },
+      { "name": "expand", "type": "text", "label": "Expand" }
+    ],
+    "api": {
+      "method": "GET",
+      "url": "https://api.example.invalid/v1/records/{{parameters.recordId}}",
+      "qs": { "expand": "{{parameters.expand}}" },
+      "response": { "output": "{{body}}" }
+    },
+    "outputParameters": [
+      { "name": "id", "type": "text", "label": "ID" },
+      { "name": "title", "type": "text", "label": "Title" }
+    ]
+  }
+}

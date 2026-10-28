@@ -134,6 +134,13 @@ with an appropriate IML conversion; do not manufacture timestamps to mask missin
 
 Source: [Polling trigger contract](https://developers.make.com/custom-apps-documentation/app-components/modules/trigger.md).
 
+## Current-knowledge guides
+
+- Date-only, time-only and unknown-timezone values, trigger order and helper tracing:
+  [dates and helpers](../examples/current-knowledge/guides/dates-helpers.md).
+- Attach/detach identity, challenge vs signature verification, acknowledgments:
+  [webhooks](../examples/current-knowledge/guides/webhooks.md).
+
 ## Epoch and verification gate
 
 Epoch controls the starting point, not a separate polling implementation. Its

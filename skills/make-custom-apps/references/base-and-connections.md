@@ -137,6 +137,14 @@ Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-c
 [JWT](https://developers.make.com/custom-apps-documentation/app-components/connections/jwt.md),
 [Request signing](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md#aws).
 
+## Current-knowledge guides
+
+- Header precedence against Base (per-name override, collection spread, whole-expression replacement):
+  [headers merge](../examples/current-knowledge/guides/headers-merge.md).
+- Which context reads which credential variable, and which secret paths to sanitize:
+  [authentication contexts](../examples/current-knowledge/guides/auth-context.md). Connection
+  communication aliases differ from module contexts; that is documented behavior, not a defect.
+
 ## Security and readiness gates
 
 - Sanitize every actual secret-bearing request and response path, including query

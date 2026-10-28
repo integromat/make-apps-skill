@@ -1,0 +1,24 @@
+{
+  "note": "Incorrect: the trigger date maps a raw field whose declared format is not auto-parsed.",
+  "providerFields": {
+    "created_at": { "format": "local-datetime-no-offset" },
+    "updated_at": { "format": "local-datetime-no-offset" }
+  },
+  "api": {
+    "url": "https://api.example.invalid/v1/tickets",
+    "qs": { "sort": "created_at", "direction": "desc" },
+    "response": {
+      "iterate": "{{body.items}}",
+      "trigger": {
+        "type": "date",
+        "order": "desc",
+        "id": "{{item.id}}",
+        "date": "{{item.created_at}}"
+      },
+      "output": {
+        "id": "{{item.id}}",
+        "updatedAt": "{{normalizeDate(item.updated_at)}}"
+      }
+    }
+  }
+}

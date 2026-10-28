@@ -1,0 +1,14 @@
+{
+  "note": "Incorrect: the label exposes an API-style camelCase name instead of human wording.",
+  "connectionParameters": [
+    { "name": "apiKey", "type": "password", "label": "API key", "required": true }
+  ],
+  "parameters": [
+    { "name": "displayName", "type": "text", "label": "Display name", "required": true },
+    { "name": "timeoutSeconds", "type": "number", "label": "timeoutSeconds", "advanced": true }
+  ],
+  "interface": [
+    { "name": "id", "type": "text", "label": "ID" },
+    { "name": "displayName", "type": "text", "label": "Display name" }
+  ]
+}

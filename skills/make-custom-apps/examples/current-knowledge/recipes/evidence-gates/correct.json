@@ -1,0 +1,15 @@
+{
+  "note": "Synthetic evidence record for a static-only review. Each claim states its status and sources. Gates are reported separately: a performed static gate implies nothing about upload, provider execution or publication.",
+  "claims": [
+    { "text": "The behavior is described in the public custom-apps documentation.", "status": "documented", "sourceIds": ["doc-sdk-docs-root"] },
+    { "text": "A provider-specific limit has not been checked against provider documentation.", "status": "unverified", "sourceIds": [] },
+    { "text": "A generic complete-app review suggested this layout; it is guidance, not a requirement.", "status": "observed", "sourceIds": ["research-generic-complete-app"] }
+  ],
+  "gates": {
+    "static": "performed",
+    "uploadReadback": "skipped",
+    "providerExecution": "unavailable",
+    "publication": "skipped"
+  },
+  "gateEvidence": { "static": "Ran the current-knowledge static checker over the teaching fixtures only." }
+}

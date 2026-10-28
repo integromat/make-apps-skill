@@ -10,6 +10,8 @@ A directly reused [library of 71 copied/adapted examples](copied-snippets/README
 | [GitHub dedicated webhook](github-webhook/README.md) | Connection → attach → receive → detach → instant trigger | **Deployment blocked** until signature/security work is implemented and tested |
 | [Custom IML helper](custom-iml/README.md) | Nullish-only scalar defaults, executable tests | Node unit-tested; Make runtime untested |
 
+Beyond component examples, the [current-knowledge index](current-knowledge/README.md) holds topic guides and authored synthetic correct/incorrect recipe fixtures. They are checked statically by `npm run check:current-knowledge`, which validates only those fixtures against the rules the catalog declares; it is not an IML interpreter, SDK validator or proof of Make or provider behavior.
+
 ## Offline validation
 
 From the repository root, with Node.js 22 or newer and no dependencies:

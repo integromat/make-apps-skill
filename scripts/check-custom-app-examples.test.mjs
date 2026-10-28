@@ -8,6 +8,9 @@ import { spawnSync } from 'node:child_process';
 
 const checker = fileURLToPath(new URL('./check-custom-app-examples.mjs', import.meta.url));
 const examples = fileURLToPath(new URL('../skills/make-custom-apps/examples/', import.meta.url));
+// Guides link the canonical references (../../../references/...) relative to the examples tree,
+// so a faithful copy must carry the references directory next to examples/ instead of skipping link checks.
+const references = fileURLToPath(new URL('../skills/make-custom-apps/references/', import.meta.url));
 
 function run(root) {
   return spawnSync(process.execPath, [checker, ...(root ? ['--examples-root', root] : [])], {
@@ -20,6 +23,7 @@ function withCopy(fn) {
   const copy = join(temp, 'copied-plugin', 'skills', 'make-custom-apps', 'examples');
   try {
     cpSync(examples, copy, { recursive: true });
+    cpSync(references, join(temp, 'copied-plugin', 'skills', 'make-custom-apps', 'references'), { recursive: true });
     return fn(copy);
   } finally {
     rmSync(temp, { recursive: true, force: true });

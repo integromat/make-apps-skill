@@ -1,0 +1,24 @@
+{
+  "note": "Incorrect: the output calls a helper name that no declared file defines (a misspelling).",
+  "providerFields": {
+    "created_at": { "format": "local-datetime-no-offset" },
+    "updated_at": { "format": "local-datetime-no-offset" }
+  },
+  "api": {
+    "url": "https://api.example.invalid/v1/tickets",
+    "qs": { "sort": "created_at", "direction": "desc" },
+    "response": {
+      "iterate": "{{body.items}}",
+      "trigger": {
+        "type": "date",
+        "order": "desc",
+        "id": "{{item.id}}",
+        "date": "{{parseDate(item.created_at, 'YYYY-MM-DD HH:mm:ss', 'UTC')}}"
+      },
+      "output": {
+        "id": "{{item.id}}",
+        "updatedAt": "{{normalizeDat(item.updated_at)}}"
+      }
+    }
+  }
+}

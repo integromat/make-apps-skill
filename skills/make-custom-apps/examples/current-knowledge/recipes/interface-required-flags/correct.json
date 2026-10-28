@@ -1,0 +1,26 @@
+{
+  "note": "Synthetic Update module. ticketId is a path parameter and therefore required. workspaceId is a required technical parent that only the listLabels RPC consumes (not the main request), which is valid because the whole component graph counts as consumers. title and archived are optional; archived is a boolean mapped directly so false survives. The output interface and the response.output projection list the same fields.",
+  "expect": [
+    { "name": "ticketId", "type": "text", "label": "Ticket", "required": true },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" },
+    { "name": "workspaceId", "type": "text", "label": "Workspace", "required": true }
+  ],
+  "rpcs": {
+    "listLabels": { "api": { "method": "GET", "url": "https://api.example.invalid/v1/labels", "qs": { "workspace": "{{parameters.workspaceId}}" } } }
+  },
+  "api": {
+    "method": "PATCH",
+    "url": "https://api.example.invalid/v1/tickets/{{parameters.ticketId}}",
+    "body": { "title": "{{parameters.title}}", "archived": "{{parameters.archived}}" },
+    "response": {
+      "output": { "id": "{{body.id}}", "title": "{{body.title}}", "archived": "{{body.archived}}" }
+    }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Ticket ID" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "samples": { "id": "t-100", "title": "Example title", "archived": false }
+}

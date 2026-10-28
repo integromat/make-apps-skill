@@ -1,0 +1,14 @@
+{
+  "note": "Incorrect: two inputs in the same form share one label, so users cannot tell them apart.",
+  "connectionParameters": [
+    { "name": "apiKey", "type": "password", "label": "API key", "required": true }
+  ],
+  "parameters": [
+    { "name": "displayName", "type": "text", "label": "Display name", "required": true },
+    { "name": "timeoutSeconds", "type": "number", "label": "Display name", "advanced": true }
+  ],
+  "interface": [
+    { "name": "id", "type": "text", "label": "ID" },
+    { "name": "displayName", "type": "text", "label": "Display name" }
+  ]
+}

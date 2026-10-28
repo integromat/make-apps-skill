@@ -1,0 +1,20 @@
+{
+  "note": "Synthetic merge. Header names are case-insensitive. The request overrides Accept by name; the documented collection spread ({{...}}) adds computed headers and keeps the Base headers, so Authorization and User-Agent survive. spreadProduces states what the spread function is declared to return; the fixture never runs it.",
+  "base": {
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "synthetic-app/1",
+      "Authorization": "Bearer {{connection.accessToken}}"
+    }
+  },
+  "request": {
+    "headers": { "Accept": "text/csv", "{{...}}": "{{traceHeaders()}}" },
+    "spreadProduces": { "X-Trace": "t-1" }
+  },
+  "expectedEffectiveHeaders": {
+    "accept": "text/csv",
+    "user-agent": "synthetic-app/1",
+    "authorization": "Bearer {{connection.accessToken}}",
+    "x-trace": "t-1"
+  }
+}

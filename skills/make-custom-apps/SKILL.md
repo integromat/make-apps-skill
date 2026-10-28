@@ -2,7 +2,7 @@
 name: make-custom-apps
 description: Builds, extends, reviews, and tests Make custom (SDK) apps from real API contracts. Covers connections, modules, RPCs, webhooks, app IML functions, and API-change maintenance; not native apps, scenario building, or consuming existing Endpoints.
 metadata:
-  version: "0.2.0" # x-release-please-version
+  version: "0.3.0" # x-release-please-version
 ---
 
 # Make custom apps — build, test, maintain
@@ -128,6 +128,13 @@ with stated limits, not certified provider apps/installers.
 | Interface/auth/upload/readback/visibility/release | [Tooling](references/tooling-and-release.md) |
 | Review/severity/QA cases/evidence | [QA](references/review-and-qa.md) |
 | Changelogs/deprecation/migration/breaking changes | [Maintenance](references/maintenance.md) |
+
+For dates/helpers, selectors/mode, RPC limits, header merging, required flags, labels, auth
+contexts, webhooks, optional Endpoints or evidence gates, open the
+[current-knowledge index](examples/current-knowledge/README.md): topic guides with sources,
+applicability and exceptions, plus synthetic correct/incorrect fixtures. Its checker is a static,
+fixture-only consistency check, not Make, SDK or provider validation. Strength follows
+documentation, never frequency.
 
 Report scope, non-secret app/version/origin/IDs, component paths, coverage/compatibility,
 checks/results, blockers and verified links. Mark local validation, upload/readback, provider
