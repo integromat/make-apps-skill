@@ -16,6 +16,8 @@ An instant trigger is more than a receiver. There is a lifecycle (how the provid
 
 **Documented requirement.** The attach RPC receives `webhook.id` and `webhook.url`. Only values it stores in `response.data` (for example `externalHookId` and a `token`) are available as `webhook.*` in detach. A typical attach sends `"url": "{{webhook.url}}"` in its body; detach is `DELETE .../{{webhook.externalHookId}}`.
 
+When attach or detach uses `connection.*` credentials, associate the intended connection with the webhook and verify that the lifecycle RPCs receive that auth context; do not assume the instant trigger's connection link supplies it.
+
 If detach reads a name attach never saved, detach cannot find the provider-side webhook and orphans pile up on the provider. The checker's `CK-WEBHOOK-IDENTITY` rule tests that every `webhook.<name>` in detach is among attach's `response.data` keys. One-time secrets returned by attach must be persisted this way too, because the provider will not show them again; mask them in `log.sanitize` (`CK-SECRET-LOG`).
 
 ## Verification versus signatures
@@ -37,6 +39,8 @@ A challenge reply proves that the endpoint answered a handshake. It is not reque
 **Documented behaviour.** The webhook's `respond` sets the HTTP answer to the provider (`type`, `status`, `headers`, `body`). Providers usually retry unless they receive a 2xx. `iterate` splits a payload into several bundles, `output` shapes each one, and an instant trigger yields exactly one bundle per webhook delivery. Instant-trigger parameters are static only, communication is optional, single request, with no iterate or pagination in the trigger's own communication.
 
 **Inferred implementation pattern.** Delivery acknowledgement (`CK-WEBHOOK-DELIVERY`) and workspace/user intent are separate things: the 2xx tells the *provider* it can stop retrying, while `uid` or a webhook per connection decides *which Make user* gets the event. The receiver's `output` keys should match the trigger interface, so the bundle the user sees is the bundle the interface declares.
+
+**Documented defaults** ([webhooks](https://developers.make.com/custom-apps-documentation/app-components/webhooks)). Receiver `output` is optional: when it is omitted, incoming items are forwarded unchanged. `respond` is optional too, so its absence alone is not a defect. Add `output` when the intended Make bundle contract needs mapping or reshaping; add `respond` for a provider-specific custom acknowledgement. Verification challenges and custom acknowledgements follow the actual provider protocol. Do not demand an explicit `output` or `respond` merely because the example below uses them.
 
 ```json
 {
