@@ -46,6 +46,36 @@ Frequency is not evidence either. That many apps do something never raises a rul
 
 For public app review, apply the current prerequisites to executed scenarios: exercise every module, include a separate error case and fresh pagination evidence where pagination applies, use distinguishable test records and a small page size to expose overlap or skipped records, and remove personal data from logs. A successful upload or a generated interface does not replace that evidence.
 
+## Exact evidence locators
+
+**Inferred review practice**, not a documented Make requirement. A finding that cites a file and location is only as good as the location. A correct change can still have a citation that points to the wrong property, only the first array item for a whole-list claim, or a partial object as proof that something is missing.
+
+* **A hash identifies bytes, not claims.** A file or document SHA says which bytes you read. It does not say the claim is true or that the cited place supports it.
+* **Reuse the locator the tool supplied.** Copy the path, pointer or line range the reading tool returned. Never guess one, and never carry over line counts from an earlier read, because edits shift them.
+* **Cite the property the claim is about.** A claim about `options.timeout` cites that property, not a neighbouring one in the same object.
+* **Multiple fields or a whole list: cite the common parent.** Cite the full collection, not its first element, when the claim covers every element.
+* **Absence needs the entire owning object.** A prefix, a truncated excerpt or one child cannot prove something is omitted. Cite the whole object that would contain it, or say the absence is unverified.
+* **Verify before relying.** Check the returned locator against the raw, unchanged bytes. If you could not, write "uncertain" beside the citation instead of presenting it as confirmed.
+* **A requirement is not its assumed consequence.** A task may validly require a deliverable, for example an explicit interface field. Breaking that request is a finding, but it does not make the assumed consequence a platform fact. A field missing from the interface is not shown to be unmappable ([interfaces-required](interfaces-required.md)).
+
+Synthetic document (JSON Pointer locators):
+
+```json
+{
+  "options": { "retries": 3, "timeout": 30 },
+  "items": [{ "id": "a", "active": true }, { "id": "b", "active": false }, { "id": "c" }]
+}
+```
+
+| Claim | Correct citation | Incorrect citation |
+| --- | --- | --- |
+| The timeout is 30. | `/options/timeout` | `/options/retries` (other property) |
+| Every item has an `id`. | `/items` (whole collection) | `/items/0` (first element only) |
+| Item `c` has no `active`. | `/items/2` (whole object) | `/items/2/id` (one property; it cannot show omission) |
+| No item has `archived`. | `/items` (all elements) | `/items/0` |
+
+The checker checks declared fixtures only; it is not semantic proof and does not validate that a cited locator supports a claim.
+
 ## Changing an app that is already in use
 
 Classify the work (new operation, targeted fix, API migration, shared-component change) and record the baseline contracts for inputs, outputs, connections, selectors, dates, helpers and polling state before editing. Evaluate every consumer of a shared component and prefer documented deprecation over silent removal. Adding a request, condition, response validation, stricter parameter or different connection can break existing scenarios, while the same change in a brand-new module is harmless. An old pattern is neither automatically correct nor automatically a regression; when a provider change forces a trade-off, explain it and verify it. Renaming stable identifiers, changing defaults or tightening validation is migration work, not cosmetic cleanup.
@@ -67,6 +97,7 @@ Without recorded status, a review treats every statement with the same confidenc
 * Writing "will fail at runtime" with no run behind it.
 * Raising strength because many examples did it.
 * Quietly dropping an unverified claim instead of recording it.
+* Citing a neighbouring property, the first array item or a prefix as if it proved a claim about another property, the whole list or an omission.
 
 ## Exceptions and applicability
 
