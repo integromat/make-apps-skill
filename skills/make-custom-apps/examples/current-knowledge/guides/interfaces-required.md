@@ -20,7 +20,7 @@ Do not infer "required" from a field being present in a provider's response, fro
 
 **Documented recommendation.** The input-processing page recommends `"body": "{{parameters}}"` or `"{{...}}": "{{omit(parameters, 'id')}}"` and says that using `ifempty(..., undefined)` or an `if` to drop empty values is a bad practice, since `null`, empty string, `0` and empty arrays could then never be sent. On platform version 2 empty values are already ignored by default; update and universal modules show an `erase` pill so users can send an explicit empty value.
 
-**Inferred implementation pattern.** The same loss happens with the JavaScript-style `||` fallback: `{{parameters.active || true}}` turns a user's `false` into `true`; `{{parameters.limit || 10}}` turns `0` into 10. For boolean and numeric parameters use a conditional that tests for the value's *absence*, or let the default live in the parameter spec. The checker's `CK-FALSY-LOSS` rule flags `||` applied to boolean or numeric parameters in a fixture. It does not claim that `||` is always wrong, only that it is lossy on those types.
+**Inferred implementation pattern.** The same loss happens with the JavaScript-style `||` fallback: `{{parameters.active || true}}` turns a user's `false` into `true`; `{{parameters.limit || 10}}` turns `0` into 10. For boolean and numeric parameters use a conditional that tests for the value's *absence*, or let the default live in the parameter spec. `||` alone is not the loss: `{{parameters.archived || false}}` keeps a deliberate `false` and `{{parameters.limit || 0}}` keeps `0`, because the fallback equals the falsy value. The loss is a fallback that *differs* from it. The checker's `CK-FALSY-LOSS` rule is a bounded lexical check outside quoted literals: it flags a direct `parameters.NAME || LITERAL` where the fixture declares `NAME` boolean and the literal is `true`, or declares it numeric and the literal is nonzero. Other shapes (a non-literal fallback, a text parameter, a boolean condition, a larger expression) are left unproven, not called lossy. It does not evaluate expressions or validate runtime behaviour.
 
 ## Interface and output must agree
 
@@ -61,7 +61,7 @@ The form and the request are written at different times by different people (or 
 ## Exceptions and applicability
 
 * Required-ness depends on the provider; a path parameter is the only case that follows from the URL itself.
-* `||` on text parameters is not covered by the falsy rule (empty string as "use default" can be intended).
+* `||` on text parameters is not covered by the falsy rule (empty string as "use default" can be intended). Neither is `|| false` on a boolean or `|| 0` on a number, which preserve the valid falsy value.
 * Modules that return the raw response need no projection comparison.
 
 ## Evidence and limits
@@ -76,7 +76,7 @@ Static, synthetic teaching fixtures; they declare inputs, a flat response projec
 * Correct: [correct.json](../recipes/interface-required-flags/correct.json): the path parameter is required, every required input is used by some declared consumer (the path parameter by the main request, a required technical parent `workspaceId` only by an RPC), an optional boolean keeps `false` by checking for absence, and the interface lists the same fields the projection emits.
 * Incorrect, `CK-REQUIRED-FLAG`: [path-parameter-optional.json](../recipes/interface-required-flags/incorrect/path-parameter-optional.json). A parameter that fills a URL path segment is not required, so an empty value yields a malformed URL.
 * Incorrect, `CK-REQUIRED-FLAG`: [required-but-unused.json](../recipes/interface-required-flags/incorrect/required-but-unused.json). A required input is read by no declared consumer (request, RPC, dynamic interface or helper argument), so users must fill a field that does nothing.
-* Incorrect, `CK-FALSY-LOSS`: [falsy-fallback.json](../recipes/interface-required-flags/incorrect/falsy-fallback.json). An optional boolean or number uses a `||`-style fallback, so a deliberate `false` or `0` is replaced by the default. The rule targets booleans and numbers only; a text fallback where empty means unset is not flagged.
+* Incorrect, `CK-FALSY-LOSS`: [falsy-fallback.json](../recipes/interface-required-flags/incorrect/falsy-fallback.json). An optional boolean uses `|| true` (a number would use a nonzero literal), so a deliberate `false` or `0` is replaced by the default. The rule targets declared booleans and numbers with a literal fallback that differs from the falsy value; `|| false`, `|| 0` and a text fallback where empty means unset are not flagged.
 * Incorrect, `CK-INTERFACE-DRIFT`: [interface-drift.json](../recipes/interface-required-flags/incorrect/interface-drift.json). The interface names fields that differ from what the response projection emits, so downstream mapping shows the wrong fields.
 
 ## Sources

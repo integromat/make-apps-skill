@@ -83,5 +83,6 @@ Static, synthetic teaching fixtures. Label rules are cosmetic and a casing or sp
 * https://developers.make.com/custom-apps-documentation/component-blocks/mappable-parameters
 * https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/input-parameters/parameter-labels
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/text
+* https://developers.make.com/custom-apps-documentation/block-elements/parameters/password (connection-only masking claim)
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/select
 * https://developers.make.com/custom-apps-documentation/component-blocks/interface

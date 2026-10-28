@@ -12,7 +12,7 @@ Map every path, query, header and body field to its input or execution-context s
 
 **Documented behaviour.**
 
-* File data uses the `buffer` parameter **type**; the file name uses the `filename` type. The parameter's `semantic` (`file:name` and `file:data`) marks the role, which is what lets the file input dialog of a downstream module pre-map them. Keep the name apart from the bytes.
+* File data uses the `buffer` parameter **type**. The `semantic` (`file:name` and `file:data`) marks each role, which is what lets the file input dialog of a downstream module pre-map them. Keep the name apart from the bytes. Two contracts must not be conflated: the **typed output/download interface** (below) declares the name with the `filename` type, while the documented **multipart/form-data input** example for an upload filename uses `type: text` with `semantic: file:name`. A `filename` type is therefore not mandatory for every file-name input; the semantic carries the role.
 * A request sends raw bytes from a buffer value as the body, or multipart with the request `type: "multipart/form-data"` and a body whose file entry carries `value` and `options` such as `filename`.
 * A download is received with a response `type` of `binary`. The documented download interface declares a name field and a data field with their types and semantics, so a downstream module that accepts a file can map them:
 

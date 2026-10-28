@@ -74,7 +74,7 @@ Static, synthetic teaching fixtures; they say nothing about whether a real Endpo
 
 ## Sources
 
-* [SDK Endpoints reference of this skill](../../../references/sdk-endpoints.md): the scoped primary evidence for the Endpoint definition contract.
+* [SDK Endpoints reference of this skill](../../../references/sdk-endpoints.md): a local reference that routes to the published type contracts and to scoped runtime knowledge; it is not itself the primary source for the Endpoint definition contract.
 * https://developers.make.com/custom-apps-documentation (entry point; it does not give Endpoints page-level coverage)
 * https://developers.make.com/make-sdk/make-typescript-sdk (scope clarification only: this is the `@makehq/sdk` platform management API client, not the `@make/sdk` custom app authoring library, and not the Endpoint definition authoring contract)
 * https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module

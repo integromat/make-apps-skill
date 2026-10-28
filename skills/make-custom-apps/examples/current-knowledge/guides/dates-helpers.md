@@ -38,7 +38,7 @@ A helper is only useful if the field travels through it and it changes the value
 2. The helper is defined in a declared dependency file and returns something computed from its argument.
 3. The helper is not the identity function (`return value;` converts nothing).
 
-The recipe's `functions/normalizeDate.js` is the teaching helper. The checker's `CK-HELPER-TRACE` rule performs a textual version of those three steps and rejects an undefined helper, a helper that ignores its argument, an identity helper and a call that is not given a provider field.
+The recipe's `functions/normalizeDate.js` is the teaching helper. The checker's `CK-HELPER-TRACE` rule performs a textual version of those three steps and rejects an undefined helper, a helper that ignores its argument, an identity helper and a call that is not given a provider field. "Given a provider field" means a real `item.FIELD` reference outside quoted literals in some argument: `normalizeDate('item.updated_at')` passes a constant string, not the field, while `normalizeDate(item.updated_at, 'YYYY-MM-DD')` passes the field plus a format literal. This is lexical provenance only; it does not execute the helper or show the conversion is correct.
 
 ## Choosing the temporal meaning first
 

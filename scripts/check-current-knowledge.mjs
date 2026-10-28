@@ -89,6 +89,49 @@ function callsOf(text) {
   }
   return names;
 }
+/**
+ * Raw argument texts of each call to `name` inside one expression, found with a small quote-aware scan
+ * (string literals are skipped, parentheses are balanced, only top-level commas split). Lexical only:
+ * it never evaluates anything and is not an IML parser.
+ */
+function callArguments(raw, name) {
+  const calls = [];
+  const skipLiteral = (from) => {
+    const quote = raw[from];
+    let i = from + 1;
+    while (i < raw.length && raw[i] !== quote) i += raw[i] === '\\' ? 2 : 1;
+    return i + 1;
+  };
+  let i = 0;
+  while (i < raw.length) {
+    const ch = raw[i];
+    if (ch === "'" || ch === '"') { i = skipLiteral(i); continue; }
+    if (/[A-Za-z_$]/.test(ch) && !/[\w$.]/.test(raw[i - 1] ?? '')) {
+      const ident = raw.slice(i).match(/^[A-Za-z_$][\w$]*/)[0];
+      i += ident.length;
+      const open = raw.slice(i).match(/^\s*\(/);
+      if (ident !== name || !open) continue;
+      i += open[0].length;
+      const args = [];
+      let depth = 1;
+      let start = i;
+      let j = i;
+      while (j < raw.length && depth > 0) {
+        const c = raw[j];
+        if (c === "'" || c === '"') { j = skipLiteral(j); continue; }
+        if (c === '(') depth += 1;
+        else if (c === ')') depth -= 1;
+        else if (c === ',' && depth === 1) { args.push(raw.slice(start, j)); start = j + 1; }
+        j += 1;
+      }
+      args.push(raw.slice(start, depth === 0 ? j - 1 : j));
+      calls.push(args);
+      continue; // keep scanning inside the arguments so nested calls are found too
+    }
+    i += 1;
+  }
+  return calls;
+}
 const refsInTree = (value) => leaves(value).flatMap((leaf) => refsOf(leaf.value));
 const parameterNames = (value) => new Set(refsInTree(value).filter((r) => r.root === 'parameters' && r.path.length).map((r) => r.path[0]));
 
@@ -177,9 +220,14 @@ function checkDates(b, env) {
         continue;
       }
       if (!isTransformation(def)) push(out, 'CK-HELPER-TRACE', `${name}() is defined but does not transform its argument`);
-      const call = new RegExp(`(?<![\\w$.])${escapeRe(name)}\\s*\\(([^()]*)\\)`, 'g');
-      for (const match of exprs(value).join('\n').matchAll(call)) {
-        if (!/\bitem\.[A-Za-z_$]/.test(match[1])) push(out, 'CK-HELPER-TRACE', `${name}() is not called with a provider field`);
+      // Provider-field provenance: a real `item.FIELD` reference outside quoted literals in some argument.
+      // A quoted string that merely spells a field is a constant, not a field.
+      for (const raw of exprs(value)) {
+        for (const args of callArguments(raw, name)) {
+          if (!args.some((arg) => /(?<![\w$.])item\.[A-Za-z_$]/.test(stripLiterals(arg)))) {
+            push(out, 'CK-HELPER-TRACE', `${name}() is not called with a provider field`);
+          }
+        }
       }
     }
   }
@@ -324,14 +372,22 @@ function checkInterfaces(b) {
   }
   for (const p of expect) if (p.required === true && !used.has(p.name)) push(out, 'CK-REQUIRED-FLAG', `${p.name} is required but no declared consumer (request, RPC, dynamic interface or helper) uses it`);
   for (const name of used) if (!byName.has(name)) push(out, 'CK-REQUIRED-FLAG', `a declared consumer reads undeclared parameters.${name}`);
-  for (const { value } of leaves(api)) {
+  // Bounded lexical rule, outside quoted literals: `parameters.NAME || LITERAL` where NAME is declared
+  // boolean (LITERAL true) or numeric (LITERAL nonzero) replaces a valid false/0. A fallback equal to the
+  // falsy value (`|| false`, `|| 0`), a non-literal fallback, a text fallback or a larger expression is
+  // left unproven rather than called lossy. Declared types bound the analysis; nothing is evaluated.
+  const NUMERIC = ['number', 'integer', 'uinteger'];
+  const fallback = /(?<![\w$.!])parameters\.([A-Za-z_$][\w$]*)(?![\w$.(])\s*\|\|\s*(-?\d+(?:\.\d+)?|true|false)\s*(?=$|[),])/g;
+  for (const { value } of leaves(consumers)) {
     for (const raw of exprs(value)) {
-      if (!/\|\|/.test(raw)) continue;
-      for (const ref of refsOf(`{{${raw}}}`)) {
-        const type = byName.get(ref.path[0])?.type;
-        if (ref.root === 'parameters' && ['boolean', 'number', 'integer', 'uinteger'].includes(type)) {
-          push(out, 'CK-FALSY-LOSS', `"||" on ${type} parameter ${ref.path[0]} turns false/0 into the fallback`);
-        }
+      const cleaned = stripLiterals(raw);
+      for (const match of cleaned.matchAll(fallback)) {
+        if (/[+\-*/%&|<>=!]\s*$/.test(cleaned.slice(0, match.index))) continue; // not the direct left operand
+        const type = byName.get(match[1])?.type;
+        const literal = match[2];
+        const lossy = (type === 'boolean' && literal === 'true')
+          || (NUMERIC.includes(type) && /^-?\d/.test(literal) && Number(literal) !== 0);
+        if (lossy) push(out, 'CK-FALSY-LOSS', `"|| ${literal}" on ${type} parameter ${match[1]} replaces a valid ${type === 'boolean' ? 'false' : '0'}`);
       }
     }
   }
@@ -564,9 +620,21 @@ export function validateCurrentKnowledge(examplesRoot) {
   const stats = { topics: 0, recipes: 0, sources: 0, fixtures: 0 };
   const finish = () => ({ errors: errors.sort(compareErrors), stats });
 
+  // Real-path containment (same bound as skill-reference sources): a symlink under current-knowledge must
+  // not lead outside it, so no local check ever reads bytes from beyond the tree.
+  const contained = (abs) => {
+    try {
+      const back = relative(realpathSync(ck), realpathSync(abs));
+      return back !== '' && !back.startsWith('..') && !isAbsolute(back);
+    } catch { return false; }
+  };
   const loadJson = (relPath) => {
     const abs = join(ck, relPath);
     if (!existsSync(abs) || !statSync(abs).isFile()) return { missing: true };
+    if (!contained(abs)) {
+      add('CK-FORMAT', relPath, 'file resolves outside current-knowledge through a symlink and is not read');
+      return { invalid: true };
+    }
     try {
       return { value: JSON.parse(readFileSync(abs, 'utf8')) };
     } catch (error) {
@@ -778,7 +846,7 @@ export function validateCurrentKnowledge(examplesRoot) {
         }
       } else if (dep?.type === 'file') {
         const abs = inside(dep.path);
-        if (!abs || !existsSync(abs) || !statSync(abs).isFile()) add('CK-DEPENDENCY', 'catalog.json', `recipe ${recipe.id} depends on missing or out-of-tree file ${dep.path}`);
+        if (!abs || !existsSync(abs) || !statSync(abs).isFile() || !contained(abs)) add('CK-DEPENDENCY', 'catalog.json', `recipe ${recipe.id} depends on missing or out-of-tree file ${dep.path}`);
       } else {
         add('CK-DEPENDENCY', 'catalog.json', `recipe ${recipe.id} has a dependency of unknown type`);
       }
@@ -789,7 +857,8 @@ export function validateCurrentKnowledge(examplesRoot) {
     if (state.get(id) === 'done') return;
     if (state.get(id) === 'active') { add('CK-DEPENDENCY', 'catalog.json', `dependency cycle: ${[...trail, id].join(' -> ')}`); return; }
     state.set(id, 'active');
-    for (const dep of recipeById.get(id)?.dependencies ?? []) if (dep?.type === 'recipe' && recipeById.has(dep.id)) visit(dep.id, [...trail, id]);
+    const deps = recipeById.get(id)?.dependencies;
+    for (const dep of Array.isArray(deps) ? deps : []) if (dep?.type === 'recipe' && recipeById.has(dep.id)) visit(dep.id, [...trail, id]);
     state.set(id, 'done');
   };
   for (const id of recipeById.keys()) visit(id, []);
@@ -802,7 +871,7 @@ export function validateCurrentKnowledge(examplesRoot) {
     const helpers = new Map();
     for (const dep of Array.isArray(recipe.dependencies) ? recipe.dependencies : []) {
       const abs = dep?.type === 'file' ? inside(dep.path) : null;
-      if (abs && existsSync(abs) && statSync(abs).isFile() && abs.endsWith('.js')) {
+      if (abs && existsSync(abs) && statSync(abs).isFile() && contained(abs) && abs.endsWith('.js')) {
         for (const [name, def] of helperDefinitions(readFileSync(abs, 'utf8'))) helpers.set(name, def);
       }
     }

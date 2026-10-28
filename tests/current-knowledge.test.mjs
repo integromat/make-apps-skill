@@ -406,6 +406,14 @@ const SEMANTIC_CASES = [
     const dep = ctx.recipe('dates-helper-trace').dependencies.find((d) => d.type === 'file');
     ctx.write(dep.path, ctx.read(dep.path).replaceAll('normalizeDate', 'toIsoDate'));
   }, []],
+  // A quoted string spelling a field is a constant, not provider-field provenance.
+  ['helper given a single-quoted string that spells a field is not provider provenance', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', "{{normalizeDate('item.updated_at')}}"), ['CK-HELPER-TRACE']],
+  ['helper given a double-quoted string that spells a field is not provider provenance', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', '{{normalizeDate("item.updated_at")}}'), ['CK-HELPER-TRACE']],
+  ['helper given a non-provider variable is not provider provenance', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', '{{normalizeDate(parameters.when)}}'), ['CK-HELPER-TRACE']],
+  ['helper given a real field plus a quoted format literal stays valid', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', "{{normalizeDate(item.updated_at, 'YYYY-MM-DD')}}"), []],
+  ['helper given a quoted literal that spells a field AND a real field stays valid', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', "{{normalizeDate('item.created_at', item.updated_at)}}"), []],
+  ['helper given a real field and a literal containing parentheses stays valid', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', "{{normalizeDate(item.updated_at, ')')}}"), []],
+  ['helper given a real field nested inside a built-in call stays valid', 'dates-helper-trace', (b) => set(b, 'api.response.output.updatedAt', '{{normalizeDate(trim(item.updated_at))}}'), []],
 
   // selectors / mode
   ['select options reference an undefined RPC', 'selector-mode-dependent', (b) => set(b, 'parameters.0.options', 'rpc://missingList'), ['CK-SELECTOR-RPC']],
@@ -453,7 +461,18 @@ const SEMANTIC_CASES = [
   // Interfaces / required flags
   ['path parameter not marked required', 'interface-required-flags', (b) => set(b, 'expect.0.required', false), ['CK-REQUIRED-FLAG']],
   ['required input that no request uses', 'interface-required-flags', (b) => b.expect.push({ name: 'unusedRequired', type: 'text', label: 'Unused', required: true }), ['CK-REQUIRED-FLAG']],
-  ['falsy-losing fallback for an optional boolean', 'interface-required-flags', (b) => set(b, 'api.body.archived', '{{parameters.archived || false}}'), ['CK-FALSY-LOSS']],
+  // Falsy loss is a bounded lexical rule: a direct `parameters.X || LITERAL` on a declared boolean/number
+  // whose literal differs from the falsy value. A fallback equal to the falsy value preserves it.
+  ['|| true replaces a valid false on an optional boolean', 'interface-required-flags', (b) => set(b, 'api.body.archived', '{{parameters.archived || true}}'), ['CK-FALSY-LOSS']],
+  ['|| false preserves a valid false on an optional boolean (corrected expectation)', 'interface-required-flags', (b) => set(b, 'api.body.archived', '{{parameters.archived || false}}'), []],
+  ['|| false without spaces preserves false', 'interface-required-flags', (b) => set(b, 'api.body.archived', '{{parameters.archived||false}}'), []],
+  ['|| nonzero replaces a valid 0 on an optional number', 'interface-required-flags', (b) => { b.expect.push({ name: 'limit', type: 'number', label: 'Limit' }); put(b, 'api.body.limit', '{{parameters.limit || 10}}'); }, ['CK-FALSY-LOSS']],
+  ['|| nonzero on an integer is also lossy', 'interface-required-flags', (b) => { b.expect.push({ name: 'limit', type: 'integer', label: 'Limit' }); put(b, 'api.body.limit', '{{parameters.limit||5}}'); }, ['CK-FALSY-LOSS']],
+  ['|| 0 preserves a valid 0 on an optional number', 'interface-required-flags', (b) => { b.expect.push({ name: 'limit', type: 'number', label: 'Limit' }); put(b, 'api.body.limit', '{{parameters.limit || 0}}'); }, []],
+  ['a quoted || inside a literal is not a fallback', 'interface-required-flags', (b) => set(b, 'api.body.archived', "{{if(parameters.archived, 'left || right', 'other')}}"), []],
+  ['a fixed text fallback on a text parameter is harmless', 'interface-required-flags', (b) => set(b, 'api.body.title', "{{parameters.title || 'untitled'}}"), []],
+  ['a boolean condition combining two parameters is not a literal fallback', 'interface-required-flags', (b) => set(b, 'api.body.title', "{{if(parameters.archived || parameters.title, 'a', 'b')}}"), []],
+  ['a fallback of one parameter unrelated to a boolean field is harmless', 'interface-required-flags', (b) => set(b, 'api.body.title', '{{parameters.title || true}}'), []],
   ['interface field renamed away from the projection', 'interface-required-flags', (b) => set(b, 'interface.1.name', 'titleX'), ['CK-INTERFACE-DRIFT']],
   ['output projection loses an interface field', 'interface-required-flags', (b) => del(b, 'api.response.output.title'), ['CK-INTERFACE-DRIFT']],
   ['sample has the wrong type', 'interface-required-flags', (b) => set(b, 'samples.archived', 'false'), ['CK-INTERFACE-DRIFT']],
@@ -519,6 +538,35 @@ for (const [label, recipe, mutate, expected] of SEMANTIC_CASES) {
     ? assertRejected((ctx) => ctx.bundle(recipe, mutate), expected)
     : assertStillClean((ctx) => ctx.bundle(recipe, mutate))));
 }
+
+// Dependency robustness and real-path containment for helper files and fixtures.
+test('a non-array dependencies value yields CK-DEPENDENCY, not a TypeError', () => assertRejected((ctx) => ctx.catalog((c) => {
+  c.recipes.find((r) => r.id === 'headers-merge').dependencies = {};
+}), ['CK-DEPENDENCY']));
+
+test('a helper dependency that is a symlink escaping current-knowledge is rejected and never read', () => assertRejected((ctx) => {
+  const dep = ctx.recipe('dates-helper-trace').dependencies.find((d) => d.type === 'file');
+  const outside = join(ctx.temp, 'outside-helper.js');
+  writeFileSync(outside, readFileSync(join(ctx.ck, dep.path), 'utf8'));
+  rmSync(join(ctx.ck, dep.path));
+  symlinkSync(outside, join(ctx.ck, dep.path));
+}, ['CK-DEPENDENCY', 'CK-HELPER-TRACE']));
+
+test('a fixture that is a symlink escaping current-knowledge is rejected and never read', () => assertRejected((ctx) => {
+  const rel = ctx.recipe('headers-merge').fixtures.correct;
+  const outside = join(ctx.temp, 'outside-fixture.json');
+  writeFileSync(outside, readFileSync(join(ctx.ck, rel), 'utf8'));
+  rmSync(join(ctx.ck, rel));
+  symlinkSync(outside, join(ctx.ck, rel));
+}, ['CK-FORMAT']));
+
+test('a helper dependency that is a symlink to a file inside current-knowledge stays valid', () => assertStillClean((ctx) => {
+  const dep = ctx.recipe('dates-helper-trace').dependencies.find((d) => d.type === 'file');
+  const real = join(ctx.ck, 'recipes', 'dates-helper-trace', 'functions-real.txt');
+  writeFileSync(real, readFileSync(join(ctx.ck, dep.path), 'utf8'));
+  rmSync(join(ctx.ck, dep.path));
+  symlinkSync(real, join(ctx.ck, dep.path));
+}));
 
 // Focused skill-reference source kind: one positive, and the three ways a reference can be invalid.
 const skillRefSource = (c) => c.sources.find((s) => s.kind === 'skill-reference');
