@@ -13,8 +13,9 @@ This reference separates saving code, live testing, app/module visibility, and a
 | `make-cli` from `@makehq/cli` | CLI access to the published SDK tool catalog. | Commands depend on the resolved SDK version, not only the CLI version.[41][48] |
 | Make Endpoints SDK / `@makehq/endpoints-sdk` | Execute available app Endpoints with managed connections. | Not an app uploader. Execution is distinct from `make.sdk.endpoints` definition authoring and requires runtime access; see [Endpoint gates](sdk-endpoints.md).[49] |
 
-An ordinary scenario-management MCP connection does not establish access to custom-app authoring tools.
-Inspect the actual advertised contracts; do not invent tool names from an internal workflow.
+Default to the SDK route below. An ordinary scenario-management MCP connection does not establish access
+to custom-app authoring tools; when MCP is explicitly selected, inspect the actual advertised contracts and
+do not invent tool names from an internal workflow.
 Use the web editor or a verified public API/SDK operation when appropriate, not undocumented routes.
 A missing capability is a blocker or a manual step, not permission to switch accounts or private services.
 
@@ -45,7 +46,8 @@ Do not normalize all exported types to `apikey`, `basic` or `oauth`; use the exa
 
 ### TypeScript SDK upload and readback
 
-Use **`@makehq/sdk@1.7.1`** as the verified TypeScript authoring/upload baseline. Its npm package requires
+This is the default authoring route; an explicitly selected MCP/CLI/editor route stays valid.
+Use **`@makehq/sdk@1.7.1`** as the verified TypeScript management/upload baseline. Its npm package requires
 Node.js 20 or later.[47][50] Pin it in the authorized project's dependency and lockfile rather than
 installing a global CLI or assuming the Endpoints SDK can upload app definitions:
 
@@ -82,6 +84,44 @@ This version is a verified baseline, not a claim about the latest release or per
    debug: [...] }`. Check expected cardinality and typed output; do not search debug logs or accept an OK
    wrapper as provider proof. RPC testing is not an Endpoints execution call, publication, or permission
    for provider mutations. Report missing provider credentials or unexecuted cases separately.
+
+**Source versus client.** The script is local management tooling. The uploaded app source remains
+IML/JSON component sections (plus supported app JS helpers) held as plain strings, for example read
+from a local file by the caller. Typechecking the script does not validate IML, bindings or provider
+behavior. `@makehq/sdk` (npm) and `jsr:@make/sdk` (Deno) are distribution aliases of the same
+management client, not a separate app-authoring library. If SDK execution is unavailable (for
+example a read-only/static runtime), author/review the local artifacts and report the upload as not
+executed.
+
+Typed helper for **existing module sections** only, not a complete app uploader. The caller supplies an
+already-authorized client, the exact existing app name/version/module and the full section string (for
+example from `readFileSync`). Importing it has no side effects. New-app creation is separate: pass
+`make.sdk.apps.create` the verified required `audience` (and `private: true`); never guess
+`audience`, connection `type` or module `typeId`.
+
+```ts
+import type { Make, SDKModuleSectionType } from '@makehq/sdk';
+
+export async function uploadModuleSection(
+  make: Make,
+  target: { appName: string; appVersion: number; moduleName: string },
+  section: SDKModuleSectionType,
+  source: string,
+) {
+  const { appName, appVersion, moduleName } = target;
+  await make.sdk.modules.setSection(appName, appVersion, moduleName, section, source);
+  const readback = await make.sdk.modules.getSection(appName, appVersion, moduleName, section);
+  if (readback !== source) {
+    throw new Error(`Readback of ${moduleName}/${section} differs from the uploaded source`);
+  }
+  return make.sdk.modules.get(appName, appVersion, moduleName);
+}
+```
+
+Declarations match `@makehq/sdk@1.7.1` (`SDKModules.setSection`/`getSection`/`get`). Strict string
+equality is the conservative check; if the service normalizes whitespace, compare semantically only
+after observing that behavior. The returned full GET supports metadata and binding checks;
+list components separately to verify counts (step 5).
 
 For **Endpoint execution**, use **`@makehq/endpoints-sdk`** and the existing
 [execution skill](https://github.com/integromat/make-skills/blob/main/skills/make-endpoints/SKILL.md). Its `SdkTransport` can wrap the platform SDK's `Make`

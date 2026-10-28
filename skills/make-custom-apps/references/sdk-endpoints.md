@@ -1,9 +1,10 @@
 # SDK Endpoints: design, author, verify
 
-For app **Endpoint definitions**, not consuming existing Endpoints. Use advertised, authorized
-`custom_app_endpoint_*` tools and their current contracts. Explicit SDK/CLI workflows use the
+For app **Endpoint definitions**, not consuming existing Endpoints. The default is the SDK
 [authoring route](tooling-and-release.md#typescript-sdk-upload-and-readback): `make.sdk.endpoints`
-manages definitions; `@makehq/endpoints-sdk` executes them.[1][2]
+manages definitions; `@makehq/endpoints-sdk` executes them.[1][2] When MCP is explicitly selected, use
+advertised, authorized `custom_app_endpoint_*` tools and their current contracts; CLI/editor selections
+are likewise preserved.
 
 ## 1. Design the operation set
 

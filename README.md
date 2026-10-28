@@ -2,7 +2,7 @@
 
 Build, extend, review and test Make custom (SDK) apps from real provider API contracts. The skill covers connections, modules, RPCs, webhooks, app IML functions, Endpoint definitions and maintenance.
 
-Start with [SKILL.md](skills/make-custom-apps/SKILL.md). It prefers authorized Make MCP V2 `custom_app_*` tools and preserves explicitly selected SDK/CLI workflows. Installing the skill does not install tools, grant permissions or publish apps.
+Start with [SKILL.md](skills/make-custom-apps/SKILL.md). It defaults to typed scripts using the Make TypeScript SDK (`@makehq/sdk` → `make.sdk`) to manage app components and upload IML/JSON section source, and it preserves explicitly selected MCP `custom_app_*`, CLI, Apps Editor and VS Code workflows. Installing the skill does not install tools, grant permissions or publish apps.
 
 ## Install
 

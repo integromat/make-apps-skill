@@ -14,26 +14,32 @@ development, organization Custom Functions. Scenarios →
 Skill installation grants neither tools nor permissions; package installation grants no permissions,
 runtime enablement or publication.
 
-## MCP first; SDK/CLI complementary
+## SDK-first: direct Make TypeScript SDK authoring
 
-Use authorized [Make MCP V2](https://developers.make.com/mcp-server) `custom_app_*` tools first;
-confirm they are advertised and inspect their schemas. Scenario-only access is not app-authoring
-access. No duplicate uploader, package installation or API-key setup when MCP covers the task.
+Default route: TypeScript management scripts using the [Make TypeScript
+SDK](https://developers.make.com/make-sdk/make-typescript-sdk) `@makehq/sdk` → `make.sdk`
+(Deno alias `jsr:@make/sdk`, same client) to create/update app components and upload section
+source. Setup, upload, readback and a typed section helper:
+[SDK recipe](references/tooling-and-release.md#typescript-sdk-upload-and-readback). Read published
+or installed declarations/contracts before writing calls; credentials are managed outside code and
+prompts (approved environment); binary logos use `make.sdk.apps.setIcon` (512×512 PNG bytes).
 
-Preserve explicitly selected interfaces through upload/readback/RPC tests. [TypeScript
-SDK](https://developers.make.com/make-sdk/make-typescript-sdk) `@makehq/sdk` → `make.sdk`: code
-workflows, local files, binary logos (`make.sdk.apps.setIcon`, 512×512 PNG bytes), CI/batches,
-absent tools or verified gaps. Verified CLI, Apps Editor/VS Code remain selectable alternatives; MCP
-is not required. Check published/installed contracts, not locally patched assumptions. SDK route →
-[setup/upload/readback](references/tooling-and-release.md#typescript-sdk-upload-and-readback);
-approved credentials stay in the environment. Never switch zone/account/version/interface silently
-or bypass denied permissions.
+The script is local management tooling. App source stays IML/JSON component sections plus supported
+app JS helpers; typechecking a script validates neither IML nor provider behavior. If the runtime is
+read-only/static or SDK execution is unavailable, author/review local artifacts and report the
+upload as unexecuted; the skill grants no execution capability.
 
-References contain source semantics and route-specific procedures: SDK/CLI setup and version
-baselines apply only on those routes, not as MCP prerequisites. Connection-definition types,
-provider auth and create-operation enums differ. `@makehq/endpoints-sdk`/`SdkTransport` execute
-Endpoints, not uploads; `custom_app_endpoint_*`/`make.sdk.endpoints` author definitions subject to
-the actual contract/access.
+An explicitly selected interface (Make MCP V2 `custom_app_*`, verified CLI, Apps Editor, VS Code)
+is equally valid and is preserved through write/readback/RPC tests. Advertised MCP tools are an
+available alternative, not a prerequisite or reason to override SDK. Scenario-only access is not
+app-authoring access. If the chosen route is unavailable or denied, complete safe local work and
+state the limitation; never switch zone/account/version/interface silently or bypass permissions.
+
+References hold source semantics and route-specific procedures; SDK/CLI/MCP setup applies only on
+its route. Connection-definition types, provider auth and create-operation enums differ.
+`@makehq/endpoints-sdk`/`SdkTransport` execute Endpoints, not uploads;
+`make.sdk.endpoints`/`custom_app_endpoint_*` author definitions subject to the actual
+contract/access.
 
 ## Boundaries
 
@@ -65,9 +71,11 @@ the actual contract/access.
    registration/verification/events/deletion belong together. App helpers use the documented
    runtime. Reuse verified components where authorized; corrections stay grounded.
 3. **Build.** Dependencies first: app → Base → connections/functions → RPCs/webhooks →
-   modules/endpoints. New app: `custom_app_create` (requested name = prefix) → `custom_app_base_set`
-   → component tools; existing app: update the inventoried target. Keep returned
-   app/version/component IDs. New authenticated RPC: configure CREATE, then UPDATE its connection,
+   modules/endpoints. New app: `make.sdk.apps.create` (`private: true`; every other field per the
+   actual contract, e.g. required `audience` verified, not guessed) → Base → component calls;
+   existing app: update the inventoried target. Keep returned app/version/component IDs; upload
+   full section source strings with `setSection`, read back with `getSection`. (MCP route:
+   `custom_app_create` → `custom_app_base_set` → component tools.) New authenticated RPC: configure CREATE, then UPDATE its connection,
    then detail-read. Preserve export format; change generators, regenerate. Respect Base inheritance
    and separate setup/persisted-connection/module/RPC/polling/webhook contexts. Preserve `0`,
    `false`, empty collections and intentional clearing; supported IML/fields/helpers/response paths
@@ -81,8 +89,8 @@ the actual contract/access.
    full-section replacement, stop on concurrent drift. Preserve provider secrets/connection
    behavior. Read back exact metadata/sections/bindings; reconcile partial section failures instead
    of blindly repeating CREATE.
-5. **Test/maintain.** `custom_app_rpc_test` for supported developer RPC tests; `make.sdk.rpcs.test`
-   on the SDK route; scenarios exercise modules. RPC tests make provider requests. Bounded, approved
+5. **Test/maintain.** `make.sdk.rpcs.test` for supported developer RPC tests (MCP route:
+   `custom_app_rpc_test`); scenarios exercise modules. RPC tests make provider requests. Bounded, approved
    tests: auth acceptance/rejection/scopes/refresh; empty/single/multipage/limits/dedup;
    falsy/boundary/output/error cases; RPC dependencies; polling/webhook lifecycle; helpers and
    prior-version parity. Isolated writes; track/clean only owned objects, no broad deletes. Assess
@@ -90,9 +98,10 @@ the actual contract/access.
    published-impact reports. Upload ≠ app visibility ≠ module visibility ≠ catalog approval; follow
    release notes/review requirements, not audience metadata as publication proof.
 
-## Source sections → MCP
+## Explicit MCP route: source sections → MCP
 
-Keep example filenames. Map section keys per live schema; module raw aliases remain accepted.
+Applies only when MCP is the selected route. Keep example filenames. Map section keys per live
+schema; module raw aliases remain accepted.
 
 | Source/component | MCP key or tool |
 | --- | --- |
@@ -105,8 +114,8 @@ Keep example filenames. Map section keys per live schema; module raw aliases rem
 
 Read exact components/sections through the corresponding `_list` tools. `appVersion` selects the app
 major version for versioned components; connection/webhook calls omit it. Module CREATE uses blank
-initialization. Missing logo/init/binding capability → verify an SDK/CLI alternative or report the
-limit; no invented fields. Function test setters store test source; execute helper tests locally.
+initialization. On this route, missing logo/init/binding capability → report the limit (a verified
+alternative only if the user accepts the change); no invented fields. Function test setters store test source; execute helper tests locally.
 
 ## Load only task-relevant detail
 

@@ -8,7 +8,7 @@
   },
   "sources": [
     { "id": "doc-sdk-docs-root", "kind": "public-doc", "title": "Make custom apps documentation (entry point)", "url": "https://developers.make.com/custom-apps-documentation", "retrieved": "2026-10-28" },
-    { "id": "doc-sdk-ts", "kind": "public-doc", "title": "Make TypeScript SDK (@makehq/sdk platform management API client; scope clarification only, not the custom app authoring library and not the Endpoint definition authoring contract)", "url": "https://developers.make.com/make-sdk/make-typescript-sdk", "retrieved": "2026-10-28" },
+    { "id": "doc-sdk-ts", "kind": "public-doc", "title": "Make TypeScript SDK (@makehq/sdk platform management client, also distributed for Deno as jsr:@make/sdk; scope clarification only, not the Endpoint definition authoring contract)", "url": "https://developers.make.com/make-sdk/make-typescript-sdk", "retrieved": "2026-10-28" },
     { "id": "skill-sdk-endpoints-reference", "kind": "skill-reference", "title": "SDK Endpoints reference of this skill (scoped to the published SDK library contract it cites)", "path": "references/sdk-endpoints.md" },
     { "id": "doc-base", "kind": "public-doc", "title": "Base", "url": "https://developers.make.com/custom-apps-documentation/app-components/base", "retrieved": "2026-10-28" },
     { "id": "doc-advanced-inheritance", "kind": "public-doc", "title": "Base: advanced inheritance", "url": "https://developers.make.com/custom-apps-documentation/app-components/base/advanced-inheritance", "retrieved": "2026-10-28" },

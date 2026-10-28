@@ -13,3 +13,6 @@ __pycache__/
 /private-evidence/
 /evidence/
 /runtime/
+
+# Private implementation and review evidence.
+/.sonnet/

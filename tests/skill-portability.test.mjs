@@ -57,7 +57,6 @@ test('keeps the discoverable skill identity and progressive-disclosure structure
   const description = text.match(/^description: (.+)$/m)?.[1];
   assert.ok(description && description.length <= 1024);
   assert.ok(text.split('\n').length < 500);
-  assert.match(text, /MCP first; SDK\/CLI complementary/);
   assert.match(text, /Load only task-relevant detail/);
 });
 
