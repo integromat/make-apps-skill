@@ -28,9 +28,9 @@ Strength words in the catalog follow the same split: `must` only for documented 
 
 | Guide | Teaches | Main authority |
 |---|---|---|
-| [dates-helpers](guides/dates-helpers.md) | Parsing provider date-times, polling order, tracing helper functions | Documented requirement for parsing; documented recommendation for order |
-| [selectors-mode](guides/selectors-mode.md) | RPC-backed selects, `mode: "edit"`, nested selects, options vs. field schemas | Documented requirement for Get/Update/Delete; hierarchy-dependent elsewhere |
-| [rpc-page-budgets](guides/rpc-page-budgets.md) | Page size, request budget, record limit and `pagination.page` | Recommendations inside documented hard limits |
+| [dates-helpers](guides/dates-helpers.md) | Parsing provider date-times, polling order, tracing helper functions | Parsing is required where the provider format is not auto-parsed, with temporal exceptions (date-only, time-only, unknown zone, non-timestamp numbers); canonical ISO text is a documented ambiguity (recommendation to convert, not a blanket must-parse); order is a documented recommendation |
+| [selectors-mode](guides/selectors-mode.md) | RPC-backed selects, `mode: "edit"`, nested selects, options vs. field schemas | Documented requirement for mappable Get/Update/Delete identifiers; hierarchy-based recommendations elsewhere |
+| [rpc-page-budgets](guides/rpc-page-budgets.md) | Page size, request budget, record limit and `pagination.page` | Hard ceilings and role-specific requirements (options output limit above 500 items, sample `limit: 1`); recommendations otherwise; the fixed-literal limit is a fixture convention |
 | [headers-merge](guides/headers-merge.md) | Base headers, module headers, the `{{...}}` collection spread | Documented behaviour |
 | [interfaces-required](guides/interfaces-required.md) | `required`, falsy values, interface vs. output projection | Mixed: documented syntax, inferred consistency checks |
 | [labels-visibility](guides/labels-visibility.md) | Label grammar, advanced fields, hidden-but-required fields, secrets | Cosmetic recommendations vs. documented behaviour |
@@ -54,6 +54,7 @@ These are broad how-to guides. They have no recipe fixtures of their own and cit
 | [requests-files-multistep](guides/requests-files-multistep.md) | Request construction, binary and multipart, request sequences, bounded repeats |
 | [outputs-empty-values-updates](guides/outputs-empty-values-updates.md) | Output shaping, interface honesty, omit/clear/set, partial versus replacing updates |
 | [universal-modules-and-scopes](guides/universal-modules-and-scopes.md) | Relative-path boundary, REST/GraphQL conventions, inherited auth, scopes |
+| [role-application-examples](guides/role-application-examples.md) | Worked synthetic examples (full-record preservation plus date conversion; REST Headers input traced into a merge) and a per-check application table; see also [review sweeps](../../references/review-sweeps.md) |
 
 ## Where to start by task
 

@@ -13,12 +13,50 @@ Make exposes slightly different variables depending on *where* an expression is 
   * **Documented, and different from the alias claim:** `common` is its own store. The OAuth code-grant example reads a client credential as `ifempty(parameters.clientId, common.clientId)`: the editable parameter wins and the common value is the fallback. That fallback only makes sense because `common` is not the same store as `parameters`/`data`. Do not describe `common` as another alias of that data. Keep the verified connection-context aliases (`data`, `parameters` and, where provided, `connection`) as allowed names for the same stored connection data; `common` is distinct. Do not flag an alias-only mismatch without proof from the actual context, and evaluate any other namespace in the context where it is used.
 
   Documentation examples use whichever name reads best (for example `data.refreshToken` and `data.expires` in a refresh). Pagination, `response.limit`, `iterate` and `output` are not available in these blocks.
-* In **Base** and in **modules and RPCs**, credentials arrive as `{{connection.accessToken}}` (or other connection data). In a module or RPC, `parameters` and `data` describe that module's own inputs, which is a different context from the connection's.
+* In **Base** and in **modules and RPCs**, credentials arrive as `{{connection.accessToken}}` (or other connection data). In a module or RPC, three sources are separate (**runtime-confirmed for the pinned default module context, not stated by the variable table**): `parameters` are the module's inputs, `connection` is the attached connection's stored data, and `data` is the module's own persistent state. None of them is the connection's token-phase alias set.
 * In **webhook** communication, `data` is an alias of `parameters`, next to `body`, `query`, `method` and `headers`.
 
-So `data.refreshToken` in a refresh block and `parameters.clientId` in the token block are both fine. Moving the same expression into an ordinary module header is a different matter: there `data` is the module's input, not the connection. The distinction is between *execution contexts*, never between `data` and `parameters` inside one connection block. Which store a credential should come from (an editable parameter, stored data, or the common fallback) is a design decision for each value, not a naming preference: do not replace `common.clientSecret` with `parameters.clientSecret` or the reverse without checking which store actually holds the value.
+So `data.refreshToken` in a refresh block and `parameters.clientId` in the token block are both fine. Moving the same expression into an ordinary module header is a different matter: there `data` is module persistent state, not the attached connection. A module that reads `data.accessToken` is not automatically defective if the value was persisted there; report a source gap only when the value lives elsewhere (for example in the connection) and the actual flow never populates the requested store. The distinction is between *execution contexts*, never between `data` and `parameters` inside one connection block. Which store a credential should come from (an editable parameter, stored data, or the common fallback) is a design decision for each value, not a naming preference: do not replace `common.clientSecret` with `parameters.clientSecret` or the reverse without checking which store actually holds the value.
 
 **Do not** treat `data` versus `parameters` naming in a connection block as an error, and do not claim that those two names read different values there. A rule saying "only `data` is allowed in refresh" would be false. A genuine context error looks like a request reading a variable that exists only in responses (`body`, `item`, `iterate`, `output`, `pagination`) inside a request section of a connection block, or a module reading a credential from something other than `connection`. That is what `CK-AUTH-CONTEXT` tests: response-only variables inside connection requests, literals in credential headers, and non-connection sources for credentials in Base or module headers.
+
+## Worked case: initial authorization-code token exchange with empty `common`
+
+**Runtime-confirmed allowance, bounded.** The same-phase equivalence of `data`, `parameters` and `connection` was confirmed in a pinned runtime implementation for the connection's own communication, including the initial token request after the authorization callback, not only refresh. `common` is a separate member. This is source-confirmed semantics, not proof that any deployed engine version, provider or complete OAuth round trip works. The public variable table alone does not establish it.
+
+Schematic (a map of separate editor sections, not a deployable connection):
+
+```json
+{
+  "parameters": [
+    { "name": "clientId", "type": "text", "label": "Client ID", "required": true },
+    { "name": "clientSecret", "type": "password", "label": "Client secret", "required": true }
+  ],
+  "common": {},
+  "token": {
+    "url": "https://auth.example.com/token",
+    "method": "POST",
+    "body": {
+      "grant_type": "authorization_code",
+      "client_id": "{{data.clientId}}",
+      "client_secret": "{{data.clientSecret}}",
+      "code": "{{temp.code}}"
+    },
+    "response": { "data": { "accessToken": "{{body.access_token}}" } },
+    "log": { "sanitize": ["request.body.client_secret", "request.body.code", "response.body.access_token"] }
+  }
+}
+```
+
+| Synthetic case | Boundary |
+| --- | --- |
+| Token reads `data.clientSecret`, `common` is `{}`, and the user-supplied credential inputs feed the same token context | Positive: no namespace-only finding, no alias rewrite, and empty `common` does not mean missing credentials. If `parameters.clientId` is populated in this token context, `data.clientId` cannot be empty merely because of its name. |
+| Token reads `common.clientSecret`, `common` is empty, and the value exists only as a connection input | Negative: genuine source-selection gap; `common` is not an alias. |
+| Credentials exist only in `common`, token reads only `data` | Converse gap; aliases do not copy common data. |
+| Ordinary module header reads `data.accessToken` | Do not transfer token-phase aliases; check whether the value is persisted module state or lives in `connection`. |
+| Inputs are declared but nothing shows their values, scopes or redirect settings | Declaration is not successful authentication; the remaining evidence limit stays. |
+
+Do not generalise to other contexts or claim a live flow works from static reading. Provider grant type, scopes and redirect requirements need their own checks.
 
 ## Credential flow in OAuth 2.0
 
@@ -53,7 +91,7 @@ Credentials are the one thing a log must never contain. Because the connection b
 * "Fixing" `data.refreshToken` to `parameters.refreshToken` (or the reverse) in a refresh block because a rule demanded one alias. Inside connection communication both reach the same connection data; the change is cosmetic and must not be reported as a defect.
 * Treating `common` as a third name for the same store and reading the app-level client secret from `data` or `parameters` (or the reverse). `common` holds connection common data; the documented example uses it as the fallback behind an editable parameter.
 * Declaring that a refresh token is lost because the token response did not assign it. Providers may omit it or rotate it; decide preservation from the provider contract and the documented persistence model.
-* Copying a connection block into a module, where `data`/`parameters` mean the module's inputs and no longer the connection.
+* Copying a connection block into a module, where `parameters` are module inputs, `data` is module persistent state and the connection is read through `connection`.
 * Hard-coding a token in a header literal (even a test one).
 * Sanitising only the request while the secret also appears in the response, or naming a path that is not where the secret actually sits. Sanitize paths are written in dot notation and are **case-insensitive** (documented in the request reference), so `request.headers.Authorization` and `request.headers.authorization` match the same path. Casing alone is never a sanitisation defect; the lower-case spelling used in the examples is only a consistency convention.
 * Forgetting the response side: the access token appears in the token response.
@@ -76,7 +114,7 @@ Credentials are the one thing a log must never contain. Because the connection b
 Static, synthetic teaching fixtures with a generic OAuth shape; they prove nothing about any provider's runtime behavior.
 
 * Correct: [correct.json](../recipes/auth-context/correct.json): Base reads the credential through `connection.*`, the token and refresh requests read the context-dependent connection variables (`data`, `connection`, `parameters`, and `common` as its own common-data store) legitimately, and every secret-bearing path is in `log.sanitize`.
-* Incorrect, `CK-AUTH-CONTEXT`: [module-header-wrong-context.json](../recipes/auth-context/incorrect/module-header-wrong-context.json). A module or Base header reads the credential through `data.*` or `parameters.*`, which in that context mean the module's inputs rather than the saved connection.
+* Incorrect, `CK-AUTH-CONTEXT`: [module-header-wrong-context.json](../recipes/auth-context/incorrect/module-header-wrong-context.json). A module or Base header reads the credential through `data.*` or `parameters.*`, which in that context are module inputs or module persistent state rather than the saved connection.
 * Incorrect, `CK-AUTH-CONTEXT`: [literal-authorization.json](../recipes/auth-context/incorrect/literal-authorization.json). The Authorization header holds a literal token instead of a connection reference.
 * Incorrect, `CK-AUTH-CONTEXT`: [refresh-reads-response-variable.json](../recipes/auth-context/incorrect/refresh-reads-response-variable.json). The refresh request reads a response-only variable that does not exist when the request is built. Choosing `data.` over `parameters.` there is not the defect and is never flagged. Note that this fixture's check only looks at response-only variables; it does not rule on which of `data`, `parameters` or `common` is the right store for a given value.
 * Incorrect, `CK-SECRET-LOG`: [token-without-log-masks.json](../recipes/auth-context/incorrect/token-without-log-masks.json). A token exchange or refresh has no `log.sanitize` entries for the secrets it sends and receives.

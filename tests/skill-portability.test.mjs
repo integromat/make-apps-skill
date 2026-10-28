@@ -59,5 +59,58 @@ test('keeps the discoverable skill identity and progressive-disclosure structure
   assert.ok(text.split('\n').length < 500);
   assert.match(text, /MCP first; SDK\/CLI complementary/);
   assert.match(text, /Load only task-relevant detail/);
-  assert.equal(readdirSync(resolve(skill, 'references')).filter((name) => name.endsWith('.md')).length, 12);
+});
+
+test('baseline references are linked from SKILL.md, every reference is reachable, and core and review references resolve', () => {
+  const skillFile = resolve(skill, 'SKILL.md');
+  const referencesDir = resolve(skill, 'references');
+  const baseline = [
+    'research-and-inventory', 'source-hierarchy', 'base-and-connections', 'requests-and-responses',
+    'modules-and-pagination', 'parameters-and-rpcs', 'webhooks-and-polling', 'iml-functions',
+    'sdk-endpoints', 'tooling-and-release', 'review-and-qa', 'maintenance',
+  ].map((name) => `${name}.md`);
+  const required = [...baseline, 'review-sweeps.md'];
+  const present = readdirSync(referencesDir).filter((name) => name.endsWith('.md'));
+  const localTargets = (file) =>
+    links(file)
+      .filter((link) => !/^[a-z][a-z0-9+.-]*:/i.test(link) && !link.startsWith('#'))
+      .map((link) => resolve(dirname(file), decodeURIComponent(link.split('#', 1)[0])))
+      .filter((target) => target.endsWith('.md') && existsSync(target));
+  // Local Markdown reachable from the entry point, directly or through other docs (cycle-safe).
+  const reachable = new Set([skillFile]);
+  const queue = [skillFile];
+  while (queue.length) {
+    for (const target of localTargets(queue.shift())) {
+      if (!reachable.has(target)) {
+        reachable.add(target);
+        queue.push(target);
+      }
+    }
+  }
+  // Baseline and the review workflow must be linked directly from the entry point.
+  const linked = new Set(localTargets(skillFile));
+
+  // Baseline and the review workflow must exist and be reachable from the skill entry point.
+  for (const name of required) {
+    const target = resolve(referencesDir, name);
+    assert.ok(present.includes(name), `Missing required reference: ${name}`);
+    assert.ok(linked.has(target), `Required reference is not linked from SKILL.md: ${name}`);
+  }
+  // Additional references may be reached through another reference or index, but none may be orphaned.
+  for (const name of present) {
+    assert.ok(reachable.has(resolve(referencesDir, name)), `Unreachable reference: ${name}`);
+  }
+  // Review workflow routes to the current-knowledge index and its worked examples, and back.
+  const sweeps = resolve(referencesDir, 'review-sweeps.md');
+  const sweepTargets = links(sweeps).map((link) => resolve(dirname(sweeps), link.split('#', 1)[0]));
+  for (const target of [
+    resolve(skill, 'examples/current-knowledge/README.md'),
+    resolve(skill, 'examples/current-knowledge/guides/role-application-examples.md'),
+  ]) {
+    assert.ok(sweepTargets.includes(target), `review-sweeps.md does not link ${target.slice(root.length)}`);
+    assert.ok(existsSync(target), `Missing review target: ${target.slice(root.length)}`);
+  }
+  const index = resolve(skill, 'examples/current-knowledge/README.md');
+  const indexTargets = links(index).map((link) => resolve(dirname(index), link.split('#', 1)[0]));
+  assert.ok(indexTargets.includes(sweeps), 'Current-knowledge index does not route to review-sweeps.md');
 });

@@ -38,7 +38,7 @@
     {
       "id": "dates-helpers",
       "title": "Dates and app helpers",
-      "summary": "Polling triggers need an order that matches the provider request and a date that Make can actually parse; helper functions must be defined, reachable and genuinely transform their input.",
+      "summary": "Polling triggers need an order that matches the provider request and, where the provider format is not auto-parsed, a date that Make can actually parse (temporal exceptions apply; canonical ISO text is a documented ambiguity, not a blanket must-parse); helper functions must be defined, reachable and genuinely transform their input.",
       "guide": "guides/dates-helpers.md",
       "sources": ["doc-trigger", "doc-iml", "doc-epoch", "doc-input-processing", "research-generic-complete-app"],
       "recipes": ["dates-helper-trace"]
@@ -54,7 +54,7 @@
     {
       "id": "rpc-page-budgets",
       "title": "RPC limits and page budgets",
-      "summary": "A dropdown RPC needs a fixed, bounded limit consistent with the provider page size and a correct one-based page expression; the recommended limit is guidance, not a provider cap.",
+      "summary": "A dropdown (options) RPC needs a bounded output limit, required when more than 500 items are possible, consistent with the provider page size and a correct one-based page expression; an iterating sample RPC uses limit 1. The fixed literal is a conservative fixture convention and the recommended limit is guidance, not a provider cap.",
       "guide": "guides/rpc-page-budgets.md",
       "sources": ["doc-pagination", "doc-rpc-best-practices", "doc-dynamic-options", "research-generic-complete-app"],
       "recipes": ["rpc-page-budget"]
@@ -163,9 +163,10 @@
       "rules": ["CK-SELECTOR-RPC", "CK-SELECTOR-MODE", "CK-SELECTOR-NESTED", "CK-SELECTOR-SCHEMA-CONFUSION"],
       "applicability": {
         "appliesWhen": ["A select is backed by an rpc:// reference.", "A Get, Update or Delete module exposes an identifier selector.", "A select depends on a parent selection."],
-        "notWhen": ["Options are a short static list.", "The module is a search whose selector filters rather than identifies a record."],
+        "notWhen": ["Options are a short static list."],
         "exceptions": [
-          { "condition": "The module is a Search or List module.", "effect": "mode edit is not needed for its filter selectors." },
+          { "condition": "The module is a Search or List module.", "effect": "The mode rule is not applied by the checker; mode follows a hierarchy recommendation (choose for higher-level entities, edit for low-level child entities)." },
+          { "condition": "The module is a Create module.", "effect": "Recommend choose; many RPC inputs, not many RPC results, can justify edit." },
           { "condition": "The identifier field is deliberately not mappable.", "effect": "The mode rule is not applied by the checker to that field." }
         ]
       },
@@ -187,7 +188,7 @@
       "id": "rpc-page-budget",
       "title": "RPC limits and page budgets",
       "topic": "rpc-page-budgets",
-      "summary": "An options RPC has a fixed positive response.limit within its record budget, requests the declared page size, and passes pagination.page unchanged to a one-based provider.",
+      "summary": "In this static fixture convention an options RPC has a fixed positive response.limit (a conservative literal; bounded mapped expressions are not claimed defective) within its record budget, requests the declared page size, and passes pagination.page unchanged to a one-based provider.",
       "strength": "should",
       "basis": "documented",
       "evidence": { "confidence": "documented", "sourceIds": ["doc-pagination", "doc-rpc-best-practices", "doc-dynamic-options", "research-generic-complete-app"] },

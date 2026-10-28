@@ -40,6 +40,28 @@ A label can be wrong in a way that matters:
 }
 ```
 
+## Module distribution visibility (not `parameter.hidden`)
+
+Three different things share the word "hidden". Do not infer one from another:
+
+* **Module visibility** (`public` on a module; the SDK Modules API has a separate set-visibility operation, `public` or `private`) decides whether the module appears in the chooser for new use.
+* **App/module approval** (`approved`, and `archived`) is a separate flag. An unapproved app does not imply hidden modules, and visible modules do not imply approval.
+* **Parameter `hidden`** is a field-level setting inside a module form and is unrelated to either.
+
+**Documented behaviour.** Test your app: newly created modules are hidden by default, which is the normal draft state. Request review (step 3): set the modules you intend to publish visible. App visibility: hidden modules still run in existing scenarios but are not offered when adding new modules, so an existing scenario running does not show distribution readiness.
+
+**Review treatment (inferred, target-specific).** Raise a required readiness finding or owner decision only when all hold: the stated target is marketplace or new-user availability; the module inventory is complete, nonempty and unambiguous; and every module's visibility is literally `false`. Then do not call the app ready or approved as if it were an ordinary draft. The owner decides which modules become visible; never expose all modules or publish automatically. When a requested fix makes an intended module visible, judge the resulting graph, not the baseline hidden flags.
+
+Do not infer an all-hidden blocker for a private or draft target, no stated target, unknown, missing or truncated flags (a partial create or read projection is not explicit `false`), a partial module list, app-level `public: false`, or approval flags. One hidden legacy module beside an intended visible one is not an all-hidden case.
+
+| Synthetic case | Treatment |
+| --- | --- |
+| Private draft app, two modules, both hidden, code review only | Probably intentional; no blocker |
+| Marketplace target, complete 3-module inventory, all three `public: false` | Required readiness finding and owner decision |
+| Same target, 2 modules: one intended visible, one hidden legacy | No all-hidden rule; assess the intended published scope |
+| App unapproved, intended modules visible | Do not infer hidden or unusable modules |
+| Flags missing, truncated or contradictory | Ask for evidence; no all-hidden claim |
+
 ## Rationale
 
 Labels are the app's only documentation at the moment of use. Hiding a required field or exposing a secret in plain text are failures the user feels immediately, so they get stronger treatment than casing. Using different words for the strengths prevents review from blocking on taste.
@@ -86,3 +108,7 @@ Static, synthetic teaching fixtures. Label rules are cosmetic and a casing or sp
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/password (connection-only masking claim)
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/select
 * https://developers.make.com/custom-apps-documentation/component-blocks/interface
+* https://developers.make.com/api-documentation/api-reference/sdk-apps/modules
+* https://developers.make.com/custom-apps-documentation/create-your-first-app/test-your-app
+* https://developers.make.com/custom-apps-documentation/app-review/request-app-review
+* https://developers.make.com/custom-apps-documentation/create-your-first-app/app-visibility

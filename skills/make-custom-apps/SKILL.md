@@ -127,6 +127,7 @@ with stated limits, not certified provider apps/installers.
 | Endpoint definitions/capability checks | [SDK Endpoints](references/sdk-endpoints.md) |
 | Interface/auth/upload/readback/visibility/release | [Tooling](references/tooling-and-release.md) |
 | Review/severity/QA cases/evidence | [QA](references/review-and-qa.md) |
+| Auditing an app against the rules (applicability tables, sweeps) | [Review sweeps](references/review-sweeps.md) |
 | Changelogs/deprecation/migration/breaking changes | [Maintenance](references/maintenance.md) |
 
 For dates/helpers, selectors/mode, RPC limits, header merging, required flags, labels, auth

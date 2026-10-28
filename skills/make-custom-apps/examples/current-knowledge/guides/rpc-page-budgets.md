@@ -6,7 +6,7 @@ A dropdown RPC runs while a person is waiting. It has a 40-second execution limi
 
 ## Limits versus advice
 
-**Documented requirement (hard limits).** Max Call Timeout is 40 seconds (a pagination `delay` counts toward it). Max Pagination Request Count is 50, Max Past Record is 3200, Max Request Count is 100. Pagination stops after a page with zero records or when `response.limit` is reached. A limit on RPC output is mandatory when the provider can return more than 500 items.
+**Documented requirement (hard limits).** Max Call Timeout is 40 seconds (a pagination `delay` counts toward it). Max Pagination Request Count is 50, Max Past Record is 3200, Max Request Count is 100. Pagination stops after a page with zero records or when `response.limit` is reached. Role matters: a dynamic **options** RPC must have an output limit when its endpoint can return more than 500 items ([dynamic-options page](https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc#syntax-of-rpc-output)); an iterating dynamic **sample** RPC must process one item (`limit: 1`) whatever the 500 threshold ([sample page](https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-sample-rpc)). Dynamic fields, interface and lifecycle RPCs (for example one attach returning one stored object) do not acquire the dropdown 500-item rule merely by being RPCs; sweep them, but assess their actual bound and request cost. The shared [limit directive](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/limit) is otherwise generally optional.
 
 **Documented recommendation.** For RPCs, plan about 3 requests and 3 times the page size in records. When the provider returns at least 100 per page, the best-practices page recommends a limit of 300 to 500. For smaller pages, three pages: 25 per page gives 75.
 
@@ -29,11 +29,11 @@ Notice what this means: "150 records at 50 per page" is the 3×page recommendati
 
 1. Find the provider's maximum and default page size; use a size at or below the maximum.
 2. Decide the budget: at least 100 per page, 300-500 records; otherwise three pages.
-3. Make `response.limit` a **fixed integer**, not a mapped value, at or under the budget, so a runaway provider cannot exceed it.
+3. Prefer a **fixed integer** `response.limit` at or under the budget, so a runaway provider cannot exceed it. This is a conservative authoring and fixture convention, not a platform requirement: the official [pagination example](https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination#limit-offset) maps `response.limit`, and a mapped expression with a known positive upper bound (for example `{{if(parameters.small, 100, 300)}}`) is not inherently defective. Where a limit is actually required (for example an options RPC that can exceed 500 items), a mapped value with an unknown bound needs evidence rather than being a definite failure; an applicable, known-unbounded or user-controlled value is a finding.
 4. If the provider can filter, filter on the server. In-RPC `iterate.condition` filtering is recommended only when the API cannot filter.
 5. If users may legitimately need more than the budget, give them a mappable field alongside the select; do not raise the budget past the 40-second reality.
 
-The checker's `CK-BUDGET-PAGE` rule tests that a fixture's `qs.limit` equals its declared page size, that records do not exceed pages × size, that stated numbers stay within the documented hard limits, and that the next-page expression agrees with the first request's page base. `CK-BUDGET-BOUND` tests that `response.limit` is a positive fixed integer within the declared record budget.
+The checker's `CK-BUDGET-PAGE` rule tests that a fixture's `qs.limit` equals its declared page size, that records do not exceed pages × size, that stated numbers stay within the documented hard limits, and that the next-page expression agrees with the first request's page base. `CK-BUDGET-BOUND` tests that `response.limit` is a positive fixed integer within the declared record budget. That is a deliberately narrow fixture restriction (the literal form is the convention); it does not claim that every mapped limit is wrong on the platform, and the checker is not broadened to evaluate bounded expressions.
 
 ## Where the rest of pagination lives
 
@@ -46,7 +46,7 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 ## Pitfalls
 
 * Writing `{{pagination.page + 1}}` for a one-based provider. This skips page 2 (the value is already 2).
-* A mapped or missing `response.limit`. The bound then depends on user input or does not exist.
+* A known-unbounded mapped `response.limit` where a limit is required, or a missing one on an options RPC that can exceed 500 items. The bound then depends on unchecked input or does not exist. An unknown bound needs evidence first. (A bounded mapped expression is not by itself a defect; the fixtures below use the literal form as convention.)
 * Using the 150/50 figures as a validator for every RPC.
 * Putting a `delay` between pages and forgetting it eats the 40 seconds.
 * Fetching all pages for an RPC and filtering in IML when the provider supports a search parameter.
@@ -54,7 +54,7 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 
 ## Exceptions and applicability
 
-* The budget guidance targets RPCs (dropdowns, dynamic fields). Search modules and polling triggers have separate documented limits and recommendations (a search does not need the 3×page ceiling).
+* The budget guidance targets dropdown (options) RPCs; sweep other RPC roles but branch by role (see Limits versus advice). Search modules and polling triggers have separate documented limits and recommendations (a search does not need the 3×page ceiling).
 * Providers that return a total or a next-URL token use a different pagination style; the "page counter" rule is for page-number APIs only.
 * Epoch RPCs: same recommendation of 3 requests and 300 records or 3× page size.
 
@@ -69,8 +69,8 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 Static, synthetic teaching fixtures. The numbers in them illustrate the declared consistency rules; they are not provider caps and not a universal budget.
 
 * Correct: [correct.json](../recipes/rpc-page-budget/correct.json): `qs.limit` equals the declared page size, records stay within pages × size, the one-based next page passes `{{pagination.page}}` unchanged, and `response.limit` is a fixed positive integer within the record budget.
-* Incorrect, `CK-BUDGET-BOUND`: [limit-missing.json](../recipes/rpc-page-budget/incorrect/limit-missing.json). The RPC declares no `response.limit`, so the fixture has no declared total-output limit of its own. Platform ceilings on calls, records and time still exist (see the pagination limits above), but they are hard stops, not a configured output budget. A limit is mandatory when the provider can return more than 500 items.
-* Incorrect, `CK-BUDGET-BOUND`: [limit-mapped.json](../recipes/rpc-page-budget/incorrect/limit-mapped.json). `response.limit` is a mapped expression, so the bound depends on user input rather than being fixed.
+* Incorrect, `CK-BUDGET-BOUND`: [limit-missing.json](../recipes/rpc-page-budget/incorrect/limit-missing.json). The RPC declares no `response.limit`, so the fixture has no declared total-output limit of its own. Platform ceilings on calls, records and time still exist (see the pagination limits above), but they are hard stops, not a configured output budget. For an options RPC, a limit is required when the endpoint can return more than 500 items.
+* Incorrect, `CK-BUDGET-BOUND`: [limit-mapped.json](../recipes/rpc-page-budget/incorrect/limit-mapped.json). `response.limit` is a mapped expression with no declared bound, so in this fixture the bound depends on user input rather than being fixed. The fixture rule requires the conservative literal form; a mapped expression with a known upper bound is not claimed to be a platform defect.
 * Incorrect, `CK-BUDGET-PAGE`: [page-plus-one.json](../recipes/rpc-page-budget/incorrect/page-plus-one.json). A one-based provider receives `pagination.page + 1`, but the value is already 2 for the second request, so page 2 is skipped.
 * Incorrect, `CK-BUDGET-PAGE`: [page-size-mismatch.json](../recipes/rpc-page-budget/incorrect/page-size-mismatch.json). The request asks for a page size different from the declared budget, so the budget arithmetic no longer describes the real calls. The fixture does not say that 150 records or any other figure is a cap.
 
@@ -80,4 +80,6 @@ Static, synthetic teaching fixtures. The numbers in them illustrate the declared
 * https://developers.make.com/custom-apps-documentation/best-practices/remote-procedure-calls
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc
+* https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-sample-rpc
+* https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/limit
 * https://developers.make.com/custom-apps-documentation/component-blocks/epoch

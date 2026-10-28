@@ -8,9 +8,15 @@ Dates are a place where polling triggers and search modules can go quietly wrong
 
 **Documented requirement.** Make hands date parameters to your request as ISO 8601 text, `YYYY-MM-DDThh:mm:ss.sssZ`. Even `time: false` yields midnight in the user's timezone converted to UTC. If the provider wants another shape, format it in the communication, for example `{{formatDate(parameters.createdAt, 'X')}}`.
 
-**Documented requirement.** Output date-times should be parsed so that the user gets a real date, for example `{{parseDate(item.createdAt, 'X')}}`. The public output-processing page lists the exceptions: values that are only a time, only a date, or a date and time without a timezone (unless the provider documents UTC or another fixed zone), and numeric timestamps (parse only if the provider clearly documents the field as one; never assume a long number is a timestamp). The page also says: do not substitute the Make user's or organisation's timezone for a zone the provider has not documented.
+**Documented recommendation.** Output date-times should be parsed so that the user gets a real date, for example `{{parseDate(item.createdAt, 'X')}}`. The public output-processing page lists the exceptions: values that are only a time, only a date, or a date and time without a timezone (unless the provider documents UTC or another fixed zone), and numeric timestamps (parse only if the provider clearly documents the field as one; never assume a long number is a timestamp). The page also says: do not substitute the Make user's or organisation's timezone for a zone the provider has not documented.
 
-**Documented recommendation.** For date-only values, keep the provider's format and declare the interface field as `type: text`. Return the raw response (`output: "{{item}}"`, `output: "{{body}}"`) and remove only what you must; do not rename or reshape fields without reason.
+**Documented requirement.** Output date-times use Make's ISO representation, and the interface declares them as `date`; a nonconforming (non-ISO) format needs conversion.
+
+**Documented recommendation, with a source ambiguity.** For each emitted datetime, trace the value's type and conversion, then check the matching `date` interface. HTTP JSON parsing leaves an ISO value as text, and the interface is not proof of conversion. The focused output-processing page recommends a parsed datetime path, so prefer parsing raw text or tracing an equivalent Date-producing conversion, subject to the exceptions above. If the traced value is already Date-valued, preserve it; do not demand a second parse. The absence of `parseDate` alone proves neither a defect nor a runtime failure. The general polling example also passes an ISO field directly into output with a `date` interface, so explicit parsing of canonical raw ISO text is an authoring recommendation, not an unambiguous platform violation, automatic blocker or proof of runtime failure. Record that source ambiguity before assigning a conversion finding. A missing `date` interface declaration is a separate declaration concern. Polling `trigger.date` is a separate path (below).
+
+**Documented recommendation.** For date-only values, keep the provider's format and declare the interface field as `type: text`. Preserve the provider response (`output: "{{item}}"`, `output: "{{body}}"`) and do not rename or reshape fields without reason. This composes with conversion: keep every unrelated field and transform only the applicable temporal fields. Do not teach that a helper must change an already conforming value; an identity result is a defect only where conversion was actually needed.
+
+**Review each emitted temporal field in this order:** establish meaning, zone and unit; inspect its output expression or helper and the matching interface declaration; apply the documented exception. The bare absence of the token `parseDate` does not prove failure: inspect equivalent conversion and the resulting representation. Applicable omissions are authoring corrections, not invented observed outages. A raw field that is retained but not declared in the interface is a declaration gap, not proof it was dropped or cannot be mapped (Make can suggest undeclared incoming fields); an explicit projection that discards a required field is a different, demonstrable loss. Worked example: [role-application-examples](role-application-examples.md).
 
 ## Polling trigger order
 
@@ -18,9 +24,11 @@ Dates are a place where polling triggers and search modules can go quietly wrong
 
 **Inferred implementation pattern.** The declared `order` must describe the order the provider was actually asked for. If `qs.direction` is `asc` and the trigger says `desc`, Make's cut-off logic works from a wrong assumption. The checker's `CK-DATE-ORDER` rule tests exactly this declared-pair consistency and nothing more. Use `unordered` when the provider offers no ordering.
 
-## A date type needs a parse
+## Polling cursor dates (separate from output typing)
 
-When `trigger.type` is `date`, the expression in `trigger.date` should produce a date Make can compare. If the provider field is already ISO 8601 with an offset or `Z`, Make understands it and wrapping is unnecessary. If it is another format (a custom string, epoch seconds documented as such), wrap it with `parseDate` or a helper that really converts it. The checker's `CK-DATE-PARSE` rule encodes this using a `providerFields` declaration in the fixture: a field declared with a non-auto-parsed format must pass through a parse call.
+This section is only about `trigger.date`. It is not an exemption for output date typing or normalization, and it licenses no timezone guess. The public trigger page maps `trigger.date` directly from an ISO-shaped value, even a zone-less example, without a parse call; it states no universal parser guarantee for every ISO variant.
+
+When `trigger.type` is `date`, the expression in `trigger.date` should produce a date Make can compare. If the provider field is already ISO 8601, direct mapping is the documented pattern and a parser token is not required. If it is another format (a custom string, epoch seconds documented as such), wrap it with `parseDate` or a helper that really converts it. The checker's `CK-DATE-PARSE` rule encodes this using a `providerFields` declaration in the fixture: a field declared with a non-auto-parsed format must pass through a parse call.
 
 ```json
 {
@@ -61,13 +69,15 @@ Make compares and sorts dates internally. A string like `03/04/2026 10:00` is am
 * Converting a date-only value to a datetime. That adds a midnight and a timezone nobody stated; keep it text.
 * Adding hours to "fix" the user's timezone for a no-timezone value. The documentation forbids using the user's or organisation's zone; the zone belongs to the provider's contract.
 * Declaring `order: "asc"` because the provider's default happens to be ascending, then hitting the 3200-record window on a busy account.
-* Writing a helper named `normalizeDate` that only returns its input. The name proves nothing.
+* Writing a helper named `normalizeDate` that only returns its input. The name proves nothing: raw ISO text through an identity helper is still unproven Date provenance (same recommendation and source ambiguity as raw output), while a traced input that is already a Date needs no change.
+* Treating ISO spelling or a `date` interface as proof that a Date conversion happened. A Date and ISO text can serialize identically.
 * Claiming a conversion where the provider's documentation gives no format. Without a contract there is nothing to convert to; say so and keep the raw text.
 
 ## Exceptions and applicability
 
-* Applies to output fields that are date-times, polling triggers with `type: date`, and search/list ordering.
-* Does not apply to time-only values, date-only values, no-timezone values without a documented zone, and numerics not documented as dates (strength stays recommendation; no parse required).
+* Output conversion and interface typing apply to emitted date-time fields; the cursor rule applies to `trigger.date`; ordering applies to polling and search/list. These are separate checks.
+* Output conversion does not apply to time-only values, date-only values, no-timezone values without a documented zone (a provider-documented zone, e.g. UTC, does apply), and numerics not documented as dates (strength stays recommendation; no parse required). A documented epoch unit needs the matching interpretation.
+* Input serialization is ISO and is its own check; do not replace calendar-date semantics with midnight UTC by habit.
 * Does not apply to `type: id` triggers for the parse rule, but the order rule still applies.
 * Epoch triggers: the epoch RPC `response.output` should carry only `label` and `date`.
 

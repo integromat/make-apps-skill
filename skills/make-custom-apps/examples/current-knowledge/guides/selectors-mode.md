@@ -10,9 +10,17 @@ An option RPC returns an array of `{ "label": ..., "value": ... }` (`default: tr
 
 ## `mode: "edit"`
 
-**Documented guidance for Get, Update and Delete.** The RPC-backed select for the record being addressed starts in edit mode (`mode: "edit"`), so the user can map an ID from a previous module without first toggling the field. `mode` accepts `edit` or `choose`; the default is `choose`. Treat this as the expected configuration for those module kinds, and as an authoring decision rather than a platform failure: a select in choose mode still works, it just starts in the less convenient state.
+**Documented authoring requirement for Get, Update and Delete.** The best-practices page states that adding edit mode is required for a mappable RPC-backed identifier select in these modules. Initialise it with `mode: "edit"` so the user can map an ID from a previous module without first toggling the field. `mode` accepts `edit` or `choose`; the default is `choose`. State the UI/mapping consequence when reporting it; it does not make requests unexecutable, so it is an authoring correction, not an observed outage.
 
-**Documented recommendation, depends on hierarchy.** For Search/List modules the best-practices page says to decide by entity hierarchy: high-level entities (a customer, a deal) do not get `mode: "edit"`; low-level entities that always sit under a parent (an email attachment) do. For Create modules, do not set it unless there is a very large number of RPC results.
+**Documented recommendation, depends on hierarchy.**
+
+| Context | Treatment |
+| --- | --- |
+| Search/List, higher-level entity with few RPC inputs | Recommend `choose` (no edit mode). |
+| Search/List, low-level child entity that always sits under a parent | Recommend `mode: "edit"`, from the hierarchy. |
+| Create | Recommend `choose`; many RPC **inputs** can justify edit. One large RPC **result** set is a different load/page-budget issue, not a mode reason. |
+
+Infer hierarchy from the provider's model, never from names. With many nested RPCs, keep the documented choice between mapping the deepest ID directly and traversing the hierarchy; a deliberately non-mappable selector inside the browse branch should not receive edit mode mechanically.
 
 **Documented behaviour.** With the Map toggle on, a mapped value (for example `{{1.status}}`) is not restricted by the options. A static value typed into the field must match an option value, otherwise the field shows `Value not found in options`, with three documented exemptions: static values are not validated when the options are loaded by an RPC, when `dynamic` is `true` (set automatically for RPC-generated options), or when `validate` is `false`. So the "static value must match" rule applies to hand-written `options` arrays without those settings, not to RPC-backed selects. In mapping mode only the value, never the label, is available.
 
@@ -47,7 +55,7 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 
 ## Pitfalls
 
-* Putting `mode: "edit"` on every select as a habit. It is the expected setting for the addressed record in Get/Update/Delete, a hierarchy decision for Search/List, and generally avoided for Create (except where one input holds many RPC-backed selects). Never present a mode choice in Search/List/Create as a blocker; the right answer depends on the entity's place in the hierarchy.
+* Putting `mode: "edit"` on every select as a habit. It is required for the mappable addressed record in Get/Update/Delete, a hierarchy-based recommendation for Search/List, and generally avoided for Create (except where there are many RPC inputs). A Search/List/Create mode choice is a recommendation, not an automatic blocker; the answer depends on the entity's place in the hierarchy.
 * Nesting without `store`; the child never appears.
 * An ID picker where the provider has no lookup endpoint. If there is nothing to list, a plain text or number field is right; do not invent a lookup route.
 * Pointing `options` at a fields RPC, or `interface` at an options RPC.
@@ -58,11 +66,11 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 
 * The mode rule applies to the selector that addresses the record in Get/Update/Delete. A static, non-mappable select (`mappable: false`) is outside it.
 * Selects with hand-written `options` arrays have no RPC and no mode requirement.
-* Search/List and Create follow the hierarchy guidance above; there is no blanket rule.
+* Search/List and Create follow the hierarchy guidance above as recommendations; there is no blanket exemption of Search/List filters and no blanket rule.
 
 ## Evidence and limits
 
-* `store` for nested, connection matching, automatic parameter inheritance: **documented requirement / behaviour**. `mode: "edit"` for Get/Update/Delete: documented guidance, hierarchy-dependent elsewhere; a missing mode is never a cosmetic-blocker argument by itself.
+* `store` for nested, connection matching, automatic parameter inheritance: **documented requirement / behaviour**. `mode: "edit"` for mappable Get/Update/Delete identifiers: documented authoring requirement; hierarchy-dependent recommendation elsewhere.
 * Search/List hierarchy and Create advice: **documented recommendation**.
 * Parent-value reading checks and the options/schema separation: **inferred implementation pattern** over declared fixtures. The checker does not run RPCs or know a provider's real hierarchy; it cannot tell a high-level from a low-level entity.
 
@@ -72,7 +80,7 @@ Static, synthetic teaching fixtures; the checker reads the declared RPC, paramet
 
 * Correct: [correct.json](../recipes/selector-mode-dependent/correct.json): an options RPC emits `label`/`value`, a fields RPC supplies the interface, the nested child stores its parent and reads `parameters.<parent>`, and the Get module's identifier selector has `mode: "edit"`.
 * Incorrect, `CK-SELECTOR-RPC`: [undefined-rpc.json](../recipes/selector-mode-dependent/incorrect/undefined-rpc.json). A select points at an `rpc://` name no RPC defines, so the dropdown cannot load.
-* Incorrect, `CK-SELECTOR-MODE`: [missing-edit-mode.json](../recipes/selector-mode-dependent/incorrect/missing-edit-mode.json). The identifier selector of a Get/Update/Delete module lacks `mode: "edit"`. This is the documented guidance for those module kinds; the same selector in a Search/List module is the exception above and the checker does not flag it.
+* Incorrect, `CK-SELECTOR-MODE`: [missing-edit-mode.json](../recipes/selector-mode-dependent/incorrect/missing-edit-mode.json). The identifier selector of a Get/Update/Delete module lacks `mode: "edit"`. This is the documented requirement for those module kinds; the same selector in a Search/List module follows the hierarchy recommendation above, which the checker does not evaluate.
 * Incorrect, `CK-SELECTOR-NESTED`: [nested-without-store.json](../recipes/selector-mode-dependent/incorrect/nested-without-store.json). A `nested` list sits on a parent whose options are not stored (`options.store`), and the documentation says `store` is required for nesting to work.
 * Incorrect, `CK-SELECTOR-NESTED`: [child-ignores-parent.json](../recipes/selector-mode-dependent/incorrect/child-ignores-parent.json). The child RPC never reads its parent's `parameters.<name>`, so it loads the same list for every parent (or reads a name that is not an ancestor).
 * Incorrect, `CK-SELECTOR-SCHEMA-CONFUSION`: [options-from-fields-rpc.json](../recipes/selector-mode-dependent/incorrect/options-from-fields-rpc.json). Select `options` point at a fields RPC, which returns parameter specs rather than `label`/`value` pairs.

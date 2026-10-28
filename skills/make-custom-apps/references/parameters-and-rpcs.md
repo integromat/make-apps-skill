@@ -113,8 +113,9 @@ of `{label, value}` objects through iteration and output. A standard response fr
 Choose the real array path and a useful bounded limit; do not fetch an entire
 account merely to open a dropdown. Prefer a search button when provider-side
 search exists and the available records cannot fit a practical options list.
-Use `mode: "edit"` for identifier selectors in Get, Update, and Delete modules,
-as recommended by the RPC guide, while retaining the option to select a value.
+Use `mode: "edit"` for mappable identifier selectors in Get, Update, and Delete
+modules; the RPC guide requires it. Search/List and Create follow hierarchy-based
+recommendations (see the selectors guide), and the user can still choose a value.
 
 Sources: [RPC connection contract](https://developers.make.com/custom-apps-documentation/app-components/rpcs.md),
 [Dynamic options](https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc.md),
