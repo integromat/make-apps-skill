@@ -59,7 +59,7 @@ These are broad how-to guides. They have no recipe fixtures of their own and cit
 ## Where to start by task
 
 * Designing an app: [app-architecture](guides/app-architecture.md), then the topic it points to.
-* Fixing authentication: [connections-and-oauth](guides/connections-and-oauth.md), [auth-context](guides/auth-context.md).
+* Fixing authentication: [connections-and-oauth](guides/connections-and-oauth.md), [auth-context](guides/auth-context.md). When credential placement or a connection check is undocumented: [auth-evidence-worked](guides/auth-evidence-worked.md).
 * Slow or incomplete lists: [pagination-and-trigger-state](guides/pagination-and-trigger-state.md), [rpc-page-budgets](guides/rpc-page-budgets.md).
 * Wrong or missing values: [outputs-empty-values-updates](guides/outputs-empty-values-updates.md), [interfaces-required](guides/interfaces-required.md), [dates-helpers](guides/dates-helpers.md).
 * Writing a review or approval note: [compatibility-evidence](guides/compatibility-evidence.md).

@@ -23,8 +23,9 @@ Put the provider base URL, common authorization, default error handling, and log
 sanitization in Base. Modules and RPCs inherit these settings; override only what
 an endpoint requires. Keep service-specific request bodies out of unrelated modules.
 
-**Connection communication does not inherit Base.** Supply a complete validation
-URL, authentication, error handling, and sanitization in the connection itself.
+**Connection communication does not inherit Base.** When a supported check is
+configured, supply a complete validation URL, authentication, error handling, and
+sanitization in the connection itself.
 Repeat any necessary custom CA configuration in the relevant connection requests.
 
 Use documented regional or tenant host rules. Validate configurable hosts before
@@ -62,8 +63,10 @@ Sources: [Basic variables and persisted data](https://developers.make.com/custom
 
 1. Collect secrets with `password` parameters and provider-specific labels.
 2. Use the provider's documented header, query, or Basic authorization format.
-3. Validate against a lightweight endpoint that actually requires the credential.
-   Prefer account information or a bounded read; a public health check proves only reachability.
+3. When the provider documents a lightweight authenticated endpoint that actually
+   requires the credential, validate against it. Prefer account information or a
+   bounded read; a public health check proves only reachability. If no such check is
+   documented, apply the evidence decision below; never invent a route.
 4. Include required scopes and tenant selection in the validation contract.
    A read-only operation may legitimately use POST; HTTP method alone does not prove safety.
 5. Use `response.metadata` for a useful non-secret account label.
@@ -89,6 +92,33 @@ support for the selected connection surface. Legacy exports are not capability g
 
 Sources: [Basic connection](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md),
 [Validation endpoints](https://developers.make.com/custom-apps-documentation/best-practices/connections.md).
+
+### Evidence decision for Basic connections
+
+A Make Basic connection is a container for user-entered values (for example an API key
+or a username and password) plus at most one communication request. Its name says
+nothing about the wire format. In OpenAPI, `type: http` with `scheme: basic` describes
+HTTP Basic authentication with a username and password; the scheme *name* (for example
+`basicKey`) is an arbitrary label and carries no transport semantics. Do not read
+"API key sent as username with an empty password" into a label. Standard HTTP Basic
+fully specified in the contract is sufficient for ordinary mapping. Only API-key-specific
+placement (header, query, or a Basic-encoded key) and a literal empty password need
+explicit provider support.
+
+A server URL (OpenAPI `servers`) alone declares no operation, so a check cannot be
+inferred from it. Operations come from `paths` or the provider's documentation. An
+explicitly documented authenticated `GET /` operation is a valid check; what matters is
+that the contract actually specifies it.
+
+| Established facts | Conclusion |
+| --- | --- |
+| (a) Standard username/password HTTP Basic is specified, or provider-specific key placement is explicit, **and** a harmless authenticated check is documented | Generate the defined requests and connection check. Disclose that nothing was executed (static-only). |
+| (b) Auth mapping and the requested operations are known, but **no check route is documented** | Never invent a `ping`, `me`, `health` or undocumented root request (a documented authenticated `GET /` is not invented), and do not claim a connection outage or failure. Read the selected authoring surface: if the check is genuinely optional there, omit it and state the limitation. If the surface requires a communication request and no supported check exists, hold for that essential evidence instead of fabricating one. Do not assert that omission is supported unless it is documented. |
+| (c) The credential wire mapping or an essential requested operation is **unknown or contradictory** | Evidence hold with a clear question to the owner. Not ready, and not a proven defect or security claim. A partial draft must not turn essential uncertainty into optional advice. |
+
+Sources: [Basic connection](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection),
+[OpenAPI 3.0.3 Security Scheme Object](https://spec.openapis.org/oas/v3.0.3.html#security-scheme-object).
+Worked contrast: [auth evidence worked](../examples/current-knowledge/guides/auth-evidence-worked.md).
 
 ## OAuth 2.0 lifecycle
 

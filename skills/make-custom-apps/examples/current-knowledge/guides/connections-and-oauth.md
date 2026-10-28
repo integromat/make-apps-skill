@@ -8,7 +8,7 @@ A connection is the part of an app that proves who the user is and keeps proof a
 
 Basic, JWT, OAuth 1.0 and OAuth 2.0 each have their own communication blocks and their own failure modes. Start from the provider's documented authentication, not from the scheme you know best.
 
-* **Basic connection.** Credentials are typed by the user (API key, username/password). Use `password` parameters for secrets, put the credential in Base from `{{connection.*}}`, and add a connection check request if the provider supports a cheap authenticated call.
+* **Basic connection.** Credentials are typed by the user (API key, username/password). Use `password` parameters for secrets, put the credential in Base from `{{connection.*}}`, and add a connection check request only if the provider documents a cheap authenticated call. A Basic connection holds user-entered auth values and one communication request; the word "Basic" does not decide the wire format. OpenAPI `http`/`basic` means username/password HTTP Basic, and a scheme's name is an arbitrary label. API-key placement and an empty password need explicit provider support. When no check route is documented, do not invent one; see [auth-evidence-worked](auth-evidence-worked.md).
 * **JWT.** The connection builds a signed token; signing inputs, algorithm and claims come from the provider.
 * **OAuth 1.0.** A request-token step, user authorisation and an access-token step, with signed requests.
 * **OAuth 2.0.** Authorisation-code flows need a user; client-credentials style flows need none and use `token.condition` (never with the authorisation-code flow, and with a single request). Choose the provider's redirect style: a dedicated app can use Make's redirect URI or a local one.
@@ -23,7 +23,7 @@ Editable connections and connection metadata are documented separately; changing
 4. **Use.** Base and modules read `{{connection.accessToken}}`; they do not re-derive it.
 5. **Expire.** `response.data.expires` makes Make refresh before the access token expires. `response.expires` is a different clock: the lifetime of the user's grant, after which the user must authorise again. Do not confuse them.
 6. **Refresh.** The refresh block reads the stored refresh token and client credentials. In connection communication, `data` and `parameters` reach the same stored connection data (runtime-confirmed, adjudicated allowance), so the choice between `data.refreshToken` and `parameters.refreshToken` is naming only. `common` is different: it is the connection's common data (app-level secrets) and the documented code-grant example uses it as the fallback behind an editable parameter, `ifempty(parameters.clientId, common.clientId)`. Module contexts are different again ([auth-context](auth-context.md)).
-7. **Invalidate and check.** Where the provider supports revocation, implement `invalidate`. Provide an `info` request for a harmless identity or account call, and test it with valid and invalid credentials. Use a capability the provider really documents; do not invent a "ping" endpoint.
+7. **Invalidate and check.** Where the provider supports revocation, implement `invalidate`. Provide an `info` request for a harmless identity or account call, and test it with valid and invalid credentials. Use a capability the provider really documents; do not invent a "ping" endpoint, and do not derive a check from a server URL alone, which declares no operation. An explicitly documented authenticated `GET /` operation is valid.
 
 ### Token response nuances
 
@@ -77,3 +77,4 @@ Authentication fails far from where it is configured: a token that cannot refres
 * https://developers.make.com/custom-apps-documentation/best-practices/connections/connection-metadata
 * https://developers.make.com/custom-apps-documentation/best-practices/connections/additional-oauth-scopes
 * https://developers.make.com/custom-apps-documentation/best-practices/base/authorization-and-sanitization
+* https://spec.openapis.org/oas/v3.0.3.html#security-scheme-object
