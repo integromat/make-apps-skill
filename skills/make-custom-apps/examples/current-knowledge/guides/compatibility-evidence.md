@@ -31,7 +31,9 @@ A static-only fixture can never report the last three as performed; the checker'
 
 ## Missing proof
 
-**Inferred implementation pattern.** If a behaviour is important (a refresh flow, a webhook attach, a pagination bound) and the only evidence is "unverified", the right outcome is *insufficient evidence*: the review may hold approval until someone supplies proof, or runs the missing gate. It is wrong to turn a missing proof into a declared runtime failure ("this will fail"), and equally wrong to turn a missing public page into proof that a route does not exist.
+**Inferred implementation pattern.** In static review, distinguish ordinary uncertainty from an independently essential missing fact. An existing route's possible alias, its absence from a partial specification, or missing live proof is advisory uncertainty by itself. To hold approval for *insufficient evidence*, name the applicable requirement and the specific missing fact essential to judging it; the operation's importance alone is not enough. Direct contradictions in an exhaustive contract, a newly requested operation without support, and unresolved security, authentication or binding requirements can justify a hold. It is wrong to turn missing proof into a declared runtime failure ("this will fail"), or a missing public page into proof that a route does not exist.
+
+Formal QA, provider-execution and publication gates retain their required evidence. Classifying uncertainty in a static review does not mark those gates performed or waive them.
 
 Frequency is not evidence either. That many apps do something never raises a rule's strength; strength comes from documentation. This is why the catalog uses `must` only for a documented requirement with a public source, `should` for recommendations and `consider` for inferred patterns.
 

@@ -16,6 +16,8 @@ A module has two contracts with the user: the *input* parameters it asks for and
 
 Do not infer "required" from a field being present in a provider's response, from its position in the form, or from a name ending in `Id`. Use the provider's documented create/update contract.
 
+Before accepting a required flag, compare the provider's omission and default behaviour, the effective UI requirement (including defaults and conditions), and every request, RPC, dynamic-interface and helper consumer. A read proves use, not necessity. Cite independent evidence that omission prevents the component's documented function, or an owner decision to narrow its input scope. A provider-optional input can legitimately be required under that contract, including a technical RPC parent; the existing required flag alone does not establish the contract.
+
 ## Falsy values and empty values
 
 **Documented recommendation.** The input-processing page recommends `"body": "{{parameters}}"` or `"{{...}}": "{{omit(parameters, 'id')}}"` and says that using `ifempty(..., undefined)` or an `if` to drop empty values is a bad practice, since `null`, empty string, `0` and empty arrays could then never be sent. On platform version 2 empty values are already ignored by default; update and universal modules show an `erase` pill so users can send an explicit empty value.
@@ -28,7 +30,9 @@ Do not infer "required" from a field being present in a provider's response, fro
 
 **Documented recommendation.** Return the raw response where you can: `output: "{{item}}"` for search, `output: "{{body}}"` for actions, deleting only unneeded fields and flattening nested outputs. Output must never carry error messages; errors belong to the error directive.
 
-**Inferred implementation pattern.** When you *do* project fields explicitly, the interface fields and the keys of `response.output` should list the same names, and sample values should match the declared type. Otherwise users see fields that are always empty, or data that is outputted but not mappable. The checker's `CK-INTERFACE-DRIFT` rule compares names and sample types in a fixture.
+**Inferred implementation pattern.** When you *do* project fields explicitly, the interface fields and the keys of `response.output` should list the same names, and sample values should match the declared type. Identify which declaration or projection differs before claiming an empty or lost value. The checker's `CK-INTERFACE-DRIFT` rule compares names and sample types in a fixture.
+
+For a known provider response contract, compare **provider response → actual emitted user-facing object → declared interface**, including raw outputs. Follow wrappers, iteration and flattening to the object actually emitted. Enumerate each known in-scope property's disposition: declared with matching name and type, deliberately excluded with a request-scope, privacy or output-design basis, or retained but undeclared. The last is a declaration gap, not proof of data loss or unmappability. For dynamic or unknown collections, use the documented generic shape instead of inventing properties.
 
 ```json
 {
@@ -62,7 +66,7 @@ The form and the request are written at different times by different people (or 
 
 * Required-ness depends on the provider; a path parameter is the only case that follows from the URL itself.
 * `||` on text parameters is not covered by the falsy rule (empty string as "use default" can be intended). Neither is `|| false` on a boolean or `|| 0` on a number, which preserve the valid falsy value.
-* Modules that return the raw response need no projection comparison.
+* Raw responses have no explicit projection expressions to compare; known emitted properties still need the interface comparison above. Deliberately narrowed outputs and dynamic or unknown collections keep their documented scope and shape.
 
 ## Evidence and limits
 
