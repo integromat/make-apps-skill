@@ -29,6 +29,30 @@ Model three intents separately: *leave unchanged*, *clear*, *set*. Legitimate `0
 * Recursive removal of nulls and empty collections is a documented helper, useful only when its semantics fit the operation (typically not for updates that must clear).
 * `ifempty` keeps `0` and `false` ([iml-and-helpers](iml-and-helpers.md)).
 
+### Processed values by intent (Apps platform version 2)
+
+| Intent | Processed value |
+| --- | --- |
+| Text left blank | omitted (ignored) |
+| Text, Erase | `null` |
+| Text, forced empty string through IML | `""` |
+| Array / multiple select, Erase | `[]` |
+| Number, Erase | `null` |
+| Boolean `false` (supplied value) | `false`; a legitimate value |
+| `0` | a legitimate value, kept by `ifempty` |
+
+"Platform version 2" is the Apps platform version, which is distinct from the app's own major version; do not infer one from the other.
+
+### Accepting null, empty or omission
+
+Derive what is acceptable from each provider field's contract and the requested intent, not from a blanket rule. Erase, whole-parameter collections, `ifempty` and optional parameters are all fine where the contract fits. Whole-collection mapping is recommended, but it forwards the *processed* values; it does not turn a text `null` into `""`.
+
+**Static ready gate.** If a requested text clear must reach the provider as a non-null empty string, then instructing users to use text Erase while forwarding the processed `null` contradicts that contract. That is an authoring and guidance defect visible in the source, before any live execution. A forced IML empty string is the documented alternative for text; confirm the exact mapping against the official page rather than assuming a helper. Array Erase (`[]`) is a separate case and fits a field that needs an empty array.
+
+Keep these layers separate and verify each independently: the permitted input (actual module CRUD, update or universal classification governs whether Erase is shown; a label or a PATCH verb does not prove it), the actual processed value, the serialization, and provider acceptance. `required: true` or `min: 0` alone does not prove the UI accepts an empty value. JSON-schema-style required properties are not the same as UI flags that reject legitimate empties, and not every optional provider field should be made required.
+
+Reference expectations for a synthetic contract (booleans, integer, text, array, nullable and optional controls) are in [reference-vectors.txt](../recipes/empty-values-contract/reference-vectors.txt). They are JSON data, not IML and not checker fixtures, and they are expectations rather than executed Make output.
+
 ## Updates: partial or full replacement
 
 Decide from the provider's contract, not the HTTP verb: some APIs support partial behaviour through PUT, and some PATCH calls still replace nested collections.
@@ -50,6 +74,8 @@ Make already ignores empty values and offers erase; it already lets you return r
 * Falsy cleanup that removes `0`, `false` or empty strings the user set on purpose.
 * Using `||` fallbacks for numbers and booleans.
 * Sending `null` for clearing everywhere regardless of type.
+* Telling users to Erase a text field whose provider rejects `null` and needs `""`.
+* Treating `required: true` / `min: 0` as proof that an empty value can be entered.
 * Assuming every PUT is a full replacement, or that a warning makes replacement safe.
 * A shallow merge over a nested collection.
 * Changing an output type or key in a shipped module without a compatibility plan ([compatibility-evidence](compatibility-evidence.md)).
@@ -65,6 +91,7 @@ Make already ignores empty values and offers erase; it already lets you return r
 
 * Output options, empty-value processing, erase and `ifempty` semantics: **documented behaviour / recommendation** (output, empty values and IML pages).
 * Provider update semantics and identifier formats: **provider contract**.
+* The vectors file is synthetic **expectation data** derived from the documented table; no request was executed, and real module classification and serialization must still be verified.
 * The static checker only compares declared names and sample types in fixtures; it cannot judge a real transformation.
 
 ## Sources

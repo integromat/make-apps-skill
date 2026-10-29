@@ -1,0 +1,37 @@
+{
+  "kind": "reference-data",
+  "notice": "JSON expectation data. Not IML, not executable, not a checker fixture, not executed Make output.",
+  "source": "../../guides/outputs-empty-values-updates.md",
+  "assumptions": "Apps platform version 2. Module classification (update or universal) already allows Erase where an Erase intent appears. Provider is synthetic: no real host or credentials.",
+  "states": {
+    "value": "a present typed value",
+    "null": "explicit JSON null",
+    "omitted": "key absent from the request body (data state; JSON has no undefined)"
+  },
+  "providerContract": {
+    "enabled": {"type": "boolean", "required": true, "nullAllowed": false},
+    "count": {"type": "integer", "required": true, "nullAllowed": false},
+    "note": {"type": "text", "required": true, "nullAllowed": false, "emptyStringAllowed": true},
+    "tags": {"type": "array of text", "required": true, "nullAllowed": false, "emptyArrayAllowed": true},
+    "nickname": {"type": "text", "required": false, "nullAllowed": true},
+    "memo": {"type": "text", "required": false, "nullAllowed": false, "omissionMeans": "leave unchanged"}
+  },
+  "vectors": [
+    {"id": "bool-false", "field": "enabled", "intent": "set false", "processed": {"state": "value", "value": false}, "providerAccepts": true, "note": "false is legitimate; do not treat as empty"},
+    {"id": "int-zero", "field": "count", "intent": "set 0", "processed": {"state": "value", "value": 0}, "providerAccepts": true, "note": "0 is legitimate; ifempty keeps it"},
+    {"id": "text-forced-empty", "field": "note", "intent": "clear to empty string", "input": "forced empty string via IML", "processed": {"state": "value", "value": ""}, "providerAccepts": true},
+    {"id": "text-normal", "field": "note", "intent": "set text", "processed": {"state": "value", "value": "hello"}, "providerAccepts": true},
+    {"id": "array-erase", "field": "tags", "intent": "clear to empty array", "input": "Erase", "processed": {"state": "value", "value": []}, "providerAccepts": true},
+    {"id": "array-normal", "field": "tags", "intent": "set array", "processed": {"state": "value", "value": ["a", "b"]}, "providerAccepts": true},
+    {"id": "text-implicit-omission", "field": "note", "intent": "leave unchanged (blank input)", "processed": {"state": "omitted"}, "providerAccepts": false, "note": "Valid for Make, but this contract requires note on every replacement, so a blank input is not a clear and the request is incomplete"},
+    {"id": "text-erase-non-null-contract", "field": "note", "intent": "clear to empty string", "input": "Erase", "processed": {"state": "null"}, "providerAccepts": false, "note": "Text Erase yields null; the contract forbids null. Guidance telling users to Erase here is a static authoring defect. Use forced empty string instead (text-forced-empty)"},
+    {"id": "nullable-text-erase", "field": "nickname", "intent": "clear to null", "input": "Erase", "processed": {"state": "null"}, "providerAccepts": true, "note": "Control: Erase is valid when the contract accepts null"},
+    {"id": "optional-text-omission", "field": "memo", "intent": "leave unchanged (blank input)", "processed": {"state": "omitted"}, "providerAccepts": true, "note": "Control: omission is valid for an optional field"},
+    {"id": "optional-text-erase", "field": "memo", "intent": "clear", "input": "Erase", "processed": {"state": "null"}, "providerAccepts": false, "note": "Control: text Erase yields null, which the memo contract forbids, so this Erase route is not supported. Optionality does not imply null acceptance. This does not decide other clearing intents for memo."}
+  ],
+  "limits": [
+    "Expectations derived from the documented empty-value table and the synthetic contract above.",
+    "Not verified by running a module; actual classification, processed value, serialization and provider acceptance must be checked separately.",
+    "required and minimum-length flags do not by themselves prove the UI accepts an empty value."
+  ]
+}
