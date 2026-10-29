@@ -18,6 +18,8 @@ Do not infer "required" from a field being present in a provider's response, fro
 
 Before accepting a required flag, compare the provider's omission and default behaviour, the effective UI requirement (including defaults and conditions), and every request, RPC, dynamic-interface and helper consumer. A read proves use, not necessity. Cite independent evidence that omission prevents the component's documented function, or an owner decision to narrow its input scope. A provider-optional input can legitimately be required under that contract, including a technical RPC parent; the existing required flag alone does not establish the contract.
 
+Where that comparison establishes an applicable, unmet input requirement, record a required authoring correction. Neither a consumer read nor the app's rejection for another reason changes the independent evidence needed to establish necessity or makes the correction optional.
+
 ## Falsy values and empty values
 
 **Documented recommendation.** The input-processing page recommends `"body": "{{parameters}}"` or `"{{...}}": "{{omit(parameters, 'id')}}"` and says that using `ifempty(..., undefined)` or an `if` to drop empty values is a bad practice, since `null`, empty string, `0` and empty arrays could then never be sent. On platform version 2 empty values are already ignored by default; update and universal modules show an `erase` pill so users can send an explicit empty value.
@@ -33,6 +35,8 @@ Before accepting a required flag, compare the provider's omission and default be
 **Inferred implementation pattern.** When you *do* project fields explicitly, the interface fields and the keys of `response.output` should list the same names, and sample values should match the declared type. Identify which declaration or projection differs before claiming an empty or lost value. The checker's `CK-INTERFACE-DRIFT` rule compares names and sample types in a fixture.
 
 For a known provider response contract, compare **provider response → actual emitted user-facing object → declared interface**, including raw outputs. Follow wrappers, iteration and flattening to the object actually emitted. Enumerate each known in-scope property's disposition: declared with matching name and type, deliberately excluded with a request-scope, privacy or output-design basis, or retained but undeclared. The last is a declaration gap, not proof of data loss or unmappability. For dynamic or unknown collections, use the documented generic shape instead of inventing properties.
+
+A known useful field included in the selected output contract still needs the appropriate interface declaration and type when raw output retains it. Report the declaration defect without inventing data loss or unmappability. Keep declaration and conversion judgments separate: preserve date-only and undocumented-zone exceptions, and do not demand redundant parsing for an already conforming ISO value with a matching date interface. Deliberate, justified scope exclusions and unknown or dynamic collection shapes remain valid.
 
 ```json
 {

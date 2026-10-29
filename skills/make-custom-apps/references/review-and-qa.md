@@ -22,6 +22,8 @@ Use the current public rules, not internal category codes or an old app's style 
 Report an **Error** for a demonstrated defect, **Warning** for risk or missing evidence, and **Suggestion**
 for optional improvement. Cite the applicable rule and exact component/section for each finding.
 
+Assess each finding before deriving the overall verdict. A demonstrated, applicable requirement violation remains an Error requiring correction while unresolved, even if another finding already rejects the app; its affected component is not acceptable on that contract. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
+
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
 - Trace base/auth/error handling, connection and webhook bindings, RPC references and function calls.
