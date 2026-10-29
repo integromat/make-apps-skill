@@ -1,0 +1,30 @@
+{
+  "note": "Incorrect: the refresh request reads body, a variable that exists only in the response of that same request, so the stored refresh token is never sent.",
+  "base": {
+    "headers": { "Authorization": "Bearer {{connection.accessToken}}" },
+    "log": { "sanitize": ["request.headers.authorization"] }
+  },
+  "module": {
+    "api": { "headers": { "Authorization": "Bearer {{connection.accessToken}}" } }
+  },
+  "connection": {
+    "refresh": {
+      "url": "https://auth.example.invalid/oauth/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": {
+        "grant_type": "refresh_token",
+        "refresh_token": "{{body.refresh_token}}",
+        "client_id": "{{parameters.clientId}}",
+        "client_secret": "{{parameters.clientSecret}}"
+      },
+      "response": { "data": { "accessToken": "{{body.access_token}}", "refreshToken": "{{body.refresh_token}}" } },
+      "log": {
+        "sanitize": [
+          "request.body.refresh_token", "request.body.client_secret",
+          "response.body.access_token", "response.body.refresh_token"
+        ]
+      }
+    }
+  }
+}

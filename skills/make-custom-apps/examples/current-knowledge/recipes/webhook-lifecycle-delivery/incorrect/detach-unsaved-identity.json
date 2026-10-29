@@ -1,0 +1,28 @@
+{
+  "note": "Incorrect: detach reads webhook.hookId, a value that attach never saved in response.data.",
+  "verificationScope": "challenge-only",
+  "signatureVerification": "not-demonstrated",
+  "attach": {
+    "url": "https://api.example.invalid/v1/hooks",
+    "method": "POST",
+    "body": { "callback": "{{webhook.url}}", "event": "record.created", "secret": "{{connection.webhookSecret}}" },
+    "response": { "data": { "externalHookId": "{{body.id}}" } },
+    "log": { "sanitize": ["request.body.secret"] }
+  },
+  "detach": {
+    "url": "https://api.example.invalid/v1/hooks/{{webhook.hookId}}",
+    "method": "DELETE"
+  },
+  "receiver": {
+    "verification": {
+      "condition": "{{body.type = 'url_verification'}}",
+      "respond": { "status": 200, "type": "json", "body": { "challenge": "{{body.challenge}}" } }
+    },
+    "respond": { "status": 200, "body": "accepted" },
+    "output": { "id": "{{body.id}}", "event": "{{body.event}}" }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Record ID" },
+    { "name": "event", "type": "text", "label": "Event" }
+  ]
+}

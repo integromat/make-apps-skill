@@ -1,0 +1,24 @@
+{
+  "note": "Incorrect: the token exchange carries a client secret and returns an access token, but nothing is listed in log.sanitize.",
+  "base": {
+    "headers": { "Authorization": "Bearer {{connection.accessToken}}" },
+    "log": { "sanitize": ["request.headers.authorization"] }
+  },
+  "module": {
+    "api": { "headers": { "Authorization": "Bearer {{connection.accessToken}}" } }
+  },
+  "connection": {
+    "token": {
+      "url": "https://auth.example.invalid/oauth/token",
+      "method": "POST",
+      "headers": { "Content-Type": "application/x-www-form-urlencoded" },
+      "body": {
+        "grant_type": "client_credentials",
+        "client_id": "{{parameters.clientId}}",
+        "client_secret": "{{parameters.clientSecret}}"
+      },
+      "response": { "data": { "accessToken": "{{body.access_token}}" } },
+      "log": { "sanitize": [] }
+    }
+  }
+}

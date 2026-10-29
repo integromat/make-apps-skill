@@ -1,0 +1,22 @@
+{
+  "note": "Incorrect: ticketId builds the URL path but is not marked required, so a module could run with an empty path segment.",
+  "expect": [
+    { "name": "ticketId", "type": "text", "label": "Ticket" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "api": {
+    "method": "PATCH",
+    "url": "https://api.example.invalid/v1/tickets/{{parameters.ticketId}}",
+    "body": { "title": "{{parameters.title}}", "archived": "{{parameters.archived}}" },
+    "response": {
+      "output": { "id": "{{body.id}}", "title": "{{body.title}}", "archived": "{{body.archived}}" }
+    }
+  },
+  "interface": [
+    { "name": "id", "type": "text", "label": "Ticket ID" },
+    { "name": "title", "type": "text", "label": "Title" },
+    { "name": "archived", "type": "boolean", "label": "Archived" }
+  ],
+  "samples": { "id": "t-100", "title": "Example title", "archived": false }
+}

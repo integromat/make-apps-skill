@@ -1,0 +1,15 @@
+{
+  "note": "Incorrect: the RPC response has no record limit, so the budget is not enforced.",
+  "budget": { "pageSize": 100, "maxPages": 5, "maxRecords": 500 },
+  "rpc": {
+    "api": {
+      "url": "https://api.example.invalid/v1/people",
+      "qs": { "page": 1, "limit": 100 },
+      "pagination": { "qs": { "page": "{{pagination.page}}" } },
+      "response": {
+        "iterate": "{{body.people}}",
+        "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+      }
+    }
+  }
+}

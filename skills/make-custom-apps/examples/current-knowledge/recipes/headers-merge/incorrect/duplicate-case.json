@@ -1,0 +1,19 @@
+{
+  "note": "Incorrect: the request block declares the same header twice with different case; names are case-insensitive, so the intended value is ambiguous.",
+  "base": {
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "synthetic-app/1",
+      "Authorization": "Bearer {{connection.accessToken}}"
+    }
+  },
+  "request": {
+    "headers": { "Accept": "text/csv", "accept": "text/plain" },
+    "spreadProduces": {}
+  },
+  "expectedEffectiveHeaders": {
+    "accept": "text/plain",
+    "user-agent": "synthetic-app/1",
+    "authorization": "Bearer {{connection.accessToken}}"
+  }
+}

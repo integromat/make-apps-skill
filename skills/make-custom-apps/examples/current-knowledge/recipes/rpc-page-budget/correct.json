@@ -1,0 +1,16 @@
+{
+  "note": "Synthetic options RPC. A page size of 100 falls in the documented 'page size of 100 or more' band, where 300-500 is the recommended RPC limit; this is a recommendation for a dropdown, not a provider cap and not universal. The budget bounds what one RPC run may fetch.",
+  "budget": { "pageSize": 100, "maxPages": 5, "maxRecords": 500 },
+  "rpc": {
+    "api": {
+      "url": "https://api.example.invalid/v1/people",
+      "qs": { "page": 1, "limit": 100 },
+      "pagination": { "qs": { "page": "{{pagination.page}}" } },
+      "response": {
+        "iterate": "{{body.people}}",
+        "limit": 300,
+        "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+      }
+    }
+  }
+}

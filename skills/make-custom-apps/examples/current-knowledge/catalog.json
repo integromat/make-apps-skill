@@ -1,0 +1,425 @@
+{
+  "format": "make-custom-apps-current-knowledge-v1",
+  "reviewedOn": "2026-10-28",
+  "evidenceBoundary": {
+    "static": true,
+    "runtime": "none",
+    "statement": "Static, offline consistency of authored synthetic teaching fixtures only. This tree is not a general IML interpreter, an SDK or schema validator, or proof of Make or provider runtime behavior. Real apps still need Make validation, upload/readback and provider-side tests."
+  },
+  "sources": [
+    { "id": "doc-sdk-docs-root", "kind": "public-doc", "title": "Make custom apps documentation (entry point)", "url": "https://developers.make.com/custom-apps-documentation", "retrieved": "2026-10-28" },
+    { "id": "doc-sdk-ts", "kind": "public-doc", "title": "Make TypeScript SDK (@makehq/sdk platform management client, also distributed for Deno as jsr:@make/sdk; scope clarification only, not the Endpoint definition authoring contract)", "url": "https://developers.make.com/make-sdk/make-typescript-sdk", "retrieved": "2026-10-28" },
+    { "id": "skill-sdk-endpoints-reference", "kind": "skill-reference", "title": "SDK Endpoints reference of this skill (scoped to the published SDK library contract it cites)", "path": "references/sdk-endpoints.md" },
+    { "id": "doc-base", "kind": "public-doc", "title": "Base", "url": "https://developers.make.com/custom-apps-documentation/app-components/base", "retrieved": "2026-10-28" },
+    { "id": "doc-advanced-inheritance", "kind": "public-doc", "title": "Base: advanced inheritance", "url": "https://developers.make.com/custom-apps-documentation/app-components/base/advanced-inheritance", "retrieved": "2026-10-28" },
+    { "id": "doc-sanitization", "kind": "public-doc", "title": "Base: sanitization", "url": "https://developers.make.com/custom-apps-documentation/app-components/base/sanitization", "retrieved": "2026-10-28" },
+    { "id": "doc-connections", "kind": "public-doc", "title": "Connections", "url": "https://developers.make.com/custom-apps-documentation/app-components/connections", "retrieved": "2026-10-28" },
+    { "id": "doc-basic-connection", "kind": "public-doc", "title": "Basic connection", "url": "https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection", "retrieved": "2026-10-28" },
+    { "id": "doc-oauth2", "kind": "public-doc", "title": "OAuth 2.0 connection", "url": "https://developers.make.com/custom-apps-documentation/app-components/connections/oauth2", "retrieved": "2026-10-28" },
+    { "id": "doc-webhooks", "kind": "public-doc", "title": "Webhooks", "url": "https://developers.make.com/custom-apps-documentation/app-components/webhooks", "retrieved": "2026-10-28" },
+    { "id": "doc-webhook-attached", "kind": "public-doc", "title": "Dedicated webhook: attached", "url": "https://developers.make.com/custom-apps-documentation/app-components/webhooks/dedicated/attached", "retrieved": "2026-10-28" },
+    { "id": "doc-instant-trigger", "kind": "public-doc", "title": "Instant trigger module", "url": "https://developers.make.com/custom-apps-documentation/app-components/modules/instant-trigger", "retrieved": "2026-10-28" },
+    { "id": "doc-trigger", "kind": "public-doc", "title": "Polling trigger module", "url": "https://developers.make.com/custom-apps-documentation/app-components/modules/trigger", "retrieved": "2026-10-28" },
+    { "id": "doc-epoch", "kind": "public-doc", "title": "Epoch", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/epoch", "retrieved": "2026-10-28" },
+    { "id": "doc-iml", "kind": "public-doc", "title": "IML", "url": "https://developers.make.com/custom-apps-documentation/block-elements/iml", "retrieved": "2026-10-28" },
+    { "id": "doc-pagination", "kind": "public-doc", "title": "Pagination", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination", "retrieved": "2026-10-28" },
+    { "id": "doc-rpcs", "kind": "public-doc", "title": "RPCs", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs", "retrieved": "2026-10-28" },
+    { "id": "doc-dynamic-options", "kind": "public-doc", "title": "Dynamic options RPC", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc", "retrieved": "2026-10-28" },
+    { "id": "doc-dynamic-fields", "kind": "public-doc", "title": "Dynamic fields RPC", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-fields-rpc", "retrieved": "2026-10-28" },
+    { "id": "doc-rpc-best-practices", "kind": "public-doc", "title": "Best practices: remote procedure calls", "url": "https://developers.make.com/custom-apps-documentation/best-practices/remote-procedure-calls", "retrieved": "2026-10-28" },
+    { "id": "doc-select", "kind": "public-doc", "title": "Select parameter", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/select", "retrieved": "2026-10-28" },
+    { "id": "doc-text-param", "kind": "public-doc", "title": "Text parameter", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/text", "retrieved": "2026-10-28" },
+    { "id": "doc-interface", "kind": "public-doc", "title": "Interface", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/interface", "retrieved": "2026-10-28" },
+    { "id": "doc-mappable-parameters", "kind": "public-doc", "title": "Mappable parameters", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/mappable-parameters", "retrieved": "2026-10-28" },
+    { "id": "doc-input-processing", "kind": "public-doc", "title": "Best practices: processing of input parameters", "url": "https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/processing-of-input-parameters", "retrieved": "2026-10-28" },
+    { "id": "research-generic-complete-app", "kind": "research-summary", "title": "Generic summary of patterns seen when reviewing complete custom apps (no app, customer, provider or private data retained)", "scope": "generic", "containsPrivateData": false }
+  ],
+  "topics": [
+    {
+      "id": "dates-helpers",
+      "title": "Dates and app helpers",
+      "summary": "Polling triggers need an order that matches the provider request and, where the provider format is not auto-parsed, a date that Make can actually parse (temporal exceptions apply; canonical ISO text is a documented ambiguity, not a blanket must-parse); helper functions must be defined, reachable and genuinely transform their input.",
+      "guide": "guides/dates-helpers.md",
+      "sources": ["doc-trigger", "doc-iml", "doc-epoch", "doc-input-processing", "research-generic-complete-app"],
+      "recipes": ["dates-helper-trace"]
+    },
+    {
+      "id": "selectors-mode",
+      "title": "Selectors, mode and dependent options",
+      "summary": "Select options come from options RPCs, never from schema RPCs; dependent selects store the parent and read it through parameters; identifier selectors in Get, Update and Delete modules carry mode edit.",
+      "guide": "guides/selectors-mode.md",
+      "sources": ["doc-select", "doc-dynamic-options", "doc-dynamic-fields", "doc-rpcs", "doc-rpc-best-practices", "doc-interface"],
+      "recipes": ["selector-mode-dependent"]
+    },
+    {
+      "id": "rpc-page-budgets",
+      "title": "RPC limits and page budgets",
+      "summary": "A dropdown (options) RPC needs a bounded output limit, required when more than 500 items are possible, consistent with the provider page size and a correct one-based page expression; an iterating sample RPC uses limit 1. The fixed literal is a conservative fixture convention and the recommended limit is guidance, not a provider cap.",
+      "guide": "guides/rpc-page-budgets.md",
+      "sources": ["doc-pagination", "doc-rpc-best-practices", "doc-dynamic-options", "research-generic-complete-app"],
+      "recipes": ["rpc-page-budget"]
+    },
+    {
+      "id": "headers-merge",
+      "title": "Header inheritance and merging",
+      "summary": "Header names are case-insensitive; a per-name request override wins over Base, the documented collection spread keeps Base headers, and a whole-expression headers value replaces them.",
+      "guide": "guides/headers-merge.md",
+      "sources": ["doc-base", "doc-advanced-inheritance"],
+      "recipes": ["headers-merge"]
+    },
+    {
+      "id": "interfaces-required",
+      "title": "Interfaces, required flags and falsy values",
+      "summary": "Required flags follow the component graph that consumes the field (request, RPC, dynamic interface), output interfaces match what the response projection emits, and optional booleans and numbers must keep false and 0.",
+      "guide": "guides/interfaces-required.md",
+      "sources": ["doc-interface", "doc-mappable-parameters", "doc-input-processing", "doc-text-param"],
+      "recipes": ["interface-required-flags"]
+    },
+    {
+      "id": "labels-visibility",
+      "title": "Labels and field visibility",
+      "summary": "Labels are human wording and a cosmetic concern distinct from behavior; visibility rules protect required fields from being hidden and secrets from being shown.",
+      "guide": "guides/labels-visibility.md",
+      "sources": ["doc-mappable-parameters", "doc-select", "doc-text-param", "doc-interface", "research-generic-complete-app"],
+      "recipes": ["labels-visibility"]
+    },
+    {
+      "id": "auth-context",
+      "title": "Authentication contexts and log masking",
+      "summary": "Base and module requests read the saved connection through connection.*, while connection token and refresh requests have their own legitimate aliases; secret-bearing paths must be sanitized.",
+      "guide": "guides/auth-context.md",
+      "sources": ["doc-base", "doc-connections", "doc-basic-connection", "doc-oauth2", "doc-sanitization"],
+      "recipes": ["auth-context"]
+    },
+    {
+      "id": "webhooks",
+      "title": "Webhook lifecycle, verification and delivery",
+      "summary": "Attach saves the provider subscription identity that detach reads; a challenge reply is not signature verification; deliveries and challenges are acknowledged with success statuses.",
+      "guide": "guides/webhooks.md",
+      "sources": ["doc-webhooks", "doc-webhook-attached", "doc-instant-trigger", "doc-sanitization"],
+      "recipes": ["webhook-lifecycle-delivery"]
+    },
+    {
+      "id": "optional-endpoints",
+      "title": "Optional Endpoints",
+      "summary": "An Endpoint is an optional addition to an app, declared with its own inputs; a module-only app is complete without one.",
+      "guide": "guides/optional-endpoints.md",
+      "sources": ["skill-sdk-endpoints-reference", "doc-sdk-docs-root", "doc-sdk-ts"],
+      "recipes": ["optional-endpoint"]
+    },
+    {
+      "id": "compatibility-evidence",
+      "title": "Compatibility and evidence",
+      "summary": "Claims carry a status and sources, strength is justified by documentation and never by frequency, and static, upload, provider and publication gates are reported separately.",
+      "guide": "guides/compatibility-evidence.md",
+      "sources": ["doc-rpcs", "doc-rpc-best-practices", "doc-webhooks", "research-generic-complete-app"],
+      "recipes": ["evidence-gates"]
+    }
+  ],
+  "recipes": [
+    {
+      "id": "dates-helper-trace",
+      "title": "Polling dates: order, parsing and helper tracing",
+      "topic": "dates-helpers",
+      "summary": "The trigger order describes the order the provider is asked for; a date whose provider format is not auto-parsed passes through a parse call or a traced helper that is defined, reachable and not an identity function.",
+      "strength": "should",
+      "basis": "documented-and-observed",
+      "evidence": { "confidence": "observed", "sourceIds": ["doc-trigger", "doc-iml", "research-generic-complete-app"] },
+      "validation": "static",
+      "rules": ["CK-DATE-ORDER", "CK-DATE-PARSE", "CK-HELPER-TRACE"],
+      "applicability": {
+        "appliesWhen": ["A polling trigger uses type date with a provider timestamp.", "A module output calls an app helper on a provider field."],
+        "notWhen": ["The trigger uses type id and no date field.", "The provider already returns ISO 8601 with an explicit offset or UTC marker."],
+        "exceptions": [
+          { "condition": "The provider value is date-only or time-only.", "effect": "Do not append a zone or time; a helper must preserve such values unchanged, and the trigger needs a provider-specific decision." },
+          { "condition": "The provider timestamp carries no timezone.", "effect": "Treating it as UTC is an assumption to record, not a fact; confirm the provider's zone before relying on ordering." },
+          { "condition": "The provider's sort order is unknown.", "effect": "Use order unordered instead of guessing asc or desc." }
+        ]
+      },
+      "dependencies": [
+        { "type": "file", "path": "recipes/dates-helper-trace/functions/normalizeDate.js" },
+        { "type": "file", "path": "recipes/dates-helper-trace/functions/passthroughDate.js" }
+      ],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/dates-helper-trace/correct.json",
+        "incorrect": [
+          { "file": "recipes/dates-helper-trace/incorrect/order-contradicts-sort.json", "violates": ["CK-DATE-ORDER"] },
+          { "file": "recipes/dates-helper-trace/incorrect/date-not-parsed.json", "violates": ["CK-DATE-PARSE"] },
+          { "file": "recipes/dates-helper-trace/incorrect/helper-undefined.json", "violates": ["CK-HELPER-TRACE"] },
+          { "file": "recipes/dates-helper-trace/incorrect/helper-passthrough.json", "violates": ["CK-HELPER-TRACE"] }
+        ]
+      }
+    },
+    {
+      "id": "selector-mode-dependent",
+      "title": "Selectors: mode, dependent options and schema separation",
+      "topic": "selectors-mode",
+      "summary": "Options RPCs emit label and value, fields RPCs emit parameter specs; dependent selects store the parent and the child RPC reads the parent through parameters; Get, Update and Delete identifier selectors use mode edit.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-select", "doc-dynamic-options", "doc-dynamic-fields", "doc-rpc-best-practices", "doc-interface"] },
+      "validation": "static",
+      "rules": ["CK-SELECTOR-RPC", "CK-SELECTOR-MODE", "CK-SELECTOR-NESTED", "CK-SELECTOR-SCHEMA-CONFUSION"],
+      "applicability": {
+        "appliesWhen": ["A select is backed by an rpc:// reference.", "A Get, Update or Delete module exposes an identifier selector.", "A select depends on a parent selection."],
+        "notWhen": ["Options are a short static list."],
+        "exceptions": [
+          { "condition": "The module is a Search or List module.", "effect": "The mode rule is not applied by the checker; mode follows a hierarchy recommendation (choose for higher-level entities, edit for low-level child entities)." },
+          { "condition": "The module is a Create module.", "effect": "Recommend choose; many RPC inputs, not many RPC results, can justify edit." },
+          { "condition": "The identifier field is deliberately not mappable.", "effect": "The mode rule is not applied by the checker to that field." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/selector-mode-dependent/correct.json",
+        "incorrect": [
+          { "file": "recipes/selector-mode-dependent/incorrect/undefined-rpc.json", "violates": ["CK-SELECTOR-RPC"] },
+          { "file": "recipes/selector-mode-dependent/incorrect/missing-edit-mode.json", "violates": ["CK-SELECTOR-MODE"] },
+          { "file": "recipes/selector-mode-dependent/incorrect/nested-without-store.json", "violates": ["CK-SELECTOR-NESTED"] },
+          { "file": "recipes/selector-mode-dependent/incorrect/child-ignores-parent.json", "violates": ["CK-SELECTOR-NESTED"] },
+          { "file": "recipes/selector-mode-dependent/incorrect/options-from-fields-rpc.json", "violates": ["CK-SELECTOR-SCHEMA-CONFUSION"] },
+          { "file": "recipes/selector-mode-dependent/incorrect/interface-from-options-rpc.json", "violates": ["CK-SELECTOR-SCHEMA-CONFUSION"] }
+        ]
+      }
+    },
+    {
+      "id": "rpc-page-budget",
+      "title": "RPC limits and page budgets",
+      "topic": "rpc-page-budgets",
+      "summary": "In this static fixture convention an options RPC has a fixed positive response.limit (a conservative literal; bounded mapped expressions are not claimed defective) within its record budget, requests the declared page size, and passes pagination.page unchanged to a one-based provider.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-pagination", "doc-rpc-best-practices", "doc-dynamic-options", "research-generic-complete-app"] },
+      "validation": "static",
+      "rules": ["CK-BUDGET-BOUND", "CK-BUDGET-PAGE"],
+      "applicability": {
+        "appliesWhen": ["An options RPC pages through a provider list.", "A dropdown must stay responsive."],
+        "notWhen": ["The RPC returns a short unpaged list.", "The provider uses cursors; the page rule then does not apply."],
+        "exceptions": [
+          { "condition": "The provider page size is 100 or more.", "effect": "The documented recommendation is a limit of 300-500; below 100 it is three times the page size. This is guidance, not a provider cap and not universal." },
+          { "condition": "The provider is zero-based.", "effect": "The next page needs pagination.page - 1 instead of the unchanged value." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/rpc-page-budget/correct.json",
+        "incorrect": [
+          { "file": "recipes/rpc-page-budget/incorrect/limit-missing.json", "violates": ["CK-BUDGET-BOUND"] },
+          { "file": "recipes/rpc-page-budget/incorrect/limit-mapped.json", "violates": ["CK-BUDGET-BOUND"] },
+          { "file": "recipes/rpc-page-budget/incorrect/page-plus-one.json", "violates": ["CK-BUDGET-PAGE"] },
+          { "file": "recipes/rpc-page-budget/incorrect/page-size-mismatch.json", "violates": ["CK-BUDGET-PAGE"] }
+        ]
+      }
+    },
+    {
+      "id": "headers-merge",
+      "title": "Header merge with Base",
+      "topic": "headers-merge",
+      "summary": "Header names are case-insensitive; a per-name request override wins, the collection spread keeps Base headers, and a whole-expression headers value replaces them.",
+      "strength": "must",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-base", "doc-advanced-inheritance"] },
+      "validation": "static",
+      "rules": ["CK-HEADERS-MERGE", "CK-HEADERS-DUPLICATE"],
+      "applicability": {
+        "appliesWhen": ["A module or RPC request sets headers while Base also sets headers.", "A computed header collection is added to a request."],
+        "notWhen": ["Connection communication, which does not inherit Base."],
+        "exceptions": [
+          { "condition": "A header is computed with the collection spread.", "effect": "Base headers are kept, including Authorization." },
+          { "condition": "The whole headers value is one expression.", "effect": "Base headers are replaced; re-add any that are needed." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/headers-merge/correct.json",
+        "incorrect": [
+          { "file": "recipes/headers-merge/incorrect/base-wins.json", "violates": ["CK-HEADERS-MERGE"] },
+          { "file": "recipes/headers-merge/incorrect/whole-expression-overwrites.json", "violates": ["CK-HEADERS-MERGE"] },
+          { "file": "recipes/headers-merge/incorrect/drops-inherited.json", "violates": ["CK-HEADERS-MERGE"] },
+          { "file": "recipes/headers-merge/incorrect/duplicate-case.json", "violates": ["CK-HEADERS-DUPLICATE"] }
+        ]
+      }
+    },
+    {
+      "id": "interface-required-flags",
+      "title": "Required flags, interface drift and falsy values",
+      "topic": "interfaces-required",
+      "summary": "Path parameters are required, required inputs are used by at least one declared consumer (request, RPC, dynamic interface or helper argument), optional booleans keep false, and the interface lists the same fields as the response projection.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-interface", "doc-mappable-parameters", "doc-input-processing"] },
+      "validation": "static",
+      "rules": ["CK-REQUIRED-FLAG", "CK-FALSY-LOSS", "CK-INTERFACE-DRIFT"],
+      "applicability": {
+        "appliesWhen": ["A module declares inputs and an output interface over a flat response projection."],
+        "notWhen": ["The interface is dynamic and supplied by an RPC.", "Output is passed through whole with no projection."],
+        "exceptions": [
+          { "condition": "A fallback is applied to a text value where empty means unset.", "effect": "The falsy-loss rule targets booleans and numbers only." },
+          { "condition": "A provider needs a documented default for a missing boolean.", "effect": "Apply the default by checking for absence, not by falsiness." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/interface-required-flags/correct.json",
+        "incorrect": [
+          { "file": "recipes/interface-required-flags/incorrect/path-parameter-optional.json", "violates": ["CK-REQUIRED-FLAG"] },
+          { "file": "recipes/interface-required-flags/incorrect/required-but-unused.json", "violates": ["CK-REQUIRED-FLAG"] },
+          { "file": "recipes/interface-required-flags/incorrect/falsy-fallback.json", "violates": ["CK-FALSY-LOSS"] },
+          { "file": "recipes/interface-required-flags/incorrect/interface-drift.json", "violates": ["CK-INTERFACE-DRIFT"] }
+        ]
+      }
+    },
+    {
+      "id": "labels-visibility",
+      "title": "Labels and visibility",
+      "topic": "labels-visibility",
+      "summary": "Fields have human labels that are unique within a form and do not expose machine names; required fields without a default are not hidden under advanced; secret-named connection parameters use type password (password masks only in connections). Wording and case differences are cosmetic.",
+      "strength": "consider",
+      "basis": "documented-and-observed",
+      "evidence": { "confidence": "observed", "sourceIds": ["doc-mappable-parameters", "doc-select", "doc-text-param", "research-generic-complete-app"] },
+      "validation": "static",
+      "rules": ["CK-LABEL", "CK-LABEL-UNIQUE", "CK-VISIBILITY"],
+      "applicability": {
+        "appliesWhen": ["A form is shown to scenario builders.", "A connection form collects a credential."],
+        "notWhen": ["A machine-facing schema is never displayed."],
+        "exceptions": [
+          { "condition": "A label differs from its name only by case or spacing, for example ID and id.", "effect": "This is cosmetic and is not flagged as incorrect behavior." },
+          { "condition": "A provider's own term is camelCase.", "effect": "Prefer wording the user knows; the rule is a reminder, not a requirement." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/labels-visibility/correct.json",
+        "incorrect": [
+          { "file": "recipes/labels-visibility/incorrect/blank-label.json", "violates": ["CK-LABEL"] },
+          { "file": "recipes/labels-visibility/incorrect/machine-name-label.json", "violates": ["CK-LABEL"] },
+          { "file": "recipes/labels-visibility/incorrect/duplicate-labels.json", "violates": ["CK-LABEL-UNIQUE"] },
+          { "file": "recipes/labels-visibility/incorrect/required-hidden.json", "violates": ["CK-VISIBILITY"] },
+          { "file": "recipes/labels-visibility/incorrect/secret-as-text.json", "violates": ["CK-VISIBILITY"] }
+        ]
+      }
+    },
+    {
+      "id": "auth-context",
+      "title": "Authentication contexts and log masks",
+      "topic": "auth-context",
+      "summary": "Base and module requests read credentials through connection.*; connection token and refresh requests may use the data, connection and parameters aliases (data and parameters read the same stored data; common is a separate common-data store) but never response-only variables; secret-bearing paths are listed in log.sanitize.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-base", "doc-connections", "doc-basic-connection", "doc-oauth2", "doc-sanitization"] },
+      "validation": "static",
+      "rules": ["CK-AUTH-CONTEXT", "CK-SECRET-LOG"],
+      "applicability": {
+        "appliesWhen": ["A request carries a credential.", "A connection exchanges or refreshes a token."],
+        "notWhen": ["The provider needs no authentication."],
+        "exceptions": [
+          { "condition": "A connection token, refresh or invalidate request reads data, connection, parameters or common.", "effect": "These aliases are context-dependent and legitimate there; they are not an error." },
+          { "condition": "The fixture shows a generic OAuth shape.", "effect": "It proves nothing about any third-party provider's runtime behavior." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/auth-context/correct.json",
+        "incorrect": [
+          { "file": "recipes/auth-context/incorrect/module-header-wrong-context.json", "violates": ["CK-AUTH-CONTEXT"] },
+          { "file": "recipes/auth-context/incorrect/literal-authorization.json", "violates": ["CK-AUTH-CONTEXT"] },
+          { "file": "recipes/auth-context/incorrect/refresh-reads-response-variable.json", "violates": ["CK-AUTH-CONTEXT"] },
+          { "file": "recipes/auth-context/incorrect/token-without-log-masks.json", "violates": ["CK-SECRET-LOG"] },
+          { "file": "recipes/auth-context/incorrect/base-authorization-not-masked.json", "violates": ["CK-SECRET-LOG"] }
+        ]
+      }
+    },
+    {
+      "id": "webhook-lifecycle-delivery",
+      "title": "Webhook lifecycle, verification and delivery",
+      "topic": "webhooks",
+      "summary": "Detach reads an identity attach saved; verification only answers a challenge and is never presented as signature verification; challenge and event deliveries answer 2xx; the delivered output matches the trigger interface; secrets are masked.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["doc-webhooks", "doc-webhook-attached", "doc-instant-trigger", "doc-sanitization"] },
+      "validation": "static",
+      "rules": ["CK-WEBHOOK-IDENTITY", "CK-WEBHOOK-VERIFY", "CK-WEBHOOK-DELIVERY", "CK-SECRET-LOG"],
+      "applicability": {
+        "appliesWhen": ["A dedicated attached webhook registers and removes a provider subscription."],
+        "notWhen": ["A non-attached webhook is registered manually.", "A shared webhook routes by account identity."],
+        "exceptions": [
+          { "condition": "The provider requires a different success status.", "effect": "Any 2xx status is acceptable; the rule is not tied to 200." },
+          { "condition": "The provider signs deliveries.", "effect": "Signature verification needs separate, provider-specific evidence that this static fixture does not provide." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/webhook-lifecycle-delivery/correct.json",
+        "incorrect": [
+          { "file": "recipes/webhook-lifecycle-delivery/incorrect/detach-unsaved-identity.json", "violates": ["CK-WEBHOOK-IDENTITY"] },
+          { "file": "recipes/webhook-lifecycle-delivery/incorrect/verification-constant.json", "violates": ["CK-WEBHOOK-VERIFY"] },
+          { "file": "recipes/webhook-lifecycle-delivery/incorrect/signature-claimed.json", "violates": ["CK-WEBHOOK-VERIFY"] },
+          { "file": "recipes/webhook-lifecycle-delivery/incorrect/delivery-server-error.json", "violates": ["CK-WEBHOOK-DELIVERY"] },
+          { "file": "recipes/webhook-lifecycle-delivery/incorrect/attach-secret-unmasked.json", "violates": ["CK-SECRET-LOG"] }
+        ]
+      }
+    },
+    {
+      "id": "optional-endpoint",
+      "title": "Optional Endpoint definition",
+      "topic": "optional-endpoints",
+      "summary": "An Endpoint is optional; every input its request reads as parameters.NAME is declared in the inputParameters section (a synthetic wrapper, not a deployable definition); no ordinary module app depends on one.",
+      "strength": "should",
+      "basis": "documented",
+      "evidence": { "confidence": "documented", "sourceIds": ["skill-sdk-endpoints-reference", "doc-sdk-docs-root"] },
+      "validation": "static",
+      "rules": ["CK-ENDPOINT-OPTIONAL", "CK-ENDPOINT-INPUT"],
+      "applicability": {
+        "appliesWhen": ["An app owner decides to add an Endpoint to an app that already has modules."],
+        "notWhen": ["The task is consuming an existing Endpoint rather than authoring a definition."],
+        "exceptions": [
+          { "condition": "An app is explicitly scoped as Endpoint-only.", "effect": "That scope is stated by the owner; the generic rule that modules never require an Endpoint is unchanged." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/optional-endpoint/correct.json",
+        "incorrect": [
+          { "file": "recipes/optional-endpoint/incorrect/marked-required.json", "violates": ["CK-ENDPOINT-OPTIONAL"] },
+          { "file": "recipes/optional-endpoint/incorrect/undeclared-input.json", "violates": ["CK-ENDPOINT-INPUT"] }
+        ]
+      }
+    },
+    {
+      "id": "evidence-gates",
+      "title": "Claim evidence and verification gates",
+      "topic": "compatibility-evidence",
+      "summary": "Every claim records a status and sources; a documented claim cites public documentation; static, upload, provider and publication gates are reported separately and a static fixture never reports the later ones as performed.",
+      "strength": "should",
+      "basis": "observed",
+      "evidence": { "confidence": "inferred", "sourceIds": ["research-generic-complete-app", "doc-rpc-best-practices"] },
+      "validation": "static",
+      "rules": ["CK-CLAIM-EVIDENCE", "CK-GATES"],
+      "applicability": {
+        "appliesWhen": ["A review or report states what was verified and how."],
+        "notWhen": ["Authorized upload, provider or publication work was genuinely performed and recorded elsewhere."],
+        "exceptions": [
+          { "condition": "A gate cannot be performed for lack of access.", "effect": "Record it as unavailable, never as performed or as a pass." }
+        ]
+      },
+      "dependencies": [],
+      "compatibility": { "minSkillVersion": "0.3.0", "reviewedOn": "2026-10-28" },
+      "fixtures": {
+        "correct": "recipes/evidence-gates/correct.json",
+        "incorrect": [
+          { "file": "recipes/evidence-gates/incorrect/documented-without-source.json", "violates": ["CK-CLAIM-EVIDENCE"] },
+          { "file": "recipes/evidence-gates/incorrect/provider-gate-performed.json", "violates": ["CK-GATES"] }
+        ]
+      }
+    }
+  ]
+}

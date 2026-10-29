@@ -1,0 +1,18 @@
+# Local builds and tool caches; never generate platform skill mirrors.
+/dist/
+node_modules/
+__pycache__/
+*.py[cod]
+.cache/
+/coverage/
+.DS_Store
+
+# Credentials and private evaluation/runtime evidence never belong in Git.
+.env
+.env.*
+/private-evidence/
+/evidence/
+/runtime/
+
+# Private implementation and review evidence.
+/.sonnet/

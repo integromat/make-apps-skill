@@ -1,0 +1,14 @@
+{
+  "note": "Incorrect: a visible input has a blank label, so users cannot tell what to enter.",
+  "connectionParameters": [
+    { "name": "apiKey", "type": "password", "label": "API key", "required": true }
+  ],
+  "parameters": [
+    { "name": "displayName", "type": "text", "label": "", "required": true },
+    { "name": "timeoutSeconds", "type": "number", "label": "Timeout in seconds", "advanced": true }
+  ],
+  "interface": [
+    { "name": "id", "type": "text", "label": "ID" },
+    { "name": "displayName", "type": "text", "label": "Display name" }
+  ]
+}

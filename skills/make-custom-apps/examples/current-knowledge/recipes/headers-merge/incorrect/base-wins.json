@@ -1,0 +1,20 @@
+{
+  "note": "Incorrect: the expectation keeps the Base Accept value although the request overrides it by name.",
+  "base": {
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "synthetic-app/1",
+      "Authorization": "Bearer {{connection.accessToken}}"
+    }
+  },
+  "request": {
+    "headers": { "Accept": "text/csv", "{{...}}": "{{traceHeaders()}}" },
+    "spreadProduces": { "X-Trace": "t-1" }
+  },
+  "expectedEffectiveHeaders": {
+    "accept": "application/json",
+    "user-agent": "synthetic-app/1",
+    "authorization": "Bearer {{connection.accessToken}}",
+    "x-trace": "t-1"
+  }
+}
