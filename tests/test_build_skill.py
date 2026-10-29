@@ -139,6 +139,28 @@ class BuildSkillTests(unittest.TestCase):
                         parent = parent.parent
                     self.output.unlink(missing_ok=True)
 
+    def test_packages_typescript_sources_but_never_an_installed_or_emitted_example_tree(self):
+        example = 'examples/app-examples/github-search'
+        self.put(f'{example}/create-app.ts', b"export const answer: number = 42;\n")
+        self.assert_success(self.run_builder())
+        with zipfile.ZipFile(self.output) as archive:
+            self.assertEqual(archive.read(f'make-custom-apps/{example}/create-app.ts'),
+                             b"export const answer: number = 42;\n")
+        self.output.unlink()
+        for name in [f'{example}/node_modules/typescript/lib/tsc.js', f'{example}/.build/create-app.js',
+                     f'{example}/dist/create-app.js']:
+            with self.subTest(name=name):
+                path = self.put(name)
+                try:
+                    self.assert_rejected(self.run_builder(), 'Unsafe inclusion')
+                finally:
+                    path.unlink()
+                    parent = path.parent
+                    while parent != self.skill / example and not any(parent.iterdir()):
+                        parent.rmdir()
+                        parent = parent.parent
+                    self.output.unlink(missing_ok=True)
+
     def test_rejects_symlinked_files_and_directories(self):
         outside = self.root / 'outside.txt'
         outside.write_text('private fixture; must not be packaged')
@@ -226,7 +248,7 @@ class BuildSkillTests(unittest.TestCase):
 
 
     def test_preserves_explicit_credential_placeholders_and_iml_expressions(self):
-        example = (REPO / 'skills/make-custom-apps/examples/dropbox-oauth/common.example.json').read_bytes()
+        example = (REPO / 'skills/make-custom-apps/examples/app-examples/dropbox-oauth/common.example.json').read_bytes()
         self.put('examples/common.example.json', example)
         self.put('examples/parameters.json', b'{"apiKey":"YOUR_SERVICE_API_KEY","accessToken":"{{connection.accessToken}}"}')
         self.assert_success(self.run_builder())

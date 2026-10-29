@@ -1,6 +1,6 @@
 {
   "format": "make-custom-apps-current-knowledge-v1",
-  "reviewedOn": "2026-10-28",
+  "reviewedOn": "2026-10-29",
   "evidenceBoundary": {
     "static": true,
     "runtime": "none",
@@ -27,11 +27,39 @@
     { "id": "doc-dynamic-options", "kind": "public-doc", "title": "Dynamic options RPC", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc", "retrieved": "2026-10-28" },
     { "id": "doc-dynamic-fields", "kind": "public-doc", "title": "Dynamic fields RPC", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-fields-rpc", "retrieved": "2026-10-28" },
     { "id": "doc-rpc-best-practices", "kind": "public-doc", "title": "Best practices: remote procedure calls", "url": "https://developers.make.com/custom-apps-documentation/best-practices/remote-procedure-calls", "retrieved": "2026-10-28" },
-    { "id": "doc-select", "kind": "public-doc", "title": "Select parameter", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/select", "retrieved": "2026-10-28" },
+    { "id": "doc-select", "kind": "public-doc", "title": "Select parameter", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/select", "retrieved": "2026-10-29" },
     { "id": "doc-text-param", "kind": "public-doc", "title": "Text parameter", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/text", "retrieved": "2026-10-28" },
     { "id": "doc-interface", "kind": "public-doc", "title": "Interface", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/interface", "retrieved": "2026-10-28" },
     { "id": "doc-mappable-parameters", "kind": "public-doc", "title": "Mappable parameters", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/mappable-parameters", "retrieved": "2026-10-28" },
     { "id": "doc-input-processing", "kind": "public-doc", "title": "Best practices: processing of input parameters", "url": "https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/processing-of-input-parameters", "retrieved": "2026-10-28" },
+    { "id": "doc-array", "kind": "public-doc", "title": "Array parameter (spec forms and labels.add)", "url": "https://developers.make.com/custom-apps-documentation/block-elements/parameters/array", "retrieved": "2026-10-29" },
+    { "id": "doc-bp-mappable-parameters", "kind": "public-doc", "title": "Best practices: mappable parameters (ordering, advanced, Limit, types, array labels)", "url": "https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters", "retrieved": "2026-10-29" },
+    { "id": "doc-parameter-hints", "kind": "public-doc", "title": "Naming conventions: parameter hints", "url": "https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/input-parameters/parameter-hints", "retrieved": "2026-10-29" },
+    { "id": "doc-batch-actions", "kind": "public-doc", "title": "Best practices: batch actions (partial success is unsupported)", "url": "https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions", "retrieved": "2026-10-29" },
+    { "id": "doc-multiple-requests", "kind": "public-doc", "title": "Multiple requests", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/multiple-requests", "retrieved": "2026-10-29" },
+    { "id": "doc-iml-tests", "kind": "public-doc", "title": "IML tests (editor it(name, fn) tests)", "url": "https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests", "retrieved": "2026-10-29" },
+    { "id": "doc-iml-functions", "kind": "public-doc", "title": "IML functions", "url": "https://developers.make.com/custom-apps-documentation/app-components/iml-functions", "retrieved": "2026-10-28" },
+    { "id": "doc-debug-iml-functions", "kind": "public-doc", "title": "Debugging of custom IML functions", "url": "https://developers.make.com/custom-apps-documentation/debug-your-app/debugging-of-custom-iml-functions", "retrieved": "2026-10-28" },
+    { "id": "doc-making-requests", "kind": "public-doc", "title": "Making requests", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests", "retrieved": "2026-10-28" },
+    { "id": "doc-base-error-handling", "kind": "public-doc", "title": "Base: error handling", "url": "https://developers.make.com/custom-apps-documentation/app-components/base/error-handling", "retrieved": "2026-10-28" },
+    { "id": "doc-bp-error-handling", "kind": "public-doc", "title": "Best practices: base error handling", "url": "https://developers.make.com/custom-apps-documentation/best-practices/base/error-handling", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-error", "kind": "public-doc", "title": "Handling responses: error", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/error", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-valid", "kind": "public-doc", "title": "Handling responses: valid", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/valid", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-output", "kind": "public-doc", "title": "Handling responses: output", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/output", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-type", "kind": "public-doc", "title": "Handling responses: type", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/type", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-limit", "kind": "public-doc", "title": "Handling responses: limit", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/limit", "retrieved": "2026-10-28" },
+    { "id": "doc-resp-iterate", "kind": "public-doc", "title": "Handling responses: iterate", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/iterate", "retrieved": "2026-10-28" },
+    { "id": "doc-buffer", "kind": "public-doc", "title": "Buffer", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/buffer", "retrieved": "2026-10-28" },
+    { "id": "doc-multipart", "kind": "public-doc", "title": "Multipart form data", "url": "https://developers.make.com/custom-apps-documentation/component-blocks/api/multipart-form-data", "retrieved": "2026-10-28" },
+    { "id": "doc-bp-search-modules", "kind": "public-doc", "title": "Best practices: search modules", "url": "https://developers.make.com/custom-apps-documentation/best-practices/modules/search-modules", "retrieved": "2026-10-28" },
+    { "id": "doc-universal-module", "kind": "public-doc", "title": "Universal module", "url": "https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module", "retrieved": "2026-10-28" },
+    { "id": "doc-universal-rest", "kind": "public-doc", "title": "Universal module: REST", "url": "https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/rest", "retrieved": "2026-10-28" },
+    { "id": "doc-universal-graphql", "kind": "public-doc", "title": "Universal module: GraphQL", "url": "https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/graphql", "retrieved": "2026-10-28" },
+    { "id": "doc-additional-oauth-scopes", "kind": "public-doc", "title": "Best practices: additional OAuth scopes", "url": "https://developers.make.com/custom-apps-documentation/best-practices/connections/additional-oauth-scopes", "retrieved": "2026-10-28" },
+    { "id": "doc-bp-base-url", "kind": "public-doc", "title": "Best practices: base URL", "url": "https://developers.make.com/custom-apps-documentation/best-practices/base/base-url", "retrieved": "2026-10-28" },
+    { "id": "doc-jwt", "kind": "public-doc", "title": "JWT connection", "url": "https://developers.make.com/custom-apps-documentation/app-components/connections/jwt", "retrieved": "2026-10-28" },
+    { "id": "doc-oauth1", "kind": "public-doc", "title": "OAuth 1.0 connection", "url": "https://developers.make.com/custom-apps-documentation/app-components/connections/oauth1", "retrieved": "2026-10-28" },
+    { "id": "doc-dynamic-sample", "kind": "public-doc", "title": "Dynamic sample RPC", "url": "https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-sample-rpc", "retrieved": "2026-10-28" },
     { "id": "research-generic-complete-app", "kind": "research-summary", "title": "Generic summary of patterns seen when reviewing complete custom apps (no app, customer, provider or private data retained)", "scope": "generic", "containsPrivateData": false }
   ],
   "topics": [
@@ -40,7 +68,7 @@
       "title": "Dates and app helpers",
       "summary": "Polling triggers need an order that matches the provider request and, where the provider format is not auto-parsed, a date that Make can actually parse (temporal exceptions apply; canonical ISO text is a documented ambiguity, not a blanket must-parse); helper functions must be defined, reachable and genuinely transform their input.",
       "guide": "guides/dates-helpers.md",
-      "sources": ["doc-trigger", "doc-iml", "doc-epoch", "doc-input-processing", "research-generic-complete-app"],
+      "sources": ["doc-trigger", "doc-iml", "doc-epoch", "doc-input-processing", "doc-iml-tests", "doc-bp-mappable-parameters", "research-generic-complete-app"],
       "recipes": ["dates-helper-trace"]
     },
     {
@@ -48,7 +76,7 @@
       "title": "Selectors, mode and dependent options",
       "summary": "Select options come from options RPCs, never from schema RPCs; dependent selects store the parent and read it through parameters; identifier selectors in Get, Update and Delete modules carry mode edit.",
       "guide": "guides/selectors-mode.md",
-      "sources": ["doc-select", "doc-dynamic-options", "doc-dynamic-fields", "doc-rpcs", "doc-rpc-best-practices", "doc-interface"],
+      "sources": ["doc-select", "doc-dynamic-options", "doc-dynamic-fields", "doc-rpcs", "doc-rpc-best-practices", "doc-interface", "doc-bp-mappable-parameters"],
       "recipes": ["selector-mode-dependent"]
     },
     {
@@ -72,7 +100,7 @@
       "title": "Interfaces, required flags and falsy values",
       "summary": "Required flags follow the component graph that consumes the field (request, RPC, dynamic interface), output interfaces match what the response projection emits, and optional booleans and numbers must keep false and 0.",
       "guide": "guides/interfaces-required.md",
-      "sources": ["doc-interface", "doc-mappable-parameters", "doc-input-processing", "doc-text-param"],
+      "sources": ["doc-interface", "doc-mappable-parameters", "doc-input-processing", "doc-text-param", "doc-bp-mappable-parameters", "doc-parameter-hints"],
       "recipes": ["interface-required-flags"]
     },
     {
@@ -80,7 +108,7 @@
       "title": "Labels and field visibility",
       "summary": "Labels are human wording and a cosmetic concern distinct from behavior; visibility rules protect required fields from being hidden and secrets from being shown.",
       "guide": "guides/labels-visibility.md",
-      "sources": ["doc-mappable-parameters", "doc-select", "doc-text-param", "doc-interface", "research-generic-complete-app"],
+      "sources": ["doc-mappable-parameters", "doc-select", "doc-text-param", "doc-interface", "doc-array", "doc-bp-mappable-parameters", "doc-parameter-hints", "research-generic-complete-app"],
       "recipes": ["labels-visibility"]
     },
     {
@@ -114,6 +142,94 @@
       "guide": "guides/compatibility-evidence.md",
       "sources": ["doc-rpcs", "doc-rpc-best-practices", "doc-webhooks", "research-generic-complete-app"],
       "recipes": ["evidence-gates"]
+    },
+    {
+      "id": "app-architecture",
+      "title": "App architecture and layering",
+      "summary": "Put shared origin, authorization and error handling in Base, keep module requests narrow, and pick the guide that owns each design decision.",
+      "guide": "guides/app-architecture.md",
+      "sources": ["doc-base", "doc-advanced-inheritance", "doc-base-error-handling", "doc-making-requests", "doc-resp-error", "doc-universal-module"],
+      "recipes": []
+    },
+    {
+      "id": "auth-evidence-worked",
+      "title": "Authentication evidence, worked contrast",
+      "summary": "A positive and a negative worked example of deciding a connection scheme from provider evidence instead of guessing placement or check requests.",
+      "guide": "guides/auth-evidence-worked.md",
+      "sources": ["doc-basic-connection"],
+      "recipes": []
+    },
+    {
+      "id": "connections-and-oauth",
+      "title": "Connections, OAuth and shared scopes",
+      "summary": "Choose the connection scheme from the provider contract, trace the whole lifecycle, and keep additional OAuth scopes and dependent components on one connection.",
+      "guide": "guides/connections-and-oauth.md",
+      "sources": ["doc-connections", "doc-basic-connection", "doc-jwt", "doc-oauth1", "doc-oauth2", "doc-additional-oauth-scopes"],
+      "recipes": []
+    },
+    {
+      "id": "dynamic-data-and-files",
+      "title": "Dynamic options, fields, samples and schemas",
+      "summary": "Pick the RPC kind that matches the job, bind it to the same connection, build schemas from provider metadata and keep dropdowns bounded.",
+      "guide": "guides/dynamic-data-and-files.md",
+      "sources": ["doc-rpcs", "doc-dynamic-options", "doc-dynamic-fields", "doc-dynamic-sample", "doc-interface", "doc-rpc-best-practices"],
+      "recipes": []
+    },
+    {
+      "id": "errors-and-rate-limits",
+      "title": "Errors, invalid successes and rate limits",
+      "summary": "Keep the platform's default HTTP error handling, customize messages from the real provider shape, declare invalid successes, and treat rate limits as a design input.",
+      "guide": "guides/errors-and-rate-limits.md",
+      "sources": ["doc-base-error-handling", "doc-bp-error-handling", "doc-resp-error", "doc-resp-valid", "doc-making-requests"],
+      "recipes": []
+    },
+    {
+      "id": "iml-and-helpers",
+      "title": "IML, custom functions and helper QA",
+      "summary": "IML is not JavaScript; trace a helper's reachable call sites and test it with exact primitives, boundaries and timezones. Local tests are not Make runtime proof.",
+      "guide": "guides/iml-and-helpers.md",
+      "sources": ["doc-iml", "doc-iml-functions", "doc-iml-tests", "doc-debug-iml-functions"],
+      "recipes": []
+    },
+    {
+      "id": "outputs-empty-values-updates",
+      "title": "Outputs, empty values, updates and side effects",
+      "summary": "Start from the useful response, keep omit/clear/set distinct, choose partial or full-replacement updates deliberately, and classify multiple writes by side effects.",
+      "guide": "guides/outputs-empty-values-updates.md",
+      "sources": ["doc-resp-output", "doc-resp-type", "doc-interface", "doc-input-processing", "doc-batch-actions", "doc-bp-search-modules"],
+      "recipes": []
+    },
+    {
+      "id": "pagination-and-trigger-state",
+      "title": "Pagination and polling-trigger state",
+      "summary": "Make advances pagination state itself; limit, iterate and epoch handling decide what a search or polling trigger returns and remembers.",
+      "guide": "guides/pagination-and-trigger-state.md",
+      "sources": ["doc-pagination", "doc-resp-limit", "doc-resp-iterate", "doc-trigger", "doc-epoch", "doc-bp-search-modules"],
+      "recipes": []
+    },
+    {
+      "id": "requests-files-multistep",
+      "title": "Requests, files and multi-step communication",
+      "summary": "Build each request from the provider contract, move files as bytes plus names, and treat several requests in one module as sequential calls with the last output; separate independent writes.",
+      "guide": "guides/requests-files-multistep.md",
+      "sources": ["doc-making-requests", "doc-multiple-requests", "doc-batch-actions", "doc-buffer", "doc-multipart", "doc-resp-type", "doc-base"],
+      "recipes": []
+    },
+    {
+      "id": "role-application-examples",
+      "title": "Role-based application examples",
+      "summary": "Worked examples and a status table template for applying the topic guides to a component under review; static review, with authoring requirements, recommendations and evidence gaps kept distinct.",
+      "guide": "guides/role-application-examples.md",
+      "sources": ["doc-universal-module", "doc-universal-graphql", "doc-pagination", "doc-rpc-best-practices", "doc-webhooks", "doc-interface", "doc-resp-limit"],
+      "recipes": []
+    },
+    {
+      "id": "universal-modules-and-scopes",
+      "title": "Universal modules and scopes",
+      "summary": "A universal module calls arbitrary provider endpoints through the same connection; keep the destination inside the service and manage scopes deliberately.",
+      "guide": "guides/universal-modules-and-scopes.md",
+      "sources": ["doc-universal-module", "doc-universal-rest", "doc-universal-graphql", "doc-additional-oauth-scopes", "doc-bp-base-url", "doc-advanced-inheritance"],
+      "recipes": []
     }
   ],
   "recipes": [

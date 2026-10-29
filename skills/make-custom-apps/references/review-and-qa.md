@@ -30,19 +30,50 @@ Assess each finding before deriving the overall verdict. A demonstrated, applica
 - Use accurate verb/entity module labels; current guidance calls for sentence case and familiar provider
   terminology. Do not rename stable technical identifiers just to align display text.[34]
 - Check labels, descriptions, field types, required flags and defaults against actual behavior.
+- Check form layout and wording as advice, not as a defect list (see [parameters and RPCs](parameters-and-rpcs.md)
+  and [mappable parameters](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters)):
+  required parameters first, then conditionally required, then optional (a logical group such as a start and
+  an end may stay together); `advanced` parameters at the bottom and `Limit` last in a search or list module;
+  a conditional field not marked required in every state, with help text or a supported conditional/nested
+  structure that says when it applies (a nested `required: true` that is only active in its branch is fine);
+  a coherent array label, item `spec.label` and `labels.add`; and, as inferred UX judgment rather than public
+  documentation, an `option.description` where choices differ in meaning and the schema in use accepts it
+  (confirm by upload and readback); and the accurate Make type for each value, with date-only and time-only
+  values as `text` plus a stated format. Layout and wording deviations are Suggestion or Warning, never an
+  Error by themselves. This does not downgrade a demonstrated defect: a schema-invalid type, a value lost or
+  altered by the declared type, a required flag that blocks a valid state, or a mismatch with documented
+  provider behavior is a concrete finding when you cite the evidence, whatever the nearby layout advice is.
+  Keep legacy apps calibrated; changing names or types in place can break saved scenarios.
 - Explain formats, constraints and omitted-value behavior in concise `help`; use supported Markdown,
   bold field references and code-formatted examples, not arbitrary HTML/CSS.[35]
+- A module that makes several independent writes cannot report partial success; classify requests by side
+  effects, not HTTP verb, and prefer separate modules unless the sequence is a valid exception (read then one
+  write, write then read, provider chunk upload, bounded polling, provider upsert). See
+  [requests and responses](requests-and-responses.md). Raise it as a design recommendation, not a blanket rejection.
 - Test mapped input as well as picker selection. RPC options must provide usable values, not only labels;
   verify connection compatibility, dependent fields, search behavior and bounded pagination.[18]
 - Compare output mapping, interface and sample bundle field-by-field, including nested/conditional fields.
   An interface should describe the available output, and a sample represents one outgoing bundle.[17][19]
 - Preserve existing samples and unrelated section contents during updates; see [maintenance](maintenance.md).
-- Review custom-function tests whenever implementation changes. Assert exact values/types and edge cases;
-  distinguish local JavaScript tests from the restricted Make runtime.[27]
+- When a helper's implementation changes, review its existing tests too, and when you author or evaluate a new or changed custom-function test, assert exact values/types and edge cases;
+  distinguish local JavaScript tests from the restricted Make runtime.[27] Trace the reachable call sites,
+  require exact `strictEqual`/`deepStrictEqual` results and exact error type and message, and reject a vacuous
+  pass (a test that never calls the helper or asserts a constant). `assert.ok(value, expected)` does not compare
+  `expected`; its second argument is only the failure message. Do not demand a test for an input no call site
+  can send, and a pure static helper may need no behavioral test if the reason is stated. These are standards
+  for the tests under review. Missing comprehensive helper tests in a working legacy app (existing-app
+  maintenance, no helper change) is an evidence limitation to report and advice to add them, not a defect or an
+  approval blocker, unless the task's explicit review criteria require them or the helper's actual behavior
+  lacks essential evidence. Incorrect helper behavior you can demonstrate stays a finding. Details:
+  [IML functions](iml-functions.md) and the [IML tests page](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests).
 - Verify credential sanitization in connection and base requests, responses and error paths.[36]
 
 Do not infer HTTP Basic authentication from a connection-definition category, or normalize stored type
 values into CLI/API create values. Validate the selected operation's contract separately.[28][38]
+
+For worked synthetic examples and a per-check application table, see
+[role application examples](../examples/current-knowledge/guides/role-application-examples.md) and
+[review sweeps](review-sweeps.md).
 
 ## 3. Approve a bounded test plan
 
@@ -72,7 +103,7 @@ For a narrow fix, state exactly what was not tested rather than claiming whole-a
 | Polling trigger | Initial epoch, next run, cursor persistence, duplicates, no new items and limit boundaries. |
 | Instant trigger | Registration/verification, genuine event payload, output mapping and cleanup of the test subscription. |
 | RPC/dynamic UI | Options, labels/values, dependencies, mapping mode, empty choices, auth errors and interface refresh. |
-| Custom function | Happy path, null/undefined, false/zero, unexpected types, boundaries and every changed branch. |
+| Custom function (new or changed tests) | Happy path, null/undefined, false/zero, empty string/array, nested missing/null values, unexpected types the call sites can send, boundaries and every changed branch; for date helpers also a non-midnight timestamp, positive and negative offsets, a named IANA timezone, a DST boundary where zones convert, and an explicit extension timezone. |
 | Universal call | Allowed method/path/query/body/headers, real input mapping, provider errors and secret redaction. |
 | Upgrade | Prior/current-version parity with equivalent data and explicit intentional differences. |
 

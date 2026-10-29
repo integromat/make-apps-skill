@@ -107,6 +107,37 @@ Do not blindly remove empty strings or arrays that intentionally clear a value.
 Sources: [Sequential requests](https://developers.make.com/custom-apps-documentation/component-blocks/api/multiple-requests.md),
 [Read/merge/write and erase](https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions.md#put-vs-patch-behavior-in-update-modules).
 
+### Independent writes in one module
+
+The [batch-actions best practices](https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions)
+say a module cannot report partial success: it succeeds or fails as a whole, so a module
+that makes several independent changes can fail after the first is already applied. Prefer
+separate modules, one change each, so every success and failure is visible. Requests in an
+array run in sequence and the last request's output is the module output; that is not a
+transaction, a rollback or a retry, and an HTTP error cannot be reclassified as success so
+a later request can continue as recovery.
+
+Classify each request by its side effects, not its HTTP verb (a `POST` search is a read; a
+`GET` that starts a job or consumes a token is a write), then judge the sequence:
+
+| Sequence in one module | Treatment |
+| --- | --- |
+| read, read (metadata, then download) | Valid; nothing changes. |
+| read, then one write (fetch, merge, full `PUT`) | Valid; the read makes the single write correct. |
+| write, then read (re-fetch the object to return it) | Valid enrichment; if the read fails the change is already applied, so keep it cheap and say so. |
+| provider-designed chunk upload (open, send chunks, finish) | Valid when the provider defines it as one operation. |
+| start a job once, then bounded polling | Valid; see the polling section below. |
+| provider upsert (read then create or update, or one atomic call) | Valid when the provider defines it so. |
+| two or more independent writes | Prefer separate modules; a rerun after a partial failure can duplicate the first write. |
+
+This is design guidance, not a rejection rule: argue a split from the provider's contract,
+and where the provider offers one atomic call for the whole change, use it instead of a
+chain. See [requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md)
+and [outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md).
+
+Guides for the neighbouring questions: default 429 and 5xx handling, `valid` and per-status
+errors in [errors and rate limits](../examples/current-knowledge/guides/errors-and-rate-limits.md).
+
 ## Bounded asynchronous polling with repeat
 
 Start a job once, retain its ID, then repeat a read-only status request.

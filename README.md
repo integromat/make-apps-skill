@@ -25,21 +25,26 @@ Alternatively, copy the complete `skills/make-custom-apps/` directory into the a
 One canonical skill folder contains a short workflow, 12 topic references and the inherited example/helper library. The entry states when to load each reference; agents should open the relevant material, not the whole library.
 
 - [References](skills/make-custom-apps/references/): SDK semantics, component design, QA, maintenance and controlled release.
-- [Example index](skills/make-custom-apps/examples/README.md): 71 indexed snippets and focused component examples with dependencies and limitations.
+- [Current knowledge](skills/make-custom-apps/examples/current-knowledge/README.md): topic guides with sources, applicability and exceptions, plus synthetic correct/incorrect fixtures. Its checker is static and fixture-only.
+- [App examples](skills/make-custom-apps/examples/app-examples/README.md): focused section sets (search, polling, OAuth2, webhook), including a typed `@makehq/sdk` script that creates a private app and reads each section back.
+- [Example index](skills/make-custom-apps/examples/README.md): 71 indexed snippets, the custom IML helper and the layout of the example folders, with dependencies and limitations.
 - App Endpoint **authoring** belongs here. Scenario building and execution of existing Endpoints remain in [make-skills](https://github.com/integromat/make-skills).
 
 The examples are teaching components, not certified deployable provider apps. In particular, the webhook example retains its explicit security/deployment restriction. Static validation, definition upload/readback, provider execution and publication are separate evidence gates.
 
 ## Verify and package
 
-Repository checks require Node.js 22+ and Python 3.11+. No dependency installation or Make/provider credentials are needed.
+Repository checks require Node.js 22+ and Python 3.11+. `npm test` and `npm run check` need no dependency installation or Make/provider credentials.
 
 ```sh
 npm run check
 npm test
+npm run test:sdk
 npm run build
 npm run check-build
 ```
+
+`npm run test:sdk` is separate because it installs the pinned, published npm dependencies of the [GitHub search SDK script](skills/make-custom-apps/examples/app-examples/github-search/README.md) (`@makehq/sdk` 1.8.1, TypeScript 7.0.2, from its lockfile) into a temporary copy, then typechecks it, runs its tests and runs its credential-free dry-run. It strips `MAKE_*` variables and sends no request to Make or a provider; the script's `--live` mode is never used by any check. CI runs it after `npm test`.
 
 The inherited `npm run check:custom-apps` command remains available. Checks exercise the actual helper tests, example regressions, standalone links and deterministic packaging. They do not execute Make apps or provider operations.
 

@@ -35,6 +35,51 @@ Do not use a number's magnitude, an identifier's type name or a parameter name a
 
 A date normaliser takes the provider's string, checks that it matches the documented format, converts it to an ISO timestamp, and returns nothing (or fails clearly) for input it cannot parse. It has no network, no timezone guessing and no shared state. The call site passes the provider's field, and a test covers a valid value, an empty value and a malformed value.
 
+## Testing a helper
+
+This is engineering guidance for helper QA. The [IML tests page](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests) documents the editor's `it(name, fn)` tests and strict and deep assertions; it does not mandate any of the coverage below.
+
+1. **Trace the reachable call sites first.** List where the helper is really called and what each site can pass (a provider field, a parameter, another helper's result). Test those inputs. Do not invent inputs a call site can never supply, such as an object where only text can arrive.
+2. **Assert exact results.** Use `assert.strictEqual` for primitives and `assert.deepStrictEqual` for objects and arrays, so the type and the full structure are compared. Where an error is the contract, assert the exact error type and message with `assert.throws`. A test must be able to fail: a body that never calls the helper, a swallowed `try`/`catch`, or an assertion on a constant is a vacuous pass and proves nothing.
+3. **Cover the boundaries the call sites allow.** `undefined`, `null`, `false`, `0`, `''`, an empty array, and a nested object or array whose inner values are missing or `null`. Falsy is not one case: `0` and `false` are valid values and must not be treated as missing. For dates, add non-midnight timestamps, positive and negative offsets, a named IANA timezone, a DST boundary where the helper converts zones, and an explicitly set extension timezone ([dates-helpers](dates-helpers.md)).
+4. **Do not demand the impossible.** A pure static helper (a constant, or a fixed mapping with no input) may need no behavioural test, if the review says why. Do not require a test for an input type the call sites cannot produce.
+
+These standards apply when you author or evaluate a new or changed helper test. A working legacy app that lacks comprehensive helper unit tests has an evidence limitation: report it and recommend tests, but it is not by itself a defect or an approval blocker. It becomes one only when the task's explicit review criteria require such tests, or when the helper's actual behavior lacks the evidence needed to judge it. A helper that demonstrably returns a wrong value is still a finding, whatever tests exist.
+
+`assert.ok(value, expected)` does not compare `value` with `expected`. Its second argument is only the failure message, so the call passes whenever `value` is truthy, whatever `expected` is. It cannot check for `null`, `0`, `false` or `''` at all, because those are falsy and fail. Use `strictEqual` or `deepStrictEqual` to state an expected result; do not copy an `assert.ok(result, expected)` pattern or a placeholder test that asserts `true` about a function it never calls ([Node.js assert](https://nodejs.org/api/assert.html)).
+
+Editor-targeted tests are written here as bare `it()` calls with the editor's `assert`, the supported format used in this guidance; do not add `import` lines or `describe` to these snippets. Local Node test infrastructure is separate. The helper below is illustrative.
+
+```js
+it('returns exact initials for a full name', () => {
+  assert.strictEqual(initials('ada king lovelace'), 'AKL');
+});
+
+it('returns an empty string for missing or blank names', () => {
+  assert.strictEqual(initials(undefined), '');
+  assert.strictEqual(initials(null), '');
+  assert.strictEqual(initials(''), '');
+});
+
+it('keeps nested values exact', () => {
+  assert.deepStrictEqual(initialsOf({ people: [{ name: 'ada king' }, { name: null }] }), ['AK', '']);
+});
+```
+
+A local Node test may use Node's own infrastructure, including `node:test` and `node:assert/strict`, and may assert an exact error:
+
+```js
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { toLimit } from './toLimit.js';
+
+test('0 is out of range, not "missing"', () => {
+  assert.throws(() => toLimit(0), { name: 'RangeError', message: 'limit must be an integer from 1 to 100' });
+});
+```
+
+A local test with a mock runs your function in Node. It is not proof of how Make runs it, of the available built-ins, or of the editor's behaviour; report it as a local unit test and use an editor test or an execution when the Make runtime is the question.
+
 ## Rationale
 
 IML keeps communication declarative and reviewable; helpers are an escape hatch with a smaller, different runtime. Keeping each in its own lane makes expressions readable and makes helper failures easy to localise.
@@ -47,6 +92,8 @@ IML keeps communication declarative and reviewable; helpers are an escape hatch 
 * Treating a helper as active because it exists, or as built-in because its name looks familiar.
 * Changing a shared helper without checking every module and RPC that calls it.
 * Concluding a value is a timestamp or an identifier from its digits.
+* Passing `assert.ok(result, expected)` and believing `expected` was compared, or testing only inputs the call sites never send.
+* Reporting a local mock test as proof of Make runtime behaviour.
 
 ## Exceptions and applicability
 
@@ -57,6 +104,7 @@ IML keeps communication declarative and reviewable; helpers are an escape hatch 
 ## Evidence and limits
 
 * IML indexing, `ifempty`, available runtime features: **documented behaviour** (JavaScript in Make, custom IML functions, debugging functions).
+* The helper-testing steps (exact assertions, boundaries, timezones): **engineering guidance**, not a documented Make requirement; only `it(name, fn)` tests and the assertion style come from the editor documentation, and Node's assert semantics come from the Node.js documentation.
 * The four-link trace: **inferred implementation pattern**; the checker's textual version in [dates-helpers](dates-helpers.md) never executes a helper.
 * Runtime behaviour needs runtime evidence, and a helper test in the debugging tools is one good source. It is not the only one: a module or RPC run that exercises the helper, an IML test file, or a scenario execution also shows what the function returns. Choose evidence that covers the real call path and the missing, empty, zero, false and malformed inputs.
 
@@ -67,3 +115,4 @@ IML keeps communication declarative and reviewable; helpers are an escape hatch 
 * https://developers.make.com/custom-apps-documentation/app-components/iml-functions/dynamic-mappable-parameters
 * https://developers.make.com/custom-apps-documentation/debug-your-app/debugging-of-custom-iml-functions
 * https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests
+* https://nodejs.org/api/assert.html (strictEqual, deepStrictEqual, throws and ok semantics for local Node tests; not a Make source)

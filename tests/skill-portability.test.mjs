@@ -10,6 +10,7 @@ const skill = resolve(root, 'skills/make-custom-apps');
 function markdownFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const path = resolve(directory, entry.name);
+    if (entry.name === 'node_modules') return [];
     return entry.isDirectory() ? markdownFiles(path) : path.endsWith('.md') ? [path] : [];
   });
 }

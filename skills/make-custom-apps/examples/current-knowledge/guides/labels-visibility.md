@@ -40,6 +40,43 @@ A label can be wrong in a way that matters:
 }
 ```
 
+## Form layout and array labels (UX guidance)
+
+Make's best-practice pages for [mappable parameters](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters) and [parameter hints](https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/input-parameters/parameter-hints) describe how a form should read. This is **documented UX guidance**. It is not a runtime schema rule, and a form that departs from it still runs. Report a layout or wording departure as a recommendation, never as a blocker and never as grounds to reject an app. A separate, demonstrated behavioral defect (for example a type that loses the value, or a required flag that blocks a valid state) is judged on its own evidence and is not downgraded by this advice.
+
+**Order.** List required parameters first, then conditionally required ones, then optional ones. A logical block overrides that order: fields that belong together, such as a start and an end, or the parts of one address, stay adjacent even when their required status differs. Put `advanced` parameters at the bottom. In a search or list module the `Limit` parameter comes last.
+
+**Conditionally required fields.** Do not mark a field `required: true` unconditionally, in every state, when the provider requires it only in some situations: the flag on a top-level field cannot express the condition, so the form would demand a value the provider does not need. Where the form structure supports it, put the field where it is only active for that case, such as nested fields in a selected branch or fields supplied by a condition-aware RPC. `required: true` on such a field is legitimate, because it applies only while that branch is active; keep it. Where no such structure exists, leave the flag off and say it in the help text, for example "Required when Type is Custom." Use only structure the documented parameter types support, and do not invent conditional syntax. Without clear help the user learns about the condition only from a failed run. Hints state the expected input, the outcome, an example, what an empty value does and where to read more; do not pad a hint with a restatement of the label.
+
+**Arrays and collections.** Three pieces of wording appear in an array form and each names a different thing:
+
+| Piece | Names | Example |
+| --- | --- | --- |
+| Array `label` | the whole list | `Attendees` |
+| Item `spec.label` | one entry of the list | `Attendee` |
+| `labels.add` | the add button; replaces the default "Add item" | `Add attendee` |
+
+Keep the three coherent: a plural list label, a singular item label, and an add button that uses the singular. A list labeled `Attendees` whose button says `Add attendees` or whose items say `Item 1` reads as three unrelated labels. The valid form for an array of collections that carries an item label is a collection `spec` object with its own `label` and a `spec` array of the fields:
+
+```json
+{
+  "name": "attendees",
+  "type": "array",
+  "label": "Attendees",
+  "labels": { "add": "Add attendee" },
+  "spec": {
+    "type": "collection",
+    "label": "Attendee",
+    "spec": [
+      { "name": "email", "type": "text", "label": "Email", "required": true },
+      { "name": "name", "type": "text", "label": "Name" }
+    ]
+  }
+}
+```
+
+The [Array page](https://developers.make.com/custom-apps-documentation/block-elements/parameters/array) documents both an object `spec` (a primitive such as `{"type": "text"}`, or a collection as above) and a `spec` that is an array of field definitions. The documented array-of-fields form carries no item `label` of its own; use the object form when an item label is wanted. Keep whichever valid form the app already uses, and match the nesting of the payload that the module sends. `labels.add` is wording only; it changes neither validation nor the request.
+
 ## Module distribution visibility (not `parameter.hidden`)
 
 Three different things share the word "hidden". Do not infer one from another:
@@ -78,6 +115,7 @@ Labels are the app's only documentation at the moment of use. Hiding a required 
 
 ## Exceptions and applicability
 
+* The ordering, hint and array-wording guidance is UX advice drawn from Make's best-practice pages. A logical block of related fields, a provider whose own form uses another order, or an existing app whose users rely on its layout are all reasons to leave it. Do not reorder or relabel a live app only to satisfy it, and never treat a departure as a blocker.
 * The label-machine-name rule does not apply to fields whose provider UI itself uses that term (for example a literal "URL" or "ID" label).
 * `advanced` together with `required` can be valid. Current input guidance accepts it when a default satisfies the requirement, and a project may have conventions that put expert-only required settings behind the toggle. The fixture rule in this tree treats the combination as suspicious *without* a default; if you rely on a default or a convention, say so in the review instead of reporting a defect. Do not conclude from `advanced && required` alone that the user cannot succeed.
 * Similarly named flags are not interchangeable: static-parameter, mappable-parameter, connection-editability and select-validation settings each have their own documented context. Evaluate each flag where it is defined.
@@ -87,6 +125,7 @@ Labels are the app's only documentation at the moment of use. Hiding a required 
 
 * Label grammar: **documented recommendation**, cosmetic.
 * `password` type for connection secrets (connection-only; `text`-like elsewhere), advanced behaviour: **documented behaviour**; hidden-required check: **inferred implementation pattern**.
+* Ordering, conditional-required help, hints and array wording: **documented UX guidance** (best-practice pages), advisory only. Nested `required: true` inside a branch that is active only for its case is legitimate; no conditional syntax is claimed beyond the documented parameter types. No fixture or checker rule encodes it; the guidance rests on documentation, not on how often apps follow it.
 * The checker looks only at declared label and flag fields in fixtures; it cannot judge whether a label is clear or a description misleads.
 
 ## Fixtures
@@ -107,6 +146,9 @@ Static, synthetic teaching fixtures. Label rules are cosmetic and a casing or sp
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/text
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/password (connection-only masking claim)
 * https://developers.make.com/custom-apps-documentation/block-elements/parameters/select
+* https://developers.make.com/custom-apps-documentation/block-elements/parameters/array (spec forms, `labels.add`)
+* https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters (ordering, advanced, Limit, array labels)
+* https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/input-parameters/parameter-hints
 * https://developers.make.com/custom-apps-documentation/component-blocks/interface
 * https://developers.make.com/api-documentation/api-reference/sdk-apps/modules
 * https://developers.make.com/custom-apps-documentation/create-your-first-app/test-your-app

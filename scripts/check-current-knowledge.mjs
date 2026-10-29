@@ -617,7 +617,7 @@ export function validateCurrentKnowledge(examplesRoot) {
     errors.push({ code, file: file ?? '', message });
   };
   const rel = (abs) => posix(relative(ck, abs));
-  const stats = { topics: 0, recipes: 0, sources: 0, fixtures: 0 };
+  const stats = { topics: 0, recipes: 0, sources: 0, guides: 0, fixtures: 0 };
   const finish = () => ({ errors: errors.sort(compareErrors), stats });
 
   // Real-path containment (same bound as skill-reference sources): a symlink under current-knowledge must
@@ -726,6 +726,7 @@ export function validateCurrentKnowledge(examplesRoot) {
       if (!sources.has(id)) add('CK-SOURCE', 'catalog.json', `topic ${topic.id} cites unknown source ${id}`);
     }
     if (!Array.isArray(topic.sources) || topic.sources.length === 0) add('CK-SOURCE', 'catalog.json', `topic ${topic.id} must cite sources`);
+    if (!Array.isArray(topic.recipes)) add('CK-FORMAT', 'catalog.json', `topic ${topic.id} needs a recipes array (empty for a guide-only topic)`);
     for (const id of Array.isArray(topic.recipes) ? topic.recipes : []) {
       if (!recipeIds.has(id)) add('CK-FORMAT', 'catalog.json', `topic ${topic.id} lists unknown recipe ${id}`);
     }
@@ -744,10 +745,17 @@ export function validateCurrentKnowledge(examplesRoot) {
     recipesByTopic.get(recipe.topic).push(recipe);
   }
   const fixturePaths = (recipe) => [recipe.fixtures?.correct, ...(Array.isArray(recipe.fixtures?.incorrect) ? recipe.fixtures.incorrect.map((n) => n?.file) : [])].filter(isStr);
-  const guideSections = ['## Rationale', '## Pitfalls', '## Exceptions and applicability', '## Evidence and limits', '## Fixtures', '## Sources'];
+  // Recipe-backed guides teach fixtures; a guide-only topic (no recipes) is retrieval-only and needs just its limits and sources.
+  const recipeGuideSections = ['## Rationale', '## Pitfalls', '## Exceptions and applicability', '## Evidence and limits', '## Fixtures', '## Sources'];
+  const guideOnlySections = ['## Evidence and limits', '## Sources'];
   const guideFiles = new Set();
+  const guideOwners = new Map();
   for (const topic of topics.values()) {
     if (!isStr(topic.guide) || !/^guides\/[a-z0-9-]+\.md$/.test(topic.guide)) { add('CK-TOPIC-GUIDE', 'catalog.json', `topic ${topic.id} needs guide "guides/<name>.md"`); continue; }
+    if (guideOwners.has(topic.guide)) add('CK-GUIDE-DUPLICATE', topic.guide, `topics ${guideOwners.get(topic.guide)} and ${topic.id} share one guide`);
+    else guideOwners.set(topic.guide, topic.id);
+    const guideSections = (recipesByTopic.get(topic.id)?.length ?? 0) > 0 || (Array.isArray(topic.recipes) && topic.recipes.length > 0)
+      ? recipeGuideSections : guideOnlySections;
     const guideAbs = join(ck, topic.guide);
     if (!existsSync(guideAbs)) { add('CK-TOPIC-GUIDE', topic.guide, `guide for topic ${topic.id} does not exist`); continue; }
     guideFiles.add(guideAbs);
@@ -775,6 +783,14 @@ export function validateCurrentKnowledge(examplesRoot) {
       }
     }
   }
+  const guidesDir = join(ck, 'guides');
+  if (existsSync(guidesDir) && statSync(guidesDir).isDirectory()) {
+    for (const entry of readdirSync(guidesDir, { withFileTypes: true })) {
+      if (!entry.name.endsWith('.md') || entry.isDirectory()) continue;
+      if (!guideOwners.has(`guides/${entry.name}`)) add('CK-GUIDE-ORPHAN', `guides/${entry.name}`, 'guide file is not the guide of any catalog topic');
+    }
+  }
+  stats.guides = guideFiles.size;
   for (const file of [readme, ...guideFiles]) {
     if (!existsSync(file)) continue;
     for (const target of localLinks(file)) {

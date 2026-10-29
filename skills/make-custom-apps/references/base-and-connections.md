@@ -169,6 +169,13 @@ Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-c
 
 ## Current-knowledge guides
 
+- How connection, Base, modules and webhooks layer, with a map to the other guides:
+  [app architecture](../examples/current-knowledge/guides/app-architecture.md).
+- Basic, JWT and OAuth lifecycles, expiry versus grant lifetime, refresh and rotation,
+  connection checks and conditional extra scopes:
+  [connections and OAuth](../examples/current-knowledge/guides/connections-and-oauth.md).
+- Relative-path boundary, inherited auth and scopes for universal modules:
+  [universal modules and scopes](../examples/current-knowledge/guides/universal-modules-and-scopes.md).
 - Header precedence against Base (per-name override, collection spread, whole-expression replacement):
   [headers merge](../examples/current-knowledge/guides/headers-merge.md).
 - Which context reads which credential variable, and which secret paths to sanitize:

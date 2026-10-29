@@ -22,7 +22,10 @@ SDK](https://developers.make.com/make-sdk/make-typescript-sdk) `@makehq/sdk` →
 source. Setup, upload, readback and a typed section helper:
 [SDK recipe](references/tooling-and-release.md#typescript-sdk-upload-and-readback). Read published
 or installed declarations/contracts before writing calls; credentials are managed outside code and
-prompts (approved environment); binary logos use `make.sdk.apps.setIcon` (512×512 PNG bytes).
+prompts (approved environment); binary logos use `make.sdk.apps.setIcon` (512×512 PNG bytes). A
+runnable create → Base → module → section-readback sample, mock-tested and never run live, pinned to
+one SDK version: [GitHub search SDK script](examples/app-examples/github-search/README.md#create-the-private-app-with-the-sdk-script);
+it is a pattern, not a contract, so re-read your installed declarations.
 
 The script is local management tooling. App source stays IML/JSON component sections plus supported
 app JS helpers; typechecking a script validates neither IML nor provider behavior. If the runtime is
@@ -120,8 +123,10 @@ alternative only if the user accepts the change); no invented fields. Function t
 ## Load only task-relevant detail
 
 The following references retain the detailed rules; consult by trigger, not as one context dump.
-Open a relevant [example](examples/), not the full provenance manifest; these are component patterns
-with stated limits, not certified provider apps/installers.
+Open a relevant example, not the full provenance manifest: section sets in
+[app-examples](examples/app-examples/README.md), or the [examples index](examples/README.md) for
+helpers and copied snippets. These are component patterns with stated limits, not certified
+provider apps/installers.
 
 | Trigger | Reference |
 | --- | --- |

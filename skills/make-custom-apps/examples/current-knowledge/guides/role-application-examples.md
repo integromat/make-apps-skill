@@ -93,6 +93,10 @@ Controls:
 * Whole-expression `"headers": "{{buildHeaders(parameters)}}"` that omits the inherited credential: supported replacement loss.
 * A GraphQL universal module with query/variables inputs and no Headers input: absence of a Headers input is not by itself a REST-convention finding for GraphQL; independently check that any provider-required headers can be sent (the official GraphQL example sets a request header in Communication). A returned Headers field is output, not an input.
 
+## Reading the full app examples
+
+The [app examples index](../../app-examples/README.md) lists section sets; each provider README records its own assumptions, placeholders, sources, completeness and remaining validation. Do not assume `reference_search` covers them. Read progressively: use the index to choose the one provider README that matches the component under review, then open only the specific source, dependency, helper or test files that README maps, using the file-reading and file-search tools. Compare shapes and invariants rather than pasting a complete implementation into a task. Use each provider README to determine completeness, dependencies and what was actually validated. The existence of files does not certify deployability or runtime behavior, and none of them is evidence about any provider's or Make's runtime behavior beyond what that README records.
+
 ## Role-specific application table
 
 The rows after the first seven cover RPC budgets, webhooks, input contracts, connections, labels and outputs; apply them to every matching component, not only to modules.
@@ -120,6 +124,10 @@ Record each applicable check as a row; opening a guide is not the same as applyi
 SDK Endpoints are optional ([optional-endpoints](optional-endpoints.md)); add a row only when the review scope names them.
 
 Status values: `finding`, `passed`, `not_applicable`, `uncertain`. Keep authoring requirements, recommendations and evidence gaps distinct in severity. A mechanically valid locator does not make the claim true, and a missing row is a coverage gap. This is static review; it does not execute QA plans.
+
+## Evidence and limits
+
+The rows are authored teaching examples, not observed audit results. They show how to record a check; they do not show that any real app passed or failed it. Static review reads configuration, not runtime behavior, so a `passed` row means the traced locators agree with the cited documentation and nothing more. Make's documentation and the provider's own contract still decide each claim, and a runtime check needs an authorized execution that this guide does not perform.
 
 ## Sources for the claims above
 

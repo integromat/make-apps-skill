@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -53,7 +53,7 @@ test('checks shipped JSON and runs the actual helper tests from another working 
 test('rejects page + 1 regressions in either one-based example', () => {
   for (const example of ['github-search', 'github-polling']) {
     withCopy((root) => {
-      changeJson(root, `${example}/api.imljson`, (value) => {
+      changeJson(root, `app-examples/${example}/api.imljson`, (value) => {
         value.pagination.qs.page = '{{pagination.page + 1}}';
       });
       const result = run(root);
@@ -65,7 +65,7 @@ test('rejects page + 1 regressions in either one-based example', () => {
 
 test('rejects malformed JSON rather than reporting a parse-only success', () => {
   withCopy((root) => {
-    writeFileSync(join(root, 'github-search/expect.imljson'), '{ // not JSON\n');
+    writeFileSync(join(root, 'app-examples/github-search/expect.imljson'), '{ // not JSON\n');
     const result = run(root);
     assert.equal(result.status, 1);
     assert.match(result.stderr, /Invalid JSON.*expect.imljson/);
@@ -74,16 +74,36 @@ test('rejects malformed JSON rather than reporting a parse-only success', () => 
 
 test('rejects a missing component dependency', () => {
   withCopy((root) => {
-    rmSync(join(root, 'github-webhook/connection/api.imljson'));
+    rmSync(join(root, 'app-examples/github-webhook/connection/api.imljson'));
     const result = run(root);
     assert.equal(result.status, 1, result.stdout);
     assert.match(result.stderr, /Missing required component.*connection\/api.imljson/);
   });
 });
 
+test('requires each focused example under app-examples, not its pre-move location', () => {
+  for (const example of ['github-search', 'github-polling', 'github-webhook', 'dropbox-oauth']) {
+    withCopy((root) => {
+      renameSync(join(root, 'app-examples', example), join(root, example));
+      const result = run(root);
+      assert.equal(result.status, 1, `${example}: ${result.stdout}`);
+      assert.match(result.stderr, new RegExp(`Missing required component app-examples/${example}`));
+    });
+  }
+});
+
+test('requires the app-examples index', () => {
+  withCopy((root) => {
+    rmSync(join(root, 'app-examples/README.md'));
+    const result = run(root);
+    assert.equal(result.status, 1, result.stdout);
+    assert.match(result.stderr, /Missing required component app-examples\/README.md/);
+  });
+});
+
 test('rejects an invalid README component link', () => {
   withCopy((root) => {
-    const path = join(root, 'github-webhook/README.md');
+    const path = join(root, 'app-examples/github-webhook/README.md');
     writeFileSync(path, readFileSync(path, 'utf8').replace('(webhook/api.imljson)', '(webhook/missing.imljson)'));
     const result = run(root);
     assert.equal(result.status, 1, result.stdout);
@@ -106,9 +126,9 @@ test('a falsy-handling mutation fails the actual copied helper tests', () => {
 });
 
 for (const [label, file, mutate, message] of [
-  ['undeclared input', 'github-search/api.imljson', (v) => { v.qs.q = '{{parameters.missingQuery}}'; }, /Undeclared input.*missingQuery/],
-  ['output schema drift', 'github-search/interface.imljson', (v) => { v[0].name = 'wrongId'; }, /Projection\/Interface mismatch/],
-  ['mistyped sample', 'github-search/samples.imljson', (v) => { v.archived = 'false'; }, /Sample type.*archived/],
+  ['undeclared input', 'app-examples/github-search/api.imljson', (v) => { v.qs.q = '{{parameters.missingQuery}}'; }, /Undeclared input.*missingQuery/],
+  ['output schema drift', 'app-examples/github-search/interface.imljson', (v) => { v[0].name = 'wrongId'; }, /Projection\/Interface mismatch/],
+  ['mistyped sample', 'app-examples/github-search/samples.imljson', (v) => { v.archived = 'false'; }, /Sample type.*archived/],
   ['missing helper dependency', 'custom-iml/output.imljson', (v) => { v.count = '{{missingHelper(parameters.count, 10)}}'; }, /defaultIfNull.*dependency/],
 ]) {
   test(`rejects ${label}`, () => withCopy((root) => {
@@ -169,13 +189,13 @@ test('validates an intact synchronized-style copy without using repository-relat
 });
 
 for (const [label, file, mutate, message] of [
-  ['polling order drift', 'github-polling/api.imljson', (v) => { v.response.trigger.order = 'asc'; }, /Polling trigger contract/],
-  ['extra Epoch identity field', 'github-polling/epoch.imljson', (v) => { v.response.output.id = '{{item.id}}'; }, /Epoch output/],
-  ['erasing the Dropbox refresh token', 'dropbox-oauth/api.imljson', (v) => { v.refresh.response.data.refreshToken = '{{body.refresh_token}}'; }, /Dropbox refresh token/],
-  ['wrong OAuth expiry location', 'dropbox-oauth/api.imljson', (v) => { v.token.response.expires = v.token.response.data.expires; delete v.token.response.data.expires; }, /OAuth token expiry/],
-  ['missing credential log mask', 'dropbox-oauth/api.imljson', (v) => { v.token.log.sanitize = []; }, /Secret log mask/],
-  ['enabled webhook receiver', 'github-webhook/webhook/api.imljson', (v) => { v.condition = true; }, /Webhook deployment block/],
-  ['broken attach-to-detach identity', 'github-webhook/webhook/attach.imljson', (v) => { delete v.response.data.externalHookId; }, /Webhook saved identity/],
+  ['polling order drift', 'app-examples/github-polling/api.imljson', (v) => { v.response.trigger.order = 'asc'; }, /Polling trigger contract/],
+  ['extra Epoch identity field', 'app-examples/github-polling/epoch.imljson', (v) => { v.response.output.id = '{{item.id}}'; }, /Epoch output/],
+  ['erasing the Dropbox refresh token', 'app-examples/dropbox-oauth/api.imljson', (v) => { v.refresh.response.data.refreshToken = '{{body.refresh_token}}'; }, /Dropbox refresh token/],
+  ['wrong OAuth expiry location', 'app-examples/dropbox-oauth/api.imljson', (v) => { v.token.response.expires = v.token.response.data.expires; delete v.token.response.data.expires; }, /OAuth token expiry/],
+  ['missing credential log mask', 'app-examples/dropbox-oauth/api.imljson', (v) => { v.token.log.sanitize = []; }, /Secret log mask/],
+  ['enabled webhook receiver', 'app-examples/github-webhook/webhook/api.imljson', (v) => { v.condition = true; }, /Webhook deployment block/],
+  ['broken attach-to-detach identity', 'app-examples/github-webhook/webhook/attach.imljson', (v) => { delete v.response.data.externalHookId; }, /Webhook saved identity/],
   ['regressed parameter validation', 'copied-snippets/parameters/bounded-number.imljson', (v) => { v.minimum = v.validate.min; delete v.validate; }, /Nested SDK validation/],
   ['falsy boolean fallback in a copied request', 'copied-snippets/requests/post-preserving-false.imljson', (v) => { v.body.active = '{{parameters.active || true}}'; }, /Copied boolean mapping/],
   ['wrong repeat context', 'copied-snippets/requests/bounded-async-poll.imljson', (v) => { v[1].repeat.condition = "{{body.status === 'IN_PROGRESS'}}"; }, /Repeat condition must use temp/],

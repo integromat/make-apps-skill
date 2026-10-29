@@ -10,7 +10,7 @@ const withoutGit = !existsSync(join(root, '.git'));
 
 test('Git preserves canonical source bytes and marks ZIP archives binary', { skip: withoutGit }, () => {
   for (const path of ['skills/make-custom-apps/SKILL.md',
-    'skills/make-custom-apps/examples/github-search/api.imljson', 'provenance/pr70-baseline.json']) {
+    'skills/make-custom-apps/examples/app-examples/github-search/api.imljson', 'provenance/pr70-baseline.json']) {
     const result = execFileSync('git', ['check-attr', 'text', '--', path], { cwd: root, encoding: 'utf8' });
     assert.equal(result.trim(), `${path}: text: unset`);
   }
