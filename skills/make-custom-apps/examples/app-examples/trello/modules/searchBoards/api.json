@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "query": "{{parameters.query}}",
+    "partial": "{{parameters.partial}}",
+    "idBoards": "{{ifempty(join(parameters.idBoards, ','), undefined)}}",
+    "modelTypes": "boards",
+    "board_fields": "all",
+    "boards_limit": "{{parameters.limit}}"
+  },
+  "url": "/search",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.boards}}"
+  }
+}

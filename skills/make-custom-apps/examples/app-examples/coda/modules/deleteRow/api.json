@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows/{{parameters.rowIdOrName}}",
+  "body": {},
+  "method": "DELETE",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

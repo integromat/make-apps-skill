@@ -1,0 +1,16 @@
+{
+  "url": "/webhooks",
+  "body": {
+    "data": {
+      "target": "{{webhook.url}}",
+      "filters": "{{formatFilter(parameters.filters)}}",
+      "resource": "{{parameters.resource}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "externalHookId": "{{body.data.gid}}"
+    }
+  }
+}

@@ -1,0 +1,227 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "badges",
+    "spec": [
+      {
+        "name": "votes",
+        "type": "number",
+        "label": "Votes"
+      },
+      {
+        "name": "attachmentsByType",
+        "spec": [
+          {
+            "name": "trello",
+            "spec": [
+              {
+                "name": "board",
+                "type": "number",
+                "label": "Board"
+              },
+              {
+                "name": "card",
+                "type": "number",
+                "label": "Card"
+              }
+            ],
+            "type": "collection",
+            "label": "Trello"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments by type"
+      },
+      {
+        "name": "viewingMemberVoted",
+        "type": "boolean",
+        "label": "Viewing member voted"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "fogbugz",
+        "type": "text",
+        "label": "Fogbugz"
+      },
+      {
+        "name": "checkItems",
+        "type": "number",
+        "label": "Check items"
+      },
+      {
+        "name": "checkItemsChecked",
+        "type": "number",
+        "label": "Check items checked"
+      },
+      {
+        "name": "comments",
+        "type": "number",
+        "label": "Comments"
+      },
+      {
+        "name": "attachments",
+        "type": "number",
+        "label": "Attachments"
+      },
+      {
+        "name": "description",
+        "type": "boolean",
+        "label": "Description"
+      },
+      {
+        "name": "due",
+        "type": "text",
+        "label": "Due date"
+      },
+      {
+        "name": "dueComplete",
+        "type": "boolean",
+        "label": "Due complete"
+      }
+    ],
+    "type": "collection",
+    "label": "Badges"
+  },
+  {
+    "name": "checkItemStates",
+    "spec": [],
+    "type": "array",
+    "label": "Check item states"
+  },
+  {
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete"
+  },
+  {
+    "name": "dateLastActivity",
+    "type": "date",
+    "label": "Last activity date"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "spec": [
+      {
+        "name": "emoji",
+        "spec": [],
+        "type": "collection",
+        "label": "Emoji"
+      }
+    ],
+    "type": "collection",
+    "label": "Description data"
+  },
+  {
+    "name": "due",
+    "type": "text",
+    "label": "Due date"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idChecklists",
+    "spec": [],
+    "type": "array",
+    "label": "Checklists ID"
+  },
+  {
+    "name": "idList",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "idMembers",
+    "spec": [],
+    "type": "array",
+    "label": "Members ID"
+  },
+  {
+    "name": "idMembersVoted",
+    "spec": [],
+    "type": "array",
+    "label": "Members voted ID"
+  },
+  {
+    "name": "idShort",
+    "type": "number",
+    "label": "Short ID"
+  },
+  {
+    "name": "idAttachmentCover",
+    "type": "text",
+    "label": "Attachment cover ID"
+  },
+  {
+    "name": "labels",
+    "spec": [],
+    "type": "array",
+    "label": "Labels"
+  },
+  {
+    "name": "idLabels",
+    "spec": [],
+    "type": "array",
+    "label": "Labels IDs"
+  },
+  {
+    "name": "manualCoverAttachment",
+    "type": "boolean",
+    "label": "Manual cover attachment"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "shortLink",
+    "type": "text",
+    "label": "Short link"
+  },
+  {
+    "name": "shortUrl",
+    "type": "url",
+    "label": "Short URL"
+  },
+  {
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  }
+]

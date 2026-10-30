@@ -22,15 +22,15 @@ Alternatively, copy the complete `skills/make-custom-apps/` directory into the a
 
 ## What loads
 
-One canonical skill folder contains a short workflow, 12 topic references and the inherited example/helper library. The entry states when to load each reference; agents should open the relevant material, not the whole library.
+One canonical skill folder contains a short workflow, topic references and the inherited example/helper library. The entry states when to load each reference; agents should open the relevant material, not the whole library.
 
 - [References](skills/make-custom-apps/references/): SDK semantics, component design, QA, maintenance and controlled release.
 - [Current knowledge](skills/make-custom-apps/examples/current-knowledge/README.md): topic guides with sources, applicability and exceptions, plus synthetic correct/incorrect fixtures. Its checker is static and fixture-only.
-- [App examples](skills/make-custom-apps/examples/app-examples/README.md): focused section sets (search, polling, OAuth2, webhook), including a typed `@makehq/sdk` script that creates a private app and reads each section back.
+- [App examples](skills/make-custom-apps/examples/app-examples/README.md): four focused section sets (search, polling, OAuth2, webhook), including a typed `@makehq/sdk` script that creates a private app and reads each section back, plus 15 privacy-normalized historical app exports kept as reading material with per-app dependency and limit notes.
 - [Example index](skills/make-custom-apps/examples/README.md): 71 indexed snippets, the custom IML helper and the layout of the example folders, with dependencies and limitations.
 - App Endpoint **authoring** belongs here. Scenario building and execution of existing Endpoints remain in [make-skills](https://github.com/integromat/make-skills).
 
-The examples are teaching components, not certified deployable provider apps. In particular, the webhook example retains its explicit security/deployment restriction. Static validation, definition upload/readback, provider execution and publication are separate evidence gates.
+The examples are teaching components and reading material, not certified deployable provider apps. The historical exports are observed patterns from earlier apps, not current-provider certification; their imported helper code and tests were not executed, and their samples are retained privacy-normalized data. In particular, the focused webhook example retains its explicit security/deployment restriction. Static validation, definition upload/readback, provider execution and publication are separate evidence gates.
 
 ## Verify and package
 

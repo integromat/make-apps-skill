@@ -1,0 +1,7 @@
+{
+  "url": "/invoices/{{parameters.invoice_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

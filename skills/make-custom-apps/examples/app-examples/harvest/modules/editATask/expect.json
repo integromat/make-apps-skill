@@ -1,0 +1,35 @@
+[
+  {
+    "name": "task_id",
+    "type": "select",
+    "label": "Task ID",
+    "options": "rpc://getTasks",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "New name"
+  },
+  {
+    "help": "The default hourly rate to use for this task when it is added to a project.",
+    "name": "default_hourly_rate",
+    "type": "number",
+    "label": "Default hourly rate",
+    "advanced": true
+  },
+  {
+    "help": "Used in determining whether default tasks should be marked billable when creating a new project.",
+    "name": "billable_by_default",
+    "type": "boolean",
+    "label": "Billable by default",
+    "advanced": true
+  },
+  {
+    "help": "Whether this task should be automatically added to future projects.",
+    "name": "is_default",
+    "type": "boolean",
+    "label": "Default",
+    "advanced": true
+  }
+]

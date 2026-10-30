@@ -1,0 +1,8 @@
+{
+  "url": "/orgs/{{parameters.orgId}}/workspaces",
+  "method": "GET",
+  "response": {
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "url": "/campaigns/{{parameters.campaign}}/export{{if(parameters.select === 'lead', '/list', '')}}",
+  "type": "binary",
+  "method": "GET",
+  "response": {
+    "type": "binary",
+    "output": {
+      "data": "{{body}}",
+      "filename": "file.csv",
+      "filesize": "{{headers.`content-length`}}"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "url": "/lists/{{parameters.list}}/segments/{{parameters.segment}}/members",
+  "body": {
+    "email_address": "{{parameters.email_address}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{generalResponse(arrangeResponseSubscriber(body, metadata.interface))}}"
+  }
+}

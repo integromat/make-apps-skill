@@ -1,0 +1,17 @@
+{
+  "url": "/posts",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.posts}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.meta.pagination.next}}"
+  }
+}

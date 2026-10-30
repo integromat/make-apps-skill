@@ -1,0 +1,19 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization",
+      "request.headers.harvest-account-id"
+    ]
+  },
+  "baseUrl": "https://api.harvestapp.com/v2",
+  "headers": {
+    "User-Agent": "Integromat (redacted@example.com)",
+    "Authorization": "Bearer {{connection.accessToken}}",
+    "Harvest-Account-Id": "{{connection.harvest_account_id}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{if(body.message, body.message, body.error + ': ' + body.error_description)}}"
+    }
+  }
+}

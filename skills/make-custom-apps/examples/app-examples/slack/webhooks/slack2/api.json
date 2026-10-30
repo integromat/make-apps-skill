@@ -1,0 +1,18 @@
+{
+  "uid": "{{item.uid}}",
+  "output": "{{item.data}}",
+  "iterate": {
+    "condition": "{{if(data, isWebhookCondition(data, item), true)}}",
+    "container": "{{getWebhookBody(body)}}"
+  },
+  "verification": {
+    "respond": {
+      "body": {
+        "challenge": "{{body.challenge}}"
+      },
+      "type": "urlencoded",
+      "status": 200
+    },
+    "condition": "{{body.type == 'url_verification'}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 7,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Find Tasks",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Finds tasks by name in a project.",
+  "altAccountName": null
+}

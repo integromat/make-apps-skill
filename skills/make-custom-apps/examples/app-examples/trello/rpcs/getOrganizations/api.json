@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "fields": "id,name,displayName",
+    "filter": "all",
+    "paid_account": false
+  },
+  "url": "/members/me/organizations",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.displayName}} ({{item.name}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

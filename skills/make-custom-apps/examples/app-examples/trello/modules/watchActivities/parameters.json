@@ -1,0 +1,603 @@
+[
+  {
+    "name": "node",
+    "type": "select",
+    "label": "Watched object",
+    "options": [
+      {
+        "label": "All objects in my Trello",
+        "value": "all",
+        "nested": [
+          {
+            "name": "filter",
+            "type": "select",
+            "label": "Actions",
+            "options": [
+              {
+                "label": "addAttachmentToCard",
+                "value": "addAttachmentToCard"
+              },
+              {
+                "label": "addChecklistToCard",
+                "value": "addChecklistToCard"
+              },
+              {
+                "label": "addMemberToBoard",
+                "value": "addMemberToBoard"
+              },
+              {
+                "label": "addMemberToCard",
+                "value": "addMemberToCard"
+              },
+              {
+                "label": "addMemberToOrganization",
+                "value": "addMemberToOrganization"
+              },
+              {
+                "label": "addToOrganizationBoard",
+                "value": "addToOrganizationBoard"
+              },
+              {
+                "label": "commentCard",
+                "value": "commentCard"
+              },
+              {
+                "label": "convertToCardFromCheckItem",
+                "value": "convertToCardFromCheckItem"
+              },
+              {
+                "label": "copyBoard",
+                "value": "copyBoard"
+              },
+              {
+                "label": "copyCard",
+                "value": "copyCard"
+              },
+              {
+                "label": "copyCommentCard",
+                "value": "copyCommentCard"
+              },
+              {
+                "label": "createBoard",
+                "value": "createBoard"
+              },
+              {
+                "label": "createCard",
+                "value": "createCard"
+              },
+              {
+                "label": "createList",
+                "value": "createList"
+              },
+              {
+                "label": "createOrganization",
+                "value": "createOrganization"
+              },
+              {
+                "label": "deleteBoardInvitation",
+                "value": "deleteBoardInvitation"
+              },
+              {
+                "label": "deleteCard",
+                "value": "deleteCard"
+              },
+              {
+                "label": "deleteOrganizationInvitation",
+                "value": "deleteOrganizationInvitation"
+              },
+              {
+                "label": "disablePlugin",
+                "value": "disablePlugin"
+              },
+              {
+                "label": "disablePowerUp",
+                "value": "disablePowerUp"
+              },
+              {
+                "label": "emailCard",
+                "value": "emailCard"
+              },
+              {
+                "label": "enablePlugin",
+                "value": "enablePlugin"
+              },
+              {
+                "label": "enablePowerUp",
+                "value": "enablePowerUp"
+              },
+              {
+                "label": "makeAdminOfBoard",
+                "value": "makeAdminOfBoard"
+              },
+              {
+                "label": "makeNormalMemberOfBoard",
+                "value": "makeNormalMemberOfBoard"
+              },
+              {
+                "label": "makeNormalMemberOfOrganization",
+                "value": "makeNormalMemberOfOrganization"
+              },
+              {
+                "label": "makeObserverOfBoard",
+                "value": "makeObserverOfBoard"
+              },
+              {
+                "label": "memberJoinedTrello",
+                "value": "memberJoinedTrello"
+              },
+              {
+                "label": "moveCardFromBoard",
+                "value": "moveCardFromBoard"
+              },
+              {
+                "label": "moveCardToBoard",
+                "value": "moveCardToBoard"
+              },
+              {
+                "label": "moveListFromBoard",
+                "value": "moveListFromBoard"
+              },
+              {
+                "label": "moveListToBoard",
+                "value": "moveListToBoard"
+              },
+              {
+                "label": "removeChecklistFromCard",
+                "value": "removeChecklistFromCard"
+              },
+              {
+                "label": "removeFromOrganizationBoard",
+                "value": "removeFromOrganizationBoard"
+              },
+              {
+                "label": "removeMemberFromCard",
+                "value": "removeMemberFromCard"
+              },
+              {
+                "label": "unconfirmedBoardInvitation",
+                "value": "unconfirmedBoardInvitation"
+              },
+              {
+                "label": "unconfirmedOrganizationInvitation",
+                "value": "unconfirmedOrganizationInvitation"
+              },
+              {
+                "label": "updateBoard",
+                "value": "updateBoard"
+              },
+              {
+                "label": "updateCard",
+                "value": "updateCard"
+              },
+              {
+                "label": "updateCheckItemStateOnCard",
+                "value": "updateCheckItemStateOnCard"
+              },
+              {
+                "label": "updateChecklist",
+                "value": "updateChecklist"
+              },
+              {
+                "label": "updateList",
+                "value": "updateList"
+              },
+              {
+                "label": "updateMember",
+                "value": "updateMember"
+              },
+              {
+                "label": "updateOrganization",
+                "value": "updateOrganization"
+              }
+            ],
+            "mappable": true,
+            "multiple": true,
+            "required": true,
+            "validate": false
+          }
+        ]
+      },
+      {
+        "label": "Board",
+        "value": "board",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "help": "Each event has its own output, and if multiple events are selected, their outputs are merged, so not all items must always be filled in for each event.",
+                  "name": "filter",
+                  "type": "select",
+                  "label": "Watch activities",
+                  "options": [
+                    {
+                      "label": "addAttachmentToCard",
+                      "value": "addAttachmentToCard"
+                    },
+                    {
+                      "label": "addChecklistToCard",
+                      "value": "addChecklistToCard"
+                    },
+                    {
+                      "label": "addMemberToBoard",
+                      "value": "addMemberToBoard"
+                    },
+                    {
+                      "label": "addMemberToCard",
+                      "value": "addMemberToCard"
+                    },
+                    {
+                      "label": "addToOrganizationBoard",
+                      "value": "addToOrganizationBoard"
+                    },
+                    {
+                      "label": "commentCard",
+                      "value": "commentCard"
+                    },
+                    {
+                      "label": "convertToCardFromCheckItem",
+                      "value": "convertToCardFromCheckItem"
+                    },
+                    {
+                      "label": "copyCard",
+                      "value": "copyCard"
+                    },
+                    {
+                      "label": "createCard",
+                      "value": "createCard"
+                    },
+                    {
+                      "label": "createList",
+                      "value": "createList"
+                    },
+                    {
+                      "label": "deleteBoardInvitation",
+                      "value": "deleteBoardInvitation"
+                    },
+                    {
+                      "label": "deleteCard",
+                      "value": "deleteCard"
+                    },
+                    {
+                      "label": "disablePlugin",
+                      "value": "disablePlugin"
+                    },
+                    {
+                      "label": "disablePowerUp",
+                      "value": "disablePowerUp"
+                    },
+                    {
+                      "label": "emailCard",
+                      "value": "emailCard"
+                    },
+                    {
+                      "value": "enablePlugin"
+                    },
+                    {
+                      "label": "enablePowerUp",
+                      "value": "enablePowerUp"
+                    },
+                    {
+                      "label": "makeAdminOfBoard",
+                      "value": "makeAdminOfBoard"
+                    },
+                    {
+                      "label": "makeNormalMemberOfBoard",
+                      "value": "makeNormalMemberOfBoard"
+                    },
+                    {
+                      "label": "makeObserverOfBoard",
+                      "value": "makeObserverOfBoard"
+                    },
+                    {
+                      "label": "moveCardFromBoard",
+                      "value": "moveCardFromBoard"
+                    },
+                    {
+                      "label": "moveCardToBoard",
+                      "value": "moveCardToBoard"
+                    },
+                    {
+                      "label": "moveListFromBoard",
+                      "value": "moveListFromBoard"
+                    },
+                    {
+                      "label": "moveListToBoard",
+                      "value": "moveListToBoard"
+                    },
+                    {
+                      "value": "reactivatedMemberInBoard"
+                    },
+                    {
+                      "label": "removeChecklistFromCard",
+                      "value": "removeChecklistFromCard"
+                    },
+                    {
+                      "label": "removeFromOrganizationBoard",
+                      "value": "removeFromOrganizationBoard"
+                    },
+                    {
+                      "label": "removeMemberFromCard",
+                      "value": "removeMemberFromCard"
+                    },
+                    {
+                      "label": "unconfirmedBoardInvitation",
+                      "value": "unconfirmedBoardInvitation"
+                    },
+                    {
+                      "label": "updateBoard",
+                      "value": "updateBoard"
+                    },
+                    {
+                      "label": "updateCard",
+                      "value": "updateCard"
+                    },
+                    {
+                      "label": "updateCard:closed",
+                      "value": "updateCard:closed"
+                    },
+                    {
+                      "label": "updateCard:desc",
+                      "value": "updateCard:desc"
+                    },
+                    {
+                      "label": "updateCard:idList",
+                      "value": "updateCard:idList"
+                    },
+                    {
+                      "label": "updateCard:name",
+                      "value": "updateCard:name"
+                    },
+                    {
+                      "label": "updateCheckItemStateOnCard",
+                      "value": "updateCheckItemStateOnCard"
+                    },
+                    {
+                      "label": "updateChecklist",
+                      "value": "updateChecklist"
+                    },
+                    {
+                      "label": "updateList",
+                      "value": "updateList"
+                    },
+                    {
+                      "label": "updateList:closed",
+                      "value": "updateList:closed"
+                    },
+                    {
+                      "label": "updateList:name",
+                      "value": "updateList:name"
+                    }
+                  ],
+                  "mappable": true,
+                  "multiple": true,
+                  "required": true,
+                  "validate": false
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "List",
+        "value": "list",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardsLists",
+                    "nested": [
+                      {
+                        "help": "Each event has its own output, and if multiple events are selected, their outputs are merged, so not all items must always be filled in for each event.",
+                        "name": "filter",
+                        "type": "select",
+                        "label": "Watch activities",
+                        "options": [
+                          {
+                            "value": "addAttachmentToCard"
+                          },
+                          {
+                            "label": "commentCard",
+                            "value": "commentCard"
+                          },
+                          {
+                            "label": "convertToCardFromCheckItem",
+                            "value": "convertToCardFromCheckItem"
+                          },
+                          {
+                            "label": "copyCard",
+                            "value": "copyCard"
+                          },
+                          {
+                            "label": "createCard",
+                            "value": "createCard"
+                          },
+                          {
+                            "label": "deleteCard",
+                            "value": "deleteCard"
+                          },
+                          {
+                            "value": "moveCardFromBoard"
+                          },
+                          {
+                            "value": "moveCardToBoard"
+                          },
+                          {
+                            "value": "moveListFromBoard"
+                          },
+                          {
+                            "value": "moveListToBoard"
+                          },
+                          {
+                            "label": "updateCard",
+                            "value": "updateCard"
+                          },
+                          {
+                            "label": "updateCard:idList",
+                            "value": "updateCard:idList"
+                          },
+                          {
+                            "label": "updateList",
+                            "value": "updateList"
+                          }
+                        ],
+                        "mappable": true,
+                        "multiple": true,
+                        "required": true,
+                        "validate": false
+                      }
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Card",
+        "value": "card",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": {
+                          "store": "rpc://app%23trello@4/getIDcardsUnderList",
+                          "nested": [
+                            {
+                              "help": "Each event has its own output, and if multiple events are selected, their outputs are merged, so not all items must always be filled in for each event.",
+                              "name": "filter",
+                              "type": "select",
+                              "label": "Watch activities",
+                              "options": [
+                                {
+                                  "label": "addAttachmentToCard",
+                                  "value": "addAttachmentToCard"
+                                },
+                                {
+                                  "label": "addChecklistToCard",
+                                  "value": "addChecklistToCard"
+                                },
+                                {
+                                  "label": "addMemberToCard",
+                                  "value": "addMemberToCard"
+                                },
+                                {
+                                  "label": "commentCard",
+                                  "value": "commentCard"
+                                },
+                                {
+                                  "label": "deleteCard",
+                                  "value": "deleteCard"
+                                },
+                                {
+                                  "label": "emailCard",
+                                  "value": "emailCard"
+                                },
+                                {
+                                  "label": "moveCardFromBoard",
+                                  "value": "moveCardFromBoard"
+                                },
+                                {
+                                  "label": "moveCardToBoard",
+                                  "value": "moveCardToBoard"
+                                },
+                                {
+                                  "label": "removeChecklistFromCard",
+                                  "value": "removeChecklistFromCard"
+                                },
+                                {
+                                  "label": "removeMemberFromCard",
+                                  "value": "removeMemberFromCard"
+                                },
+                                {
+                                  "label": "updateCard",
+                                  "value": "updateCard"
+                                },
+                                {
+                                  "label": "updateCard:closed",
+                                  "value": "updateCard:closed"
+                                },
+                                {
+                                  "label": "updateCard:desc",
+                                  "value": "updateCard:desc"
+                                },
+                                {
+                                  "label": "updateCard:idList",
+                                  "value": "updateCard:idList"
+                                },
+                                {
+                                  "label": "updateCard:name",
+                                  "value": "updateCard:name"
+                                },
+                                {
+                                  "label": "updateCheckItemStateOnCard",
+                                  "value": "updateCheckItemStateOnCard"
+                                }
+                              ],
+                              "mappable": true,
+                              "multiple": true,
+                              "required": true,
+                              "validate": false
+                            }
+                          ]
+                        },
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

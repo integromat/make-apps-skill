@@ -1,0 +1,43 @@
+[
+  {
+    "mode": "edit",
+    "name": "customer",
+    "type": "select",
+    "label": "Customer ID",
+    "options": "rpc://app%23stripe@1/listCustomers",
+    "editable": true,
+    "required": true
+  },
+  {
+    "name": "expand",
+    "type": "select",
+    "label": "Expand",
+    "options": [
+      {
+        "label": "Default Source",
+        "value": "default_source"
+      },
+      {
+        "label": "Invoice Credit Balance",
+        "value": "invoice_credit_balance"
+      },
+      {
+        "label": "Subscriptions",
+        "value": "subscriptions"
+      },
+      {
+        "label": "Sources",
+        "value": "sources"
+      },
+      {
+        "label": "Tax",
+        "value": "tax"
+      },
+      {
+        "label": "Tax IDs",
+        "value": "tax_ids"
+      }
+    ],
+    "multiple": true
+  }
+]

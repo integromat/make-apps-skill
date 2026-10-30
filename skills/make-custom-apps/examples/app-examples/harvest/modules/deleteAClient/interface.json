@@ -1,0 +1,37 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Client ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is active"
+  },
+  {
+    "name": "address",
+    "type": "text",
+    "label": "Address"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  }
+]

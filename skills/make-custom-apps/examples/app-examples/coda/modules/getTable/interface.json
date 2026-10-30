@@ -1,0 +1,106 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Table ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "browserLink",
+    "type": "url",
+    "label": "Browser Link"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "displayColumn",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "href",
+        "type": "url",
+        "label": "Href"
+      }
+    ],
+    "type": "collection",
+    "label": "Display column"
+  },
+  {
+    "name": "rowCount",
+    "type": "number",
+    "label": "Row count"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "sorts",
+    "spec": {
+      "spec": [
+        {
+          "name": "column",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            },
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "href",
+              "type": "url",
+              "label": "Href"
+            }
+          ],
+          "type": "collection",
+          "label": "Column"
+        },
+        {
+          "name": "direction",
+          "type": "text",
+          "label": "Direction"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Sorts"
+  },
+  {
+    "name": "layout",
+    "type": "text",
+    "label": "Layout"
+  }
+]

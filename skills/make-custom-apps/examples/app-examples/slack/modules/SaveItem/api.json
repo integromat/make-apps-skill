@@ -1,0 +1,11 @@
+{
+  "url": "/stars.add",
+  "body": {
+    "file": "{{parameters.file}}",
+    "timestamp": "{{parameters.timestamp}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

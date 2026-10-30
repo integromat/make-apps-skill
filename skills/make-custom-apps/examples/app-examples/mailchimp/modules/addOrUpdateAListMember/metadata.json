@@ -1,0 +1,16 @@
+{
+  "rev": 5,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Add/Update a List Member",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Adds or updates a list member.",
+  "altAccountName": null
+}

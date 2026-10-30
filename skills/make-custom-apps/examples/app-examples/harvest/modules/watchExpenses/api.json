@@ -1,0 +1,18 @@
+{
+  "qs": {},
+  "url": "/expenses",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.expenses}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.created_at}}",
+      "type": "date",
+      "order": "unordered"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "slack",
+  "label": "Slack",
+  "version": 4,
+  "rev": 12,
+  "beta": true,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": "TODO\ngetScopes()",
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#4a154b",
+  "versionFull": "4.9.3",
+  "website": null
+}

@@ -1,0 +1,10 @@
+{
+  "output": "{{body}}",
+  "condition": "{{parameters.actions = 'all' || length(parameters.actions) === 0 || contains(parameters.actions, body.action.type)}}",
+  "verification": {
+    "respond": {
+      "status": 200
+    },
+    "condition": "{{if(method == 'HEAD', true, false)}}"
+  }
+}

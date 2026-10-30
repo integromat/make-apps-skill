@@ -1,0 +1,10 @@
+[
+  {
+    "help": "Number of returned results.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

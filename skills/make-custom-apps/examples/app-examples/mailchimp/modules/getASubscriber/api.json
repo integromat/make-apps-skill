@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "unique_email_id": "{{parameters.unique_email_id}}"
+  },
+  "url": "/lists/{{parameters.list}}/members/{{if(parameters.email, md5(lower(parameters.email)), parameters.id)}}",
+  "method": "GET",
+  "response": {
+    "output": "{{if(parameters.unique_email_id, generalResponse(arrangeResponseSubscriber(body.members[1], metadata.interface)), generalResponse(arrangeResponseSubscriber(body, metadata.interface)))}}"
+  }
+}

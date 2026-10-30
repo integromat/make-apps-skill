@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Public Channel Message",
+  "scope": [
+    "channels:history"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Returns a message with a given ID from a specified public channel.",
+  "altAccountName": null
+}

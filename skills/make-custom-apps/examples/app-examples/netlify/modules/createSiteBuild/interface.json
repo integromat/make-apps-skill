@@ -1,0 +1,32 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Build ID"
+  },
+  {
+    "name": "deploy_id",
+    "type": "text",
+    "label": "Deploy ID"
+  },
+  {
+    "name": "sha",
+    "type": "text",
+    "label": "SHA"
+  },
+  {
+    "name": "done",
+    "type": "boolean",
+    "label": "Done"
+  },
+  {
+    "name": "error",
+    "type": "text",
+    "label": "Error"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  }
+]

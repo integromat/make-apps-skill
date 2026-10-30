@@ -1,0 +1,32 @@
+[
+  {
+    "name": "num_tasks",
+    "type": "uinteger",
+    "label": "Num Tasks"
+  },
+  {
+    "name": "num_incomplete_tasks",
+    "type": "uinteger",
+    "label": "Num Incomplete Tasks"
+  },
+  {
+    "name": "num_completed_tasks",
+    "type": "uinteger",
+    "label": "Num Completed Tasks"
+  },
+  {
+    "name": "num_milestones",
+    "type": "uinteger",
+    "label": "Num Milestones"
+  },
+  {
+    "name": "num_incomplete_milestones",
+    "type": "uinteger",
+    "label": "Num Incomplete Milestones"
+  },
+  {
+    "name": "num_completed_milestones",
+    "type": "uinteger",
+    "label": "Num Completed Milestones"
+  }
+]

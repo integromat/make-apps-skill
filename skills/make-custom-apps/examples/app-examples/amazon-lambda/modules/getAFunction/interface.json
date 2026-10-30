@@ -1,0 +1,200 @@
+[
+  {
+    "name": "Description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "TracingConfig",
+    "spec": [
+      {
+        "name": "Mode",
+        "type": "text",
+        "label": "Mode"
+      }
+    ],
+    "type": "collection",
+    "label": "Tracing Config"
+  },
+  {
+    "name": "VpcConfig",
+    "spec": [
+      {
+        "name": "SecurityGroupIds",
+        "type": "array",
+        "label": "Security Group IDs"
+      },
+      {
+        "name": "SubnetIds",
+        "type": "array",
+        "label": "Subnet IDs"
+      },
+      {
+        "name": "VpcId",
+        "type": "text",
+        "label": "Vpc ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Vpc Config"
+  },
+  {
+    "name": "RevisionId",
+    "type": "text",
+    "label": "Revision ID"
+  },
+  {
+    "name": "LastModified",
+    "type": "date",
+    "label": "Last Modified"
+  },
+  {
+    "name": "FunctionName",
+    "type": "text",
+    "label": "Function Name"
+  },
+  {
+    "name": "Runtime",
+    "type": "text",
+    "label": "Runtime"
+  },
+  {
+    "name": "Version",
+    "type": "text",
+    "label": "Version"
+  },
+  {
+    "name": "LastUpdateStatus",
+    "type": "text",
+    "label": "Last Update Status"
+  },
+  {
+    "name": "Layers",
+    "spec": [
+      {
+        "name": "Arn",
+        "type": "text",
+        "label": "Arn"
+      },
+      {
+        "name": "CodeSize",
+        "type": "uinteger",
+        "label": "Code Size"
+      }
+    ],
+    "type": "array",
+    "label": "Layers"
+  },
+  {
+    "name": "FunctionArn",
+    "type": "text",
+    "label": "Function Arn"
+  },
+  {
+    "name": "KMSKeyArn",
+    "type": "text",
+    "label": "KMS Key Arn"
+  },
+  {
+    "name": "MemorySize",
+    "type": "uinteger",
+    "label": "Memory Size"
+  },
+  {
+    "name": "LastUpdateStatusReason",
+    "type": "text",
+    "label": "Last Update Status Reason"
+  },
+  {
+    "name": "DeadLetterConfig",
+    "spec": [
+      {
+        "name": "TargetArn",
+        "type": "text",
+        "label": "Target Arn"
+      }
+    ],
+    "type": "collection",
+    "label": "Dead Letter Config"
+  },
+  {
+    "name": "Timeout",
+    "type": "uinteger",
+    "label": "Timeout"
+  },
+  {
+    "name": "Handler",
+    "type": "text",
+    "label": "Handler"
+  },
+  {
+    "name": "CodeSha256",
+    "type": "text",
+    "label": "Code Sha 256"
+  },
+  {
+    "name": "Role",
+    "type": "text",
+    "label": "Role"
+  },
+  {
+    "name": "MasterArn",
+    "type": "text",
+    "label": "Master Arn"
+  },
+  {
+    "name": "CodeSize",
+    "type": "uinteger",
+    "label": "Code Size"
+  },
+  {
+    "name": "State",
+    "type": "text",
+    "label": "State"
+  },
+  {
+    "name": "StateReason",
+    "type": "text",
+    "label": "State Reason"
+  },
+  {
+    "name": "Environment",
+    "spec": [
+      {
+        "name": "Error",
+        "spec": [
+          {
+            "name": "ErrorCode",
+            "type": "text",
+            "label": "Error Code"
+          },
+          {
+            "name": "Message",
+            "type": "text",
+            "label": "Message"
+          }
+        ],
+        "type": "collection",
+        "label": "Error"
+      },
+      {
+        "name": "Variables",
+        "spec": [],
+        "type": "collection",
+        "label": "Variables"
+      }
+    ],
+    "type": "collection",
+    "label": "Environment"
+  },
+  {
+    "name": "StateReasonCode",
+    "type": "text",
+    "label": "State Reason Code"
+  },
+  {
+    "name": "LastUpdateStatusReasonCode",
+    "type": "text",
+    "label": "Last Update Status Reason Code"
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Attachment ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "download_url",
+    "type": "url",
+    "label": "Download URL"
+  },
+  {
+    "name": "host",
+    "type": "text",
+    "label": "Host"
+  },
+  {
+    "name": "permanent_url",
+    "type": "url",
+    "label": "Permanent URL"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Task ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Task Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent (Task)"
+  },
+  {
+    "name": "view_url",
+    "type": "url",
+    "label": "View URL"
+  }
+]

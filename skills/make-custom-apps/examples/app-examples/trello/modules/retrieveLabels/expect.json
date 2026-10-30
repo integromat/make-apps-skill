@@ -1,0 +1,19 @@
+[
+  {
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "required": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

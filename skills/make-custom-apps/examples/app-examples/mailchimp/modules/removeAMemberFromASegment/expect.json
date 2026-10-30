@@ -1,0 +1,32 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "segment",
+          "type": "select",
+          "label": "Segment ID",
+          "options": {
+            "store": "rpc://listSegments",
+            "nested": [
+              {
+                "name": "email_address",
+                "type": "select",
+                "label": "Email Address",
+                "options": "rpc://listSegmentMembers",
+                "required": true
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

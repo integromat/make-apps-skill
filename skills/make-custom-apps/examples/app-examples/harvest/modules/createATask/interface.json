@@ -1,0 +1,42 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Task ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "billable_by_default",
+    "type": "boolean",
+    "label": "Billable by default"
+  },
+  {
+    "name": "default_hourly_rate",
+    "type": "text",
+    "label": "Default hourly rate"
+  },
+  {
+    "name": "is_default",
+    "type": "boolean",
+    "label": "Is default"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is active"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  }
+]

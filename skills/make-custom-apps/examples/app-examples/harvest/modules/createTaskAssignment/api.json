@@ -1,0 +1,14 @@
+{
+  "url": "/projects/{{parameters.project_id}}/task_assignments",
+  "body": {
+    "budget": "{{parameters.budget}}",
+    "task_id": "{{parameters.task_id}}",
+    "billable": "{{parameters.billable}}",
+    "is_active": "{{parameters.is_active}}",
+    "hourly_rate": "{{parameters.hourly_rate}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

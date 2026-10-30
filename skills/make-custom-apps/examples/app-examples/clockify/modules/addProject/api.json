@@ -1,0 +1,15 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/projects",
+  "body": {
+    "name": "{{parameters.name}}",
+    "color": "{{parameters.color}}",
+    "billable": "{{parameters.billable}}",
+    "clientId": "{{parameters.clientId}}",
+    "estimate": "{{estimate(parameters)}}",
+    "isPublic": "{{parameters.isPublic}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

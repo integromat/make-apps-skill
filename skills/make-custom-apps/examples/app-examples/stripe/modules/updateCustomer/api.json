@@ -1,0 +1,9 @@
+{
+  "url": "/customers/{{parameters.ignore::customer}}",
+  "body": "{{encodeRequestBody(parameters)}}",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

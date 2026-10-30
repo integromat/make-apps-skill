@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.X-Airtable-Client-Secret",
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "{{getBaseUrl(connection, 'api.airtable.com/v0')}}",
+  "headers": {
+    "authorization": "Bearer {{ifempty(connection.accessToken, connection.apiToken)}}"
+  },
+  "timeout": "{{if(common.timeout, common.timeout - 10000, undefined)}}",
+  "response": {
+    "error": "[{{statusCode}}] {{parseError(body.error, metadata.expect)}}"
+  }
+}

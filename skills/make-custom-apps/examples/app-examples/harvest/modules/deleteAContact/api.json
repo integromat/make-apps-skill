@@ -1,0 +1,7 @@
+{
+  "url": "/contacts/{{parameters.contact_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

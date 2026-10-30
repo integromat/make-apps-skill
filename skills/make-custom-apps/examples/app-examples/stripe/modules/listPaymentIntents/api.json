@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "limit": 100,
+    "customer": "{{parameters.customer}}"
+  },
+  "url": "/payment_intents",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

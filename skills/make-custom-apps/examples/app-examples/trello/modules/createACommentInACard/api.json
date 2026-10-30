@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "text": "{{parameters.text}}"
+  },
+  "url": "/cards/{{parameters.card_id}}/actions/comments",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

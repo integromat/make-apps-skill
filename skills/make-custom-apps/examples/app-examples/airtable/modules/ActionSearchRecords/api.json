@@ -1,0 +1,36 @@
+[
+  {
+    "url": "https://api.airtable.com/v0/meta/bases/{{parameters.base}}/tables",
+    "headers": {
+      "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+    },
+    "response": {
+      "temp": {
+        "schema": "{{getSchema(body, parameters.table, 'interface', , true)}}"
+      }
+    },
+    "condition": "{{parameters.useColumnId}}"
+  },
+  {
+    "url": "/{{parameters.base}}/{{encodeURL(parameters.table)}}/listRecords",
+    "body": {
+      "sort": "{{parameters.sort}}",
+      "view": "{{parameters.view}}",
+      "fields": "{{parameters.fields}}",
+      "filterByFormula": "{{parameters.formula}}"
+    },
+    "method": "POST",
+    "response": {
+      "limit": "{{parameters.maxRecords}}",
+      "output": "{{processRecord(item, temp.schema)}}",
+      "iterate": "{{body.records}}"
+    },
+    "encodeUrl": false,
+    "pagination": {
+      "body": {
+        "offset": "{{body.offset}}"
+      },
+      "condition": "{{body.offset}}"
+    }
+  }
+]

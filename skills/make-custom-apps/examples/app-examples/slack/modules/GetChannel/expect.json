@@ -1,0 +1,8 @@
+[
+  {
+    "name": "channel",
+    "type": "text",
+    "label": "Channel ID",
+    "required": true
+  }
+]

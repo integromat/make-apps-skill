@@ -1,0 +1,31 @@
+[
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "User ID"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Team ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  }
+]

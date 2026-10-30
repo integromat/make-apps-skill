@@ -1,0 +1,28 @@
+[
+  {
+    "url": "/card/{{parameters.card_id}}/customField/{{parameters.cf_id}}/item",
+    "body": {
+      "value": {
+        "{{if(parameters.manual_or_select === 'select', if(getType(metadata.expect) === 'map', parameters.type, getType(metadata.expect)), parameters.type)}}": "{{toString(parameters.value)}}"
+      }
+    },
+    "method": "PUT",
+    "headers": {},
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{if(parameters.manual_or_select === 'select', if(getType(metadata.expect) === 'map', parameters.type, getType(metadata.expect)), parameters.type) != 'list'}}"
+  },
+  {
+    "qs": {
+      "idValue": "{{parameters.value}}"
+    },
+    "url": "/card/{{parameters.card_id}}/customField/{{parameters.cf_id}}/item",
+    "method": "PUT",
+    "headers": {},
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{if(parameters.manual_or_select === 'select', if(getType(metadata.expect) === 'map', parameters.type, getType(metadata.expect)), parameters.type) === 'list'}}"
+  }
+]

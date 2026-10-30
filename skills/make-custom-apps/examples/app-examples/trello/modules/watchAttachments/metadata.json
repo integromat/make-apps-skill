@@ -1,0 +1,27 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": {
+    "qs": {
+      "limit": 500
+    },
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{item.date}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Attachments",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Triggers when a new attachment is added to a card.",
+  "altAccountName": null
+}

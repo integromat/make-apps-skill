@@ -1,0 +1,11 @@
+{
+  "url": "/pins.add",
+  "body": {
+    "channel": "{{parameters.channel}}",
+    "timestamp": "{{parameters.timestamp}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

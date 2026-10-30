@@ -1,0 +1,280 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Time Entry ID"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "tagIds",
+    "type": "array",
+    "label": "Tag IDs"
+  },
+  {
+    "name": "userId",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "taskId",
+    "type": "text",
+    "label": "Task ID"
+  },
+  {
+    "name": "projectId",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "timeInterval",
+    "spec": [
+      {
+        "name": "start",
+        "time": true,
+        "type": "date",
+        "label": "Start"
+      },
+      {
+        "name": "end",
+        "time": true,
+        "type": "date",
+        "label": "End"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      }
+    ],
+    "type": "collection",
+    "label": "Time Interval"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "isLocked",
+    "type": "boolean",
+    "label": "Locked"
+  },
+  {
+    "name": "tags",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Client ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      }
+    ],
+    "type": "array",
+    "label": "Tags"
+  },
+  {
+    "name": "task",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Task ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "projectId",
+        "type": "text",
+        "label": "Project ID"
+      },
+      {
+        "name": "assigneeId",
+        "type": "text",
+        "label": "Assignee ID"
+      },
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      }
+    ],
+    "type": "collection",
+    "label": "Task"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "archived",
+        "type": "boolean",
+        "label": "Archived"
+      },
+      {
+        "name": "billable",
+        "type": "boolean",
+        "label": "Billable"
+      },
+      {
+        "name": "clientId",
+        "type": "text",
+        "label": "Client ID"
+      },
+      {
+        "name": "clientName",
+        "type": "text",
+        "label": "Client Name"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      },
+      {
+        "name": "estimate",
+        "spec": [
+          {
+            "name": "estimate",
+            "type": "text",
+            "label": "Estimate"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Estimate"
+      },
+      {
+        "name": "hourlyRate",
+        "spec": [
+          {
+            "name": "amount",
+            "type": "uinteger",
+            "label": "Amount"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          }
+        ],
+        "type": "collection",
+        "label": "Hourly Rate"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Project ID"
+      },
+      {
+        "name": "memberships",
+        "spec": [
+          {
+            "name": "hourlyRate",
+            "spec": [
+              {
+                "name": "amount",
+                "type": "uinteger",
+                "label": "Amount"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              }
+            ],
+            "type": "collection",
+            "label": "Hourly Rate"
+          },
+          {
+            "name": "membershipStatus",
+            "type": "text",
+            "label": "Membership Status"
+          },
+          {
+            "name": "membershipType",
+            "type": "text",
+            "label": "Membership Type"
+          },
+          {
+            "name": "targetId",
+            "type": "text",
+            "label": "Target ID"
+          },
+          {
+            "name": "userId",
+            "type": "text",
+            "label": "User ID"
+          }
+        ],
+        "type": "array",
+        "label": "Memberships"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "public",
+        "type": "boolean",
+        "label": "Public"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "totalBillable",
+    "type": "text",
+    "label": "Total Billable"
+  },
+  {
+    "name": "hourlyRate",
+    "type": "text",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  }
+]

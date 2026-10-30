@@ -1,0 +1,49 @@
+[
+  {
+    "name": "docId",
+    "type": "select",
+    "label": "Doc",
+    "options": {
+      "store": "rpc://app%23coda@1/getAllDocs",
+      "nested": [
+        {
+          "name": "tableIdOrName",
+          "type": "select",
+          "label": "Table",
+          "options": "rpc://app%23coda@1/getTablesUsingdocId",
+          "mappable": false,
+          "required": true
+        }
+      ]
+    },
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "valueFormat",
+    "type": "select",
+    "label": "Value format",
+    "options": [
+      {
+        "label": "Simple",
+        "value": "simple"
+      },
+      {
+        "label": "Simple with arrays",
+        "value": "simpleWithArrays"
+      },
+      {
+        "label": "Rich",
+        "value": "rich"
+      }
+    ]
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

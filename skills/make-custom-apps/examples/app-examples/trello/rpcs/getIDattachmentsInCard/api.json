@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "fields": "id,name"
+  },
+  "url": "/cards/{{parameters.card_id}}/attachments",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

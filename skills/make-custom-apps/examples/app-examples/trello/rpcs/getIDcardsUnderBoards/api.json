@@ -1,0 +1,17 @@
+{
+  "qs": {
+    "limit": 300,
+    "fields": "id,name"
+  },
+  "url": "/boards/{{parameters.board_id}}/cards",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

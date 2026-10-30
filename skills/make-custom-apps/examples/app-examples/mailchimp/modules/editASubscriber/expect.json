@@ -1,0 +1,375 @@
+[
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "email",
+          "type": "select",
+          "label": "Email",
+          "options": "rpc://listSubscribers",
+          "required": true
+        },
+        {
+          "name": "email_address",
+          "type": "email",
+          "label": "New Email"
+        },
+        {
+          "name": "select",
+          "type": "select",
+          "label": "List Custom Fields Automatically",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes",
+              "nested": [
+                "rpc://listMergeFields",
+                "rpc://listInterestCategories"
+              ],
+              "default": true
+            },
+            {
+              "label": "No",
+              "value": "no",
+              "nested": [
+                {
+                  "name": "merge_fields",
+                  "spec": [
+                    {
+                      "name": "key",
+                      "type": "text",
+                      "label": "Key",
+                      "required": true
+                    },
+                    {
+                      "name": "value",
+                      "type": "any",
+                      "label": "Value",
+                      "required": true
+                    }
+                  ],
+                  "type": "array",
+                  "label": "List Fields"
+                },
+                {
+                  "name": "interests",
+                  "spec": [
+                    {
+                      "name": "key",
+                      "type": "text",
+                      "label": "Key",
+                      "required": true
+                    },
+                    {
+                      "name": "value",
+                      "type": "any",
+                      "label": "Value",
+                      "required": true
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Groups"
+                }
+              ]
+            }
+          ],
+          "mappable": false,
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "Subscribed",
+              "value": "subscribed"
+            },
+            {
+              "label": "Unsubscribed",
+              "value": "unsubscribed"
+            },
+            {
+              "label": "Cleaned",
+              "value": "cleaned"
+            },
+            {
+              "label": "Pending",
+              "value": "pending"
+            },
+            {
+              "label": "Transactional",
+              "value": "transactional"
+            }
+          ]
+        },
+        {
+          "name": "vip",
+          "type": "boolean",
+          "label": "VIP"
+        },
+        {
+          "help": "Email type preference for the email",
+          "name": "email_type",
+          "type": "select",
+          "label": "Email Type",
+          "options": [
+            {
+              "label": "HTML",
+              "value": "html",
+              "default": true
+            },
+            {
+              "label": "Text",
+              "value": "text"
+            }
+          ],
+          "advanced": true
+        },
+        {
+          "name": "language",
+          "type": "select",
+          "label": "Language Code",
+          "options": [
+            {
+              "label": "English",
+              "value": "en"
+            },
+            {
+              "label": "العربية",
+              "value": "ar"
+            },
+            {
+              "label": "Afrikaans",
+              "value": "af"
+            },
+            {
+              "label": "беларуская мова",
+              "value": "be"
+            },
+            {
+              "label": "български език",
+              "value": "bg"
+            },
+            {
+              "label": "català",
+              "value": "ca"
+            },
+            {
+              "label": "中文",
+              "value": "zh"
+            },
+            {
+              "label": "hrvatski jezik",
+              "value": "hr"
+            },
+            {
+              "label": "čeština",
+              "value": "cs"
+            },
+            {
+              "label": "dansk",
+              "value": "da"
+            },
+            {
+              "label": "Nederlands",
+              "value": "nl"
+            },
+            {
+              "label": "eesti",
+              "value": "et"
+            },
+            {
+              "label": "فارسی",
+              "value": "fa"
+            },
+            {
+              "label": "suomi",
+              "value": "fi"
+            },
+            {
+              "label": "français",
+              "value": "fr"
+            },
+            {
+              "label": "français (Canada)",
+              "value": "fr_CA"
+            },
+            {
+              "label": "Deutsch",
+              "value": "de"
+            },
+            {
+              "label": "ελληνικά",
+              "value": "el"
+            },
+            {
+              "label": "עברית",
+              "value": "he"
+            },
+            {
+              "label": "हिन्दी",
+              "value": "hi"
+            },
+            {
+              "label": "magyar",
+              "value": "hu"
+            },
+            {
+              "label": "Íslenska",
+              "value": "is"
+            },
+            {
+              "label": "Bahasa Indonesia",
+              "value": "id"
+            },
+            {
+              "label": "Gaeilge",
+              "value": "ga"
+            },
+            {
+              "label": "Italiano",
+              "value": "it"
+            },
+            {
+              "label": "日本語",
+              "value": "ja"
+            },
+            {
+              "label": "ខ្មែរ",
+              "value": "km"
+            },
+            {
+              "label": "한국어",
+              "value": "ko"
+            },
+            {
+              "label": "latviešu valoda",
+              "value": "lv"
+            },
+            {
+              "label": "lietuvių kalba",
+              "value": "lt"
+            },
+            {
+              "label": "Malti",
+              "value": "mt"
+            },
+            {
+              "label": "Bahasa Melayu",
+              "value": "ms"
+            },
+            {
+              "label": "македонски јазик",
+              "value": "mk"
+            },
+            {
+              "label": "Norsk",
+              "value": "no"
+            },
+            {
+              "label": "język polski",
+              "value": "pl"
+            },
+            {
+              "label": "Português (Brazil)",
+              "value": "pt"
+            },
+            {
+              "label": "Português (Portugal)",
+              "value": "pt_PT"
+            },
+            {
+              "label": "Română",
+              "value": "ro"
+            },
+            {
+              "label": "русский",
+              "value": "ru"
+            },
+            {
+              "label": "српски језик",
+              "value": "sr"
+            },
+            {
+              "label": "Slovenčina",
+              "value": "sk"
+            },
+            {
+              "label": "Slovenski Jezik",
+              "value": "sl"
+            },
+            {
+              "label": "Español (Mexico)",
+              "value": "es"
+            },
+            {
+              "label": "Español (Spain)",
+              "value": "es_ES"
+            },
+            {
+              "label": "Kiswahili",
+              "value": "sw"
+            },
+            {
+              "label": "Svenska",
+              "value": "sv"
+            },
+            {
+              "label": "தமிழ்",
+              "value": "ta"
+            },
+            {
+              "label": "ไทย",
+              "value": "th"
+            },
+            {
+              "label": "Türkçe",
+              "value": "tr"
+            },
+            {
+              "label": "Українська",
+              "value": "uk"
+            },
+            {
+              "label": "Tiếng Việt",
+              "value": "vi"
+            }
+          ],
+          "mappable": {
+            "help": "e.g.`en`,`cs`"
+          }
+        },
+        {
+          "name": "tags",
+          "spec": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Names",
+              "required": true
+            },
+            {
+              "name": "status",
+              "type": "hidden",
+              "label": "Status",
+              "default": "active"
+            }
+          ],
+          "type": "array",
+          "label": "Tags"
+        },
+        {
+          "name": "note",
+          "type": "text",
+          "label": "Note"
+        }
+      ]
+    },
+    "required": true
+  }
+]

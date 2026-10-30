@@ -1,0 +1,7 @@
+{
+  "url": "/payment_links/{{parameters.id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

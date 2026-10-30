@@ -1,0 +1,482 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listCustomers",
+      "label": "Search",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        }
+      ]
+    },
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID",
+    "required": true
+  },
+  {
+    "name": "input_amount",
+    "type": "select",
+    "label": "Input an Amount",
+    "options": [
+      {
+        "label": "By a Total Amount",
+        "value": "total",
+        "nested": [
+          {
+            "help": "The integer amount in cents of the charge to be applied to the upcoming invoice. Passing in a negative amount will reduce the `amount_due` on the invoice.",
+            "name": "amount",
+            "type": "integer",
+            "label": "Amount",
+            "required": true
+          },
+          {
+            "rpc": {
+              "url": "rpc://app%23stripe@1/listCurrencies",
+              "label": "Search",
+              "parameters": [
+                {
+                  "help": "A 2-character alphanumeric country code.",
+                  "name": "id",
+                  "type": "text",
+                  "label": "Country Code",
+                  "required": true,
+                  "validate": {
+                    "max": 2,
+                    "min": 2
+                  }
+                }
+              ]
+            },
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          }
+        ]
+      },
+      {
+        "label": "By an Unit Amount and Quantity",
+        "value": "unit_amount",
+        "nested": [
+          {
+            "help": "The integer unit amount in cents of the charge to be applied to the upcoming invoice. This `unit_amount` will be multiplied by the quantity to get the full amount. Passing in a negative `unit_amount` will reduce the `amount_due` on the invoice.",
+            "name": "unit_amount",
+            "type": "integer",
+            "label": "Unit Amount",
+            "required": true
+          },
+          {
+            "name": "quantity",
+            "type": "uinteger",
+            "label": "Quantity",
+            "required": true
+          },
+          {
+            "rpc": {
+              "url": "rpc://app%23stripe@1/listCurrencies",
+              "label": "Search",
+              "parameters": [
+                {
+                  "help": "A 2-character alphanumeric country code.",
+                  "name": "id",
+                  "type": "text",
+                  "label": "Country Code",
+                  "required": true,
+                  "validate": {
+                    "max": 2,
+                    "min": 2
+                  }
+                }
+              ]
+            },
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          }
+        ]
+      },
+      {
+        "label": "By an Existing Price Object",
+        "value": "price",
+        "nested": [
+          {
+            "name": "input_price",
+            "type": "select",
+            "label": "Price Object",
+            "options": [
+              {
+                "label": "Input an Existing Price ID",
+                "value": "existing",
+                "nested": [
+                  {
+                    "rpc": {
+                      "url": "rpc://app%23stripe@1/listPrices",
+                      "label": "Search",
+                      "parameters": [
+                        {
+                          "name": "product",
+                          "type": "select",
+                          "label": "Product ID",
+                          "options": "rpc://app%23stripe@1/listProducts",
+                          "required": true
+                        }
+                      ]
+                    },
+                    "name": "price",
+                    "type": "text",
+                    "label": "Price ID",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Create a New Price Object",
+                "value": "create",
+                "nested": [
+                  {
+                    "name": "price_data",
+                    "spec": [
+                      {
+                        "rpc": {
+                          "url": "rpc://app%23stripe@1/listCurrencies",
+                          "label": "Search",
+                          "parameters": [
+                            {
+                              "help": "A 2-character alphanumeric country code.",
+                              "name": "id",
+                              "type": "text",
+                              "label": "Country Code",
+                              "required": true,
+                              "validate": {
+                                "max": 2,
+                                "min": 2
+                              }
+                            }
+                          ]
+                        },
+                        "name": "currency",
+                        "type": "text",
+                        "label": "Currency",
+                        "required": true
+                      },
+                      {
+                        "mode": "edit",
+                        "name": "product",
+                        "type": "select",
+                        "label": "Product ID",
+                        "options": "rpc://app%23stripe@1/listProducts",
+                        "editable": true,
+                        "required": true
+                      },
+                      {
+                        "help": "A positive integer in cents (or 0 for a free price) representing how much to charge.",
+                        "name": "unit_amount",
+                        "type": "uinteger",
+                        "label": "Amount",
+                        "required": true
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Price Data"
+                  }
+                ]
+              }
+            ],
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "An arbitrary string which you can attach to the invoice item. The description is displayed in the invoice for easy tracking.",
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "period",
+    "spec": [
+      {
+        "name": "start",
+        "type": "date",
+        "label": "Start"
+      },
+      {
+        "name": "end",
+        "type": "date",
+        "label": "End"
+      }
+    ],
+    "type": "collection",
+    "label": "Period"
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  },
+  {
+    "help": "Defaults to false for prorations or negative invoice items, and true for all other invoice items.",
+    "name": "discountable",
+    "type": "boolean",
+    "label": "Discountable",
+    "nested": [
+      {
+        "name": "discounts",
+        "spec": [
+          {
+            "name": "coupon",
+            "type": "select",
+            "label": "Coupon ID",
+            "options": "rpc://app%23stripe@1/listCoupons"
+          },
+          {
+            "help": "An existing discount ID on the object (or one of its ancestors) to reuse.",
+            "name": "discount",
+            "type": "text",
+            "label": "Discount ID"
+          }
+        ],
+        "type": "array",
+        "label": "Discounts"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listInvoices",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        },
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listSubscriptions",
+            "label": "Search",
+            "parameters": [
+              {
+                "rpc": {
+                  "url": "rpc://app%23stripe@1/listCustomers",
+                  "label": "Search",
+                  "parameters": [
+                    {
+                      "name": "email",
+                      "type": "email",
+                      "label": "Email",
+                      "required": true
+                    }
+                  ]
+                },
+                "name": "customer",
+                "type": "text",
+                "label": "Customer ID"
+              },
+              {
+                "name": "status",
+                "type": "select",
+                "label": "Status",
+                "options": [
+                  {
+                    "label": "All",
+                    "value": "all"
+                  },
+                  {
+                    "label": "Active",
+                    "value": "active"
+                  },
+                  {
+                    "label": "Past Due",
+                    "value": "past_due"
+                  },
+                  {
+                    "label": "Unpaid",
+                    "value": "unpaid"
+                  },
+                  {
+                    "label": "Canceled",
+                    "value": "canceled"
+                  },
+                  {
+                    "label": "Incomplete",
+                    "value": "incomplete"
+                  },
+                  {
+                    "label": "Incomplete Expired",
+                    "value": "incomplete_expired"
+                  },
+                  {
+                    "label": "Trialing",
+                    "value": "trialing"
+                  },
+                  {
+                    "label": "Ended",
+                    "value": "ended"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "subscription",
+          "type": "text",
+          "label": "Subscription ID"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "Draft",
+              "value": "draft"
+            },
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Paid",
+              "value": "paid"
+            },
+            {
+              "label": "Uncollectible",
+              "value": "uncollectible"
+            },
+            {
+              "label": "Void",
+              "value": "void"
+            }
+          ]
+        },
+        {
+          "name": "collection_method",
+          "type": "select",
+          "label": "Collection Method",
+          "options": [
+            {
+              "label": "Charge Automatically",
+              "value": "charge_automatically"
+            },
+            {
+              "label": "Send Invoice",
+              "value": "send_invoice"
+            }
+          ]
+        }
+      ]
+    },
+    "help": "The identifier of the desired invoice.",
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice ID",
+    "advanced": true
+  },
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listSubscriptions",
+      "label": "Search",
+      "parameters": [
+        {
+          "name": "customer",
+          "type": "select",
+          "label": "Customer ID",
+          "options": "rpc://app%23stripe@1/listCustomers"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "All",
+              "value": "all"
+            },
+            {
+              "label": "Active",
+              "value": "active"
+            },
+            {
+              "label": "Past Due",
+              "value": "past_due"
+            },
+            {
+              "label": "Unpaid",
+              "value": "unpaid"
+            },
+            {
+              "label": "Canceled",
+              "value": "canceled"
+            },
+            {
+              "label": "Incomplete",
+              "value": "incomplete"
+            },
+            {
+              "label": "Incomplete Expired",
+              "value": "incomplete_expired"
+            },
+            {
+              "label": "Trialing",
+              "value": "trialing"
+            },
+            {
+              "label": "Ended",
+              "value": "ended"
+            }
+          ]
+        }
+      ]
+    },
+    "help": "If not set, the created invoice will include all pending invoice items for the customer. If set, the created invoice will only include pending invoice items for that subscription and pending invoice items not associated with any subscription.",
+    "name": "subscription",
+    "type": "text",
+    "label": "Subscription ID",
+    "advanced": true
+  },
+  {
+    "help": "When set, the `default_tax_rates` on the invoice do not apply to this invoice item.",
+    "name": "tax_rates",
+    "spec": {
+      "type": "select",
+      "label": "Tax Rate",
+      "options": "rpc://app%23stripe@1/listTaxRates",
+      "required": true
+    },
+    "type": "array",
+    "label": "Tax Rates",
+    "advanced": true
+  }
+]

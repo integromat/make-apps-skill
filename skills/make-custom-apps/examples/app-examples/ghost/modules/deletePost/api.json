@@ -1,0 +1,5 @@
+{
+  "url": "/posts/{{parameters.post_id}}",
+  "method": "DELETE",
+  "response": {}
+}

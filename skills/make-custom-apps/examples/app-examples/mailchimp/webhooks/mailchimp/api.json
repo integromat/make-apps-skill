@@ -1,0 +1,11 @@
+{
+  "output": "{{webhookResponse(body)}}",
+  "verification": {
+    "respond": {
+      "headers": {
+        "user-agent": "{{'MailChimp.com WebHook Validator' || 'MailChimp'}}"
+      }
+    },
+    "condition": "{{method === 'GET'}}"
+  }
+}

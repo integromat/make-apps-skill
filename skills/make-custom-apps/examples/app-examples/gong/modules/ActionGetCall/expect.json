@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "callId",
+    "type": "select",
+    "label": "Call ID",
+    "options": "rpc://app%23gong@1/getCallId",
+    "required": true
+  }
+]

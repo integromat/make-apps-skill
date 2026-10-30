@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "task_id",
+    "type": "select",
+    "label": "Task ID",
+    "options": "rpc://getTasks",
+    "required": true
+  }
+]

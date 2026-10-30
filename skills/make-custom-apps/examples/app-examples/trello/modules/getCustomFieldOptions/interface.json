@@ -1,0 +1,29 @@
+[
+  {
+    "name": "value",
+    "spec": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      }
+    ],
+    "type": "collection",
+    "label": "Value"
+  },
+  {
+    "name": "_id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  }
+]

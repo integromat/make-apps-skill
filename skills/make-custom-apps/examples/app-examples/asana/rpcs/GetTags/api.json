@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "limit": "{{if(parameters.workspaceAlt3, 100, undefined)}}",
+    "workspace": "{{if(parameters.workspaceAlt3, parameters.workspace || parameters.workspaceAlt3, undefined)}}",
+    "opt_fields": [
+      "this.workspace.name",
+      "this.name",
+      "this.color"
+    ]
+  },
+  "url": "/tags",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "[{{item.workspace.name}}] {{item.name}} ({{item.color}})",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

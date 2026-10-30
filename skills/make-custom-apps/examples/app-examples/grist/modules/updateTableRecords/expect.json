@@ -1,0 +1,61 @@
+[
+  {
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": {
+      "store": "rpc://app%23grist@1/listDocuments",
+      "nested": [
+        {
+          "name": "tableId",
+          "type": "text",
+          "label": "Table Name",
+          "nested": [
+            {
+              "name": "records",
+              "spec": [
+                {
+                  "mode": "edit",
+                  "name": "id",
+                  "type": "select",
+                  "label": "Record ID",
+                  "options": "rpc://app%23grist@1/listRows",
+                  "required": true
+                },
+                {
+                  "help": "Specify values for a row record.",
+                  "name": "fields",
+                  "spec": [
+                    {
+                      "mode": "edit",
+                      "name": "key",
+                      "type": "select",
+                      "label": "Column",
+                      "options": "rpc://app%23grist@1/listColumns",
+                      "required": true
+                    },
+                    {
+                      "name": "value",
+                      "type": "text",
+                      "label": "Value",
+                      "required": true
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Fields",
+                  "required": true
+                }
+              ],
+              "type": "array",
+              "label": "Records",
+              "required": true
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

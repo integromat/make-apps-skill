@@ -1,0 +1,87 @@
+[
+  {
+    "name": "day",
+    "type": "text",
+    "label": "Day"
+  },
+  {
+    "name": "emails_sent",
+    "type": "number",
+    "label": "Emails Sent"
+  },
+  {
+    "name": "unique_opens",
+    "type": "number",
+    "label": "Unique Opens"
+  },
+  {
+    "name": "recipient_clicks",
+    "type": "number",
+    "label": "Recipient Clicks"
+  },
+  {
+    "name": "hard_bounce",
+    "type": "number",
+    "label": "Hard Bounce"
+  },
+  {
+    "name": "soft_bounce",
+    "type": "number",
+    "label": "Soft Bounce"
+  },
+  {
+    "name": "subs",
+    "type": "number",
+    "label": "Subs"
+  },
+  {
+    "name": "unsubs",
+    "type": "number",
+    "label": "Unsubs"
+  },
+  {
+    "name": "other_adds",
+    "type": "number",
+    "label": "Other Adds"
+  },
+  {
+    "name": "other_removes",
+    "type": "number",
+    "label": "Other Removes"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

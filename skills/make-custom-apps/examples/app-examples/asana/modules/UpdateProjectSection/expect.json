@@ -1,0 +1,69 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Project Section ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "name": "workspaceRPC",
+            "type": "select",
+            "label": "Workspace",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "project",
+                  "type": "select",
+                  "label": "Project ID",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetProjects",
+                    "nested": [
+                      {
+                        "name": "section_gid",
+                        "type": "select",
+                        "label": "Project Section ID",
+                        "options": "rpc://app%23asana@2/GetProjectSections",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "section_gid",
+            "type": "text",
+            "label": "Project Section ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Section Name",
+    "required": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Form Submissions",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "netlify",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a new form is submitted in a specific site.",
+  "altAccountName": null
+}

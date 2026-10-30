@@ -1,0 +1,42 @@
+[
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "Post created",
+        "value": "post.added"
+      },
+      {
+        "label": "Post deleted",
+        "value": "post.deleted"
+      },
+      {
+        "label": "Post updated",
+        "value": "post.edited"
+      },
+      {
+        "label": "Post published",
+        "value": "post.published"
+      },
+      {
+        "label": "Published post updated",
+        "value": "post.published.edited"
+      },
+      {
+        "label": "Post unpublished",
+        "value": "post.unpublished"
+      },
+      {
+        "label": "Tag added to post",
+        "value": "post.tag.attached"
+      },
+      {
+        "label": "Tag removed from post",
+        "value": "post.tag.detached"
+      }
+    ],
+    "required": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "limit": 500
+  },
+  "url": "/docs",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.items}}"
+  }
+}

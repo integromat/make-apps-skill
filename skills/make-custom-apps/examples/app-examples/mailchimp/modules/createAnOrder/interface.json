@@ -1,0 +1,537 @@
+[
+  {
+    "name": "id",
+    "type": "uinteger",
+    "label": "Order ID"
+  },
+  {
+    "name": "customer",
+    "spec": [
+      {
+        "name": "id",
+        "type": "uinteger",
+        "label": "Customer ID"
+      },
+      {
+        "name": "email_address",
+        "type": "email",
+        "label": "Email Address"
+      },
+      {
+        "name": "opt_in_status",
+        "type": "boolean",
+        "label": "Opt in Status"
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      },
+      {
+        "name": "first_name",
+        "type": "text",
+        "label": "First Name"
+      },
+      {
+        "name": "last_name",
+        "type": "text",
+        "label": "Last Name"
+      },
+      {
+        "name": "orders_count",
+        "type": "number",
+        "label": "Orders Count"
+      },
+      {
+        "name": "total_spent",
+        "type": "number",
+        "label": "Total Spent"
+      },
+      {
+        "name": "address",
+        "spec": [
+          {
+            "name": "address1",
+            "type": "text",
+            "label": "Address1"
+          },
+          {
+            "name": "address2",
+            "type": "text",
+            "label": "Address2"
+          },
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "province",
+            "type": "text",
+            "label": "Province"
+          },
+          {
+            "name": "province_code",
+            "type": "text",
+            "label": "Province Code"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal Code"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "country_code",
+            "type": "text",
+            "label": "Country Code"
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created at"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated at"
+      },
+      {
+        "name": "_links",
+        "spec": {
+          "spec": [
+            {
+              "name": "rel",
+              "type": "text",
+              "label": "Rel"
+            },
+            {
+              "name": "href",
+              "type": "text",
+              "label": "Href"
+            },
+            {
+              "name": "method",
+              "type": "text",
+              "label": "Method"
+            },
+            {
+              "name": "targetSchema",
+              "type": "text",
+              "label": "Target Schema"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Links"
+      }
+    ],
+    "type": "collection",
+    "label": "Customer"
+  },
+  {
+    "name": "store_id",
+    "type": "uinteger",
+    "label": "Store ID"
+  },
+  {
+    "name": "campaign_id",
+    "type": "uinteger",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "landing_site",
+    "type": "text",
+    "label": "Landing Site"
+  },
+  {
+    "name": "financial_status",
+    "type": "text",
+    "label": "Financial Status"
+  },
+  {
+    "name": "fulfillment_status",
+    "type": "text",
+    "label": "Fulfillment Status"
+  },
+  {
+    "name": "currency_code",
+    "type": "text",
+    "label": "Currency Code"
+  },
+  {
+    "name": "order_total",
+    "type": "number",
+    "label": "Order Total"
+  },
+  {
+    "name": "order_url",
+    "type": "url",
+    "label": "Order URL"
+  },
+  {
+    "name": "discount_total",
+    "type": "number",
+    "label": "Discount Total"
+  },
+  {
+    "name": "tax_total",
+    "type": "number",
+    "label": "Tax Total"
+  },
+  {
+    "name": "shipping_total",
+    "type": "number",
+    "label": "Shipping Total"
+  },
+  {
+    "name": "tracking_code",
+    "type": "text",
+    "label": "Tracking Code"
+  },
+  {
+    "name": "processed_at_foreign",
+    "type": "date",
+    "label": "Processed at Foreign"
+  },
+  {
+    "name": "cancelled_at_foreign",
+    "type": "date",
+    "label": "Cancelled at Foreign"
+  },
+  {
+    "name": "updated_at_foreign",
+    "type": "date",
+    "label": "Updated at Foreign"
+  },
+  {
+    "name": "shipping_address",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Address1"
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Address2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "province",
+        "type": "text",
+        "label": "Province"
+      },
+      {
+        "name": "province_code",
+        "type": "text",
+        "label": "Province Code"
+      },
+      {
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "country_code",
+        "type": "text",
+        "label": "Country Code"
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping Address"
+  },
+  {
+    "name": "billing_address",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Address1"
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Address2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "province",
+        "type": "text",
+        "label": "Province"
+      },
+      {
+        "name": "province_code",
+        "type": "text",
+        "label": "Province Code"
+      },
+      {
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "country_code",
+        "type": "text",
+        "label": "Country Code"
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      },
+      {
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      }
+    ],
+    "type": "collection",
+    "label": "Billing Address"
+  },
+  {
+    "name": "promos",
+    "spec": {
+      "spec": [
+        {
+          "name": "code",
+          "type": "text",
+          "label": "Code"
+        },
+        {
+          "name": "amount_discounted",
+          "type": "number",
+          "label": "Amount Discounted"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Promos"
+  },
+  {
+    "name": "lines",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "uinteger",
+          "label": "Line ID"
+        },
+        {
+          "name": "product_id",
+          "type": "uinteger",
+          "label": "Product ID"
+        },
+        {
+          "name": "product_title",
+          "type": "text",
+          "label": "Product Title"
+        },
+        {
+          "name": "product_variant_id",
+          "type": "uinteger",
+          "label": "Product Variant ID"
+        },
+        {
+          "name": "product_variant_title",
+          "type": "text",
+          "label": "Product Variant Title"
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "label": "Quantity"
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "label": "Price"
+        },
+        {
+          "name": "discount",
+          "type": "number",
+          "label": "Discount"
+        },
+        {
+          "name": "_links",
+          "spec": {
+            "spec": [
+              {
+                "name": "rel",
+                "type": "text",
+                "label": "Rel"
+              },
+              {
+                "name": "href",
+                "type": "text",
+                "label": "Href"
+              },
+              {
+                "name": "method",
+                "type": "text",
+                "label": "Method"
+              },
+              {
+                "name": "targetSchema",
+                "type": "text",
+                "label": "Target Schema"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Links"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Lines"
+  },
+  {
+    "name": "outreach",
+    "spec": [
+      {
+        "name": "id",
+        "type": "uinteger",
+        "label": "Outreach ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "published_time",
+        "type": "text",
+        "label": "Published Time"
+      }
+    ],
+    "type": "collection",
+    "label": "Outreach"
+  },
+  {
+    "name": "tracking_number",
+    "type": "text",
+    "label": "Tracking Number"
+  },
+  {
+    "name": "tracking_carrier",
+    "type": "text",
+    "label": "Tracking Carrier"
+  },
+  {
+    "name": "tracking_url",
+    "type": "url",
+    "label": "Tracking URL"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

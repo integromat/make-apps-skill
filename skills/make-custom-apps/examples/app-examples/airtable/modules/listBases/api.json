@@ -1,0 +1,18 @@
+{
+  "url": "https://api.airtable.com/v0/meta/bases/",
+  "method": "GET",
+  "headers": {
+    "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+  },
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.bases}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.offset}}"
+    },
+    "condition": "{{body.offset}}"
+  }
+}

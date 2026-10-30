@@ -1,0 +1,4 @@
+{
+  "uid": "{{get(parseJSON(body.payload), 'message.user')}}",
+  "output": "{{omit(parseJSON(body.payload), 'api_app_id', 'token')}}"
+}

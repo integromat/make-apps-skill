@@ -1,0 +1,18 @@
+[
+  {
+    "help": "`Yes`: return payment links that are active.\n`No`: return payment links that are inactive.\n`Empty`: return all payment links.",
+    "name": "active",
+    "type": "boolean",
+    "label": "Active"
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  }
+]

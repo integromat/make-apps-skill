@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}"
+  },
+  "url": "/lists/{{parameters.list}}/activity",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.activity}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit > 1000 && length(body.emails) === 1000}}"
+  }
+}

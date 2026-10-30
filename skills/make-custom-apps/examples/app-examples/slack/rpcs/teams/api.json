@@ -1,0 +1,18 @@
+{
+  "url": "/admin.teams.list",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}} <{{item.team_url}}>",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.teams}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

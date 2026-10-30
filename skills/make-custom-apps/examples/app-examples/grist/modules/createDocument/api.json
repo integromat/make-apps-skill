@@ -1,0 +1,13 @@
+{
+  "url": "/workspaces/{{parameters.workspaceId}}/docs",
+  "body": {
+    "name": "{{parameters.name}}",
+    "isPinned": "{{parameters.isPinned}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": {
+      "id": "{{body}}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Tags",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "clockify6",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a tag is created.",
+  "altAccountName": null
+}

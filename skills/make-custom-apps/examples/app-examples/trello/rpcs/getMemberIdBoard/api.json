@@ -1,0 +1,14 @@
+{
+  "qs": {},
+  "url": "/boards/{{parameters.board_id}}/members",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.fullName}} ({{item.username}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "pos": "{{parameters.position}}",
+    "name": "{{parameters.name}}",
+    "idCard": "{{parameters.card_id}}",
+    "idChecklistSource": "{{parameters.idChecklistSource}}"
+  },
+  "url": "/checklists",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

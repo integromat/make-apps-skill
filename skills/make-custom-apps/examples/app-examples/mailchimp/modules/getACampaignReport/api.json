@@ -1,0 +1,7 @@
+{
+  "url": "/reports/{{parameters.campaign}}",
+  "method": "GET",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

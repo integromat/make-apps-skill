@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "count": 500
+  },
+  "url": "/lists/{{parameters.list}}/segments/{{parameters.segment}}/members",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.email_address}}",
+      "value": "{{item.email_address}}"
+    },
+    "iterate": "{{body.members}}"
+  },
+  "condition": "{{parameters.list && !isMapping(parameters.list)}}"
+}

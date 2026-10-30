@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/users.identity",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body)}}"
+  }
+}

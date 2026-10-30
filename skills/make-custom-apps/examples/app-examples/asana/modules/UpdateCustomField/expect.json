@@ -1,0 +1,149 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Custom Field ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "Filter on workspaces or organizations.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace/Organization ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "custom_field",
+                  "type": "select",
+                  "label": "Custom Field ID",
+                  "options": "rpc://app%23asana@2/GetCustomFields",
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "custom_field",
+            "type": "text",
+            "label": "Custom Field ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "help": "This field dictates the number of places after the decimal to round to.",
+    "name": "precision",
+    "type": "select",
+    "label": "Number Precision",
+    "options": [
+      {
+        "label": "1 Decimal",
+        "value": 1
+      },
+      {
+        "label": "2 Decimals",
+        "value": 2
+      },
+      {
+        "label": "3 Decimals",
+        "value": 3
+      },
+      {
+        "label": "4 Decimals",
+        "value": 4
+      },
+      {
+        "label": "5 Decimals",
+        "value": 5
+      },
+      {
+        "label": "6 Decimals",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "help": "Only for the number type.",
+    "name": "format",
+    "type": "select",
+    "label": "Format",
+    "options": [
+      {
+        "label": "Currency",
+        "value": "currency",
+        "nested": [
+          {
+            "help": "ISO 4217 Currency Code.",
+            "name": "currency_code",
+            "type": "text",
+            "label": "Currency Code"
+          }
+        ]
+      },
+      {
+        "label": "Percentage",
+        "value": "percentage"
+      },
+      {
+        "label": "Custom",
+        "value": "custom",
+        "nested": [
+          {
+            "help": "This is the string that appears next to the custom field value.",
+            "name": "custom_label",
+            "type": "text",
+            "label": "Custom Label"
+          },
+          {
+            "name": "custom_label_position",
+            "type": "select",
+            "label": "Custom Label Position",
+            "options": [
+              {
+                "label": "Prefix",
+                "value": "prefix"
+              },
+              {
+                "label": "Suffix",
+                "value": "suffix"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  }
+]

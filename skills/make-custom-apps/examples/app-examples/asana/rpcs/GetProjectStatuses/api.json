@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.color",
+      "this.text",
+      "this.title"
+    ]
+  },
+  "url": "/projects/{{parameters.project}}/project_statuses",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.color}}] {{item.title}}: {{item.text}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

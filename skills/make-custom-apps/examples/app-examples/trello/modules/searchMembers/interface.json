@@ -1,0 +1,85 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Member ID"
+  },
+  {
+    "name": "avatarHash",
+    "type": "text",
+    "label": "Avatar hash"
+  },
+  {
+    "name": "avatarUrl",
+    "type": "text",
+    "label": "Avatar URL"
+  },
+  {
+    "name": "bio",
+    "type": "text",
+    "label": "Bio"
+  },
+  {
+    "name": "bioData",
+    "type": "text",
+    "label": "Bio data"
+  },
+  {
+    "name": "confirmed",
+    "type": "boolean",
+    "label": "Confirmed"
+  },
+  {
+    "name": "fullName",
+    "type": "text",
+    "label": "Full name"
+  },
+  {
+    "name": "idEnterprisesDeactivated",
+    "spec": [],
+    "type": "array",
+    "label": "Enterprises deactivated ID"
+  },
+  {
+    "name": "idMemberReferrer",
+    "type": "text",
+    "label": "Member referrer ID"
+  },
+  {
+    "name": "idPremOrgsAdmin",
+    "spec": [],
+    "type": "array",
+    "label": "Prem orgs admin ID"
+  },
+  {
+    "name": "initials",
+    "type": "text",
+    "label": "Initials"
+  },
+  {
+    "name": "memberType",
+    "type": "text",
+    "label": "Member type"
+  },
+  {
+    "name": "products",
+    "spec": [],
+    "type": "array",
+    "label": "Products"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "Username"
+  }
+]

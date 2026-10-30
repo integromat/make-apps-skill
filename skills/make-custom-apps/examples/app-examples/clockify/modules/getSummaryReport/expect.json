@@ -1,0 +1,584 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "name": "dateRangeStart",
+          "type": "date",
+          "label": "Date Range Start",
+          "required": true
+        },
+        {
+          "name": "dateRangeEnd",
+          "type": "date",
+          "label": "Date Range End",
+          "required": true
+        },
+        {
+          "name": "summaryFilter",
+          "spec": [
+            {
+              "name": "groups",
+              "type": "select",
+              "label": "Groups",
+              "options": [
+                {
+                  "label": "Project",
+                  "value": "PROJECT"
+                },
+                {
+                  "label": "Client",
+                  "value": "CLIENT"
+                },
+                {
+                  "label": "Task",
+                  "value": "TASK"
+                },
+                {
+                  "label": "Tag",
+                  "value": "TAG"
+                },
+                {
+                  "label": "Date",
+                  "value": "DATE"
+                },
+                {
+                  "label": "Week",
+                  "value": "WEEK"
+                },
+                {
+                  "label": "Month",
+                  "value": "MONTH"
+                },
+                {
+                  "label": "User",
+                  "value": "USER"
+                },
+                {
+                  "label": "User Group",
+                  "value": "USER_GROUP"
+                },
+                {
+                  "label": "Time Entry",
+                  "value": "TIMEENTRY"
+                }
+              ],
+              "multiple": true,
+              "required": true,
+              "validate": {
+                "maxItems": 3,
+                "minItems": 1
+              }
+            },
+            {
+              "name": "sortColumn",
+              "type": "select",
+              "label": "Sort Column",
+              "options": [
+                {
+                  "label": "Group",
+                  "value": "GROUP"
+                },
+                {
+                  "label": "Duration",
+                  "value": "DURATION"
+                },
+                {
+                  "label": "Amount",
+                  "value": "AMOUNT"
+                },
+                {
+                  "label": "Earned",
+                  "value": "EARNED"
+                },
+                {
+                  "label": "Cost",
+                  "value": "COST"
+                },
+                {
+                  "label": "Profit",
+                  "value": "PROFIT"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Summary Filter"
+        },
+        {
+          "name": "sortOrder",
+          "type": "select",
+          "label": "Sort Order",
+          "options": [
+            {
+              "label": "Ascending",
+              "value": "ASCENDING"
+            },
+            {
+              "label": "Descending",
+              "value": "DESCENDING"
+            }
+          ]
+        },
+        {
+          "name": "exportType",
+          "type": "select",
+          "label": "Export Type",
+          "options": [
+            {
+              "label": "JSON",
+              "value": "JSON"
+            },
+            {
+              "label": "CSV",
+              "value": "CSV"
+            },
+            {
+              "label": "XLSX",
+              "value": "XLSX"
+            },
+            {
+              "label": "PDF",
+              "value": "PDF"
+            }
+          ]
+        },
+        {
+          "name": "rounding",
+          "type": "boolean",
+          "label": "Rounding"
+        },
+        {
+          "name": "amountShown",
+          "type": "select",
+          "label": "Amount Shown",
+          "options": [
+            {
+              "label": "Hide Amount",
+              "value": "HIDE_AMOUNT"
+            },
+            {
+              "label": "Earned",
+              "value": "EARNED"
+            },
+            {
+              "label": "Cost",
+              "value": "COST"
+            },
+            {
+              "label": "Profit",
+              "value": "PROFIT"
+            }
+          ]
+        },
+        {
+          "name": "timeZone",
+          "type": "timezone",
+          "label": "Time Zone"
+        },
+        {
+          "name": "users",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "User IDs",
+              "options": "rpc://app%23clockify@1/listUsers",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Users"
+        },
+        {
+          "name": "invoicingState",
+          "type": "select",
+          "label": "Invoicing State",
+          "options": [
+            {
+              "label": "Invoiced",
+              "value": "INVOICED"
+            },
+            {
+              "label": "Uninvoiced",
+              "value": "UNINVOICED"
+            },
+            {
+              "label": "All",
+              "value": "ALL"
+            }
+          ]
+        },
+        {
+          "name": "approvalState",
+          "type": "select",
+          "label": "Approval State",
+          "options": [
+            {
+              "label": "Approved",
+              "value": "APPROVED"
+            },
+            {
+              "label": "Unapproved",
+              "value": "UNAPPROVED"
+            },
+            {
+              "label": "All",
+              "value": "ALL"
+            }
+          ]
+        },
+        {
+          "name": "userGroups",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "User Group IDs",
+              "options": "rpc://app%23clockify@1/listGroups",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "User Groups"
+        },
+        {
+          "name": "clients",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Client IDs",
+              "options": "rpc://app%23clockify@1/listClients",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Archived",
+                  "value": "ARCHIVED"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Clients"
+        },
+        {
+          "name": "projects",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Project IDs",
+              "options": "rpc://app%23clockify@1/listProjects",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Archived",
+                  "value": "ARCHIVED"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Projects"
+        },
+        {
+          "mode": "edit",
+          "name": "project",
+          "type": "select",
+          "label": "Project",
+          "options": {
+            "store": "rpc://app%23clockify@1/listProjects",
+            "nested": [
+              {
+                "name": "tasks",
+                "spec": [
+                  {
+                    "mode": "edit",
+                    "name": "ids",
+                    "type": "select",
+                    "label": "Task IDs",
+                    "options": "rpc://app%23clockify@1/listTasks",
+                    "multiple": true
+                  },
+                  {
+                    "name": "contains",
+                    "type": "select",
+                    "label": "Contains",
+                    "options": [
+                      {
+                        "label": "Contains",
+                        "value": "CONTAINS"
+                      },
+                      {
+                        "label": "Does Not Contain",
+                        "value": "DOES_NOT_CONTAIN"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "status",
+                    "type": "select",
+                    "label": "Status",
+                    "options": [
+                      {
+                        "label": "All",
+                        "value": "ALL"
+                      },
+                      {
+                        "label": "Active",
+                        "value": "ACTIVE"
+                      },
+                      {
+                        "label": "Done",
+                        "value": "DONE"
+                      }
+                    ]
+                  }
+                ],
+                "type": "collection",
+                "label": "Tasks"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tags",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Tag IDs",
+              "options": "rpc://app%23clockify@1/listTags",
+              "multiple": true
+            },
+            {
+              "name": "containedInTimeentry",
+              "type": "select",
+              "label": "Contained in Time Entry",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Contains Only",
+                  "value": "CONTAINS_ONLY"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "ARCHIVED",
+                  "value": "ARCHIVED"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Tags"
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "withoutDescription",
+          "type": "boolean",
+          "label": "Without Description"
+        },
+        {
+          "name": "customFields",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Custom Field ID"
+            },
+            {
+              "name": "value",
+              "type": "text",
+              "label": "Value"
+            },
+            {
+              "help": "For example: `NUMBER`.",
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "help": "For example: `EQUAL`.",
+              "name": "numberCondition",
+              "type": "text",
+              "label": "Number Condition"
+            },
+            {
+              "name": "empty",
+              "type": "boolean",
+              "label": "Empty"
+            }
+          ],
+          "type": "array",
+          "label": "Custom Fields"
+        }
+      ]
+    },
+    "required": true
+  }
+]

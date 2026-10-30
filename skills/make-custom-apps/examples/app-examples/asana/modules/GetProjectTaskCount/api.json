@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'projectId'),'TaskCount')}}",
+  "url": "/projects/{{parameters.projectId}}/task_counts",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

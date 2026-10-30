@@ -1,0 +1,16 @@
+{
+  "rev": 6,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get an Expense Report",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Retrieves an expense report.",
+  "altAccountName": null
+}

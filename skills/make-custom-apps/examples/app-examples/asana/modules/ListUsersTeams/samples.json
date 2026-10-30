@@ -1,0 +1,12 @@
+{
+  "gid": "00000",
+  "name": "REDACTED",
+  "description": "REDACTED",
+  "organization": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "workspace"
+  },
+  "resource_type": "team",
+  "html_description": "<body><em>All</em> developers should be members of this team.</body>"
+}

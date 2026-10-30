@@ -1,0 +1,201 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "id",
+    "type": "number",
+    "label": "ID"
+  },
+  {
+    "name": "domain",
+    "type": "text",
+    "label": "Domain"
+  },
+  {
+    "name": "host",
+    "type": "text",
+    "label": "Host"
+  },
+  {
+    "name": "billingAccount",
+    "spec": [
+      {
+        "name": "id",
+        "type": "number",
+        "label": "ID"
+      },
+      {
+        "name": "individual",
+        "type": "boolean",
+        "label": "Individual"
+      },
+      {
+        "name": "inGoodStanding",
+        "type": "boolean",
+        "label": "In Good Standing"
+      },
+      {
+        "name": "status",
+        "spec": [
+          {
+            "name": "stripeStatus",
+            "type": "text",
+            "label": "Stripe Status"
+          },
+          {
+            "name": "currentPeriodEnd",
+            "type": "date",
+            "label": "Current Period End"
+          }
+        ],
+        "type": "collection",
+        "label": "Status"
+      },
+      {
+        "name": "externalId",
+        "type": "text",
+        "label": "External ID"
+      },
+      {
+        "name": "externalOptions",
+        "type": "text",
+        "label": "External Options"
+      },
+      {
+        "name": "paid",
+        "type": "boolean",
+        "label": "Paid"
+      },
+      {
+        "name": "product",
+        "spec": [
+          {
+            "name": "id",
+            "type": "number",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "features",
+            "spec": [
+              {
+                "name": "workspaces",
+                "type": "boolean",
+                "label": "Workspaces"
+              },
+              {
+                "name": "vanityDomain",
+                "type": "boolean",
+                "label": "Vanity Domain"
+              },
+              {
+                "name": "maxSharesPerWorkspace",
+                "type": "number",
+                "label": "Max Shares Per Workspace"
+              },
+              {
+                "name": "maxSharesPerDoc",
+                "type": "number",
+                "label": "Max Shares Per Doc"
+              },
+              {
+                "name": "maxDocsPerOrg",
+                "type": "number",
+                "label": "Max Docs Per Org"
+              },
+              {
+                "name": "maxWorkspacesPerOrg",
+                "type": "number",
+                "label": "Max Workspaces Per Org"
+              }
+            ],
+            "type": "collection",
+            "label": "Features"
+          }
+        ],
+        "type": "collection",
+        "label": "Product"
+      },
+      {
+        "name": "isManager",
+        "type": "boolean",
+        "label": "Is Manager"
+      }
+    ],
+    "type": "collection",
+    "label": "Billing Account"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "id",
+        "type": "number",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "picture",
+        "type": "text",
+        "label": "Picture"
+      },
+      {
+        "name": "options",
+        "spec": [],
+        "type": "collection",
+        "label": "Options"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "access",
+    "type": "text",
+    "label": "Access"
+  },
+  {
+    "name": "userPrefs",
+    "spec": [],
+    "type": "collection",
+    "label": "User Prefs"
+  },
+  {
+    "name": "userOrgPrefs",
+    "spec": [
+      {
+        "name": "showGristTour",
+        "type": "boolean",
+        "label": "Show Grist Tour"
+      },
+      {
+        "name": "docMenuView",
+        "type": "text",
+        "label": "Doc Menu View"
+      }
+    ],
+    "type": "collection",
+    "label": "User Org Prefs"
+  }
+]

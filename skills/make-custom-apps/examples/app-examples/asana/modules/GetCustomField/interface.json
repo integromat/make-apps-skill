@@ -1,0 +1,99 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Custom Field ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Custom Field Name"
+  },
+  {
+    "name": "resource_subtype",
+    "type": "text",
+    "label": "Resource Subtype"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Custom Field Type"
+  },
+  {
+    "name": "enum_options",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Option ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Option Name"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Option Enabled"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Option Color"
+      }
+    ],
+    "type": "array",
+    "label": "Enumeration Options"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "precision",
+    "type": "uinteger",
+    "label": "Number Precision"
+  },
+  {
+    "name": "format",
+    "type": "text",
+    "label": "Format"
+  },
+  {
+    "name": "currency_code",
+    "type": "text",
+    "label": "Currency Code"
+  },
+  {
+    "name": "custom_label",
+    "type": "text",
+    "label": "Custom Label"
+  },
+  {
+    "name": "custom_label_position",
+    "type": "text",
+    "label": "Custom Label Position"
+  },
+  {
+    "name": "is_global_to_workspace",
+    "type": "boolean",
+    "label": "Is Global To Workspace?"
+  },
+  {
+    "name": "has_notifications_enabled",
+    "type": "boolean",
+    "label": "Has Notifications Enabled?"
+  }
+]

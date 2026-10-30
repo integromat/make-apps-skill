@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "expand[]": "{{join(expandables(parameters.expandable);',')}}"
+  },
+  "url": "/charges/{{parameters.charge}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

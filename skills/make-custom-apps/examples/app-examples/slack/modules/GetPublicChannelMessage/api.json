@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "limit": 1,
+    "latest": "{{parameters.ts}}",
+    "oldest": "{{parameters.ts}}",
+    "channel": "{{parameters.channel}}",
+    "inclusive": true
+  },
+  "url": "/conversations.history",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{getMessage(body.messages)}}"
+  }
+}

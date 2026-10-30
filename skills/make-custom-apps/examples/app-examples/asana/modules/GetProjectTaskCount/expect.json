@@ -1,0 +1,22 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspaceRPC",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "projectId",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://app%23asana@2/GetProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

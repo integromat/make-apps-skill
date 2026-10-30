@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "desc": "{{parameters.description}}",
+    "name": "{{parameters.name}}",
+    "defaultLists": "{{parameters.defaultLists}}",
+    "prefs_voting": "{{parameters.prefs_voting}}",
+    "defaultLabels": "{{parameters.defaultLabels}}",
+    "idBoardSource": "{{parameters.idBoardSource}}",
+    "idOrganization": "{{parameters.idOrganization}}",
+    "prefs_comments": "{{parameters.prefs_comments}}",
+    "prefs_selfJoin": "{{parameters.prefs_selfJoin}}",
+    "prefs_cardAging": "{{parameters.prefs_cardAging}}",
+    "prefs_background": "{{if(parameters.prefs_background == 'custom', parameters.background_id, parameters.prefs_background)}}",
+    "prefs_cardCovers": "{{parameters.prefs_cardCovers}}",
+    "prefs_invitations": "{{parameters.prefs_invitations}}",
+    "prefs_permissionLevel": "{{parameters.prefs_permissionLevel}}"
+  },
+  "url": "/boards",
+  "body": {},
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

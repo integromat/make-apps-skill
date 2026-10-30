@@ -1,0 +1,196 @@
+[
+  {
+    "name": "addOrRemove",
+    "type": "select",
+    "label": "Add or Remove",
+    "options": [
+      {
+        "label": "Add Custom Field",
+        "value": "addCustomFieldSetting",
+        "nested": [
+          {
+            "name": "selectOrMap",
+            "sort": "text",
+            "type": "select",
+            "label": "Enter a Custom Field ID",
+            "default": "map",
+            "options": [
+              {
+                "label": "Select from the list",
+                "value": "select",
+                "nested": [
+                  {
+                    "help": "Filter on workspaces or organizations.",
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace/Organization ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "custom_field",
+                          "type": "select",
+                          "label": "Custom Field ID",
+                          "options": "rpc://app%23asana@2/getCustomFieldIDsForProject",
+                          "mappable": false,
+                          "required": true
+                        },
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "help": "The ID of the Custom Field Setting after which the new Custom Field Setting will be added. Cannot be provided together with Insert After.",
+                                "name": "insert_before",
+                                "type": "select",
+                                "label": "Insert Before (Custom Field Setting ID)",
+                                "options": "rpc://app%23asana@2/GetProjectCustomFieldsSettings",
+                                "mappable": false
+                              },
+                              {
+                                "help": "The ID of the Custom Field Setting after which the new Custom Field Setting will be added. Cannot be provided together with Insert Before.",
+                                "name": "insert_after",
+                                "type": "select",
+                                "label": "Insert After (Custom Field Setting ID)",
+                                "options": "rpc://app%23asana@2/GetProjectCustomFieldsSettings",
+                                "mappable": false
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  },
+                  {
+                    "help": "True will display the field among the field columns of the project on the webplatform, false will not display it.",
+                    "name": "is_important",
+                    "type": "boolean",
+                    "label": "Is Important?"
+                  }
+                ]
+              },
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "project",
+                    "type": "text",
+                    "label": "Project ID",
+                    "required": true
+                  },
+                  {
+                    "name": "custom_field",
+                    "type": "text",
+                    "label": "Custom Field ID",
+                    "required": true
+                  },
+                  {
+                    "help": "The ID of the Custom Field Setting after which the new Custom Field Setting will be added. Cannot be provided together with Insert After.",
+                    "name": "insert_before",
+                    "type": "text",
+                    "label": "Insert Before (Custom Field Setting ID)"
+                  },
+                  {
+                    "help": "The ID of the Custom Field Setting after which the new Custom Field Setting will be added. Cannot be provided together with Insert Before.",
+                    "name": "insert_after",
+                    "type": "text",
+                    "label": "Insert After (Custom Field Setting ID)"
+                  },
+                  {
+                    "help": "True will display the field among the field columns of the project on the webplatform, false will not display it.",
+                    "name": "is_important",
+                    "type": "boolean",
+                    "label": "Is Important?"
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Remove Custom Field",
+        "value": "removeCustomFieldSetting",
+        "nested": [
+          {
+            "name": "selectOrMap",
+            "type": "select",
+            "label": "Enter a Custom Field ID",
+            "default": "map",
+            "options": [
+              {
+                "label": "Select from the list",
+                "value": "select",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "custom_field",
+                                "type": "select",
+                                "label": "Custom Field ID",
+                                "options": "rpc://app%23asana@2/GetProjectCustomFields",
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "project",
+                    "type": "text",
+                    "label": "Project ID",
+                    "required": true
+                  },
+                  {
+                    "name": "custom_field",
+                    "type": "text",
+                    "label": "Custom Field ID",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  }
+]

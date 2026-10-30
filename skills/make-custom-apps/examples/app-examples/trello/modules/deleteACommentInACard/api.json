@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/actions/{{parameters.comment_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": ""
+  }
+}

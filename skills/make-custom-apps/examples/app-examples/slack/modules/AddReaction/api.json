@@ -1,0 +1,13 @@
+{
+  "url": "/reactions.add",
+  "body": {
+    "name": "{{parameters.name}}",
+    "channel": "{{parameters.channel}}",
+    "timestamp": "{{parameters.timestamp}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

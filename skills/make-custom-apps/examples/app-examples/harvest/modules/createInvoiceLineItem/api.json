@@ -1,0 +1,23 @@
+{
+  "qs": {},
+  "url": "/invoices/{{parameters.invoice_id}}",
+  "body": {
+    "line_items": [
+      {
+        "kind": "{{parameters.kind}}",
+        "taxed": "{{parameters.taxed}}",
+        "amount": "{{parameters.amount}}",
+        "taxed2": "{{parameters.taxed2}}",
+        "project": "{{parameters.project}}",
+        "quantity": "{{parameters.quantity}}",
+        "unit_price": "{{parameters.unit_price}}",
+        "description": "{{parameters.description}}"
+      }
+    ]
+  },
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

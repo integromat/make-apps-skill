@@ -1,0 +1,17 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/lists/{{parameters.listId}}/members/{{if(parameters.email, md5(lower(parameters.email)), parameters.contact_id)}}/events",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.events}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

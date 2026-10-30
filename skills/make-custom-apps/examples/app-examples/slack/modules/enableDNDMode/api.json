@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "num_minutes": "{{parameters.num_minutes}}"
+  },
+  "url": "/dnd.setSnooze",
+  "method": "GET",
+  "response": {
+    "output": "{{getOutput(body)}}"
+  }
+}

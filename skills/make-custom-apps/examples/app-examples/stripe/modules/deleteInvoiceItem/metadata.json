@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete an Invoice Item",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Permanently deletes an invoice item which is not attached to invoices, or if it’s attached to a draft invoice.",
+  "altAccountName": null
+}

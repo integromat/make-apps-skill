@@ -1,0 +1,22 @@
+[
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "Tag created",
+        "value": "tag.added"
+      },
+      {
+        "label": "Tag updated",
+        "value": "tag.edited"
+      },
+      {
+        "label": "Tag deleted",
+        "value": "tag.deleted"
+      }
+    ],
+    "required": true
+  }
+]

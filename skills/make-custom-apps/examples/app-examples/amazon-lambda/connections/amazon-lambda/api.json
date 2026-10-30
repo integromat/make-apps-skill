@@ -1,0 +1,17 @@
+{
+  "aws": {
+    "key": "{{connection.key}}",
+    "secret": "{{connection.secret}}",
+    "sign_version": "4"
+  },
+  "log": {
+    "sanitize": []
+  },
+  "url": "https://lambda.{{connection.region}}.amazonaws.com/2015-03-31/functions/",
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.message}}"
+    },
+    "limit": 1
+  }
+}

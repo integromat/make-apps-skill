@@ -1,0 +1,43 @@
+{
+  "id": "xx_0XxXXx0xXxXXxx0XxXX00XXX",
+  "date": 1602271905,
+  "price": {
+    "id": "xxxxx_0XxXXx0xXxXXxx0Xx0x0XX0x",
+    "type": "one_time",
+    "active": false,
+    "object": "price",
+    "created": 1602271905,
+    "product": "prod_IAmtyGemkDXH1G",
+    "currency": "usd",
+    "livemode": false,
+    "metadata": {},
+    "nickname": null,
+    "recurring": null,
+    "lookup_key": null,
+    "tiers_mode": null,
+    "unit_amount": 2400,
+    "billing_scheme": "per_unit",
+    "transform_quantity": null,
+    "unit_amount_decimal": "2400"
+  },
+  "amount": 999,
+  "object": "invoiceitem",
+  "period": {
+    "end": 1602271905,
+    "start": 1602271905
+  },
+  "invoice": null,
+  "currency": "usd",
+  "customer": "REDACTED",
+  "livemode": false,
+  "metadata": {},
+  "quantity": 1,
+  "discounts": [],
+  "proration": false,
+  "tax_rates": [],
+  "description": null,
+  "unit_amount": 2400,
+  "discountable": true,
+  "subscription": "sub_IAmtaiTzLyLZTH",
+  "unit_amount_decimal": "2400"
+}

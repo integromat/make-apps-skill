@@ -1,0 +1,22 @@
+[
+  {
+    "help": "Support markup or other formatting, like user mentions. May contain :emoji: references.",
+    "name": "status_text",
+    "type": "text",
+    "label": "Status text",
+    "required": false
+  },
+  {
+    "help": "A string corresponding to an emoji installed on the workspace. Animated emoji will appear frozen. When clearing the attribute, a default emoji (currently 💬 / :speech_balloon:) will be selected for the user.",
+    "name": "status_emoji",
+    "type": "text",
+    "label": "Status emoji",
+    "required": false
+  },
+  {
+    "name": "status_expiration",
+    "type": "date",
+    "label": "Status expiration",
+    "required": false
+  }
+]

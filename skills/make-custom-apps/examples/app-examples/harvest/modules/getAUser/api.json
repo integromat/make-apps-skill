@@ -1,0 +1,7 @@
+{
+  "url": "/users/{{parameters.user_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

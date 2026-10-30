@@ -1,0 +1,21 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "url": "https://coda.io/apis/v1/whoami",
+  "method": "GET",
+  "headers": {
+    "Authorization": "Bearer {{parameters.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.statusMessage}}: {{body.message}}"
+    },
+    "metadata": {
+      "type": "text",
+      "value": "{{body.loginId}}"
+    }
+  }
+}

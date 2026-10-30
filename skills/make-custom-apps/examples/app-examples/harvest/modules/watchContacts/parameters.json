@@ -1,0 +1,43 @@
+[
+  {
+    "name": "load_clients",
+    "type": "boolean",
+    "label": "Filter by Client?",
+    "nested": [
+      {
+        "help": "Choose the client for whom you want to display results for.",
+        "name": "client_id",
+        "type": "select",
+        "label": "Client ID",
+        "options": "rpc://getClients",
+        "mappable": false
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "watch",
+    "type": "select",
+    "label": "Watch",
+    "options": [
+      {
+        "label": "Only new contacts",
+        "value": "new"
+      },
+      {
+        "label": "All changes",
+        "value": "updated"
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

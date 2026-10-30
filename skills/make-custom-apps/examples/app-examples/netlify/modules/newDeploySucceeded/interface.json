@@ -1,0 +1,360 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Deploy ID"
+  },
+  {
+    "name": "site_id",
+    "type": "text",
+    "label": "Site ID"
+  },
+  {
+    "name": "build_id",
+    "type": "text",
+    "label": "Build ID"
+  },
+  {
+    "name": "state",
+    "type": "text",
+    "label": "State"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "url",
+    "type": "text",
+    "label": "URL"
+  },
+  {
+    "name": "ssl_url",
+    "type": "text",
+    "label": "SSL URL"
+  },
+  {
+    "name": "admin_url",
+    "type": "text",
+    "label": "Admin URL"
+  },
+  {
+    "name": "deploy_url",
+    "type": "text",
+    "label": "Deploy URL"
+  },
+  {
+    "name": "deploy_ssl_url",
+    "type": "text",
+    "label": "Deploy SSL URL"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "user_id",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "error_message",
+    "type": "text",
+    "label": "Error Message"
+  },
+  {
+    "name": "required",
+    "type": "array",
+    "label": "Required"
+  },
+  {
+    "name": "required_functions",
+    "type": "text",
+    "label": "Required Functions"
+  },
+  {
+    "name": "commit_ref",
+    "type": "text",
+    "label": "Commit Ref"
+  },
+  {
+    "name": "review_id",
+    "type": "text",
+    "label": "Review ID"
+  },
+  {
+    "name": "branch",
+    "type": "text",
+    "label": "Branch"
+  },
+  {
+    "name": "commit_url",
+    "type": "text",
+    "label": "Commit URL"
+  },
+  {
+    "name": "skipped",
+    "type": "text",
+    "label": "Skipped"
+  },
+  {
+    "name": "locked",
+    "type": "text",
+    "label": "Locked"
+  },
+  {
+    "name": "log_access_attributes",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "URL"
+      },
+      {
+        "name": "endpoint",
+        "type": "text",
+        "label": "Endpoint"
+      },
+      {
+        "name": "path",
+        "type": "text",
+        "label": "Path"
+      },
+      {
+        "name": "token",
+        "type": "text",
+        "label": "Token"
+      }
+    ],
+    "type": "collection",
+    "label": "Log Access Attributes"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "review_url",
+    "type": "text",
+    "label": "Review URL"
+  },
+  {
+    "name": "published_at",
+    "type": "date",
+    "label": "Published At"
+  },
+  {
+    "name": "context",
+    "type": "text",
+    "label": "Context"
+  },
+  {
+    "name": "deploy_time",
+    "type": "date",
+    "label": "Deploy Time"
+  },
+  {
+    "name": "available_functions",
+    "type": "array",
+    "label": "Available Functions"
+  },
+  {
+    "name": "summary",
+    "spec": [
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "name": "messages",
+        "spec": [
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "details",
+            "type": "text",
+            "label": "Details"
+          }
+        ],
+        "type": "array",
+        "label": "Messages"
+      }
+    ],
+    "type": "collection",
+    "label": "Summary"
+  },
+  {
+    "name": "screenshot_url",
+    "type": "text",
+    "label": "Screenshot URL"
+  },
+  {
+    "name": "site_capabilities",
+    "spec": [
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "asset_acceleration",
+        "type": "boolean",
+        "label": "Asset Acceleration"
+      },
+      {
+        "name": "form_processing",
+        "type": "boolean",
+        "label": "Form Processing"
+      },
+      {
+        "name": "cdn_propagation",
+        "type": "text",
+        "label": "CDN Propagation"
+      },
+      {
+        "name": "build_gc_exchange",
+        "type": "text",
+        "label": "Build GC Exchange"
+      },
+      {
+        "name": "build_node_pool",
+        "type": "text",
+        "label": "Build Node Pool"
+      },
+      {
+        "name": "domain_aliases",
+        "type": "boolean",
+        "label": "Domain Aliases"
+      },
+      {
+        "name": "secure_site",
+        "type": "boolean",
+        "label": "Secure Site"
+      },
+      {
+        "name": "prerendering",
+        "type": "boolean",
+        "label": "Prerendering"
+      },
+      {
+        "name": "proxying",
+        "type": "boolean",
+        "label": "Proxying"
+      },
+      {
+        "name": "ssl",
+        "type": "text",
+        "label": "SSL"
+      },
+      {
+        "name": "rate_cents",
+        "type": "number",
+        "label": "Rate Cents"
+      },
+      {
+        "name": "yearly_rate_cents",
+        "type": "number",
+        "label": "Yearly Rate Cents"
+      },
+      {
+        "name": "cdn_network",
+        "type": "text",
+        "label": "CDN Network"
+      },
+      {
+        "name": "ipv6_domain",
+        "type": "text",
+        "label": "IPV 6 Domain"
+      },
+      {
+        "name": "branch_deploy",
+        "type": "boolean",
+        "label": "Branch Deploy"
+      },
+      {
+        "name": "managed_dns",
+        "type": "boolean",
+        "label": "Managed Dns"
+      },
+      {
+        "name": "geo_ip",
+        "type": "boolean",
+        "label": "Geo IP"
+      },
+      {
+        "name": "split_testing",
+        "type": "boolean",
+        "label": "Split Testing"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "upload_optimization",
+        "type": "boolean",
+        "label": "Upload Optimization"
+      },
+      {
+        "name": "cdn_tier",
+        "type": "text",
+        "label": "CDN Tier"
+      }
+    ],
+    "type": "collection",
+    "label": "Site Capabilities"
+  },
+  {
+    "name": "committer",
+    "type": "text",
+    "label": "Committer"
+  },
+  {
+    "name": "skipped_log",
+    "type": "text",
+    "label": "Skipped Log"
+  },
+  {
+    "name": "manual_deploy",
+    "type": "boolean",
+    "label": "Manual Deploy"
+  },
+  {
+    "name": "file_tracking_optimization",
+    "type": "boolean",
+    "label": "File Tracking Optimization"
+  },
+  {
+    "name": "plugin_state",
+    "type": "text",
+    "label": "Plugin State"
+  }
+]

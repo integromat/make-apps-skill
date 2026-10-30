@@ -1,0 +1,8 @@
+{
+  "url": "/admin.users.invite",
+  "body": "{{parameters}}",
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

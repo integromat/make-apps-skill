@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": "{{min(parameters.limit, 100)}}",
+    "customer": "{{parameters.customer}}",
+    "source[object]": "{{ifempty(parameters.source, undefined)}}",
+    "transfer_group": "{{ifempty(parameters.transfer_group, undefined)}}",
+    "created[{{parameters.created}}]": "{{if(parameters.created !== '', parameters.created_timestamp, undefined)}}"
+  },
+  "url": "/charges",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

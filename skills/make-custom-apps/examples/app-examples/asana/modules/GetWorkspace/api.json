@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'workspace'),'Workspace')}}",
+  "url": "/workspaces/{{parameters.workspace}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

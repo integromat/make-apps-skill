@@ -1,0 +1,13 @@
+{
+  "url": "/lists/{{parameters.listId}}/members/{{if(parameters.email, md5(lower(parameters.email)), parameters.contact_id)}}/events",
+  "body": {
+    "name": "{{parameters.name}}",
+    "is_syncing": "{{parameters.is_syncing}}",
+    "properties": "{{toCollection(parameters.properties, 'key', 'value')}}",
+    "occurred_at": "{{formatDate(parameters.occurred_at, \"YYYY-MM-DDTHH:mm:ssZ\")}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

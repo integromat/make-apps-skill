@@ -1,0 +1,51 @@
+[
+  {
+    "mode": "edit",
+    "name": "invoice_id",
+    "type": "select",
+    "label": "Invoice ID",
+    "options": "rpc://getInvoices",
+    "required": true
+  },
+  {
+    "help": "The ID of the project associated with this line item.",
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects"
+  },
+  {
+    "mode": "edit",
+    "name": "kind",
+    "type": "select",
+    "label": "Kind",
+    "options": "rpc://getInvoiceCategories"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "help": "The unit quantity of the item. Defaults to 1.",
+    "name": "quantity",
+    "type": "number",
+    "label": "Quantity"
+  },
+  {
+    "name": "unit_price",
+    "type": "number",
+    "label": "Unit price"
+  },
+  {
+    "name": "taxed",
+    "type": "boolean",
+    "label": "Taxed"
+  },
+  {
+    "name": "taxed2",
+    "type": "boolean",
+    "label": "Taxed 2"
+  }
+]

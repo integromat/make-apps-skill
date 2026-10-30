@@ -1,0 +1,20 @@
+{
+  "url": "/payment_intents",
+  "body": "{{encodeRequestBody(temp)}}",
+  "temp": {
+    "{{...}}": "{{omit(parameters, 'idempotency_key')}}",
+    "payment_method_data": {
+      "{{...}}": "{{parameters.payment_method_data}}",
+      "payment_method_options": "{{undefined}}"
+    },
+    "payment_method_options": "{{parameters.payment_method_data.payment_method_options}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "headers": {
+    "Idempotency-Key": "{{ifempty(parameters.idempotency_key, undefined)}}"
+  },
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

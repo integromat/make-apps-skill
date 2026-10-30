@@ -1,0 +1,19 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization",
+      "response.body.secret"
+    ]
+  },
+  "url": "/webhook_endpoints",
+  "body": {
+    "url": "{{webhook.url}}",
+    "enabled_events": "{{parameters.events}}"
+  },
+  "type": "json",
+  "method": "POST",
+  "response": {
+    "type": "json",
+    "output": "{{prepareOutput(body)}}"
+  }
+}

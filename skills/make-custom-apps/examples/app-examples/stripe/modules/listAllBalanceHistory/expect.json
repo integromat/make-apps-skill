@@ -1,0 +1,157 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "required": true,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "help": "For automatic Stripe payouts only, only returns transactions that were payed out on the specified payout ID.",
+    "name": "payout",
+    "type": "text",
+    "label": "Payout"
+  },
+  {
+    "help": "Only returns transactions of the given type.",
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Charge",
+        "value": "charge"
+      },
+      {
+        "label": "Refund",
+        "value": "refund"
+      },
+      {
+        "label": "Adjustment",
+        "value": "adjustment"
+      },
+      {
+        "label": "Application Fee",
+        "value": "application_fee"
+      },
+      {
+        "label": "Application Fee Refund",
+        "value": "application_fee_refund"
+      },
+      {
+        "label": "Transfer",
+        "value": "transfer"
+      },
+      {
+        "label": "Payment",
+        "value": "payment"
+      },
+      {
+        "label": "Payout",
+        "value": "payout"
+      },
+      {
+        "label": "Payout Failure",
+        "value": "payout_failure"
+      },
+      {
+        "label": "Stripe Fee",
+        "value": "stripe_fee"
+      },
+      {
+        "label": "Network cost",
+        "value": "network_cost"
+      }
+    ],
+    "editable": true
+  },
+  {
+    "help": "A filter on the list based on the object created field.",
+    "name": "created",
+    "type": "select",
+    "label": "Created at",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "created_timestamp",
+          "type": "number",
+          "label": "Created timestamp",
+          "required": true
+        }
+      ]
+    },
+    "advanced": true
+  },
+  {
+    "help": "A filter on the list based on the object available on field.",
+    "name": "available_on",
+    "type": "select",
+    "label": "Available on",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "available_on_timestamp",
+          "type": "number",
+          "label": "Available on timestamp",
+          "required": true
+        }
+      ]
+    },
+    "advanced": true
+  }
+]

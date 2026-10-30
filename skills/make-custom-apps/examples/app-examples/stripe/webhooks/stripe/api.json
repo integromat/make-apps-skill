@@ -1,0 +1,8 @@
+{
+  "output": {
+    "object": "{{body.data.object}}",
+    "created": "{{parseDate(body.created, 'X')}}",
+    "event_id": "{{body.id}}",
+    "event_type": "{{body.type}}"
+  }
+}

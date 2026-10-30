@@ -1,0 +1,27 @@
+[
+  {
+    "name": "_id",
+    "type": "text",
+    "label": "Lead ID"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "lastName",
+    "type": "text",
+    "label": "Last Name"
+  },
+  {
+    "name": "firstName",
+    "type": "text",
+    "label": "First Name"
+  },
+  {
+    "name": "companyName",
+    "type": "text",
+    "label": "Company Name"
+  }
+]

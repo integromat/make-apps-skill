@@ -1,0 +1,28 @@
+{
+  "qs": {
+    "team": "{{parameters.team}}",
+    "user": "{{parameters.user}}",
+    "limit": 100,
+    "workspace": "{{parameters.workspace}}",
+    "opt_fields": [
+      "this.team.name",
+      "this.user.name"
+    ]
+  },
+  "url": "/team_memberships",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.team.name}}] {{item.user.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

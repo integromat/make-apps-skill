@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Client",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Creates a new client.",
+  "altAccountName": null
+}

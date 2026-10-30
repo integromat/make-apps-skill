@@ -1,0 +1,65 @@
+[
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://app%23mailchimp@2/listLists",
+    "required": true
+  },
+  {
+    "name": "events",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "Subscribes",
+        "value": "subscribe"
+      },
+      {
+        "label": "Unsubscribes",
+        "value": "unsubscribe"
+      },
+      {
+        "label": "Profile Updates",
+        "value": "profile"
+      },
+      {
+        "label": "Cleaned Email",
+        "value": "cleaned"
+      },
+      {
+        "label": "Email Address Changes",
+        "value": "upemail"
+      },
+      {
+        "label": "Campaign Sending Status",
+        "value": "campaign"
+      }
+    ],
+    "required": false
+  },
+  {
+    "help": "Select the source of the events you want to watch. ",
+    "name": "sources",
+    "type": "select",
+    "label": "Sources",
+    "options": [
+      {
+        "label": "User",
+        "value": "user",
+        "default": true
+      },
+      {
+        "label": "Administrator",
+        "value": "admin",
+        "default": true
+      },
+      {
+        "label": "API",
+        "value": "api"
+      }
+    ],
+    "multiple": true,
+    "required": true
+  }
+]

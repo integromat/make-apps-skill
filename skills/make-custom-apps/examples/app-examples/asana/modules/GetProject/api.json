@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'project'),'Project')}}",
+  "url": "/projects/{{parameters.project}}",
+  "method": "GET",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

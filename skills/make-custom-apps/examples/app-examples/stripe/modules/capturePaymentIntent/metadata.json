@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Capture a Payment Intent",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Captures an existing uncaptured payment intent by its ID.",
+  "altAccountName": null
+}

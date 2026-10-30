@@ -1,0 +1,98 @@
+[
+  {
+    "name": "mode",
+    "type": "select",
+    "label": "Method",
+    "default": "select",
+    "options": [
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "docId",
+            "type": "select",
+            "label": "Doc",
+            "options": {
+              "store": "rpc://app%23coda@1/getDocs",
+              "nested": [
+                {
+                  "name": "tableIdOrName",
+                  "type": "select",
+                  "label": "Table",
+                  "options": {
+                    "store": "rpc://app%23coda@1/getTablesUsingdocId",
+                    "nested": [
+                      {
+                        "name": "keyColumns",
+                        "type": "select",
+                        "label": "Key columns",
+                        "options": "rpc://app%23coda@1/getColumnsUsingTableIdDocId",
+                        "multiple": true
+                      },
+                      "rpc://app%23coda@1/getColumnsShowForUpdate"
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Map",
+        "value": "map",
+        "nested": [
+          {
+            "name": "docId",
+            "type": "text",
+            "label": "Doc",
+            "required": true
+          },
+          {
+            "name": "tableIdOrName",
+            "type": "text",
+            "label": "Table",
+            "required": true
+          },
+          {
+            "name": "columns",
+            "spec": [
+              {
+                "help": "ID or name of the column.",
+                "name": "column",
+                "type": "text",
+                "label": "Column ID or Name"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ],
+            "type": "array",
+            "label": "Columns",
+            "required": true
+          },
+          {
+            "help": "Column IDs or names to use as upsert keys for matching rows to update. Omit for insert-only operations.",
+            "name": "keyColumns",
+            "spec": [
+              {
+                "name": "column",
+                "type": "text",
+                "label": "Column ID or Name"
+              }
+            ],
+            "type": "array",
+            "label": "Key columns"
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

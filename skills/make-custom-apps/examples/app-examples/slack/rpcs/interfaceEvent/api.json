@@ -1,0 +1,293 @@
+[
+  {
+    "temp": {
+      "channelTypes": [
+        "channel",
+        "im",
+        "mpim",
+        "group"
+      ]
+    },
+    "response": {
+      "valid": true,
+      "output": [
+        {
+          "name": "client_msg_id",
+          "type": "text",
+          "label": "Client Message ID"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "subtype",
+          "type": "text",
+          "label": "Subtype"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        },
+        {
+          "name": "user",
+          "type": "text",
+          "label": "User"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        },
+        {
+          "name": "team",
+          "type": "text",
+          "label": "Team"
+        },
+        {
+          "name": "icons",
+          "spec": [],
+          "type": "collection",
+          "label": "Icons"
+        },
+        {
+          "name": "bot_id",
+          "type": "text",
+          "label": "Bot ID"
+        },
+        {
+          "name": "app_id",
+          "type": "text",
+          "label": "App ID"
+        },
+        {
+          "name": "display_as_bot",
+          "type": "boolean",
+          "label": "Display As Bot"
+        },
+        {
+          "name": "ts",
+          "type": "text",
+          "label": "Timestamp"
+        },
+        {
+          "name": "bot_profile",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Bot ID"
+            },
+            {
+              "name": "deleted",
+              "type": "boolean",
+              "label": "Deleted"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "updated",
+              "type": "number",
+              "label": "Updated"
+            },
+            {
+              "name": "app_id",
+              "type": "text",
+              "label": "App ID"
+            },
+            {
+              "name": "icons",
+              "spec": [],
+              "type": "collection",
+              "label": "Icons"
+            },
+            {
+              "name": "team_id",
+              "type": "text",
+              "label": "Team ID"
+            }
+          ],
+          "type": "collection",
+          "label": "Bot Profile"
+        },
+        {
+          "name": "blocks",
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "block_id",
+              "type": "text",
+              "label": "Block ID"
+            },
+            {
+              "name": "elements",
+              "spec": [
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                },
+                {
+                  "name": "block_id",
+                  "type": "text",
+                  "label": "Block ID"
+                },
+                {
+                  "name": "elements",
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "text",
+                      "type": "text",
+                      "label": "Text"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Elements"
+                }
+              ],
+              "type": "array",
+              "label": "Elements"
+            }
+          ],
+          "type": "array",
+          "label": "Blocks"
+        },
+        {
+          "name": "thread_ts",
+          "type": "text",
+          "label": "Thread Timestamp"
+        },
+        {
+          "name": "parent_user_id",
+          "type": "text",
+          "label": "Parent User ID"
+        },
+        {
+          "name": "channel",
+          "type": "text",
+          "label": "Channel"
+        },
+        {
+          "name": "event_ts",
+          "type": "text",
+          "label": "Event Timestamp"
+        },
+        {
+          "name": "channel_type",
+          "type": "text",
+          "label": "Channel Type"
+        }
+      ]
+    },
+    "condition": "{{contains(temp.channelTypes, webhook.type)}}"
+  },
+  {
+    "response": {
+      "valid": true,
+      "output": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "user",
+          "type": "text",
+          "label": "User"
+        },
+        {
+          "name": "reaction",
+          "type": "text",
+          "label": "Reaction"
+        },
+        {
+          "name": "item",
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "channel",
+              "type": "text",
+              "label": "Channel"
+            },
+            {
+              "name": "ts",
+              "type": "text",
+              "label": "Timestamp"
+            }
+          ],
+          "type": "collection",
+          "label": "Item"
+        },
+        {
+          "name": "item_user",
+          "type": "text",
+          "label": "Item User"
+        },
+        {
+          "name": "event_ts",
+          "type": "text",
+          "label": "Event Timestamp"
+        }
+      ]
+    },
+    "condition": "{{webhook.type == 'reaction_added'}}"
+  },
+  {
+    "response": {
+      "valid": true,
+      "output": [
+        {
+          "name": "file_id",
+          "type": "text",
+          "label": "File ID"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "label": "User ID"
+        },
+        {
+          "name": "file",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            }
+          ],
+          "type": "collection",
+          "label": "File"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "event_ts",
+          "type": "text",
+          "label": "Event Timestamp"
+        }
+      ]
+    },
+    "condition": "{{webhook.type == 'file_created'}}"
+  }
+]

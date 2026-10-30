@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/time_entries",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.task.name + ' (' + item.spent_date + ') ' + 'Hours: ' + item.hours}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.time_entries}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

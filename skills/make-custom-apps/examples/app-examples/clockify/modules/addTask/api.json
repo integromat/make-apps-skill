@@ -1,0 +1,12 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}/tasks",
+  "body": {
+    "name": "{{parameters.name}}",
+    "estimate": "PT{{if(parameters.estimateHour,parameters.estimateHour,0)}}H{{if(parameters.estimateMinute,parameters.estimateMinute,0)}}M",
+    "assigneeId": "{{parameters.assigneeId}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{omit(body, 'duration')}}"
+  }
+}

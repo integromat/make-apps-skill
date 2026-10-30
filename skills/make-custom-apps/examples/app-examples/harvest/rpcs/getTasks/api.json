@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/tasks",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.tasks}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "rev": 3,
+  "type": "basic",
+  "label": "Netlify",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

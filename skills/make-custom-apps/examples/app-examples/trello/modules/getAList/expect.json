@@ -1,0 +1,8 @@
+[
+  {
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID",
+    "required": true
+  }
+]

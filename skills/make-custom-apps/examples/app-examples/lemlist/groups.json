@@ -1,0 +1,37 @@
+[
+  {
+    "label": "Email",
+    "modules": [
+      "watchEmails"
+    ]
+  },
+  {
+    "label": "Campaign",
+    "modules": [
+      "listCampaigns",
+      "exportStatisticsOfACampaign"
+    ]
+  },
+  {
+    "label": "Lead",
+    "modules": [
+      "addALeadInACampaign",
+      "getALead",
+      "deleteALead"
+    ]
+  },
+  {
+    "label": "Unsubscribe",
+    "modules": [
+      "listUnsubscribes",
+      "addAnEmailToUnsubscribes",
+      "deleteAnEmailFromUnsubscribes"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

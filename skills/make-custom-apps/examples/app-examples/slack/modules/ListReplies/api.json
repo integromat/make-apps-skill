@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "ts": "{{parameters.ts}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "url": "/conversations.replies",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.messages}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

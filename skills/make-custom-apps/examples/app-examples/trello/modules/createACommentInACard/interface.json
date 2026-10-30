@@ -1,0 +1,365 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Comment ID"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator member ID"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "textData",
+        "spec": [
+          {
+            "name": "emoji",
+            "spec": [],
+            "type": "collection",
+            "label": "Emoji"
+          }
+        ],
+        "type": "collection",
+        "label": "Text data"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short link"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      },
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short link"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "list",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          }
+        ],
+        "type": "collection",
+        "label": "List"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "reactions",
+        "spec": [
+          {
+            "name": "perAction",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per action"
+          },
+          {
+            "name": "uniquePerAction",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Unique per action"
+          }
+        ],
+        "type": "collection",
+        "label": "Reactions"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "display",
+    "spec": [
+      {
+        "name": "translationKey",
+        "type": "text",
+        "label": "Translation key"
+      },
+      {
+        "name": "entities",
+        "spec": [
+          {
+            "name": "contextOn",
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "translationKey",
+                "type": "text",
+                "label": "Translation key"
+              },
+              {
+                "name": "hideIfContext",
+                "type": "boolean",
+                "label": "Hide if context"
+              },
+              {
+                "name": "idContext",
+                "type": "text",
+                "label": "Context ID"
+              }
+            ],
+            "type": "collection",
+            "label": "Context on"
+          },
+          {
+            "name": "card",
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "hideIfContext",
+                "type": "boolean",
+                "label": "Hide if context"
+              },
+              {
+                "name": "shortLink",
+                "type": "text",
+                "label": "Short link"
+              },
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "text",
+                "type": "text",
+                "label": "Text"
+              }
+            ],
+            "type": "collection",
+            "label": "Card"
+          },
+          {
+            "name": "comment",
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "text",
+                "type": "text",
+                "label": "Text"
+              }
+            ],
+            "type": "collection",
+            "label": "Comment"
+          },
+          {
+            "name": "memberCreator",
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "username",
+                "type": "text",
+                "label": "Username"
+              },
+              {
+                "name": "text",
+                "type": "text",
+                "label": "Text"
+              }
+            ],
+            "type": "collection",
+            "label": "Creator member"
+          }
+        ],
+        "type": "collection",
+        "label": "Entities"
+      }
+    ],
+    "type": "collection",
+    "label": "Display"
+  },
+  {
+    "name": "entities",
+    "spec": {
+      "spec": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Entities"
+  },
+  {
+    "name": "memberCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "url",
+        "label": "Avatar URL"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full name"
+      },
+      {
+        "name": "idMemberReferrer",
+        "type": "text",
+        "label": "Referrer member ID"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Creator member"
+  }
+]

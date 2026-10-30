@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Events (Legacy)",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "stripe",
+  "learning": false,
+  "deprecated": true,
+  "accountName": null,
+  "description": "Triggers when a specified event happens.",
+  "altAccountName": null
+}

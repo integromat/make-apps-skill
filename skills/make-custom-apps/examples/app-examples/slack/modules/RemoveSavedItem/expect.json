@@ -1,0 +1,14 @@
+[
+  {
+    "name": "timestamp",
+    "type": "text",
+    "label": "Message ID (timestamp)",
+    "required": false
+  },
+  {
+    "name": "file",
+    "type": "text",
+    "label": "File ID",
+    "required": true
+  }
+]

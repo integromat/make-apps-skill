@@ -1,0 +1,73 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Team ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "Filter on workspaces or organizations.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Organization ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "help": "You need to be member of the team to add someone to it.",
+                  "name": "team_gid",
+                  "type": "select",
+                  "label": "Team ID",
+                  "options": "rpc://app%23asana@2/GetTeams",
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "team_gid",
+            "type": "text",
+            "label": "Team ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "Select a workspace to generate the workspace's users.",
+    "mode": "edit",
+    "name": "workspaceAlt",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "user",
+          "type": "select",
+          "label": "User ID",
+          "options": "rpc://app%23asana@2/GetWorkspaceUsers",
+          "required": true
+        }
+      ]
+    }
+  }
+]

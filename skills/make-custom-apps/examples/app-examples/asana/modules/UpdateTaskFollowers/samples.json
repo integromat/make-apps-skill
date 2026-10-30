@@ -1,0 +1,91 @@
+{
+  "gid": "0000000000000000",
+  "name": "REDACTED",
+  "tags": [
+    {
+      "gid": "0000000000000000",
+      "name": "REDACTED",
+      "resource_type": "tag"
+    }
+  ],
+  "liked": true,
+  "likes": [
+    {
+      "gid": 0,
+      "user": {
+        "gid": 0,
+        "name": "REDACTED",
+        "resource_type": "user"
+      }
+    }
+  ],
+  "notes": "REDACTED",
+  "due_at": "2020-02-07",
+  "due_on": "2020-02-07",
+  "hearts": [
+    {
+      "gid": 0,
+      "user": {
+        "gid": 0,
+        "name": "REDACTED",
+        "resource_type": "user"
+      }
+    }
+  ],
+  "parent": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "hearted": true,
+  "assignee": {
+    "gid": "00000000000000",
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "projects": [
+    {
+      "gid": "0000000000000000",
+      "name": "REDACTED",
+      "resource_type": "project"
+    }
+  ],
+  "start_on": "2019-12-30T12:00:28.914Z",
+  "completed": false,
+  "followers": [
+    {
+      "gid": "00000000000000",
+      "name": "REDACTED",
+      "resource_type": "user"
+    }
+  ],
+  "num_likes": 1,
+  "workspace": {
+    "gid": "00000000000000",
+    "name": "REDACTED",
+    "resource_type": "workspace"
+  },
+  "created_at": "2019-12-30T12:00:28.914Z",
+  "html_notes": "<body></body>",
+  "num_hearts": 1,
+  "memberships": [
+    {
+      "project": {
+        "gid": "0000000000000000",
+        "name": "REDACTED",
+        "resource_type": "project"
+      },
+      "section": {
+        "gid": "0000000000000000",
+        "name": "REDACTED",
+        "resource_type": "section"
+      }
+    }
+  ],
+  "modified_at": "2020-01-06T07:22:48.731Z",
+  "completed_at": "2020-01-05T16:00:32.254Z",
+  "custom_fields": [],
+  "resource_type": "task",
+  "assignee_status": "inbox",
+  "resource_subtype": "default_task"
+}

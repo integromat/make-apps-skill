@@ -1,0 +1,9 @@
+[
+  {
+    "help": "The identifier of the refund to be retrieved.",
+    "name": "refund",
+    "type": "text",
+    "label": "Refund",
+    "required": true
+  }
+]

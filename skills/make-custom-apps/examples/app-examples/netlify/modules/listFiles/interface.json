@@ -1,0 +1,37 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "File ID"
+  },
+  {
+    "name": "path",
+    "type": "text",
+    "label": "Path"
+  },
+  {
+    "name": "sha",
+    "type": "text",
+    "label": "SHA"
+  },
+  {
+    "name": "mime_type",
+    "type": "text",
+    "label": "Mime Type"
+  },
+  {
+    "name": "size",
+    "type": "number",
+    "label": "Size"
+  },
+  {
+    "name": "site_id",
+    "type": "text",
+    "label": "Site ID"
+  },
+  {
+    "name": "deploy_id",
+    "type": "text",
+    "label": "Deploy ID"
+  }
+]

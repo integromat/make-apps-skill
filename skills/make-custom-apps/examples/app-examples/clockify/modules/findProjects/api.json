@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/projects",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) > 1}}"
+  }
+}

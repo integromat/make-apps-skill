@@ -1,0 +1,61 @@
+{
+  "response": {
+    "output": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Tag ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "slug",
+        "type": "text",
+        "label": "Slug"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "name": "feature_image",
+        "type": "text",
+        "label": "Feature Image"
+      },
+      {
+        "name": "visibility",
+        "type": "text",
+        "label": "Visibility"
+      },
+      {
+        "name": "meta_title",
+        "type": "text",
+        "label": "Meta Title"
+      },
+      {
+        "name": "meta_description",
+        "type": "text",
+        "label": "Meta Description"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated At"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "Url"
+      }
+    ]
+  }
+}

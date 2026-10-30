@@ -1,0 +1,10 @@
+{
+  "url": "/docs/{{parameters.docId}}/move",
+  "body": {
+    "workspace": "{{parameters.workspace}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

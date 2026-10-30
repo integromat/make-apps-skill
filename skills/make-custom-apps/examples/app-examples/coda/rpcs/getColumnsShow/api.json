@@ -1,0 +1,36 @@
+[
+  {
+    "qs": {
+      "limit": 100,
+      "pageToken": "{{temp.pageToken}}"
+    },
+    "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/columns",
+    "temp": {
+      "customFields": []
+    },
+    "method": "GET",
+    "repeat": {
+      "delay": 10,
+      "limit": 30,
+      "condition": "{{ifempty(body.nextPageToken, false)}}"
+    },
+    "response": {
+      "temp": {
+        "pageToken": "{{body.nextPageToken}}",
+        "customFields": "{{merge(temp.customFields, buildColumns(body.items))}}"
+      }
+    }
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "columns",
+          "spec": "{{temp.customFields}}",
+          "type": "collection",
+          "label": "Columns"
+        }
+      ]
+    }
+  }
+]

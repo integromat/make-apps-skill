@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(if(parameters.filter == 'section',omit(parameters,'project'),parameters)),'filter','page'),'Task')}}",
+  "url": "/tasks",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{customFieldExtra(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

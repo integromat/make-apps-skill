@@ -1,0 +1,67 @@
+[
+  {
+    "name": "_id",
+    "type": "text",
+    "label": "Webhook ID"
+  },
+  {
+    "name": "isFirst",
+    "type": "boolean",
+    "label": "Is First"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "teamId",
+    "type": "text",
+    "label": "Team ID"
+  },
+  {
+    "name": "leadId",
+    "type": "text",
+    "label": "Lead ID"
+  },
+  {
+    "name": "leadEmail",
+    "type": "text",
+    "label": "Lead Email"
+  },
+  {
+    "name": "campaignId",
+    "type": "text",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "sequenceId",
+    "type": "text",
+    "label": "Sequence ID"
+  },
+  {
+    "name": "sequenceStep",
+    "type": "number",
+    "label": "Sequence Step"
+  },
+  {
+    "name": "emailTemplateId",
+    "type": "text",
+    "label": "Email Template ID"
+  },
+  {
+    "name": "stopped",
+    "type": "boolean",
+    "label": "Stopped"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  }
+]

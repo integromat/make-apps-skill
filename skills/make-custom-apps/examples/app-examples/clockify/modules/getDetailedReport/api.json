@@ -1,0 +1,31 @@
+{
+  "url": "https://reports.api.clockify.me/v1/workspaces/{{parameters.workspace}}/reports/detailed",
+  "body": {
+    "tags": "{{ifObjEmpty(parameters.tags)}}",
+    "tasks": "{{ifObjEmpty(parameters.tasks)}}",
+    "users": "{{ifObjEmpty(parameters.users)}}",
+    "amounts": "{{parameters.amounts}}",
+    "clients": "{{ifObjEmpty(parameters.clients)}}",
+    "billable": "{{parameters.billable}}",
+    "projects": "{{ifObjEmpty(parameters.projects)}}",
+    "rounding": "{{parameters.rounding}}",
+    "timeZone": "{{parameters.timeZone}}",
+    "sortOrder": "{{parameters.sortOrder}}",
+    "exportType": "{{parameters.exportType}}",
+    "userGroups": "{{ifObjEmpty(parameters.userGroups)}}",
+    "amountShown": "{{parameters.amountShown}}",
+    "description": "{{parameters.description}}",
+    "customFields": "{{parameters.customFields}}",
+    "dateRangeEnd": "{{parameters.dateRangeEnd}}",
+    "approvalState": "{{parameters.approvalState}}",
+    "dateRangeStart": "{{parameters.dateRangeStart}}",
+    "detailedFilter": "{{eraseEmptyFields(parameters.detailedFilter)}}",
+    "invoicingState": "{{parameters.invoicingState}}",
+    "withoutDescription": "{{parameters.withoutDescription}}"
+  },
+  "method": "POST",
+  "response": {
+    "type": "{{if(parameters.exportType === 'CSV' || parameters.exportType === 'XLSX' || parameters.exportType === 'PDF', \"binary\", \"json\")}}",
+    "output": "{{if(parameters.exportType === 'CSV' || parameters.exportType === 'XLSX' || parameters.exportType === 'PDF', null, parseDates(body, 'timeentries[...].timeInterval.start', 'timeentries[...].timeInterval.end'))}}"
+  }
+}

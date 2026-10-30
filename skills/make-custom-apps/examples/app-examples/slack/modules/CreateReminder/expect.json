@@ -1,0 +1,22 @@
+[
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text",
+    "required": true
+  },
+  {
+    "help": "When this reminder should happen: the Unix timestamp (up to five years from now), the number of seconds until the reminder (if within 24 hours), or a natural language description (Ex. in 15 minutes, or every Thursday)",
+    "name": "time",
+    "type": "text",
+    "label": "Time",
+    "required": true
+  },
+  {
+    "name": "user",
+    "type": "select",
+    "label": "User",
+    "options": "rpc://app%23slack@4/Users",
+    "required": false
+  }
+]

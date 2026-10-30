@@ -1,0 +1,19 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.Authorization"
+    ]
+  },
+  "url": "{{parameters.host}}/ghost/api/v3/admin/users",
+  "headers": {
+    "authorization": "Ghost {{createJWT(parameters.key)}}"
+  },
+  "response": {
+    "data": {
+      "integration_id": "{{ifempty(parameters.integration_id, 'integromat')}}"
+    },
+    "error": {
+      "message": "[{{statusCode}}] {{body.errors[1].type}}\n{{body.errors[1].message}}\n{{body.errors[1].context}}"
+    }
+  }
+}

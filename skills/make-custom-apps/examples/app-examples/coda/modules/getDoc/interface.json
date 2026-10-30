@@ -1,0 +1,64 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Doc ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "browserLink",
+    "type": "url",
+    "label": "Browser link"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "owner",
+    "type": "email",
+    "label": "Owner"
+  },
+  {
+    "name": "sourceDoc",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "href",
+        "type": "text",
+        "label": "Href"
+      }
+    ],
+    "type": "collection",
+    "label": "Source doc"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated At"
+  }
+]

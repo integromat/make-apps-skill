@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "value": "{{parameters.label_id}}"
+  },
+  "url": "/cards/{{parameters.card_id}}/idLabels",
+  "method": "POST",
+  "response": {
+    "output": {
+      "idLabel": "{{body}}"
+    }
+  }
+}

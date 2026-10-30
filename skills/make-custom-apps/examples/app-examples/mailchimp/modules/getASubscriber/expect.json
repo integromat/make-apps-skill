@@ -1,0 +1,90 @@
+[
+  {
+    "name": "getSubscriber",
+    "type": "select",
+    "label": "Get a Subscriber",
+    "default": "by_email",
+    "options": [
+      {
+        "label": "By Subscriber ID",
+        "value": "by_id",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "list",
+            "type": "select",
+            "label": "List ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listLists",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "id",
+                  "type": "select",
+                  "label": "Subscriber ID",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersId",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "By Email",
+        "value": "by_email",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "list",
+            "type": "select",
+            "label": "List ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listLists",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "email",
+                  "type": "select",
+                  "label": "Email",
+                  "options": "rpc://app%23mailchimp@2/listSubscribers",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "By Unique Email ID",
+        "value": "by_unique_email__id",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "list",
+            "type": "select",
+            "label": "List ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listLists",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "unique_email_id",
+                  "type": "select",
+                  "label": "Unique Email ID",
+                  "options": "rpc://app%23mailchimp@2/listSubscridersUniqueEmaiId",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

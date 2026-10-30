@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "limit": "{{if(parameters.limit < 1000, parameters.limit, 1000)}}",
+    "since": "{{parameters.since}}",
+    "before": "{{parameters.before}}",
+    "filter": "commentCard"
+  },
+  "url": "/cards/{{parameters.card_id}}/actions",
+  "method": "GET",
+  "response": {
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{(pagination.page - 1) + 1}}"
+    },
+    "condition": "{{if(length(body) == 1000, true, false)}}"
+  }
+}

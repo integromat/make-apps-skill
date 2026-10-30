@@ -1,0 +1,27 @@
+{
+  "url": "/invoices/{{parameters.invoice}}",
+  "body": "{{encodeRequestBody(temp)}}",
+  "temp": {
+    "footer": "{{ifempty(parameters.footer, undefined)}}",
+    "due_date": "{{if(parameters.due_date, formatDate(parameters.due_date, 'X'), undefined)}}",
+    "metadata": "{{ifempty(parameters.metadata, undefined)}}",
+    "discounts": "{{ifempty(parameters.discounts, undefined)}}",
+    "description": "{{ifempty(parameters.description, undefined)}}",
+    "auto_advance": "{{ifempty(parameters.auto_advance, undefined)}}",
+    "custom_fields": "{{ifempty(parameters.custom_fields, undefined)}}",
+    "days_until_due": "{{ifempty(parameters.days_until_due, undefined)}}",
+    "default_source": "{{ifempty(parameters.default_source, undefined)}}",
+    "collection_method": "{{ifempty(parameters.collection_method, undefined)}}",
+    "default_tax_rates": "{{ifempty(parameters.default_tax_rates, undefined)}}",
+    "statement_descriptor": "{{ifempty(parameters.statement_descriptor, undefined)}}",
+    "transfer_data[amount]": "{{ifempty(parameters.transfer_data.amount, undefined)}}",
+    "application_fee_amount": "{{ifempty(parameters.application_fee_amount, undefined)}}",
+    "default_payment_method": "{{ifempty(parameters.default_payment_method, undefined)}}",
+    "transfer_data[destination]": "{{ifempty(parameters.transfer_data.destination, undefined)}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

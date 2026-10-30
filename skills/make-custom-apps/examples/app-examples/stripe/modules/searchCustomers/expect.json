@@ -1,0 +1,85 @@
+[
+  {
+    "help": "A filter on the list based on the customer’s email field.",
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "filter",
+    "type": "filter",
+    "label": "Filter",
+    "options": {
+      "logic": "and",
+      "store": [
+        {
+          "label": "[Date] Created",
+          "value": "created"
+        }
+      ],
+      "operators": [
+        {
+          "label": "Date",
+          "options": [
+            {
+              "label": "Later than",
+              "value": "date::gt"
+            },
+            {
+              "label": "Earlier than",
+              "value": "date::lt"
+            },
+            {
+              "label": "Later than or equal to",
+              "value": "date::gte"
+            },
+            {
+              "label": "Earlier than or equal to",
+              "value": "date::lte"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "expand",
+    "type": "select",
+    "label": "Expand",
+    "options": [
+      {
+        "label": "Default Source",
+        "value": "data.default_source"
+      },
+      {
+        "label": "Invoice Credit Balance",
+        "value": "data.invoice_credit_balance"
+      },
+      {
+        "label": "Subscriptions",
+        "value": "data.subscriptions"
+      },
+      {
+        "label": "Sources",
+        "value": "data.sources"
+      },
+      {
+        "label": "Tax",
+        "value": "data.tax"
+      },
+      {
+        "label": "Tax IDs",
+        "value": "data.tax_ids"
+      }
+    ],
+    "advanced": true,
+    "multiple": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 100
+  }
+]

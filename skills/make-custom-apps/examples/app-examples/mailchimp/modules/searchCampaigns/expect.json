@@ -1,0 +1,15 @@
+[
+  {
+    "name": "query",
+    "type": "text",
+    "label": "Search",
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

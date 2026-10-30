@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Activities",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "trello",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when new activity occurs.",
+  "altAccountName": null
+}

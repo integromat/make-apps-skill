@@ -1,0 +1,66 @@
+[
+  {
+    "help": "Watches `createCard` and `copyCard` activities.",
+    "name": "node",
+    "type": "select",
+    "label": "Watched object",
+    "options": [
+      {
+        "label": "All Cards",
+        "value": "all"
+      },
+      {
+        "label": "Cards on specific Board",
+        "value": "board",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": "rpc://app%23trello@4/listBoards",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Cards on specific List",
+        "value": "list",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": "rpc://app%23trello@4/getBoardsLists",
+                  "required": true
+                }
+              ]
+            },
+            "editable": false,
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

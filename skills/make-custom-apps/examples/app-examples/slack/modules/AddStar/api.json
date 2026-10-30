@@ -1,0 +1,10 @@
+{
+  "url": "/stars.add",
+  "body": {
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

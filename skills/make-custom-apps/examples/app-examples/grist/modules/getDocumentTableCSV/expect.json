@@ -1,0 +1,20 @@
+[
+  {
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": {
+      "store": "rpc://app%23grist@1/listDocuments",
+      "nested": [
+        {
+          "name": "tableId",
+          "type": "text",
+          "label": "Table Name",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "organization",
+    "type": "select",
+    "label": "Organization",
+    "options": "rpc://app%23asana@2/GetWorkspaces",
+    "required": true
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "html_description",
+    "type": "text",
+    "label": "HTML Description"
+  }
+]

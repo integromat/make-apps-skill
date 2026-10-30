@@ -1,0 +1,7 @@
+{
+  "url": "/dnd.endSnooze",
+  "method": "POST",
+  "response": {
+    "output": "{{getOutput(body)}}"
+  }
+}

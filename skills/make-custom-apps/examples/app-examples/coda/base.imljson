@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.Authorization"
+    ]
+  },
+  "baseUrl": "https://coda.io/apis/v1",
+  "headers": {
+    "Authorization": "Bearer {{connection.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.statusMessage}}: {{body.message}}"
+    }
+  }
+}

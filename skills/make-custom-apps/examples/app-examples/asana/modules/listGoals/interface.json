@@ -1,0 +1,306 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Goal ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "due_on",
+    "type": "date",
+    "label": "Due on"
+  },
+  {
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "name": "is_workspace_level",
+    "type": "boolean",
+    "label": "Is Workspace Level"
+  },
+  {
+    "name": "liked",
+    "type": "boolean",
+    "label": "Liked"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "start_on",
+    "type": "date",
+    "label": "Start on"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "current_status_update",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Status Update ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "type": "collection",
+    "label": "Current Status Update"
+  },
+  {
+    "name": "followers",
+    "spec": {
+      "spec": [
+        {
+          "name": "gid",
+          "type": "text",
+          "label": "Follower ID"
+        },
+        {
+          "name": "resource_type",
+          "type": "text",
+          "label": "Resource Type"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "likes",
+    "spec": {
+      "spec": [
+        {
+          "name": "gid",
+          "type": "text",
+          "label": "Like ID"
+        },
+        {
+          "name": "user",
+          "spec": [
+            {
+              "name": "gid",
+              "type": "text",
+              "label": "User ID"
+            },
+            {
+              "name": "resource_type",
+              "type": "text",
+              "label": "Resource Type"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            }
+          ],
+          "type": "collection",
+          "label": "User"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Likes"
+  },
+  {
+    "name": "metric",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Metric ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "currency_code",
+        "type": "text",
+        "label": "Currency Code"
+      },
+      {
+        "name": "current_display_value",
+        "type": "text",
+        "label": "Current Display Value"
+      },
+      {
+        "name": "current_number_value",
+        "type": "number",
+        "label": "Current Number Value"
+      },
+      {
+        "name": "initial_number_value",
+        "type": "number",
+        "label": "Initial Number Value"
+      },
+      {
+        "name": "precision",
+        "type": "number",
+        "label": "Precision"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "target_number_value",
+        "type": "number",
+        "label": "Target Number Value"
+      },
+      {
+        "name": "unit",
+        "type": "text",
+        "label": "Unit"
+      }
+    ],
+    "type": "collection",
+    "label": "Metric"
+  },
+  {
+    "name": "num_likes",
+    "type": "number",
+    "label": "Num Likes"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "User ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Team ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  },
+  {
+    "name": "time_period",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Time Period ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "display_name",
+        "type": "text",
+        "label": "Display Name"
+      },
+      {
+        "name": "end_on",
+        "type": "date",
+        "label": "End on"
+      },
+      {
+        "name": "period",
+        "type": "text",
+        "label": "Period"
+      },
+      {
+        "name": "start_on",
+        "type": "date",
+        "label": "Start on"
+      }
+    ],
+    "type": "collection",
+    "label": "Time Period"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  }
+]

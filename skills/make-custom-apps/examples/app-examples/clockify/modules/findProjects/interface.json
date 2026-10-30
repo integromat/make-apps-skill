@@ -1,0 +1,130 @@
+[
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "clientId",
+    "type": "text",
+    "label": "Client ID"
+  },
+  {
+    "name": "clientName",
+    "type": "text",
+    "label": "Client Name"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "duration",
+    "type": "text",
+    "label": "Duration"
+  },
+  {
+    "name": "estimate",
+    "spec": [
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Estimate"
+  },
+  {
+    "name": "hourlyRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "uinteger",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "memberships",
+    "spec": [
+      {
+        "name": "hourlyRate",
+        "spec": [
+          {
+            "name": "amount",
+            "type": "uinteger",
+            "label": "Amount"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          }
+        ],
+        "type": "collection",
+        "label": "Hourly Rate"
+      },
+      {
+        "name": "membershipStatus",
+        "type": "text",
+        "label": "Membership Status"
+      },
+      {
+        "name": "membershipType",
+        "type": "text",
+        "label": "Membership Type"
+      },
+      {
+        "name": "targetId",
+        "type": "text",
+        "label": "Target ID"
+      },
+      {
+        "name": "userId",
+        "type": "text",
+        "label": "User ID"
+      }
+    ],
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  }
+]

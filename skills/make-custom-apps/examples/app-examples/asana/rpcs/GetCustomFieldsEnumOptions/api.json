@@ -1,0 +1,12 @@
+{
+  "url": "/custom_fields/{{parameters.custom_field}}",
+  "method": "GET",
+  "response": {
+    "limit": 50,
+    "output": {
+      "label": "[{{item.color}}] {{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data.enum_options}}"
+  }
+}

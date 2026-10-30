@@ -1,0 +1,10 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}/duplicate",
+  "body": {
+    "data": "{{omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','selectOrMap')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

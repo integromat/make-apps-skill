@@ -1,0 +1,30 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{parseDate(item.date_created)}}",
+        "label": "{{item.text}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Scheduled Messages",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read",
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when a new message is scheduled.",
+  "altAccountName": "slack3"
+}

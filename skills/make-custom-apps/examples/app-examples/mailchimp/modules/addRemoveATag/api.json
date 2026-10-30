@@ -1,0 +1,10 @@
+{
+  "url": "/lists/{{parameters.list}}/members/{{md5(lower(parameters.email))}}/tags",
+  "body": {
+    "tags": "{{parameters.tags}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

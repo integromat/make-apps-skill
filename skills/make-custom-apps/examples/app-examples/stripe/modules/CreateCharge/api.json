@@ -1,0 +1,17 @@
+{
+  "url": "/charges",
+  "body": {
+    "amount": "{{parameters.amount}}",
+    "source": "{{parameters.source}}",
+    "capture": "{{parameters.capture}}",
+    "currency": "{{parameters.currency}}",
+    "customer": "{{parameters.customer}}",
+    "description": "{{parameters.description}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "type": "json",
+    "output": "{{prepareOutput(body)}}"
+  }
+}

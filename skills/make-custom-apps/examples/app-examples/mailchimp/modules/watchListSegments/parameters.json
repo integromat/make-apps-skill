@@ -1,0 +1,49 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Watch List Segments",
+    "options": [
+      {
+        "label": "By Created Time",
+        "value": "create",
+        "default": true
+      },
+      {
+        "label": "By Updated Time",
+        "value": "update"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists",
+    "required": true
+  },
+  {
+    "name": "include_cleaned",
+    "type": "boolean",
+    "label": "Include cleaned members"
+  },
+  {
+    "name": "include_transactional",
+    "type": "boolean",
+    "label": "Include transactional members"
+  },
+  {
+    "name": "include_unsubscribed",
+    "type": "boolean",
+    "label": "Include unsubscribed members"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

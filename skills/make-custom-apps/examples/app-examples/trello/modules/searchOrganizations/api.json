@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "query": "{{parameters.query}}",
+    "partial": "{{parameters.partial}}",
+    "modelTypes": "organizations",
+    "idOrganizations": "{{ifempty(join(parameters.idOrganizations, ','), undefined)}}",
+    "organization_fields": "all",
+    "organizations_limit": "{{parameters.limit}}"
+  },
+  "url": "/search",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.organizations}}"
+  }
+}

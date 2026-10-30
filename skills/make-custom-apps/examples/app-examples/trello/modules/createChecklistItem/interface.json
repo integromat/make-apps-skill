@@ -1,0 +1,46 @@
+[
+  {
+    "name": "idChecklist",
+    "type": "text",
+    "label": "Checklist ID"
+  },
+  {
+    "name": "state",
+    "type": "text",
+    "label": "State"
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Checklist item ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "nameData",
+    "spec": [
+      {
+        "name": "emoji",
+        "spec": [],
+        "type": "collection",
+        "label": "Emoji"
+      }
+    ],
+    "type": "collection",
+    "label": "Name data"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  }
+]

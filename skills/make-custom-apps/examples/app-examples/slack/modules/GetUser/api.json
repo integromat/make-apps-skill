@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "user": "{{parameters.user}}",
+    "include_locale": true
+  },
+  "url": "/users.info",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.user)}}"
+  }
+}

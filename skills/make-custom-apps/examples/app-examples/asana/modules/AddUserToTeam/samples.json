@@ -1,0 +1,15 @@
+{
+  "gid": 0,
+  "team": {
+    "gid": 0,
+    "name": "REDACTED",
+    "resource_type": "team"
+  },
+  "user": {
+    "gid": 0,
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "is_guest": false,
+  "resource_type": "team_membership"
+}

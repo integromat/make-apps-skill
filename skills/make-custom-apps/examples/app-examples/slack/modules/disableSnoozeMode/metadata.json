@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Disable Snooze Mode",
+  "scope": [
+    "dnd:write"
+  ],
+  "public": false,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Ends the current user's snooze mode immediately.",
+  "altAccountName": null
+}

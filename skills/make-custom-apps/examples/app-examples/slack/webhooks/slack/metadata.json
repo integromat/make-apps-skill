@@ -1,0 +1,10 @@
+{
+  "rev": 5,
+  "type": "web-shared",
+  "flags": {},
+  "label": "Slack Interactivity",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "slack2",
+  "altAccountName": "slack3"
+}

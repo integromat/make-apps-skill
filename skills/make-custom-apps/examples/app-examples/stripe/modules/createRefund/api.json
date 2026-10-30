@@ -1,0 +1,18 @@
+{
+  "url": "/refunds",
+  "body": "{{requestBuilder(temp.body, mapToKeyVal(parameters.metadata), null, null, null)}}",
+  "temp": {
+    "body": {
+      "amount": "{{ifempty(parameters.amount, undefined)}}",
+      "charge": "{{parameters.charge}}",
+      "reason": "{{ifempty(parameters.reason, undefined)}}",
+      "reverse_transfer": "{{parameters.reverse_transfer}}",
+      "refund_application_fee": "{{parameters.refund_application_fee}}"
+    }
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

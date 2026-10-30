@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "fields": "all"
+  },
+  "url": "/labels/{{parameters.label_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

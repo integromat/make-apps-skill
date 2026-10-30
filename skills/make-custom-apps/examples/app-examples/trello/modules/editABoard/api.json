@@ -1,0 +1,30 @@
+{
+  "qs": {
+    "desc": "{{parameters.description}}",
+    "name": "{{parameters.name}}",
+    "closed": "{{parameters.closed}}",
+    "subscribed": "{{parameters.subscribed}}",
+    "prefs/voting": "{{parameters.prefs_voting}}",
+    "idOrganization": "{{parameters.idOrganization}}",
+    "labelNames/red": "{{parameters.labelNames_red}}",
+    "prefs/comments": "{{parameters.prefs_comments}}",
+    "prefs/selfJoin": "{{parameters.prefs_selfJoin​}}",
+    "labelNames/blue": "{{parameters.labelNames_blue}}",
+    "prefs/cardAging": "{{parameters.prefs_cardAging}}",
+    "labelNames/green": "{{parameters.labelNames_green}}",
+    "prefs/background": "{{if(parameters.prefs_background == 'custom', parameters.background_id, parameters.prefs_background)}}",
+    "prefs/cardCovers": "{{parameters.prefs_cardCovers}}",
+    "labelNames/orange": "{{parameters.labelNames_orange}}",
+    "labelNames/purple": "{{parameters.labelNames_purple}}",
+    "labelNames/yellow": "{{parameters.labelNames_yellow}}",
+    "prefs/invitations": "{{parameters.prefs_invitations}}",
+    "prefs/permissionLevel": "{{parameters.prefs_permissionLevel}}",
+    "prefs/calendarFeedEnabled": "{{parameters.prefs_calendarFeedEnabled}}"
+  },
+  "url": "/boards/{{parameters.board_id}}",
+  "body": {},
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

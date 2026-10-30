@@ -1,0 +1,17 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/expenses/categories",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.categories}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    }
+  }
+}

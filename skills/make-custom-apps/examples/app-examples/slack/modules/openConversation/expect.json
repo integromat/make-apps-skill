@@ -1,0 +1,15 @@
+[
+  {
+    "help": "If only one user is included, this creates a 1:1 DM.",
+    "name": "users",
+    "spec": {
+      "type": "select",
+      "label": "User",
+      "options": "rpc://app%23slack@4/Users",
+      "required": true
+    },
+    "type": "array",
+    "label": "Users",
+    "required": true
+  }
+]

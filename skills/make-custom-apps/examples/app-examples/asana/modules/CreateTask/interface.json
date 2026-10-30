@@ -1,0 +1,653 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Task ID"
+  },
+  {
+    "name": "assignee",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Assignee ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Assignee Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Assignee"
+  },
+  {
+    "name": "assignee_section",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Assignee Section ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Assignee Section Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Assignee Section"
+  },
+  {
+    "name": "assignee_status",
+    "type": "text",
+    "label": "Assignee Status"
+  },
+  {
+    "name": "completed",
+    "type": "boolean",
+    "label": "Completed"
+  },
+  {
+    "name": "completed_at",
+    "type": "date",
+    "label": "Completed At"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "custom_fields_collection",
+    "spec": [],
+    "type": "collection",
+    "label": "Custom Fields Collection"
+  },
+  {
+    "name": "custom_fields",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Custom Field ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "created_by",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Created by"
+      },
+      {
+        "name": "display_value",
+        "type": "text",
+        "label": "Display Value"
+      },
+      {
+        "name": "date_value",
+        "spec": [
+          {
+            "name": "date",
+            "type": "date",
+            "label": "Date"
+          },
+          {
+            "name": "date_time",
+            "type": "text",
+            "label": "Date Time"
+          }
+        ],
+        "type": "collection",
+        "label": "Date Value"
+      },
+      {
+        "name": "people_value",
+        "spec": {
+          "spec": [
+            {
+              "name": "gid",
+              "type": "text",
+              "label": "User ID"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "resource_type",
+              "type": "text",
+              "label": "Resource Type"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "People Value"
+      },
+      {
+        "name": "multi_enum_values",
+        "spec": {
+          "spec": [
+            {
+              "name": "gid",
+              "type": "text",
+              "label": "Option ID"
+            },
+            {
+              "name": "color",
+              "type": "text",
+              "label": "Color"
+            },
+            {
+              "name": "enabled",
+              "type": "boolean",
+              "label": "Enabled"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "resource_type",
+              "type": "text",
+              "label": "Resource Type"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Multi Enumeration Values"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Custom Field Name"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Custom Field Type"
+      },
+      {
+        "name": "enum_options",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Option ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Option Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Option Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Option Color"
+          }
+        ],
+        "type": "array",
+        "label": "Enumeration Options"
+      },
+      {
+        "name": "number_value",
+        "type": "number",
+        "label": "Number Value"
+      },
+      {
+        "name": "enum_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Value ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Value Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Value Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Value Color"
+          }
+        ],
+        "type": "collection",
+        "label": "Enumeration Value"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Custom Field Enabled?"
+      },
+      {
+        "name": "text_value",
+        "type": "text",
+        "label": "Text Value"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "name": "precision",
+        "type": "uinteger",
+        "label": "Number Precision"
+      },
+      {
+        "name": "format",
+        "type": "text",
+        "label": "Format"
+      },
+      {
+        "name": "currency_code",
+        "type": "text",
+        "label": "Currency Code"
+      },
+      {
+        "name": "custom_label",
+        "type": "text",
+        "label": "Custom Label"
+      },
+      {
+        "name": "custom_label_position",
+        "type": "text",
+        "label": "Custom Label Position"
+      },
+      {
+        "name": "is_global_to_workspace",
+        "type": "boolean",
+        "label": "Is Global To Workspace?"
+      },
+      {
+        "name": "has_notifications_enabled",
+        "type": "boolean",
+        "label": "Has Notifications Enabled?"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Fields"
+  },
+  {
+    "name": "due_at",
+    "type": "date",
+    "label": "Due At"
+  },
+  {
+    "name": "due_on",
+    "type": "date",
+    "label": "Due On"
+  },
+  {
+    "name": "external",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "External ID"
+      },
+      {
+        "name": "data",
+        "type": "text",
+        "label": "External Data"
+      }
+    ],
+    "type": "collection",
+    "label": "External"
+  },
+  {
+    "name": "followers",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Follower ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Follower Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "hearted",
+    "type": "boolean",
+    "label": "Hearted"
+  },
+  {
+    "name": "hearts",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Heart ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "User Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Hearts"
+  },
+  {
+    "name": "liked",
+    "type": "boolean",
+    "label": "Liked"
+  },
+  {
+    "name": "likes",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Like ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "User Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Likes"
+  },
+  {
+    "name": "memberships",
+    "spec": [
+      {
+        "name": "project",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Project ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Project Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Project"
+      },
+      {
+        "name": "section",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Section ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Section Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Section"
+      }
+    ],
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "modified_at",
+    "type": "date",
+    "label": "Modified At"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Task Name"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "name": "num_hearts",
+    "type": "uinteger",
+    "label": "Number of Hearts"
+  },
+  {
+    "name": "num_likes",
+    "type": "uinteger",
+    "label": "Number of Likes"
+  },
+  {
+    "name": "permalink_url",
+    "type": "url",
+    "label": "Permalink URL"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Task ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Task Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent Task"
+  },
+  {
+    "name": "projects",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Project ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Project Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Projects"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "start_at",
+    "type": "date",
+    "label": "Start At"
+  },
+  {
+    "name": "start_on",
+    "type": "date",
+    "label": "Start On"
+  },
+  {
+    "name": "tags",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Tag ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Tag Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Tags"
+  },
+  {
+    "name": "resource_subtype",
+    "type": "text",
+    "label": "Resource Subtype"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Workspace Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  }
+]

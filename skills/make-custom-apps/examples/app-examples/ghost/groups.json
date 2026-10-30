@@ -1,0 +1,45 @@
+[
+  {
+    "label": "Posts",
+    "modules": [
+      "watchPosts",
+      "createPost",
+      "listPosts",
+      "updatePost",
+      "deletePost"
+    ]
+  },
+  {
+    "label": "Pages",
+    "modules": [
+      "watchPages"
+    ]
+  },
+  {
+    "label": "Tags",
+    "modules": [
+      "watchTags"
+    ]
+  },
+  {
+    "label": "Authors",
+    "modules": [
+      "listAuthors"
+    ]
+  },
+  {
+    "label": "Members",
+    "modules": [
+      "watchMembers",
+      "createMember",
+      "listMembers",
+      "deleteMember"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "universal"
+    ]
+  }
+]

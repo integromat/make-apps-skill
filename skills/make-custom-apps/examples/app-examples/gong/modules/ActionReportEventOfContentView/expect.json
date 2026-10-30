@@ -1,0 +1,357 @@
+[
+  {
+    "help": "The ID of the content that was interacted with in the reporting system.",
+    "name": "contentId",
+    "type": "text",
+    "label": "Content ID",
+    "required": true
+  },
+  {
+    "help": "Human readable title of the content.",
+    "name": "contentTitle",
+    "type": "text",
+    "label": "Content Title",
+    "required": true
+  },
+  {
+    "help": "The URL of the content that was viewed in the reporting system. This is the URL that was accessed by the viewer.",
+    "name": "contentUrl",
+    "type": "url",
+    "label": "Content URL",
+    "required": true
+  },
+  {
+    "help": "The date and time when the event happened.",
+    "name": "eventTimestamp",
+    "type": "date",
+    "label": "Event Timestamp",
+    "required": true
+  },
+  {
+    "help": "The unique identifier of the reporting system. It is the same value in all events originating from the same system.",
+    "name": "reportingSystem",
+    "type": "text",
+    "label": "Reporting System",
+    "required": true
+  },
+  {
+    "help": "Platform on which the interaction was made.",
+    "name": "agentPlatform",
+    "type": "select",
+    "label": "Agent Platform",
+    "options": [
+      {
+        "value": "Android"
+      },
+      {
+        "value": "Linux"
+      },
+      {
+        "value": "MacOS"
+      },
+      {
+        "value": "Windows"
+      },
+      {
+        "value": "iOS"
+      }
+    ]
+  },
+  {
+    "help": "A list of additional properties for the content.",
+    "name": "contentProperties",
+    "spec": [
+      {
+        "name": "dataType",
+        "type": "select",
+        "label": "Data Type",
+        "options": [
+          {
+            "label": "Date",
+            "value": "date"
+          },
+          {
+            "label": "Number",
+            "value": "number"
+          },
+          {
+            "label": "String",
+            "value": "string"
+          },
+          {
+            "label": "URL",
+            "value": "url"
+          }
+        ],
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": true
+      },
+      {
+        "help": "Value format should match `Data Type`.",
+        "name": "value",
+        "type": "text",
+        "label": "Value",
+        "required": true
+      }
+    ],
+    "type": "array",
+    "label": "Content Properties"
+  },
+  {
+    "help": "A list of links to external systems such as CRM, Telephony System, Case Management, etc.",
+    "name": "crmContext",
+    "spec": [
+      {
+        "help": "List of objects within the external system. Note: Multiple opportunities/deals belonging to the same account are not supported.",
+        "name": "objects",
+        "spec": [
+          {
+            "help": "For Salesforce both case-sensitive and case-insensitive formats are supported.",
+            "name": "objectId",
+            "type": "text",
+            "label": "Object ID",
+            "required": true
+          },
+          {
+            "name": "objectType",
+            "type": "select",
+            "label": "Object Type",
+            "options": [
+              {
+                "value": "Account"
+              },
+              {
+                "value": "Opportunity"
+              }
+            ],
+            "required": true
+          },
+          {
+            "help": "Object fields. Intended for future use only.",
+            "name": "fields",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ],
+            "type": "array",
+            "label": "Fields"
+          }
+        ],
+        "type": "array",
+        "label": "Objects"
+      },
+      {
+        "name": "system",
+        "type": "select",
+        "label": "System",
+        "options": [
+          {
+            "value": "Salesforce"
+          },
+          {
+            "value": "Generic"
+          }
+        ],
+        "required": true
+      }
+    ],
+    "type": "array",
+    "label": "CRM Context"
+  },
+  {
+    "help": "The original id of the event as designated in the reporting system.",
+    "name": "eventId",
+    "type": "text",
+    "label": "Event ID"
+  },
+  {
+    "help": "A list of additional properties for the event.",
+    "name": "eventProperties ",
+    "spec": [
+      {
+        "name": "dataType",
+        "type": "select",
+        "label": "Data Type",
+        "options": [
+          {
+            "label": "Date",
+            "value": "date"
+          },
+          {
+            "label": "Number",
+            "value": "number"
+          },
+          {
+            "label": "String",
+            "value": "string"
+          },
+          {
+            "label": "URL",
+            "value": "url"
+          }
+        ],
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": true
+      },
+      {
+        "help": "Value format should match `Data Type`.",
+        "name": "value",
+        "type": "text",
+        "label": "Value",
+        "required": true
+      }
+    ],
+    "type": "array",
+    "label": "Event Properties "
+  },
+  {
+    "help": "The application identification string in case of interaction via mobile application (bundle identifier or package name).",
+    "name": "mobileAppId",
+    "type": "text",
+    "label": "Mobile App ID"
+  },
+  {
+    "help": "The ID of the share action, in case there can be more than one share per content.",
+    "name": "shareId",
+    "type": "text",
+    "label": "Share ID"
+  },
+  {
+    "help": "`User-Agent` header value for browser based interaction.",
+    "name": "userAgent",
+    "type": "text",
+    "label": "User Agent"
+  },
+  {
+    "help": "The name of the action like `Document Viewed` or `Presentation Opened`.",
+    "name": "viewActionTitle",
+    "type": "text",
+    "label": "View Action Title"
+  },
+  {
+    "help": "The link to a page that presents additional information about this event.",
+    "name": "viewInfoUrl",
+    "type": "url",
+    "label": "View Info URL"
+  },
+  {
+    "name": "viewer",
+    "spec": [
+      {
+        "help": "The email address of the person, if available.",
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "help": "The name of the person, if available.",
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "help": "The title of the person, if available.",
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "help": "A list of links to external systems such as CRM, Telephony System, Case Management, etc.",
+        "name": "context",
+        "spec": [
+          {
+            "help": "List of objects within the external system.",
+            "name": "objects",
+            "spec": [
+              {
+                "help": "For Salesforce both case-sensitive and case-insensitive formats are supported.",
+                "name": "objectId",
+                "type": "text",
+                "label": "Object ID",
+                "required": true
+              },
+              {
+                "help": "Object Type. Valid only for non-company parties. e.g. Lead.",
+                "name": "objectType",
+                "type": "select",
+                "label": "Object Type",
+                "options": [
+                  {
+                    "value": "Contact"
+                  },
+                  {
+                    "value": "Lead"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "Object fields. Intended for future use only.",
+                "name": "fields",
+                "spec": [
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Name"
+                  },
+                  {
+                    "name": "value",
+                    "type": "text",
+                    "label": "Value"
+                  }
+                ],
+                "type": "array",
+                "label": "Fields"
+              }
+            ],
+            "type": "array",
+            "label": "Objects"
+          },
+          {
+            "name": "system",
+            "type": "select",
+            "label": "System",
+            "options": [
+              {
+                "value": "Salesforce"
+              },
+              {
+                "value": "Generic"
+              }
+            ],
+            "required": true
+          }
+        ],
+        "type": "array",
+        "label": "Context"
+      }
+    ],
+    "type": "collection",
+    "label": "Viewer"
+  },
+  {
+    "help": "Optional workspace identifier. If specified, the event will be placed into this workspace, otherwise, the default algorithm for workspace placement will be applied.",
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23gong@1/getWorkspaceId"
+  }
+]

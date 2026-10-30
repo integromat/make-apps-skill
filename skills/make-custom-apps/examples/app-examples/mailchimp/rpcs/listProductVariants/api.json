@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/ecommerce/stores/{{parameters.store_id}}/products/{{parameters.product_id}}/variants",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.variants}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

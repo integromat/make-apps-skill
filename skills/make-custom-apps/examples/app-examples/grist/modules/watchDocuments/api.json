@@ -1,0 +1,15 @@
+{
+  "url": "/orgs/current/workspaces",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{getDocs(body)}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{if(parameters.event, item.updatedAt, item.createdAt)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  }
+}

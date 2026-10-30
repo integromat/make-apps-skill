@@ -1,0 +1,12 @@
+{
+  "url": "/orgs",
+  "method": "GET",
+  "response": {
+    "limit": 100,
+    "output": {
+      "label": "{{item.name}} ({{item.domain}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

@@ -1,0 +1,91 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Custom field ID"
+  },
+  {
+    "name": "idModel",
+    "type": "text",
+    "label": "Model ID"
+  },
+  {
+    "name": "modelType",
+    "type": "text",
+    "label": "Model type"
+  },
+  {
+    "name": "fieldGroup",
+    "type": "text",
+    "label": "Group field"
+  },
+  {
+    "name": "display",
+    "spec": [
+      {
+        "name": "cardFront",
+        "type": "boolean",
+        "label": "Front card"
+      }
+    ],
+    "type": "collection",
+    "label": "Display"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "options",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "idCustomField",
+          "type": "text",
+          "label": "Custom field ID"
+        },
+        {
+          "name": "value",
+          "spec": [
+            {
+              "name": "text",
+              "type": "text",
+              "label": "Text"
+            }
+          ],
+          "type": "collection",
+          "label": "Value"
+        },
+        {
+          "name": "color",
+          "type": "text",
+          "label": "Color"
+        },
+        {
+          "name": "pos",
+          "type": "number",
+          "label": "Position"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Options"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  }
+]

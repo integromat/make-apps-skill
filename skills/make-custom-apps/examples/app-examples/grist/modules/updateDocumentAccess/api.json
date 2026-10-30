@@ -1,0 +1,15 @@
+{
+  "url": "/docs/{{parameters.docId}}/access",
+  "body": {
+    "delta": {
+      "users": {
+        "{{...}}": "{{toCollection(parameters.users, 'email', 'role')}}"
+      },
+      "maxInheritedRole": "{{parameters.maxInheritedRole}}"
+    }
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Payment Link",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Creates a new payment link by line items.",
+  "altAccountName": null
+}

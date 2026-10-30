@@ -1,0 +1,13 @@
+{
+  "rev": 5,
+  "type": "basic",
+  "label": "Stripe",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

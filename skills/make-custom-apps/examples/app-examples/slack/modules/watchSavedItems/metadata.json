@@ -1,0 +1,27 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{parseDate(item.date_create)}}",
+        "label": "{{item.file.name | item.message.text}}",
+        "description": "Type: {{item.type}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Saved Items",
+  "scope": [
+    "stars:read"
+  ],
+  "public": false,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when the authenticated user saved new items.",
+  "altAccountName": null
+}

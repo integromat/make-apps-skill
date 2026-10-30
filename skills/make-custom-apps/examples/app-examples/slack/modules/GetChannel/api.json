@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "channel": "{{parameters.channel}}",
+    "include_locale": true,
+    "include_num_members": true
+  },
+  "url": "/conversations.info",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.channel)}}"
+  }
+}

@@ -1,0 +1,31 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "email_domains",
+    "spec": {
+      "type": "text",
+      "label": "element"
+    },
+    "type": "array",
+    "label": "Email Domains"
+  },
+  {
+    "name": "is_organization",
+    "type": "boolean",
+    "label": "Is Organization"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  }
+]

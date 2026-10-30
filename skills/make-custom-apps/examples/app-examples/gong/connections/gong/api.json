@@ -1,0 +1,104 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://api.gong.io/v2/users",
+    "headers": {
+      "Authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "error": {
+        "message": "[{{statusCode}}] {{parseError(body.errors)}}"
+      },
+      "metadata": {
+        "type": "text",
+        "value": "{{body.users[].id}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.body.code",
+        "request.body.client_secret",
+        "request.headers.authorization",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://app.gong.io/oauth2/generate-token",
+    "body": {
+      "code": "{{temp.code}}",
+      "client_id": "{{ifempty(data.clientId, common.clientId)}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Basic {{base64(ifempty(data.clientId, common.clientId) + ':' + ifempty(data.clientSecret, common.clientSecret))}}"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{parseError(body.errors)}}"
+      }
+    }
+  },
+  "refresh": {
+    "log": {
+      "sanitize": [
+        "request.body.client_secret",
+        "request.headers.authorization",
+        "request.body.refresh_token",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://app.gong.io/oauth2/generate-token",
+    "body": {
+      "grant_type": "refresh_token",
+      "refresh_token": "{{data.refreshToken}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Basic {{base64(ifempty(data.clientId, common.clientId) + ':' + ifempty(data.clientSecret, common.clientSecret))}}"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{parseError(body.errors)}}"
+      }
+    },
+    "condition": "{{data.expires < addMinutes(now, 1)}}"
+  },
+  "authorize": {
+    "qs": {
+      "scope": "{{join(distinct(merge(oauth.scope, ifempty(parameters.scopes, emptyarray))), ' ')}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code"
+    },
+    "url": "https://app.gong.io/oauth2/authorize",
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{parseError(body.errors)}}"
+      }
+    }
+  }
+}

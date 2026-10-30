@@ -1,0 +1,15 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'workspaceRPC', 'custom_field', 'project'),'Project')}}",
+  "url": "/projects/{{parameters.project}}",
+  "method": "GET",
+  "response": {
+    "error": {
+      "message": "{{if(body.errors[1].message == null, 'Custom field with ID ' + parameters.custom_field + ' not found.', '[' + statusCode + '] ' body.errors[1].message)}}"
+    },
+    "valid": {
+      "type": "RuntimeError",
+      "condition": "{{getInformationAboutCustomField(body, parameters.custom_field) != null}}"
+    },
+    "output": "{{getInformationAboutCustomField(body, parameters.custom_field)}}"
+  }
+}

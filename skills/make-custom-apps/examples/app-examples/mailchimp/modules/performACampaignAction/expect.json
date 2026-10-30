@@ -1,0 +1,120 @@
+[
+  {
+    "mode": "edit",
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://listCampaigns",
+    "required": true
+  },
+  {
+    "name": "action",
+    "type": "select",
+    "label": "Action",
+    "options": [
+      {
+        "label": "Cancel a campaign",
+        "value": "cancel-send"
+      },
+      {
+        "label": "Send a campaign",
+        "value": "send"
+      },
+      {
+        "label": "Schedule a campaign",
+        "value": "schedule",
+        "nested": [
+          {
+            "name": "schedule_time",
+            "type": "date",
+            "label": "Schedule Time",
+            "required": true
+          },
+          {
+            "help": "Choose whether the campaign should use Timewarp when sending. Campaigns scheduled with Timewarp are localized based on the recipients' time zones.",
+            "name": "timewarp",
+            "type": "boolean",
+            "label": "Timewarp"
+          },
+          {
+            "help": "Choose whether the campaign should use Batch Delivery. Cannot be set to true for campaigns using Timewarp.",
+            "name": "batch_delivery",
+            "type": "boolean",
+            "label": "Batch Delivery",
+            "nested": [
+              {
+                "help": "The delay, in minutes, between batches.",
+                "name": "batch_delay",
+                "type": "uinteger",
+                "label": "Batch Delay",
+                "required": true
+              },
+              {
+                "help": "The number of batches for the campaign send.",
+                "name": "batch_count",
+                "type": "uinteger",
+                "label": "Batch Count",
+                "required": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Unschedule a campaign",
+        "value": "unschedule"
+      },
+      {
+        "label": "Pause an RSS-Driven campaign",
+        "value": "pause"
+      },
+      {
+        "label": "Resume an RSS-Driven campaign",
+        "value": "resume"
+      },
+      {
+        "label": "Replicate a campaign",
+        "value": "replicate"
+      },
+      {
+        "label": "Send a test email",
+        "value": "test",
+        "nested": [
+          {
+            "name": "test_emails",
+            "spec": {
+              "type": "email",
+              "label": "Email"
+            },
+            "type": "array",
+            "label": "Test Emails",
+            "required": true
+          },
+          {
+            "name": "send_type",
+            "type": "select",
+            "label": "Type",
+            "options": [
+              {
+                "label": "HTML",
+                "value": "html",
+                "default": true
+              },
+              {
+                "label": "Plain Text",
+                "value": "plaintext"
+              }
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Resend a campaign",
+        "value": "create-resend"
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

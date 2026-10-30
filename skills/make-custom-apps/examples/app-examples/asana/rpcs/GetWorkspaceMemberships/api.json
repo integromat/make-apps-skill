@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.workspace.name",
+      "this.user.name"
+    ]
+  },
+  "url": "{{if(parameters.workspace_gid,'/workspaces/'+parameters.workspace_gid+'/workspace_memberships','/users/'+parameters.user_gid+'/workspace_memberships')}}",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.workspace.name}}] {{item.user.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "help": "If this parameter is left blank, it will be triggered for all types.",
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Emails Sent",
+        "value": "emailsSent"
+      },
+      {
+        "label": "Emails Opened",
+        "value": "emailsOpened"
+      },
+      {
+        "label": "Emails Clicked",
+        "value": "emailsClicked"
+      },
+      {
+        "label": "Emails Replied",
+        "value": "emailsReplied"
+      },
+      {
+        "label": "Emails Bounced",
+        "value": "emailsBounced"
+      },
+      {
+        "label": "Emails Send Failed",
+        "value": "emailsSendFailed"
+      },
+      {
+        "label": "Emails Unsubscribed",
+        "value": "emailsUnsubscribed"
+      }
+    ]
+  },
+  {
+    "help": "If this parameter is left blank, it will be triggered for all your campaigns.",
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23lemlist@1/listCampaigns"
+  },
+  {
+    "help": "Set true, If you want this trigger only one time for by event type.",
+    "name": "isFirst",
+    "type": "boolean",
+    "label": "Is First"
+  }
+]

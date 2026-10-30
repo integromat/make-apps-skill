@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "{{connection.apiEndpoint}}/3.0",
+  "headers": {
+    "authorization": "Bearer {{connection.accessToken}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.detail + if(body.errors, '\n' + errorDetails(body.errors), '')}}"
+    }
+  }
+}

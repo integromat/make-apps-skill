@@ -1,0 +1,8 @@
+{
+  "url": "/customers/{{parameters.customer}}",
+  "method": "DELETE",
+  "response": {
+    "valid": "{{body.deleted}}",
+    "output": "{{undefined}}"
+  }
+}

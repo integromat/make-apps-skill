@@ -1,0 +1,92 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "folder_id",
+    "type": "text",
+    "label": "Folder ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "full_size_url",
+    "type": "text",
+    "label": "Full Size Url"
+  },
+  {
+    "name": "thumbnail_url",
+    "type": "text",
+    "label": "Thumbnail Url"
+  },
+  {
+    "name": "size",
+    "type": "number",
+    "label": "Size"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "created_by",
+    "type": "text",
+    "label": "Created By"
+  },
+  {
+    "name": "width",
+    "type": "number",
+    "label": "Width"
+  },
+  {
+    "name": "height",
+    "type": "number",
+    "label": "Height"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Workspace's Users",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Updates the users of a workspace.",
+  "altAccountName": null
+}

@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/time_entries/{{parameters.time_entry_id}}",
+  "body": "{{transformRequestDates(omit(parameters,'time_entry_id'))}}",
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

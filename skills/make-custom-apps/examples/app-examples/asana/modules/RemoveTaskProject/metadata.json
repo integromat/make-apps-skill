@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Remove a Task from a Project",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Removes a task from a project.",
+  "altAccountName": null
+}

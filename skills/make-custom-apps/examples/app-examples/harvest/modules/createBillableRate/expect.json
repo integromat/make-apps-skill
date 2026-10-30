@@ -1,0 +1,22 @@
+[
+  {
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://app%23harvest@2/getUsers",
+    "required": true
+  },
+  {
+    "help": "The amount of the billable rate.",
+    "name": "amount",
+    "type": "number",
+    "label": "Amount",
+    "required": true
+  },
+  {
+    "help": "The date the billable rate is effective. Cannot be a date in the future.",
+    "name": "start_date",
+    "type": "date",
+    "label": "Start Date"
+  }
+]

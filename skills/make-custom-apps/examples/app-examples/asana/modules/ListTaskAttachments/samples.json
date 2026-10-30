@@ -1,0 +1,15 @@
+{
+  "gid": "00000",
+  "host": "dropbox",
+  "name": "REDACTED",
+  "parent": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "view_url": "https://example.invalid/x/000/Xxxxxxxxxx.xxx",
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "download_url": "https://example.invalid/x/000/Xxxxxxxxxx.xxx",
+  "permanent_url": "https://example.invalid/xxx/xxxxx/-/xxx_xxxxx",
+  "resource_type": "attachment"
+}

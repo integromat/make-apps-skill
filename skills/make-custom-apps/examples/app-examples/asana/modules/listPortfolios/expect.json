@@ -1,0 +1,16 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23asana@2/GetWorkspaces",
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "page",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

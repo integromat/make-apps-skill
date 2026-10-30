@@ -1,0 +1,10 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableId}}/records",
+  "body": {
+    "records": "{{convertKeyValue(parameters.records)}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

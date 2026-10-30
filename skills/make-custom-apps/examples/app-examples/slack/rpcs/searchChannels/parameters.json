@@ -1,0 +1,60 @@
+[
+  {
+    "help": "Name of the channel.",
+    "name": "query",
+    "type": "text",
+    "label": "Query"
+  },
+  {
+    "name": "search_channel_types",
+    "type": "select",
+    "label": "Search Channel Types",
+    "options": [
+      {
+        "label": "Private",
+        "value": "private"
+      },
+      {
+        "label": "Private Exclude",
+        "value": "private_exclude"
+      },
+      {
+        "label": "Archived",
+        "value": "archived"
+      },
+      {
+        "label": "Exclude Archived",
+        "value": "exclude_archived"
+      },
+      {
+        "label": "Private Exclude Archived",
+        "value": "private_exclude_archived"
+      },
+      {
+        "label": "Multi Workspace",
+        "value": "multi_workspace"
+      },
+      {
+        "label": "Org Wide",
+        "value": "org_wide"
+      },
+      {
+        "label": "External Shared Exclude",
+        "value": "external_shared_exclude"
+      },
+      {
+        "label": "External Shared",
+        "value": "external_shared"
+      },
+      {
+        "label": "External Shared Private",
+        "value": "external_shared_private"
+      },
+      {
+        "label": "External Shared Archived",
+        "value": "external_shared_archived"
+      }
+    ],
+    "multiple": true
+  }
+]

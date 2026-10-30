@@ -1,0 +1,21 @@
+{
+  "name": "trello",
+  "label": "Trello",
+  "version": 4,
+  "rev": 27,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": "#Connecting the Trello service to Integromat\nTo connect your Trello account to Integromat, follow the general instructions for [Connecting to services](https://support.integromat.com/hc/en-us/articles/360001990194.html#create-a-connection). When creating a connection, you will be redirected to the Trello.com website where you will be prompted to grant Integromat access to your account:\n\n<PICTURE OF CONNECTION HERE>\n\nHere, allow access by clicking the **Allow** button. Afterwards, you will be redirected back to the Integromat administration page. Now, you can continue creating your scenario.\n\n",
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#0079bf",
+  "versionFull": "4.15.6",
+  "website": null
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "id",
+    "type": "number",
+    "label": "Scheduled Message ID"
+  },
+  {
+    "name": "channel_id",
+    "type": "text",
+    "label": "Channel ID"
+  },
+  {
+    "name": "post_at",
+    "type": "date",
+    "label": "Post At"
+  },
+  {
+    "name": "date_created",
+    "type": "date",
+    "label": "Date Created"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  }
+]

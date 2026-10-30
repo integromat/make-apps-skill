@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "sort": "name",
+    "query": "{{parameters.query}}",
+    "sort_dir": "asc",
+    "team_ids": "{{parameters.team_id}}",
+    "search_channel_types": "{{if(length(parameters.search_channel_types) > 0, join(parameters.search_channel_types, ','))}}"
+  },
+  "url": "/admin.conversations.search",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.conversations}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

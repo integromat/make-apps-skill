@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "limit": 500,
+    "valueFormat": "{{parameters.valueFormat}}"
+  },
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.items}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.createdAt}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "pageToken": "{{body.nextPageToken}}"
+    },
+    "condition": "{{ifempty(body.nextPageToken, false)}}"
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Reminder ID"
+  },
+  {
+    "name": "creator",
+    "type": "text",
+    "label": "Creator"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "recurring",
+    "type": "boolean",
+    "label": "Recurring"
+  },
+  {
+    "name": "time",
+    "type": "date",
+    "label": "Time"
+  },
+  {
+    "name": "complete_ts",
+    "type": "date",
+    "label": "Complete ts"
+  }
+]

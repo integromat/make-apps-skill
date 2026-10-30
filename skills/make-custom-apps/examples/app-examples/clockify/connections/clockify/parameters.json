@@ -1,0 +1,9 @@
+[
+  {
+    "help": "To get an API Key, click [here](https://clockify.me/user/settings)",
+    "name": "apiKey",
+    "type": "password",
+    "label": "API Key",
+    "required": true
+  }
+]

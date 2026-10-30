@@ -1,0 +1,10 @@
+{
+  "url": "/projects/{{parameters.project}}/duplicate",
+  "body": {
+    "data": "{{removeScheduleObject(transformRequestDates(omit(parameters,'project','workspace')))}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

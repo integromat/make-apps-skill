@@ -1,0 +1,49 @@
+{
+  "id": "xx_0XXx0XXxXXxxxxXxXxxxX0xx",
+  "amount": 2000,
+  "review": null,
+  "status": "requires_payment_method",
+  "charges": {
+    "url": "/v1/charges?payment_intent=pi_1HPo2UGzAMhofaLgXqbqE4lc",
+    "data": [],
+    "object": "list",
+    "has_more": false
+  },
+  "created": 1599737646,
+  "invoice": null,
+  "currency": "usd",
+  "customer": null,
+  "livemode": false,
+  "metadata": {},
+  "shipping": null,
+  "application": null,
+  "canceled_at": null,
+  "description": null,
+  "next_action": null,
+  "on_behalf_of": null,
+  "client_secret": "<REDACTED_CREDENTIAL>",
+  "receipt_email": null,
+  "transfer_data": null,
+  "capture_method": "automatic",
+  "payment_method": null,
+  "transfer_group": null,
+  "amount_received": 0,
+  "amount_capturable": 0,
+  "last_payment_error": null,
+  "setup_future_usage": null,
+  "cancellation_reason": null,
+  "confirmation_method": "automatic",
+  "payment_method_types": [
+    "card"
+  ],
+  "statement_descriptor": null,
+  "application_fee_amount": null,
+  "payment_method_options": {
+    "card": {
+      "network": null,
+      "installments": null,
+      "request_three_d_secure": "automatic"
+    }
+  },
+  "statement_descriptor_suffix": null
+}

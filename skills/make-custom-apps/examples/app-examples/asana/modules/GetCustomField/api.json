@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'custom_field','workspace'),'WorkspaceCustomField')}}",
+  "url": "/custom_fields/{{parameters.custom_field}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

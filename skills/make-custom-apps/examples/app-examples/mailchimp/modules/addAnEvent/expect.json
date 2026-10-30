@@ -1,0 +1,88 @@
+[
+  {
+    "name": "listId",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "name": "email_or_contactId",
+          "type": "select",
+          "label": "Select",
+          "options": [
+            {
+              "label": "Email",
+              "value": "email_address",
+              "nested": [
+                {
+                  "name": "email",
+                  "type": "select",
+                  "label": "Email",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersEmailAddress",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "label": "Contact ID",
+              "value": "contact_id",
+              "nested": [
+                {
+                  "name": "contact_id",
+                  "type": "select",
+                  "label": "Contact ID",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersContactId",
+                  "required": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The name for this type of event.\nEvent name must only contain letters, numbers, underscores, and dashes.",
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true,
+    "validate": {
+      "max": 30,
+      "min": 2
+    }
+  },
+  {
+    "help": "List of properties.",
+    "name": "properties",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key"
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Properties"
+  },
+  {
+    "help": "Events created with the `Is Syncing` value set to `true` will not trigger automations.",
+    "name": "is_syncing",
+    "type": "boolean",
+    "label": "Is Syncing"
+  },
+  {
+    "help": "Enter date and time.",
+    "name": "occurred_at",
+    "type": "date",
+    "label": "Occurred at"
+  }
+]

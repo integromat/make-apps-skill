@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/reporting/surveys/{{parameters.survey_id}}/questions/",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.query}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.questions}}"
+  }
+}

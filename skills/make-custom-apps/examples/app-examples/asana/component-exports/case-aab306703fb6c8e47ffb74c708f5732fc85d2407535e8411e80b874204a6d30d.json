@@ -1,0 +1,59 @@
+{
+  "_rpcs": {
+    "generateWorkspProjectsCustFields": {
+      "rev": 3,
+      "label": "Generate a Workspace's Projects Custom Fields UNUSED",
+      "accountName": "asana2",
+      "altAccountName": null,
+      "api": {
+        "qs": {
+          "limit": 10,
+          "workspace": "{{parameters.workspace}}",
+          "opt_fields": [
+            "this.name",
+            "this.custom_field_settings",
+            "this.custom_field_settings.resource_type",
+            "this.custom_field_settings.is_important",
+            "this.custom_field_settings.parent",
+            "this.custom_field_settings.parent.name",
+            "this.custom_field_settings.parent.resource_type",
+            "this.custom_field_settings.project",
+            "this.custom_field_settings.project.name",
+            "this.custom_field_settings.project.resource_type",
+            "this.custom_field_settings.custom_field",
+            "this.custom_field_settings.custom_field.resource_type",
+            "this.custom_field_settings.custom_field.resource_subtype",
+            "this.custom_field_settings.custom_field.name",
+            "this.custom_field_settings.custom_field.type",
+            "this.custom_field_settings.custom_field.text_value",
+            "this.custom_field_settings.custom_field.description",
+            "this.custom_field_settings.custom_field.precision",
+            "this.custom_field_settings.custom_field.format",
+            "this.custom_field_settings.custom_field.currency_code",
+            "this.custom_field_settings.custom_field.custom_label",
+            "this.custom_field_settings.custom_field.custom_label_position",
+            "this.custom_field_settings.custom_field.is_global_to_workspace",
+            "this.custom_field_settings.custom_field.enum_options",
+            "this.custom_field_settings.custom_field.enum_options.name",
+            "this.custom_field_settings.custom_field.color",
+            "this.custom_field_settings.custom_field.enum_options.enabled",
+            "this.custom_field_settings.custom_field.enum_options.resource_type"
+          ]
+        },
+        "url": "/projects",
+        "method": "GET",
+        "response": {
+          "limit": 300,
+          "output": "{{generateProjCustFieldParamsAlt3(body.data)}}"
+        },
+        "pagination": {
+          "qs": {
+            "offset": "{{body.next_page.offset}}"
+          },
+          "condition": "{{ifempty(body.next_page, false)}}"
+        }
+      },
+      "parameters": []
+    }
+  }
+}

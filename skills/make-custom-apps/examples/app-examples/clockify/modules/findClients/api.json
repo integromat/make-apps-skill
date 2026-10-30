@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "page-size": "{{min(parameters.limit, 1000)}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/clients",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) === 1000 && parameters.limit > 1000}}"
+  }
+}

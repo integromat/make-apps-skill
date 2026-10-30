@@ -1,0 +1,7 @@
+{
+  "url": "/sites/{{parameters.site_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{siteResponse(body)}}"
+  }
+}

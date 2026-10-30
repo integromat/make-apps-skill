@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "limit": 100
+  },
+  "url": "/products",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.email}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "fields": "labels"
+  },
+  "url": "/cards/{{parameters.card_id}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}} ({{item.color}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.labels}}"
+  }
+}

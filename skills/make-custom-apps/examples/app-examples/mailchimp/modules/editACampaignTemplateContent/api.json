@@ -1,0 +1,13 @@
+{
+  "url": "/campaigns/{{extractCampaignId(parameters.campaign)}}/content",
+  "body": {
+    "template": {
+      "id": "{{ifempty(parameters.template, parseNumber(extractTemplateId(parameters.campaign)))}}",
+      "sections": "{{toCollection(parameters.sections, 'sectionName', 'content')}}"
+    }
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

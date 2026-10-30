@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Webhook Events",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "asana",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Watches webhook events.",
+  "altAccountName": null
+}

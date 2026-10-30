@@ -1,0 +1,28 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Select",
+    "options": [
+      {
+        "label": "Statistics of a Campaign",
+        "value": "statistic",
+        "default": true
+      },
+      {
+        "label": "leads of a Campaign",
+        "value": "lead"
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "mode": "edit",
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23lemlist@1/listCampaigns",
+    "required": true
+  }
+]

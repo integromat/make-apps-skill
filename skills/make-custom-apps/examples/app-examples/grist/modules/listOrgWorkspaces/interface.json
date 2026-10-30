@@ -1,0 +1,119 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "id",
+    "type": "number",
+    "label": "ID"
+  },
+  {
+    "name": "isSupportWorkspace",
+    "type": "boolean",
+    "label": "Is Support Workspace"
+  },
+  {
+    "name": "docs",
+    "spec": {
+      "spec": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "createdAt",
+          "type": "date",
+          "label": "Created At"
+        },
+        {
+          "name": "updatedAt",
+          "type": "date",
+          "label": "Updated At"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "isPinned",
+          "type": "boolean",
+          "label": "Is Pinned"
+        },
+        {
+          "name": "urlId",
+          "type": "text",
+          "label": "Url ID"
+        },
+        {
+          "name": "access",
+          "type": "text",
+          "label": "Access"
+        },
+        {
+          "name": "public",
+          "type": "boolean",
+          "label": "Public"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Docs"
+  },
+  {
+    "name": "access",
+    "type": "text",
+    "label": "Access"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "id",
+        "type": "number",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "picture",
+        "type": "text",
+        "label": "Picture"
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "label": "Email"
+      },
+      {
+        "name": "anonymous",
+        "type": "boolean",
+        "label": "Anonymous"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "orgDomain",
+    "type": "text",
+    "label": "Org Domain"
+  }
+]

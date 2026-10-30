@@ -1,0 +1,10 @@
+{
+  "url": "/{{parameters.base}}/{{encodeURL(parameters.table)}}/{{parameters.id}}",
+  "method": "DELETE",
+  "response": {
+    "output": {
+      "id": "{{body.id}}"
+    }
+  },
+  "encodeUrl": false
+}

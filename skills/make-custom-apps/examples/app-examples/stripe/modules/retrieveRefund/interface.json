@@ -1,0 +1,58 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "balance_transaction",
+    "type": "text",
+    "label": "Balance transaction"
+  },
+  {
+    "name": "charge",
+    "type": "text",
+    "label": "Charge"
+  },
+  {
+    "name": "created",
+    "type": "number",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "metadata",
+    "spec": [],
+    "type": "collection",
+    "label": "Metadata"
+  },
+  {
+    "name": "reason",
+    "type": "text",
+    "label": "Reason"
+  },
+  {
+    "name": "receipt_number",
+    "type": "text",
+    "label": "Receipt number"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  }
+]

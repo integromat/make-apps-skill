@@ -1,0 +1,120 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Action ID"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator member ID"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "creationMethod",
+            "type": "text",
+            "label": "Creation method"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short link"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "creationMethod",
+        "type": "text",
+        "label": "Creation method"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "memberCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "text",
+        "label": "Avatar URL"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full name"
+      },
+      {
+        "name": "idMemberReferrer",
+        "type": "text",
+        "label": "Referrer member ID"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "nonPublic",
+        "spec": [],
+        "type": "collection",
+        "label": "Non public"
+      },
+      {
+        "name": "nonPublicAvailable",
+        "type": "boolean",
+        "label": "Non public available"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Creator member"
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "mode": "edit",
+    "name": "customer",
+    "type": "select",
+    "label": "Customer ID",
+    "options": "rpc://app%23stripe@1/listCustomers",
+    "editable": true,
+    "required": true
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "portfolio",
+          "type": "select",
+          "label": "Portfolio",
+          "options": "rpc://app%23asana@2/GetPortfolios",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The name of the portfolio.",
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "help": "Color of the portfolio.",
+    "name": "color",
+    "type": "select",
+    "label": "Color",
+    "options": "rpc://app%23asana@2/getColors"
+  },
+  {
+    "help": "True if the portfolio is public to its workspace members.",
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  }
+]

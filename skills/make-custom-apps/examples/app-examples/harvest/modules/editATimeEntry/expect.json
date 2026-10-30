@@ -1,0 +1,42 @@
+[
+  {
+    "name": "time_entry_id",
+    "type": "text",
+    "label": "Time entry ID",
+    "required": true
+  },
+  {
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": {
+      "store": "rpc://getProjects",
+      "nested": [
+        {
+          "name": "task_id",
+          "type": "select",
+          "label": "Task ID",
+          "options": "rpc://getTasksForProject"
+        }
+      ]
+    }
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "help": "Enter the number of (decimal time) hours. Example: 1:30 (1hour and 30 minutes)= 1.5 hours.",
+    "name": "hours",
+    "type": "number",
+    "label": "Hours"
+  },
+  {
+    "help": "Only the date is relevant, time will be ignored.",
+    "name": "spent_date",
+    "time": false,
+    "type": "date",
+    "label": "Spent at"
+  }
+]

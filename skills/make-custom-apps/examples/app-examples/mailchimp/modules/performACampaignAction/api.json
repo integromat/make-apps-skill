@@ -1,0 +1,14 @@
+{
+  "url": "/campaigns/{{parameters.campaign}}/actions/{{parameters.action}}",
+  "body": {
+    "timewarp": "{{parameters.timewarp}}",
+    "send_type": "{{parameters.send_type}}",
+    "test_emails": "{{parameters.test_emails}}",
+    "schedule_time": "{{formatDate(parameters.schedule_time, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+    "batch_delivery": "{{batchDelivery(parameters)}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

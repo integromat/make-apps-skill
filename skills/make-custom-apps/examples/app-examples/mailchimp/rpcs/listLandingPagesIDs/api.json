@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/landing-pages",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.url}}"
+    },
+    "iterate": "{{body.landing_pages}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

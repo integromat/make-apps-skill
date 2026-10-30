@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "New Event",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "slack2",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a new message or other events are created.",
+  "altAccountName": null
+}

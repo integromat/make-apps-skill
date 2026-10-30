@@ -1,0 +1,33 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "qs": {
+      "limit": 100
+    },
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{item.date}}",
+        "label": "{{if(length(item.data.text) > 60, trim(substring(item.data.text, 0, 60)) + '...', item.data.text)}}"
+      }
+    },
+    "pagination": {
+      "qs": {
+        "page": "{{pagination.page-1}}"
+      },
+      "condition": "{{pagination.page <= 5}}"
+    }
+  },
+  "flags": {},
+  "label": "Watch Comments",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Triggers when a new comment is added.",
+  "altAccountName": null
+}

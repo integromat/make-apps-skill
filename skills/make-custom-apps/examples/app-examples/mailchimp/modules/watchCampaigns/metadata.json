@@ -1,0 +1,24 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{switch(parameters.select, 'create', item.create_time, 'sent', item.send_time)}}",
+        "label": "{{item.settings.title}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Campaigns",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a new campaign is created or sent.",
+  "altAccountName": null
+}

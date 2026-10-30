@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "email": "{{parameters.email}}"
+  },
+  "url": "/boards/{{parameters.board_id}}/members",
+  "body": {
+    "fullName": "{{trim(parameters.name)}}"
+  },
+  "method": "PUT",
+  "headers": {
+    "type": "{{parameters.type}}"
+  },
+  "response": {
+    "output": "{{body}}"
+  }
+}

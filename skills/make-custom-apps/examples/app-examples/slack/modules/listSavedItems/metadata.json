@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Saved Items",
+  "scope": [
+    "stars:read"
+  ],
+  "public": false,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "List the authenticated user's saved items.",
+  "altAccountName": null
+}

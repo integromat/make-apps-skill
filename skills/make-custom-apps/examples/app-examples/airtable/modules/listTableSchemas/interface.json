@@ -1,0 +1,114 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "primaryFieldId",
+    "type": "text",
+    "label": "Primary Field ID"
+  },
+  {
+    "name": "fields",
+    "spec": {
+      "spec": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "options",
+          "spec": [
+            {
+              "name": "choices",
+              "spec": {
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Name"
+                  },
+                  {
+                    "name": "color",
+                    "type": "text",
+                    "label": "Color"
+                  }
+                ],
+                "type": "collection"
+              },
+              "type": "array",
+              "label": "Choices"
+            },
+            {
+              "name": "linkedTableId",
+              "type": "text",
+              "label": "Linked Table ID"
+            },
+            {
+              "name": "isReversed",
+              "type": "boolean",
+              "label": "Is Reversed"
+            },
+            {
+              "name": "prefersSingleRecordLink",
+              "type": "text",
+              "label": "Prefers Single Record Link"
+            }
+          ],
+          "type": "collection",
+          "label": "Options"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Fields"
+  },
+  {
+    "name": "views",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Views"
+  }
+]

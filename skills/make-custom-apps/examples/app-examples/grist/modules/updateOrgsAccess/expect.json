@@ -1,0 +1,48 @@
+[
+  {
+    "help": "This can be an integer ID, or a string subdomain (e.g. `gristlabs`), or `current` if the org is implied by the domain in the url",
+    "mode": "edit",
+    "name": "orgId",
+    "type": "select",
+    "label": "Org ID",
+    "options": "rpc://app%23grist@1/listOrgs",
+    "required": true
+  },
+  {
+    "name": "users",
+    "spec": [
+      {
+        "name": "email",
+        "type": "text",
+        "label": "User Email",
+        "required": true
+      },
+      {
+        "name": "role",
+        "type": "select",
+        "label": "Role",
+        "options": [
+          {
+            "label": "Owners",
+            "value": "owners"
+          },
+          {
+            "label": "Editors",
+            "value": "editors"
+          },
+          {
+            "label": "Viewers",
+            "value": "viewers"
+          },
+          {
+            "label": "Members",
+            "value": "members"
+          }
+        ]
+      }
+    ],
+    "type": "array",
+    "label": "Users",
+    "required": true
+  }
+]

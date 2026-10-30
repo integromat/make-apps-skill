@@ -1,0 +1,9 @@
+{
+  "url": "/payment_intents/{{parameters.ignore::id}}/capture",
+  "body": "{{encodeRequestBody(parameters)}}",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

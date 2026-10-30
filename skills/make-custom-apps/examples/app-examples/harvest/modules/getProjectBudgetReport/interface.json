@@ -1,0 +1,52 @@
+[
+  {
+    "name": "project_id",
+    "type": "number",
+    "label": "Project ID"
+  },
+  {
+    "name": "project_name",
+    "type": "text",
+    "label": "Project Name"
+  },
+  {
+    "name": "client_id",
+    "type": "number",
+    "label": "Client ID"
+  },
+  {
+    "name": "client_name",
+    "type": "text",
+    "label": "Client Name"
+  },
+  {
+    "name": "budget_is_monthly",
+    "type": "boolean",
+    "label": "Budget is Monthly"
+  },
+  {
+    "name": "budget_by",
+    "type": "text",
+    "label": "Budget by"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is Active"
+  },
+  {
+    "name": "budget",
+    "type": "number",
+    "label": "Budget"
+  },
+  {
+    "name": "budget_spent",
+    "type": "number",
+    "label": "Budget Spent"
+  },
+  {
+    "name": "budget_remaining",
+    "type": "number",
+    "label": "Budget Remaining"
+  }
+]

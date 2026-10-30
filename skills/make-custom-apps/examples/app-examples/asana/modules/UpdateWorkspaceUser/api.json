@@ -1,0 +1,10 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/{{parameters.addOrRemove}}",
+  "body": {
+    "data": "{{omit(parameters,'workspace','addOrRemove','selectOrMap')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

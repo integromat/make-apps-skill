@@ -1,0 +1,243 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Subscriber ID"
+  },
+  {
+    "name": "email_address",
+    "type": "text",
+    "label": "Email Address"
+  },
+  {
+    "name": "unique_email_id",
+    "type": "text",
+    "label": "Unique Email ID"
+  },
+  {
+    "name": "contact_id",
+    "type": "text",
+    "label": "Contact ID"
+  },
+  {
+    "name": "full_name",
+    "type": "text",
+    "label": "Full Name"
+  },
+  {
+    "name": "web_id",
+    "type": "number",
+    "label": "Web ID"
+  },
+  {
+    "name": "email_type",
+    "type": "text",
+    "label": "Email Type"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "consents_to_one_to_one_messaging",
+    "type": "boolean",
+    "label": "Consents to one to one messaging"
+  },
+  "rpc://app%23mailchimp@2/listMergeFields",
+  "rpc://app%23mailchimp@2/listInterestCategories?interface=true",
+  {
+    "name": "stats",
+    "spec": [
+      {
+        "name": "avg_open_rate",
+        "type": "number",
+        "label": "Avg Open Rate"
+      },
+      {
+        "name": "avg_click_rate",
+        "type": "number",
+        "label": "Avg Click Rate"
+      }
+    ],
+    "type": "collection",
+    "label": "Stats"
+  },
+  {
+    "name": "ip_signup",
+    "type": "text",
+    "label": "Ip Signup"
+  },
+  {
+    "name": "timestamp_signup",
+    "type": "text",
+    "label": "Timestamp Signup"
+  },
+  {
+    "name": "ip_opt",
+    "type": "text",
+    "label": "Ip Opt"
+  },
+  {
+    "name": "timestamp_opt",
+    "type": "date",
+    "label": "Timestamp Opt"
+  },
+  {
+    "name": "member_rating",
+    "type": "number",
+    "label": "Member Rating"
+  },
+  {
+    "name": "last_changed",
+    "type": "date",
+    "label": "Last Changed"
+  },
+  {
+    "name": "language",
+    "type": "text",
+    "label": "Language"
+  },
+  {
+    "name": "vip",
+    "type": "boolean",
+    "label": "Vip"
+  },
+  {
+    "name": "email_client",
+    "type": "text",
+    "label": "Email Client"
+  },
+  {
+    "name": "location",
+    "spec": [
+      {
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      },
+      {
+        "name": "gmtoff",
+        "type": "number",
+        "label": "Gmtoff"
+      },
+      {
+        "name": "dstoff",
+        "type": "number",
+        "label": "Dstoff"
+      },
+      {
+        "name": "country_code",
+        "type": "text",
+        "label": "Country Code"
+      },
+      {
+        "name": "timezone",
+        "type": "text",
+        "label": "Timezone"
+      }
+    ],
+    "type": "collection",
+    "label": "Location"
+  },
+  {
+    "name": "source",
+    "type": "text",
+    "label": "Source"
+  },
+  {
+    "name": "tags_count",
+    "type": "number",
+    "label": "Tags Count"
+  },
+  {
+    "name": "tags",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Tax ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Tags"
+  },
+  {
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": " Links"
+  },
+  {
+    "name": "last_note",
+    "spec": [
+      {
+        "name": "note_id",
+        "type": "text",
+        "label": "Note ID"
+      },
+      {
+        "name": "created_at",
+        "time": true,
+        "type": "date",
+        "label": "Created at"
+      },
+      {
+        "name": "created_by",
+        "type": "text",
+        "label": "Created By"
+      },
+      {
+        "name": "note",
+        "type": "text",
+        "label": "Note"
+      }
+    ],
+    "type": "collection",
+    "label": "Last Note"
+  }
+]

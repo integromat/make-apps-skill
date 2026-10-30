@@ -1,0 +1,18 @@
+[
+  {
+    "qs": {
+      "count": 100
+    },
+    "url": "/lists/{{parameters.listId}}/merge-fields",
+    "method": "GET",
+    "response": {
+      "limit": 300,
+      "output": "{{getMergeFieldsParams(body.merge_fields)}}"
+    },
+    "pagination": {
+      "qs": {
+        "offset": "{{(pagination.page - 1) * 100}}"
+      }
+    }
+  }
+]

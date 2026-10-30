@@ -1,0 +1,97 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "available_on",
+    "type": "number",
+    "label": "Available on"
+  },
+  {
+    "name": "created",
+    "type": "number",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "exchange_rate",
+    "type": "text",
+    "label": "Exchange rate"
+  },
+  {
+    "name": "fee",
+    "type": "number",
+    "label": "Fee"
+  },
+  {
+    "name": "fee_details",
+    "spec": {
+      "spec": [
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        },
+        {
+          "name": "application",
+          "type": "text",
+          "label": "Application"
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "label": "Currency"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Fee details"
+  },
+  {
+    "name": "net",
+    "type": "number",
+    "label": "Net"
+  },
+  {
+    "name": "source",
+    "type": "text",
+    "label": "Source"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  }
+]

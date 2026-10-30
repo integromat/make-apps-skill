@@ -1,0 +1,7 @@
+{
+  "url": "/docs/{{parameters.docId}}/folders/{{parameters.folderIdOrName}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

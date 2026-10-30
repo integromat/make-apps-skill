@@ -1,0 +1,64 @@
+[
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID",
+    "required": true
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Payment Type",
+    "options": [
+      {
+        "label": "Alipay",
+        "value": "alipay"
+      },
+      {
+        "label": "AU BECS Debit",
+        "value": "au_becs_debit"
+      },
+      {
+        "label": "BACS Debit",
+        "value": "bacs_debit"
+      },
+      {
+        "label": "Bancontact",
+        "value": "bancontact"
+      },
+      {
+        "label": "Card",
+        "value": "card"
+      },
+      {
+        "label": "EPS",
+        "value": "eps"
+      },
+      {
+        "label": "FPX",
+        "value": "fpx"
+      },
+      {
+        "label": "Giropay",
+        "value": "giropay"
+      },
+      {
+        "label": "iDEAL",
+        "value": "ideal"
+      },
+      {
+        "label": "Przelewy24",
+        "value": "p24"
+      },
+      {
+        "label": "SEPA Debit",
+        "value": "sepa_debit"
+      },
+      {
+        "label": "SOFORT",
+        "value": "sofort"
+      }
+    ],
+    "required": true
+  }
+]

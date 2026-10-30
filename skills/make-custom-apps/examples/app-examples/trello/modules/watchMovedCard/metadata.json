@@ -1,0 +1,33 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "qs": {
+      "limit": 100
+    },
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{item.date}}",
+        "label": "{{join(map(item.entities, 'text'), ' ')}}"
+      }
+    },
+    "pagination": {
+      "qs": {
+        "page": "{{pagination.page-1}}"
+      },
+      "condition": "{{pagination.page <= 5}}"
+    }
+  },
+  "flags": {},
+  "label": "Watch Cards Moved to a List",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Triggers when a card is moved to a specific list.",
+  "altAccountName": null
+}

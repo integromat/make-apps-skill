@@ -1,0 +1,424 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "name": "dateRangeStart",
+          "type": "date",
+          "label": "Date Range Start",
+          "required": true
+        },
+        {
+          "name": "dateRangeEnd",
+          "type": "date",
+          "label": "Date Range End",
+          "required": true
+        },
+        {
+          "name": "sortColumn",
+          "type": "select",
+          "label": "Sort Column",
+          "options": [
+            {
+              "label": "ID",
+              "value": "ID"
+            },
+            {
+              "label": "Project",
+              "value": "PROJECT"
+            },
+            {
+              "label": "User",
+              "value": "USER"
+            },
+            {
+              "label": "Category",
+              "value": "CATEGORY"
+            },
+            {
+              "label": "Date",
+              "value": "DATE"
+            },
+            {
+              "label": "Amount",
+              "value": "AMOUNT"
+            }
+          ]
+        },
+        {
+          "name": "page",
+          "type": "uinteger",
+          "label": "Page"
+        },
+        {
+          "name": "pageSize",
+          "type": "uinteger",
+          "label": "Page Size"
+        },
+        {
+          "name": "timeZone",
+          "type": "timezone",
+          "label": "Time Zone"
+        },
+        {
+          "name": "weekStart",
+          "type": "select",
+          "label": "Week Start",
+          "options": [
+            {
+              "label": "Monday",
+              "value": "MONDAY"
+            },
+            {
+              "label": "Tuesday",
+              "value": "TUESDAY"
+            },
+            {
+              "label": "Wednesday",
+              "value": "WEDNESDAY"
+            },
+            {
+              "label": "Thursday",
+              "value": "THURSDAY"
+            },
+            {
+              "label": "Friday",
+              "value": "FRIDAY"
+            },
+            {
+              "label": "Saturday",
+              "value": "SATURDAY"
+            },
+            {
+              "label": "Sunday",
+              "value": "SUNDAY"
+            }
+          ]
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "sortOrder",
+          "type": "select",
+          "label": "Sort Order",
+          "options": [
+            {
+              "label": "Ascending",
+              "value": "ASCENDING"
+            },
+            {
+              "label": "Descending",
+              "value": "DESCENDING"
+            }
+          ]
+        },
+        {
+          "name": "exportType",
+          "type": "select",
+          "label": "Export Type",
+          "options": [
+            {
+              "label": "JSON",
+              "value": "JSON"
+            },
+            {
+              "label": "CSV",
+              "value": "CSV"
+            },
+            {
+              "label": "XLSX",
+              "value": "XLSX"
+            },
+            {
+              "label": "PDF",
+              "value": "PDF"
+            }
+          ]
+        },
+        {
+          "name": "invoicingState",
+          "type": "select",
+          "label": "Invoicing State",
+          "options": [
+            {
+              "label": "Invoiced",
+              "value": "INVOICED"
+            },
+            {
+              "label": "Uninvoiced",
+              "value": "UNINVOICED"
+            },
+            {
+              "label": "All",
+              "value": "ALL"
+            }
+          ]
+        },
+        {
+          "name": "note",
+          "type": "text",
+          "label": "Note"
+        },
+        {
+          "name": "withoutNote",
+          "type": "boolean",
+          "label": "Without Note"
+        },
+        {
+          "name": "users",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "User IDs",
+              "options": "rpc://app%23clockify@1/listUsers",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Users"
+        },
+        {
+          "name": "userGroups",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "User Group IDs",
+              "options": "rpc://app%23clockify@1/listGroups",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "User Groups"
+        },
+        {
+          "name": "clients",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Client IDs",
+              "options": "rpc://app%23clockify@1/listClients",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Archived",
+                  "value": "ARCHIVED"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Clients"
+        },
+        {
+          "name": "projects",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Project IDs",
+              "options": "rpc://app%23clockify@1/listProjects",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Archived",
+                  "value": "ARCHIVED"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Projects"
+        },
+        {
+          "name": "categories",
+          "spec": [
+            {
+              "mode": "edit",
+              "name": "ids",
+              "type": "select",
+              "label": "Category IDs",
+              "options": "rpc://app%23clockify@1/getCategories",
+              "multiple": true
+            },
+            {
+              "name": "contains",
+              "type": "select",
+              "label": "Contains",
+              "options": [
+                {
+                  "label": "Contains",
+                  "value": "CONTAINS"
+                },
+                {
+                  "label": "Does Not Contain",
+                  "value": "DOES_NOT_CONTAIN"
+                }
+              ]
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "All",
+                  "value": "ALL"
+                },
+                {
+                  "label": "Active",
+                  "value": "ACTIVE"
+                },
+                {
+                  "label": "Inactive",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Categories"
+        }
+      ]
+    },
+    "required": true
+  }
+]

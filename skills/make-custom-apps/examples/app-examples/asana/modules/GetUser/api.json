@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'gid'),'User')}}",
+  "url": "/users/{{parameters.gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

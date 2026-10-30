@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/customFields/{{parameters.cf_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

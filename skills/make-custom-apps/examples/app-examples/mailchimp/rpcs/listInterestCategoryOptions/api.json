@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "count": 500
+  },
+  "url": "/lists/{{parameters.list}}/interest-categories/{{parameters.interest_category}}/interests",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.interests}}"
+  }
+}

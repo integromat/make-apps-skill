@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/cards/{{parameters.card_id}}/checkItem/{{parameters.idCheckItem}}",
+  "body": {
+    "pos": "{{parameters.pos}}",
+    "name": "{{parameters.name}}",
+    "state": "{{parameters.state}}",
+    "idChecklist": "{{parameters.idChecklist}}"
+  },
+  "method": "PUT",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

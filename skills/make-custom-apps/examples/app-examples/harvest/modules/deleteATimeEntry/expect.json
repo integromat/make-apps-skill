@@ -1,0 +1,8 @@
+[
+  {
+    "name": "time_entry_id",
+    "type": "text",
+    "label": "Time entry ID",
+    "required": true
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "limit": 500
+  },
+  "url": "/docs/{{parameters.docId}}/tables",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.items}}"
+  },
+  "pagination": {
+    "qs": {
+      "pageToken": "{{body.nextPageToken}}"
+    },
+    "condition": "{{ifempty(body.nextPageToken, false)}}"
+  }
+}

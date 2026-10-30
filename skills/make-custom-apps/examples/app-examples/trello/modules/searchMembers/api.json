@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "query": "{{parameters.query}}",
+    "partial": "{{parameters.partial}}",
+    "modelTypes": "members",
+    "member_fields": "all",
+    "members_limit": "{{parameters.limit}}"
+  },
+  "url": "/search",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.members}}"
+  }
+}

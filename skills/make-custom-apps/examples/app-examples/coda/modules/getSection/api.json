@@ -1,0 +1,7 @@
+{
+  "url": "/docs/{{parameters.docId}}/pages/{{parameters.sectionIdOrName}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,244 @@
+[
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email"
+        },
+        {
+          "name": "email_type",
+          "type": "text",
+          "label": "Email Type"
+        },
+        {
+          "name": "ip_opt",
+          "type": "text",
+          "label": "IP Opt"
+        },
+        {
+          "name": "ip_signup",
+          "type": "text",
+          "label": "IP Signup"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'subscribe'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "label": "Action"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "label": "Reason"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "label": "Email"
+        },
+        {
+          "name": "email_type",
+          "type": "text",
+          "label": "Email Type"
+        },
+        {
+          "name": "ip_opt",
+          "type": "text",
+          "label": "Ip Opt"
+        },
+        {
+          "name": "web_id",
+          "type": "text",
+          "label": "Web ID"
+        },
+        {
+          "name": "campaign_id",
+          "type": "text",
+          "label": "Campaign ID"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'unsubscribe'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email"
+        },
+        {
+          "name": "email_type",
+          "type": "text",
+          "label": "Email Type"
+        },
+        {
+          "name": "web_id",
+          "type": "text",
+          "label": "Web ID"
+        },
+        {
+          "name": "ip_opt",
+          "type": "text",
+          "label": "IP Opt"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'profile'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "new_id",
+          "type": "text",
+          "label": "New ID"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        },
+        {
+          "name": "new_email",
+          "type": "email",
+          "label": "New Email"
+        },
+        {
+          "name": "old_email",
+          "type": "text",
+          "label": "Old Type"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'upemail'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "campaign_id",
+          "type": "text",
+          "label": "Campaign ID"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        },
+        {
+          "name": "reason",
+          "type": "email",
+          "label": "Reason"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "label": "Email"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'cleaned'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "webhook_type",
+          "type": "text",
+          "label": "Webhook Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "subject",
+          "type": "text",
+          "label": "Subject"
+        },
+        {
+          "name": "status",
+          "type": "email",
+          "label": "Status"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "label": "Reason"
+        },
+        {
+          "name": "list_id",
+          "type": "text",
+          "label": "List ID"
+        }
+      ]
+    },
+    "condition": "{{webhook.events === 'campaign'}}"
+  }
+]

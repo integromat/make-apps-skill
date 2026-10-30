@@ -1,0 +1,14 @@
+[
+  {
+    "name": "table",
+    "type": "text"
+  },
+  {
+    "name": "for",
+    "type": "text"
+  },
+  {
+    "name": "filter",
+    "type": "array"
+  }
+]

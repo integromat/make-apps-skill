@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "count": 500
+  },
+  "url": "/campaign-folders",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.folders}}"
+  }
+}

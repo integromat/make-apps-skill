@@ -1,0 +1,27 @@
+[
+  {
+    "name": "gid",
+    "type": "uinteger",
+    "label": "Enumeration Option ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "enabled",
+    "type": "boolean",
+    "label": "Enabled?"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "name": "clientId",
+    "type": "text",
+    "label": "Client ID",
+    "advanced": true
+  },
+  {
+    "name": "clientSecret",
+    "type": "password",
+    "label": "Client Secret",
+    "advanced": true
+  },
+  {
+    "help": "Additional scopes used for making custom requests.",
+    "name": "scopes",
+    "type": "select",
+    "label": "Scopes",
+    "options": [
+      {
+        "value": "api:calls:read:transcript"
+      },
+      {
+        "value": "api:provisioning:read"
+      },
+      {
+        "value": "api:workspaces:read"
+      },
+      {
+        "value": "api:meetings:user:delete"
+      },
+      {
+        "value": "api:crm:register"
+      },
+      {
+        "value": "api:crm:get-objects"
+      },
+      {
+        "value": "api:data-privacy:delete"
+      },
+      {
+        "value": "api:crm:schema"
+      },
+      {
+        "value": "api:crm:upload"
+      },
+      {
+        "value": "api:meetings:integration:status"
+      },
+      {
+        "value": "api:calls:read:extensive"
+      },
+      {
+        "value": "api:meetings:user:update"
+      },
+      {
+        "value": "api:settings:scorecards:read"
+      },
+      {
+        "value": "api:stats:scorecards"
+      },
+      {
+        "value": "api:stats:interaction"
+      },
+      {
+        "value": "api:stats:user-actions"
+      },
+      {
+        "value": "api:calls:read:basic"
+      },
+      {
+        "value": "api:calls:read:media-url"
+      },
+      {
+        "value": "api:crm:integrations:read"
+      },
+      {
+        "value": "api:library:read"
+      },
+      {
+        "value": "api:data-privacy:read"
+      },
+      {
+        "value": "api:users:read"
+      },
+      {
+        "value": "api:logs:read"
+      },
+      {
+        "value": "api:calls:create"
+      },
+      {
+        "value": "api:meetings:user:create"
+      },
+      {
+        "value": "api:stats:user-actions:detailed"
+      },
+      {
+        "value": "api:provisioning:read-write"
+      },
+      {
+        "value": "api:engagement-data:write"
+      },
+      {
+        "value": "api:permission-profile:read"
+      },
+      {
+        "value": "api:permission-profile:write"
+      },
+      {
+        "value": "api:crm-calls:manual-association:read"
+      }
+    ],
+    "advanced": true,
+    "multiple": true
+  }
+]

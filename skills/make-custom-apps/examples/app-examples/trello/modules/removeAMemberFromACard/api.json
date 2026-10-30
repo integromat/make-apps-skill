@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/cards/{{parameters.card_id}}/idMembers/{{parameters.member_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": ""
+  }
+}

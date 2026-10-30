@@ -1,0 +1,9 @@
+{
+  "url": "/invoices",
+  "body": "{{transformRequestDates(parameters)}}",
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "qs": {
+    "end": "{{if(parameters.end, formatDate(parameters.end, 'YYYY-MM-DDTHH:mm:ss.SSS',environment.timezone) + 'Z', undefined)}}",
+    "tags": "{{parameters.tags}}",
+    "task": "{{parameters.task}}",
+    "start": "{{if(parameters.start, formatDate(parameters.start, 'YYYY-MM-DDTHH:mm:ss.SSS',environment.timezone) + 'Z', undefined)}}",
+    "project": "{{parameters.project}}",
+    "hydrated": "{{parameters.hydrated}}",
+    "description": "{{parameters.description}}",
+    "in-progress": "{{parameters.`in-progress`}}",
+    "task-required": "{{parameters.`task-required`}}",
+    "project-required": "{{parameters.`project-required`}}",
+    "consider-duration-format": "{{parameters.`durationFormat`}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/user/{{parameters.user}}/time-entries",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{parseTimeResponse(item)}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) > 1}}"
+  }
+}

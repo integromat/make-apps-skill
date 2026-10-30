@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "type": "{{ifempty(parameters.type, undefined)}}",
+    "limit": "{{min(parameters.limit, 100)}}",
+    "payout": "{{ifempty(parameters.payout, undefined)}}",
+    "currency": "{{ifempty(parameters.currency, undefined)}}",
+    "created[{{parameters.created}}]": "{{if(parameters.created !== '', parameters.created_timestamp, undefined)}}",
+    "available_on[{{parameters.available_on}}]": "{{if(parameters.available_on !== '', parameters.available_on_timestamp, undefined)}}"
+  },
+  "url": "/balance/history",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

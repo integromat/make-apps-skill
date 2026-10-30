@@ -1,0 +1,42 @@
+[
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "Page created",
+        "value": "page.added"
+      },
+      {
+        "label": "Page deleted",
+        "value": "page.deleted"
+      },
+      {
+        "label": "Page updated",
+        "value": "page.edited"
+      },
+      {
+        "label": "Page published",
+        "value": "page.published"
+      },
+      {
+        "label": "Published page updated",
+        "value": "page.published.edited"
+      },
+      {
+        "label": "Page unpublished",
+        "value": "page.unpublished"
+      },
+      {
+        "label": "Tag added to page",
+        "value": "page.tag.attached"
+      },
+      {
+        "label": "Tag removed from page",
+        "value": "page.tag.detached"
+      }
+    ],
+    "required": true
+  }
+]

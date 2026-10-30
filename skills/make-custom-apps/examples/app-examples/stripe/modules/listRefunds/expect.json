@@ -1,0 +1,21 @@
+[
+  {
+    "help": "The identifier of the charge to be retrieved.",
+    "name": "charge",
+    "type": "select",
+    "label": "Charge",
+    "options": "rpc://app%23stripe@1/getTopCharges",
+    "editable": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "required": true,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  }
+]

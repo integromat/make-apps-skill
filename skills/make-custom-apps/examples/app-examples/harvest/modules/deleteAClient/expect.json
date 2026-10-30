@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients",
+    "required": true
+  }
+]

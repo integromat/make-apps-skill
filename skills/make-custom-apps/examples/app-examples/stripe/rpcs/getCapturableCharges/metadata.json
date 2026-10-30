@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "GET Capturable Charges",
+  "accountName": "stripe",
+  "altAccountName": null
+}

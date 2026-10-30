@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "MaxItems": 50
+  },
+  "url": "/2018-10-31/layers",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.LayerName}}",
+      "value": "{{item.LayerName}}"
+    },
+    "iterate": "{{body.Layers}}"
+  },
+  "pagination": {
+    "qs": {
+      "Marker": "{{body.NextMarker}}"
+    },
+    "condition": "{{ifempty(body.NextMarker, false)}}"
+  }
+}

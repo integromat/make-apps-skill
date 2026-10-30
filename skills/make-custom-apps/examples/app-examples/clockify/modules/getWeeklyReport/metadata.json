@@ -1,0 +1,16 @@
+{
+  "rev": 5,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Weekly Report",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Retrieves a weekly report.",
+  "altAccountName": null
+}

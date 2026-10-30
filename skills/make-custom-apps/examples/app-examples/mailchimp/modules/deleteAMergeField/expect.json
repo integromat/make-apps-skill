@@ -1,0 +1,22 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "field_id",
+          "type": "select",
+          "label": "Merge Field ID",
+          "options": "rpc://app%23mailchimp@2/listMergeFieldsIDs",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

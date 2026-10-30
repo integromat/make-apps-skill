@@ -1,0 +1,96 @@
+[
+  {
+    "help": "For more information about filtering, please visit [the official documentation](https://ghost.org/docs/api/v3/content/#value).",
+    "name": "filter",
+    "type": "filter",
+    "label": "Criteria",
+    "options": {
+      "store": [
+        {
+          "label": "ID (Text)",
+          "value": "text::posts.id"
+        },
+        {
+          "label": "UUID (Text)",
+          "value": "text::posts.uuid"
+        },
+        {
+          "label": "Title (Text)",
+          "value": "text::posts.title"
+        },
+        {
+          "label": "Slug (Text)",
+          "value": "text::posts.slug"
+        },
+        {
+          "label": "Status (Text)",
+          "value": "text::posts.status"
+        },
+        {
+          "label": "Visibility (Text)",
+          "value": "text::posts.visibility"
+        },
+        {
+          "label": "Tag Slug (Text)",
+          "value": "text::tags.slug"
+        },
+        {
+          "label": "Author Email (Text)",
+          "value": "text::authors.email"
+        },
+        {
+          "label": "Featured (Boolean)",
+          "value": "bool::posts.featured"
+        },
+        {
+          "label": "Created at (Date)",
+          "value": "date::posts.created_at"
+        },
+        {
+          "label": "Updated at (Date)",
+          "value": "date::posts.updated_at"
+        },
+        {
+          "label": "Published at (Date)",
+          "value": "date::posts.published_at"
+        }
+      ],
+      "operators": [
+        {
+          "label": "Operators",
+          "options": [
+            {
+              "label": "is",
+              "value": ":"
+            },
+            {
+              "label": "is not",
+              "value": ":-"
+            },
+            {
+              "label": "greater than",
+              "value": ":>"
+            },
+            {
+              "label": "greater than or equals",
+              "value": ":>="
+            },
+            {
+              "label": "less than",
+              "value": ":<"
+            },
+            {
+              "label": "less than or equals",
+              "value": ":<="
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit"
+  }
+]

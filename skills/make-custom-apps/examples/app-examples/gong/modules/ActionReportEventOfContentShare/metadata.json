@@ -1,0 +1,19 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Report Events of a Content Share",
+  "scope": [
+    "api:engagement-data:write",
+    "api:workspaces:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "gong",
+  "description": "Push engagement events into Gong and display them as events in Gong’s activity timeline, when a Gong user shares content with external participants (for example, a contract was “shared” by the account executive with his prospects).",
+  "altAccountName": "gong2"
+}

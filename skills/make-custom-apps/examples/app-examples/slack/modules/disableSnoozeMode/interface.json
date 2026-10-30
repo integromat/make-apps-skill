@@ -1,0 +1,22 @@
+[
+  {
+    "name": "dnd_enabled",
+    "type": "boolean",
+    "label": "DND Enabled"
+  },
+  {
+    "name": "next_dnd_start_ts",
+    "type": "date",
+    "label": "Next DND Start"
+  },
+  {
+    "name": "next_dnd_end_ts",
+    "type": "date",
+    "label": "Next DND End"
+  },
+  {
+    "name": "snooze_enabled",
+    "type": "boolean",
+    "label": "Snooze Enabled"
+  }
+]

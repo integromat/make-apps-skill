@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'workspace','team_gid','selectOrMap'),'Team')}}",
+  "url": "/teams/{{parameters.team_gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

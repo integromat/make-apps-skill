@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "fields": "all"
+  },
+  "url": "/cards/{{parameters.card_id}}/attachments/{{parameters.idAttachment}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

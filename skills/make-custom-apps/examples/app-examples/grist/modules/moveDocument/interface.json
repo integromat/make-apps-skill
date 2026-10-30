@@ -1,0 +1,7 @@
+[
+  {
+    "name": "workspace",
+    "type": "uinteger",
+    "label": "Workspace ID"
+  }
+]

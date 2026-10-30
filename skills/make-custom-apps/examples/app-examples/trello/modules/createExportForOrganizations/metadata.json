@@ -1,0 +1,16 @@
+{
+  "rev": 9,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create Export for Organizations",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Creates a CSV export for a workspace and returns a ZIP file in the response. Is not available on the free plan.",
+  "altAccountName": null
+}

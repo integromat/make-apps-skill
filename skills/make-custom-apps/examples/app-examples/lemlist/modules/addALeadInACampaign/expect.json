@@ -1,0 +1,48 @@
+[
+  {
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23lemlist@1/listCampaigns",
+    "required": true
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email",
+    "required": true
+  },
+  {
+    "name": "firstName",
+    "type": "text",
+    "label": "First Name"
+  },
+  {
+    "name": "lastName",
+    "type": "text",
+    "label": "Last Name"
+  },
+  {
+    "name": "companyName",
+    "type": "text",
+    "label": "Company Name"
+  },
+  {
+    "name": "customFields",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Fields"
+  }
+]

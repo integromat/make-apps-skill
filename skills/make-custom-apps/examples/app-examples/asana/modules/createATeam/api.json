@@ -1,0 +1,15 @@
+{
+  "url": "/teams",
+  "body": {
+    "data": {
+      "name": "{{parameters.name}}",
+      "description": "{{parameters.description}}",
+      "organization": "{{parameters.organization}}",
+      "html_description": "{{parameters.html_description}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

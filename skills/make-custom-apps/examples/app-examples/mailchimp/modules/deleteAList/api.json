@@ -1,0 +1,7 @@
+{
+  "url": "/lists/{{parameters.list}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

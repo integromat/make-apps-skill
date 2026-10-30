@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Confirm a Payment Intent",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Confirms a payment intent by its ID. Upon confirmation, the payment intent will attempt to initiate a payment.",
+  "altAccountName": null
+}

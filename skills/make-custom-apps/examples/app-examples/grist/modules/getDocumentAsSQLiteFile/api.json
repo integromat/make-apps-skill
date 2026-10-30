@@ -1,0 +1,10 @@
+{
+  "url": "/docs/{{parameters.docId}}/download",
+  "method": "GET",
+  "response": {
+    "output": {
+      "data": "{{body}}",
+      "fileName": "{{getFileName(headers.`content-disposition`)}}"
+    }
+  }
+}

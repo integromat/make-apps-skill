@@ -1,0 +1,10 @@
+{
+  "rev": 4,
+  "type": "web",
+  "flags": {},
+  "label": "New Deploy Started",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "netlify",
+  "altAccountName": null
+}

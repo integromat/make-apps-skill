@@ -1,0 +1,7 @@
+{
+  "url": "/clients/{{parameters.client_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

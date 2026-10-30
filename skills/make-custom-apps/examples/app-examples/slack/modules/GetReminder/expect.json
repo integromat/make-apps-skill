@@ -1,0 +1,8 @@
+[
+  {
+    "name": "reminder",
+    "type": "text",
+    "label": "Reminder ID",
+    "required": true
+  }
+]

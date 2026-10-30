@@ -1,0 +1,20 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.X-Api-Key"
+    ]
+  },
+  "url": "https://api.clockify.me/api/v1/user",
+  "headers": {
+    "X-Api-Key": "{{parameters.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.message}}"
+    },
+    "metadata": {
+      "type": "email",
+      "value": "{{body.email}}"
+    }
+  }
+}

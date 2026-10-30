@@ -1,0 +1,7 @@
+{
+  "url": "/orgs/{{parameters.orgId}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

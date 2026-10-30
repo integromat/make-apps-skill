@@ -1,0 +1,45 @@
+[
+  {
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "address",
+    "type": "text",
+    "label": "Address"
+  },
+  {
+    "help": "ISO 4217 currency code. Example: 'USD'. If not provided, the company’s currency will be used. List of [supported currencies](https://help.getharvest.com/api-v2/introduction/overview/supported-currencies/).",
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "help": "Whether the client is active or archived.",
+    "name": "is_active",
+    "type": "select",
+    "label": "Active",
+    "options": [
+      {
+        "label": "Active",
+        "value": true
+      },
+      {
+        "label": "Archived",
+        "value": false
+      }
+    ],
+    "advanced": true,
+    "mappable": {
+      "help": "Active = `true`\n Archived = `false`"
+    }
+  }
+]

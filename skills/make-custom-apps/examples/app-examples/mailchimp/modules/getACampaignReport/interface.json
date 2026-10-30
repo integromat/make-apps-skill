@@ -1,0 +1,355 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "campaign_title",
+    "type": "text",
+    "label": "Campaign Title"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "list_is_active",
+    "type": "boolean",
+    "label": "List Is Active"
+  },
+  {
+    "name": "list_name",
+    "type": "text",
+    "label": "List Name"
+  },
+  {
+    "name": "subject_line",
+    "type": "text",
+    "label": "Subject Line"
+  },
+  {
+    "name": "preview_text",
+    "type": "text",
+    "label": "Preview Text"
+  },
+  {
+    "name": "emails_sent",
+    "type": "number",
+    "label": "Emails Sent"
+  },
+  {
+    "name": "abuse_reports",
+    "type": "number",
+    "label": "Abuse Reports"
+  },
+  {
+    "name": "unsubscribed",
+    "type": "number",
+    "label": "Unsubscribed"
+  },
+  {
+    "name": "send_time",
+    "type": "date",
+    "label": "Send Time"
+  },
+  {
+    "name": "bounces",
+    "spec": [
+      {
+        "name": "hard_bounces",
+        "type": "number",
+        "label": "Hard Bounces"
+      },
+      {
+        "name": "soft_bounces",
+        "type": "number",
+        "label": "Soft Bounces"
+      },
+      {
+        "name": "syntax_errors",
+        "type": "number",
+        "label": "Syntax Errors"
+      }
+    ],
+    "type": "collection",
+    "label": "Bounces"
+  },
+  {
+    "name": "forwards",
+    "spec": [
+      {
+        "name": "forwards_count",
+        "type": "number",
+        "label": "Forwards Count"
+      },
+      {
+        "name": "forwards_opens",
+        "type": "number",
+        "label": "Forwards Opens"
+      }
+    ],
+    "type": "collection",
+    "label": "Forwards"
+  },
+  {
+    "name": "opens",
+    "spec": [
+      {
+        "name": "opens_total",
+        "type": "number",
+        "label": "Opens Total"
+      },
+      {
+        "name": "unique_opens",
+        "type": "number",
+        "label": "Unique Opens"
+      },
+      {
+        "name": "open_rate",
+        "type": "number",
+        "label": "Open Rate"
+      },
+      {
+        "name": "last_open",
+        "type": "date",
+        "label": "Last Open"
+      }
+    ],
+    "type": "collection",
+    "label": "Opens"
+  },
+  {
+    "name": "clicks",
+    "spec": [
+      {
+        "name": "clicks_total",
+        "type": "number",
+        "label": "Clicks Total"
+      },
+      {
+        "name": "unique_clicks",
+        "type": "number",
+        "label": "Unique Clicks"
+      },
+      {
+        "name": "unique_subscriber_clicks",
+        "type": "number",
+        "label": "Unique Subscriber Clicks"
+      },
+      {
+        "name": "click_rate",
+        "type": "number",
+        "label": "Click Rate"
+      },
+      {
+        "name": "last_click",
+        "type": "text",
+        "label": "Last Click"
+      }
+    ],
+    "type": "collection",
+    "label": "Clicks"
+  },
+  {
+    "name": "facebook_likes",
+    "spec": [
+      {
+        "name": "recipient_likes",
+        "type": "number",
+        "label": "Recipient Likes"
+      },
+      {
+        "name": "unique_likes",
+        "type": "number",
+        "label": "Unique Likes"
+      },
+      {
+        "name": "facebook_likes",
+        "type": "number",
+        "label": "Facebook Likes"
+      }
+    ],
+    "type": "collection",
+    "label": "Facebook Likes"
+  },
+  {
+    "name": "industry_stats",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "open_rate",
+        "type": "number",
+        "label": "Open Rate"
+      },
+      {
+        "name": "click_rate",
+        "type": "number",
+        "label": "Click Rate"
+      },
+      {
+        "name": "bounce_rate",
+        "type": "number",
+        "label": "Bounce Rate"
+      },
+      {
+        "name": "unopen_rate",
+        "type": "number",
+        "label": "Unopen Rate"
+      },
+      {
+        "name": "unsub_rate",
+        "type": "number",
+        "label": "Unsub Rate"
+      },
+      {
+        "name": "abuse_rate",
+        "type": "number",
+        "label": "Abuse Rate"
+      }
+    ],
+    "type": "collection",
+    "label": "Industry Stats"
+  },
+  {
+    "name": "list_stats",
+    "spec": [
+      {
+        "name": "sub_rate",
+        "type": "number",
+        "label": "Sub Rate"
+      },
+      {
+        "name": "unsub_rate",
+        "type": "number",
+        "label": "Unsub Rate"
+      },
+      {
+        "name": "open_rate",
+        "type": "number",
+        "label": "Open Rate"
+      },
+      {
+        "name": "click_rate",
+        "type": "number",
+        "label": "Click Rate"
+      }
+    ],
+    "type": "collection",
+    "label": "List Stats"
+  },
+  {
+    "name": "timeseries",
+    "spec": {
+      "spec": [
+        {
+          "name": "timestamp",
+          "type": "date",
+          "label": "Timestamp"
+        },
+        {
+          "name": "emails_sent",
+          "type": "number",
+          "label": "Emails Sent"
+        },
+        {
+          "name": "unique_opens",
+          "type": "number",
+          "label": "Unique Opens"
+        },
+        {
+          "name": "recipients_clicks",
+          "type": "number",
+          "label": "Recipients Clicks"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Timeseries"
+  },
+  {
+    "name": "ecommerce",
+    "spec": [
+      {
+        "name": "total_orders",
+        "type": "number",
+        "label": "Total Orders"
+      },
+      {
+        "name": "total_spent",
+        "type": "number",
+        "label": "Total Spent"
+      },
+      {
+        "name": "total_revenue",
+        "type": "number",
+        "label": "Total Revenue"
+      },
+      {
+        "name": "currency_code",
+        "type": "text",
+        "label": "Currency Code"
+      }
+    ],
+    "type": "collection",
+    "label": "Ecommerce"
+  },
+  {
+    "name": "delivery_status",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Delivery Status"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

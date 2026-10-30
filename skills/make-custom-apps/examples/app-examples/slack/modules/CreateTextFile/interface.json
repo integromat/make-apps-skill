@@ -1,0 +1,183 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "File ID"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "timestamp",
+    "type": "number",
+    "label": "Timestamp"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "mimetype",
+    "type": "text",
+    "label": "MIME type"
+  },
+  {
+    "name": "filetype",
+    "type": "text",
+    "label": "File type"
+  },
+  {
+    "name": "pretty_type",
+    "type": "text",
+    "label": "Pretty type"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "editable",
+    "type": "boolean",
+    "label": "Editable"
+  },
+  {
+    "name": "size",
+    "type": "number",
+    "label": "Size"
+  },
+  {
+    "name": "mode",
+    "type": "text",
+    "label": "Mode"
+  },
+  {
+    "name": "is_external",
+    "type": "boolean",
+    "label": "Is external"
+  },
+  {
+    "name": "external_type",
+    "type": "text",
+    "label": "External type"
+  },
+  {
+    "name": "is_public",
+    "type": "boolean",
+    "label": "Is public"
+  },
+  {
+    "name": "public_url_shared",
+    "type": "boolean",
+    "label": "Public URL shared"
+  },
+  {
+    "name": "display_as_bot",
+    "type": "boolean",
+    "label": "Display as bot"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "Username"
+  },
+  {
+    "name": "url_private",
+    "type": "text",
+    "label": "URL private"
+  },
+  {
+    "name": "url_private_download",
+    "type": "text",
+    "label": "URL private download"
+  },
+  {
+    "name": "permalink",
+    "type": "text",
+    "label": "Permalink"
+  },
+  {
+    "name": "permalink_public",
+    "type": "text",
+    "label": "Permalink public"
+  },
+  {
+    "name": "edit_link",
+    "type": "text",
+    "label": "Edit link"
+  },
+  {
+    "name": "preview",
+    "type": "text",
+    "label": "Preview"
+  },
+  {
+    "name": "preview_highlight",
+    "type": "text",
+    "label": "Preview hightlight"
+  },
+  {
+    "name": "lines",
+    "type": "number",
+    "label": "Lines"
+  },
+  {
+    "name": "lines_more",
+    "type": "number",
+    "label": "Lines more"
+  },
+  {
+    "name": "preview_is_truncated",
+    "type": "boolean",
+    "label": "Preview is truncated"
+  },
+  {
+    "name": "comments_count",
+    "type": "number",
+    "label": "Comments count"
+  },
+  {
+    "name": "is_starred",
+    "type": "boolean",
+    "label": "Us shared"
+  },
+  {
+    "name": "shares",
+    "type": "collectionmber",
+    "label": "Shares"
+  },
+  {
+    "name": "channels",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Channels"
+  },
+  {
+    "name": "groups",
+    "type": "array",
+    "label": "Groups"
+  },
+  {
+    "name": "ims",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "IMs"
+  },
+  {
+    "name": "has_rich_preview",
+    "type": "boolean",
+    "label": "Has rich preview"
+  }
+]

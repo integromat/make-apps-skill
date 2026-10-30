@@ -1,0 +1,28 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://app%23clockify@1/listProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "If provided `true`, you'll get custom fields, tasks, and memberships for the project.",
+    "name": "hydrated",
+    "type": "boolean",
+    "label": "Hydrated"
+  }
+]

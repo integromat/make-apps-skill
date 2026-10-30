@@ -1,0 +1,28 @@
+{
+  "qs": {
+    "limit": 100,
+    "fields": "all",
+    "filter": "createBoard,copyBoard"
+  },
+  "url": "/members/me/actions",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.date}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page - 1}}"
+    },
+    "condition": "{{pagination.page <= 10 && parameters.limit > 100 && length(body) === 100}}"
+  }
+}

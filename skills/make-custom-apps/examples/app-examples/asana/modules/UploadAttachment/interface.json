@@ -1,0 +1,17 @@
+[
+  {
+    "name": "gid",
+    "type": "uinteger",
+    "label": "Attachment ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Attachment Name"
+  }
+]

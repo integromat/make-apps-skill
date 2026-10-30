@@ -1,0 +1,17 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "oauth": {
+    "token": "{{connection.accessToken}}",
+    "consumer_key": "{{ifempty(connection.consumerKey, common.consumerKey)}}"
+  },
+  "baseUrl": "https://api.trello.com/1",
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{if(body.error, body.error '-', body) body.message}}"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "docId",
+    "type": "select",
+    "label": "Doc",
+    "options": {
+      "store": "rpc://app%23coda@1/getDocs",
+      "nested": [
+        {
+          "name": "tableIdOrName",
+          "type": "select",
+          "label": "Table",
+          "options": {
+            "store": "rpc://app%23coda@1/getTablesUsingdocId",
+            "nested": "rpc://app%23coda@1/getColumnsShow"
+          },
+          "mappable": false,
+          "required": true
+        }
+      ]
+    },
+    "mappable": false,
+    "required": true
+  }
+]

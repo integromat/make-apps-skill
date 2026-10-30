@@ -1,0 +1,723 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Invoice ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "account_country",
+    "type": "text",
+    "label": "Account Country"
+  },
+  {
+    "name": "account_name",
+    "type": "text",
+    "label": "Account Name"
+  },
+  {
+    "name": "account_tax_ids",
+    "spec": {
+      "type": "any"
+    },
+    "type": "array",
+    "label": "Account Tax IDs"
+  },
+  {
+    "name": "amount_due",
+    "type": "number",
+    "label": "Amount Due"
+  },
+  {
+    "name": "amount_paid",
+    "type": "number",
+    "label": "Amount Paid"
+  },
+  {
+    "name": "amount_remaining",
+    "type": "number",
+    "label": "Amount Remaining"
+  },
+  {
+    "name": "application_fee_amount",
+    "type": "number",
+    "label": "Application Fee Amount"
+  },
+  {
+    "name": "attempt_count",
+    "type": "number",
+    "label": "Attempt Count"
+  },
+  {
+    "name": "attempted",
+    "type": "boolean",
+    "label": "Attempted"
+  },
+  {
+    "name": "auto_advance",
+    "type": "boolean",
+    "label": "Auto Advance"
+  },
+  {
+    "name": "billing_reason",
+    "type": "text",
+    "label": "Billing Reason"
+  },
+  {
+    "name": "charge",
+    "type": "text",
+    "label": "Charge"
+  },
+  {
+    "name": "collection_method",
+    "type": "text",
+    "label": "Collection Method"
+  },
+  {
+    "name": "created",
+    "type": "number",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "custom_fields",
+    "spec": {
+      "spec": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Custom Fields"
+  },
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer"
+  },
+  {
+    "name": "customer_address",
+    "spec": [
+      {
+        "name": "line1",
+        "type": "text",
+        "label": "Line 1"
+      },
+      {
+        "name": "line2",
+        "type": "text",
+        "label": "Line 2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "label": "State"
+      },
+      {
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      }
+    ],
+    "type": "collection",
+    "label": "Customer Address"
+  },
+  {
+    "name": "customer_email",
+    "type": "text",
+    "label": "Customer Email"
+  },
+  {
+    "name": "customer_name",
+    "type": "text",
+    "label": "Customer Name"
+  },
+  {
+    "name": "customer_phone",
+    "type": "text",
+    "label": "Customer Phone"
+  },
+  {
+    "name": "customer_shipping",
+    "spec": [
+      {
+        "name": "address",
+        "spec": [
+          {
+            "name": "line1",
+            "type": "text",
+            "label": "Line 1"
+          },
+          {
+            "name": "line2",
+            "type": "text",
+            "label": "Line 2"
+          },
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal Code"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      }
+    ],
+    "type": "collection",
+    "label": "Customer Shipping"
+  },
+  {
+    "name": "customer_tax_exempt",
+    "type": "text",
+    "label": "Customer Tax Exempt"
+  },
+  {
+    "name": "customer_tax_ids",
+    "spec": {
+      "spec": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Customer Tax IDs"
+  },
+  {
+    "name": "default_payment_method",
+    "type": "text",
+    "label": "Default Payment Method"
+  },
+  {
+    "name": "default_source",
+    "type": "text",
+    "label": "Default Source"
+  },
+  {
+    "name": "default_tax_rates",
+    "type": "array",
+    "label": "Default Tax Rates"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "discount",
+    "type": "text",
+    "label": "Discount"
+  },
+  {
+    "name": "discounts",
+    "type": "array",
+    "label": "Discounts"
+  },
+  {
+    "name": "due_date",
+    "type": "number",
+    "label": "Due Date"
+  },
+  {
+    "name": "ending_balance",
+    "type": "number",
+    "label": "Ending Balance"
+  },
+  {
+    "name": "footer",
+    "type": "text",
+    "label": "Footer"
+  },
+  {
+    "name": "hosted_invoice_url",
+    "type": "text",
+    "label": "Hosted Invoice URL"
+  },
+  {
+    "name": "invoice_pdf",
+    "type": "text",
+    "label": "Invoice PDF"
+  },
+  {
+    "name": "lines",
+    "spec": [
+      {
+        "name": "data",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            },
+            {
+              "name": "object",
+              "type": "text",
+              "label": "Object"
+            },
+            {
+              "name": "amount",
+              "type": "number",
+              "label": "Amount"
+            },
+            {
+              "name": "currency",
+              "type": "text",
+              "label": "Currency"
+            },
+            {
+              "name": "description",
+              "type": "text",
+              "label": "Description"
+            },
+            {
+              "name": "discount_amounts",
+              "type": "array",
+              "label": "Discount Amounts"
+            },
+            {
+              "name": "discountable",
+              "type": "boolean",
+              "label": "Discountable"
+            },
+            {
+              "name": "discounts",
+              "type": "array",
+              "label": "Discounts"
+            },
+            {
+              "name": "livemode",
+              "type": "boolean",
+              "label": "Livemode"
+            },
+            {
+              "name": "metadata",
+              "spec": [],
+              "type": "collection",
+              "label": "Metadata"
+            },
+            {
+              "name": "period",
+              "spec": [
+                {
+                  "name": "end",
+                  "type": "number",
+                  "label": "End"
+                },
+                {
+                  "name": "start",
+                  "type": "number",
+                  "label": "Start"
+                }
+              ],
+              "type": "collection",
+              "label": "Period"
+            },
+            {
+              "name": "price",
+              "spec": [
+                {
+                  "name": "id",
+                  "type": "text",
+                  "label": "ID"
+                },
+                {
+                  "name": "object",
+                  "type": "text",
+                  "label": "Object"
+                },
+                {
+                  "name": "active",
+                  "type": "boolean",
+                  "label": "Active"
+                },
+                {
+                  "name": "billing_scheme",
+                  "type": "text",
+                  "label": "Billing Scheme"
+                },
+                {
+                  "name": "created",
+                  "type": "number",
+                  "label": "Created"
+                },
+                {
+                  "name": "currency",
+                  "type": "text",
+                  "label": "Currency"
+                },
+                {
+                  "name": "livemode",
+                  "type": "boolean",
+                  "label": "Livemode"
+                },
+                {
+                  "name": "lookup_key",
+                  "type": "text",
+                  "label": "Lookup Key"
+                },
+                {
+                  "name": "metadata",
+                  "spec": [
+                    {
+                      "name": "charset",
+                      "type": "text",
+                      "label": "Charset"
+                    },
+                    {
+                      "name": "content",
+                      "type": "text",
+                      "label": "Content"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Metadata"
+                },
+                {
+                  "name": "nickname",
+                  "type": "text",
+                  "label": "Nickname"
+                },
+                {
+                  "name": "product",
+                  "type": "text",
+                  "label": "Product"
+                },
+                {
+                  "name": "recurring",
+                  "spec": [
+                    {
+                      "name": "aggregate_usage",
+                      "type": "text",
+                      "label": "Aggregate Usage"
+                    },
+                    {
+                      "name": "interval",
+                      "type": "text",
+                      "label": "Interval"
+                    },
+                    {
+                      "name": "interval_count",
+                      "type": "number",
+                      "label": "Interval Count"
+                    },
+                    {
+                      "name": "usage_type",
+                      "type": "text",
+                      "label": "Usage Type"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Recurring"
+                },
+                {
+                  "name": "tiers_mode",
+                  "type": "text",
+                  "label": "Tiers Mode"
+                },
+                {
+                  "name": "transform_quantity",
+                  "type": "text",
+                  "label": "Transform Quantity"
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                },
+                {
+                  "name": "unit_amount",
+                  "type": "number",
+                  "label": "Unit Amount"
+                },
+                {
+                  "name": "unit_amount_decimal",
+                  "type": "text",
+                  "label": "Unit Amount Decimal"
+                }
+              ],
+              "type": "collection",
+              "label": "Price"
+            },
+            {
+              "name": "proration",
+              "type": "boolean",
+              "label": "Proration"
+            },
+            {
+              "name": "quantity",
+              "type": "number",
+              "label": "Quantity"
+            },
+            {
+              "name": "subscription",
+              "type": "text",
+              "label": "Subscription"
+            },
+            {
+              "name": "subscription_item",
+              "type": "text",
+              "label": "Subscription Item"
+            },
+            {
+              "name": "tax_amounts",
+              "type": "array",
+              "label": "Tax Amounts"
+            },
+            {
+              "name": "tax_rates",
+              "type": "array",
+              "label": "Tax Rates"
+            },
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Data"
+      },
+      {
+        "name": "has_more",
+        "type": "boolean",
+        "label": "Has More"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "Url"
+      }
+    ],
+    "type": "collection",
+    "label": "Lines"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "order_id",
+        "type": "text",
+        "label": "Order ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Metadata"
+  },
+  {
+    "name": "next_payment_attempt",
+    "type": "text",
+    "label": "Next Payment Attempt"
+  },
+  {
+    "name": "number",
+    "type": "text",
+    "label": "Number"
+  },
+  {
+    "name": "paid",
+    "type": "boolean",
+    "label": "Paid"
+  },
+  {
+    "name": "payment_intent",
+    "type": "text",
+    "label": "Payment Intent"
+  },
+  {
+    "name": "period_end",
+    "type": "number",
+    "label": "Period End"
+  },
+  {
+    "name": "period_start",
+    "type": "number",
+    "label": "Period Start"
+  },
+  {
+    "name": "post_payment_credit_notes_amount",
+    "type": "number",
+    "label": "Post Payment Credit Notes Amount"
+  },
+  {
+    "name": "pre_payment_credit_notes_amount",
+    "type": "number",
+    "label": "Pre Payment Credit Notes Amount"
+  },
+  {
+    "name": "receipt_number",
+    "type": "text",
+    "label": "Receipt Number"
+  },
+  {
+    "name": "starting_balance",
+    "type": "number",
+    "label": "Starting Balance"
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement Descriptor"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "status_transitions",
+    "spec": [
+      {
+        "name": "finalized_at",
+        "type": "number",
+        "label": "Finalized At"
+      },
+      {
+        "name": "marked_uncollectible_at",
+        "type": "text",
+        "label": "Marked Uncollectible At"
+      },
+      {
+        "name": "paid_at",
+        "type": "number",
+        "label": "Paid At"
+      },
+      {
+        "name": "voided_at",
+        "type": "text",
+        "label": "Voided At"
+      }
+    ],
+    "type": "collection",
+    "label": "Status Transitions"
+  },
+  {
+    "name": "subscription",
+    "type": "text",
+    "label": "Subscription"
+  },
+  {
+    "name": "subtotal",
+    "type": "number",
+    "label": "Subtotal"
+  },
+  {
+    "name": "tax",
+    "type": "text",
+    "label": "Tax"
+  },
+  {
+    "name": "tax_percent",
+    "type": "text",
+    "label": "Tax Percent"
+  },
+  {
+    "name": "total",
+    "type": "number",
+    "label": "Total"
+  },
+  {
+    "name": "total_discount_amounts",
+    "type": "array",
+    "label": "Total Discount Amounts"
+  },
+  {
+    "name": "total_tax_amounts",
+    "type": "array",
+    "label": "Total Tax Amounts"
+  },
+  {
+    "name": "transfer_data",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "destination",
+        "type": "text",
+        "label": "Destination"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data"
+  },
+  {
+    "name": "webhooks_delivered_at",
+    "type": "number",
+    "label": "Webhooks Delivered At"
+  }
+]

@@ -1,0 +1,64 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Webhook ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "active",
+    "type": "boolean",
+    "label": "Active"
+  },
+  {
+    "name": "resource",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Resource ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Resource Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Resource"
+  },
+  {
+    "name": "target",
+    "type": "url",
+    "label": "Target URL"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "last_failure_at",
+    "type": "date",
+    "label": "Last Failure At"
+  },
+  {
+    "name": "last_failure_content",
+    "type": "text",
+    "label": "Last Failure Content"
+  },
+  {
+    "name": "last_success_at",
+    "type": "date",
+    "label": "Last Success At"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/clients/{{parameters.client_id}}",
+  "body": {
+    "name": "{{parameters.name}}",
+    "address": "{{parameters.address}}",
+    "currency": "{{parameters.currency}}",
+    "is_active": "{{parameters.is_active}}"
+  },
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

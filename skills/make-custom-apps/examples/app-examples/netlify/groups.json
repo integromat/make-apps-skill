@@ -1,0 +1,41 @@
+[
+  {
+    "label": "Site",
+    "modules": [
+      "formSubmissionCreated",
+      "listSites",
+      "getSite",
+      "createSite"
+    ]
+  },
+  {
+    "label": "Site Deploy",
+    "modules": [
+      "watchDeployEvents",
+      "watchDeployStarted",
+      "newDeploySucceeded",
+      "deployFailed",
+      "listSiteDeploys",
+      "createSiteDeploy",
+      "createAndDeploySite"
+    ]
+  },
+  {
+    "label": "Site Build",
+    "modules": [
+      "createSiteBuild"
+    ]
+  },
+  {
+    "label": "File",
+    "modules": [
+      "listFiles"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeAnAPICall"
+    ]
+  }
+]

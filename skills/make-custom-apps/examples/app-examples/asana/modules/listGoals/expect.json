@@ -1,0 +1,162 @@
+[
+  {
+    "name": "goal_type",
+    "type": "select",
+    "label": "Filter",
+    "options": [
+      {
+        "label": "Workspace",
+        "value": "workspace",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "time_periods",
+                  "spec": {
+                    "type": "select",
+                    "label": "Time Period",
+                    "options": "rpc://app%23asana@2/getTimePeriods"
+                  },
+                  "type": "array",
+                  "label": "Time Periods"
+                },
+                {
+                  "name": "is_workspace_level",
+                  "type": "boolean",
+                  "label": "Is Workspace Level"
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Team",
+        "value": "team",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "team",
+                  "type": "select",
+                  "label": "Team",
+                  "options": "rpc://app%23asana@2/GetTeams",
+                  "required": true
+                },
+                {
+                  "name": "time_periods",
+                  "spec": {
+                    "type": "select",
+                    "label": "Time Period",
+                    "options": "rpc://app%23asana@2/getTimePeriods"
+                  },
+                  "type": "array",
+                  "label": "Time Periods"
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Project",
+        "value": "project",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "project",
+                  "type": "select",
+                  "label": "Project",
+                  "options": "rpc://app%23asana@2/GetProjectsWorkspace",
+                  "required": true
+                },
+                {
+                  "name": "time_periods",
+                  "spec": {
+                    "type": "select",
+                    "label": "Time Period",
+                    "options": "rpc://app%23asana@2/getTimePeriods"
+                  },
+                  "type": "array",
+                  "label": "Time Periods"
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Portfolio",
+        "value": "portfolio",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "owner",
+                  "type": "select",
+                  "label": "User",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetUsers",
+                    "nested": [
+                      {
+                        "name": "portfolio",
+                        "type": "select",
+                        "label": "Portfolio",
+                        "options": "rpc://app%23asana@2/GetPortfolios",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                },
+                {
+                  "name": "time_periods",
+                  "spec": {
+                    "type": "select",
+                    "label": "Time Period",
+                    "options": "rpc://app%23asana@2/getTimePeriods"
+                  },
+                  "type": "array",
+                  "label": "Time Periods"
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "page",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

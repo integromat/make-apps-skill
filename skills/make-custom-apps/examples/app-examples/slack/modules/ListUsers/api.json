@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "user": "{{parameters.user}}",
+    "count": "{{if(parameters.limit > 1000, 1000, parameters.limit)}}",
+    "ts_to": "{{dateToTs(parameters.ts_to)}}",
+    "types": "{{ifempty(join(parameters.types, ','), undefined)}}",
+    "channel": "{{parameters.channel}}",
+    "ts_from": "{{dateToTs(parameters.ts_from)}}"
+  },
+  "url": "/files.list",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.files}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

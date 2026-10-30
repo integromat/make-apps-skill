@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "List a Customer's Payment Methods",
+  "accountName": "stripe",
+  "altAccountName": null
+}

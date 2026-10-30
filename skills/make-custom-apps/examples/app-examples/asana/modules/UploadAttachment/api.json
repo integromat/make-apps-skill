@@ -1,0 +1,19 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}/attachments",
+  "body": {
+    "file": {
+      "value": "{{parameters.file_data}}",
+      "options": {
+        "filename": "{{parameters.file_name}}"
+      }
+    }
+  },
+  "type": "multipart/form-data",
+  "method": "POST",
+  "headers": {
+    "Content-Type": "multipart/form-data"
+  },
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

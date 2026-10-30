@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "post_id",
+    "type": "select",
+    "label": "Post ID",
+    "options": "rpc://app%23ghost@1/listPosts",
+    "required": true
+  }
+]

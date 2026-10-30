@@ -1,0 +1,21 @@
+[
+  {
+    "mode": "edit",
+    "name": "invoice_id",
+    "type": "select",
+    "label": "Invoice ID",
+    "options": {
+      "store": "rpc://getInvoices",
+      "nested": [
+        {
+          "name": "line_item_id",
+          "type": "select",
+          "label": "Line Item ID",
+          "options": "rpc://getInvoiceLineItems",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Enter a Campaign ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "help": "You can only edit campaigns with editable templates.",
+            "name": "campaign",
+            "type": "text",
+            "label": "Campaign ID",
+            "required": true
+          },
+          {
+            "name": "template",
+            "type": "uinteger",
+            "label": "Template ID",
+            "required": true
+          },
+          {
+            "name": "sections",
+            "spec": [
+              {
+                "help": "Select the name of the content area. Example: If the content area is named mc:edit=\"section\", select section.",
+                "name": "sectionName",
+                "type": "text",
+                "label": "Content Area Name",
+                "required": true
+              },
+              {
+                "help": "Enter the new HTML content of the area.",
+                "name": "content",
+                "type": "text",
+                "label": "Content of the Area"
+              }
+            ],
+            "type": "array",
+            "label": "Editable Content Area",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select from the list",
+        "value": "list",
+        "nested": [
+          {
+            "help": "You can only edit campaigns with editable templates.",
+            "name": "campaign",
+            "type": "select",
+            "label": "Campaign ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listCampaigns?includeTemplate=true",
+              "nested": [
+                {
+                  "name": "sections",
+                  "spec": [
+                    {
+                      "help": "Select the name of the content area. Example: If the content area is named mc:edit=\"section\", select section.",
+                      "name": "sectionName",
+                      "type": "select",
+                      "label": "Content Area Name",
+                      "options": "rpc://app%23mailchimp@2/getTemplateContent",
+                      "required": true
+                    },
+                    {
+                      "help": "Enter the new HTML content of the area.",
+                      "name": "content",
+                      "type": "text",
+                      "label": "Content of the Area"
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Editable Content Area",
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

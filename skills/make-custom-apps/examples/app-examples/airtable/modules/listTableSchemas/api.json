@@ -1,0 +1,12 @@
+{
+  "url": "https://api.airtable.com/v0/meta/bases/{{parameters.base}}/tables",
+  "method": "GET",
+  "headers": {
+    "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+  },
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.tables}}"
+  }
+}

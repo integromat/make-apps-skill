@@ -1,0 +1,18 @@
+{
+  "qs": {},
+  "url": "/customFields",
+  "body": {
+    "pos": "{{parameters.pos}}",
+    "name": "{{parameters.name}}",
+    "type": "{{parameters.type}}",
+    "idModel": "{{parameters.idModel}}",
+    "options": "{{parameters.options}}",
+    "modelType": "board",
+    "display_cardFront": "{{parameters.display_cardFront}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

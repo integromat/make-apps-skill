@@ -1,0 +1,7 @@
+{
+  "url": "/attachments/{{parameters.attachment_gid}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{}}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "rev": 6,
+  "type": "web",
+  "flags": {},
+  "label": "Watch Events",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "stripe",
+  "altAccountName": null
+}

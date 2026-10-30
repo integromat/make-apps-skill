@@ -1,0 +1,12 @@
+{
+  "url": "/orgs/{{parameters.orgId}}/workspaces",
+  "body": {
+    "name": "{{parameters.name}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": {
+      "id": "{{body}}"
+    }
+  }
+}

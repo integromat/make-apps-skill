@@ -1,0 +1,29 @@
+[
+  {
+    "name": "id",
+    "type": "number",
+    "label": "ID"
+  },
+  {
+    "name": "fields",
+    "spec": [
+      {
+        "name": "A",
+        "type": "number",
+        "label": "A"
+      },
+      {
+        "name": "B",
+        "type": "number",
+        "label": "B"
+      },
+      {
+        "name": "C",
+        "type": "number",
+        "label": "C"
+      }
+    ],
+    "type": "collection",
+    "label": "Fields"
+  }
+]

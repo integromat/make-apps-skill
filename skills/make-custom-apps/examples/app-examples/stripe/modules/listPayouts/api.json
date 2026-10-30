@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": "{{min(parameters.limit, 100)}}",
+    "status": "{{ifempty(parameters.status, undefined)}}",
+    "destination": "{{ifempty(parameters.destination, undefined)}}",
+    "created[{{parameters.created}}]": "{{if(parameters.created !== '', parameters.created_timestamp, undefined)}}",
+    "arrival_date[{{parameters.arrival}}]": "{{if(parameters.arrival !== '', parameters.arrival_timestamp, undefined)}}"
+  },
+  "url": "/payouts",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

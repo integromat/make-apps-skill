@@ -1,0 +1,17 @@
+{
+  "url": "/tags",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.slug}}"
+    },
+    "iterate": "{{body.tags}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.meta.pagination.next}}"
+  }
+}

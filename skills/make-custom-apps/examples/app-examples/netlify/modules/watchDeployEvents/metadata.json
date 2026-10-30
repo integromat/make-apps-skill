@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Deploy Events",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "netlify5",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when any selected deploy event occurs.",
+  "altAccountName": null
+}

@@ -1,0 +1,24 @@
+{
+  "rev": 6,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 300,
+      "output": {
+        "date": "{{item[parameters.sort_by]}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Tasks or Subtasks",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Checks whether new tasks or subtasks have been made.",
+  "altAccountName": null
+}

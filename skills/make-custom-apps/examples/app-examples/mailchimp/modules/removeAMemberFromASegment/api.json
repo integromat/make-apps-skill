@@ -1,0 +1,7 @@
+{
+  "url": "/lists/{{parameters.list}}/segments/{{parameters.segment}}/members/{{md5(lower(parameters.email_address))}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

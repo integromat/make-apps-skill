@@ -1,0 +1,84 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "fields",
+    "spec": [
+      {
+        "name": "colRef",
+        "type": "number",
+        "label": "Col Ref"
+      },
+      {
+        "name": "parentId",
+        "type": "number",
+        "label": "Parent ID"
+      },
+      {
+        "name": "parentPos",
+        "type": "number",
+        "label": "Parent Pos"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "widgetOptions",
+        "type": "text",
+        "label": "Widget Options"
+      },
+      {
+        "name": "isFormula",
+        "type": "boolean",
+        "label": "Is Formula"
+      },
+      {
+        "name": "formula",
+        "type": "text",
+        "label": "Formula"
+      },
+      {
+        "name": "label",
+        "type": "text",
+        "label": "Label"
+      },
+      {
+        "name": "untieColIdFromLabel",
+        "type": "boolean",
+        "label": "Untie Col ID From Label"
+      },
+      {
+        "name": "summarySourceCol",
+        "type": "number",
+        "label": "Summary Source Col"
+      },
+      {
+        "name": "displayCol",
+        "type": "number",
+        "label": "Display Col"
+      },
+      {
+        "name": "visibleCol",
+        "type": "number",
+        "label": "Visible Col"
+      },
+      {
+        "name": "recalcWhen",
+        "type": "number",
+        "label": "Recalc When"
+      },
+      {
+        "name": "recalcDeps",
+        "type": "text",
+        "label": "Recalc Deps"
+      }
+    ],
+    "type": "collection",
+    "label": "Fields"
+  }
+]

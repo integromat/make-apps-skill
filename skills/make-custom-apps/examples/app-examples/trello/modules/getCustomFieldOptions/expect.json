@@ -1,0 +1,8 @@
+[
+  {
+    "name": "customField_id",
+    "type": "text",
+    "label": "Custom field ID",
+    "required": true
+  }
+]

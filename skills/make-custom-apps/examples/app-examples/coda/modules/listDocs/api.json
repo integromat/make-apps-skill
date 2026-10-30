@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "limit": 500,
+    "query": "{{parameters.query}}",
+    "isOwner": "{{parameters.isOwner}}",
+    "sourceDoc": "{{parameters.sourceDoc}}"
+  },
+  "url": "/docs",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.items}}"
+  },
+  "pagination": {
+    "qs": {
+      "pageToken": "{{body.nextPageToken}}"
+    },
+    "condition": "{{ifempty(body.nextPageToken, false)}}"
+  }
+}

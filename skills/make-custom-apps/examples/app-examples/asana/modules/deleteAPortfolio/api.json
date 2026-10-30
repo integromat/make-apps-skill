@@ -1,0 +1,7 @@
+{
+  "url": "/portfolios/{{parameters.portfolio}}",
+  "method": "DELETE",
+  "response": {
+    "output": null
+  }
+}

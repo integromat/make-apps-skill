@@ -1,0 +1,54 @@
+[
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Subscriber's Email"
+  },
+  {
+    "name": "sort",
+    "type": "select",
+    "label": "Sort",
+    "options": [
+      {
+        "label": "Date Created - Ascending",
+        "value": "ASC"
+      },
+      {
+        "label": "Date Created - Descending",
+        "value": "DESC",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "since_date_created",
+    "time": true,
+    "type": "date",
+    "label": "From Date Created"
+  },
+  {
+    "name": "before_date_created",
+    "time": true,
+    "type": "date",
+    "label": "To Date Created"
+  },
+  {
+    "name": "since_campaign_last_sent",
+    "time": true,
+    "type": "date",
+    "label": "From Campaign Last Sent"
+  },
+  {
+    "name": "before_campaign_last_sent",
+    "time": true,
+    "type": "date",
+    "label": "To Campaign Last Sent"
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

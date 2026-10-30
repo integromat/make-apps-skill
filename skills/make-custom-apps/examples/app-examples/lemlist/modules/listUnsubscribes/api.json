@@ -1,0 +1,22 @@
+[
+  {
+    "qs": {
+      "limit": "{{parameters.limit}}"
+    },
+    "url": "/unsubscribes",
+    "temp": {
+      "pageSize": "{{min(parameters.limit, 100)}}"
+    },
+    "method": "GET",
+    "response": {
+      "limit": "{{parameters.limit}}",
+      "output": "{{item}}",
+      "iterate": "{{body}}"
+    },
+    "pagination": {
+      "qs": {
+        "offset": "{{(pagination.page - 1) * temp.pageSize}}"
+      }
+    }
+  }
+]

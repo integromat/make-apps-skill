@@ -1,0 +1,17 @@
+{
+  "url": "/members",
+  "body": {
+    "members": [
+      {
+        "name": "{{parameters.name}}",
+        "note": "{{parameters.note}}",
+        "email": "{{parameters.email}}",
+        "subscribed": "{{parameters.subscribed}}"
+      }
+    ]
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.members[1]}}"
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "records",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "number",
+          "label": "ID"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Records"
+  }
+]

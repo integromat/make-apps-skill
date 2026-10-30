@@ -1,0 +1,63 @@
+{
+  "info": {
+    "url": "https://api.trello.com/1/members/me",
+    "oauth": {
+      "token": "{{connection.token}}"
+    },
+    "response": {
+      "uid": "{{body.id}}",
+      "error": {
+        "message": "[{{statusCode}}] {{body}}"
+      }
+    }
+  },
+  "oauth": {
+    "consumer_key": "{{ifempty(parameters.consumerKey, common.consumerKey)}}",
+    "consumer_secret": "{{ifempty(parameters.consumerSecret, common.consumerSecret)}}"
+  },
+  "authorize": {
+    "qs": {
+      "name": "{{common.appName}}",
+      "scope": "read,write",
+      "expiration": "never"
+    },
+    "url": "https://trello.com/1/OAuthAuthorizeToken",
+    "oauth": {
+      "token": "{{temp.token}}"
+    },
+    "response": {
+      "temp": {
+        "token": "{{query.oauth_token}}",
+        "verifier": "{{query.oauth_verifier}}"
+      },
+      "type": "urlencoded"
+    }
+  },
+  "accessToken": {
+    "url": "https://trello.com/1/OAuthGetAccessToken",
+    "type": "urlencoded",
+    "oauth": {
+      "token": "{{temp.token}}",
+      "verifier": "{{temp.verifier}}"
+    },
+    "method": "POST",
+    "response": {
+      "data": {
+        "accessToken": "{{body.oauth_token}}",
+        "accessTokenSecret": "{{body.oauth_token_secret}}"
+      },
+      "type": "urlencoded"
+    }
+  },
+  "requestToken": {
+    "url": "https://trello.com/1/OAuthGetRequestToken",
+    "method": "POST",
+    "response": {
+      "temp": {
+        "accessToken": "{{body.oauth_token}}",
+        "accessTokenSecret": "{{body.oauth_token_secret}}"
+      },
+      "type": "urlencoded"
+    }
+  }
+}

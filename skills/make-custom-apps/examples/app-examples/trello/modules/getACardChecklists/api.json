@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "fields": "all",
+    "filter": "all",
+    "checkItems": "all",
+    "checkItem_fields": "all"
+  },
+  "url": "/cards/{{parameters.card_id}}/checklists",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{body}}"
+  }
+}

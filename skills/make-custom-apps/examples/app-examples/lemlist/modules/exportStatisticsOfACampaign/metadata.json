@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Export Statistics/Leads of a Campaign",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "lemlist",
+  "description": "Downloads a CSV file that contains all the statistics or leads of a campaign.",
+  "altAccountName": null
+}

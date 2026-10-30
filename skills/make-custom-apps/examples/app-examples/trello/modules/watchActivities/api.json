@@ -1,0 +1,28 @@
+{
+  "qs": {
+    "limit": 100,
+    "filter": "{{if(parameters.filter, join(parameters.filter, ','), undefined)}}",
+    "entities": true
+  },
+  "url": "{{switch(parameters.node, 'all', '/members/me/actions', 'board', '/boards/' + parameters.board_id + '/actions', 'list', '/lists/' + parameters.list_id + '/actions', 'card', '/cards/' + parameters.card_id + '/actions')}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.date}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page - 1}}"
+    },
+    "condition": "{{pagination.page <= 10 && parameters.limit > 100 && length(body) === 100}}"
+  }
+}

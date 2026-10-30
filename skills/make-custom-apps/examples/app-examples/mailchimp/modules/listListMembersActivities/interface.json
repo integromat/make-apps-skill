@@ -1,0 +1,97 @@
+[
+  {
+    "name": "campaign_id",
+    "type": "text",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "list_is_active",
+    "type": "boolean",
+    "label": "List Is Active"
+  },
+  {
+    "name": "email_id",
+    "type": "text",
+    "label": "Email ID"
+  },
+  {
+    "name": "email_address",
+    "type": "text",
+    "label": "Email Address"
+  },
+  {
+    "name": "activity",
+    "spec": {
+      "spec": [
+        {
+          "name": "action",
+          "type": "text",
+          "label": "Action"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "timestamp",
+          "type": "text",
+          "label": "Timestamp"
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "label": "Url"
+        },
+        {
+          "name": "ip",
+          "type": "text",
+          "label": "Ip"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Activity"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

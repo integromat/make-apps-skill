@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','selectOrMap','story_gid'),'Story')}}",
+  "url": "/stories/{{parameters.story_gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

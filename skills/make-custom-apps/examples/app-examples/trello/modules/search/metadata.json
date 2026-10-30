@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Search Trello",
+  "scope": [],
+  "public": false,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Finds what you're looking for in Trello. (Unfinished)",
+  "altAccountName": null
+}

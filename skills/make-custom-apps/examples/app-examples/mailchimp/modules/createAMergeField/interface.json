@@ -1,0 +1,122 @@
+[
+  {
+    "name": "merge_id",
+    "type": "uinteger",
+    "label": "Merge ID"
+  },
+  {
+    "name": "list_id",
+    "type": "uinteger",
+    "label": "List ID"
+  },
+  {
+    "name": "tag",
+    "type": "text",
+    "label": "Tag"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "options",
+    "spec": [
+      {
+        "name": "choices",
+        "spec": {
+          "type": "text"
+        },
+        "type": "array",
+        "label": "Choices"
+      },
+      {
+        "name": "date_format",
+        "type": "text",
+        "label": "Date Format"
+      },
+      {
+        "name": "phone_format",
+        "type": "text",
+        "label": "Phone Format"
+      },
+      {
+        "name": "default_country",
+        "type": "text",
+        "label": "Default Country"
+      },
+      {
+        "name": "size",
+        "type": "text",
+        "label": "Size"
+      }
+    ],
+    "type": "collection",
+    "label": "Options"
+  },
+  {
+    "name": "required",
+    "type": "boolean",
+    "label": "Required"
+  },
+  {
+    "name": "help_text",
+    "type": "text",
+    "label": "Help Text"
+  },
+  {
+    "name": "default_value",
+    "type": "text",
+    "label": "Default Value"
+  },
+  {
+    "name": "display_order",
+    "type": "number",
+    "label": "Display Order"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

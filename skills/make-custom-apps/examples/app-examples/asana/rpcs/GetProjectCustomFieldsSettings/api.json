@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.custom_field.name",
+      "this.custom_field.type"
+    ]
+  },
+  "url": "/projects/{{parameters.project}}/custom_field_settings",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.custom_field.type}}] {{item.custom_field.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

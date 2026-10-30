@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "limit": "100"
+  },
+  "url": "/customers",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.email}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

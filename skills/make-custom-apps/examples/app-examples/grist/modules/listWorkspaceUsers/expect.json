@@ -1,0 +1,9 @@
+[
+  {
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23grist@1/listWorkspaces",
+    "required": true
+  }
+]

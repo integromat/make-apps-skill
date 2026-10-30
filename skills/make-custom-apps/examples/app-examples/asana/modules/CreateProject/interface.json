@@ -1,0 +1,295 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "layout",
+    "type": "text",
+    "label": "Layout"
+  },
+  {
+    "name": "section_migration_status",
+    "type": "text",
+    "label": "Section Migration Status"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "current_status",
+    "spec": [
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Current Status ID"
+      },
+      {
+        "name": "author",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Author ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Author Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Author"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "created_by",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Created By ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Created By Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Created By"
+      },
+      {
+        "name": "modified_at",
+        "type": "date",
+        "label": "Modified At"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Current Status"
+  },
+  {
+    "name": "custom_field_settings",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Custom Field ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Field Settings"
+  },
+  {
+    "name": "followers",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Follower ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "members",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Member ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Members"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Owner ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Team ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  },
+  {
+    "name": "start_on",
+    "type": "text",
+    "label": "Start On"
+  },
+  {
+    "name": "default_view",
+    "type": "text",
+    "label": "Default View"
+  },
+  {
+    "name": "due_on",
+    "type": "date",
+    "label": "Due On"
+  },
+  {
+    "name": "due_date",
+    "type": "date",
+    "label": "Due Date"
+  },
+  {
+    "name": "is_template",
+    "type": "boolean",
+    "label": "Is Template"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "modified_at",
+    "type": "date",
+    "label": "Modified At"
+  }
+]

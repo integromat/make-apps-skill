@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "hydrated": "{{parameters.hydrated}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Project",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Deletes a project from a workspace.",
+  "altAccountName": null
+}

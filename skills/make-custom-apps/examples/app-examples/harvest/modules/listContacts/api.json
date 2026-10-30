@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "per_page": 100,
+    "client_id": "{{parameters.client_id}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "/contacts",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.contacts}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

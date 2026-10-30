@@ -1,0 +1,376 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "web_id",
+    "type": "number",
+    "label": "Web ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "create_time",
+    "type": "date",
+    "label": "Create Time"
+  },
+  {
+    "name": "archive_url",
+    "type": "text",
+    "label": "Archive Url"
+  },
+  {
+    "name": "long_archive_url",
+    "type": "text",
+    "label": "Long Archive Url"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "emails_sent",
+    "type": "number",
+    "label": "Emails Sent"
+  },
+  {
+    "name": "send_time",
+    "type": "date",
+    "label": "Send Time"
+  },
+  {
+    "name": "content_type",
+    "type": "text",
+    "label": "Content Type"
+  },
+  {
+    "name": "needs_block_refresh",
+    "type": "boolean",
+    "label": "Needs Block Refresh"
+  },
+  {
+    "name": "resendable",
+    "type": "boolean",
+    "label": "Resendable"
+  },
+  {
+    "name": "recipients",
+    "spec": [
+      {
+        "name": "list_id",
+        "type": "text",
+        "label": "List ID"
+      },
+      {
+        "name": "list_is_active",
+        "type": "boolean",
+        "label": "List Is Active"
+      },
+      {
+        "name": "list_name",
+        "type": "text",
+        "label": "List Name"
+      },
+      {
+        "name": "segment_text",
+        "type": "text",
+        "label": "Segment Text"
+      },
+      {
+        "name": "recipient_count",
+        "type": "number",
+        "label": "Recipient Count"
+      },
+      {
+        "name": "segment_opts",
+        "spec": [
+          {
+            "name": "saved_segment_id",
+            "type": "number",
+            "label": "Saved Segment ID"
+          },
+          {
+            "name": "match",
+            "type": "text",
+            "label": "Match"
+          },
+          {
+            "name": "conditions",
+            "spec": {
+              "spec": [
+                {
+                  "name": "condition_type",
+                  "type": "text",
+                  "label": "Condition Type"
+                },
+                {
+                  "name": "field",
+                  "type": "text",
+                  "label": "Field"
+                },
+                {
+                  "name": "op",
+                  "type": "text",
+                  "label": "Op"
+                },
+                {
+                  "name": "value",
+                  "type": "number",
+                  "label": "Value"
+                }
+              ],
+              "type": "collection"
+            },
+            "type": "array",
+            "label": "Conditions"
+          }
+        ],
+        "type": "collection",
+        "label": "Segment Opts"
+      }
+    ],
+    "type": "collection",
+    "label": "Recipients"
+  },
+  {
+    "name": "settings",
+    "spec": [
+      {
+        "name": "subject_line",
+        "type": "text",
+        "label": "Subject Line"
+      },
+      {
+        "name": "preview_text",
+        "type": "text",
+        "label": "Preview Text"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "from_name",
+        "type": "text",
+        "label": "From Name"
+      },
+      {
+        "name": "reply_to",
+        "type": "text",
+        "label": "Reply to"
+      },
+      {
+        "name": "use_conversation",
+        "type": "boolean",
+        "label": "Use Conversation"
+      },
+      {
+        "name": "to_name",
+        "type": "text",
+        "label": "To Name"
+      },
+      {
+        "name": "folder_id",
+        "type": "text",
+        "label": "Folder ID"
+      },
+      {
+        "name": "authenticate",
+        "type": "boolean",
+        "label": "Authenticate"
+      },
+      {
+        "name": "auto_footer",
+        "type": "boolean",
+        "label": "Auto Footer"
+      },
+      {
+        "name": "inline_css",
+        "type": "boolean",
+        "label": "Inline Css"
+      },
+      {
+        "name": "auto_tweet",
+        "type": "boolean",
+        "label": "Auto Tweet"
+      },
+      {
+        "name": "fb_comments",
+        "type": "boolean",
+        "label": "Fb Comments"
+      },
+      {
+        "name": "timewarp",
+        "type": "boolean",
+        "label": "Timewarp"
+      },
+      {
+        "name": "template_id",
+        "type": "number",
+        "label": "Template ID"
+      },
+      {
+        "name": "drag_and_drop",
+        "type": "boolean",
+        "label": "Drag And Drop"
+      }
+    ],
+    "type": "collection",
+    "label": "Settings"
+  },
+  {
+    "name": "tracking",
+    "spec": [
+      {
+        "name": "opens",
+        "type": "boolean",
+        "label": "Opens"
+      },
+      {
+        "name": "html_clicks",
+        "type": "boolean",
+        "label": "Html Clicks"
+      },
+      {
+        "name": "text_clicks",
+        "type": "boolean",
+        "label": "Text Clicks"
+      },
+      {
+        "name": "goal_tracking",
+        "type": "boolean",
+        "label": "Goal Tracking"
+      },
+      {
+        "name": "ecomm360",
+        "type": "boolean",
+        "label": "Ecomm 360"
+      },
+      {
+        "name": "google_analytics",
+        "type": "text",
+        "label": "Google Analytics"
+      },
+      {
+        "name": "clicktale",
+        "type": "text",
+        "label": "Clicktale"
+      }
+    ],
+    "type": "collection",
+    "label": "Tracking"
+  },
+  {
+    "name": "report_summary",
+    "spec": [
+      {
+        "name": "opens",
+        "type": "number",
+        "label": "Opens"
+      },
+      {
+        "name": "unique_opens",
+        "type": "number",
+        "label": "Unique Opens"
+      },
+      {
+        "name": "open_rate",
+        "type": "number",
+        "label": "Open Rate"
+      },
+      {
+        "name": "clicks",
+        "type": "number",
+        "label": "Clicks"
+      },
+      {
+        "name": "subscriber_clicks",
+        "type": "number",
+        "label": "Subscriber Clicks"
+      },
+      {
+        "name": "click_rate",
+        "type": "number",
+        "label": "Click Rate"
+      },
+      {
+        "name": "ecommerce",
+        "spec": [
+          {
+            "name": "total_orders",
+            "type": "number",
+            "label": "Total Orders"
+          },
+          {
+            "name": "total_spent",
+            "type": "number",
+            "label": "Total Spent"
+          },
+          {
+            "name": "total_revenue",
+            "type": "number",
+            "label": "Total Revenue"
+          }
+        ],
+        "type": "collection",
+        "label": "Ecommerce"
+      }
+    ],
+    "type": "collection",
+    "label": "Report Summary"
+  },
+  {
+    "name": "delivery_status",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Delivery Status"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

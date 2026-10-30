@@ -1,0 +1,50 @@
+[
+  {
+    "name": "LatestMatchingVersion",
+    "spec": [
+      {
+        "name": "CompatibleRuntimes",
+        "type": "array",
+        "label": "Compatible Runtimes"
+      },
+      {
+        "name": "CreatedDate",
+        "time": true,
+        "type": "date",
+        "label": "Created Date"
+      },
+      {
+        "name": "Description",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "name": "LayerVersionArn",
+        "type": "text",
+        "label": "Layer Version Arn"
+      },
+      {
+        "name": "LicenseInfo",
+        "type": "text",
+        "label": "License Info"
+      },
+      {
+        "name": "Version",
+        "type": "text",
+        "label": "Version"
+      }
+    ],
+    "type": "collection",
+    "label": "Latest Matching Version"
+  },
+  {
+    "name": "LayerArn",
+    "type": "text",
+    "label": "Layer Arn"
+  },
+  {
+    "name": "LayerName",
+    "type": "text",
+    "label": "Layer Name"
+  }
+]

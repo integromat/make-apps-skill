@@ -1,0 +1,233 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description",
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "help": "The ID or name of the team the board should belong to.",
+    "mode": "edit",
+    "name": "idOrganization",
+    "type": "select",
+    "label": "Organization ID",
+    "options": "rpc://getOrganizations",
+    "advanced": true
+  },
+  {
+    "name": "prefs_permissionLevel",
+    "type": "select",
+    "label": "Permission level",
+    "options": [
+      {
+        "label": "Private",
+        "value": "private"
+      },
+      {
+        "label": "For organization",
+        "value": "org"
+      },
+      {
+        "label": "Public",
+        "value": "public"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Setting up the rules for who is allowed to vote.",
+    "name": "prefs_voting",
+    "type": "select",
+    "label": "Voting",
+    "options": [
+      {
+        "label": "Nobody",
+        "value": "disabled"
+      },
+      {
+        "label": "Members",
+        "value": "members"
+      },
+      {
+        "label": "Members and observers",
+        "value": "observers"
+      },
+      {
+        "label": "Organization members",
+        "value": "org"
+      },
+      {
+        "label": "All",
+        "value": "public"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Setting up the rule of who is allowed to add comments.",
+    "name": "prefs_comments",
+    "type": "select",
+    "label": "Comments",
+    "options": [
+      {
+        "label": "Nobody",
+        "value": "disabled"
+      },
+      {
+        "label": "Members",
+        "value": "members"
+      },
+      {
+        "label": "Members and observers",
+        "value": "observers"
+      },
+      {
+        "label": "Organization members",
+        "value": "org"
+      },
+      {
+        "label": "All",
+        "value": "public"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Setting up the rule of who is allowed to invite other members.",
+    "name": "prefs_invitations",
+    "type": "select",
+    "label": "Invitations",
+    "options": [
+      {
+        "label": "Members and administrators",
+        "value": "admins"
+      },
+      {
+        "label": "Members",
+        "value": "members"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Determines whether users can join the boards themselves or whether they have to be invited.",
+    "name": "prefs_selfJoin",
+    "type": "boolean",
+    "label": "Self-join",
+    "advanced": true
+  },
+  {
+    "help": "Determines whether to use the default set of labels.",
+    "name": "defaultLabels",
+    "type": "boolean",
+    "label": "Default labels",
+    "advanced": true
+  },
+  {
+    "help": "Determines whether to add the default set of lists to a board (To Do, Doing, Done). It is ignored if 'Board source ID' is provided.",
+    "name": "defaultLists",
+    "type": "boolean",
+    "label": "Default lists",
+    "advanced": true
+  },
+  {
+    "help": "The ID of a board to copy into the new board.",
+    "mode": "edit",
+    "name": "idBoardSource",
+    "type": "select",
+    "label": "Board source ID",
+    "options": "rpc://listBoards",
+    "advanced": true
+  },
+  {
+    "help": "Determines whether card covers are enabled.",
+    "name": "prefs_cardCovers",
+    "type": "boolean",
+    "label": "Card covers",
+    "advanced": true
+  },
+  {
+    "name": "prefs_background",
+    "type": "select",
+    "label": "Background",
+    "options": [
+      {
+        "label": "Custom",
+        "value": "custom",
+        "nested": [
+          {
+            "help": "The ID of a custom background.",
+            "name": "background_id",
+            "type": "text",
+            "label": "Background ID"
+          }
+        ]
+      },
+      {
+        "label": "Blue",
+        "value": "blue"
+      },
+      {
+        "label": "Orange",
+        "value": "orange"
+      },
+      {
+        "label": "Green",
+        "value": "green"
+      },
+      {
+        "label": "Red",
+        "value": "red"
+      },
+      {
+        "label": "Purple",
+        "value": "purple"
+      },
+      {
+        "label": "Pink",
+        "value": "pink"
+      },
+      {
+        "label": "Lime",
+        "value": "lime"
+      },
+      {
+        "label": "Sky",
+        "value": "sky"
+      },
+      {
+        "label": "Grey",
+        "value": "grey"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Determines the type of card aging that should take place on the board if card aging is enabled.",
+    "name": "prefs_cardAging",
+    "type": "select",
+    "label": "Card aging",
+    "options": [
+      {
+        "label": "Pirate mode",
+        "value": "pirate"
+      },
+      {
+        "label": "Regular mode",
+        "value": "regular"
+      }
+    ],
+    "advanced": true
+  }
+]

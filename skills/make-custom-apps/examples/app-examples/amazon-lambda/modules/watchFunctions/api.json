@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "MaxItems": 1000,
+    "FunctionVersion": "ALL"
+  },
+  "url": "/2015-03-31/functions/",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{functionResponse(item)}}",
+    "iterate": "{{body.Functions}}",
+    "trigger": {
+      "id": "{{item.FunctionArn}}",
+      "date": "{{parseDate(item.LastModified)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "Marker": "{{body.NextMarker}}"
+    },
+    "condition": "{{ifempty(body.NextMarker, false)}}"
+  }
+}

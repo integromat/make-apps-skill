@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "status": "{{parameters.status}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}/custom-fields",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  }
+}

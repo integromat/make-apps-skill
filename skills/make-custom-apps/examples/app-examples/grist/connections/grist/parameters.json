@@ -1,0 +1,15 @@
+[
+  {
+    "help": "To access documents and workspaces on a team site, use your team domain `<TEAM>.getgrist.com`. By default, `docs.getgrist.com` is used to access your personal site.",
+    "name": "domain",
+    "type": "text",
+    "label": "Domain"
+  },
+  {
+    "help": "To enable API access create an [API key](https://support.getgrist.com/rest-api/#_top).",
+    "name": "apiKey",
+    "type": "password",
+    "label": "API Key",
+    "required": true
+  }
+]

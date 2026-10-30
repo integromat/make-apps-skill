@@ -1,0 +1,20 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.Authorization"
+    ]
+  },
+  "url": "https://{{ifempty(parameters.domain, 'docs')}}.getgrist.com/api/orgs",
+  "headers": {
+    "Authorization": "Bearer {{parameters.apiKey}}"
+  },
+  "response": {
+    "data": {
+      "domain": "{{parameters.domain}}"
+    },
+    "metadata": {
+      "type": "text",
+      "value": "{{ifempty(parameters.domain, 'docs')}}.getgrist.com"
+    }
+  }
+}

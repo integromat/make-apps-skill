@@ -1,0 +1,11 @@
+{
+  "qs": {
+    "hydrated": true,
+    "consider-duration-format": true
+  },
+  "url": "/workspaces/{{parameters.workspace}}/time-entries/{{parameters.timeEntry}}",
+  "method": "GET",
+  "response": {
+    "output": "{{parseTimeResponse(body)}}"
+  }
+}

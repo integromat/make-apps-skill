@@ -1,0 +1,21 @@
+{
+  "name": "netlify",
+  "label": "Netlify",
+  "version": 1,
+  "rev": 5,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": "Netlify is an all-in-one workflow to build, deploy, and manage modern web projects.",
+  "docs": null,
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#00ad9f",
+  "versionFull": "1.7.0",
+  "website": null
+}

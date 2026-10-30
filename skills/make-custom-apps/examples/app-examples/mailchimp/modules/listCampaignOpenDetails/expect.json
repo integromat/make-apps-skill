@@ -1,0 +1,21 @@
+[
+  {
+    "name": "campaign_id",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23mailchimp@2/listCampaigns",
+    "required": true
+  },
+  {
+    "name": "since",
+    "type": "date",
+    "label": "Since"
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

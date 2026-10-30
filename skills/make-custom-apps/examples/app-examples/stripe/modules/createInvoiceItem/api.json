@@ -1,0 +1,27 @@
+{
+  "url": "/invoiceitems",
+  "body": "{{encodeRequestBody(temp)}}",
+  "temp": {
+    "price": "{{parameters.price}}",
+    "amount": "{{parameters.amount}}",
+    "invoice": "{{parameters.invoice}}",
+    "currency": "{{parameters.currency}}",
+    "customer": "{{parameters.customer}}",
+    "metadata": "{{parameters.metadata}}",
+    "quantity": "{{parameters.quantity}}",
+    "discounts": "{{parameters.discounts}}",
+    "tax_rates": "{{parameters.tax_rates}}",
+    "price_data": "{{parameters.price_data}}",
+    "description": "{{parameters.description}}",
+    "period[end]": "{{if(parameters.period.end, formatDate(parameters.period.end, 'X'))}}",
+    "unit_amount": "{{parameters.unit_amount}}",
+    "discountable": "{{parameters.discountable}}",
+    "subscription": "{{parameters.subscription}}",
+    "period[start]": "{{if(parameters.period.start, formatDate(parameters.period.start, 'X'))}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

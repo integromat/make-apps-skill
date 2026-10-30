@@ -1,0 +1,19 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Report Events of a Custom Action",
+  "scope": [
+    "api:engagement-data:write",
+    "api:workspaces:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "gong",
+  "description": "Push engagement events into Gong and display them as events in Gong’s activity timeline, when a content is engaged by an external participant (for example, a contract was “signed” by the prospect).",
+  "altAccountName": "gong2"
+}

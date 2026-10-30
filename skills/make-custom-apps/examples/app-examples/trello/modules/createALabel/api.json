@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "color": "{{parameters.color}}",
+    "idBoard": "{{parameters.board_id}}"
+  },
+  "url": "/labels",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

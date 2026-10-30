@@ -1,0 +1,12 @@
+[
+  {
+    "name": "requestId",
+    "type": "text",
+    "label": "Request ID"
+  },
+  {
+    "name": "callId",
+    "type": "text",
+    "label": "Call ID"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": {
+      "store": "rpc://getProjects",
+      "nested": [
+        {
+          "name": "task_assignment_id",
+          "type": "select",
+          "label": "Task Assignment ID",
+          "options": "rpc://getTasksForProject",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

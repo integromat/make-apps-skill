@@ -1,0 +1,8 @@
+{
+  "url": "/customFields/{{parameters.customField_id}}/options",
+  "method": "GET",
+  "response": {
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  }
+}

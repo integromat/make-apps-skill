@@ -1,0 +1,6 @@
+{
+  "common": {
+    "consumerKey": "{{parameters.consumerKey}}",
+    "consumerSecret": "{{parameters.consumerSecret}}"
+  }
+}

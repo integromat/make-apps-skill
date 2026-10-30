@@ -1,0 +1,17 @@
+{
+  "qs": {
+    "title": "{{parameters.title}}",
+    "content": "{{parameters.content}}",
+    "channels": "{{getChannels(parameters.channels)}}",
+    "filename": "{{parameters.fileName}}",
+    "thread_ts": "{{parameters.thread_ts}}",
+    "initial_comment": "{{parameters.initial_comment}}"
+  },
+  "url": "/files.upload",
+  "body": {},
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.file)}}"
+  }
+}

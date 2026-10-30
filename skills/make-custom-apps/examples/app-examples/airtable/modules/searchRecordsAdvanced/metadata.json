@@ -1,0 +1,19 @@
+{
+  "rev": 5,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Search Records (Advanced)",
+  "scope": [
+    "schema.bases:read",
+    "data.records:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "airtable3",
+  "description": "Searches for specific records or returns all records. Advanced module for mapping.",
+  "altAccountName": "airtable2"
+}

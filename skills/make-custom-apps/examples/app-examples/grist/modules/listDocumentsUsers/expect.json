@@ -1,0 +1,16 @@
+[
+  {
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": "rpc://app%23grist@1/listDocuments",
+    "required": true
+  },
+  {
+    "help": "Maximum number of items to output.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

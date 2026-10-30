@@ -1,0 +1,13 @@
+{
+  "rev": 6,
+  "type": "basic",
+  "label": "Amazon Lambda",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

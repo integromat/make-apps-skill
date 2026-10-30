@@ -1,0 +1,253 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Invoice ID"
+  },
+  {
+    "name": "client_key",
+    "type": "text",
+    "label": "Client key"
+  },
+  {
+    "name": "number",
+    "type": "text",
+    "label": "Number"
+  },
+  {
+    "name": "purchase_order",
+    "type": "text",
+    "label": "Purchase order"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "due_amount",
+    "type": "number",
+    "label": "Due amount"
+  },
+  {
+    "name": "tax",
+    "type": "number",
+    "label": "Tax"
+  },
+  {
+    "name": "tax_amount",
+    "type": "number",
+    "label": "Tax amount"
+  },
+  {
+    "name": "tax2",
+    "type": "text",
+    "label": "Tax 2"
+  },
+  {
+    "name": "tax2_amount",
+    "type": "number",
+    "label": "Tax 2 amount"
+  },
+  {
+    "name": "discount",
+    "type": "text",
+    "label": "Discount"
+  },
+  {
+    "name": "discount_amount",
+    "type": "number",
+    "label": "Discount amount"
+  },
+  {
+    "name": "subject",
+    "type": "text",
+    "label": "Subject"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "state",
+    "type": "text",
+    "label": "State"
+  },
+  {
+    "name": "period_start",
+    "type": "text",
+    "label": "Period start"
+  },
+  {
+    "name": "period_end",
+    "type": "text",
+    "label": "Period end"
+  },
+  {
+    "name": "issue_date",
+    "type": "date",
+    "label": "Issue date"
+  },
+  {
+    "name": "due_date",
+    "type": "date",
+    "label": "Due date"
+  },
+  {
+    "name": "payment_term",
+    "type": "text",
+    "label": "Payment term"
+  },
+  {
+    "name": "sent_at",
+    "type": "date",
+    "label": "Sent at"
+  },
+  {
+    "name": "paid_at",
+    "type": "date",
+    "label": "Paid at"
+  },
+  {
+    "name": "closed_at",
+    "type": "date",
+    "label": "Closed at"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "paid_date",
+    "type": "text",
+    "label": "Paid date"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  },
+  {
+    "name": "estimate",
+    "type": "text",
+    "label": "Estimate"
+  },
+  {
+    "name": "retainer",
+    "type": "text",
+    "label": "Retainer"
+  },
+  {
+    "name": "creator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Creator"
+  },
+  {
+    "name": "line_items",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "Line Item ID"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "label": "Kind"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "label": "Quantity"
+        },
+        {
+          "name": "unit_price",
+          "type": "number",
+          "label": "Unit price"
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        },
+        {
+          "name": "taxed",
+          "type": "boolean",
+          "label": "Taxed"
+        },
+        {
+          "name": "taxed2",
+          "type": "boolean",
+          "label": "Taxed 2"
+        },
+        {
+          "name": "project",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "code",
+              "type": "text",
+              "label": "Text"
+            }
+          ],
+          "type": "collection",
+          "label": "Project"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Line Items"
+  }
+]

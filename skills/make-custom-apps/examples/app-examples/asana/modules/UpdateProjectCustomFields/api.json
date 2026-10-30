@@ -1,0 +1,10 @@
+{
+  "url": "/projects/{{parameters.project}}/{{parameters.addOrRemove}}",
+  "body": {
+    "data": "{{omit(parameters,'project','workspaceRPC','addOrRemove','selectOrMap')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

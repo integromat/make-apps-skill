@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "channel": "{{parameters.channel}}"
+  },
+  "url": "/conversations.history",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getMessage(item)}}",
+    "iterate": "{{body.messages}}",
+    "trigger": {
+      "id": "{{item.ts}}",
+      "date": "{{tsToDate(item.ts)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

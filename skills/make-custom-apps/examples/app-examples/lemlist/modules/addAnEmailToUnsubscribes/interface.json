@@ -1,0 +1,12 @@
+[
+  {
+    "name": "_id",
+    "type": "text",
+    "label": "Unsubscribe ID"
+  },
+  {
+    "name": "value",
+    "type": "text",
+    "label": "Value"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Document",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Deletes a document.",
+  "altAccountName": null
+}

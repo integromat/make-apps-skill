@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "active": true,
+    "idModel": "{{parameters.idModel}}",
+    "callbackURL": "{{webhook.url}}",
+    "description": "{{parameters.description}}"
+  },
+  "url": "/webhooks",
+  "method": "POST",
+  "response": {
+    "data": {
+      "webhook_id": "{{body.id}}"
+    }
+  }
+}

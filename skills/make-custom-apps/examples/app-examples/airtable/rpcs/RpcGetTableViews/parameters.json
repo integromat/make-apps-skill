@@ -1,0 +1,10 @@
+[
+  {
+    "name": "base",
+    "type": "text"
+  },
+  {
+    "name": "table",
+    "type": "text"
+  }
+]

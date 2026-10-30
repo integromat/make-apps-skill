@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/expenses/{{parameters.expense_id}}",
+  "body": "{{transformRequestDates(omit(parameters,'expense_id'))}}",
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "help": "The identifier of the charge to be retrieved.",
+    "name": "charge",
+    "type": "text",
+    "label": "Charge",
+    "required": true
+  },
+  {
+    "name": "expandable",
+    "spec": [
+      {
+        "name": "application_fee",
+        "type": "boolean",
+        "label": "Application fee",
+        "default": false,
+        "required": true
+      }
+    ],
+    "type": "collection",
+    "label": "Expand with",
+    "advanced": true
+  }
+]

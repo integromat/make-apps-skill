@@ -1,0 +1,14 @@
+{
+  "url": "/conversations.kick",
+  "body": {
+    "user": "{{parameters.user}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {
+    "Content-Type": "application/json; charset=\"utf-8\""
+  },
+  "response": {
+    "output": null
+  }
+}

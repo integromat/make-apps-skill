@@ -1,0 +1,17 @@
+{
+  "url": "/users",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.email}}"
+    },
+    "iterate": "{{body.users}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.meta.pagination.next}}"
+  }
+}

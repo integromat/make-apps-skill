@@ -1,0 +1,17 @@
+{
+  "url": "/hooks",
+  "body": {
+    "data": {
+      "url": "{{webhook.url}}"
+    },
+    "type": "url",
+    "event": "deploy_failed",
+    "site_id": "{{parameters.site_id}}"
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "webhook_id": "{{body.id}}"
+    }
+  }
+}

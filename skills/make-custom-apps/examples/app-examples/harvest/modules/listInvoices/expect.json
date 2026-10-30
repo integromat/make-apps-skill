@@ -1,0 +1,69 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of invoices to return",
+    "default": 2
+  },
+  {
+    "help": "Only return invoices that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  },
+  {
+    "help": "Only return invoices belonging to the client with the given ID.",
+    "mode": "edit",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients"
+  },
+  {
+    "help": "Only return invoices associated with the project with the given ID.",
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects"
+  },
+  {
+    "help": "Only return invoices with an `Issue date` on or after the given date.",
+    "name": "from",
+    "time": true,
+    "type": "date",
+    "label": "From"
+  },
+  {
+    "help": "Only return invoices with an `Issue date` on or before the given date.",
+    "name": "to",
+    "time": true,
+    "type": "date",
+    "label": "To"
+  },
+  {
+    "help": "Only return invoices with a `State` matching the value provided. ",
+    "name": "state",
+    "type": "select",
+    "label": "State",
+    "options": [
+      {
+        "label": "Draft",
+        "value": "draft"
+      },
+      {
+        "label": "Open",
+        "value": "open"
+      },
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Closed",
+        "value": "closed"
+      }
+    ]
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "members",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "avatarHash",
+          "type": "text",
+          "label": "Avatar hash"
+        },
+        {
+          "name": "avatarUrl",
+          "type": "text",
+          "label": "Avatar URL"
+        },
+        {
+          "name": "initials",
+          "type": "text",
+          "label": "Initials"
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        },
+        {
+          "name": "confirmed",
+          "type": "boolean",
+          "label": "Confirmed"
+        },
+        {
+          "name": "memberType",
+          "type": "text",
+          "label": "Member type"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Members"
+  },
+  {
+    "name": "memberships",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "idMember",
+          "type": "text",
+          "label": "Member ID"
+        },
+        {
+          "name": "memberType",
+          "type": "text",
+          "label": "Member type"
+        },
+        {
+          "name": "unconfirmed",
+          "type": "boolean",
+          "label": "Unconfirmed"
+        },
+        {
+          "name": "deactivated",
+          "type": "boolean",
+          "label": "Deacivated"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Memberships"
+  }
+]

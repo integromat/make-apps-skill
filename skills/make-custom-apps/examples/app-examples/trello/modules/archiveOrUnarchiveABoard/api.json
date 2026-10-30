@@ -1,0 +1,11 @@
+{
+  "qs": {
+    "closed": "{{parameters.archive}}"
+  },
+  "url": "/boards/{{parameters.board_id}}",
+  "body": {},
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "limit": "100"
+  },
+  "url": "/payouts",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.id}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": {
+      "container": "{{body.data}}"
+    }
+  }
+}

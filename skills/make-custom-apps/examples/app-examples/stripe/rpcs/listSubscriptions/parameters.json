@@ -1,0 +1,12 @@
+[
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  }
+]

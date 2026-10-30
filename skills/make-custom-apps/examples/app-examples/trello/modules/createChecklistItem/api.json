@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "pos": "{{parameters.position}}",
+    "name": "{{parameters.name}}",
+    "checked": "{{parameters.checked}}"
+  },
+  "url": "/checklists/{{parameters.checklist_id}}/checkItems",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

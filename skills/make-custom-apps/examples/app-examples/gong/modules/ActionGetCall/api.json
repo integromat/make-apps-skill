@@ -1,0 +1,7 @@
+{
+  "url": "/calls/{{parameters.callId}}",
+  "method": "GET",
+  "response": {
+    "output": "{{parseDates(body.call, 'scheduled', 'started')}}"
+  }
+}

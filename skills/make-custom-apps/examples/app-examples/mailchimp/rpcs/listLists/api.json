@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "count": 500
+  },
+  "url": "/lists",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.lists}}"
+  }
+}

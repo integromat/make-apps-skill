@@ -1,0 +1,15 @@
+{
+  "gid": "00000",
+  "active": false,
+  "target": "https://example.invalid/xxxxxxx-xxxxxxx/0000",
+  "resource": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "resource_type": "webhook",
+  "last_failure_at": "2012-02-22T02:06:58.147Z",
+  "last_success_at": "2012-02-22T02:06:58.147Z",
+  "last_failure_content": "500 Server Error\\n\\nCould not complete the request"
+}

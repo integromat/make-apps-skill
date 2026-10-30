@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Project",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Deletes a project and any time entries or expenses tracked to it. However, invoices associated with the project will not be deleted. If you don’t want the project’s time entries and expenses to be deleted, you should archive the project instead.",
+  "altAccountName": null
+}

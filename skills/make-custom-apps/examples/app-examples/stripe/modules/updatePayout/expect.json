@@ -1,0 +1,26 @@
+[
+  {
+    "help": "The identifier of the payout to be updated.",
+    "name": "payout",
+    "type": "text",
+    "label": "Payout",
+    "required": true
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key"
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  }
+]

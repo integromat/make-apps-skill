@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "filterByFormula": "{{parameters.formula}}"
+  },
+  "url": "/{{parameters.base}}/{{encodeURL(parameters.table)}}",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.fields[parameters.field]}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.records}}"
+  }
+}

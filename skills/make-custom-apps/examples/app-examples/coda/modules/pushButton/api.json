@@ -1,0 +1,7 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows/{{parameters.rowIdOrName}}/buttons/{{parameters.columnIdOrName}}",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

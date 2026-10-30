@@ -1,0 +1,56 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Enter a List ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "campaign_id",
+            "type": "text",
+            "label": "Campaign ID",
+            "required": true
+          },
+          {
+            "name": "link_id",
+            "type": "text",
+            "label": "Click Report ID",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Select from the list",
+        "value": "list",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "campaign_id",
+            "type": "select",
+            "label": "Campaign ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listCampaigns",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "link_id",
+                  "type": "select",
+                  "label": "Click Report ID",
+                  "options": "rpc://app%23mailchimp@2/listClickReports",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
+        "default": true
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

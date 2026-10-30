@@ -1,0 +1,9 @@
+[
+  {
+    "help": "Click [here](https://app.lemlist.com/integrations) to get API Key.",
+    "name": "apiKey",
+    "type": "password",
+    "label": "API Key",
+    "required": true
+  }
+]

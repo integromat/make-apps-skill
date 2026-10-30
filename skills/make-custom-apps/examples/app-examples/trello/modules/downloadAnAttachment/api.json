@@ -1,0 +1,28 @@
+[
+  {
+    "qs": {
+      "fields": "name"
+    },
+    "url": "/cards/{{parameters.card_id}}/attachments/{{parameters.idAttachment}}",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "filename": "{{body.name}}"
+      }
+    }
+  },
+  {
+    "url": "/cards/{{parameters.card_id}}/attachments/{{parameters.idAttachment}}/download",
+    "method": "GET",
+    "response": {
+      "type": {
+        "200": "binary"
+      },
+      "output": {
+        "data": "{{body}}",
+        "filename": "{{temp.filename}}",
+        "filesize": "{{length(body)}}"
+      }
+    }
+  }
+]

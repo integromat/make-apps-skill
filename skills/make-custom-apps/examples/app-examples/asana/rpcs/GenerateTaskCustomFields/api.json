@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.custom_fields.name",
+      "this.custom_fields.type",
+      "this.custom_fields.gid",
+      "this.custom_fields.enum_options",
+      "this.custom_fields.enum_options.enabled",
+      "this.custom_fields.enum_options.name",
+      "this.custom_fields.enum_options.color"
+    ]
+  },
+  "url": "/tasks/{{ifempty(parameters.parent,parameters.task_gid)}}",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": "{{generateTaskCustomFieldParams(body.data.custom_fields)}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

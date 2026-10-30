@@ -1,0 +1,116 @@
+[
+  {
+    "label": "Workspaces",
+    "modules": [
+      "searchOrganizations",
+      "createExportForOrganizations"
+    ]
+  },
+  {
+    "label": "Boards",
+    "modules": [
+      "watchBoards",
+      "createABoard",
+      "editABoard",
+      "getBoard",
+      "searchBoards",
+      "archiveOrUnarchiveABoard",
+      "assignMemberToABoard",
+      "unassignAMemberFromABoard"
+    ]
+  },
+  {
+    "label": "Lists",
+    "modules": [
+      "watchMovedCard",
+      "createAList",
+      "editAList",
+      "getAList",
+      "getBoardLists",
+      "archiveOrUnarchiveAList"
+    ]
+  },
+  {
+    "label": "Cards",
+    "modules": [
+      "watchCards",
+      "watchAttachments",
+      "createCard",
+      "editACard",
+      "getACard",
+      "getACardChecklists",
+      "searchCards",
+      "archiveOrUnarchiveACard",
+      "deleteACard",
+      "listAttachments",
+      "getAnAttachment",
+      "downloadAnAttachment",
+      "addAnAttachment",
+      "deleteAnAttachment"
+    ]
+  },
+  {
+    "label": "Custom fields",
+    "modules": [
+      "createACustomField",
+      "setACustomFieldOnACard",
+      "getACustomField",
+      "getCustomFieldOptions"
+    ]
+  },
+  {
+    "label": "Members",
+    "modules": [
+      "assignMemberToABoard",
+      "unassignAMemberFromABoard",
+      "addAMemberToACard",
+      "removeAMemberFromACard",
+      "searchMembers"
+    ]
+  },
+  {
+    "label": "Checklists",
+    "modules": [
+      "createAChecklist",
+      "createChecklistItem",
+      "editAChecklistItem",
+      "getAChecklist",
+      "getACardChecklists",
+      "deleteAChecklist",
+      "removeAnItemFromChecklist"
+    ]
+  },
+  {
+    "label": "Labels",
+    "modules": [
+      "createALabel",
+      "editALabel",
+      "getALabel",
+      "retrieveLabels",
+      "deleteALabel",
+      "addALabelToACard",
+      "removeALabelFromACard"
+    ]
+  },
+  {
+    "label": "Comments",
+    "modules": [
+      "watchComments",
+      "createACommentInACard",
+      "editACommentInACard",
+      "listCommentsInACard",
+      "deleteACommentInACard"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "watchActivitiesInstant",
+      "watchActivities",
+      "watchNotifications",
+      "watchBoard",
+      "search",
+      "makeApiCall"
+    ]
+  }
+]

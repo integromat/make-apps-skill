@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/lists/{{parameters.listId}}/interest-categories",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}",
+      "nested": [
+        "rpc://app%23mailchimp@2/listInterestsIDs"
+      ]
+    },
+    "iterate": "{{body.categories}}"
+  },
+  "condition": "{{parameters.listId && isMapping(parameters.listId) !== false}}",
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

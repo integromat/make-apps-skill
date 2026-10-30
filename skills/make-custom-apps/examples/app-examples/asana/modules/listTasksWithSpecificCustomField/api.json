@@ -1,0 +1,19 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(if(parameters.filter == 'section',omit(parameters,'project'),parameters)),'filter','page'),'Task')}}",
+  "url": "/tasks",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{customFieldExtra(item)}}",
+    "iterate": {
+      "condition": "{{if(parameters.is_complite == true, item.completed == true, if(parameters.is_complite == false, item.completed == false, item.completed == true || item.completed == false))}}",
+      "container": "{{body.data}}"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

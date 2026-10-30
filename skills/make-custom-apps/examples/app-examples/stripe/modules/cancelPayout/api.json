@@ -1,0 +1,7 @@
+{
+  "url": "/payouts/{{parameters.payout}}/cancel",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

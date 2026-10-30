@@ -1,0 +1,62 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Channel ID"
+  },
+  {
+    "name": "created",
+    "type": "number",
+    "label": "Created"
+  },
+  {
+    "name": "is_im",
+    "type": "boolean",
+    "label": "Is IM"
+  },
+  {
+    "name": "is_archived",
+    "type": "boolean",
+    "label": "Is Archived"
+  },
+  {
+    "name": "is_org_shared",
+    "type": "boolean",
+    "label": "Is Org Shared"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "last_read",
+    "type": "text",
+    "label": "Last Read"
+  },
+  {
+    "name": "latest",
+    "type": "text",
+    "label": "Latest"
+  },
+  {
+    "name": "unread_count",
+    "type": "number",
+    "label": "Unread Count"
+  },
+  {
+    "name": "unread_count_display",
+    "type": "number",
+    "label": "Unread Count Display"
+  },
+  {
+    "name": "is_open",
+    "type": "boolean",
+    "label": "Is Open"
+  },
+  {
+    "name": "priority",
+    "type": "number",
+    "label": "Priority"
+  }
+]

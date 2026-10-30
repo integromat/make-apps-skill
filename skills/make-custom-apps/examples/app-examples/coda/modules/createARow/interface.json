@@ -1,0 +1,15 @@
+[
+  {
+    "name": "requestId",
+    "type": "text",
+    "label": "Request ID"
+  },
+  {
+    "name": "addedRowIds",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Added Row Ids"
+  }
+]

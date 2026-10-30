@@ -1,0 +1,9 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/time-entries/{{parameters.timeEntry}}",
+  "method": "GET",
+  "response": {
+    "output": {
+      "Response": "This time entry is successfully deleted."
+    }
+  }
+}

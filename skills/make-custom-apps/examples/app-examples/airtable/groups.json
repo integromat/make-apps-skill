@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Records",
+    "modules": [
+      "TriggerWatchRecords",
+      "webhook",
+      "ActionSearchRecords",
+      "ActionGetRecord",
+      "ActionCreateRecord",
+      "ActionUpdateRecords",
+      "upsertRecord",
+      "ActionDeleteRecord",
+      "CreateRecordAdvanced",
+      "UpdateRecordAdvanced",
+      "searchRecordsAdvanced"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall",
+      "listBases",
+      "listTableSchemas"
+    ]
+  }
+]

@@ -1,0 +1,160 @@
+[
+  {
+    "help": "Filter on workspaces or organizations to find teams.",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "help": "If the above workspace ID represents an organization, a team ID must be filled in here.",
+          "name": "team",
+          "type": "select",
+          "label": "Team ID",
+          "options": "rpc://app%23asana@2/GetTeams"
+        }
+      ]
+    }
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "color",
+    "type": "select",
+    "label": "Color",
+    "options": [
+      {
+        "label": "Dark Blue",
+        "value": "dark-blue"
+      },
+      {
+        "label": "Dark Brown",
+        "value": "dark-brown"
+      },
+      {
+        "label": "Dark Green",
+        "value": "dark-green"
+      },
+      {
+        "label": "Dark Orange",
+        "value": "dark-orange"
+      },
+      {
+        "label": "Dark Pink",
+        "value": "dark-pink"
+      },
+      {
+        "label": "Dark Purple",
+        "value": "dark-purple"
+      },
+      {
+        "label": "Dark Red",
+        "value": "dark-red"
+      },
+      {
+        "label": "Dark Teal",
+        "value": "dark-teal"
+      },
+      {
+        "label": "Dark Warm Gray",
+        "value": "dark-warm-gray"
+      },
+      {
+        "label": "Light Blue",
+        "value": "light-blue"
+      },
+      {
+        "label": "Light Green",
+        "value": "light-green"
+      },
+      {
+        "label": "Light Orange",
+        "value": "light-orange"
+      },
+      {
+        "label": "Light Pink",
+        "value": "light-pink"
+      },
+      {
+        "label": "Light Purple",
+        "value": "light-purple"
+      },
+      {
+        "label": "Light Red",
+        "value": "light-red"
+      },
+      {
+        "label": "Light Teal",
+        "value": "light-teal"
+      },
+      {
+        "label": "Light Warm Gray",
+        "value": "light-warm-gray"
+      },
+      {
+        "label": "Light Yellow",
+        "value": "light-yellow"
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "default_view",
+    "type": "select",
+    "label": "Default View",
+    "options": [
+      {
+        "label": "Board",
+        "value": "board"
+      },
+      {
+        "label": "Calendar",
+        "value": "calendar"
+      },
+      {
+        "label": "List",
+        "value": "list"
+      },
+      {
+        "label": "Timeline",
+        "value": "timeline"
+      }
+    ]
+  },
+  {
+    "help": "Date will ignore time, only YYYY-MM-DD matters.",
+    "name": "due_on",
+    "type": "date",
+    "label": "Due On"
+  },
+  {
+    "help": "When this field is filled, the Due On field above needs to be filled to.\nDate will ignore time, only YYYY-MM-DD matters.",
+    "name": "start_on",
+    "type": "date",
+    "label": "Start On"
+  },
+  {
+    "help": "Not possible for archived projects, personal projects, or user task lists.",
+    "name": "is_template",
+    "type": "boolean",
+    "label": "Is Template"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "rev": 4,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Row",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "coda",
+  "description": "Deletes a specified row from the table. When deleting using a name as opposed to an ID, an arbitrary row will be removed.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

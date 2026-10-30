@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "filter": "{{filter2string(parameters.filter)}}"
+  },
+  "url": "/members",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.members}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.meta.pagination.next}}"
+  }
+}

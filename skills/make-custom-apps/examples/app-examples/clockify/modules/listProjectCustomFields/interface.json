@@ -1,0 +1,90 @@
+[
+  {
+    "name": "entityType",
+    "type": "text",
+    "label": "Entity Type"
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Custom Field ID"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "required",
+    "type": "boolean",
+    "label": "Required"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "placeholder",
+    "type": "text",
+    "label": "Placeholder"
+  },
+  {
+    "name": "allowedValues",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Allowed Values"
+  },
+  {
+    "name": "workspaceDefaultValue",
+    "type": "text",
+    "label": "Workspace Default Value"
+  },
+  {
+    "name": "onlyAdminCanEdit",
+    "type": "boolean",
+    "label": "Only Admin Can Edit"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "projectDefaultValues",
+    "spec": {
+      "spec": [
+        {
+          "name": "projectId",
+          "type": "text",
+          "label": "Project ID"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "label": "Status"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Project Default Values"
+  }
+]

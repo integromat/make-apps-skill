@@ -1,0 +1,26 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Kick a User",
+  "scope": [
+    "channels:write",
+    "channels:read",
+    "groups:write",
+    "groups:read",
+    "im:write",
+    "im:read",
+    "mpim:write",
+    "mpim:read",
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Removes a user from a channel.",
+  "altAccountName": null
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "help": "ID of the doc.",
+    "name": "docId",
+    "type": "select",
+    "label": "Doc ID",
+    "options": {
+      "store": "rpc://app%23coda@1/getDocs",
+      "nested": [
+        {
+          "help": "ID or name of the table. Names are discouraged because they're easily prone to being changed by users. If you're using a name, be sure to URI-encode it.",
+          "name": "tableIdOrName",
+          "type": "select",
+          "label": "Table ID or Name",
+          "options": {
+            "store": "rpc://app%23coda@1/getTablesUsingdocId",
+            "nested": [
+              {
+                "help": "ID or name of the row. Names are discouraged because they're easily prone to being changed by users. If you're using a name, be sure to URI-encode it. If there are multiple rows with the same value in the identifying column, an arbitrary one will be selected.",
+                "name": "rowIdOrName",
+                "type": "select",
+                "label": "Row ID or Name",
+                "options": {
+                  "store": "rpc://app%23coda@1/getRowsUsingTableIdDocId",
+                  "nested": [
+                    {
+                      "help": "ID or name of the column. Names are discouraged because they're easily prone to being changed by users. If you're using a name, be sure to URI-encode it.",
+                      "name": "columnIdOrName",
+                      "type": "select",
+                      "label": "Column ID or Name",
+                      "options": "rpc://app%23coda@1/getColumnsUsingTableIdDocId",
+                      "required": true
+                    }
+                  ]
+                },
+                "required": true
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

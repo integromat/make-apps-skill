@@ -1,0 +1,7 @@
+{
+  "url": "/expenses/{{parameters.expense_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

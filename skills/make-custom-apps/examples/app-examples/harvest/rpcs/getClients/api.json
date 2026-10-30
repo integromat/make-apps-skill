@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/clients",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.clients}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

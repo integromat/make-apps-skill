@@ -1,0 +1,118 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Chechlist ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Checklist Name"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idCard",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "checkItems",
+        "spec": [
+          {
+            "name": "perChecklist",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per checklist"
+          }
+        ],
+        "type": "collection",
+        "label": "Check items"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "creationMethod",
+    "type": "text",
+    "label": "Creation method"
+  },
+  {
+    "name": "checkItems",
+    "spec": {
+      "spec": [
+        {
+          "name": "idChecklist",
+          "type": "text",
+          "label": "Checklist ID"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "label": "State"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "Checklist item ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "nameData",
+          "type": "text",
+          "label": "Name data"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "pos",
+          "type": "number",
+          "label": "Position"
+        },
+        {
+          "name": "creationMethod",
+          "type": "text",
+          "label": "Creation method"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Check items"
+  }
+]

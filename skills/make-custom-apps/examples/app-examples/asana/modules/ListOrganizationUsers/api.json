@@ -1,0 +1,10 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'workspace','page'),'User')}}",
+  "url": "/workspaces/{{parameters.workspace}}/users",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "url": "/tags",
+  "body": {
+    "data": "{{parameters}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

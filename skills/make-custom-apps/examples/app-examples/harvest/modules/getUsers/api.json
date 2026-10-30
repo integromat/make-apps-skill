@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "per_page": 100,
+    "is_active": "{{parameters.is_active}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "/users",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.users}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

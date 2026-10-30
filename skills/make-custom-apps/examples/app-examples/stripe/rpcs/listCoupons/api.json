@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "limit": 100
+  },
+  "url": "/coupons",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{ifempty(item.name, item.id)}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

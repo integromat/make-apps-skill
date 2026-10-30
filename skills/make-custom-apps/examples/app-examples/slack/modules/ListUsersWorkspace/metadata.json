@@ -1,0 +1,19 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Users",
+  "scope": [
+    "users:read",
+    "users:read.email"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Returns a list of all users in a workspace.",
+  "altAccountName": null
+}

@@ -1,0 +1,775 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Story ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "resource_subtype",
+    "type": "text",
+    "label": "Resource Subtype"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "created_by",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Creator ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Creator Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Created By"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Story Text"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Story Type"
+  },
+  {
+    "name": "html_text",
+    "type": "text",
+    "label": "Story HTML Text"
+  },
+  {
+    "name": "is_edited",
+    "type": "boolean",
+    "label": "Is Edited"
+  },
+  {
+    "name": "is_editable",
+    "type": "boolean",
+    "label": "Is Editable?"
+  },
+  {
+    "name": "is_pinned",
+    "type": "boolean",
+    "label": "Is Pinned"
+  },
+  {
+    "name": "hearted",
+    "type": "boolean",
+    "label": "Hearted"
+  },
+  {
+    "name": "hearts",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Heart ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "User Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Hearts"
+  },
+  {
+    "name": "num_hearts",
+    "type": "uinteger",
+    "label": "Number of Hearts"
+  },
+  {
+    "name": "liked",
+    "type": "boolean",
+    "label": "Liked"
+  },
+  {
+    "name": "custom_fields_collection",
+    "spec": [],
+    "type": "collection",
+    "label": "Custom Fields Collection"
+  },
+  {
+    "name": "likes",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Like ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "User Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Likes"
+  },
+  {
+    "name": "num_likes",
+    "type": "uinteger",
+    "label": "Number of Likes"
+  },
+  {
+    "name": "previews",
+    "spec": [
+      {
+        "name": "fallback",
+        "type": "text",
+        "label": "Fallback"
+      },
+      {
+        "name": "footer",
+        "type": "text",
+        "label": "Footer"
+      },
+      {
+        "name": "header",
+        "type": "text",
+        "label": "Header"
+      },
+      {
+        "name": "header_link",
+        "type": "url",
+        "label": "Header Link"
+      },
+      {
+        "name": "html_text",
+        "type": "text",
+        "label": "HTML Text"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "title_link",
+        "type": "url",
+        "label": "Title Link"
+      }
+    ],
+    "type": "array",
+    "label": "Previews"
+  },
+  {
+    "name": "old_name",
+    "type": "text",
+    "label": "Old Name"
+  },
+  {
+    "name": "new_name",
+    "type": "text",
+    "label": "New Name"
+  },
+  {
+    "name": "old_dates",
+    "spec": [
+      {
+        "name": "start_on",
+        "type": "text",
+        "label": "Start On"
+      },
+      {
+        "name": "due_at",
+        "type": "date",
+        "label": "Due At"
+      },
+      {
+        "name": "due_on",
+        "type": "text",
+        "label": "Due On"
+      }
+    ],
+    "type": "collection",
+    "label": "Old Dates"
+  },
+  {
+    "name": "new_dates",
+    "spec": [
+      {
+        "name": "start_on",
+        "type": "text",
+        "label": "Start On"
+      },
+      {
+        "name": "due_at",
+        "type": "date",
+        "label": "Due At"
+      },
+      {
+        "name": "due_on",
+        "type": "text",
+        "label": "Due On"
+      }
+    ],
+    "type": "collection",
+    "label": "New Dates"
+  },
+  {
+    "name": "old_resource_subtype",
+    "type": "text",
+    "label": "Old Resource Subtype"
+  },
+  {
+    "name": "new_resource_subtype",
+    "type": "text",
+    "label": "New Resource Subtype"
+  },
+  {
+    "name": "story",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Story ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "created_by",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Creator ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Creator Name"
+          }
+        ],
+        "type": "collection",
+        "label": "Created By"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Story"
+  },
+  {
+    "name": "assignee",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Assignee ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Assignee Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Assignee"
+  },
+  {
+    "name": "follower",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Follower ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Follower Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Follower"
+  },
+  {
+    "name": "old_section",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Old Section ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Old Section Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Old Section"
+  },
+  {
+    "name": "new_section",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "New Section ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "New Section Name"
+      }
+    ],
+    "type": "collection",
+    "label": "New Section"
+  },
+  {
+    "name": "task",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Task ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Task Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Task"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Project ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Project Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "tag",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Tag ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Tag Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Tag"
+  },
+  {
+    "name": "custom_field",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Custom Field ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Custom Field Name"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Custom Field Type"
+      },
+      {
+        "name": "enum_options",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Enumeration Option ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Enumeration Option Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enumeration Option Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Enumeration Option Color"
+          }
+        ],
+        "type": "array",
+        "label": "Enumeration Options"
+      },
+      {
+        "name": "enum_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Enumeration Value ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Enumeration Value Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enumeration Value Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Enumeration Value Color"
+          }
+        ],
+        "type": "collection",
+        "label": "Enumeration Value"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Custom Field Enabled"
+      },
+      {
+        "name": "text_value",
+        "type": "text",
+        "label": "Custom Field Text Value"
+      }
+    ],
+    "type": "collection",
+    "label": "Custom Field"
+  },
+  {
+    "name": "old_text_value",
+    "type": "text",
+    "label": "Old Text Value"
+  },
+  {
+    "name": "new_text_value",
+    "type": "text",
+    "label": "New Text Value"
+  },
+  {
+    "name": "old_number_value",
+    "type": "uinteger",
+    "label": "Old Number Value"
+  },
+  {
+    "name": "new_number_value",
+    "type": "uinteger",
+    "label": "New Number Value"
+  },
+  {
+    "name": "old_enum_value",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Old Enumeration Value ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Old Enumeration Value Name"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Old Enumeration Value Enabled"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Old Enumeration Value Color"
+      }
+    ],
+    "type": "collection",
+    "label": "Old Enumeration Value"
+  },
+  {
+    "name": "new_enum_value",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "New Enumeration Value ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "New Enumeration Value Name"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "New Enumeration Value Enabled"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "New Enumeration Value Color"
+      }
+    ],
+    "type": "collection",
+    "label": "New Enumeration Value"
+  },
+  {
+    "name": "duplicate_of",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Duplicate ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Duplicate Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Duplicate Of"
+  },
+  {
+    "name": "duplicated_from",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Duplicated From ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Duplicated From Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Duplicated From"
+  },
+  {
+    "name": "dependency",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Dependency ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Dependency Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Dependency"
+  },
+  {
+    "name": "source",
+    "type": "text",
+    "label": "Source"
+  },
+  {
+    "name": "target",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Target ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Target Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Target"
+  }
+]

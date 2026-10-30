@@ -1,0 +1,27 @@
+[
+  {
+    "url": "/users/me",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "owner_id": "{{body.data.gid}}"
+      }
+    }
+  },
+  {
+    "qs": "{{specifyOwnerIDForPortfolio(setOptFields(if(parameters.workspace == undefined,omit(parameters,'page'),omit(setLimit(parameters),'page')),'Portfolios'), temp.owner_id)}}",
+    "url": "/portfolios",
+    "method": "GET",
+    "response": {
+      "limit": "{{parameters.page}}",
+      "output": "{{item}}",
+      "iterate": "{{body.data}}"
+    },
+    "pagination": {
+      "qs": {
+        "offset": "{{body.next_page.offset}}"
+      },
+      "condition": "{{ifempty(body.next_page, false)}}"
+    }
+  }
+]

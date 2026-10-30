@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "skip_merge_validation": "{{parameters.skip_merge_validation}}"
+  },
+  "url": "/lists/{{parameters.listId}}/members/{{if(parameters.email, md5(lower(parameters.email)), parameters.contact_id)}}",
+  "body": {
+    "{{...}}": "{{processInput(parameters)}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

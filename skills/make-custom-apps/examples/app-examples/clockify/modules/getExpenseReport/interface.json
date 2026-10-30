@@ -1,0 +1,170 @@
+[
+  {
+    "name": "reportData",
+    "type": "buffer",
+    "label": "Report Data"
+  },
+  {
+    "name": "totals",
+    "spec": [
+      {
+        "name": "_id",
+        "type": "text",
+        "label": "Total ID"
+      },
+      {
+        "name": "expensesCount",
+        "type": "number",
+        "label": "Expenses Count"
+      },
+      {
+        "name": "totalAmount",
+        "type": "number",
+        "label": "Total Amount"
+      },
+      {
+        "name": "totalAmountBillable",
+        "type": "number",
+        "label": "Total Amount Billable"
+      }
+    ],
+    "type": "collection",
+    "label": "Totals"
+  },
+  {
+    "name": "expenses",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Expense ID"
+        },
+        {
+          "name": "workspaceId",
+          "type": "text",
+          "label": "Workspace ID"
+        },
+        {
+          "name": "userId",
+          "type": "text",
+          "label": "User ID"
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "name": "projectId",
+          "type": "text",
+          "label": "Project ID"
+        },
+        {
+          "name": "categoryId",
+          "type": "text",
+          "label": "Category ID"
+        },
+        {
+          "name": "notes",
+          "type": "text",
+          "label": "Notes"
+        },
+        {
+          "name": "userStatus",
+          "type": "text",
+          "label": "User Status"
+        },
+        {
+          "name": "approvalRequestId",
+          "type": "text",
+          "label": "Approval Request ID"
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "fileId",
+          "type": "text",
+          "label": "File ID"
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "label": "Quantity"
+        },
+        {
+          "name": "userName",
+          "type": "text",
+          "label": "User Name"
+        },
+        {
+          "name": "userEmail",
+          "type": "email",
+          "label": "User Email"
+        },
+        {
+          "name": "projectName",
+          "type": "text",
+          "label": "Project Name"
+        },
+        {
+          "name": "projectColor",
+          "type": "text",
+          "label": "Project Color"
+        },
+        {
+          "name": "categoryName",
+          "type": "text",
+          "label": "Category Name"
+        },
+        {
+          "name": "categoryUnit",
+          "type": "text",
+          "label": "Category Unit"
+        },
+        {
+          "name": "categoryHasUnitPrice",
+          "type": "boolean",
+          "label": "Category Has Unit Price"
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        },
+        {
+          "name": "isLocked",
+          "type": "boolean",
+          "label": "Is Locked"
+        },
+        {
+          "name": "time",
+          "type": "text",
+          "label": "Time"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Expenses"
+  },
+  {
+    "name": "reportName",
+    "type": "text",
+    "label": "Report Name"
+  },
+  {
+    "name": "exportFields",
+    "spec": [],
+    "type": "array",
+    "label": "Export Fields"
+  },
+  {
+    "name": "customFields",
+    "type": "text",
+    "label": "Custom Fields"
+  }
+]

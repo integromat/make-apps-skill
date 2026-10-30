@@ -1,0 +1,21 @@
+{
+  "name": "amazon-lambda",
+  "label": "Amazon Lambda",
+  "version": 1,
+  "rev": 12,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": null,
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#f37b21",
+  "versionFull": "1.1.4",
+  "website": null
+}

@@ -1,0 +1,11 @@
+{
+  "url": "/users/{{parameters.user_id}}/billable_rates",
+  "body": {
+    "amount": "{{parameters.amount}}",
+    "start_date": "{{parameters.start_date}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

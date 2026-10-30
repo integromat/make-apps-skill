@@ -1,0 +1,10 @@
+{
+  "rev": 15,
+  "type": "web",
+  "flags": {},
+  "label": "Asana",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "asana2",
+  "altAccountName": null
+}

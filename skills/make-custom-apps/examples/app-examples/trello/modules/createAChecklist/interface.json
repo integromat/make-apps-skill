@@ -1,0 +1,39 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Checklist ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idCard",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "checkItems",
+    "spec": [],
+    "type": "array",
+    "label": "Check items"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(parameters),'workspace','page'),'Team')}}",
+  "url": "/organizations/{{parameters.workspace}}/teams",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}",
+    "trigger": {
+      "id": "{{item.gid}}",
+      "type": "id",
+      "order": "asc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

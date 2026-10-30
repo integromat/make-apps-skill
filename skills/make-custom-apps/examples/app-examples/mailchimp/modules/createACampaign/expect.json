@@ -1,0 +1,99 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Campaign Title",
+    "required": true
+  },
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List (Audience) ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "segment",
+          "type": "select",
+          "label": "Segment (Tag) ID",
+          "options": "rpc://listSegments"
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "subject_line",
+    "type": "text",
+    "label": "Subject Line",
+    "required": true
+  },
+  {
+    "name": "preview_text",
+    "type": "text",
+    "label": "Preview Text"
+  },
+  {
+    "name": "from_name",
+    "type": "text",
+    "label": "From Name",
+    "required": true
+  },
+  {
+    "name": "reply_to",
+    "type": "email",
+    "label": "From Email Address",
+    "required": true
+  },
+  {
+    "name": "to_name",
+    "type": "text",
+    "label": "To Name"
+  },
+  {
+    "name": "use_conversation",
+    "type": "boolean",
+    "label": "Use Conversation",
+    "required": true
+  },
+  {
+    "name": "folder",
+    "type": "select",
+    "label": "Folder ID",
+    "options": "rpc://listCampaignFolders"
+  },
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Fill the Body Content",
+    "options": [
+      {
+        "label": "By Template ID",
+        "value": "template",
+        "nested": [
+          {
+            "name": "template",
+            "type": "select",
+            "label": "Template ID",
+            "options": "rpc://listTemplates"
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "By HTML Format Text",
+        "value": "html",
+        "nested": [
+          {
+            "name": "segment_text",
+            "type": "text",
+            "label": "HTML Content"
+          }
+        ],
+        "default": true
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

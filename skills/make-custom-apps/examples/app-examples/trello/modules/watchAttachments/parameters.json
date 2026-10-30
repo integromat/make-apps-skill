@@ -1,0 +1,42 @@
+[
+  {
+    "name": "board_id",
+    "type": "select",
+    "label": "Board",
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "list_id",
+          "type": "select",
+          "label": "List",
+          "options": {
+            "store": "rpc://getBoardsLists",
+            "nested": [
+              {
+                "name": "card_id",
+                "type": "select",
+                "label": "Card",
+                "options": "rpc://getIDcardsUnderList",
+                "required": true
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

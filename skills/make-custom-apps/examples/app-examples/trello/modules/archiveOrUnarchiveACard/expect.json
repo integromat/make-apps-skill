@@ -1,0 +1,27 @@
+[
+  {
+    "name": "card_id",
+    "type": "text",
+    "label": "Card ID",
+    "required": true
+  },
+  {
+    "name": "archive",
+    "type": "select",
+    "label": "Archive or unarchive",
+    "options": [
+      {
+        "label": "Archive",
+        "value": true
+      },
+      {
+        "label": "Unarchive",
+        "value": false
+      }
+    ],
+    "mappable": {
+      "help": "Archive = `true`, Unarchive = `false`"
+    },
+    "required": true
+  }
+]

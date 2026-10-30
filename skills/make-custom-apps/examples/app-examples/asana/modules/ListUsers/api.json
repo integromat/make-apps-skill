@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(if(parameters.workspace == undefined,omit(parameters,'page'),omit(setLimit(parameters),'page')),'User')}}",
+  "url": "/users",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

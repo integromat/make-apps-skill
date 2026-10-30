@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/invoices/{{parameters.invoice_id}}/payments",
+  "body": "{{transformRequestDates(omit(parameters,'date_or_datetime','invoice_id'))}}",
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

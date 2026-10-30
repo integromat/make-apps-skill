@@ -1,0 +1,18 @@
+[
+  {
+    "mode": "edit",
+    "name": "id",
+    "type": "select",
+    "label": "Payment Link ID",
+    "options": "rpc://app%23stripe@1/listPaymentLink",
+    "editable": true,
+    "required": true
+  },
+  {
+    "help": "Maximum number of returned results.",
+    "name": "limit",
+    "type": "number",
+    "label": "Limit",
+    "default": 10
+  }
+]

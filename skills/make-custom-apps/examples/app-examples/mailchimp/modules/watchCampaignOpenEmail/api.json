@@ -1,0 +1,15 @@
+{
+  "url": "/reports/{{parameters.campaign_id}}/open-details",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.members}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.opens[].timestamp}}",
+      "type": "date",
+      "order": "desc"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+[
+  {
+    "name": "mode",
+    "type": "select",
+    "label": "Method",
+    "default": "select",
+    "options": [
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "docId",
+            "type": "select",
+            "label": "Doc",
+            "options": {
+              "store": "rpc://app%23coda@1/getDocs",
+              "nested": [
+                {
+                  "name": "tableIdOrName",
+                  "type": "select",
+                  "label": "Table",
+                  "options": {
+                    "store": "rpc://app%23coda@1/getTablesUsingdocId",
+                    "nested": [
+                      {
+                        "help": "ID or name of the row.",
+                        "name": "rowIdOrName",
+                        "type": "select",
+                        "label": "Row ID or Name",
+                        "options": "rpc://app%23coda@1/getRowsUsingTableIdDocId",
+                        "required": true
+                      },
+                      "rpc://app%23coda@1/getColumnsShowForUpdate"
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Map",
+        "value": "map",
+        "nested": [
+          {
+            "name": "docId",
+            "type": "text",
+            "label": "Doc",
+            "required": true
+          },
+          {
+            "name": "tableIdOrName",
+            "type": "text",
+            "label": "Table",
+            "required": true
+          },
+          {
+            "help": "ID or name of the row.",
+            "name": "rowIdOrName",
+            "type": "text",
+            "label": "Row ID or Name",
+            "required": true
+          },
+          {
+            "name": "columns",
+            "spec": [
+              {
+                "help": "ID or name of the column.",
+                "name": "column",
+                "type": "text",
+                "label": "Column ID or Name"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ],
+            "type": "array",
+            "label": "Columns",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

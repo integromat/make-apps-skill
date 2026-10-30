@@ -1,0 +1,109 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://id.getharvest.com/api/v2/accounts",
+    "headers": {
+      "User-Agent": "Integromat (redacted@example.com)",
+      "Authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.user.id}}",
+      "data": {
+        "harvest_account_id": "{{body.accounts[].id}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.error}}: {{body.error_description}}"
+      },
+      "metadata": {
+        "type": "text",
+        "value": "{{body.user.email}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.body.code",
+        "request.body.client_secret",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://id.getharvest.com/api/v2/oauth2/token",
+    "body": {
+      "code": "{{temp.code}}",
+      "client_id": "{{ifempty(data.clientId, common.clientId)}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "client_secret": "{{ifempty(data.clientSecret, common.clientSecret)}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "User-Agent": "Integromat (redacted@example.com)"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.error}}: {{body.error_description}}"
+      }
+    }
+  },
+  "refresh": {
+    "log": {
+      "sanitize": [
+        "request.body.client_secret",
+        "request.body.refresh_token",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://id.getharvest.com/api/v2/oauth2/token",
+    "body": {
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "grant_type": "refresh_token",
+      "client_secret": "{{ifempty(parameters.clientSecret, common.clientSecret)}}",
+      "refresh_token": "{{data.refreshToken}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "User-Agent": "Integromat (redacted@example.com)"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.error}}: {{body.error_description}}"
+      }
+    },
+    "condition": "{{data.expires < addMinutes(now, 1)}}"
+  },
+  "authorize": {
+    "qs": {
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code"
+    },
+    "url": "https://id.getharvest.com/oauth2/authorize",
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.error}}: {{body.error_description}}"
+      }
+    }
+  }
+}

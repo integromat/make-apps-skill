@@ -1,0 +1,229 @@
+[
+  {
+    "name": "addOrRemove",
+    "type": "select",
+    "label": "Add or Remove",
+    "options": [
+      {
+        "label": "Add Followers",
+        "value": "addFollowers"
+      },
+      {
+        "label": "Remove Followers",
+        "value": "removeFollowers"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Task ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "You must filter on workspace and assignee, project, section or tag to select a task.",
+            "name": "choice",
+            "type": "select",
+            "label": "Find Task through",
+            "options": [
+              {
+                "label": "Workspace and Assignee",
+                "value": "workspaceAssignee",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "assignee",
+                          "type": "select",
+                          "label": "Assignee",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetWorkspaceUsers",
+                            "nested": [
+                              {
+                                "name": "task_gid",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": "rpc://app%23asana@2/GetTasks",
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Project",
+                "value": "project",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "task_gid",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": "rpc://app%23asana@2/GetTasks",
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Section",
+                "value": "section",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "section",
+                                "type": "select",
+                                "label": "Project Section ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetProjectSections",
+                                  "nested": [
+                                    {
+                                      "name": "task_gid",
+                                      "type": "select",
+                                      "label": "Task ID",
+                                      "options": "rpc://app%23asana@2/GetTasks",
+                                      "mappable": false,
+                                      "required": true
+                                    }
+                                  ]
+                                },
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Tag",
+                "value": "tag",
+                "nested": [
+                  {
+                    "name": "tag",
+                    "type": "select",
+                    "label": "Tag ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetTags",
+                      "nested": [
+                        {
+                          "name": "task_gid",
+                          "type": "select",
+                          "label": "Task ID",
+                          "options": "rpc://app%23asana@2/GetTasks",
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "task_gid",
+            "type": "text",
+            "label": "Task ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "Select a workspace to generate the workspace's users (potential followers).",
+    "mode": "edit",
+    "name": "workspaceAlt",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "name": "followers",
+          "type": "select",
+          "label": "Followers",
+          "options": "rpc://app%23asana@2/GetWorkspaceUsers",
+          "multiple": true,
+          "required": true
+        }
+      ]
+    }
+  }
+]

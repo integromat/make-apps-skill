@@ -1,0 +1,61 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Enter a List ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "survey_id",
+            "type": "text",
+            "label": "Survey ID",
+            "required": true
+          },
+          {
+            "name": "question_id",
+            "type": "text",
+            "label": "Question ID",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Select from the list",
+        "value": "list",
+        "nested": [
+          {
+            "name": "survey_id",
+            "type": "select",
+            "label": "Survey ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listSurveysId",
+              "nested": [
+                {
+                  "name": "question_id",
+                  "type": "select",
+                  "label": "Question ID",
+                  "options": "rpc://app%23mailchimp@2/listQuestionsId",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ],
+        "default": true
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

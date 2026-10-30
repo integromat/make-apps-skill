@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(parameters),'user_gid','page','workspaceAlt'),'Team')}}",
+  "url": "/users/{{parameters.user_gid}}/teams",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

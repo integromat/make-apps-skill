@@ -1,0 +1,21 @@
+{
+  "name": "mailchimp",
+  "label": "Mailchimp",
+  "version": 2,
+  "rev": 31,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": null,
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#ffe01b",
+  "versionFull": "2.16.5",
+  "website": null
+}

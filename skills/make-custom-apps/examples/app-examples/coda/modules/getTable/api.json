@@ -1,0 +1,7 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

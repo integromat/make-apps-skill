@@ -1,0 +1,7 @@
+{
+  "url": "/project_statuses/{{parameters.projectStatusId}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{}}"
+  }
+}

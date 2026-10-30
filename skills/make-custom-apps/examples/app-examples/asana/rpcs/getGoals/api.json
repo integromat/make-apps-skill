@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "team": "{{parameters.team}}",
+    "project": "{{parameters.project}}",
+    "portfolio": "{{parameters.portfolio}}",
+    "workspace": "{{parameters.workspace}}"
+  },
+  "url": "/goals",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

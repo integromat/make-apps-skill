@@ -1,0 +1,19 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a User's Do Not Disturb Status",
+  "scope": [
+    "dnd:read",
+    "users:read"
+  ],
+  "public": false,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Retrieves a user's current Do Not Disturb status.",
+  "altAccountName": "slack3"
+}

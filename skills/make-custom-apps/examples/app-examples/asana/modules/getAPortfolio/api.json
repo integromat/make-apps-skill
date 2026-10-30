@@ -1,0 +1,7 @@
+{
+  "url": "/portfolios/{{parameters.portfolio}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

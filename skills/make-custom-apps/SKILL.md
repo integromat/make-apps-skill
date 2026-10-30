@@ -125,8 +125,9 @@ alternative only if the user accepts the change); no invented fields. Function t
 The following references retain the detailed rules; consult by trigger, not as one context dump.
 Open a relevant example, not the full provenance manifest: section sets in
 [app-examples](examples/app-examples/README.md), or the [examples index](examples/README.md) for
-helpers and copied snippets. These are component patterns with stated limits, not certified
-provider apps/installers.
+helpers and copied snippets. These are component patterns and, for the historical reference
+exports, privacy-normalized reading material with stated limits, not certified provider
+apps/installers or current-provider behavior.
 
 | Trigger | Reference |
 | --- | --- |

@@ -1,0 +1,8 @@
+[
+  {
+    "name": "comment_id",
+    "type": "text",
+    "label": "Comment ID",
+    "required": true
+  }
+]

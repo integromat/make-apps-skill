@@ -1,0 +1,32 @@
+{
+  "gid": "00000",
+  "name": "REDACTED",
+  "type": "text",
+  "format": "custom",
+  "precision": 2,
+  "enum_value": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "color": "blue",
+    "enabled": true,
+    "resource_type": "enum_option"
+  },
+  "text_value": "Some Value",
+  "description": "REDACTED",
+  "custom_label": "gold pieces",
+  "enum_options": [
+    {
+      "gid": "00000",
+      "name": "REDACTED",
+      "color": "blue",
+      "enabled": true,
+      "resource_type": "enum_option"
+    }
+  ],
+  "currency_code": "EUR",
+  "resource_type": "custom_field",
+  "resource_subtype": "text",
+  "custom_label_position": "suffix",
+  "is_global_to_workspace": true,
+  "has_notifications_enabled": true
+}

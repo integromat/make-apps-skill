@@ -1,0 +1,53 @@
+[
+  {
+    "url": "/posts/{{parameters.postId}}",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "updated_at": "{{body.posts[1].updated_at}}"
+      }
+    }
+  },
+  {
+    "qs": {
+      "source": "{{if(parameters.source == 'html', 'html')}}"
+    },
+    "url": "/posts/{{parameters.postId}}",
+    "body": {
+      "posts": [
+        {
+          "html": "{{parameters.html}}",
+          "slug": "{{parameters.slug}}",
+          "tags": "{{parameters.tags}}",
+          "title": "{{parameters.title}}",
+          "status": "{{parameters.status}}",
+          "authors": "{{parameters.authors}}",
+          "featured": "{{parameters.featured}}",
+          "og_image": "{{parameters.facebook_image}}",
+          "og_title": "{{parameters.facebook_title}}",
+          "mobiledoc": "{{parameters.mobiledoc}}",
+          "meta_title": "{{parameters.meta_title}}",
+          "updated_at": "{{temp.updated_at}}",
+          "published_at": "{{parameters.published_at}}",
+          "canonical_url": "{{parameters.canonical_url}}",
+          "feature_image": "{{parameters.feature_image}}",
+          "twitter_image": "{{parameters.twitter_image}}",
+          "twitter_title": "{{parameters.twitter_title}}",
+          "custom_excerpt": "{{parameters.custom_excerpt}}",
+          "og_description": "{{parameters.facebook_description}}",
+          "meta_description": "{{parameters.meta_description}}",
+          "twitter_description": "{{parameters.twitter_description}}"
+        }
+      ]
+    },
+    "method": "PUT",
+    "response": {
+      "error": {
+        "409": {
+          "message": "[{{statusCode}}] {{body.errors[1].message}}\nClient updated at: {{formatDate(body.errors[1].details.clientUpdatedAt, 'YYYY-MM-DD HH:mm:ss.SSS')}}\nServer updated at: {{formatDate(body.errors[1].details.serverUpdatedAt, 'YYYY-MM-DD HH:mm:ss.SSS')}}"
+        }
+      },
+      "output": "{{body.posts[1]}}"
+    }
+  }
+]

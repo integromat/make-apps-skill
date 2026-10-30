@@ -1,0 +1,21 @@
+[
+  {
+    "name": "host",
+    "type": "url",
+    "label": "API URL",
+    "required": true
+  },
+  {
+    "name": "key",
+    "type": "password",
+    "label": "Admin API Key",
+    "required": true
+  },
+  {
+    "help": "Settings > Integrations > Add a Custom Integration\nOnce on the Integration page, the ID is contained in the last part of the URL. For example: https://{your-ghost-domain}\n/ghost/#/settings/integrations/`{your-integration-id}`",
+    "name": "integration_id",
+    "type": "text",
+    "label": "Integration Id",
+    "required": true
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "workspaceRPC",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://app%23asana@2/GetProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "color",
+    "type": "select",
+    "label": "Color",
+    "options": [
+      {
+        "label": "Green",
+        "value": "green"
+      },
+      {
+        "label": "Yellow",
+        "value": "yellow"
+      },
+      {
+        "label": "Red",
+        "value": "red"
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The project status update text.",
+    "name": "text",
+    "type": "text",
+    "label": "Text",
+    "required": true
+  }
+]

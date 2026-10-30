@@ -1,0 +1,45 @@
+[
+  {
+    "help": "A positive integer in the [smallest currency unit](https://support.stripe.com/questions/which-zero-decimal-currencies-does-stripe-support) (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a 0-decimal currency) representing how much to charge the card. The minimum amount is $0.50 US or [equivalent in charge currency](https://support.stripe.com/questions/what-is-the-minimum-amount-i-can-charge-with-stripe).",
+    "name": "amount",
+    "type": "uinteger",
+    "label": "Amount",
+    "required": true
+  },
+  {
+    "help": "3-letter [ISO code](https://support.stripe.com/questions/which-currencies-does-stripe-support) for currency.",
+    "name": "currency",
+    "type": "text",
+    "label": "Currency",
+    "required": true,
+    "validate": {
+      "max": 3
+    }
+  },
+  {
+    "help": "Whether or not to immediately capture the charge. When false, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://stripe.com/docs/api#capture_charge) later. Uncaptured charges expire in **7 days**. For more information, see [authorizing charges and settling later](https://support.stripe.com/questions/can-i-authorize-a-charge-and-then-wait-to-settle-it-later).",
+    "name": "capture",
+    "type": "boolean",
+    "label": "Capture",
+    "default": true,
+    "required": true
+  },
+  {
+    "help": "An arbitrary string which you can attach to a charge object. It is displayed when in the web interface alongside the charge. Note that if you use Stripe to send automatic email receipts to your customers, your receipt emails will include the description of the charge(s) that they are describing.",
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "help": "The ID of an existing customer that will be charged in this request.",
+    "name": "customer",
+    "type": "text",
+    "label": "Customer"
+  },
+  {
+    "help": "A payment source to be charged, such as a credit card. If you also pass a customer ID, the source must be the ID of a source belonging to the customer. Otherwise, if you do not pass a customer ID, the source you provide must either be a token, like the ones returned by [Stripe.js](https://stripe.com/docs/stripe.js). For security reasons, {{integromat}} doesn't support charging with user's credit card details.",
+    "name": "source",
+    "type": "text",
+    "label": "Source"
+  }
+]

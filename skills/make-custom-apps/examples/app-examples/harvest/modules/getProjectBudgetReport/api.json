@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "per_page": 100,
+    "is_active": "{{parameters.is_active}}"
+  },
+  "url": "/reports/project_budget",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.results}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

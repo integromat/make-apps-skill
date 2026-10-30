@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "expand[]": "{{if(length(parameters.expand) > 0, parameters.expand, undefined)}}"
+  },
+  "url": "/customers/{{parameters.customer}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

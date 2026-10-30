@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "MaxItems": 50
+  },
+  "url": "/2018-10-31/layers/{{parameters.layer}}/versions",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.Version}}",
+      "value": "{{item.Version}}"
+    },
+    "iterate": "{{body.LayerVersions}}"
+  },
+  "pagination": {
+    "qs": {
+      "Marker": "{{body.NextMarker}}"
+    },
+    "condition": "{{ifempty(body.NextMarker, false)}}"
+  }
+}

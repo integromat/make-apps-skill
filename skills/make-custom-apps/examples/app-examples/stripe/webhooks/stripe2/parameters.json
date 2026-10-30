@@ -1,0 +1,966 @@
+[
+  {
+    "name": "group",
+    "type": "select",
+    "label": "Group",
+    "options": {
+      "store": [
+        {
+          "label": "Account",
+          "value": "account",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Account updated",
+                  "value": "account.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Account - application",
+          "value": "account.application",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Account application authorized",
+                  "value": "account.application.authorized"
+                },
+                {
+                  "label": "Account application deauthorized",
+                  "value": "account.application.deauthorized"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Account - external account",
+          "value": "account.external_account",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "External account created",
+                  "value": "account.external_account.created"
+                },
+                {
+                  "label": "External account deleted",
+                  "value": "account.external_account.deleted"
+                },
+                {
+                  "label": "External account updated",
+                  "value": "account.external_account.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Application fee",
+          "value": "application_fee",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Application fee created",
+                  "value": "application_fee.created"
+                },
+                {
+                  "label": "Application fee refunded",
+                  "value": "application_fee.refunded"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Application fee - refund",
+          "value": "application_fee.refund",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Application fee refund updated",
+                  "value": "application_fee.refund.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Balance",
+          "value": "balance",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Balance available",
+                  "value": "balance.available"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Charge",
+          "value": "charge",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Charge captured",
+                  "value": "charge.captured"
+                },
+                {
+                  "label": "Charge expired",
+                  "value": "charge.expired"
+                },
+                {
+                  "label": "Charge failed",
+                  "value": "charge.failed"
+                },
+                {
+                  "label": "Charge pending",
+                  "value": "charge.pending"
+                },
+                {
+                  "label": "Charge refunded",
+                  "value": "charge.refunded"
+                },
+                {
+                  "label": "Charge succeeded",
+                  "value": "charge.succeeded"
+                },
+                {
+                  "label": "Charge updated",
+                  "value": "charge.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Charge - dispute",
+          "value": "charge.dispute",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Charge dispute closed",
+                  "value": "charge.dispute.closed"
+                },
+                {
+                  "label": "Charge dispute created",
+                  "value": "charge.dispute.created"
+                },
+                {
+                  "label": "Charge dispute funds reinstated",
+                  "value": "charge.dispute.funds_reinstated"
+                },
+                {
+                  "label": "Charge dispute funds withdrawn",
+                  "value": "charge.dispute.funds_withdrawn"
+                },
+                {
+                  "label": "Charge dispute updated",
+                  "value": "charge.dispute.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Charge - refund",
+          "value": "charge.refund",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Charge refund updated",
+                  "value": "charge.refund.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Checkout",
+          "value": "checkout",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Checkout Session completed",
+                  "value": "checkout.session.completed"
+                },
+                {
+                  "label": "Checkout Session async payment succeeded",
+                  "value": "checkout.session.async_payment_succeeded"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Coupon",
+          "value": "coupon",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Coupon created",
+                  "value": "coupon.created"
+                },
+                {
+                  "label": "Coupon deleted ",
+                  "value": "coupon.deleted"
+                },
+                {
+                  "label": "Coupon updated",
+                  "value": "coupon.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Customer",
+          "value": "customer",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Customer created",
+                  "value": "customer.created"
+                },
+                {
+                  "label": "Customer deleted",
+                  "value": "customer.deleted"
+                },
+                {
+                  "label": "Customer updated",
+                  "value": "customer.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Customer - discount",
+          "value": "customer.discount",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Customer discount created",
+                  "value": "customer.discount.created"
+                },
+                {
+                  "label": "Customer discount deleted",
+                  "value": "customer.discount.deleted"
+                },
+                {
+                  "label": "Customer discount updated",
+                  "value": "customer.discount.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Customer - source",
+          "value": "customer.source",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Customer source created",
+                  "value": "customer.source.created"
+                },
+                {
+                  "label": "Customer source deleted",
+                  "value": "customer.source.deleted"
+                },
+                {
+                  "label": "Customer source updated",
+                  "value": "customer.source.updated"
+                },
+                {
+                  "label": "Customer source expiring",
+                  "value": "customer.source.expiring"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Customer - subscription",
+          "value": "customer.subscription",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Customer subscription created",
+                  "value": "customer.subscription.created"
+                },
+                {
+                  "label": "Customer subscription deleted",
+                  "value": "customer.subscription.deleted"
+                },
+                {
+                  "label": "Customer subscription pending update applied",
+                  "value": "customer.subscription.pending_update_applied"
+                },
+                {
+                  "label": "Customer subscription pending update expired",
+                  "value": "customer.subscription.pending_update_expired"
+                },
+                {
+                  "label": "Customer subscription updated",
+                  "value": "customer.subscription.updated"
+                },
+                {
+                  "label": "Customer subscription trial will end",
+                  "value": "customer.subscription.trial_will_end"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "File",
+          "value": "file",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "File created",
+                  "value": "file.created"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Invoice",
+          "value": "invoice",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Invoice created",
+                  "value": "invoice.created"
+                },
+                {
+                  "label": "Invoice deleted",
+                  "value": "invoice.deleted"
+                },
+                {
+                  "label": "Invoice finalized",
+                  "value": "invoice.finalized"
+                },
+                {
+                  "label": "Invoice marked uncollectible",
+                  "value": "invoice.marked_uncollectible"
+                },
+                {
+                  "label": "Invoice paid",
+                  "value": "invoice.paid"
+                },
+                {
+                  "label": "Invoice payment action required",
+                  "value": "invoice.payment_action_required"
+                },
+                {
+                  "label": "Invoice payment failed",
+                  "value": "invoice.payment_failed"
+                },
+                {
+                  "label": "Invoice payment succeeded",
+                  "value": "invoice.payment_succeeded"
+                },
+                {
+                  "label": "Invoice sent",
+                  "value": "invoice.sent"
+                },
+                {
+                  "label": "Invoice upcoming",
+                  "value": "invoice.upcoming"
+                },
+                {
+                  "label": "Invoice updated",
+                  "value": "invoice.updated"
+                },
+                {
+                  "label": "Invoice voided",
+                  "value": "invoice.voided"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Invoice Item",
+          "value": "invoiceitem",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Invoice item created",
+                  "value": "invoiceitem.created"
+                },
+                {
+                  "label": "Invoice item deleted",
+                  "value": "invoiceitem.deleted"
+                },
+                {
+                  "label": "Invoice item updated",
+                  "value": "invoiceitem.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Order",
+          "value": "order",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Order created",
+                  "value": "order.created"
+                },
+                {
+                  "label": "Order payment failed",
+                  "value": "order.payment_failed"
+                },
+                {
+                  "label": "Order payment succeeded",
+                  "value": "order.payment_succeeded"
+                },
+                {
+                  "label": "Order updated",
+                  "value": "order.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Order return",
+          "value": "order_return",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Order return created",
+                  "value": "order_return.created"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Payout",
+          "value": "payout",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Payout created",
+                  "value": "payout.created"
+                },
+                {
+                  "label": "Payout failed",
+                  "value": "payout.failed"
+                },
+                {
+                  "label": "Payout paid",
+                  "value": "payout.paid"
+                },
+                {
+                  "label": "Payout updated",
+                  "value": "payout.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Payment Link",
+          "value": "payment_link",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Payment Link Created",
+                  "value": "payment_link.created"
+                },
+                {
+                  "label": "Payment Link Updated",
+                  "value": "payment_link.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Payment Intent",
+          "value": "payment_intent",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Payment Intent amount capturable updated",
+                  "value": "payment_intent.amount_capturable_updated"
+                },
+                {
+                  "label": "Payment Intent canceled",
+                  "value": "payment_intent.canceled"
+                },
+                {
+                  "label": "Payment Intent created",
+                  "value": "payment_intent.created"
+                },
+                {
+                  "label": "Payment Intent payment failed",
+                  "value": "payment_intent.payment_failed"
+                },
+                {
+                  "label": "Payment Intent processing",
+                  "value": "payment_intent.processing"
+                },
+                {
+                  "label": "Payment Intent requires action",
+                  "value": "payment_intent.requires_action"
+                },
+                {
+                  "label": "Payment Intent succeeded",
+                  "value": "payment_intent.succeeded"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Payment Method",
+          "value": "payment_method",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Payment Method attached",
+                  "value": "payment_method.attached"
+                },
+                {
+                  "label": "Payment Method automatically updated",
+                  "value": "payment_method.automatically_updated"
+                },
+                {
+                  "label": "Payment Method detached",
+                  "value": "payment_method.detached"
+                },
+                {
+                  "label": "Payment Method updated",
+                  "value": "payment_method.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Plan",
+          "value": "plan",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Plan created",
+                  "value": "plan.created"
+                },
+                {
+                  "label": "Plan deleted",
+                  "value": "plan.deleted"
+                },
+                {
+                  "label": "Plan updated",
+                  "value": "plan.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Product",
+          "value": "product",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Product created",
+                  "value": "product.created"
+                },
+                {
+                  "label": "Product deleted",
+                  "value": "product.deleted"
+                },
+                {
+                  "label": "Product updated",
+                  "value": "product.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Recipient",
+          "value": "recipient",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Recipient created",
+                  "value": "recipient.created"
+                },
+                {
+                  "label": "Recipient deleted",
+                  "value": "recipient.deleted"
+                },
+                {
+                  "label": "Recipient updated",
+                  "value": "recipient.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Review",
+          "value": "review",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Review opened",
+                  "value": "review.opened"
+                },
+                {
+                  "label": "Review closed",
+                  "value": "review.closed"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Setup Intent",
+          "value": "setup_intent",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Setup Intent canceled",
+                  "value": "setup_intent.canceled"
+                },
+                {
+                  "label": "Setup Intent created",
+                  "value": "setup_intent.created"
+                },
+                {
+                  "label": "Setup Intent setup failed",
+                  "value": "setup_intent.setup_failed"
+                },
+                {
+                  "label": "Setup Intent succeeded",
+                  "value": "setup_intent.succeeded"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Sigma - scheduled query run",
+          "value": "sigma.scheduled_query_run",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Sigma scheduled query run created",
+                  "value": "sigma.scheduled_query_run.created"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "SKU",
+          "value": "sku",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Sku created",
+                  "value": "sku.created"
+                },
+                {
+                  "label": "Sku deleted",
+                  "value": "sku.deleted"
+                },
+                {
+                  "label": "Sku updated",
+                  "value": "sku.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Source",
+          "value": "source",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Source canceled",
+                  "value": "source.canceled"
+                },
+                {
+                  "label": "Source chargeable",
+                  "value": "source.chargeable"
+                },
+                {
+                  "label": "Source failed",
+                  "value": "source.failed"
+                },
+                {
+                  "label": "Source mandate notification",
+                  "value": "source.mandate_notification"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Source - transaction",
+          "value": "source.transaction",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Source transaction created",
+                  "value": "source.transaction.created"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Top up",
+          "value": "topup",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Topup created",
+                  "value": "topup.created"
+                },
+                {
+                  "label": "Topup succeeded",
+                  "value": "topup.succeeded"
+                },
+                {
+                  "label": "Topup failed",
+                  "value": "topup.failed"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        },
+        {
+          "label": "Transfer",
+          "value": "transfer",
+          "nested": [
+            {
+              "name": "events",
+              "type": "select",
+              "label": "Events",
+              "options": [
+                {
+                  "label": "Transfer created",
+                  "value": "transfer.created"
+                },
+                {
+                  "label": "Transfer reversed",
+                  "value": "transfer.reversed"
+                },
+                {
+                  "label": "Transfer updated",
+                  "value": "transfer.updated"
+                }
+              ],
+              "multiple": true
+            }
+          ]
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Whether this endpoint should receive events from connected accounts (true), or from your account (false).",
+    "name": "connect",
+    "type": "boolean",
+    "label": "Connect",
+    "default": false,
+    "advanced": true,
+    "required": true
+  },
+  {
+    "help": "Events sent to this endpoint will be generated with this Stripe Version instead of your account’s default Stripe Version.",
+    "name": "api_version",
+    "type": "text",
+    "label": "Force different API version",
+    "advanced": true
+  }
+]

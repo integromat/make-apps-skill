@@ -1,0 +1,35 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": {
+    "qs": {
+      "view": "{{parameters.view}}",
+      "pageSize": 100,
+      "sort[0][direction]": "desc"
+    },
+    "temp": {
+      "isEpoch": true
+    },
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{safeGet(item.fields, parameters.config.triggerField)}}",
+        "label": "{{get(item.fields, parameters.config.labelField)}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Records",
+  "scope": [
+    "schema.bases:read",
+    "data.records:read"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "airtable3",
+  "description": "Returns all newly created or updated records in a view (requires \"Created Time\" or \"Last Modified Time\" fields).",
+  "altAccountName": "airtable2"
+}

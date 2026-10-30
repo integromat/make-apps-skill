@@ -1,0 +1,49 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Team ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "html_description",
+    "type": "text",
+    "label": "Html Description"
+  },
+  {
+    "name": "organization",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Organization ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Organization"
+  }
+]

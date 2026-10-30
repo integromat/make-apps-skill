@@ -1,0 +1,55 @@
+[
+  {
+    "name": "listId",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "name": "email_or_contactId",
+          "type": "select",
+          "label": "Select",
+          "options": [
+            {
+              "label": "Email",
+              "value": "email_address",
+              "nested": [
+                {
+                  "name": "email",
+                  "type": "select",
+                  "label": "Email",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersEmailAddress",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "label": "Contact ID",
+              "value": "contact_id",
+              "nested": [
+                {
+                  "name": "contact_id",
+                  "type": "select",
+                  "label": "Contact ID",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersContactId",
+                  "required": true
+                }
+              ]
+            }
+          ],
+          "mappable": false,
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

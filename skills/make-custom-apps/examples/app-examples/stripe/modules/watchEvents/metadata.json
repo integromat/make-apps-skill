@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Events",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "stripe2",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a given event occurs.",
+  "altAccountName": null
+}

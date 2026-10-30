@@ -1,0 +1,26 @@
+{
+  "url": "/lists/{{parameters.list}}/webhooks",
+  "body": {
+    "url": "{{webhook.url}}",
+    "events": {
+      "cleaned": "{{if(parameters.events === 'cleaned', true, false)}}",
+      "profile": "{{if(parameters.events === 'profile', true, false)}}",
+      "upemail": "{{if(parameters.events === 'upemail', true, false)}}",
+      "campaign": "{{if(parameters.events === 'campaign', true, false)}}",
+      "subscribe": "{{if(parameters.events === 'subscribe', true, false)}}",
+      "unsubscribe": "{{if(parameters.events === 'unsubscribe', true, false)}}"
+    },
+    "sources": {
+      "api": "{{if(contains(parameters.sources, 'api'), true, false)}}",
+      "user": "{{if(contains(parameters.sources, 'user'), true, false)}}",
+      "admin": "{{if(contains(parameters.sources, 'admin'), true, false)}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "list_id": "{{body.list_id}}",
+      "webhook_id": "{{body.id}}"
+    }
+  }
+}

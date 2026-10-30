@@ -1,0 +1,28 @@
+[
+  {
+    "name": "site_id",
+    "type": "select",
+    "label": "Site ID",
+    "options": "rpc://app%23netlify@1/listSites",
+    "required": true
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Deploy Title",
+    "required": true
+  },
+  {
+    "name": "draft",
+    "type": "boolean",
+    "label": "Draft",
+    "required": true
+  },
+  {
+    "help": "When creating large deploys, Check the`Async`property.",
+    "name": "async",
+    "type": "boolean",
+    "label": "Async",
+    "required": true
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "accessKey",
+    "type": "text",
+    "label": "Access Key",
+    "required": true
+  },
+  {
+    "name": "accessKeySecret",
+    "type": "password",
+    "label": "Access Key Secret",
+    "required": true
+  }
+]

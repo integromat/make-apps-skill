@@ -1,0 +1,10 @@
+{
+  "url": "/workspaces/{{parameters.workspaceId}}",
+  "body": {
+    "name": "{{parameters.name}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

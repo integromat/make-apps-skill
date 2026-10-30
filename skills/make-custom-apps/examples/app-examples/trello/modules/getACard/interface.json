@@ -1,0 +1,1482 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "address",
+    "type": "text",
+    "label": "Address"
+  },
+  {
+    "name": "badges",
+    "spec": [
+      {
+        "name": "attachmentsByType",
+        "spec": [
+          {
+            "name": "trello",
+            "spec": [
+              {
+                "name": "board",
+                "type": "number",
+                "label": "Board"
+              },
+              {
+                "name": "card",
+                "type": "number",
+                "label": "Card"
+              }
+            ],
+            "type": "collection",
+            "label": "Trello"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments by type"
+      },
+      {
+        "name": "location",
+        "type": "boolean",
+        "label": "Location"
+      },
+      {
+        "name": "votes",
+        "type": "number",
+        "label": "Votes"
+      },
+      {
+        "name": "viewingMemberVoted",
+        "type": "boolean",
+        "label": "Viewing member voted"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "fogbugz",
+        "type": "text",
+        "label": "Fogbugz"
+      },
+      {
+        "name": "checkItems",
+        "type": "number",
+        "label": "Check items"
+      },
+      {
+        "name": "checkItemsChecked",
+        "type": "number",
+        "label": "Check items checked"
+      },
+      {
+        "name": "comments",
+        "type": "number",
+        "label": "Comments"
+      },
+      {
+        "name": "attachments",
+        "type": "number",
+        "label": "Attachments"
+      },
+      {
+        "name": "description",
+        "type": "boolean",
+        "label": "Description"
+      },
+      {
+        "name": "due",
+        "type": "text",
+        "label": "Due date"
+      },
+      {
+        "name": "dueComplete",
+        "type": "boolean",
+        "label": "Due complete"
+      }
+    ],
+    "type": "collection",
+    "label": "Badges"
+  },
+  {
+    "name": "checkItemStates",
+    "type": "array",
+    "label": "Check item states"
+  },
+  {
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "coordinates",
+    "type": "text",
+    "label": "Coordinates"
+  },
+  {
+    "name": "creationMethod",
+    "type": "text",
+    "label": "Creation method"
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete"
+  },
+  {
+    "name": "dueReminder",
+    "type": "text",
+    "label": "Due Reminder"
+  },
+  {
+    "name": "dateLastActivity",
+    "type": "date",
+    "label": "Last activity date"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "spec": [
+      {
+        "name": "emoji",
+        "type": "collection",
+        "label": "Emoji"
+      }
+    ],
+    "type": "collection",
+    "label": "Description data"
+  },
+  {
+    "name": "due",
+    "type": "text",
+    "label": "Due date"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idChecklists",
+    "type": "array",
+    "label": "Checklists ID"
+  },
+  {
+    "name": "attachments",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "bytes",
+          "type": "number",
+          "label": "Bytes"
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "name": "edgeColor",
+          "type": "text",
+          "label": "Edge Color"
+        },
+        {
+          "name": "idMember",
+          "type": "text",
+          "label": "ID Member"
+        },
+        {
+          "name": "isUpload",
+          "type": "boolean",
+          "label": "Is Upload"
+        },
+        {
+          "name": "mimeType",
+          "type": "text",
+          "label": "Mime Type"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "previews",
+          "type": "array",
+          "label": "Previews"
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "label": "Url"
+        },
+        {
+          "name": "pos",
+          "type": "number",
+          "label": "Pos"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Attachments"
+  },
+  {
+    "name": "idLabels",
+    "type": "array",
+    "label": "Labels IDs"
+  },
+  {
+    "name": "idList",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "idMembers",
+    "type": "array",
+    "label": "Members ID"
+  },
+  {
+    "name": "idMembersVoted",
+    "type": "array",
+    "label": "Members voted ID"
+  },
+  {
+    "name": "idShort",
+    "type": "number",
+    "label": "Short ID"
+  },
+  {
+    "name": "idAttachmentCover",
+    "type": "text",
+    "label": "Attachment cover ID"
+  },
+  {
+    "name": "labels",
+    "type": "array",
+    "label": "Labels"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "attachments",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments"
+      },
+      {
+        "name": "checklists",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Checklists"
+      },
+      {
+        "name": "stickers",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Stickers"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "locationName",
+    "type": "text",
+    "label": "Location name"
+  },
+  {
+    "name": "manualCoverAttachment",
+    "type": "boolean",
+    "label": "Manual cover attachment"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "shortLink",
+    "type": "text",
+    "label": "Short link"
+  },
+  {
+    "name": "shortUrl",
+    "type": "url",
+    "label": "Short URL"
+  },
+  {
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "cover",
+    "spec": [
+      {
+        "name": "idAttachment",
+        "type": "text",
+        "label": "ID Attachment"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "idUploadedBackground",
+        "type": "text",
+        "label": "ID Uploaded Background"
+      },
+      {
+        "name": "size",
+        "type": "text",
+        "label": "Size"
+      },
+      {
+        "name": "brightness",
+        "type": "text",
+        "label": "Brightness"
+      },
+      {
+        "name": "scaled",
+        "spec": {
+          "spec": [
+            {
+              "name": "_id",
+              "type": "text",
+              "label": " ID"
+            },
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            },
+            {
+              "name": "scaled",
+              "type": "boolean",
+              "label": "Scaled"
+            },
+            {
+              "name": "url",
+              "type": "text",
+              "label": "Url"
+            },
+            {
+              "name": "bytes",
+              "type": "number",
+              "label": "Bytes"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "label": "Height"
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "label": "Width"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Scaled"
+      },
+      {
+        "name": "edgeColor",
+        "type": "text",
+        "label": "Edge Color"
+      },
+      {
+        "name": "sharedSourceUrl",
+        "type": "text",
+        "label": "Shared Source Url"
+      },
+      {
+        "name": "idPlugin",
+        "type": "text",
+        "label": "ID Plugin"
+      }
+    ],
+    "type": "collection",
+    "label": "Cover"
+  },
+  {
+    "name": "board",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Board ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "desc",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "name": "descData",
+        "type": "text",
+        "label": "Description data"
+      },
+      {
+        "name": "closed",
+        "type": "boolean",
+        "label": "Closed"
+      },
+      {
+        "name": "idOrganization",
+        "type": "text",
+        "label": "Organization ID"
+      },
+      {
+        "name": "limits",
+        "spec": [
+          {
+            "name": "attachments",
+            "spec": [
+              {
+                "name": "perBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per board"
+              },
+              {
+                "name": "perCard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per card"
+              }
+            ],
+            "type": "collection",
+            "label": "Attachments"
+          },
+          {
+            "name": "boards",
+            "spec": [
+              {
+                "name": "totalMembersPerBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Total members per board"
+              }
+            ],
+            "type": "collection",
+            "label": "Boards"
+          },
+          {
+            "name": "cards",
+            "spec": [
+              {
+                "name": "openPerBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Open per board"
+              },
+              {
+                "name": "openPerList",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Open per list"
+              },
+              {
+                "name": "totalPerBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Total per board"
+              },
+              {
+                "name": "totalPerList",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Total per list"
+              }
+            ],
+            "type": "collection",
+            "label": "Cards"
+          },
+          {
+            "name": "checklists",
+            "spec": [
+              {
+                "name": "perBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per board"
+              },
+              {
+                "name": "perCard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per card"
+              }
+            ],
+            "type": "collection",
+            "label": "Checlists"
+          },
+          {
+            "name": "checkItems",
+            "spec": [
+              {
+                "name": "perChecklist",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per board"
+              }
+            ],
+            "type": "collection",
+            "label": "Checklist items"
+          },
+          {
+            "name": "customFields",
+            "spec": [
+              {
+                "name": "perBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per board"
+              }
+            ],
+            "type": "collection",
+            "label": "Custom fields"
+          },
+          {
+            "name": "labels",
+            "spec": [
+              {
+                "name": "perBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per board"
+              }
+            ],
+            "type": "collection",
+            "label": "Labels"
+          },
+          {
+            "name": "lists",
+            "spec": [
+              {
+                "name": "openPerBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Open per board"
+              },
+              {
+                "name": "totalPerBoard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Total per board"
+              }
+            ],
+            "type": "collection",
+            "label": "Lists"
+          },
+          {
+            "name": "stickers",
+            "spec": [
+              {
+                "name": "perCard",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per card"
+              }
+            ],
+            "type": "collection",
+            "label": "Stickers"
+          },
+          {
+            "name": "reactions",
+            "spec": [
+              {
+                "name": "perAction",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per action"
+              },
+              {
+                "name": "uniquePerAction",
+                "spec": [
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  },
+                  {
+                    "name": "disableAt",
+                    "type": "number",
+                    "label": "Disable at"
+                  },
+                  {
+                    "name": "warnAt",
+                    "type": "number",
+                    "label": "Warn at"
+                  }
+                ],
+                "type": "collection",
+                "label": "Per action"
+              }
+            ],
+            "type": "collection",
+            "label": "Reactions"
+          }
+        ],
+        "type": "collection",
+        "label": "Limits"
+      },
+      {
+        "name": "memberships",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "ID"
+            },
+            {
+              "name": "idMember",
+              "type": "text",
+              "label": "Member ID"
+            },
+            {
+              "name": "memberType",
+              "type": "text",
+              "label": "Member type"
+            },
+            {
+              "name": "unconfirmed",
+              "type": "boolean",
+              "label": "Unconfirmed"
+            },
+            {
+              "name": "deactivated",
+              "type": "boolean",
+              "label": "Deactivated"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Memberships"
+      },
+      {
+        "name": "pinned",
+        "type": "boolean",
+        "label": "Pinned"
+      },
+      {
+        "name": "starred",
+        "type": "boolean",
+        "label": "Starred"
+      },
+      {
+        "name": "url",
+        "type": "url",
+        "label": "URL"
+      },
+      {
+        "name": "prefs",
+        "spec": [
+          {
+            "name": "permissionLevel",
+            "type": "text",
+            "label": "Permission level"
+          },
+          {
+            "name": "voting",
+            "type": "text",
+            "label": "Voting"
+          },
+          {
+            "name": "comments",
+            "type": "text",
+            "label": "Comments"
+          },
+          {
+            "name": "invitations",
+            "type": "text",
+            "label": "Invitations"
+          },
+          {
+            "name": "selfJoin",
+            "type": "boolean",
+            "label": "Self join"
+          },
+          {
+            "name": "cardCovers",
+            "type": "boolean",
+            "label": "Card covers"
+          },
+          {
+            "name": "cardAging",
+            "type": "text",
+            "label": "Card aging"
+          },
+          {
+            "name": "calendarFeedEnabled",
+            "type": "boolean",
+            "label": "Calendar feed enabled"
+          },
+          {
+            "name": "background",
+            "type": "text",
+            "label": "Background"
+          },
+          {
+            "name": "backgroundImage",
+            "type": "text",
+            "label": "Background image"
+          },
+          {
+            "name": "backgroundImageScaled",
+            "type": "text",
+            "label": "Background image scaled"
+          },
+          {
+            "name": "backgroundTile",
+            "type": "boolean",
+            "label": "Background tile"
+          },
+          {
+            "name": "backgroundBrightness",
+            "type": "text",
+            "label": "Background brightness"
+          },
+          {
+            "name": "backgroundColor",
+            "type": "text",
+            "label": "Background color"
+          },
+          {
+            "name": "backgroundBottomColor",
+            "type": "text",
+            "label": "Background bottom color"
+          },
+          {
+            "name": "backgroundTopColor",
+            "type": "text",
+            "label": "Background top color"
+          },
+          {
+            "name": "canBePublic",
+            "type": "boolean",
+            "label": "Can be public"
+          },
+          {
+            "name": "canBeEnterprise",
+            "type": "boolean",
+            "label": "Can be enterprise"
+          },
+          {
+            "name": "canBeOrg",
+            "type": "boolean",
+            "label": "Can be organization"
+          },
+          {
+            "name": "canBePrivate",
+            "type": "boolean",
+            "label": "Can be private"
+          },
+          {
+            "name": "canInvite",
+            "type": "boolean",
+            "label": "Can invite"
+          }
+        ],
+        "type": "collection",
+        "label": "Prefs"
+      },
+      {
+        "name": "shortLink",
+        "type": "text",
+        "label": "Short link"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "labelNames",
+        "spec": [
+          {
+            "name": "green",
+            "type": "text",
+            "label": "Green"
+          },
+          {
+            "name": "yellow",
+            "type": "text",
+            "label": "Yellow"
+          },
+          {
+            "name": "orange",
+            "type": "text",
+            "label": "Orange"
+          },
+          {
+            "name": "red",
+            "type": "text",
+            "label": "Red"
+          },
+          {
+            "name": "purple",
+            "type": "text",
+            "label": "Purple"
+          },
+          {
+            "name": "blue",
+            "type": "text",
+            "label": "Blue"
+          },
+          {
+            "name": "sky",
+            "type": "text",
+            "label": "Sky"
+          },
+          {
+            "name": "lime",
+            "type": "text",
+            "label": "Lime"
+          },
+          {
+            "name": "pink",
+            "type": "text",
+            "label": "Pink"
+          },
+          {
+            "name": "black",
+            "type": "text",
+            "label": "Black"
+          }
+        ],
+        "type": "collection",
+        "label": "Label names"
+      },
+      {
+        "name": "powerUps",
+        "type": "array",
+        "label": "Power ups"
+      },
+      {
+        "name": "dateLastActivity",
+        "type": "date",
+        "label": "Last activity date"
+      },
+      {
+        "name": "dateLastView",
+        "type": "date",
+        "label": "Last view date"
+      },
+      {
+        "name": "shortUrl",
+        "type": "url",
+        "label": "Short URL"
+      },
+      {
+        "name": "idTags",
+        "type": "array",
+        "label": "Tags ID"
+      },
+      {
+        "name": "datePluginDisable",
+        "type": "text",
+        "label": "Plugin disable date"
+      },
+      {
+        "name": "creationMethod",
+        "type": "text",
+        "label": "Creation method"
+      }
+    ],
+    "type": "collection",
+    "label": "Board"
+  },
+  {
+    "name": "checklists",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "idBoard",
+          "type": "text",
+          "label": "Board ID"
+        },
+        {
+          "name": "idCard",
+          "type": "text",
+          "label": "Card ID"
+        },
+        {
+          "name": "pos",
+          "type": "number",
+          "label": "Position"
+        },
+        {
+          "name": "limits",
+          "spec": [
+            {
+              "name": "checkItems",
+              "spec": [
+                {
+                  "name": "perChecklist",
+                  "spec": [
+                    {
+                      "name": "status",
+                      "type": "text",
+                      "label": "Status"
+                    },
+                    {
+                      "name": "disableAt",
+                      "type": "number",
+                      "label": "Disable at"
+                    },
+                    {
+                      "name": "warnAt",
+                      "type": "number",
+                      "label": "Warn at"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Per checklist"
+                }
+              ],
+              "type": "collection",
+              "label": "Checklist items"
+            }
+          ],
+          "type": "collection",
+          "label": "Limits"
+        },
+        {
+          "name": "checkItems",
+          "spec": {
+            "spec": [
+              {
+                "name": "idChecklist",
+                "type": "text",
+                "label": "Checklist ID"
+              },
+              {
+                "name": "state",
+                "type": "text",
+                "label": "State"
+              },
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "nameData",
+                "type": "text",
+                "label": "Data name"
+              },
+              {
+                "name": "pos",
+                "type": "number",
+                "label": "Position"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Checklist items"
+        },
+        {
+          "name": "creationMethod",
+          "type": "text",
+          "label": "Creation method"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Checklists"
+  },
+  {
+    "name": "customFieldItems",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "value",
+          "type": "collection",
+          "label": "Value"
+        },
+        {
+          "name": "idValue",
+          "type": "text",
+          "label": "Option value ID"
+        },
+        {
+          "name": "idCustomField",
+          "type": "text",
+          "label": "Custom field ID"
+        },
+        {
+          "name": "idModel",
+          "type": "text",
+          "label": "Model ID"
+        },
+        {
+          "name": "modelType",
+          "type": "text",
+          "label": "Model type"
+        },
+        {
+          "name": "softLimit",
+          "type": "text",
+          "label": "Soft limit"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Custom Fields",
+    "convert": {
+      "name": "id",
+      "type": "collection",
+      "label": "ID",
+      "names": "rpc://getCFnameByID"
+    }
+  },
+  {
+    "name": "list",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "closed",
+        "type": "boolean",
+        "label": "Closed"
+      },
+      {
+        "name": "idBoard",
+        "type": "text",
+        "label": "Board ID"
+      },
+      {
+        "name": "pos",
+        "type": "number",
+        "label": "Position"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "softLimit",
+        "type": "text",
+        "label": "Soft Limit"
+      }
+    ],
+    "type": "collection",
+    "label": "List"
+  },
+  {
+    "name": "members",
+    "type": "array",
+    "label": "Members"
+  },
+  {
+    "name": "membersVoted",
+    "type": "array",
+    "label": "Members voted"
+  },
+  {
+    "name": "pluginData",
+    "type": "array",
+    "label": "Plugin data"
+  },
+  {
+    "name": "stickers",
+    "type": "array",
+    "label": "Stickers"
+  }
+]

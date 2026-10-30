@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://listCampaigns",
+    "required": true
+  }
+]

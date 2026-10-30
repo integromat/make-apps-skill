@@ -1,0 +1,13 @@
+{
+  "url": "https://api.airtable.com/v0/meta/bases",
+  "headers": {
+    "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+  },
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.bases}}"
+  }
+}

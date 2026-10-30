@@ -1,0 +1,14 @@
+[
+  {
+    "name": "site_id",
+    "type": "select",
+    "label": "Site ID",
+    "options": "rpc://app%23netlify@1/listSites"
+  },
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": "rpc://app%23netlify@1/listHooksTypes"
+  }
+]

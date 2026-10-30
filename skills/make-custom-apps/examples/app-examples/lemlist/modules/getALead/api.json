@@ -1,0 +1,7 @@
+{
+  "url": "/leads/{{parameters.email}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

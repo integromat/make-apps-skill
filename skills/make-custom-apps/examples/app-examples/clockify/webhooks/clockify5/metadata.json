@@ -1,0 +1,10 @@
+{
+  "rev": 4,
+  "type": "web",
+  "flags": {},
+  "label": "Task",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "clockify",
+  "altAccountName": null
+}

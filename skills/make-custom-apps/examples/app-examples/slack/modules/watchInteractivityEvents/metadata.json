@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Interactive Events",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "slack",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a new interactive event has arrived.",
+  "altAccountName": null
+}

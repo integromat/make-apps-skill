@@ -1,0 +1,52 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of user assignments to return",
+    "default": 2
+  },
+  {
+    "help": "Filter by specific project.",
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects"
+  },
+  {
+    "help": "Only return user assignments belonging to the user with the given ID.",
+    "mode": "edit",
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://getUsers"
+  },
+  {
+    "name": "is_active",
+    "type": "select",
+    "label": "Active or inactive",
+    "options": {
+      "store": [
+        {
+          "label": "Only active",
+          "value": true
+        },
+        {
+          "label": "Only inactive",
+          "value": false
+        }
+      ],
+      "placeholder": "Show both"
+    },
+    "mappable": {
+      "help": "`true` = Only active, `false` = Only inactive, leave blank for all."
+    }
+  },
+  {
+    "help": "Only return task assignments that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  }
+]

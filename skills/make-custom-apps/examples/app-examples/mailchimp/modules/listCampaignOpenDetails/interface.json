@@ -1,0 +1,93 @@
+[
+  {
+    "name": "campaign_id",
+    "type": "uinteger",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "list_id",
+    "type": "uinteger",
+    "label": "List ID"
+  },
+  {
+    "name": "list_is_active",
+    "type": "boolean",
+    "label": "List is Active"
+  },
+  {
+    "name": "contact_status",
+    "type": "text",
+    "label": "Contact Status"
+  },
+  {
+    "name": "email_id",
+    "type": "uinteger",
+    "label": "Email ID"
+  },
+  {
+    "name": "email_address",
+    "type": "email",
+    "label": "Email Address"
+  },
+  {
+    "name": "vip",
+    "type": "boolean",
+    "label": "VIP"
+  },
+  {
+    "name": "opens_count",
+    "type": "number",
+    "label": "Opens Count"
+  },
+  {
+    "name": "opens",
+    "spec": {
+      "spec": [
+        {
+          "name": "timestamp",
+          "type": "date",
+          "label": "Timestamp"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Opens"
+  },
+  {
+    "name": "merge_fields",
+    "spec": [],
+    "type": "collection",
+    "label": "Merge Fields"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "offset": 0
+  },
+  "url": "/reports/{{extractCampaignId(parameters.campaign)}}/unsubscribed",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.unsubscribes}}",
+    "trigger": {
+      "id": "{{item.email_id}}",
+      "date": "{{item.timestamp}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.members) === 1000}}"
+  }
+}

@@ -1,0 +1,169 @@
+[
+  {
+    "name": "sort_by",
+    "type": "select",
+    "label": "Watch",
+    "options": [
+      {
+        "label": "Created Tasks",
+        "value": "created_at"
+      },
+      {
+        "label": "Completed Tasks",
+        "value": "completed_at"
+      },
+      {
+        "label": "Modified Tasks",
+        "value": "modified_at"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "completed",
+    "type": "hidden",
+    "label": "Completed",
+    "default": true
+  },
+  {
+    "name": "resource_subtype",
+    "type": "select",
+    "label": "Resource Subtype",
+    "default": "default_task",
+    "options": [
+      {
+        "label": "Default Task",
+        "value": "default_task"
+      },
+      {
+        "label": "Milestone",
+        "value": "milestone"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "help": "Performs full-text search on both task name and description.",
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        },
+        {
+          "name": "assignee.any",
+          "type": "select",
+          "label": "Assignee",
+          "options": "rpc://app%23asana@2/GetUsers",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "portfolios.any",
+          "type": "select",
+          "label": "Portfolios",
+          "options": "rpc://app%23asana@2/GetPortfolios",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "projects.any",
+          "type": "select",
+          "label": "Projects",
+          "options": "rpc://app%23asana@2/GetWorkspaceProjects",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project",
+          "options": {
+            "store": "rpc://app%23asana@2/GetWorkspaceProjects",
+            "nested": [
+              {
+                "name": "sections.any",
+                "type": "select",
+                "label": "Sections",
+                "options": "rpc://app%23asana@2/GetProjectSections",
+                "mappable": true,
+                "multiple": true
+              }
+            ]
+          },
+          "mappable": true
+        },
+        {
+          "name": "tags.any",
+          "type": "select",
+          "label": "Tags",
+          "options": "rpc://app%23asana@2/GetTags?workspaceAlt3=true",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "teams.any",
+          "type": "select",
+          "label": "Teams",
+          "options": "rpc://app%23asana@2/GetTeams",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "created_by.any",
+          "type": "select",
+          "label": "Created By",
+          "options": "rpc://app%23asana@2/GetUsers",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "name": "assigned_by.any",
+          "type": "select",
+          "label": "Assigned By",
+          "options": "rpc://app%23asana@2/GetUsers",
+          "mappable": true,
+          "multiple": true
+        },
+        {
+          "help": "Filter to incomplete tasks with dependents.",
+          "name": "is_blocking",
+          "type": "boolean",
+          "label": "Is Blocking"
+        },
+        {
+          "help": "Filter to tasks with incomplete dependencies.",
+          "name": "is_blocked",
+          "type": "boolean",
+          "label": "Is Blocked"
+        },
+        {
+          "help": "Filter to tasks with attachments",
+          "name": "has_attachment",
+          "type": "boolean",
+          "label": "Has Attachment"
+        },
+        {
+          "help": "Filter to subtasks.",
+          "name": "is_subtask",
+          "type": "boolean",
+          "label": "Is Subtask"
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "required": true
+  }
+]

@@ -1,0 +1,48 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Row ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "index",
+    "type": "uinteger",
+    "label": "Index"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "browserLink",
+    "type": "url",
+    "label": "Browser link"
+  },
+  {
+    "name": "values",
+    "spec": [],
+    "type": "collection",
+    "label": "Values"
+  }
+]

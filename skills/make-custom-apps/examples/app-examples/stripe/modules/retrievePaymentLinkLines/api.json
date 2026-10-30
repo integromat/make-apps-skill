@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "limit": "{{min(parameters.limit, 100)}}"
+  },
+  "url": "/payment_links/{{parameters.id}}/line_items",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{parseTimestampOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

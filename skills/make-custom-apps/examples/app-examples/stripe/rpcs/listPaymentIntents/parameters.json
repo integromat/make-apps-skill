@@ -1,0 +1,7 @@
+[
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID"
+  }
+]

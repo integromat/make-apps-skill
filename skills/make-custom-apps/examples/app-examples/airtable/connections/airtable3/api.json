@@ -1,0 +1,97 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://api.airtable.com/v0/meta/whoami",
+    "headers": {
+      "Authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.id}}",
+      "metadata": {
+        "type": "text",
+        "value": "User ID: {{body.id}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://airtable.com/oauth2/v1/token",
+    "body": {
+      "code": "{{temp.code}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "code_verifier": "{{temp.code_verifier}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "authorization": "Basic {{base64(ifempty(data.clientId, common.clientId) + ':' + ifempty(data.clientSecret, common.clientSecret))}}"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "expires": "{{addSeconds(now, body.refresh_expires_in)}}"
+    }
+  },
+  "refresh": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization",
+        "request.body.refresh_token",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://airtable.com/oauth2/v1/token",
+    "body": {
+      "grant_type": "refresh_token",
+      "refresh_token": "{{data.refreshToken}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "headers": {
+      "authorization": "Basic {{base64(ifempty(data.clientId, common.clientId) + ':' + ifempty(data.clientSecret, common.clientSecret))}}"
+    },
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      },
+      "expires": "{{addSeconds(now, body.refresh_expires_in)}}"
+    },
+    "condition": "{{data.expires < addMinutes(now, 1)}}"
+  },
+  "authorize": {
+    "qs": {
+      "scope": "{{join(oauth.scope, ' ')}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code",
+      "code_challenge": "{{base64url(sha256(temp.code_verifier, 'base64'))}}",
+      "code_challenge_method": "S256"
+    },
+    "url": "https://airtable.com/oauth2/v1/authorize",
+    "temp": {
+      "code_verifier": "{{uuid}}.{{uuid}}"
+    },
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      }
+    }
+  }
+}

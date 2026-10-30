@@ -1,0 +1,7 @@
+{
+  "url": "/reports/{{parameters.campaign_id}}/click-details/{{parameters.link_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

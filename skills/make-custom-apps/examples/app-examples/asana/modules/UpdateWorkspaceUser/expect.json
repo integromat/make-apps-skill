@@ -1,0 +1,132 @@
+[
+  {
+    "name": "addOrRemove",
+    "type": "select",
+    "label": "Add or Remove",
+    "options": [
+      {
+        "label": "Add User",
+        "value": "addUser",
+        "nested": [
+          {
+            "name": "selectOrMap",
+            "sort": "text",
+            "type": "select",
+            "label": "Enter a Workspace ID and User ID",
+            "default": "map",
+            "options": [
+              {
+                "label": "Select from the lists",
+                "value": "select",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace/Organization ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "user",
+                          "type": "select",
+                          "label": "User ID",
+                          "options": "rpc://app%23asana@2/GetWorkspaceUsers",
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "text",
+                    "label": "Workspace",
+                    "required": true
+                  },
+                  {
+                    "name": "user",
+                    "type": "text",
+                    "label": "User",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Remove User",
+        "value": "removeUser",
+        "nested": [
+          {
+            "name": "selectOrMap",
+            "sort": "text",
+            "type": "select",
+            "label": "Enter a Workspace ID and User ID",
+            "default": "map",
+            "options": [
+              {
+                "label": "Select from the lists",
+                "value": "select",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace/Organization ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "user",
+                          "type": "select",
+                          "label": "User ID",
+                          "options": "rpc://app%23asana@2/GetWorkspaceUsers",
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "text",
+                    "label": "Workspace",
+                    "required": true
+                  },
+                  {
+                    "name": "user",
+                    "type": "text",
+                    "label": "User",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  }
+]

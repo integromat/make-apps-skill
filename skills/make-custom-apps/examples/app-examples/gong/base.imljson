@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "https://api.gong.io/v2",
+  "headers": {
+    "Authorization": "{{if(connection.accessToken, 'Bearer ' + connection.accessToken, 'Basic ' + base64(connection.accessKey + ':' + connection.accessKeySecret))}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{parseError(body.errors)}}"
+    }
+  }
+}

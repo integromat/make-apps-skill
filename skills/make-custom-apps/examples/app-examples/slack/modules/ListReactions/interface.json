@@ -1,0 +1,289 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "channel",
+    "type": "text",
+    "label": "Channel"
+  },
+  {
+    "name": "message",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "client_msg_id",
+        "type": "text",
+        "label": "Client message ID"
+      },
+      {
+        "name": "team",
+        "type": "text",
+        "label": "Team"
+      },
+      {
+        "name": "blocks",
+        "spec": [
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "block_id",
+            "type": "text",
+            "label": "Block ID"
+          },
+          {
+            "name": "elements",
+            "type": "array",
+            "label": "Elements"
+          }
+        ],
+        "type": "array",
+        "label": "Blocks"
+      },
+      {
+        "name": "reply_count",
+        "type": "number",
+        "label": "Reply count"
+      },
+      {
+        "name": "reply_users_count",
+        "type": "number",
+        "label": "Reply users count"
+      },
+      {
+        "name": "latest_reply",
+        "type": "text",
+        "label": "Last reply"
+      },
+      {
+        "name": "reply_users",
+        "type": "array",
+        "label": "Reply users"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "permalink",
+        "type": "url",
+        "label": "Permalink"
+      },
+      {
+        "name": "files",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "File ID"
+            },
+            {
+              "name": "created",
+              "type": "number",
+              "label": "Created"
+            },
+            {
+              "name": "timestamp",
+              "type": "number",
+              "label": "Timestamp"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "title",
+              "type": "text",
+              "label": "Title"
+            },
+            {
+              "name": "mimetype",
+              "type": "text",
+              "label": "MIME type"
+            },
+            {
+              "name": "filetype",
+              "type": "text",
+              "label": "File type"
+            },
+            {
+              "name": "pretty_type",
+              "type": "text",
+              "label": "Pretty type"
+            },
+            {
+              "name": "user",
+              "type": "text",
+              "label": "User"
+            },
+            {
+              "name": "editable",
+              "type": "boolean",
+              "label": "Editable"
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "label": "Size"
+            },
+            {
+              "name": "mode",
+              "type": "text",
+              "label": "Mode"
+            },
+            {
+              "name": "is_external",
+              "type": "boolean",
+              "label": "Is external"
+            },
+            {
+              "name": "external_type",
+              "type": "text",
+              "label": "External type"
+            },
+            {
+              "name": "is_public",
+              "type": "boolean",
+              "label": "Is public"
+            },
+            {
+              "name": "public_url_shared",
+              "type": "boolean",
+              "label": "Public URL shared"
+            },
+            {
+              "name": "display_as_bot",
+              "type": "boolean",
+              "label": "Display as bot"
+            },
+            {
+              "name": "username",
+              "type": "text",
+              "label": "Username"
+            },
+            {
+              "name": "url_private",
+              "type": "text",
+              "label": "URL private"
+            },
+            {
+              "name": "url_private_download",
+              "type": "text",
+              "label": "URL private download"
+            },
+            {
+              "name": "thumb_pdf",
+              "type": "text",
+              "label": "Thumb PDF"
+            },
+            {
+              "name": "thumb_pdf_w",
+              "type": "number",
+              "label": "Thumb PDF width"
+            },
+            {
+              "name": "thumb_pdf_h",
+              "type": "number",
+              "label": "Thumb PDF height"
+            },
+            {
+              "name": "permalink",
+              "type": "text",
+              "label": "Permalink"
+            },
+            {
+              "name": "permalink_public",
+              "type": "text",
+              "label": "Permalink public"
+            },
+            {
+              "name": "is_starred",
+              "type": "boolean",
+              "label": "Is starred"
+            },
+            {
+              "name": "has_rich_preview",
+              "type": "boolean",
+              "label": "Has rich preview"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Files"
+      },
+      {
+        "name": "upload",
+        "type": "boolean",
+        "label": "Upload"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User"
+      },
+      {
+        "name": "display_as_bot",
+        "type": "boolean",
+        "label": "Display as bot"
+      },
+      {
+        "name": "ts",
+        "type": "text",
+        "label": "Timestamp"
+      },
+      {
+        "name": "thread_ts",
+        "type": "text",
+        "label": "Thread timestamp"
+      },
+      {
+        "name": "reactions",
+        "spec": {
+          "spec": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "users",
+              "spec": {
+                "type": "text"
+              },
+              "type": "array",
+              "label": "Users"
+            },
+            {
+              "name": "count",
+              "type": "number",
+              "label": "Count"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Reactions"
+      }
+    ],
+    "type": "collection",
+    "label": "Message"
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "mode": "edit",
+    "name": "invoice_id",
+    "type": "select",
+    "label": "Invoice ID",
+    "options": "rpc://getInvoices",
+    "required": true
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount",
+    "required": true
+  },
+  {
+    "name": "date_or_datetime",
+    "type": "select",
+    "label": "Payment date",
+    "options": [
+      {
+        "label": "Only date",
+        "value": "date",
+        "nested": [
+          {
+            "help": "Only the date is relevant, time will be ignored.",
+            "name": "paid_date",
+            "time": false,
+            "type": "date",
+            "label": "Date",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Date & time",
+        "value": "datetime",
+        "nested": [
+          {
+            "name": "paid_at",
+            "time": true,
+            "type": "date",
+            "label": "Date",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  }
+]

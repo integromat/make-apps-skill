@@ -1,0 +1,29 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "browserLink",
+    "type": "url",
+    "label": "Browser Link"
+  },
+  {
+    "name": "resource",
+    "spec": [
+      {
+        "name": "href",
+        "type": "url",
+        "label": "Href"
+      }
+    ],
+    "type": "collection",
+    "label": "Resource"
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Contact ID"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First name"
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last name"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "phone_office",
+    "type": "text",
+    "label": "Phone office"
+  },
+  {
+    "name": "phone_mobile",
+    "type": "text",
+    "label": "Phone mobile"
+  },
+  {
+    "name": "fax",
+    "type": "text",
+    "label": "Fax"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  }
+]

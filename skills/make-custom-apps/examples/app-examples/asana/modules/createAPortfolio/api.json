@@ -1,0 +1,15 @@
+{
+  "url": "/portfolios",
+  "body": {
+    "data": {
+      "name": "{{parameters.name}}",
+      "color": "{{parameters.color}}",
+      "public": "{{parameters.public}}",
+      "workspace": "{{parameters.workspace}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

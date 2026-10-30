@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/users",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.first_name + ' ' + item.last_name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.users}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

@@ -1,0 +1,294 @@
+[
+  {
+    "name": "manual_or_select",
+    "type": "select",
+    "label": "Enter Card ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://app%23trello@4/getIDcardsUnderList",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "The new name for the card.",
+    "name": "name",
+    "type": "text",
+    "label": "New name"
+  },
+  {
+    "help": "The new description for the card.",
+    "name": "description",
+    "type": "text",
+    "label": "New description",
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "name": "moveCard",
+    "type": "select",
+    "label": "Move a card",
+    "options": [
+      {
+        "label": "To a board",
+        "value": "boardOnly",
+        "nested": [
+          {
+            "help": "The card will be moved to the first list on the board.",
+            "mode": "edit",
+            "name": "idBoard",
+            "type": "select",
+            "label": "Board ID",
+            "options": "rpc://app%23trello@4/listBoards"
+          }
+        ]
+      },
+      {
+        "label": "To a board and list",
+        "value": "boardAndList",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "idBoard",
+            "type": "select",
+            "label": "Board ID",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "idList",
+                  "type": "select",
+                  "label": "List ID",
+                  "options": "rpc://app%23trello@4/getBoardLists2"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "Label IDs to add to the card.",
+    "name": "labels_id",
+    "spec": {
+      "type": "text",
+      "label": "Label ID"
+    },
+    "type": "array",
+    "label": "Labels",
+    "advanced": true
+  },
+  {
+    "help": "The position of the new card.",
+    "name": "position",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "A due date for the card.",
+    "name": "due_date",
+    "time": false,
+    "type": "date",
+    "label": "Due date",
+    "advanced": true
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete",
+    "advanced": true
+  },
+  {
+    "help": "Member IDs to add to the card.",
+    "name": "members_id",
+    "spec": {
+      "type": "text",
+      "label": "Member ID"
+    },
+    "type": "array",
+    "label": "Members",
+    "advanced": true
+  },
+  {
+    "help": "The ID of the image attachment the card should use as its cover.",
+    "name": "idAttachmentCover",
+    "type": "text",
+    "label": "Attachment cover ID",
+    "advanced": true
+  },
+  {
+    "help": "**Brightness** can be sent alongside any of the other parameters, but all of the other parameters are mutually exclusive; you cannot have the cover be a **Color** and an **Attachment ID** at the same time. On the brightness options, setting it to light will make the text on the card cover dark, and vice versa.",
+    "name": "cover",
+    "spec": [
+      {
+        "name": "color",
+        "type": "select",
+        "label": "Color",
+        "options": [
+          {
+            "label": "Pink",
+            "value": "pink"
+          },
+          {
+            "label": "Yellow",
+            "value": "yellow"
+          },
+          {
+            "label": "Lime",
+            "value": "lime"
+          },
+          {
+            "label": "Blue",
+            "value": "blue"
+          },
+          {
+            "label": "Black",
+            "value": "black"
+          },
+          {
+            "label": "Orange",
+            "value": "orange"
+          },
+          {
+            "label": "Red",
+            "value": "red"
+          },
+          {
+            "label": "Purple",
+            "value": "purple"
+          },
+          {
+            "label": "Sky",
+            "value": "sky"
+          },
+          {
+            "label": "Green",
+            "value": "green"
+          }
+        ]
+      },
+      {
+        "name": "brightness",
+        "type": "select",
+        "label": "Brightness",
+        "options": [
+          {
+            "label": "Dark",
+            "value": "dark"
+          },
+          {
+            "label": "Light",
+            "value": "light"
+          }
+        ]
+      },
+      {
+        "name": "size",
+        "type": "select",
+        "label": "Size",
+        "options": [
+          {
+            "label": "Normal",
+            "value": "normal"
+          },
+          {
+            "label": "Full",
+            "value": "full"
+          }
+        ]
+      },
+      {
+        "help": "Only Unsplash URLs work.",
+        "name": "url",
+        "type": "url",
+        "label": "Unsplash URL"
+      },
+      {
+        "help": "Used if setting an attached image as the cover.",
+        "name": "idAttachment",
+        "type": "text",
+        "label": "Attachment ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Cover",
+    "advanced": true
+  },
+  {
+    "help": "Whether the member should be subscribed to the card.",
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribe",
+    "advanced": true
+  },
+  {
+    "help": "Whether the card should be archived.",
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archive",
+    "advanced": true
+  }
+]

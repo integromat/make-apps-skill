@@ -1,0 +1,22 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Scheduled Messages",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read",
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Retrieves a list of scheduled messages.",
+  "altAccountName": "slack3"
+}

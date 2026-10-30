@@ -1,0 +1,254 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Organization ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "displayName",
+    "type": "text",
+    "label": "Display name"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "spec": [
+      {
+        "name": "emoji",
+        "spec": [],
+        "type": "collection",
+        "label": "Emoji"
+      }
+    ],
+    "type": "collection",
+    "label": "Description data"
+  },
+  {
+    "name": "idBoards",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Boards ID"
+  },
+  {
+    "name": "idEnterprise",
+    "type": "text",
+    "label": "Enterprise ID"
+  },
+  {
+    "name": "invited",
+    "type": "boolean",
+    "label": "Invited"
+  },
+  {
+    "name": "invitations",
+    "spec": [],
+    "type": "array",
+    "label": "Invitations"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "orgs",
+        "spec": [
+          {
+            "name": "totalMembersPerOrg",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Total members per organization"
+          }
+        ],
+        "type": "collection",
+        "label": "Organizations"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "memberships",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "idMember",
+          "type": "text",
+          "label": "Member ID"
+        },
+        {
+          "name": "memberType",
+          "type": "text",
+          "label": "Member type"
+        },
+        {
+          "name": "unconfirmed",
+          "type": "boolean",
+          "label": "Unconfirmed"
+        },
+        {
+          "name": "deactivated",
+          "type": "boolean",
+          "label": "Deactivated"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "prefs",
+    "spec": [
+      {
+        "name": "permissionLevel",
+        "type": "text",
+        "label": "Permission level"
+      },
+      {
+        "name": "orgInviteRestrict",
+        "spec": [],
+        "type": "array",
+        "label": "Organization invite restrict"
+      },
+      {
+        "name": "externalMembersDisabled",
+        "type": "boolean",
+        "label": "External members disabled"
+      },
+      {
+        "name": "associatedDomain",
+        "type": "text",
+        "label": "Associated domain"
+      },
+      {
+        "name": "googleAppsVersion",
+        "type": "number",
+        "label": "Google apps version"
+      },
+      {
+        "name": "boardVisibilityRestrict",
+        "spec": [
+          {
+            "name": "private",
+            "type": "text",
+            "label": "Private"
+          },
+          {
+            "name": "org",
+            "type": "text",
+            "label": "Organization"
+          },
+          {
+            "name": "public",
+            "type": "text",
+            "label": "Public"
+          }
+        ],
+        "type": "collection",
+        "label": "Board visibility restirct"
+      },
+      {
+        "name": "attachmentRestrictions",
+        "type": "text",
+        "label": "Attachment restrictions"
+      }
+    ],
+    "type": "collection",
+    "label": "Prefs"
+  },
+  {
+    "name": "powerUps",
+    "spec": [],
+    "type": "array",
+    "label": "Power ups"
+  },
+  {
+    "name": "products",
+    "spec": [],
+    "type": "array",
+    "label": "Products"
+  },
+  {
+    "name": "billableMemberCount",
+    "type": "number",
+    "label": "Billable member count"
+  },
+  {
+    "name": "activeBillableMemberCount",
+    "type": "number",
+    "label": "Active billable member count"
+  },
+  {
+    "name": "billableCollaboratorCount",
+    "type": "number",
+    "label": "Billable colaborator count"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "website",
+    "type": "text",
+    "label": "Website"
+  },
+  {
+    "name": "logoHash",
+    "type": "text",
+    "label": "Logo hash"
+  },
+  {
+    "name": "logoUrl",
+    "type": "text",
+    "label": "Logo URL"
+  },
+  {
+    "name": "premiumFeatures",
+    "spec": [],
+    "type": "array",
+    "label": "Premium features"
+  },
+  {
+    "name": "enterpriseJoinRequest",
+    "spec": [],
+    "type": "collection",
+    "label": "Enterprise join request"
+  },
+  {
+    "name": "availableLicenseCount",
+    "type": "text",
+    "label": "Available licence count"
+  }
+]

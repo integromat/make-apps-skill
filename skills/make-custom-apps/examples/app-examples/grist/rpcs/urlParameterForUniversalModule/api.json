@@ -1,0 +1,11 @@
+{
+  "response": {
+    "output": {
+      "help": "Enter a path relative to `https://{{ifempty(connection.domain, 'docs')}}.getgrist.com/api`. For example: `/orgs`.",
+      "name": "url",
+      "type": "text",
+      "label": "URL",
+      "required": true
+    }
+  }
+}

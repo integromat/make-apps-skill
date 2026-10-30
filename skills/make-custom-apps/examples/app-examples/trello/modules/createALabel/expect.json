@@ -1,0 +1,67 @@
+[
+  {
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "color",
+    "type": "select",
+    "label": "Color",
+    "options": [
+      {
+        "label": "Yellow",
+        "value": "yellow"
+      },
+      {
+        "label": "Purple",
+        "value": "purple"
+      },
+      {
+        "label": "Blue",
+        "value": "blue"
+      },
+      {
+        "label": "Red",
+        "value": "red"
+      },
+      {
+        "label": "Green",
+        "value": "green"
+      },
+      {
+        "label": "Orange",
+        "value": "orange"
+      },
+      {
+        "label": "Black",
+        "value": "black"
+      },
+      {
+        "label": "Sky",
+        "value": "sky"
+      },
+      {
+        "label": "Pink",
+        "value": "pink"
+      },
+      {
+        "label": "Lime",
+        "value": "lime"
+      },
+      {
+        "label": "Without a color",
+        "value": "null"
+      }
+    ],
+    "required": true
+  }
+]

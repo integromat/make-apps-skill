@@ -1,0 +1,8 @@
+[
+  {
+    "name": "includeTemplate",
+    "type": "boolean",
+    "label": "Include Template",
+    "default": false
+  }
+]

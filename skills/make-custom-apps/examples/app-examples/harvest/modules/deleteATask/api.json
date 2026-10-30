@@ -1,0 +1,7 @@
+{
+  "url": "/tasks/{{parameters.task_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

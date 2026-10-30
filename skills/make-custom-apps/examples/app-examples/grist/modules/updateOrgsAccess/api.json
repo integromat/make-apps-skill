@@ -1,0 +1,14 @@
+{
+  "url": "/orgs/{{parameters.orgId}}/access",
+  "body": {
+    "delta": {
+      "users": {
+        "{{...}}": "{{toCollection(parameters.users, 'email', 'role')}}"
+      }
+    }
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "email": "{{parameters.email}}",
+    "sort_dir": "{{parameters.sort}}",
+    "sort_field": "{{if(parameters.sort, 'date_created', undefined)}}",
+    "since_date_created": "{{formatDate(parameters.since_date_created, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+    "before_date_created": "{{formatDate(parameters.before_date_created, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+    "since_campaign_last_sent": "{{formatDate(parameters.since_campaign_last_sent, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+    "before_campaign_last_sent": "{{formatDate(parameters.before_campaign_last_sent, 'YYYY-MM-DDTHH:mm:ssZ')}}"
+  },
+  "url": "/lists",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.lists}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.lists) === 1000}}"
+  }
+}

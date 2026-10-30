@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/labels/{{parameters.label_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

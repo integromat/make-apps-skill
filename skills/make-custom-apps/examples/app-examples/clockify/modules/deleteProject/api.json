@@ -1,0 +1,9 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}",
+  "method": "DELETE",
+  "response": {
+    "output": {
+      "Response": "This project is successfully deleted."
+    }
+  }
+}

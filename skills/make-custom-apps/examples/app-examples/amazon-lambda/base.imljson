@@ -1,0 +1,19 @@
+{
+  "aws": {
+    "key": "{{connection.key}}",
+    "secret": "{{connection.secret}}",
+    "sign_version": "4"
+  },
+  "log": {
+    "sanitize": []
+  },
+  "baseUrl": "https://lambda.{{connection.region}}.amazonaws.com",
+  "response": {
+    "error": {
+      "403": {
+        "message": "[403] Unable to determine service/operation name to be authorized."
+      },
+      "message": "[{{statusCode}}] {{body.message}}"
+    }
+  }
+}

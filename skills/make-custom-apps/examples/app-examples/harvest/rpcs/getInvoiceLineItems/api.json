@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/invoices/{{parameters.invoice_id}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.kind}} Amount: {{item.amount}} {{item.description}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.line_items}}"
+  }
+}

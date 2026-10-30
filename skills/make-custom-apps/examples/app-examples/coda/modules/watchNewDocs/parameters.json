@@ -1,0 +1,32 @@
+[
+  {
+    "help": "Check only for docs created by you.",
+    "name": "isOwned",
+    "type": "boolean",
+    "label": "Created by me"
+  },
+  {
+    "name": "sortBy",
+    "type": "select",
+    "label": "Triggers when",
+    "options": [
+      {
+        "label": "a document is created",
+        "value": "new",
+        "default": true
+      },
+      {
+        "label": "a document is updated",
+        "value": "updated"
+      }
+    ]
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

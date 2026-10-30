@@ -1,0 +1,20 @@
+{
+  "url": "/lists",
+  "body": {
+    "name": "{{parameters.name}}",
+    "contact": "{{parameters.contact}}",
+    "visibility": "{{parameters.visibility}}",
+    "double_optin": "{{parameters.double_optin}}",
+    "use_archive_bar": "{{parameters.use_archive_bar}}",
+    "campaign_defaults": "{{parameters.campaign_defaults}}",
+    "email_type_option": "{{parameters.email_type_option}}",
+    "notify_on_subscribe": "{{parameters.notify_on_subscribe}}",
+    "permission_reminder": "{{parameters.permission_reminder}}",
+    "marketing_permissions": "{{parameters.marketing_permissions}}",
+    "notify_on_unsubscribe": "{{parameters.notify_on_unsubscribe}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

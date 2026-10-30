@@ -1,0 +1,145 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listInvoices",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        },
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listSubscriptions",
+            "label": "Search",
+            "parameters": [
+              {
+                "rpc": {
+                  "url": "rpc://app%23stripe@1/listCustomers",
+                  "label": "Search",
+                  "parameters": [
+                    {
+                      "name": "email",
+                      "type": "email",
+                      "label": "Email",
+                      "required": true
+                    }
+                  ]
+                },
+                "name": "customer",
+                "type": "text",
+                "label": "Customer ID"
+              },
+              {
+                "name": "status",
+                "type": "select",
+                "label": "Status",
+                "options": [
+                  {
+                    "label": "All",
+                    "value": "all"
+                  },
+                  {
+                    "label": "Active",
+                    "value": "active"
+                  },
+                  {
+                    "label": "Past Due",
+                    "value": "past_due"
+                  },
+                  {
+                    "label": "Unpaid",
+                    "value": "unpaid"
+                  },
+                  {
+                    "label": "Canceled",
+                    "value": "canceled"
+                  },
+                  {
+                    "label": "Incomplete",
+                    "value": "incomplete"
+                  },
+                  {
+                    "label": "Incomplete Expired",
+                    "value": "incomplete_expired"
+                  },
+                  {
+                    "label": "Trialing",
+                    "value": "trialing"
+                  },
+                  {
+                    "label": "Ended",
+                    "value": "ended"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "subscription",
+          "type": "text",
+          "label": "Subscription ID"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "Draft",
+              "value": "draft"
+            },
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Paid",
+              "value": "paid"
+            },
+            {
+              "label": "Uncollectible",
+              "value": "uncollectible"
+            },
+            {
+              "label": "Void",
+              "value": "void"
+            }
+          ]
+        },
+        {
+          "name": "collection_method",
+          "type": "select",
+          "label": "Collection Method",
+          "options": [
+            {
+              "label": "Charge Automatically",
+              "value": "charge_automatically"
+            },
+            {
+              "label": "Send Invoice",
+              "value": "send_invoice"
+            }
+          ]
+        }
+      ]
+    },
+    "help": "The identifier of the desired invoice.",
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice ID",
+    "required": true
+  }
+]

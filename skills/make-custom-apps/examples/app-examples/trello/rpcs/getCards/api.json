@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "filter": "all"
+  },
+  "url": "/members/me/cards",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "sort": "{{parameters.sort}}",
+    "limit": "{{parameters.limit}}",
+    "filter": "{{parameters.search}}"
+  },
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableId}}/records",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.records}}"
+  }
+}

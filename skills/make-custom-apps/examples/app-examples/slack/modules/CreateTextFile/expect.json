@@ -1,0 +1,109 @@
+[
+  {
+    "name": "channels",
+    "spec": [
+      {
+        "name": "type",
+        "type": "select",
+        "label": "Channel type",
+        "options": [
+          {
+            "label": "Public channel",
+            "value": "public",
+            "nested": [
+              {
+                "name": "channel",
+                "type": "select",
+                "label": "Public channel",
+                "options": "rpc://app%23slack@4/PublicChannels",
+                "multiple": true,
+                "required": true
+              }
+            ],
+            "default": true
+          },
+          {
+            "label": "Private channel",
+            "value": "private",
+            "nested": [
+              {
+                "name": "channel",
+                "type": "select",
+                "label": "Private channel",
+                "options": "rpc://app%23slack@4/PrivateChannels",
+                "multiple": true,
+                "required": true
+              }
+            ]
+          },
+          {
+            "label": "IM channel",
+            "value": "im",
+            "nested": [
+              {
+                "name": "channel",
+                "type": "select",
+                "label": "User",
+                "options": "rpc://app%23slack@4/IMChannels",
+                "multiple": true,
+                "required": true
+              }
+            ]
+          },
+          {
+            "label": "Multiple IM channel",
+            "value": "mpim",
+            "nested": [
+              {
+                "name": "channel",
+                "type": "select",
+                "label": "Multiple IM channel",
+                "options": "rpc://app%23slack@4/MPIMChannels",
+                "multiple": true,
+                "required": true
+              }
+            ]
+          }
+        ],
+        "mappable": false,
+        "required": true
+      }
+    ],
+    "type": "array",
+    "label": "Channels",
+    "multiple": true,
+    "required": true
+  },
+  {
+    "name": "fileName",
+    "type": "filename",
+    "label": "File name",
+    "required": true,
+    "semantic": "file:name"
+  },
+  {
+    "name": "content",
+    "type": "text",
+    "label": "Content",
+    "required": true,
+    "semantic": "file:data"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title",
+    "required": false
+  },
+  {
+    "name": "thread_ts",
+    "type": "text",
+    "label": "Thread ID (timestamp)",
+    "required": false
+  },
+  {
+    "name": "initial_comment",
+    "type": "text",
+    "label": "Initial comment",
+    "required": false
+  }
+]

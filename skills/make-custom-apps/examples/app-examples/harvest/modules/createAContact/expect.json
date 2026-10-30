@@ -1,0 +1,47 @@
+[
+  {
+    "help": "The ID of the client associated with this contact.",
+    "mode": "edit",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients",
+    "required": true
+  },
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First name",
+    "required": true
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last name"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "phone_office",
+    "type": "text",
+    "label": "Office number"
+  },
+  {
+    "name": "phone_mobile",
+    "type": "text",
+    "label": "Mobile number"
+  },
+  {
+    "name": "fax",
+    "type": "text",
+    "label": "Fax number"
+  }
+]

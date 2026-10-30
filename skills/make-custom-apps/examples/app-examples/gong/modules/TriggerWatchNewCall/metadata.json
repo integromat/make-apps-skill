@@ -1,0 +1,25 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "output": {
+        "date": "{{item.started}}",
+        "label": "{{item.title}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch New Calls",
+  "scope": [
+    "api:calls:read:basic"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "gong",
+  "description": "Triggers when a new call occurs.",
+  "altAccountName": "gong2"
+}

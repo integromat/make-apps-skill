@@ -1,0 +1,8 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableId}}/data/delete",
+  "body": "{{parameters.rows}}",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

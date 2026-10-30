@@ -1,0 +1,19 @@
+{
+  "url": "/chat.update",
+  "body": {
+    "ts": "{{parameters.ts}}",
+    "text": "{{parameters.text}}",
+    "parse": "{{parameters.parse}}",
+    "blocks": "{{getBlocksData(parameters.blocks)}}",
+    "channel": "{{parameters.channel}}",
+    "link_names": "{{parameters.link_names}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": {
+      "ts": "{{body.ts}}",
+      "channel": "{{body.channel}}",
+      "message": "{{getOutput(body.message)}}"
+    }
+  }
+}

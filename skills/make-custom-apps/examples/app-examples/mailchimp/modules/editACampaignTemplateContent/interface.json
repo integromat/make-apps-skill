@@ -1,0 +1,77 @@
+[
+  {
+    "name": "variate_contents",
+    "spec": {
+      "spec": [
+        {
+          "name": "content_label",
+          "type": "text",
+          "label": "Content Label"
+        },
+        {
+          "name": "plain_text",
+          "type": "text",
+          "label": "Plain Text"
+        },
+        {
+          "name": "html",
+          "type": "text",
+          "label": "Html"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Variate Contents"
+  },
+  {
+    "name": "plain_text",
+    "type": "text",
+    "label": "Plain Text"
+  },
+  {
+    "name": "html",
+    "type": "text",
+    "label": "Html"
+  },
+  {
+    "name": "archive_html",
+    "type": "text",
+    "label": "Archive Html"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

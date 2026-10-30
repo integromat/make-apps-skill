@@ -1,0 +1,11 @@
+{
+  "url": "/sites/{{parameters.site_id}}/deploys",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

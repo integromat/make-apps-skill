@@ -1,0 +1,10 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}/{{parameters.addOrRemove}}",
+  "body": {
+    "data": "{{omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','addOrRemove','selectOrMap','workspaceAlt2')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

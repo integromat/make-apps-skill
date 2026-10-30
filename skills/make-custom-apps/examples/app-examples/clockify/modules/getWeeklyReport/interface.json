@@ -1,0 +1,217 @@
+[
+  {
+    "name": "reportData",
+    "type": "buffer",
+    "label": "Report Data"
+  },
+  {
+    "name": "totals",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Total ID"
+        },
+        {
+          "name": "totalTime",
+          "type": "number",
+          "label": "Total Time"
+        },
+        {
+          "name": "totalBillableTime",
+          "type": "number",
+          "label": "Total Billable Time"
+        },
+        {
+          "name": "entriesCount",
+          "type": "number",
+          "label": "Entries Count"
+        },
+        {
+          "name": "totalAmount",
+          "type": "number",
+          "label": "Total Amount"
+        },
+        {
+          "name": "amounts",
+          "spec": {
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "value",
+                "type": "number",
+                "label": "Value"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Amounts"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Totals"
+  },
+  {
+    "name": "totalsByDay",
+    "spec": {
+      "spec": [
+        {
+          "name": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "label": "Duration"
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Totals by Day"
+  },
+  {
+    "name": "groupOne",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Group One ID"
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "label": "Duration"
+        },
+        {
+          "name": "days",
+          "spec": {
+            "spec": [
+              {
+                "name": "duration",
+                "type": "number",
+                "label": "Duration"
+              },
+              {
+                "name": "date",
+                "type": "date",
+                "label": "Date"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Days"
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "color",
+          "type": "text",
+          "label": "Color"
+        },
+        {
+          "name": "clientName",
+          "type": "text",
+          "label": "Client Name"
+        },
+        {
+          "name": "nameLowerCase",
+          "type": "text",
+          "label": "Name Lower Case"
+        },
+        {
+          "name": "children",
+          "spec": {
+            "spec": [
+              {
+                "name": "duration",
+                "type": "number",
+                "label": "Duration"
+              },
+              {
+                "name": "_id",
+                "type": "text",
+                "label": "Children ID"
+              },
+              {
+                "name": "days",
+                "spec": {
+                  "spec": [
+                    {
+                      "name": "duration",
+                      "type": "number",
+                      "label": "Duration"
+                    },
+                    {
+                      "name": "date",
+                      "type": "date",
+                      "label": "Date"
+                    },
+                    {
+                      "name": "amount",
+                      "type": "number",
+                      "label": "Amount"
+                    }
+                  ],
+                  "type": "collection"
+                },
+                "type": "array",
+                "label": "Days"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "nameLowerCase",
+                "type": "text",
+                "label": "Name Lower Case"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Children"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Group One"
+  }
+]

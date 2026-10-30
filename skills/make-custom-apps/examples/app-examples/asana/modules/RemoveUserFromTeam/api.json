@@ -1,0 +1,10 @@
+{
+  "url": "/teams/{{parameters.team_gid}}/removeUser",
+  "body": {
+    "data": "{{omit(parameters,'team_gid','workspace','selectOrMap')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{}}"
+  }
+}

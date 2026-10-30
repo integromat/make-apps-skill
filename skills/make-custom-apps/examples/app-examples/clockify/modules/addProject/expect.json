@@ -1,0 +1,65 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name",
+          "required": true
+        },
+        {
+          "help": "To get the color format, click [here](https://htmlcolorcodes.com)",
+          "name": "color",
+          "type": "color",
+          "label": "Color",
+          "required": true
+        },
+        {
+          "name": "clientId",
+          "type": "select",
+          "label": "Client ID",
+          "options": "rpc://listClients"
+        },
+        {
+          "name": "isPublic",
+          "type": "boolean",
+          "label": "Public"
+        },
+        {
+          "name": "type",
+          "type": "select",
+          "label": "Estimate Type",
+          "options": [
+            {
+              "label": "AUTO",
+              "value": "AUTO"
+            },
+            {
+              "label": "MANUAL",
+              "value": "MANUAL",
+              "nested": [
+                {
+                  "name": "estimate",
+                  "type": "uinteger",
+                  "label": "Estimate Hours",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        }
+      ]
+    },
+    "required": true
+  }
+]

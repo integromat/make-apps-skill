@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "since": "{{formatDate(parameters.since, YYYY-MM-DDTHH:mm:ssZ)}}"
+  },
+  "url": "/reports/{{parameters.campaign}}/email-activity",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.emails}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit > 1000 && length(body.emails) === 1000}}"
+  }
+}

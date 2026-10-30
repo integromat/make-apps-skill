@@ -1,0 +1,5 @@
+{
+  "url": "/webhooks/{{webhook.webhook_id}}",
+  "method": "DELETE",
+  "response": {}
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Tasks with Specifiс Custom Field",
+  "scope": [],
+  "public": false,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Retrieves tasks with a specifiс custom field.",
+  "altAccountName": null
+}

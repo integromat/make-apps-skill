@@ -1,0 +1,817 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Payment Intent ID"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "amount_capturable",
+    "type": "number",
+    "label": "Amount Capturable"
+  },
+  {
+    "name": "amount_received",
+    "type": "number",
+    "label": "Amount Received"
+  },
+  {
+    "name": "application",
+    "type": "text",
+    "label": "Application"
+  },
+  {
+    "name": "application_fee_amount",
+    "type": "number",
+    "label": "Application Fee Amount"
+  },
+  {
+    "name": "canceled_at",
+    "type": "date",
+    "label": "Canceled At"
+  },
+  {
+    "name": "cancellation_reason",
+    "type": "text",
+    "label": "Cancellation Reason"
+  },
+  {
+    "name": "capture_method",
+    "type": "text",
+    "label": "Capture Method"
+  },
+  {
+    "name": "charges",
+    "spec": [
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "data",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Charge ID"
+            },
+            {
+              "name": "object",
+              "type": "text",
+              "label": "Object"
+            },
+            {
+              "name": "amount",
+              "type": "number",
+              "label": "Amount"
+            },
+            {
+              "name": "amount_captured",
+              "type": "number",
+              "label": "Amount Captured"
+            },
+            {
+              "name": "amount_refunded",
+              "type": "number",
+              "label": "Amount Refunded"
+            },
+            {
+              "name": "application",
+              "type": "text",
+              "label": "Application"
+            },
+            {
+              "name": "application_fee",
+              "type": "text",
+              "label": "Application Fee"
+            },
+            {
+              "name": "application_fee_amount",
+              "type": "text",
+              "label": "Application Fee Amount"
+            },
+            {
+              "name": "balance_transaction",
+              "type": "text",
+              "label": "Balance Transaction"
+            },
+            {
+              "name": "billing_details",
+              "spec": [
+                {
+                  "name": "address",
+                  "spec": [
+                    {
+                      "name": "city",
+                      "type": "text",
+                      "label": "City"
+                    },
+                    {
+                      "name": "country",
+                      "type": "text",
+                      "label": "Country"
+                    },
+                    {
+                      "name": "line1",
+                      "type": "text",
+                      "label": "Line 1"
+                    },
+                    {
+                      "name": "line2",
+                      "type": "text",
+                      "label": "Line 2"
+                    },
+                    {
+                      "name": "postal_code",
+                      "type": "text",
+                      "label": "Postal Code"
+                    },
+                    {
+                      "name": "state",
+                      "type": "text",
+                      "label": "State"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Address"
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "label": "Email"
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "label": "Name"
+                },
+                {
+                  "name": "phone",
+                  "type": "text",
+                  "label": "Phone"
+                }
+              ],
+              "type": "collection",
+              "label": "Billing Details"
+            },
+            {
+              "name": "calculated_statement_descriptor",
+              "type": "text",
+              "label": "Calculated Statement Descriptor"
+            },
+            {
+              "name": "captured",
+              "type": "boolean",
+              "label": "Captured"
+            },
+            {
+              "name": "created",
+              "type": "date",
+              "label": "Created"
+            },
+            {
+              "name": "currency",
+              "type": "text",
+              "label": "Currency"
+            },
+            {
+              "name": "customer",
+              "type": "text",
+              "label": "Customer"
+            },
+            {
+              "name": "description",
+              "type": "text",
+              "label": "Description"
+            },
+            {
+              "name": "destination",
+              "type": "text",
+              "label": "Destination"
+            },
+            {
+              "name": "dispute",
+              "type": "text",
+              "label": "Dispute"
+            },
+            {
+              "name": "disputed",
+              "type": "boolean",
+              "label": "Disputed"
+            },
+            {
+              "name": "failure_code",
+              "type": "text",
+              "label": "Failure Code"
+            },
+            {
+              "name": "failure_message",
+              "type": "text",
+              "label": "Failure Message"
+            },
+            {
+              "name": "fraud_details",
+              "type": "any",
+              "label": "Fraud Details"
+            },
+            {
+              "name": "invoice",
+              "type": "text",
+              "label": "Invoice"
+            },
+            {
+              "name": "livemode",
+              "type": "boolean",
+              "label": "Livemode"
+            },
+            {
+              "name": "metadata",
+              "type": "any",
+              "label": "Metadata"
+            },
+            {
+              "name": "on_behalf_of",
+              "type": "text",
+              "label": "On Behalf Of"
+            },
+            {
+              "name": "order",
+              "type": "text",
+              "label": "Order"
+            },
+            {
+              "name": "outcome",
+              "spec": [
+                {
+                  "name": "network_status",
+                  "type": "text",
+                  "label": "Network Status"
+                },
+                {
+                  "name": "reason",
+                  "type": "text",
+                  "label": "Reason"
+                },
+                {
+                  "name": "risk_level",
+                  "type": "text",
+                  "label": "Risk Level"
+                },
+                {
+                  "name": "risk_score",
+                  "type": "number",
+                  "label": "Risk Score"
+                },
+                {
+                  "name": "seller_message",
+                  "type": "text",
+                  "label": "Seller Message"
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                }
+              ],
+              "type": "collection",
+              "label": "Outcome"
+            },
+            {
+              "name": "paid",
+              "type": "boolean",
+              "label": "Paid"
+            },
+            {
+              "name": "payment_intent",
+              "type": "text",
+              "label": "Payment Intent"
+            },
+            {
+              "name": "payment_method",
+              "type": "text",
+              "label": "Payment Method"
+            },
+            {
+              "name": "payment_method_details",
+              "spec": [
+                {
+                  "name": "card",
+                  "spec": [
+                    {
+                      "name": "brand",
+                      "type": "text",
+                      "label": "Brand"
+                    },
+                    {
+                      "name": "checks",
+                      "spec": [
+                        {
+                          "name": "address_line1_check",
+                          "type": "text",
+                          "label": "Address Line 1 Check"
+                        },
+                        {
+                          "name": "address_postal_code_check",
+                          "type": "text",
+                          "label": "Address Postal Code Check"
+                        },
+                        {
+                          "name": "cvc_check",
+                          "type": "text",
+                          "label": "Cvc Check"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Checks"
+                    },
+                    {
+                      "name": "country",
+                      "type": "text",
+                      "label": "Country"
+                    },
+                    {
+                      "name": "exp_month",
+                      "type": "number",
+                      "label": "Exp Month"
+                    },
+                    {
+                      "name": "exp_year",
+                      "type": "number",
+                      "label": "Exp Year"
+                    },
+                    {
+                      "name": "fingerprint",
+                      "type": "text",
+                      "label": "Fingerprint"
+                    },
+                    {
+                      "name": "funding",
+                      "type": "text",
+                      "label": "Funding"
+                    },
+                    {
+                      "name": "installments",
+                      "type": "text",
+                      "label": "Installments"
+                    },
+                    {
+                      "name": "last4",
+                      "type": "text",
+                      "label": "Last 4"
+                    },
+                    {
+                      "name": "network",
+                      "type": "text",
+                      "label": "Network"
+                    },
+                    {
+                      "name": "three_d_secure",
+                      "type": "text",
+                      "label": "3D Secure"
+                    },
+                    {
+                      "name": "wallet",
+                      "type": "text",
+                      "label": "Wallet"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Card"
+                },
+                {
+                  "name": "type",
+                  "type": "text",
+                  "label": "Type"
+                }
+              ],
+              "type": "collection",
+              "label": "Payment Method Details"
+            },
+            {
+              "name": "receipt_email",
+              "type": "text",
+              "label": "Receipt Email"
+            },
+            {
+              "name": "receipt_number",
+              "type": "text",
+              "label": "Receipt Number"
+            },
+            {
+              "name": "receipt_url",
+              "type": "text",
+              "label": "Receipt URL"
+            },
+            {
+              "name": "refunded",
+              "type": "boolean",
+              "label": "Refunded"
+            },
+            {
+              "name": "refunds",
+              "spec": [
+                {
+                  "name": "object",
+                  "type": "text",
+                  "label": "Object"
+                },
+                {
+                  "name": "data",
+                  "type": "array",
+                  "label": "Data"
+                },
+                {
+                  "name": "has_more",
+                  "type": "boolean",
+                  "label": "Has More"
+                },
+                {
+                  "name": "total_count",
+                  "type": "number",
+                  "label": "Total Count"
+                },
+                {
+                  "name": "url",
+                  "type": "text",
+                  "label": "URL"
+                }
+              ],
+              "type": "collection",
+              "label": "Refunds"
+            },
+            {
+              "name": "review",
+              "type": "text",
+              "label": "Review"
+            },
+            {
+              "name": "shipping",
+              "spec": [
+                {
+                  "name": "address",
+                  "spec": [
+                    {
+                      "name": "city",
+                      "type": "text",
+                      "label": "City"
+                    },
+                    {
+                      "name": "country",
+                      "type": "text",
+                      "label": "Country"
+                    },
+                    {
+                      "name": "line1",
+                      "type": "text",
+                      "label": "Line 1"
+                    },
+                    {
+                      "name": "line2",
+                      "type": "text",
+                      "label": "Line 2"
+                    },
+                    {
+                      "name": "postal_code",
+                      "type": "text",
+                      "label": "Postal Code"
+                    },
+                    {
+                      "name": "state",
+                      "type": "text",
+                      "label": "State"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Address"
+                },
+                {
+                  "name": "carrier",
+                  "type": "text",
+                  "label": "Carrier"
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "label": "Name"
+                },
+                {
+                  "name": "phone",
+                  "type": "text",
+                  "label": "Phone"
+                },
+                {
+                  "name": "tracking_number",
+                  "type": "text",
+                  "label": "Tracking Number"
+                }
+              ],
+              "type": "collection",
+              "label": "Shipping"
+            },
+            {
+              "name": "source",
+              "type": "text",
+              "label": "Source"
+            },
+            {
+              "name": "source_transfer",
+              "type": "text",
+              "label": "Source Transfer"
+            },
+            {
+              "name": "statement_descriptor",
+              "type": "text",
+              "label": "Statement Descriptor"
+            },
+            {
+              "name": "statement_descriptor_suffix",
+              "type": "text",
+              "label": "Statement Descriptor Suffix"
+            },
+            {
+              "name": "status",
+              "type": "text",
+              "label": "Status"
+            },
+            {
+              "name": "transfer_data",
+              "type": "text",
+              "label": "Transfer Data"
+            },
+            {
+              "name": "transfer_group",
+              "type": "text",
+              "label": "Transfer Group"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Data"
+      },
+      {
+        "name": "has_more",
+        "type": "boolean",
+        "label": "Has More"
+      },
+      {
+        "name": "total_count",
+        "type": "number",
+        "label": "Total Count"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "URL"
+      }
+    ],
+    "type": "collection",
+    "label": "Charges"
+  },
+  {
+    "name": "client_secret",
+    "type": "text",
+    "label": "Client Secret"
+  },
+  {
+    "name": "confirmation_method",
+    "type": "text",
+    "label": "Confirmation Method"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice"
+  },
+  {
+    "name": "last_payment_error",
+    "type": "text",
+    "label": "Last Payment Error"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "metadata",
+    "type": "any",
+    "label": "Metadata"
+  },
+  {
+    "name": "next_action",
+    "type": "text",
+    "label": "Next Action"
+  },
+  {
+    "name": "on_behalf_of",
+    "type": "text",
+    "label": "On Behalf Of"
+  },
+  {
+    "name": "payment_method",
+    "type": "text",
+    "label": "Payment Method"
+  },
+  {
+    "name": "payment_method_options",
+    "spec": [
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "installments",
+            "spec": [
+              {
+                "name": "available_plans",
+                "type": "array",
+                "label": "Available Plans"
+              },
+              {
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Enabled"
+              },
+              {
+                "name": "plan",
+                "type": "text",
+                "label": "Plan"
+              }
+            ],
+            "type": "collection",
+            "label": "Installments"
+          },
+          {
+            "name": "network",
+            "type": "text",
+            "label": "Network"
+          },
+          {
+            "name": "request_three_d_secure",
+            "type": "text",
+            "label": "Request 3D Secure"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      }
+    ],
+    "type": "collection",
+    "label": "Payment Method Options"
+  },
+  {
+    "name": "payment_method_types",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Payment Method Types"
+  },
+  {
+    "name": "receipt_email",
+    "type": "text",
+    "label": "Receipt Email"
+  },
+  {
+    "name": "review",
+    "type": "text",
+    "label": "Review"
+  },
+  {
+    "name": "setup_future_usage",
+    "type": "text",
+    "label": "Setup Future Usage"
+  },
+  {
+    "name": "shipping",
+    "spec": [
+      {
+        "name": "address",
+        "spec": [
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "line1",
+            "type": "text",
+            "label": "Line 1"
+          },
+          {
+            "name": "line2",
+            "type": "text",
+            "label": "Line 2"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal Code"
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "name": "carrier",
+        "type": "text",
+        "label": "Carrier"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "tracking_number",
+        "type": "text",
+        "label": "Tracking Number"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping"
+  },
+  {
+    "name": "source",
+    "type": "text",
+    "label": "Source"
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement Descriptor"
+  },
+  {
+    "name": "statement_descriptor_suffix",
+    "type": "text",
+    "label": "Statement Descriptor Suffix"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "transfer_data",
+    "spec": [
+      {
+        "name": "destination",
+        "type": "text",
+        "label": "Destination"
+      },
+      {
+        "name": "amount",
+        "type": "text",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data"
+  },
+  {
+    "name": "transfer_group",
+    "type": "text",
+    "label": "Transfer Group"
+  }
+]

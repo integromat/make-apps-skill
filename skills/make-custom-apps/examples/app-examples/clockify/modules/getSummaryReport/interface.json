@@ -1,0 +1,272 @@
+[
+  {
+    "name": "reportData",
+    "type": "buffer",
+    "label": "Report Data"
+  },
+  {
+    "name": "totals",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Total ID"
+        },
+        {
+          "name": "totalTime",
+          "type": "number",
+          "label": "Total Time"
+        },
+        {
+          "name": "totalBillableTime",
+          "type": "number",
+          "label": "Total Billable Time"
+        },
+        {
+          "name": "entriesCount",
+          "type": "number",
+          "label": "Entries Count"
+        },
+        {
+          "name": "totalAmount",
+          "type": "number",
+          "label": "Total Amount"
+        },
+        {
+          "name": "amounts",
+          "spec": {
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "value",
+                "type": "number",
+                "label": "Value"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Amounts"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Totals"
+  },
+  {
+    "name": "groupOne",
+    "spec": {
+      "spec": [
+        {
+          "name": "duration",
+          "type": "number",
+          "label": "Duration"
+        },
+        {
+          "name": "amounts",
+          "spec": {
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "value",
+                "type": "number",
+                "label": "Value"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Amounts"
+        },
+        {
+          "name": "amount",
+          "type": "number",
+          "label": "Amount"
+        },
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Group One ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "nameLowerCase",
+          "type": "text",
+          "label": "Name Lower Case"
+        },
+        {
+          "name": "color",
+          "type": "color",
+          "label": "Color"
+        },
+        {
+          "name": "clientName",
+          "type": "text",
+          "label": "Client Name"
+        },
+        {
+          "name": "children",
+          "spec": {
+            "spec": [
+              {
+                "name": "duration",
+                "type": "number",
+                "label": "Duration"
+              },
+              {
+                "name": "amounts",
+                "spec": {
+                  "spec": [
+                    {
+                      "name": "type",
+                      "type": "text",
+                      "label": "Type"
+                    },
+                    {
+                      "name": "value",
+                      "type": "number",
+                      "label": "Value"
+                    }
+                  ],
+                  "type": "collection"
+                },
+                "type": "array",
+                "label": "Amounts"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "sortValue",
+                "type": "number",
+                "label": "Sort Value"
+              },
+              {
+                "name": "_id",
+                "type": "text",
+                "label": "Children ID"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "nameLowerCase",
+                "type": "text",
+                "label": "Name Lower Case"
+              },
+              {
+                "name": "projectName",
+                "type": "text",
+                "label": "Project Name"
+              },
+              {
+                "name": "projectColor",
+                "type": "color",
+                "label": "Project Color"
+              },
+              {
+                "name": "clientName",
+                "type": "text",
+                "label": "Client Name"
+              },
+              {
+                "name": "children",
+                "spec": {
+                  "spec": [
+                    {
+                      "name": "duration",
+                      "type": "number",
+                      "label": "Duration"
+                    },
+                    {
+                      "name": "_id",
+                      "type": "array",
+                      "label": "ID"
+                    },
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "nameLowerCase",
+                      "type": "text",
+                      "label": "Name Lower Case"
+                    },
+                    {
+                      "name": "amounts",
+                      "spec": {
+                        "spec": [
+                          {
+                            "name": "type",
+                            "type": "text",
+                            "label": "Type"
+                          },
+                          {
+                            "name": "value",
+                            "type": "number",
+                            "label": "Value"
+                          }
+                        ],
+                        "type": "collection"
+                      },
+                      "type": "array",
+                      "label": "Amounts"
+                    },
+                    {
+                      "name": "amount",
+                      "type": "number",
+                      "label": "Amount"
+                    },
+                    {
+                      "name": "projectName",
+                      "type": "text",
+                      "label": "Project Name"
+                    },
+                    {
+                      "name": "projectColor",
+                      "type": "color",
+                      "label": "Project Color"
+                    },
+                    {
+                      "name": "clientName",
+                      "type": "text",
+                      "label": "Client Name"
+                    }
+                  ],
+                  "type": "collection"
+                },
+                "type": "array",
+                "label": "Children"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Children"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Group One"
+  }
+]

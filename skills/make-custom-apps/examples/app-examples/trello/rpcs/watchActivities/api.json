@@ -1,0 +1,194 @@
+{
+  "response": {
+    "output": [
+      {
+        "help": "Each event has its own output, and if multiple events are selected, their outputs are merged, so not all items must always be filled in for each event. ",
+        "name": "actions",
+        "type": "select",
+        "label": "Watch activities",
+        "options": [
+          {
+            "label": "All",
+            "value": "all"
+          },
+          {
+            "label": "Add Attachment To Card",
+            "value": "addAttachmentToCard"
+          },
+          {
+            "label": "Add Checklist To Card",
+            "value": "addChecklistToCard"
+          },
+          {
+            "label": "Add Member To Board",
+            "value": "addMemberToBoard"
+          },
+          {
+            "label": "Add Member To Card",
+            "value": "addMemberToCard"
+          },
+          {
+            "label": "Add Member To Organization",
+            "value": "addMemberToOrganization"
+          },
+          {
+            "label": "Add To Organization Board",
+            "value": "addToOrganizationBoard"
+          },
+          {
+            "label": "Comment Card",
+            "value": "commentCard"
+          },
+          {
+            "label": "Convert To Card From Checklist Item",
+            "value": "convertToCardFromCheckItem"
+          },
+          {
+            "label": "Copy Board",
+            "value": "copyBoard"
+          },
+          {
+            "label": "Copy Card",
+            "value": "copyCard"
+          },
+          {
+            "label": "Copy Comment Card",
+            "value": "copyCommentCard"
+          },
+          {
+            "label": "Create Board",
+            "value": "createBoard"
+          },
+          {
+            "label": "Create Card",
+            "value": "createCard"
+          },
+          {
+            "label": "Create List",
+            "value": "createList"
+          },
+          {
+            "label": "Create Organization",
+            "value": "createOrganization"
+          },
+          {
+            "label": "Delete Attachment From Card",
+            "value": "deleteAttachmentFromCard"
+          },
+          {
+            "label": "Delete Board Invitation",
+            "value": "deleteBoardInvitation"
+          },
+          {
+            "label": "Delete Card",
+            "value": "deleteCard"
+          },
+          {
+            "label": "Delete Organization Invitation",
+            "value": "deleteOrganizationInvitation"
+          },
+          {
+            "label": "Disable Power Up",
+            "value": "disablePowerUp"
+          },
+          {
+            "label": "Email Card",
+            "value": "emailCard"
+          },
+          {
+            "label": "Enable Power Up",
+            "value": "enablePowerUp"
+          },
+          {
+            "label": "Make Admin Of Board",
+            "value": "makeAdminOfBoard"
+          },
+          {
+            "label": "Make Normal Member Of Board",
+            "value": "makeNormalMemberOfBoard"
+          },
+          {
+            "label": "Make Normal Member Of Organization",
+            "value": "makeNormalMemberOfOrganization"
+          },
+          {
+            "label": "Make Observer Of Board",
+            "value": "makeObserverOfBoard"
+          },
+          {
+            "label": "Member Joined Trello",
+            "value": "memberJoinedTrello"
+          },
+          {
+            "label": "Move Card From Board",
+            "value": "moveCardFromBoard"
+          },
+          {
+            "label": "Move Card To Board",
+            "value": "moveCardToBoard"
+          },
+          {
+            "label": "Move List From Board",
+            "value": "moveListFromBoard"
+          },
+          {
+            "label": "Move List To Board",
+            "value": "moveListToBoard"
+          },
+          {
+            "label": "Remove Checklist From Card",
+            "value": "removeChecklistFromCard"
+          },
+          {
+            "label": "Remove From Organization Board",
+            "value": "removeFromOrganizationBoard"
+          },
+          {
+            "label": "Remove Member From Card",
+            "value": "removeMemberFromCard"
+          },
+          {
+            "label": "Unconfirmed Board Invitation",
+            "value": "unconfirmedBoardInvitation"
+          },
+          {
+            "label": "Unconfirmed Organization Invitation",
+            "value": "unconfirmedOrganizationInvitation"
+          },
+          {
+            "label": "Update Board",
+            "value": "updateBoard"
+          },
+          {
+            "label": "Update Card",
+            "value": "updateCard"
+          },
+          {
+            "label": "Update Checklist Item State On Card",
+            "value": "updateCheckItemStateOnCard"
+          },
+          {
+            "label": "Update Checklist",
+            "value": "updateChecklist"
+          },
+          {
+            "label": "Update List",
+            "value": "updateList"
+          },
+          {
+            "label": "Update Member",
+            "value": "updateMember"
+          },
+          {
+            "label": "Update Organization",
+            "value": "updateOrganization"
+          }
+        ],
+        "editable": true,
+        "mappable": true,
+        "multiple": true,
+        "validate": false
+      }
+    ]
+  }
+}

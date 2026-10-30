@@ -1,0 +1,46 @@
+[
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First name",
+    "required": true
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last name",
+    "required": true
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email address",
+    "required": true
+  },
+  {
+    "name": "telephone",
+    "type": "text",
+    "label": "Telephone"
+  },
+  {
+    "help": "The user’s timezone. Defaults to the company’s timezone. See a list of [supported time zones](https://help.getharvest.com/api-v2/introduction/overview/supported-timezones/).",
+    "name": "timezone",
+    "type": "text",
+    "label": "Timezone"
+  },
+  {
+    "name": "roles",
+    "spec": {
+      "type": "text",
+      "label": "Role"
+    },
+    "type": "array",
+    "label": "Roles"
+  },
+  {
+    "name": "is_admin",
+    "type": "boolean",
+    "label": "Administrator",
+    "advanced": true
+  }
+]

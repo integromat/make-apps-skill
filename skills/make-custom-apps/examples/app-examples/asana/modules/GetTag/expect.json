@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "tag",
+    "type": "select",
+    "label": "Tag ID",
+    "options": "rpc://app%23asana@2/GetTags",
+    "required": true
+  }
+]

@@ -1,0 +1,139 @@
+[
+  {
+    "label": "Messages",
+    "modules": [
+      "WatchMessages",
+      "WatchGroupMessages",
+      "watchPrivateChannelMessages",
+      "WatchDirectMessages",
+      "WatchMIMMessages",
+      "watchScheduledMessages",
+      "SearchMessages",
+      "listScheduledMessages",
+      "GetPrivateChannelMessage",
+      "getPrivateChannelMessage",
+      "GetPublicChannelMessage",
+      "ListReplies",
+      "CreateMessage",
+      "UpdateMessage",
+      "DeleteMessage",
+      "scheduleMessage"
+    ]
+  },
+  {
+    "label": "Files",
+    "modules": [
+      "WatchFiles",
+      "ListUsers",
+      "GetFile",
+      "DownloadFile",
+      "UploadFile",
+      "CreateTextFile",
+      "DeleteFile"
+    ]
+  },
+  {
+    "label": "Channels",
+    "modules": [
+      "ListChannels",
+      "GetChannel",
+      "ListMembersChannel",
+      "SetTopic",
+      "SetPurpose",
+      "JoinChannel",
+      "LeaveChannel",
+      "CreateChannel",
+      "ArchiveChannel",
+      "UnarchiveChannel",
+      "openConversation"
+    ]
+  },
+  {
+    "label": "Reactions",
+    "modules": [
+      "ListReactions",
+      "AddReaction",
+      "RemoveReaction"
+    ]
+  },
+  {
+    "label": "Stars",
+    "modules": [
+      "watchStarredMessages",
+      "AddStar",
+      "RemoveStar"
+    ]
+  },
+  {
+    "label": "Saved Items",
+    "modules": [
+      "SaveItem",
+      "RemoveSavedItem"
+    ]
+  },
+  {
+    "label": "Pins",
+    "modules": [
+      "PinItem",
+      "UnpinIterm"
+    ]
+  },
+  {
+    "label": "Users",
+    "modules": [
+      "WatchUsers",
+      "SearchUser",
+      "ListUsersWorkspace",
+      "GetUser",
+      "InviteUsers",
+      "KickUser"
+    ]
+  },
+  {
+    "label": "Reminders",
+    "modules": [
+      "ListReminders",
+      "GetReminder",
+      "CreateReminder",
+      "CompleteReminder",
+      "DeleteReminder"
+    ]
+  },
+  {
+    "label": "Events",
+    "modules": [
+      "NewEvent"
+    ]
+  },
+  {
+    "label": "Profile",
+    "modules": [
+      "GetMyInfo",
+      "SetStatus"
+    ]
+  },
+  {
+    "label": "Do Not Disturb",
+    "modules": [
+      "getDNDStatus",
+      "enableDNDMode",
+      "disableSnoozeMode",
+      "disableDNDMode"
+    ]
+  },
+  {
+    "label": "Saved Item",
+    "modules": [
+      "watchSavedItems",
+      "listSavedItems"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "MakeAPICall",
+      "watchInteractivityEvents",
+      "inviteUser"
+    ]
+  }
+]

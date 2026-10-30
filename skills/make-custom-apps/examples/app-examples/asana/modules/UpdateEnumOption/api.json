@@ -1,0 +1,10 @@
+{
+  "url": "/enum_options/{{parameters.enum_option}}",
+  "body": {
+    "data": "{{omit(parameters,'custom_field','workspace','enum_option')}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

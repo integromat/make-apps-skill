@@ -1,0 +1,21 @@
+{
+  "rev": 5,
+  "type": "web-shared",
+  "flags": {},
+  "label": "New Event",
+  "scope": [
+    "channels:read",
+    "emoji:read",
+    "files:read",
+    "channels:read",
+    "groups:read",
+    "channels:history",
+    "groups:history",
+    "im:history",
+    "mpim:history",
+    "reactions:read"
+  ],
+  "aliasTo": "slack-events",
+  "accountName": "slack2",
+  "altAccountName": null
+}

@@ -1,0 +1,10 @@
+{
+  "rev": 4,
+  "type": "web",
+  "flags": {},
+  "label": "Email",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "lemlist",
+  "altAccountName": null
+}

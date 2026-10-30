@@ -1,0 +1,33 @@
+[
+  {
+    "name": "board_id",
+    "type": "select",
+    "label": "Board",
+    "options": {
+      "store": "rpc://app%23trello@4/listBoards",
+      "nested": [
+        {
+          "name": "list_id",
+          "type": "select",
+          "label": "List",
+          "options": "rpc://app%23trello@4/getBoardsLists",
+          "mappable": false,
+          "required": true
+        }
+      ]
+    },
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

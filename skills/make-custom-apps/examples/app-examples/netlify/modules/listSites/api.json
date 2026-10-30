@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "filter": "{{parameters.filter}}",
+    "per_page": "{{temp.limit}}"
+  },
+  "url": "/sites",
+  "body": {},
+  "temp": {
+    "limit": 50
+  },
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{formatDates(siteResponse(item))}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "user": "{{parameters.user}}"
+  },
+  "url": "/dnd.info",
+  "method": "GET",
+  "response": {
+    "output": "{{getOutput(body)}}"
+  }
+}

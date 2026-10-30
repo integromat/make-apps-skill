@@ -1,0 +1,10 @@
+{
+  "rev": 7,
+  "type": "web",
+  "flags": {},
+  "label": "Watch Activities",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "trello",
+  "altAccountName": null
+}

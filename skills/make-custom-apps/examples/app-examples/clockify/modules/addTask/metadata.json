@@ -1,0 +1,16 @@
+{
+  "rev": 5,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add a Task",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Adds a new task to a project.",
+  "altAccountName": null
+}

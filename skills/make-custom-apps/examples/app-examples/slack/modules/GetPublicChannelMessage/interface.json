@@ -1,0 +1,209 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Message"
+  },
+  {
+    "name": "subtype",
+    "type": "text",
+    "label": "Subtype"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Time stamp"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "User name"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "upload",
+    "type": "boolean",
+    "label": "Upload"
+  },
+  {
+    "name": "display_as_bot",
+    "type": "boolean",
+    "label": "Display as bot"
+  },
+  {
+    "name": "bot_id",
+    "type": "text",
+    "label": "Bot ID"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "team",
+    "type": "text",
+    "label": "Team ID"
+  },
+  {
+    "name": "client_msg_id",
+    "type": "text",
+    "label": "Client msg ID"
+  },
+  {
+    "name": "reply_users",
+    "type": "array",
+    "label": "Reply users"
+  },
+  {
+    "name": "attachments",
+    "spec": {
+      "spec": [
+        {
+          "name": "fallback",
+          "type": "text",
+          "label": "Fallback"
+        },
+        {
+          "name": "image_url",
+          "type": "url",
+          "label": "Image URL"
+        },
+        {
+          "name": "image_width",
+          "type": "number",
+          "label": "Image width"
+        },
+        {
+          "name": "image_height",
+          "type": "number",
+          "label": "Image height"
+        },
+        {
+          "name": "image_bytes",
+          "type": "number",
+          "label": "Image bytes"
+        },
+        {
+          "name": "is_animated",
+          "type": "boolean",
+          "label": "Os amnimated"
+        },
+        {
+          "name": "from_url",
+          "type": "url",
+          "label": "From URL"
+        },
+        {
+          "name": "id",
+          "type": "number",
+          "label": "Attachment ID"
+        },
+        {
+          "name": "original_url",
+          "type": "url",
+          "label": "Original URL"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Attachments"
+  },
+  {
+    "name": "files",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "File ID"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "url_private_download",
+        "type": "url",
+        "label": "Url private download"
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "label": "Size"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "mimetype",
+        "type": "text",
+        "label": "MIME type"
+      }
+    ],
+    "type": "array",
+    "label": "Files"
+  },
+  {
+    "name": "reactions",
+    "spec": {
+      "spec": [
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "users",
+          "spec": {
+            "type": "text"
+          },
+          "type": "array",
+          "label": "Users"
+        },
+        {
+          "name": "count",
+          "type": "number",
+          "label": "Count"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Reactions"
+  },
+  {
+    "name": "blocks",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "block_id",
+        "type": "text",
+        "label": "Block ID"
+      },
+      {
+        "name": "elements",
+        "type": "array",
+        "label": "Elements"
+      }
+    ],
+    "type": "array",
+    "label": "Blocks"
+  }
+]

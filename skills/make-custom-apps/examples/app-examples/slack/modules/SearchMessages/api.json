@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "sort": "{{parameters.sort}}",
+    "count": 100,
+    "query": "{{parameters.query}}",
+    "sort_dir": "{{parameters.sort_dir}}"
+  },
+  "url": "/search.messages",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.messages.matches}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.messages.pagination.page < body.messages.pagination.page_count}}"
+  }
+}

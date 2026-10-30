@@ -1,0 +1,29 @@
+{
+  "qs": {
+    "from": "{{formatDate(parameters.from, 'YYYY-MM-DD')}}",
+    "user_id": "{{parameters.user_id}}",
+    "per_page": 100,
+    "client_id": "{{parameters.client_id}}",
+    "project_id": "{{parameters.project_id}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "/time_entries",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.time_entries}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{switch(parameters.watch, 'new', item.created_at, 'updated', item.updated_at)}}",
+      "type": "date",
+      "order": "unordered"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

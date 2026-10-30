@@ -1,0 +1,49 @@
+[
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Timestamp"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "files",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "File ID"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "url_private_download",
+        "type": "url",
+        "label": "Url private download"
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "label": "Size"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "mimetype",
+        "type": "text",
+        "label": "MIME type"
+      }
+    ],
+    "type": "array",
+    "label": "Files"
+  }
+]

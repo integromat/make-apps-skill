@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "limit": 1000,
+    "fields": "all"
+  },
+  "url": "/cards/{{parameters.card_id}}/attachments",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.date}}",
+      "type": "date",
+      "order": "desc"
+    }
+  }
+}

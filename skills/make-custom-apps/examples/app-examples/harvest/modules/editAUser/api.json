@@ -1,0 +1,16 @@
+{
+  "qs": {},
+  "url": "/users/{{parameters.user_id}}",
+  "body": {
+    "email": "{{parameters.email}}",
+    "is_admin": "{{parameters.is_admin}}",
+    "last_name": "{{parameters.last_name}}",
+    "telephone": "{{parameters.telephone}}",
+    "first_name": "{{parameters.first_name}}"
+  },
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

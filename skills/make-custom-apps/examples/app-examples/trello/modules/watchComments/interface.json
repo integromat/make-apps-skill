@@ -1,0 +1,240 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator member ID"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "list",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "List"
+      },
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Shortlink"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Shortlink"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "appCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "icon",
+        "spec": [
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ],
+        "type": "collection",
+        "label": "Icon"
+      }
+    ],
+    "type": "collection",
+    "label": "App Creator"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "reactions",
+        "spec": [
+          {
+            "name": "perAction",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per action"
+          },
+          {
+            "name": "uniquePerAction",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Unique per action"
+          }
+        ],
+        "type": "collection",
+        "label": "Reactions"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "memberCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "activityBlocked",
+        "type": "boolean",
+        "label": "Activity Blocked"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "text",
+        "label": "Avatar URL"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full name"
+      },
+      {
+        "name": "idMemberReferrer",
+        "type": "text",
+        "label": "Referrer member ID"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "nonPublic",
+        "spec": [],
+        "type": "collection",
+        "label": "Non public"
+      },
+      {
+        "name": "nonPublicAvailable",
+        "type": "boolean",
+        "label": "Non public available"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Creator member"
+  }
+]

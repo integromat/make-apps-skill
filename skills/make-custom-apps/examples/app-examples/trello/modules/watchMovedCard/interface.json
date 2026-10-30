@@ -1,0 +1,223 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Action ID"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator Member ID"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "old",
+        "spec": [
+          {
+            "name": "idList",
+            "type": "text",
+            "label": "List ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Old"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "idList",
+            "type": "text",
+            "label": "List ID"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Card ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short Link"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      },
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Board ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short Link"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "listBefore",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "List ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          }
+        ],
+        "type": "collection",
+        "label": "List Before"
+      },
+      {
+        "name": "listAfter",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "List ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          }
+        ],
+        "type": "collection",
+        "label": "List After"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "entities",
+    "spec": {
+      "spec": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Entities"
+  },
+  {
+    "name": "memberCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "activityBlocked",
+        "type": "boolean",
+        "label": "Activity Blocked"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar Hash"
+      },
+      {
+        "name": "avatarUrl",
+        "type": "text",
+        "label": "Avatar Url"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full Name"
+      },
+      {
+        "name": "idMemberReferrer",
+        "type": "text",
+        "label": "ID Member Referrer"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "nonPublic",
+        "spec": [],
+        "type": "collection",
+        "label": "Non Public"
+      },
+      {
+        "name": "nonPublicAvailable",
+        "type": "boolean",
+        "label": "Non Public Available"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Member Creator"
+  }
+]

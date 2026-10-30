@@ -1,0 +1,7 @@
+[
+  {
+    "name": "product",
+    "type": "text",
+    "label": "Product ID"
+  }
+]

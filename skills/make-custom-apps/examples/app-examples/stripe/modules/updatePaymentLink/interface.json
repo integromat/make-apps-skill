@@ -1,0 +1,239 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Payment Link ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "active",
+    "type": "boolean",
+    "label": "Active"
+  },
+  {
+    "name": "after_completion",
+    "spec": [
+      {
+        "name": "hosted_confirmation",
+        "spec": [
+          {
+            "name": "custom_message",
+            "type": "text",
+            "label": "Custom Message"
+          }
+        ],
+        "type": "collection",
+        "label": "Hosted Confirmation"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "After Completion"
+  },
+  {
+    "name": "allow_promotion_codes",
+    "type": "boolean",
+    "label": "Allow Promotion Codes"
+  },
+  {
+    "name": "application_fee_amount",
+    "type": "number",
+    "label": "Application Fee Amount"
+  },
+  {
+    "name": "application_fee_percent",
+    "type": "number",
+    "label": "Application Fee Percent"
+  },
+  {
+    "name": "automatic_tax",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Automatic Tax"
+  },
+  {
+    "name": "billing_address_collection",
+    "type": "text",
+    "label": "Billing Address Collection"
+  },
+  {
+    "name": "consent_collection",
+    "spec": [
+      {
+        "name": "promotions",
+        "type": "text",
+        "label": "Promotions"
+      }
+    ],
+    "type": "collection",
+    "label": "Consent Collection"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "customer_creation",
+    "type": "text",
+    "label": "Customer Creation"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "metadata",
+    "spec": [],
+    "type": "collection",
+    "label": "Metadata"
+  },
+  {
+    "name": "on_behalf_of",
+    "type": "text",
+    "label": "On Behalf Of"
+  },
+  {
+    "name": "payment_intent_data",
+    "spec": [
+      {
+        "name": "capture_method",
+        "type": "text",
+        "label": "Capture Method"
+      },
+      {
+        "name": "setup_future_usage",
+        "type": "text",
+        "label": "Setup Future Usage"
+      }
+    ],
+    "type": "collection",
+    "label": "Payment Intent Data"
+  },
+  {
+    "name": "payment_method_collection",
+    "type": "text",
+    "label": "Payment Method Collection"
+  },
+  {
+    "name": "payment_method_types",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Payment Method Types"
+  },
+  {
+    "name": "phone_number_collection",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Phone Number Collection"
+  },
+  {
+    "name": "shipping_address_collection",
+    "spec": [
+      {
+        "name": "allowed_countries",
+        "spec": {
+          "type": "text"
+        },
+        "type": "array",
+        "label": "Allowed Countries"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping Address Collection"
+  },
+  {
+    "name": "shipping_options",
+    "spec": {
+      "spec": [
+        {
+          "name": "shipping_amount",
+          "type": "number",
+          "label": "Shipping Amount"
+        },
+        {
+          "name": "shipping_rate",
+          "type": "text",
+          "label": "Shipping Rate"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Shipping Options"
+  },
+  {
+    "name": "submit_type",
+    "type": "text",
+    "label": "Submit Type"
+  },
+  {
+    "name": "subscription_data",
+    "spec": [
+      {
+        "name": "trial_period_days",
+        "type": "uinteger",
+        "label": "Trial Period Days"
+      }
+    ],
+    "type": "collection",
+    "label": "Subscription Data"
+  },
+  {
+    "name": "tax_id_collection",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Tax ID Collection"
+  },
+  {
+    "name": "transfer_data",
+    "spec": [
+      {
+        "name": "destination",
+        "type": "text",
+        "label": "Destination"
+      },
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data"
+  },
+  {
+    "name": "url",
+    "type": "text",
+    "label": "URL"
+  }
+]

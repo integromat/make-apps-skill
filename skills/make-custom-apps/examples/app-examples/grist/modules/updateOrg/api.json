@@ -1,0 +1,10 @@
+{
+  "url": "/orgs/{{parameters.orgId}}",
+  "body": {
+    "name": "{{parameters.name}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

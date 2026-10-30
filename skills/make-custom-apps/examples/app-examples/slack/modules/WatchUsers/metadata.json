@@ -1,0 +1,26 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{parseDate(item.updated)}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Users",
+  "scope": [
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when a new user is added or an existing user has changed. Only emit the latest change since the last scenario run.",
+  "altAccountName": null
+}

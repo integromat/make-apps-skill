@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "is-active": "{{parameters.`is-active`}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}/tasks",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{omit(item, 'duration')}}",
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) > 1}}"
+  }
+}

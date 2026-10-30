@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "count": 100,
+    "status": "subscribed",
+    "sort_dir": "DESC",
+    "sort_field": "last_changed"
+  },
+  "url": "/lists/{{parameters.listId}}/members",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.full_name + ': ' + item.contact_id}}",
+      "value": "{{item.contact_id}}"
+    },
+    "iterate": "{{body.members}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

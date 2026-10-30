@@ -1,0 +1,24 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{switch(parameters.watch, 'new', item.created_at, 'updated', item.updated_at)}}",
+        "label": "{{item.spent_date}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Time Entries",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Triggers when a new time entry is created.",
+  "altAccountName": null
+}

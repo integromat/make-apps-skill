@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/pages/{{parameters.sectionIdOrName}}",
+  "body": {
+    "name": "{{parameters.name}}",
+    "iconName": "{{parameters.iconName}}",
+    "imageUrl": "{{parameters.imageUrl}}",
+    "subtitle": "{{parameters.subtitle}}"
+  },
+  "method": "PUT",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "user",
+          "type": "select",
+          "label": "Assignee ID",
+          "options": "rpc://listUsers",
+          "required": true
+        },
+        {
+          "name": "end",
+          "time": true,
+          "type": "date",
+          "label": "End Time"
+        }
+      ]
+    },
+    "required": true
+  }
+]

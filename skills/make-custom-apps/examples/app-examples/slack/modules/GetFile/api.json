@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "file": "{{parameters.file}}"
+  },
+  "url": "/files.info",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "file": "{{getOutput(body.file)}}",
+      "content": "{{body.content}}",
+      "is_truncated": "{{body.is_truncated}}"
+    }
+  }
+}

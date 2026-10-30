@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "fields": "all",
+    "limits": 1000
+  },
+  "url": "/boards/{{parameters.board_id}}/labels",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{if(item.name, item.name + ' (' + item.color + ')', capitalize(item.color))}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

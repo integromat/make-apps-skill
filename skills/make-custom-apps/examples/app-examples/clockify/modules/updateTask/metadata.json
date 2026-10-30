@@ -1,0 +1,16 @@
+{
+  "rev": 5,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Task",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Updates an existing task.",
+  "altAccountName": null
+}

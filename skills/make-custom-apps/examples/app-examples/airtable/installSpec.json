@@ -1,0 +1,8 @@
+[
+  {
+    "name": "metadataClientSecret",
+    "type": "text",
+    "label": "Metadata Client Secret",
+    "required": true
+  }
+]

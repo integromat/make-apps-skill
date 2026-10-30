@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Pin a Message",
+  "scope": [
+    "pins:write"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Pins a message to a channel.",
+  "altAccountName": null
+}

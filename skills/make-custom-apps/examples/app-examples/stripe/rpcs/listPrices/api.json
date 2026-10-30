@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "limit": 100,
+    "product": "{{parameters.product}}"
+  },
+  "url": "/prices",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{ifempty(item.nickname, 'Unit Price: ' + upper(item.currency) + ' ' + item.unit_amount) + if(item.recurring, ' (Recurring: ' + item.recurring.interval_count + ' ' + item.recurring.interval + ')')}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

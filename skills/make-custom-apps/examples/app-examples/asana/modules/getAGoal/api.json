@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'project', 'goal_id', 'goal_type', 'workspace', 'team', 'owner', 'portfolio'),'Goals')}}",
+  "url": "/goals/{{parameters.goal_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

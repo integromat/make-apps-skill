@@ -1,0 +1,9 @@
+{
+  "url": "/payouts/{{parameters.payout}}",
+  "body": "{{requestBuilder(null, mapToKeyVal(parameters.metadata), null, null, null)}}",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

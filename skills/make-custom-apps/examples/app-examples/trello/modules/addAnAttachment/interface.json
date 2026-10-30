@@ -1,0 +1,103 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Attachment ID"
+  },
+  {
+    "name": "bytes",
+    "type": "number",
+    "label": "Bytes"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "edgeColor",
+    "type": "text",
+    "label": "Color edge"
+  },
+  {
+    "name": "idMember",
+    "type": "text",
+    "label": "Member ID"
+  },
+  {
+    "name": "isUpload",
+    "type": "boolean",
+    "label": "Is upload"
+  },
+  {
+    "name": "mimeType",
+    "type": "text",
+    "label": "Mime type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "previews",
+    "spec": {
+      "spec": [
+        {
+          "name": "bytes",
+          "type": "number",
+          "label": "Bytes"
+        },
+        {
+          "name": "url",
+          "type": "url",
+          "label": "URL"
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "label": "Height"
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "label": "Width"
+        },
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "_ID"
+        },
+        {
+          "name": "scaled",
+          "type": "boolean",
+          "label": "Scaled"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Previews"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  }
+]

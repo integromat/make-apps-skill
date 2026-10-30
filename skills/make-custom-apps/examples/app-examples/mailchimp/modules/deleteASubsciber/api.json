@@ -1,0 +1,18 @@
+[
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(parameters.email))}}",
+    "method": "DELETE",
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{!parameters.delete}}"
+  },
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(parameters.email))}}/actions/delete-permanent",
+    "method": "POST",
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{parameters.delete}}"
+  }
+]

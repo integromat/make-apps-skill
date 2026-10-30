@@ -1,0 +1,26 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listCustomers",
+      "label": "Search",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        }
+      ]
+    },
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 100
+  }
+]

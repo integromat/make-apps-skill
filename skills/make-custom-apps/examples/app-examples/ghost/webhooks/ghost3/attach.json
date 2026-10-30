@@ -1,0 +1,20 @@
+{
+  "url": "/webhooks",
+  "body": {
+    "webhooks": [
+      {
+        "name": "Integromat: {{webhook.id}}",
+        "event": "{{parameters.event}}",
+        "secret": null,
+        "target_url": "{{webhook.url}}",
+        "integration_id": "{{connection.integration_id}}"
+      }
+    ]
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "externalHookId": "{{body.webhooks[1].id}}"
+    }
+  }
+}

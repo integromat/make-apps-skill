@@ -1,0 +1,50 @@
+[
+  {
+    "name": "manual_or_select",
+    "type": "select",
+    "label": "Enter Custom field ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "cf_id",
+            "type": "text",
+            "label": "Custom field ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "cf_id",
+                  "type": "select",
+                  "label": "Custom field",
+                  "options": "rpc://getCustomFieldIDonBoard",
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "url": "/projects/{{parameters.project}}",
+  "body": {
+    "data": "{{transformRequestDates(removeEmptyObjects(omit(parameters,'project')))}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

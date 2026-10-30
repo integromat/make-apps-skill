@@ -1,0 +1,9 @@
+[
+  {
+    "help": "Leave this blank to show the DND status for the authenticated user.",
+    "name": "user",
+    "type": "select",
+    "label": "User",
+    "options": "rpc://app%23slack@4/Users"
+  }
+]

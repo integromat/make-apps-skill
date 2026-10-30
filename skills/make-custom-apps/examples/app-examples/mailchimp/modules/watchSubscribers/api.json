@@ -1,0 +1,29 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "status": "{{parameters.status}}",
+    "sort_dir": "DESC",
+    "vip_only": "{{parameters.vip_only}}",
+    "email_type": "{{parameters.email_type}}",
+    "sort_field": "{{switch(parameters.select, 'create', 'timestamp_opt', 'update', 'last_changed')}}"
+  },
+  "url": "/lists/{{parameters.list}}/members",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(arrangeResponseSubscriber(item, metadata.interface))}}",
+    "iterate": "{{body.members}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{switch(parameters.select, 'create', item.timestamp_opt, 'update', item.last_changed)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.members) === 1000}}"
+  }
+}

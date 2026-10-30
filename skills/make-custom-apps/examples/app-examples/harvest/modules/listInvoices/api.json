@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "to": "{{parameters.to}}",
+    "from": "{{parameters.from}}",
+    "state": "{{parameters.state}}",
+    "per_page": 100,
+    "client_id": "{{parameters.client_id}}",
+    "project_id": "{{parameters.project_id}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "/invoices",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.invoices}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}
