@@ -18,7 +18,7 @@ Do not infer "required" from a field being present in a provider's response, fro
 
 Before accepting a required flag, compare the provider's omission and default behaviour, the effective UI requirement (including defaults and conditions), and every request, RPC, dynamic-interface and helper consumer. A read proves use, not necessity. Cite independent evidence that omission prevents the component's documented function, or an owner decision to narrow its input scope. A provider-optional input can legitimately be required under that contract, including a technical RPC parent; the existing required flag alone does not establish the contract.
 
-Where that comparison establishes an applicable, unmet input requirement, record a required authoring correction. Neither a consumer read nor the app's rejection for another reason changes the independent evidence needed to establish necessity or makes the correction optional.
+Where that comparison establishes an applicable, unmet input requirement, record an authoring correction (advisory unless class (a) to (c) applies). Neither a consumer read nor the app's rejection for another reason changes the independent evidence needed to establish necessity or makes the correction optional.
 
 ## Conditionally required fields and parameter types (UX guidance)
 
@@ -79,7 +79,7 @@ The form and the request are written at different times by different people (or 
 * Required-ness depends on the provider; a path parameter is the only case that follows from the URL itself.
 * `||` on text parameters is not covered by the falsy rule (empty string as "use default" can be intended). Neither is `|| false` on a boolean or `|| 0` on a number, which preserve the valid falsy value.
 * Raw responses have no explicit projection expressions to compare; known emitted properties still need the interface comparison above. Deliberately narrowed outputs and dynamic or unknown collections keep their documented scope and shape.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#approval-gating)). Pure omissions of retained fields, scalar type differences, missing help, labels and ordering are advisory. Container or nesting contradictions (array versus object, an object declared as text), a number-only declaration that excludes documented non-numeric values, and renamed or wrong keys that make a mapped value unusable are established functional failures and may block. Stronger presence evidence raises confidence, not impact. A required flag that is advice or a conditional-help gap stays advisory unless it makes a required input impossible to supply.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Pure omissions of retained fields, scalar type differences, missing help, labels and ordering are advisory. Container or nesting contradictions (array versus object, an object declared as text), a number-only declaration that excludes documented non-numeric values, and renamed or wrong keys that make a mapped value unusable are established functional failures and may block. Stronger presence evidence raises confidence, not impact. A required flag that is advice or a conditional-help gap stays advisory unless it makes a required input impossible to supply.
 
 ## Evidence and limits
 

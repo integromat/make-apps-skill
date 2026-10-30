@@ -61,6 +61,7 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 ## Evidence and limits
 
 * Time, request and record limits: **documented requirement**.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Option-RPC bounds and the 500-item output limit are advisory by themselves; an RPC or search that loses records (a truncated page budget that drops results) is class (a).
 * 3-request and 3×page-size budgets, the 300-500 range: **documented recommendation**.
 * Consistency between page size, qs and limit in a fixture: **inferred implementation pattern**. The checker does not call a provider, measure latency or know any real page maximum.
 

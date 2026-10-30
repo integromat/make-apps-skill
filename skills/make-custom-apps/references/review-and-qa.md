@@ -19,11 +19,12 @@ Make's public review prerequisites require functional test scenarios and recent,
 ## 2. Static and UX review
 
 Use the current public rules, not internal category codes or an old app's style as universal requirements.
-Approval impact is decided separately in [Approval gating](#approval-gating).
-Report an **Error** for a demonstrated defect, **Warning** for risk or missing evidence, and **Suggestion**
-for optional improvement. Cite the applicable rule and exact component/section for each finding.
+Approval impact is decided separately in [Approval gating](#2a-approval-gating).
+Report an **Error** for a demonstrated blocking-class defect, **Warning** for risk or missing evidence, and
+**Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
+or Suggestion, since only blocking-class findings use the Error level. Cite the applicable rule and exact component/section for each finding.
 
-Assess each finding before deriving the overall verdict. A demonstrated, applicable requirement violation remains an Error requiring correction while unresolved, even if another finding already rejects the app; its affected component is not acceptable on that contract. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
+Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) keeps its affected component blocked while unresolved, even if another finding already rejects the app; advisory findings leave the component acceptable. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
@@ -41,7 +42,7 @@ Assess each finding before deriving the overall verdict. A demonstrated, applica
   documentation, an `option.description` where choices differ in meaning and the schema in use accepts it
   (confirm by upload and readback); and the accurate Make type for each value, with date-only and time-only
   values as `text` plus a stated format. Layout and wording deviations are Suggestion or Warning, never an
-  Error by themselves. This does not downgrade a demonstrated defect: a schema-invalid type, a value lost or
+  Error by themselves (an advisory finding never uses the Error level). This does not downgrade a demonstrated defect: a schema-invalid type, a value lost or
   altered by the declared type, a required flag that blocks a valid state, or a mismatch with documented
   provider behavior is a concrete finding when you cite the evidence, whatever the nearby layout advice is.
   Keep legacy apps calibrated; changing names or types in place can break saved scenarios.
@@ -65,9 +66,10 @@ Assess each finding before deriving the overall verdict. A demonstrated, applica
   for the tests under review. Missing comprehensive helper tests in a working legacy app (existing-app
   maintenance, no helper change) is an evidence limitation to report and advice to add them, not a defect or an
   approval blocker, unless the task's explicit review criteria require them or the helper's actual behavior
-  lacks essential evidence. Incorrect helper behavior you can demonstrate stays a finding. Legacy helpers without tests, unused helper
+  lacks essential evidence (an explicit task or request-scope requirement can block when unmet).
+  Incorrect helper behavior you can demonstrate stays a finding. Legacy helpers without tests, unused helper
   code, generic error types and metadata-only CRUD omissions stay advisory unless a traced consumer or an
-  independently essential unknown behavior makes them gating ([Approval gating](#approval-gating)). Details:
+  independently essential unknown behavior makes them gating ([Approval gating](#2a-approval-gating)). Details:
   [IML functions](iml-functions.md) and the [IML tests page](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests).
 - Verify credential sanitization in connection and base requests, responses and error paths.[36]
 
@@ -78,40 +80,54 @@ For worked synthetic examples and a per-check application table, see
 [role application examples](../examples/current-knowledge/guides/role-application-examples.md) and
 [review sweeps](review-sweeps.md).
 
-## Approval gating
+## 2a. Approval gating
 
-This section is the single source of truth for `approvalImpact`. A finding's severity (Error, Warning,
-Suggestion) says how well the evidence supports it; `approvalImpact` says whether it can hold approval.
-Report every finding the other rules require; this section changes only what may block.
+This section defines `approvalImpact`. Type-specific guides refine it for their topic, but none of them may raise
+a convention to blocking on its own. A finding's severity (Error, Warning, Suggestion) says how serious it is;
+`approvalImpact` says whether it can hold approval. Report every finding the other rules require; this section
+changes only what may block.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
 | **blocks** | Only for class (a), (b) or (c) below, established by the applicable contract and cited evidence. |
-| **needs_evidence** | The consequence would block, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact. |
-| **advisory** | Everything else, including documented conventions and quality. |
+| **needs_evidence** | An independently essential fact is missing: the consequence would block, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact. It holds approval until resolved. |
+| **advisory** | Everything else, including documented conventions and quality. Report it as a fix or suggestion; it does not hold approval. |
 
 Classes that may block:
 
-- (a) **Established functional failure** under the applicable contract: a request the provider rejects or
-  routes wrongly, an invalid enum or value, broken IML or JSON, a wrong key that leaves a mapped value
-  unusable, a required input that cannot be supplied, pagination that loses records, or falsy/null values
-  dropped, or a clearing operation turned into a no-op.
-- (b) **Security or privacy exposure**: a credential in a URL, log or output; an authenticated call without
-  auth; an unsafe destination or host injection; missing webhook verification, only when the provider
-  documents a verification protocol.
+- (a) **Established functional failure** under the applicable contract. This list is open; it includes a request
+  the provider rejects or routes wrongly, an invalid enum or value, broken IML or JSON, a wrong key that leaves a
+  mapped value unusable, a required input that cannot be supplied, pagination that loses records, and falsy or
+  null values dropped or a clearing operation turned into a no-op. Also here: offered inputs ignored or lost
+  across request stages or passed to the wrong helper argument; the wrong output container or iteration
+  (iterating the wrapper instead of the records); a replacing update that wipes unmapped fields; precision loss
+  on large identifiers; a label that promises destructive behavior the request lacks; syntactically invalid IML
+  (unbalanced delimiters, an undefined function or variable), which is distinct from unestablished evaluation
+  semantics; structural interface contradictions (container or nesting, number-only versus documented
+  non-numeric values; see [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md));
+  a date trigger cursor that reads a provider format Make does not auto-parse and so skips or duplicates records;
+  and pagination on documented paged responses with no, or non-advancing, page progression.
+- (b) **Security or privacy exposure**: a credential in a URL, log or output; missing log sanitization of
+  credentials; a user-entered secret collected through a plain `text` (non-`password`) connection or install
+  parameter; an authenticated call without auth; an unsafe destination or host injection; missing webhook
+  verification, only when the provider documents a verification protocol.
 - (c) **A documented Make platform requirement whose violation itself causes failure**, for example a missing
   connection binding on an authenticated module.
 
-Advisory by default: interface completeness or typing, a date typed as text, help text and labels, selector
-edit mode, RPC option bounds, legacy or unused helpers, metadata-only CRUD, version drift without shown
-breakage, and ordering or polling assumptions without evidence.
+Advisory by default, including when a guide calls it a requirement, convention or recommendation: interface
+completeness or typing (see class (a) for structural contradictions), a date typed as text, help text and labels,
+selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only CRUD, version drift without shown
+breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
+without evidence. A documented requirement that is not a class (a) to (c) failure is reported and stays advisory.
+Explicit task or request-scope requirements (requested capabilities, endpoints, review criteria) can block when unmet.
 
-Rule: a rejection needs at least one blocking finding of class (a) to (c). Never reject for an accumulation
-of advisory items, however many. A guide that calls something a convention, recommendation or required
-authoring correction does not make it blocking on its own; it stays advisory unless class (a) to (c) applies.
+Rule: reject or hold approval only with at least one blocking finding of class (a) to (c) or one essential
+`needs_evidence` finding; never for an accumulation of advisory items, however many.
 
-The plain-text secret input rule (a secret collected through a plain `text` connection parameter) keeps its
-current treatment; its approval impact is an owner policy decision, not set here.
+How to record: a blocking-class defect uses the requirement-violation basis, the highest severity and `blocks`;
+an essential unverified consequence uses the unverified basis, question severity and `needs_evidence`; a
+convention or quality point uses the recommendation or observation basis, a non-holding severity (Warning or
+Suggestion) and `advisory`. Name a service-specific field only where the review service defines it.
 
 ## 3. Approve a bounded test plan
 

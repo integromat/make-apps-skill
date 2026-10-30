@@ -5,6 +5,8 @@ status checks. Use [modules-and-pagination.md](modules-and-pagination.md) for pa
 
 ## Match the provider's wire contract
 
+Approval impact for any request-contract finding follows [Approval gating](review-and-qa.md#2a-approval-gating). Resolve `requestBody` references and read-only or write-on-create prose before calling a field writable; block only on an established rejection or unusable value, and keep other mismatches advisory.
+
 - Define the exact `url`, `method`, headers, query, and body from provider evidence.
   Relative module/RPC paths use Base; connection requests need their own full configuration.
 - Use `headers` and `qs` collections rather than concatenating unencoded values into URLs.
@@ -93,8 +95,6 @@ Sources: [Output and wrapper](https://developers.make.com/custom-apps-documentat
 
 ## Multiple requests and safe updates
 
-Approval impact for any request-contract finding follows [Approval gating](review-and-qa.md#approval-gating). Resolve `requestBody` references and read-only or write-on-create prose before calling a field writable; block only on an established rejection or unusable value, and keep other mismatches advisory.
-
 Use an array of request specifications for a sequential chain. Persist only required
 intermediate values in `temp` and define final output at the end. A later request
 cannot recover an earlier HTTP error by treating that failed response as success.
@@ -132,7 +132,7 @@ Classify each request by its side effects, not its HTTP verb (a `POST` search is
 | provider upsert (read then create or update, or one atomic call) | Valid when the provider defines it so. |
 | two or more independent writes | Prefer separate modules; a rerun after a partial failure can duplicate the first write. |
 
-This is design guidance, not a rejection rule (see [Approval gating](review-and-qa.md#approval-gating)): argue a split from the provider's contract,
+This is design guidance, not a rejection rule (see [Approval gating](review-and-qa.md#2a-approval-gating)): argue a split from the provider's contract,
 and where the provider offers one atomic call for the whole change, use it instead of a
 chain. See [requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md)
 and [outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md).

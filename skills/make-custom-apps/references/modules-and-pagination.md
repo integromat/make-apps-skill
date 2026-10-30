@@ -62,7 +62,7 @@ Sources: [Iterate](https://developers.make.com/custom-apps-documentation/compone
 - Do not promise an unbounded export: request counts, pagination counts, records,
   and execution time have platform limits, independent of the configured Limit.
 
-Approval impact follows [Approval gating](review-and-qa.md#approval-gating): pagination that loses records is an established failure only when shown; absent page progression is not proved truncation, a declared polling order is an assertion needing evidence, and an exact response-key mismatch differs from a likely typo inferred from siblings (an evidence gap).
+Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): pagination that loses records is an established failure only when shown; absent pagination metadata is not proved truncation (absent or non-advancing progression on documented paged responses is class (a)), a declared polling order is an assertion needing evidence, and an exact response-key mismatch differs from a likely typo inferred from siblings (an evidence gap).
 
 Source: [Pagination specification and limits](https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination.md).
 
