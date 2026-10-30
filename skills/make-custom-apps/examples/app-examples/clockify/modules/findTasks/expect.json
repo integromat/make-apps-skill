@@ -1,0 +1,38 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://listProjects",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "is-active",
+          "type": "boolean",
+          "label": "Active",
+          "default": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

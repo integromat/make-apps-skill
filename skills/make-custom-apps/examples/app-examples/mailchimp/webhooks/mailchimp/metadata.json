@@ -1,0 +1,10 @@
+{
+  "rev": 5,
+  "type": "web",
+  "flags": {},
+  "label": "Mailchimp List Event",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "mailchimp",
+  "altAccountName": null
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "base",
+    "type": "text",
+    "label": "Base",
+    "default": "appcFff2xjeOcuW8Y"
+  },
+  {
+    "name": "table",
+    "type": "text",
+    "label": "Table",
+    "default": "tblUQvnjHnFUgCTRp"
+  },
+  {
+    "name": "field",
+    "type": "text",
+    "label": "Field",
+    "default": "Name"
+  },
+  {
+    "name": "formula",
+    "type": "text",
+    "label": "Formula",
+    "default": "FIND('Jane', {Name})"
+  }
+]

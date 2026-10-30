@@ -1,0 +1,51 @@
+[
+  {
+    "help": "The identifier of the charge to be captured.",
+    "name": "charge",
+    "type": "text",
+    "label": "Charge to capture",
+    "required": true
+  },
+  {
+    "help": "A positive integer in the [smallest currency unit](https://support.stripe.com/questions/which-zero-decimal-currencies-does-stripe-support) (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a 0-decimal currency) representing how much to capture. The amount to capture, which must be less than or equal to the original amount. Any additional amount will be automatically refunded.",
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement descriptor",
+    "validate": {
+      "max": 22
+    }
+  },
+  {
+    "help": "An application fee to add on to this charge. Can only be used with Stripe Connect.",
+    "name": "application_fee",
+    "type": "number",
+    "label": "Application fee"
+  },
+  {
+    "help": "A dictionary containing a new destination amount to use. Can only be used with destination charges created with Stripe Connect.",
+    "name": "destination",
+    "spec": [
+      {
+        "help": "The portion of this charge to send to the destination account.",
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Destination",
+    "advanced": true
+  },
+  {
+    "help": "This will override the previously-specified email address for this charge, if one was set.",
+    "name": "receipt_email",
+    "type": "email",
+    "label": "Receipt email",
+    "advanced": true
+  }
+]

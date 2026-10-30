@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Document Metadata",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Updates an existing document metadata but not its contents.",
+  "altAccountName": null
+}

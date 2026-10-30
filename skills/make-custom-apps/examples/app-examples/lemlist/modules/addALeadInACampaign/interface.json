@@ -1,0 +1,37 @@
+[
+  {
+    "name": "campaignId",
+    "type": "text",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "campaignName",
+    "type": "text",
+    "label": "Campaign Name"
+  },
+  {
+    "name": "leadUrl",
+    "type": "url",
+    "label": "Lead URL"
+  },
+  {
+    "name": "_id",
+    "type": "text",
+    "label": "Lead ID"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "firstName",
+    "type": "text",
+    "label": "First Name"
+  },
+  {
+    "name": "lastName",
+    "type": "text",
+    "label": "Last Name"
+  }
+]

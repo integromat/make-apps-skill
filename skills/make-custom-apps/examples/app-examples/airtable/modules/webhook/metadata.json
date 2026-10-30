@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Responses",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "airtable",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a new response is submitted.",
+  "altAccountName": null
+}

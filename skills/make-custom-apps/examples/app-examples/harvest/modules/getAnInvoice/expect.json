@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "invoice_id",
+    "type": "select",
+    "label": "Invoice ID",
+    "options": "rpc://getInvoices",
+    "required": true
+  }
+]

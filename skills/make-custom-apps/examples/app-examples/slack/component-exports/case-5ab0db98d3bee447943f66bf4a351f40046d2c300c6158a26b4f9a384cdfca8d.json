@@ -1,0 +1,194 @@
+{
+  "_modules": {
+    "getPrivateChannelMessage": {
+      "rev": 2,
+      "crud": "read",
+      "epoch": null,
+      "flags": {},
+      "label": "Get a Private Channel Message v2",
+      "scope": [
+        "groups:history"
+      ],
+      "public": false,
+      "typeId": 4,
+      "hookName": null,
+      "learning": false,
+      "deprecated": false,
+      "accountName": "slack2",
+      "description": "Returns a message with a given ID from a specified private channel.",
+      "altAccountName": "slack3",
+      "api": [
+        {
+          "response": {
+            "temp": {
+              "channels": "{{emptyarray}}"
+            },
+            "valid": true
+          },
+          "condition": "{{connection.tokenType = 'bot'}}"
+        },
+        {
+          "qs": {
+            "user": "{{connection.authedUserId}}",
+            "limit": 1000,
+            "types": "private_channel",
+            "cursor": "{{temp.cursor}}"
+          },
+          "url": "/users.conversations",
+          "method": "GET",
+          "repeat": {
+            "delay": 100,
+            "limit": 30,
+            "condition": "{{temp.cursor}}"
+          },
+          "response": {
+            "temp": {
+              "cursor": "{{body.response_metadata.next_cursor}}",
+              "channels": "{{merge(temp.channels, map(body.channels, 'id'))}}"
+            }
+          },
+          "condition": "{{connection.tokenType = 'bot'}}"
+        },
+        {
+          "response": {
+            "valid": {
+              "type": "AccountValidationError",
+              "message": "You are not authorized to access this private channel.",
+              "condition": "{{contains(temp.channels, parameters.channel)}}"
+            }
+          },
+          "condition": "{{connection.tokenType = 'bot'}}"
+        },
+        {
+          "qs": {
+            "limit": 1,
+            "latest": "{{parameters.ts}}",
+            "oldest": "{{parameters.ts}}",
+            "channel": "{{parameters.channel}}",
+            "inclusive": true
+          },
+          "url": "/conversations.history",
+          "body": {},
+          "method": "GET",
+          "headers": {},
+          "response": {
+            "output": {
+              "ts": "{{body.messages[].ts}}",
+              "text": "{{body.messages[].text}}",
+              "files": "{{body.messages[].files}}"
+            }
+          }
+        }
+      ],
+      "expect": [
+        {
+          "name": "inputMethod",
+          "type": "select",
+          "label": "Input Method",
+          "default": "list",
+          "options": [
+            {
+              "label": "Select from a list",
+              "value": "list",
+              "nested": [
+                {
+                  "name": "channel",
+                  "type": "select",
+                  "label": "Private Channel",
+                  "options": "rpc://app%23slack@4/listPrivateChannels",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "label": "Search by the name",
+              "value": "search",
+              "nested": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23slack@4/listPrivateChannels",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "exclude_archived",
+                        "type": "boolean",
+                        "label": "Exclude Archived"
+                      }
+                    ]
+                  },
+                  "name": "channel",
+                  "type": "text",
+                  "label": "Private Channel",
+                  "required": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "name": "ts",
+          "type": "text",
+          "label": "Message ID (timestamp)",
+          "required": true
+        }
+      ],
+      "parameters": [],
+      "interface": [
+        {
+          "name": "ts",
+          "type": "text",
+          "label": "Timestamp"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        },
+        {
+          "name": "files",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "File ID"
+            },
+            {
+              "name": "title",
+              "type": "text",
+              "label": "Title"
+            },
+            {
+              "name": "url_private_download",
+              "type": "url",
+              "label": "Url private download"
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "label": "Size"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "mimetype",
+              "type": "text",
+              "label": "MIME type"
+            }
+          ],
+          "type": "array",
+          "label": "Files"
+        }
+      ],
+      "samples": null
+    }
+  }
+}

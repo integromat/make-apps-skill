@@ -1,0 +1,8 @@
+{
+  "url": "/invoices/{{parameters.invoice}}",
+  "method": "DELETE",
+  "response": {
+    "valid": "{{body.deleted}}",
+    "output": "{{undefined}}"
+  }
+}

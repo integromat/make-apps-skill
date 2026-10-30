@@ -1,0 +1,18 @@
+{
+  "url": "/charges/{{parameters.charge}}",
+  "body": "{{requestBuilder(temp.body, mapToKeyVal(parameters.metadata), mapToKeyVal(parameters.fraud_details), parameters.shipping, null)}}",
+  "temp": {
+    "body": {
+      "customer": "{{ifempty(parameters.customer, undefined)}}",
+      "description": "{{ifempty(parameters.description, undefined)}}",
+      "receipt_email": "{{ifempty(parameters.receipt_email, undefined)}}",
+      "transfer_group": "{{ifempty(parameters.transfer_group, undefined)}}"
+    }
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "type": "json",
+    "output": "{{prepareOutput(body)}}"
+  }
+}

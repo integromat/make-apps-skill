@@ -1,0 +1,238 @@
+[
+  {
+    "name": "listId",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "name": "select",
+          "type": "select",
+          "label": "Select",
+          "options": [
+            {
+              "label": "Email",
+              "value": "email_address",
+              "nested": [
+                {
+                  "name": "email",
+                  "type": "select",
+                  "label": "Email",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersEmailAddress",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "label": "Contact ID",
+              "value": "contact_id",
+              "nested": [
+                {
+                  "name": "contact_id",
+                  "type": "select",
+                  "label": "Contact ID",
+                  "options": "rpc://app%23mailchimp@2/listSubscribersContactId",
+                  "required": true
+                }
+              ]
+            }
+          ],
+          "mappable": false,
+          "required": true
+        },
+        {
+          "name": "add/updateMergeFields",
+          "type": "boolean",
+          "label": "Add/Updated Merge Fields",
+          "nested": [
+            "rpc://app%23mailchimp@2/getMergeFieldsParams"
+          ]
+        },
+        {
+          "name": "interest_category_id",
+          "type": "select",
+          "label": "Interest Category",
+          "options": {
+            "store": "rpc://app%23mailchimp@2/listCategoriesIDs",
+            "nested": [
+              "rpc://app%23mailchimp@2/listInterestsIDs"
+            ]
+          }
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "If `Skip Merge Validation` is `true`, member data will be accepted without merge field values, even if the merge field is usually required. This defaults to `false`.",
+    "name": "skip_merge_validation",
+    "type": "boolean",
+    "label": "Skip Merge Validation",
+    "default": false
+  },
+  {
+    "help": "Email address for a subscriber. This value is required only if the email address is not already present on the list.",
+    "name": "email_address",
+    "type": "email",
+    "label": "Email Address"
+  },
+  {
+    "help": "Subscriber's status. This value is required only if the email address is not already present on the list.",
+    "name": "status_if_new",
+    "type": "select",
+    "label": "Status if New",
+    "options": [
+      {
+        "label": "Subscribed",
+        "value": "subscribed"
+      },
+      {
+        "label": "Unsubscribed",
+        "value": "unsubscribed"
+      },
+      {
+        "label": "Cleaned",
+        "value": "cleaned"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Transactional",
+        "value": "transactional"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "Type of email this member asked to get.",
+    "name": "email_type",
+    "type": "select",
+    "label": "Email Type",
+    "options": [
+      {
+        "label": "HTML",
+        "value": "html"
+      },
+      {
+        "label": "Text",
+        "value": "text"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "Subscriber's current status.",
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Subscribed",
+        "value": "subscribed"
+      },
+      {
+        "label": "Unsubscribed",
+        "value": "unsubscribed"
+      },
+      {
+        "label": "Cleaned",
+        "value": "cleaned"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Transactional",
+        "value": "transactional"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "If set/detected, the subscriber's language.",
+    "name": "language",
+    "type": "select",
+    "label": "Language",
+    "options": [
+      {
+        "label": "English",
+        "value": "en"
+      },
+      {
+        "label": "Arabic",
+        "value": "ar"
+      }
+    ]
+  },
+  {
+    "name": "vip",
+    "type": "boolean",
+    "label": "VIP"
+  },
+  {
+    "help": "Subscriber location information.",
+    "name": "location",
+    "spec": [
+      {
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      }
+    ],
+    "type": "collection",
+    "label": "Location"
+  },
+  {
+    "help": "The marketing permissions for the subscriber.",
+    "name": "marketing_permissions",
+    "spec": [
+      {
+        "help": "The id for the marketing permission on the list.",
+        "name": "marketing_permission_id",
+        "type": "text",
+        "label": "Marketing Permission ID"
+      },
+      {
+        "help": "If the subscriber has opted-in to the marketing permission.",
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "array",
+    "label": "Marketing Permissions"
+  },
+  {
+    "help": "IP address the subscriber signed up from.",
+    "name": "ip_signup",
+    "type": "text",
+    "label": "IP Signup"
+  },
+  {
+    "help": "The date and time the subscriber signed up for the list.",
+    "name": "timestamp_signup",
+    "type": "date",
+    "label": "Timestamp Signup"
+  },
+  {
+    "help": "The IP address the subscriber used to confirm their opt-in status.",
+    "name": "ip_opt",
+    "type": "text",
+    "label": "IP Opt"
+  },
+  {
+    "help": "The date and time the subscriber confirmed their opt-in status.",
+    "name": "timestamp_opt",
+    "type": "date",
+    "label": "Timestamp Opt"
+  }
+]

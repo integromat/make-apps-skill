@@ -1,0 +1,7 @@
+{
+  "url": "/payouts/{{parameters.payout}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

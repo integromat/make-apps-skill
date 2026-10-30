@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/cards/{{parameters.card_id}}/attachments/{{parameters.attachment_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

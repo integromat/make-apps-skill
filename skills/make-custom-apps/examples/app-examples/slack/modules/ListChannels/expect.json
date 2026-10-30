@@ -1,0 +1,48 @@
+[
+  {
+    "name": "exclude_archived",
+    "type": "boolean",
+    "label": "Exclude archived",
+    "required": false
+  },
+  {
+    "name": "types",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Public channel",
+        "value": "public_channel"
+      },
+      {
+        "label": "Private channel",
+        "value": "private_channel"
+      },
+      {
+        "label": "Direct message channel",
+        "value": "im"
+      },
+      {
+        "label": "Multiparty direct message channel",
+        "value": "mpim"
+      }
+    ],
+    "multiple": true,
+    "required": false
+  },
+  {
+    "help": "Number of returned results.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  },
+  {
+    "help": "For advanced pagination only. The page size is 100.",
+    "name": "next_cursor",
+    "type": "text",
+    "label": "Next Cursor",
+    "advanced": true
+  }
+]

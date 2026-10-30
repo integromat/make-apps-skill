@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "per_page": 50
+  },
+  "url": "/sites?filter=all",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    }
+  }
+}

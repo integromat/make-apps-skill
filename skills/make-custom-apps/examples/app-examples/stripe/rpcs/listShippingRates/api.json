@@ -1,0 +1,10 @@
+{
+  "url": "/shipping_rates",
+  "response": {
+    "output": {
+      "label": "{{item.display_name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

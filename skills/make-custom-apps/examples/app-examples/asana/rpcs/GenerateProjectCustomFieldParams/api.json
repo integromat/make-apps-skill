@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.custom_field.name",
+      "this.custom_field.type",
+      "this.custom_field.gid",
+      "this.custom_field.enum_options",
+      "this.custom_field.enum_options.enabled",
+      "this.custom_field.enum_options.name",
+      "this.custom_field.enum_options.color"
+    ]
+  },
+  "url": "/projects/{{parameters.project}}/custom_field_settings",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": "{{generateProjectCustomFieldParams(body.data)}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

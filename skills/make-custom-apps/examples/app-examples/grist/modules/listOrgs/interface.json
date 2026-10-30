@@ -1,0 +1,70 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "createdAt",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updatedAt",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "id",
+    "type": "number",
+    "label": "ID"
+  },
+  {
+    "name": "domain",
+    "type": "text",
+    "label": "Domain"
+  },
+  {
+    "name": "host",
+    "type": "text",
+    "label": "Host"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "id",
+        "type": "number",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "picture",
+        "type": "text",
+        "label": "Picture"
+      },
+      {
+        "name": "options",
+        "spec": [],
+        "type": "collection",
+        "label": "Options"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "access",
+    "type": "text",
+    "label": "Access"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  }
+]

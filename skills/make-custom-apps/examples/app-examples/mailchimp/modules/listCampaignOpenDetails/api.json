@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "count": 100,
+    "since": "{{parameters.since}}"
+  },
+  "url": "/reports/{{parameters.campaign_id}}/open-details",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.members}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

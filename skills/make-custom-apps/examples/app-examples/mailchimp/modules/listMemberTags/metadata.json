@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Member Tags",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Retireves a list of all member tags",
+  "altAccountName": null
+}

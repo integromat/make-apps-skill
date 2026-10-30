@@ -1,0 +1,7 @@
+{
+  "url": "/cards/{{parameters.card_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,253 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "arrival_date",
+    "type": "number",
+    "label": "Arrival date"
+  },
+  {
+    "name": "automatic",
+    "type": "boolean",
+    "label": "Automatic"
+  },
+  {
+    "name": "balance_transaction",
+    "type": "text",
+    "label": "Balance transaction"
+  },
+  {
+    "name": "created",
+    "type": "number",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "destination",
+    "type": "text",
+    "label": "Destination"
+  },
+  {
+    "name": "failure_balance_transaction",
+    "type": "text",
+    "label": "Failure balance transaction"
+  },
+  {
+    "name": "failure_code",
+    "type": "text",
+    "label": "Failure code"
+  },
+  {
+    "name": "failure_message",
+    "type": "text",
+    "label": "Failure message"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "metadata",
+    "type": "collection",
+    "label": "Metadata"
+  },
+  {
+    "name": "method",
+    "type": "text",
+    "label": "Method"
+  },
+  {
+    "name": "source_type",
+    "type": "text",
+    "label": "Source type"
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement descriptor"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "number",
+    "label": "Date"
+  },
+  {
+    "name": "transfer_group",
+    "type": "text",
+    "label": "Transfer group"
+  },
+  {
+    "name": "recipient",
+    "type": "text",
+    "label": "Recipient"
+  },
+  {
+    "name": "bank_account",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "account_holder_name",
+        "type": "text",
+        "label": "Account holder name"
+      },
+      {
+        "name": "account_holder_type",
+        "type": "text",
+        "label": "Account holder type"
+      },
+      {
+        "name": "bank_name",
+        "type": "text",
+        "label": "Bank name"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "fingerprint",
+        "type": "text",
+        "label": "Fingerprint"
+      },
+      {
+        "name": "last4",
+        "type": "number",
+        "label": "Last 4"
+      },
+      {
+        "name": "routing_number",
+        "type": "number",
+        "label": "Routing number"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      }
+    ],
+    "type": "collection",
+    "label": "Bank account"
+  },
+  {
+    "name": "amount_reversed",
+    "type": "number",
+    "label": "Amount reversed"
+  },
+  {
+    "name": "reversed",
+    "type": "boolean",
+    "label": "Reversed"
+  },
+  {
+    "name": "reversals",
+    "spec": [
+      {
+        "name": "total_count",
+        "type": "number",
+        "label": "Total count"
+      },
+      {
+        "name": "data",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "metadata",
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "transfer",
+            "type": "text",
+            "label": "Transfer"
+          }
+        ],
+        "type": "array",
+        "label": "Data"
+      }
+    ],
+    "type": "collection",
+    "label": "Reversals"
+  },
+  {
+    "name": "application_fee",
+    "type": "number",
+    "label": "Application fee"
+  },
+  {
+    "name": "source_transaction",
+    "type": "text",
+    "label": "Source transaction"
+  }
+]

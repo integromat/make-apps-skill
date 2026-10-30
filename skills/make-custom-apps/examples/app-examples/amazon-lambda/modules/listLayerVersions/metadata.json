@@ -1,0 +1,19 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Layer Versions",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "amazon-lambda",
+  "description": "Retrieves a list of the versions of an AWS Lambda layer.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

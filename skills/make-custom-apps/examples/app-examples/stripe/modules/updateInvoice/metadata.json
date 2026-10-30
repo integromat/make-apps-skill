@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update an Invoice",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Updates the specified invoice by setting the values of the parameters passed.",
+  "altAccountName": null
+}

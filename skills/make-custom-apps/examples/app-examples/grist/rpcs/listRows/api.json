@@ -1,0 +1,12 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableId}}/records",
+  "method": "GET",
+  "response": {
+    "limit": 100,
+    "output": {
+      "label": "{{concatColumns(item.fields)}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.records}}"
+  }
+}

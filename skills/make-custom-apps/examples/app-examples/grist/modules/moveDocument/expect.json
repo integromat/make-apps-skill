@@ -1,0 +1,16 @@
+[
+  {
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": "rpc://app%23grist@1/listDocuments",
+    "required": true
+  },
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace",
+    "options": "rpc://app%23grist@1/listWorkspaces",
+    "required": true
+  }
+]

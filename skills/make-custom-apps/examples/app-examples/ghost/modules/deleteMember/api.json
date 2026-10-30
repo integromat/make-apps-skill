@@ -1,0 +1,5 @@
+{
+  "url": "/members/{{parameters.member_id}}",
+  "method": "DELETE",
+  "response": {}
+}

@@ -1,0 +1,9 @@
+{
+  "url": "/docs/{{parameters.docId}}/access",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.users}}"
+  }
+}

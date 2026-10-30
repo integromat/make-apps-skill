@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Campaign Report",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Gets a campaign report.",
+  "altAccountName": null
+}

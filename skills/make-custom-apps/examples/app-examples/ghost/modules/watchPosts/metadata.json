@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Posts",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "ghost",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a post is created, updated or deleted.",
+  "altAccountName": null
+}

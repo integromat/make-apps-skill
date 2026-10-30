@@ -1,0 +1,161 @@
+[
+  {
+    "name": "list_id",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://app%23mailchimp@2/listLists",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Text",
+        "value": "text",
+        "nested": [
+          {
+            "help": "The default length of the text field.",
+            "name": "options",
+            "type": "integer",
+            "label": "Size"
+          }
+        ]
+      },
+      {
+        "label": "Number",
+        "value": "number"
+      },
+      {
+        "label": "Address",
+        "value": "address",
+        "nested": [
+          {
+            "help": "The default country code if none supplied.",
+            "name": "options",
+            "type": "integer",
+            "label": "Default Country Code"
+          }
+        ]
+      },
+      {
+        "label": "Phone",
+        "value": "phone",
+        "nested": [
+          {
+            "help": "The phone number type: US or International.",
+            "name": "options",
+            "type": "text",
+            "label": "Phone Format"
+          }
+        ]
+      },
+      {
+        "label": "Date",
+        "value": "date",
+        "nested": [
+          {
+            "help": "The format of the date.",
+            "name": "options",
+            "type": "text",
+            "label": "Date Format"
+          }
+        ]
+      },
+      {
+        "label": "URL",
+        "value": "url"
+      },
+      {
+        "label": "Image URL",
+        "value": "imageurl"
+      },
+      {
+        "label": "Radio",
+        "value": "radio",
+        "nested": [
+          {
+            "help": "The available options for contacts to pick from.",
+            "name": "options",
+            "spec": [],
+            "type": "array",
+            "label": "Choices"
+          }
+        ]
+      },
+      {
+        "label": "Dropdown",
+        "value": "dropdown",
+        "nested": [
+          {
+            "help": "The available options for contacts to pick from.",
+            "name": "options",
+            "spec": [],
+            "type": "array",
+            "label": "Choices"
+          }
+        ]
+      },
+      {
+        "label": "Birthday",
+        "value": "birthday",
+        "nested": [
+          {
+            "help": "The format of the date.",
+            "name": "options",
+            "type": "text",
+            "label": "Date Format"
+          }
+        ]
+      },
+      {
+        "label": "ZIP",
+        "value": "zip"
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "The merge tag used for Mailchimp campaigns and adding contact information.",
+    "name": "tag",
+    "type": "text",
+    "label": "Tag"
+  },
+  {
+    "help": "Whether the merge field is required to import a contact.",
+    "name": "required",
+    "type": "boolean",
+    "label": "Required"
+  },
+  {
+    "help": "The default value for the merge field if null.",
+    "name": "default_value",
+    "type": "text",
+    "label": "Default Value"
+  },
+  {
+    "help": "Whether the merge field is displayed on the signup form.",
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "display_order",
+    "type": "integer",
+    "label": "Display Order"
+  },
+  {
+    "help": "Extra text to help the subscriber fill out the form.",
+    "name": "help_text",
+    "type": "text",
+    "label": "Help Text"
+  }
+]

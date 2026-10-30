@@ -1,0 +1,41 @@
+{
+  "gid": "00000",
+  "parent": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "project"
+  },
+  "project": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "project"
+  },
+  "custom_field": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "type": "text",
+    "format": "custom",
+    "enabled": true,
+    "precision": 2,
+    "text_value": "Some Value",
+    "description": "REDACTED",
+    "custom_label": "gold pieces",
+    "enum_options": [
+      {
+        "gid": "00000",
+        "name": "REDACTED",
+        "color": "blue",
+        "enabled": true,
+        "resource_type": "enum_option"
+      }
+    ],
+    "currency_code": "EUR",
+    "resource_type": "custom_field",
+    "resource_subtype": "text",
+    "custom_label_position": "suffix",
+    "is_global_to_workspace": true,
+    "has_notifications_enabled": true
+  },
+  "is_important": false,
+  "resource_type": "custom_field_setting"
+}

@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/contacts",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{if(item.last_name, item.first_name + ' ' + item.last_name, item.first_name)}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.contacts}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "help": "Set 'Url private download' from module Get a File.",
+    "name": "url",
+    "type": "url",
+    "label": "Url private download",
+    "required": true
+  }
+]

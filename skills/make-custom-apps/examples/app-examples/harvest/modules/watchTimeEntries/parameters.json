@@ -1,0 +1,93 @@
+[
+  {
+    "name": "load_users",
+    "type": "boolean",
+    "label": "Filter by User",
+    "nested": [
+      {
+        "help": "Only return time entries belonging to the user with the given ID",
+        "name": "user_id",
+        "type": "select",
+        "label": "User",
+        "options": "rpc://getUsers",
+        "mappable": false
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "load_clients",
+    "type": "boolean",
+    "label": "Filter by Client",
+    "nested": [
+      {
+        "help": "Only return time entries belonging to the client with the given ID.",
+        "name": "client_id",
+        "type": "select",
+        "label": "Client",
+        "options": "rpc://getClients",
+        "mappable": false
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "load_projects",
+    "type": "boolean",
+    "label": "Filter by Project",
+    "nested": [
+      {
+        "help": "Only return time entries belonging to the project with the given ID.",
+        "name": "project_id",
+        "type": "select",
+        "label": "Project",
+        "options": "rpc://getProjects",
+        "mappable": false
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "watch",
+    "type": "select",
+    "label": "Watch",
+    "options": [
+      {
+        "label": "Only new time entries",
+        "value": "new"
+      },
+      {
+        "label": "All changes",
+        "value": "updated"
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  },
+  {
+    "help": "Only return time entries that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since",
+    "advanced": true
+  },
+  {
+    "help": "Only return time entries with a `Spent date` on or after the given date.",
+    "name": "from",
+    "time": false,
+    "type": "date",
+    "label": "From",
+    "advanced": true
+  }
+]

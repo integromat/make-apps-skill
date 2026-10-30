@@ -1,0 +1,109 @@
+[
+  {
+    "name": "channelWType",
+    "type": "select",
+    "label": "Enter a channel ID or name",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manualy",
+        "nested": [
+          {
+            "help": "You must specify a public channel, private channel, or an IM channel. You can either pass the channel's name (#general) or encoded ID (C0123BE12L).",
+            "name": "channel",
+            "type": "text",
+            "label": "Channel ID or name",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select from the list",
+        "value": "list",
+        "nested": [
+          {
+            "name": "channelType",
+            "type": "select",
+            "label": "Channel type",
+            "options": [
+              {
+                "label": "Public channel",
+                "value": "public",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Public channel",
+                    "options": "rpc://app%23slack@4/PublicChannels",
+                    "required": true
+                  }
+                ],
+                "default": true
+              },
+              {
+                "label": "Private channel",
+                "value": "private",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Private channel",
+                    "options": "rpc://app%23slack@4/PrivateChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "IM channel",
+                "value": "im",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "User",
+                    "options": "rpc://app%23slack@4/IMChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Multiple IM channel",
+                "value": "mpim",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Multiple IM channel",
+                    "options": "rpc://app%23slack@4/MPIMChannels",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "name": "oldest",
+    "type": "date",
+    "label": "Oldest Date"
+  },
+  {
+    "name": "latest",
+    "type": "date",
+    "label": "Latest Date"
+  },
+  {
+    "help": "Number of returned results.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

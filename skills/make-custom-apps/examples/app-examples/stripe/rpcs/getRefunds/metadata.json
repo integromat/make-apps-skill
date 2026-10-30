@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "GET 100 Top Refunds",
+  "accountName": "stripe",
+  "altAccountName": null
+}

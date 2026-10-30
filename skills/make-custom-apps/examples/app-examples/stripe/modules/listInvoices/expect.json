@@ -1,0 +1,180 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listCustomers",
+      "label": "Search",
+      "parameters": [
+        {
+          "name": "email",
+          "type": "email",
+          "label": "Email",
+          "required": true
+        }
+      ]
+    },
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID"
+  },
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listSubscriptions",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "all",
+              "value": "all"
+            },
+            {
+              "label": "Active",
+              "value": "active"
+            },
+            {
+              "label": "past_due",
+              "value": "past_due"
+            },
+            {
+              "label": "unpaid",
+              "value": "unpaid"
+            },
+            {
+              "label": "canceled",
+              "value": "canceled"
+            },
+            {
+              "label": "incomplete",
+              "value": "incomplete"
+            },
+            {
+              "label": "incomplete_expired",
+              "value": "incomplete_expired"
+            },
+            {
+              "label": "trialing",
+              "value": "trialing"
+            },
+            {
+              "label": "ended",
+              "value": "ended"
+            }
+          ]
+        }
+      ]
+    },
+    "name": "subscription",
+    "type": "text",
+    "label": "Subscription ID"
+  },
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Draft",
+        "value": "draft"
+      },
+      {
+        "label": "Open",
+        "value": "open"
+      },
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Uncollectible",
+        "value": "uncollectible"
+      },
+      {
+        "label": "Void",
+        "value": "void"
+      }
+    ]
+  },
+  {
+    "name": "collection_method",
+    "type": "select",
+    "label": "Collection Method",
+    "options": [
+      {
+        "label": "Charge Automatically",
+        "value": "charge_automatically"
+      },
+      {
+        "label": "Send Invoice",
+        "value": "send_invoice"
+      }
+    ]
+  },
+  {
+    "name": "filter",
+    "type": "filter",
+    "label": "Filter",
+    "options": {
+      "logic": "and",
+      "store": [
+        {
+          "label": "[Date] Created",
+          "value": "created"
+        },
+        {
+          "label": "[Date] Due Date",
+          "value": "due_date"
+        }
+      ],
+      "operators": [
+        {
+          "label": "Date",
+          "options": [
+            {
+              "label": "Later than",
+              "value": "date::gt"
+            },
+            {
+              "label": "Earlier than",
+              "value": "date::lt"
+            },
+            {
+              "label": "Later than or equal to",
+              "value": "date::gte"
+            },
+            {
+              "label": "Earlier than or equal to",
+              "value": "date::lte"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 100
+  }
+]

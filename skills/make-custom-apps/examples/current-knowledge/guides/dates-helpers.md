@@ -52,12 +52,29 @@ The recipe's `functions/normalizeDate.js` is the teaching helper. The checker's 
 
 Before choosing a function, name what the value is: a calendar date, a time of day, a timezone-aware date-time, a date-time with no zone, a duration, or a numeric timestamp. Each has its own contract.
 
-* **Input side.** A typed date input plus formatting in communication suits date-times. The input guidance also allows a text field with a clear format hint for date-only or time-only values. A date picker without a time control still produces a representation with timezone behaviour (midnight in the user's zone converted to UTC), so pick the contract on purpose instead of applying date-time conversion to every calendar value.
+* **Input side.** A typed date input plus formatting in communication suits date-times. The input guidance also allows a text field with a clear format hint for date-only or time-only values; the [mappable-parameters best practices](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters) ask for the accurate type (`date` for a date-time) except for those two cases, where a `text` parameter that states its format in the help text is the documented exception. A date picker without a time control still produces a representation with timezone behaviour (midnight in the user's zone converted to UTC), so pick the contract on purpose instead of applying date-time conversion to every calendar value.
 * **Output side.** Parse only when the meaning and zone are established. An interface `date` field must agree with the value the output really emits; declaring a type does not convert the runtime value.
 * **Numerics.** A long number is a timestamp only when its field name, the provider documentation or its metadata says so, and the unit (seconds or milliseconds) is stated. Never decide that from the digit count alone, and never decide a field is an identifier from its type name or magnitude either.
 * **Existing scenarios.** Changing a string output into a date changes what downstream mappings receive. For a shipped module, add a compatible alternative or follow the breaking-change guidance in [compatibility-evidence](compatibility-evidence.md) instead of silently changing the type.
 
 Polling state (what Make remembers between runs, what the epoch controls) is covered in [pagination-and-trigger-state](pagination-and-trigger-state.md); the language rules for `parseDate`, array indexing and fallbacks are in [iml-and-helpers](iml-and-helpers.md).
+
+## Testing a date helper
+
+A helper that formats, parses or shifts dates is where a one-line test passes while real data fails. Trace the reachable call sites first (what the helper actually receives from the module, see [iml-and-helpers](iml-and-helpers.md)), then pick inputs that separate a correct helper from a coincidentally correct one. This is engineering guidance for helper QA, not a Make runtime rule, and it only asks for what the helper can actually be given.
+
+| Input to cover | Why it separates correct from coincidental |
+| --- | --- |
+| A non-midnight instant, such as `2026-10-29T13:45:30.250Z` | Midnight-only tests hide a dropped time of day, a lost fraction of a second and a swapped hour/minute. |
+| A positive and a negative offset, such as `+05:30` and `-08:00` | A helper that ignores the offset, or applies it with the wrong sign, still passes on `Z` inputs. |
+| A named IANA zone, such as `Europe/Prague`, not just a fixed offset | A fixed offset cannot express daylight-saving rules; the named zone can. |
+| A DST boundary, where the helper converts between zones | 2026-03-29 in `Europe/Prague` skips 02:00 to 03:00 (local times 02:00 to 02:59 do not exist); 2026-10-25 repeats 02:00 to 02:59 (one local time, two instants). For `America/New_York` the 2026 boundaries are 2026-03-08 and 2026-11-01. A helper that never converts between zones needs no DST case. |
+| An explicitly set extension timezone | A test that relies on the machine or editor default passes on one machine and fails on another. Set the zone the test is about, by IANA name. |
+| `undefined`, `null`, `''`, an unparsable string, and a non-string such as `0` or `false` where the call site can supply one | Pin the contract: either the exact return value (`undefined`, `''`) or the exact thrown error type and message. Do not demand types the module can never pass. |
+
+These cases are for writing or evaluating a new or changed date-helper test. Missing coverage in a working legacy app is an evidence limitation and advice, not an automatic defect or approval blocker, unless the task's review criteria require it or the helper's actual behavior lacks essential evidence; a demonstrably wrong date result remains a finding.
+
+Assert exact results: the complete expected string, or a deep comparison for objects, never only that something "is truthy" or "does not throw". Local Node tests with a mock exercise your logic; they are not proof of how Make runs the function, and the Make documentation for editor tests, not the mock, defines how `it()` tests and timezones behave there.
 
 ## Rationale
 
@@ -86,6 +103,7 @@ Make compares and sorts dates internally. A string like `03/04/2026 10:00` is am
 * Parsing, `time: false` behaviour and the exception list: **documented requirement** (public pages below).
 * Descending order and the 3200-record reason: **documented recommendation**.
 * Order-pair consistency, helper tracing: **inferred implementation pattern** implemented as static text inspection in the checker. It does not execute a helper, prove a conversion is *correct*, or model timezones.
+* The helper test boundaries are engineering guidance for QA, not a documented Make requirement, and a passing local test is not runtime proof. The DST dates are calendar facts for 2026 and change by year.
 * Whether a particular provider's format is ISO is a provider fact the fixture declares by hand; the checker cannot discover it.
 
 ## Fixtures
@@ -109,3 +127,5 @@ Static, synthetic teaching fixtures; a pass shows internal consistency with the 
 * https://developers.make.com/custom-apps-documentation/app-components/modules/trigger
 * https://developers.make.com/custom-apps-documentation/component-blocks/epoch
 * https://developers.make.com/custom-apps-documentation/block-elements/iml (the `parseDate` and `formatDate` functions used above)
+* https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests (editor `it()` tests and the extension timezone; the table above is engineering guidance, not part of that page)
+* https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters (accurate date/time types, date-only and time-only text)

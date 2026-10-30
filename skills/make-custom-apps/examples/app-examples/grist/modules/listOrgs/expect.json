@@ -1,0 +1,9 @@
+[
+  {
+    "help": "Maximum number of items to output.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

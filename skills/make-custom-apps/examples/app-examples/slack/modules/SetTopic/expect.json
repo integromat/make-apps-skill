@@ -1,0 +1,242 @@
+[
+  {
+    "name": "channelType",
+    "type": "select",
+    "label": "Channel type",
+    "options": [
+      {
+        "label": "Public channel",
+        "value": "public",
+        "nested": [
+          {
+            "name": "inputMethod",
+            "type": "select",
+            "label": "Input Method",
+            "default": "list",
+            "options": [
+              {
+                "label": "Select from a list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Public Channel",
+                    "options": "rpc://app%23slack@4/PublicChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Search by the name",
+                "value": "search",
+                "nested": [
+                  {
+                    "rpc": {
+                      "url": "rpc://app%23slack@4/PublicChannels",
+                      "label": "Search",
+                      "parameters": [
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "exclude_archived",
+                          "type": "boolean",
+                          "label": "Exclude Archived"
+                        }
+                      ]
+                    },
+                    "name": "channel",
+                    "type": "text",
+                    "label": "Public Channel",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Private channel",
+        "value": "private",
+        "nested": [
+          {
+            "name": "inputMethod",
+            "type": "select",
+            "label": "Input Method",
+            "default": "list",
+            "options": [
+              {
+                "label": "Select from a list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Private Channel",
+                    "options": "rpc://app%23slack@4/PrivateChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Search by the name",
+                "value": "search",
+                "nested": [
+                  {
+                    "rpc": {
+                      "url": "rpc://app%23slack@4/PrivateChannels",
+                      "label": "Search",
+                      "parameters": [
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "exclude_archived",
+                          "type": "boolean",
+                          "label": "Exclude Archived"
+                        }
+                      ]
+                    },
+                    "name": "channel",
+                    "type": "text",
+                    "label": "Private Channel",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "IM channel",
+        "value": "im",
+        "nested": [
+          {
+            "name": "inputMethod",
+            "type": "select",
+            "label": "Input Method",
+            "default": "list",
+            "options": [
+              {
+                "label": "Select from a list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "IM Channel",
+                    "options": "rpc://app%23slack@4/IMChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Search by the name",
+                "value": "search",
+                "nested": [
+                  {
+                    "rpc": {
+                      "url": "rpc://app%23slack@4/IMChannels",
+                      "label": "Search",
+                      "parameters": [
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "exclude_archived",
+                          "type": "boolean",
+                          "label": "Exclude Archived"
+                        }
+                      ]
+                    },
+                    "name": "channel",
+                    "type": "text",
+                    "label": "IM Channel",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Multiparty IM channel",
+        "value": "mpim",
+        "nested": [
+          {
+            "name": "inputMethod",
+            "type": "select",
+            "label": "Input Method",
+            "default": "list",
+            "options": [
+              {
+                "label": "Select from a list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Multiparty IM Channel",
+                    "options": "rpc://app%23slack@4/MPIMChannels",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Search by the name",
+                "value": "search",
+                "nested": [
+                  {
+                    "rpc": {
+                      "url": "rpc://app%23slack@4/MPIMChannels",
+                      "label": "Search",
+                      "parameters": [
+                        {
+                          "name": "name",
+                          "type": "text",
+                          "label": "Name"
+                        },
+                        {
+                          "name": "exclude_archived",
+                          "type": "boolean",
+                          "label": "Exclude Archived"
+                        }
+                      ]
+                    },
+                    "name": "channel",
+                    "type": "text",
+                    "label": "Multiparty IM Channel",
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "topic",
+    "type": "text",
+    "label": "Topic",
+    "required": true
+  }
+]

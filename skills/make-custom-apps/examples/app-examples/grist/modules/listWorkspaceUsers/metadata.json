@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List a Workspace Users",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Returns a list of users that have access to the workspace.",
+  "altAccountName": null
+}

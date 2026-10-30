@@ -1,0 +1,10 @@
+{
+  "url": "/projects",
+  "body": {
+    "data": "{{transformRequestDates(parameters)}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

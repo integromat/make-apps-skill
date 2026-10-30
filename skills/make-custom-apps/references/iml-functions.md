@@ -136,6 +136,46 @@ Run it as `node run-tests.cjs code.js test.js` after saving those local files.
 For helpers using `iml.*`, run SDK tests or clearly document limited test substitutes;
 do not report a stubbed function as proof of real Make semantics.
 
+## Make helper tests exact and able to fail
+
+This is engineering guidance for helper QA; the IML tests page only documents `it(name, fn)`
+and the strict and deep assertions, not the coverage below. The runnable examples are in
+[IML and helpers](../examples/current-knowledge/guides/iml-and-helpers.md) and the date side
+in [dates and helpers](../examples/current-knowledge/guides/dates-helpers.md).
+
+1. **Trace reachable call sites first.** Test what each real call site can pass (a provider
+   field, a parameter, another helper's result). Do not demand a test for an input type no
+   call site can produce, and do not demand a behavioral test for a pure static helper (a
+   constant or a fixed mapping with no input) when the review says why none is needed.
+2. **Assert exact results.** `assert.strictEqual` for primitives, `assert.deepStrictEqual`
+   for objects and arrays; where an error is the contract, assert the exact error type and
+   message (`assert.throws` in a local Node test). A test must be able to fail: no vacuous
+   success, such as a body that never calls the helper, a swallowed `try`/`catch`, or an
+   assertion on a constant. The `it()` harness above passes a test that makes no assertion.
+3. **Cover the boundaries the call sites allow:** `undefined`, `null`, `false`, `0`, `''`,
+   an empty array, and nested objects or arrays whose inner values are missing or `null`.
+   `0` and `false` are valid values, not "missing".
+4. **For date and time helpers**, add non-midnight timestamps, positive and negative
+   offsets, a named IANA timezone, a DST boundary where the helper converts zones, and an
+   explicit extension timezone when running the editor test.
+5. **`assert.ok(value, expected)` does not compare equality.** Its second argument is only
+   the failure message, so the call passes whenever `value` is truthy. It cannot assert
+   `null`, `0`, `false` or `''`. Do not write `assert.ok(fn({}), null)` or a placeholder test
+   that asserts `true` about a function it never calls; use `strictEqual` or
+   `deepStrictEqual` ([Node.js assert](https://nodejs.org/api/assert.html)).
+6. **Editor tests: bare `it()` snippets are the supported format used here.** Write them
+   without `import` lines or `describe`. Only a local Node test file uses `node:test` and
+   `node:assert/strict`; that local Node infrastructure is separate from editor tests.
+7. **A local test or mock is not Make runtime proof.** Report it as a local unit test; use
+   an editor test or an execution when the Make runtime, built-ins or `iml.*` behavior is
+   the question.
+
+Points 1-6 are standards for authoring or evaluating a new or changed function test. Missing
+comprehensive helper tests in a working legacy app (maintenance that does not change the helper)
+are an evidence limitation and advice, not an automatic defect or approval blocker, unless the
+task's explicit review criteria require them or the helper's actual behavior lacks essential
+evidence. Demonstrably incorrect behavior stays a finding.
+
 ## Transformation and verification gate
 
 - Test absent, null, empty-string, zero, false, and normal inputs where meaningful.
@@ -146,7 +186,8 @@ do not report a stubbed function as proof of real Make semantics.
 - For XML, prefer the documented response parser; regex tag matching is not a generic
   XML parser. For signatures, use independent documented test vectors and exact bytes.
 - Keep transformation helpers free of credentials, endpoint secrets, and side effects.
-- Verify each custom call has a matching implementation and every test actually ran.
+- Verify each custom call has a matching implementation and, where tests exist or are being
+  added, that every test actually ran.
 - Report offline assertions, SDK function tests, and full module execution separately.
   No local harness proves connection authentication, pagination, or deployment readiness.
 

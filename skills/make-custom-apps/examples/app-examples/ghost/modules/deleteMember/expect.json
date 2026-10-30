@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "member_id",
+    "type": "select",
+    "label": "Member ID",
+    "options": "rpc://app%23ghost@1/listMembers",
+    "required": true
+  }
+]

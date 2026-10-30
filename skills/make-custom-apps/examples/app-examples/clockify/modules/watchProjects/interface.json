@@ -1,0 +1,133 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "hourlyRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "costRate",
+    "type": "text",
+    "label": "Cost Rate"
+  },
+  {
+    "name": "clientId",
+    "type": "text",
+    "label": "Client ID"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "estimate",
+    "spec": [
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Estimate"
+  },
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "duration",
+    "type": "text",
+    "label": "Duration"
+  },
+  {
+    "name": "clientName",
+    "type": "text",
+    "label": "Client Name"
+  },
+  {
+    "name": "note",
+    "type": "text",
+    "label": "Note"
+  },
+  {
+    "name": "template",
+    "type": "boolean",
+    "label": "Template"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "tasks",
+    "type": "array",
+    "label": "Tasks"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "archived",
+        "type": "boolean",
+        "label": "Archived"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  }
+]

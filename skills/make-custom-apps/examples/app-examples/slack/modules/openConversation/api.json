@@ -1,0 +1,15 @@
+{
+  "url": "/conversations.open",
+  "body": {
+    "users": "{{join(parameters.users, ',')}}",
+    "return_im": true
+  },
+  "method": "POST",
+  "response": {
+    "valid": {
+      "message": "{{body.error}}",
+      "condition": "{{body.ok}}"
+    },
+    "output": "{{body.channel}}"
+  }
+}

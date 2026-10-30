@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "GET 100 Newest Charges",
+  "accountName": "stripe",
+  "altAccountName": null
+}

@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "limit": 1000,
+    "types": "private_channel",
+    "exclude_archived": "{{parameters.exclude_archived}}"
+  },
+  "url": "/conversations.list",
+  "method": "GET",
+  "response": {
+    "limit": "{{ifempty(parameters.limit, 3000)}}",
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": {
+      "condition": "{{if(parameters.name, contains(lower(item.name), lower(parameters.name)), true)}}",
+      "container": "{{sort(body.channels, 'name')}}"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}",
+    "stopOnEmptyResponse": false
+  }
+}

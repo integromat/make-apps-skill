@@ -1,0 +1,149 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "List Name"
+  },
+  {
+    "name": "contact",
+    "spec": [
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company Name"
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Address"
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Address 2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "label": "State"
+      },
+      {
+        "name": "zip",
+        "type": "text",
+        "label": "Zip Code"
+      },
+      {
+        "help": "e.g.`CZ`,`US`",
+        "name": "country",
+        "type": "text",
+        "label": "Country Code",
+        "validate": {
+          "max": 2
+        }
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone Number"
+      }
+    ],
+    "type": "collection",
+    "label": "Contacts"
+  },
+  {
+    "name": "permission_reminder",
+    "type": "text",
+    "label": "Permission Reminder"
+  },
+  {
+    "name": "use_archive_bar",
+    "type": "boolean",
+    "label": "Use Archive Bar"
+  },
+  {
+    "name": "campaign_defaults",
+    "spec": [
+      {
+        "name": "from_email",
+        "type": "email",
+        "label": "From Email"
+      },
+      {
+        "name": "from_name",
+        "type": "text",
+        "label": "From Name"
+      },
+      {
+        "name": "subject",
+        "type": "text",
+        "label": "Subject"
+      },
+      {
+        "help": "e.g.`en`,`cs`",
+        "name": "language",
+        "type": "text",
+        "label": "Language Code"
+      }
+    ],
+    "type": "collection",
+    "label": "Campaign Defaults"
+  },
+  {
+    "help": "The email address to send subscribe notifications to",
+    "name": "notify_on_subscribe",
+    "type": "email",
+    "label": "Notify on Subscribe"
+  },
+  {
+    "help": "The email address to send unsubscribe notifications to",
+    "name": "notify_on_unsubscribe",
+    "type": "email",
+    "label": "Notify on Unsubscribe"
+  },
+  {
+    "help": "When set to true, subscribers can choose whether they want to receive HTML or plain-text emails. When set to false, subscribers will receive HTML emails, with a plain-text alternative backup.",
+    "name": "email_type_option",
+    "type": "boolean",
+    "label": "Email Type Option"
+  },
+  {
+    "name": "visibility",
+    "type": "select",
+    "label": "Visibility",
+    "options": [
+      {
+        "label": "Public",
+        "value": "pub"
+      },
+      {
+        "label": "Private",
+        "value": "prv"
+      }
+    ]
+  },
+  {
+    "help": "Whether or not to require the subscriber to confirm subscription via email.",
+    "name": "double_optin",
+    "type": "boolean",
+    "label": "Double Opt in"
+  },
+  {
+    "help": "Whether or not the list has marketing permissions (eg. GDPR) enabled.",
+    "name": "marketing_permissions",
+    "type": "boolean",
+    "label": "Marketing Permissions"
+  }
+]

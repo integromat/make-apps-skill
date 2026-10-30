@@ -1,0 +1,76 @@
+[
+  {
+    "name": "id",
+    "type": "uinteger",
+    "label": "Task Assignment ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is Active"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "hourly_rate",
+    "type": "number",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "budget",
+    "type": "number",
+    "label": "Budget"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "id",
+        "type": "uinteger",
+        "label": "Project ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "code",
+        "type": "text",
+        "label": "Code"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "task",
+    "spec": [
+      {
+        "name": "id",
+        "type": "uinteger",
+        "label": "Task ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Task"
+  }
+]

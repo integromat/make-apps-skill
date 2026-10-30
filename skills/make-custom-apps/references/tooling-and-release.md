@@ -9,7 +9,7 @@ This reference separates saving code, live testing, app/module visibility, and a
 | --- | --- | --- |
 | Make web Custom Apps editor | Inspect and edit app configuration with SDK-aware validation. | Saving changes is a remote write, not a local draft.[4] |
 | Make Apps Editor for VS Code | Download/edit app sections through the documented extension. | Opening downloads configuration; saving uploads it; temporary files are removed on close.[3] |
-| Make TypeScript SDK / `@makehq/sdk@1.7.1` | Create, upload, update and read back custom-app definitions through `make.sdk`; manage other Make API resources separately. | This is the platform SDK used for app uploads. Verify each operation, scope, section and request shape in current docs/source.[37][47][50] |
+| Make TypeScript SDK / `@makehq/sdk@1.8.1` | Create, upload, update and read back custom-app definitions through `make.sdk`; manage other Make API resources separately. | This is the platform SDK used for app uploads (management client, not Make app runtime). Verify each operation, scope, section and request shape in current docs/source.[37][47][50] Executable sample: [GitHub search SDK script](../examples/app-examples/github-search/README.md#create-the-private-app-with-the-sdk-script). |
 | `make-cli` from `@makehq/cli` | CLI access to the published SDK tool catalog. | Commands depend on the resolved SDK version, not only the CLI version.[41][48] |
 | Make Endpoints SDK / `@makehq/endpoints-sdk` | Execute available app Endpoints with managed connections. | Not an app uploader. Execution is distinct from `make.sdk.endpoints` definition authoring and requires runtime access; see [Endpoint gates](sdk-endpoints.md).[49] |
 
@@ -47,13 +47,25 @@ Do not normalize all exported types to `apikey`, `basic` or `oauth`; use the exa
 ### TypeScript SDK upload and readback
 
 This is the default authoring route; an explicitly selected MCP/CLI/editor route stays valid.
-Use **`@makehq/sdk@1.7.1`** as the verified TypeScript management/upload baseline. Its npm package requires
+Use **`@makehq/sdk@1.8.1`** as the verified TypeScript management/upload baseline. Its npm package requires
 Node.js 20 or later.[47][50] Pin it in the authorized project's dependency and lockfile rather than
 installing a global CLI or assuming the Endpoints SDK can upload app definitions:
 
 ```bash
-npm install --save-exact @makehq/sdk@1.7.1
+npm install --save-exact @makehq/sdk@1.8.1
 ```
+
+The [GitHub search SDK script](../examples/app-examples/github-search/README.md#create-the-private-app-with-the-sdk-script)
+is a typed example of this route, pinned to exactly 1.8.1 with a lockfile. Its safe contract, which a new
+script should keep: an offline mock run by default; an explicit `--live` flag with `MAKE_API_KEY` and `MAKE_ZONE`
+taken from the environment, never from arguments or files; `audience` and the module type id supplied by the owner,
+never defaulted; `apps.create` with `private: true` followed by a full `apps.get` that must confirm
+`public === false` before any section is written; `setSection` then `getSection` exact-text readback for the
+Base and each module section; automatic retries off, so a 5xx or empty-response create is an uncertain outcome to
+look up before any rerun; no rollback, publication, approval request, connection creation, scenario run or
+provider call; reports without section content, error bodies or credentials. It is tested against mocks only and has
+not been run live. It is management tooling, not Make app runtime code, and its tests do not show that Make
+accepts the sections.
 
 Import `Make` from `@makehq/sdk` and construct `new Make(apiKey, zone)` only after resolving and validating
 the approved server-side `MAKE_API_KEY` and exact `MAKE_ZONE` hostname, for example `us1.make.com`
@@ -118,7 +130,8 @@ export async function uploadModuleSection(
 }
 ```
 
-Declarations match `@makehq/sdk@1.7.1` (`SDKModules.setSection`/`getSection`/`get`). Strict string
+The calls match those in the sample's `create-app-core.ts`, which is typechecked against the pinned
+`@makehq/sdk@1.8.1` (`SDKModules.setSection`/`getSection`/`get`). Strict string
 equality is the conservative check; if the service normalizes whitespace, compare semantically only
 after observing that behavior. The returned full GET supports metadata and binding checks;
 list components separately to verify counts (step 5).
@@ -235,8 +248,8 @@ Say explicitly when no provider runtime test or publication was performed.
 [38] https://developers.make.com/api-documentation/api-reference/sdk-apps/connections.md
 [40] https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/generation-of-your-api-key.md
 [41] https://registry.npmjs.org/@makehq%2fcli/1.4.0
-[47] https://unpkg.com/@makehq/sdk@1.7.1/dist/index.d.ts
+[47] https://unpkg.com/@makehq/sdk@1.8.1/dist/index.d.ts
 [48] https://unpkg.com/@makehq/cli@1.4.0/dist/index.js
 [49] https://unpkg.com/@makehq/endpoints-sdk@0.9.0/README.md
-[50] https://registry.npmjs.org/@makehq%2fsdk/1.7.1
+[50] https://registry.npmjs.org/@makehq%2fsdk/1.8.1
 [51] https://developers.make.com/api-documentation/api-reference/sdk-apps/modules.md

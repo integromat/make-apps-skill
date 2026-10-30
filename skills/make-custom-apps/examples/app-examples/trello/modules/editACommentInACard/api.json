@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "value": "{{parameters.value}}"
+  },
+  "url": "/actions/{{parameters.comment_id}}/text",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

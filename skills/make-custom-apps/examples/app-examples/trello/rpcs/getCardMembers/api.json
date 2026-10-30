@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "fields": "username,id,fullName"
+  },
+  "url": "/cards/{{parameters.card_id}}/members",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.fullName}} ({{item.username}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

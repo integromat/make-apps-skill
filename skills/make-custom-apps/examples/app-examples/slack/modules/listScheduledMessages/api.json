@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "limit": "{{min(parameters.limit, 100)}}",
+    "latest": "{{if(parameters.latest, formatDate(parameters.latest, 'X'))}}",
+    "oldest": "{{if(parameters.oldest, formatDate(parameters.oldest, 'X'))}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "url": "/chat.scheduledMessages.list",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.scheduled_messages}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "url": "/users",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.firstName + ' ' + item.lastName}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.users}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{parameters.records.cursor}}"
+    },
+    "condition": "{{parameters.records.cursor}}"
+  }
+}

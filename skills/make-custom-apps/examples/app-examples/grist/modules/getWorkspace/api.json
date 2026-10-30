@@ -1,0 +1,7 @@
+{
+  "url": "/workspaces/{{parameters.workspaceId}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

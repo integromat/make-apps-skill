@@ -1,0 +1,11 @@
+{
+  "qs": {
+    "name": "{{parameters.name}}",
+    "color": "{{parameters.color}}"
+  },
+  "url": "/labels/{{parameters.label_id}}",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

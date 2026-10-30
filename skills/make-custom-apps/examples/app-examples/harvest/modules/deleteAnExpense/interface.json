@@ -1,0 +1,208 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Expense ID"
+  },
+  {
+    "name": "spent_date",
+    "time": false,
+    "type": "date",
+    "label": "Spent Date"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "total_cost",
+    "type": "number",
+    "label": "Total Cost"
+  },
+  {
+    "name": "units",
+    "type": "number",
+    "label": "Units"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "receipt",
+    "type": "text",
+    "label": "Receipt"
+  },
+  {
+    "name": "is_closed",
+    "type": "boolean",
+    "label": "Is Closed"
+  },
+  {
+    "name": "is_locked",
+    "type": "boolean",
+    "label": "Is Locked"
+  },
+  {
+    "name": "is_billed",
+    "type": "boolean",
+    "label": "Is Billed"
+  },
+  {
+    "name": "locked_reason",
+    "type": "text",
+    "label": "Locked Reason"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "code",
+        "type": "text",
+        "label": "Code"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "expense_category",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "unit_price",
+        "type": "number",
+        "label": "Unit Price"
+      },
+      {
+        "name": "unit_name",
+        "type": "text",
+        "label": "Unit Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Expense Category"
+  },
+  {
+    "name": "user_assignment",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "is_project_manager",
+        "type": "boolean",
+        "label": "Is Project Manager"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "label": "Is Active"
+      },
+      {
+        "name": "use_default_rates",
+        "type": "boolean",
+        "label": "Use Default Rates"
+      },
+      {
+        "name": "budget",
+        "type": "text",
+        "label": "Budget"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated At"
+      },
+      {
+        "name": "hourly_rate",
+        "type": "number",
+        "label": "Hourly Rate"
+      }
+    ],
+    "type": "collection",
+    "label": "User Assignment"
+  },
+  {
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice"
+  }
+]

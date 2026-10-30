@@ -1,0 +1,17 @@
+{
+  "url": "/lists/{{parameters.list}}/merge-fields/{{parameters.merge_id}}",
+  "body": {
+    "tag": "{{parameters.tag}}",
+    "name": "{{parameters.name}}",
+    "public": "{{parameters.public}}",
+    "options": "{{normUpdMergeFieldsOpt(parameters.options)}}",
+    "required": "{{parameters.required}}",
+    "help_text": "{{parameters.help_text}}",
+    "default_value": "{{parameters.default_value}}",
+    "display_order": "{{parameters.display_order}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

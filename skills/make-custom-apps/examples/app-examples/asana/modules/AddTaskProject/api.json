@@ -1,0 +1,10 @@
+{
+  "url": "/tasks/{{parameters.taskCollection.task_gid}}/addProject",
+  "body": {
+    "data": "{{omit(intToString(parameters),'locationChoice','taskCollection')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{}}"
+  }
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "user",
+          "type": "select",
+          "label": "Assignee ID",
+          "options": "rpc://listUsers",
+          "required": true
+        },
+        {
+          "name": "start",
+          "time": true,
+          "type": "date",
+          "label": "Start"
+        },
+        {
+          "name": "end",
+          "time": true,
+          "type": "date",
+          "label": "End"
+        },
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": {
+            "store": "rpc://listProjects",
+            "nested": [
+              {
+                "name": "task",
+                "type": "select",
+                "label": "Task ID",
+                "options": "rpc://listTasks"
+              }
+            ]
+          }
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "tags",
+          "type": "select",
+          "label": "Tags",
+          "options": "rpc://listTags",
+          "multiple": true
+        },
+        {
+          "help": "If set true, only time entries with project will be returned.",
+          "name": "project-required",
+          "type": "boolean",
+          "label": "Project"
+        },
+        {
+          "help": "If set true, only time entries with task will be returned.",
+          "name": "task-required",
+          "type": "boolean",
+          "label": "Task"
+        },
+        {
+          "help": "If set true, returned timeentry's duration will be rounded to minutes or seconds based on duration format (hh:mm or hh:mm:ss) from workspace settings.",
+          "name": "durationFormat",
+          "type": "boolean",
+          "label": "Duration Format"
+        },
+        {
+          "help": "If set true, returned timeentry's project, task and tags will be returned in full and not just their ids.",
+          "name": "hydrated",
+          "type": "boolean",
+          "label": "Hydrated"
+        },
+        {
+          "help": "If set true, only currently running time entry will be returned.",
+          "name": "in-progress",
+          "type": "boolean",
+          "label": "Time Running in Progress"
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

@@ -1,0 +1,257 @@
+[
+  {
+    "name": "search_subscribers",
+    "type": "select",
+    "label": "Search Subscribers",
+    "options": [
+      {
+        "label": "By email",
+        "value": "email",
+        "nested": [
+          {
+            "name": "select",
+            "type": "select",
+            "label": "Select",
+            "options": [
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "query",
+                    "type": "email",
+                    "label": "Email",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Select from the list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "listId",
+                    "type": "select",
+                    "label": "List ID",
+                    "options": {
+                      "store": "rpc://app%23mailchimp@2/listLists",
+                      "nested": [
+                        {
+                          "name": "query",
+                          "type": "select",
+                          "label": "Email",
+                          "options": "rpc://app%23mailchimp@2/listSubscribersEmailAddress",
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "required": true
+                  }
+                ],
+                "default": true
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Unique Email ID",
+        "value": "uniqueEmailId",
+        "nested": [
+          {
+            "name": "select",
+            "type": "select",
+            "label": "Enter a List ID",
+            "options": [
+              {
+                "label": "Enter manually",
+                "value": "map",
+                "nested": [
+                  {
+                    "name": "list",
+                    "type": "text",
+                    "label": "List ID",
+                    "required": true
+                  },
+                  {
+                    "name": "unique_email_id",
+                    "type": "text",
+                    "label": "Unique Email ID",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Select from the list",
+                "value": "list",
+                "nested": [
+                  {
+                    "name": "list",
+                    "type": "select",
+                    "label": "List ID",
+                    "options": {
+                      "store": "rpc://app%23mailchimp@2/listLists",
+                      "nested": [
+                        {
+                          "name": "unique_email_id",
+                          "type": "select",
+                          "label": "Unique Email ID",
+                          "options": "rpc://app%23mailchimp@2/listSubscridersUniqueEmaiId",
+                          "required": true
+                        }
+                      ]
+                    },
+                    "required": true
+                  }
+                ],
+                "default": true
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "By partial matches of Search parameter",
+        "value": "full",
+        "nested": [
+          {
+            "name": "list",
+            "type": "select",
+            "label": "List ID",
+            "options": {
+              "store": "rpc://app%23mailchimp@2/listLists"
+            },
+            "required": true
+          },
+          {
+            "name": "status",
+            "type": "select",
+            "label": "Status",
+            "options": [
+              {
+                "label": "Subscribed",
+                "value": "subscribed",
+                "default": true
+              },
+              {
+                "label": "Unsubscribed",
+                "value": "unsubscribed"
+              },
+              {
+                "label": "Cleaned",
+                "value": "cleaned"
+              },
+              {
+                "label": "Pending",
+                "value": "pending"
+              },
+              {
+                "label": "Transactional",
+                "value": "transactional"
+              },
+              {
+                "label": "Archived",
+                "value": "archived"
+              }
+            ]
+          },
+          {
+            "name": "vip_only",
+            "type": "boolean",
+            "label": "VIP only",
+            "mappable": false,
+            "required": true
+          },
+          {
+            "name": "email_type",
+            "type": "select",
+            "label": "Email Type",
+            "options": [
+              {
+                "label": "HTML",
+                "value": "html",
+                "default": true
+              },
+              {
+                "label": "Text",
+                "value": "text"
+              }
+            ]
+          },
+          {
+            "name": "since_timestamp_opt",
+            "time": true,
+            "type": "date",
+            "label": "Since Date Added"
+          },
+          {
+            "name": "before_timestamp_opt",
+            "time": true,
+            "type": "date",
+            "label": "Before Date Added"
+          },
+          {
+            "name": "since_last_changed",
+            "time": true,
+            "type": "date",
+            "label": "Since Last Changed Date"
+          },
+          {
+            "name": "before_last_changed",
+            "time": true,
+            "type": "date",
+            "label": "Before Last Changed Date"
+          },
+          {
+            "name": "sort",
+            "type": "select",
+            "label": "Sort by",
+            "options": [
+              {
+                "label": "Date Added - Ascending",
+                "value": "timestamp_opt_asc"
+              },
+              {
+                "label": "Date Added - Descending",
+                "value": "timestamp_opt_desc"
+              },
+              {
+                "label": "Date Signup - Ascending",
+                "value": "timestamp_signup_asc"
+              },
+              {
+                "label": "Date Signup - Descending",
+                "value": "timestamp_signup_desc"
+              },
+              {
+                "label": "Date Updated - Ascending",
+                "value": "last_changed_asc",
+                "default": true
+              },
+              {
+                "label": "Date Updated - Descending",
+                "value": "last_changed_desc"
+              }
+            ],
+            "mappable": false
+          }
+        ],
+        "default": true
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

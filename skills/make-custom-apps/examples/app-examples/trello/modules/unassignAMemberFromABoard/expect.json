@@ -1,0 +1,21 @@
+[
+  {
+    "mode": "edit",
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": {
+      "store": "rpc://listBoards",
+      "nested": [
+        {
+          "name": "member_id",
+          "type": "select",
+          "label": "Member",
+          "options": "rpc://getMemberIdBoard",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(parameters),'page','choice','task_gid','workspace','assignee','project','section','tag','selectOrMap'),'Tag')}}",
+  "url": "/tasks/{{parameters.task_gid}}/tags",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

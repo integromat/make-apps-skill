@@ -1,0 +1,10 @@
+[
+  {
+    "help": "The ID or name of the Workspace.",
+    "name": "organizationId",
+    "type": "select",
+    "label": "Organization ID",
+    "options": "rpc://app%23trello@4/getOrganizations",
+    "required": true
+  }
+]

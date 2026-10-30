@@ -1,0 +1,263 @@
+{
+  "response": {
+    "output": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Member ID"
+      },
+      {
+        "name": "uuid",
+        "type": "text",
+        "label": "UUID"
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "label": "Email"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "note",
+        "type": "text",
+        "label": "Note"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "geolocation",
+        "type": "text",
+        "label": "Geolocation"
+      },
+      {
+        "name": "labels",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created at"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated at"
+          }
+        ],
+        "type": "array",
+        "label": "Labels"
+      },
+      {
+        "name": "subscriptions",
+        "spec": [],
+        "type": "array",
+        "label": "Subscriptions"
+      },
+      {
+        "name": "avatar_image",
+        "type": "text",
+        "label": "Avatar Image URL"
+      },
+      {
+        "name": "stripe",
+        "spec": [
+          {
+            "name": "subscriptions",
+            "type": "array",
+            "label": "Subscriptions"
+          }
+        ],
+        "type": "collection",
+        "label": "Stripe"
+      },
+      {
+        "name": "comped",
+        "type": "boolean",
+        "label": "Comped"
+      },
+      {
+        "name": "email_count",
+        "type": "number",
+        "label": "Email Count"
+      },
+      {
+        "name": "email_opened_count",
+        "type": "number",
+        "label": "Email Opened Count"
+      },
+      {
+        "name": "email_opened_rate",
+        "type": "number",
+        "label": "Email Opened Rate"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "name": "last_seen_at",
+        "type": "date",
+        "label": "Last Seen at"
+      },
+      {
+        "name": "newsletters",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "uuid",
+            "type": "uuid",
+            "label": "UUID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "sender_name",
+            "type": "text",
+            "label": "Sender Name"
+          },
+          {
+            "name": "sender_email",
+            "type": "email",
+            "label": "Sender Email"
+          },
+          {
+            "name": "sender_reply_to",
+            "type": "text",
+            "label": "Sender Reply to"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "visibility",
+            "type": "text",
+            "label": "Visibility"
+          },
+          {
+            "name": "subscribe_on_signup",
+            "type": "boolean",
+            "label": "Subscribe on Signup"
+          },
+          {
+            "name": "sort_order",
+            "type": "number",
+            "label": "Sort Order"
+          },
+          {
+            "name": "header_image",
+            "type": "text",
+            "label": "Header Image"
+          },
+          {
+            "name": "show_header_icon",
+            "type": "boolean",
+            "label": "Show Header Icon"
+          },
+          {
+            "name": "show_header_title",
+            "type": "boolean",
+            "label": "Show Header Title"
+          },
+          {
+            "name": "title_font_category",
+            "type": "text",
+            "label": "Title Font Category"
+          },
+          {
+            "name": "title_alignment",
+            "type": "text",
+            "label": "Title Alignment"
+          },
+          {
+            "name": "show_feature_image",
+            "type": "boolean",
+            "label": "Show Feature Image"
+          },
+          {
+            "name": "body_font_category",
+            "type": "text",
+            "label": "Body Font Category"
+          },
+          {
+            "name": "footer_content",
+            "type": "text",
+            "label": "Footer Content"
+          },
+          {
+            "name": "show_badge",
+            "type": "boolean",
+            "label": "Show Badge"
+          },
+          {
+            "name": "show_header_name",
+            "type": "boolean",
+            "label": "Show Header Name"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created at"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated at"
+          }
+        ],
+        "type": "array",
+        "label": "Newsletters"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created at"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated at"
+      }
+    ]
+  }
+}

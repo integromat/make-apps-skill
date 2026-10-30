@@ -1,0 +1,7 @@
+{
+  "url": "/sites/{{parameters.site_id}}/builds",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

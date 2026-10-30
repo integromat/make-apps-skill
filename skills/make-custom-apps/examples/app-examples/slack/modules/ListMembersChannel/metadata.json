@@ -1,0 +1,21 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Members in a Channel",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Retrieves members of a channel.",
+  "altAccountName": null
+}

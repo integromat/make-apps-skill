@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Reminders",
+  "scope": [
+    "reminders:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "List all reminders created by or for a given user.",
+  "altAccountName": null
+}

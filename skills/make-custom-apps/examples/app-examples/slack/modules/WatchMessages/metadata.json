@@ -1,0 +1,27 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{tsToDate(item.ts)}}",
+        "label": "{{ifempty(item.message, item.text)}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Public Channel Messages",
+  "scope": [
+    "channels:history",
+    "channels:read"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when a new message is added to a public channel.",
+  "altAccountName": null
+}

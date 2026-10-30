@@ -1,0 +1,24 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email",
+    "required": true
+  },
+  {
+    "name": "note",
+    "type": "text",
+    "label": "Note"
+  },
+  {
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed to newsletter"
+  }
+]

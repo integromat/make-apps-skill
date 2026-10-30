@@ -1,0 +1,32 @@
+[
+  {
+    "name": "id",
+    "type": "uinteger",
+    "label": "Billable Rate ID"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "start_date",
+    "type": "text",
+    "label": "Start Date"
+  },
+  {
+    "name": "end_date",
+    "type": "text",
+    "label": "End Date"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  }
+]

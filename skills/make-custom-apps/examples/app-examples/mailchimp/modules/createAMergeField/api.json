@@ -1,0 +1,18 @@
+{
+  "url": "/lists/{{parameters.list_id}}/merge-fields",
+  "body": {
+    "tag": "{{parameters.tag}}",
+    "name": "{{parameters.name}}",
+    "type": "{{parameters.type}}",
+    "public": "{{parameters.public}}",
+    "options": "{{normalizeMergeFieldsOptions(parameters.type, parameters.options)}}",
+    "required": "{{parameters.required}}",
+    "help_text": "{{parameters.help_text}}",
+    "default_value": "{{parameters.default_value}}",
+    "display_order": "{{parameters.display_order}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

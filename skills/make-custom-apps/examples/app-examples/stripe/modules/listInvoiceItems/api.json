@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "limit": 100,
+    "invoice": "{{parameters.invoice}}",
+    "pending": "{{parameters.pending}}",
+    "{{...}}": "{{encodeSearchFilter(parameters.filter)}}",
+    "customer": "{{parameters.customer}}"
+  },
+  "url": "/invoiceitems",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

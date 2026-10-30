@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "https://app.asana.com/api/1.0/",
+  "headers": {
+    "authorization": "Bearer {{connection.accessToken}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.errors[1].message}}"
+    }
+  }
+}

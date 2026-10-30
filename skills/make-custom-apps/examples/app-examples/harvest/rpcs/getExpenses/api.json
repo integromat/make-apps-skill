@@ -1,0 +1,21 @@
+{
+  "qs": {},
+  "url": "/expenses",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "Spent date: {{item.spent_date}} Cost: {{item.total_cost}} Note: {{item.notes}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.expenses}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

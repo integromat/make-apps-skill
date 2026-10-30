@@ -1,0 +1,10 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}/{{parameters.addOrRemove}}",
+  "body": {
+    "data": "{{removeCollectionRPC(omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','addOrRemove','selectOrMap'),'tagCollection','tag')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{}}"
+  }
+}

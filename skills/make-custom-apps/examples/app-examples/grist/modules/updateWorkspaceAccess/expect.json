@@ -1,0 +1,66 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23grist@1/listWorkspaces",
+    "required": true
+  },
+  {
+    "mode": "edit",
+    "name": "maxInheritedRole",
+    "type": "select",
+    "label": "Max Inherited Role",
+    "options": [
+      {
+        "label": "Owners",
+        "value": "owners"
+      },
+      {
+        "label": "Editors",
+        "value": "editors"
+      },
+      {
+        "label": "Viewers",
+        "value": "viewers"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "users",
+    "spec": [
+      {
+        "name": "email",
+        "type": "text",
+        "label": "User Email"
+      },
+      {
+        "name": "role",
+        "type": "select",
+        "label": "Role",
+        "options": [
+          {
+            "label": "Owners",
+            "value": "owners"
+          },
+          {
+            "label": "Editors",
+            "value": "editors"
+          },
+          {
+            "label": "Viewers",
+            "value": "viewers"
+          },
+          {
+            "label": "Members",
+            "value": "members"
+          }
+        ]
+      }
+    ],
+    "type": "array",
+    "label": "Users"
+  }
+]

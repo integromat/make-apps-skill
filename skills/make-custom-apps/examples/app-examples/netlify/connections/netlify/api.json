@@ -1,0 +1,17 @@
+{
+  "log": {
+    "sanitize": [
+      "request.qs.access_token",
+      "request.headers.authorization"
+    ]
+  },
+  "url": "https://api.netlify.com/api/v1/user",
+  "headers": {
+    "authorization": "Bearer {{parameters.accessToken}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.message}}"
+    }
+  }
+}

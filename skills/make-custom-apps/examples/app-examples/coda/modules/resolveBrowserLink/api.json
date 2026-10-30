@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "url": "{{parameters.url}}",
+    "degradeGracefully": "{{parameters.degradeGracefully}}"
+  },
+  "url": "/resolveBrowserLink",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

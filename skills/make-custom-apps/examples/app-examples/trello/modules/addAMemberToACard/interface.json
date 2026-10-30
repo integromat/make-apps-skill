@@ -1,0 +1,47 @@
+[
+  {
+    "name": "member",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "Member ID"
+        },
+        {
+          "name": "avatarHash",
+          "type": "text",
+          "label": "Avatar hash"
+        },
+        {
+          "name": "avatarUrl",
+          "type": "url",
+          "label": "Avatar URL"
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "name": "idMemberReferrer",
+          "type": "text",
+          "label": "Member referrer ID"
+        },
+        {
+          "name": "initials",
+          "type": "text",
+          "label": "Initials"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Member"
+  }
+]

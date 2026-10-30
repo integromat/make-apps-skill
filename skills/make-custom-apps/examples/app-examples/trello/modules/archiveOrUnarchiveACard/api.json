@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "closed": "{{parameters.archive}}"
+  },
+  "url": "/cards/{{parameters.card_id}}",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

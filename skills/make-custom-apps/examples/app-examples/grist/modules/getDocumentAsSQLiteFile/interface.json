@@ -1,0 +1,14 @@
+[
+  {
+    "name": "data",
+    "type": "buffer",
+    "label": "Data",
+    "semantic": "file:data"
+  },
+  {
+    "name": "fileName",
+    "type": "text",
+    "label": "File Name",
+    "semantic": "file:name"
+  }
+]

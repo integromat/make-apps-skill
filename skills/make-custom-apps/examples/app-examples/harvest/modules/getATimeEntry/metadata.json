@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Time Entry",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Retrieves information about specific time entry.",
+  "altAccountName": null
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "url": "/sites/{{parameters.site_id}}/deploys",
+    "body": {
+      "async": "{{parameters.async}}",
+      "draft": "{{parameters.draft}}",
+      "title": "{{parameters.title}}"
+    },
+    "method": "POST",
+    "response": {
+      "output": "{{body}}"
+    }
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23grist@1/listWorkspaces",
+    "required": true
+  },
+  {
+    "name": "isPinned",
+    "type": "boolean",
+    "label": "Is Pinned"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  }
+]

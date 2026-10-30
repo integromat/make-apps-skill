@@ -1,0 +1,18 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Call",
+  "scope": [
+    "api:calls:read:basic"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "gong",
+  "description": "Retrieve data for a specific call.",
+  "altAccountName": "gong2"
+}

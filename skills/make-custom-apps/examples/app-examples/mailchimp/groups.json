@@ -1,0 +1,119 @@
+[
+  {
+    "label": "Campaign",
+    "modules": [
+      "watchCampaignOpenEmail",
+      "watchCampaigns",
+      "createACampaign",
+      "updateACampaign",
+      "editACampaignTemplateContent",
+      "performACampaignAction",
+      "getACampaign",
+      "getACampaignReport",
+      "searchCampaigns",
+      "listCampaignOpenDetails",
+      "deleteACampaign"
+    ]
+  },
+  {
+    "label": "Merge Fields",
+    "modules": [
+      "createAMergeField",
+      "updateAMergeField",
+      "getAMergeFields",
+      "searchMergeFields",
+      "deleteAMergeField"
+    ]
+  },
+  {
+    "label": "Subscriber",
+    "modules": [
+      "watchSubscribers",
+      "watchUnsubscribers",
+      "listSubscribers",
+      "getASubscriber",
+      "addUpdateASubscriber",
+      "editASubscriber",
+      "deleteASubsciber"
+    ]
+  },
+  {
+    "label": "List",
+    "modules": [
+      "watchListEvents",
+      "watchLists",
+      "searchLists",
+      "getAList",
+      "createAList",
+      "updateAList",
+      "deleteAList"
+    ]
+  },
+  {
+    "label": "List Members",
+    "modules": [
+      "addOrUpdateAListMember"
+    ]
+  },
+  {
+    "label": "Segment",
+    "modules": [
+      "watchListSegments",
+      "listsSegmentMembers",
+      "addAMemberToASegment",
+      "removeAMemberFromASegment"
+    ]
+  },
+  {
+    "label": "Orders",
+    "modules": [
+      "createAnOrder"
+    ]
+  },
+  {
+    "label": "Activity",
+    "modules": [
+      "getAListActivity",
+      "listListMembersActivities"
+    ]
+  },
+  {
+    "label": "Member Tag",
+    "modules": [
+      "listMemberTags",
+      "addRemoveATag"
+    ]
+  },
+  {
+    "label": "Events",
+    "modules": [
+      "addAnEvent",
+      "searchMemberEvents"
+    ]
+  },
+  {
+    "label": "Survey Answers",
+    "modules": [
+      "listSurveyAnswers"
+    ]
+  },
+  {
+    "label": "Reports",
+    "modules": [
+      "getAClickReport",
+      "listClickReports"
+    ]
+  },
+  {
+    "label": "Files",
+    "modules": [
+      "watchFiles"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

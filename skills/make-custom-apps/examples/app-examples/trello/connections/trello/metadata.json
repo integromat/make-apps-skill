@@ -1,0 +1,39 @@
+{
+  "rev": 11,
+  "type": "oauth",
+  "label": "Trello",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": "trello",
+  "install": {
+    "common": {
+      "appName": "{{parameters.appName}}",
+      "consumerKey": "{{parameters.consumerKey}}",
+      "consumerSecret": "{{parameters.consumerSecret}}"
+    }
+  },
+  "installSpec": [
+    {
+      "name": "appName",
+      "type": "text",
+      "label": "App Name",
+      "default": "Integromat",
+      "required": true
+    },
+    {
+      "name": "consumerKey",
+      "type": "text",
+      "label": "Consumer Key",
+      "required": true
+    },
+    {
+      "name": "consumerSecret",
+      "type": "text",
+      "label": "Consumer Secret",
+      "required": true
+    }
+  ],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

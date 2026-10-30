@@ -1,0 +1,45 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://listProjects",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name",
+          "required": true
+        },
+        {
+          "name": "assigneeId",
+          "type": "select",
+          "label": "Assignee ID",
+          "options": "rpc://listUsers"
+        },
+        {
+          "name": "estimateHour",
+          "type": "uinteger",
+          "label": "Estimate Hours"
+        },
+        {
+          "name": "estimateMinute",
+          "type": "uinteger",
+          "label": "Estimate Minutes",
+          "validate": {
+            "max": 60
+          }
+        }
+      ]
+    },
+    "required": true
+  }
+]

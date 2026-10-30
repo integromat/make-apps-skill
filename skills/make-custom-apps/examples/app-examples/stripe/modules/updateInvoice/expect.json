@@ -1,0 +1,304 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listInvoices",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        },
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listSubscriptions",
+            "label": "Search",
+            "parameters": [
+              {
+                "rpc": {
+                  "url": "rpc://app%23stripe@1/listCustomers",
+                  "label": "Search",
+                  "parameters": [
+                    {
+                      "name": "email",
+                      "type": "email",
+                      "label": "Email",
+                      "required": true
+                    }
+                  ]
+                },
+                "name": "customer",
+                "type": "text",
+                "label": "Customer ID"
+              },
+              {
+                "name": "status",
+                "type": "select",
+                "label": "Status",
+                "options": [
+                  {
+                    "label": "All",
+                    "value": "all"
+                  },
+                  {
+                    "label": "Active",
+                    "value": "active"
+                  },
+                  {
+                    "label": "Past Due",
+                    "value": "past_due"
+                  },
+                  {
+                    "label": "Unpaid",
+                    "value": "unpaid"
+                  },
+                  {
+                    "label": "Canceled",
+                    "value": "canceled"
+                  },
+                  {
+                    "label": "Incomplete",
+                    "value": "incomplete"
+                  },
+                  {
+                    "label": "Incomplete Expired",
+                    "value": "incomplete_expired"
+                  },
+                  {
+                    "label": "Trialing",
+                    "value": "trialing"
+                  },
+                  {
+                    "label": "Ended",
+                    "value": "ended"
+                  }
+                ]
+              }
+            ]
+          },
+          "name": "subscription",
+          "type": "text",
+          "label": "Subscription ID"
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "label": "Status",
+          "options": [
+            {
+              "label": "Draft",
+              "value": "draft"
+            },
+            {
+              "label": "Open",
+              "value": "open"
+            },
+            {
+              "label": "Paid",
+              "value": "paid"
+            },
+            {
+              "label": "Uncollectible",
+              "value": "uncollectible"
+            },
+            {
+              "label": "Void",
+              "value": "void"
+            }
+          ]
+        },
+        {
+          "name": "collection_method",
+          "type": "select",
+          "label": "Collection Method",
+          "options": [
+            {
+              "label": "Charge Automatically",
+              "value": "charge_automatically"
+            },
+            {
+              "label": "Send Invoice",
+              "value": "send_invoice"
+            }
+          ]
+        }
+      ]
+    },
+    "help": "The identifier of the desired invoice.",
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice ID",
+    "required": true
+  },
+  {
+    "help": "Controls whether Stripe will perform automatic collection of the invoice.",
+    "name": "auto_advance",
+    "type": "boolean",
+    "label": "Auto Advance",
+    "required": true
+  },
+  {
+    "name": "collection_method",
+    "type": "select",
+    "label": "Collection Method",
+    "default": "charge_automatically",
+    "options": [
+      {
+        "label": "Charge Automatically",
+        "value": "charge_automatically"
+      },
+      {
+        "label": "Send Invoice",
+        "value": "send_invoice",
+        "nested": [
+          {
+            "name": "days_until_due",
+            "type": "uinteger",
+            "label": "Days Until Due"
+          },
+          {
+            "name": "due_date",
+            "type": "date",
+            "label": "Due Date"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "help": "An arbitrary string attached to the object. Often useful for displaying to users. Referenced as `memo` in the Dashboard.",
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  },
+  {
+    "help": "A fee in cents that will be applied to the invoice and transferred to the application owner’s Stripe account.",
+    "name": "application_fee_amount",
+    "type": "uinteger",
+    "label": "Application Fee Amount",
+    "advanced": true
+  },
+  {
+    "name": "custom_fields",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Fields",
+    "advanced": true,
+    "validate": {
+      "maxItems": 4
+    }
+  },
+  {
+    "name": "default_payment_method",
+    "type": "text",
+    "label": "Default Payment Method ID",
+    "advanced": true
+  },
+  {
+    "name": "default_source",
+    "type": "text",
+    "label": "Default Payment Source ID",
+    "advanced": true
+  },
+  {
+    "name": "default_tax_rates",
+    "type": "text",
+    "label": "Default Tax Rates ID",
+    "advanced": true
+  },
+  {
+    "name": "discounts",
+    "spec": [
+      {
+        "name": "coupon",
+        "type": "select",
+        "label": "Coupon ID",
+        "options": "rpc://app%23stripe@1/listCoupons"
+      },
+      {
+        "help": "An existing discount ID on the object (or one of its ancestors) to reuse.",
+        "name": "discount",
+        "type": "text",
+        "label": "Discount ID"
+      }
+    ],
+    "type": "array",
+    "label": "Discounts",
+    "advanced": true
+  },
+  {
+    "name": "footer",
+    "type": "text",
+    "label": "Footer",
+    "advanced": true
+  },
+  {
+    "help": "If not specified and this invoice is part of a subscription, the default `statement_descriptor` will be set to the first subscription item’s product’s `statement_descriptor`.",
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement Descriptor",
+    "advanced": true
+  },
+  {
+    "name": "transfer_data",
+    "spec": [
+      {
+        "name": "destination",
+        "type": "select",
+        "label": "Destination",
+        "options": "rpc://app%23stripe@1/listConnectedAccounts",
+        "editable": true
+      },
+      {
+        "name": "amount",
+        "type": "uinteger",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data",
+    "advanced": true
+  }
+]

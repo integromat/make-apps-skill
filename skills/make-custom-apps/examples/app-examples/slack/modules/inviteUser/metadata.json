@@ -1,0 +1,20 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Invite a User to Workspace",
+  "scope": [
+    "admin.users:write",
+    "admin.teams:read",
+    "admin.conversations:read"
+  ],
+  "public": false,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Invites a user to your workspace. You must be an admin of your Slack Enterprise Grid.",
+  "altAccountName": null
+}

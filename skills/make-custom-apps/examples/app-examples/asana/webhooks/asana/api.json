@@ -1,0 +1,15 @@
+{
+  "iterate": "{{body.events}}",
+  "respond": {
+    "status": 200
+  },
+  "verification": {
+    "respond": {
+      "status": 200,
+      "headers": {
+        "X-Hook-Secret": "{{get(headers, 'X-Hook-Secret')}}"
+      }
+    },
+    "condition": "{{if(get(headers, 'X-Hook-Secret'), true, false)}}"
+  }
+}

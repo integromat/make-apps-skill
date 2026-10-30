@@ -1,0 +1,65 @@
+[
+  {
+    "name": "CompatibleRuntimes",
+    "type": "array",
+    "label": "Compatible Runtimes"
+  },
+  {
+    "name": "CreatedDate",
+    "time": true,
+    "type": "date",
+    "label": "Created Date"
+  },
+  {
+    "name": "Description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "LayerVersionArn",
+    "type": "text",
+    "label": "Layer Version Arn"
+  },
+  {
+    "name": "LicenseInfo",
+    "type": "text",
+    "label": "License Info"
+  },
+  {
+    "name": "Version",
+    "type": "text",
+    "label": "Version"
+  },
+  {
+    "name": "LayerArn",
+    "type": "text",
+    "label": "Layer Arn"
+  },
+  {
+    "name": "Content",
+    "spec": [
+      {
+        "name": "CodeSha256",
+        "type": "text",
+        "label": "Code Sha 256"
+      },
+      {
+        "name": "CodeSize",
+        "type": "uinteger",
+        "label": "Code Size"
+      },
+      {
+        "name": "Location",
+        "type": "text",
+        "label": "Location"
+      },
+      {
+        "name": "UncompressedCodeSize",
+        "type": "uinteger",
+        "label": "Uncompressed Code Size"
+      }
+    ],
+    "type": "collection",
+    "label": "Content"
+  }
+]

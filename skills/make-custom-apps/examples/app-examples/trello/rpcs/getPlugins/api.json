@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "filter": "available"
+  },
+  "url": "/boards/{{parameters.board_id}}/plugins",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

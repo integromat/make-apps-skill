@@ -1,0 +1,94 @@
+[
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "New message",
+        "value": "message",
+        "nested": [
+          {
+            "name": "type",
+            "type": "select",
+            "label": "Channel type",
+            "options": [
+              {
+                "label": "Public channel",
+                "value": "public",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Public channel",
+                    "options": "rpc://app%23slack@4/PublicChannels",
+                    "required": false
+                  }
+                ],
+                "default": true
+              },
+              {
+                "label": "Private channel",
+                "value": "private",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Private channel",
+                    "options": "rpc://app%23slack@4/PrivateChannels",
+                    "required": false
+                  }
+                ]
+              },
+              {
+                "label": "IM channel",
+                "value": "im",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "User",
+                    "options": "rpc://app%23slack@4/IMChannels",
+                    "required": false
+                  }
+                ]
+              },
+              {
+                "label": "Multiple IM channel",
+                "value": "mpim",
+                "nested": [
+                  {
+                    "name": "channel",
+                    "type": "select",
+                    "label": "Multiple IM channel",
+                    "options": "rpc://app%23slack@4/MPIMChannels",
+                    "required": false
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": false
+          }
+        ]
+      },
+      {
+        "label": "New reaction",
+        "value": "reaction_added"
+      },
+      {
+        "label": "New file",
+        "value": "file_created"
+      },
+      {
+        "label": "New channel",
+        "value": "channel_created"
+      },
+      {
+        "label": "New member joined channel",
+        "value": "member_joined_channel"
+      }
+    ],
+    "required": true
+  }
+]

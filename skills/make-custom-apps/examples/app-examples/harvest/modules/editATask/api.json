@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/tasks/{{parameters.task_id}}",
+  "body": {
+    "name": "{{parameters.name}}",
+    "is_default": "{{parameters.is_default}}",
+    "billable_by_default": "{{parameters.billable_by_default}}",
+    "default_hourly_rate": "{{parameters.default_hourly_rate}}"
+  },
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

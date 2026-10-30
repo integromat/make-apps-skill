@@ -1,0 +1,753 @@
+[
+  {
+    "name": "actualStart",
+    "type": "date",
+    "label": "Actual Start",
+    "required": true
+  },
+  {
+    "help": "A call's unique identifier in the PBX or the recording system. Gong uses this identifier to prevent repeated attempts to upload the same recording.",
+    "name": "clientUniqueId",
+    "type": "text",
+    "label": "Client Unique ID",
+    "required": true
+  },
+  {
+    "help": "Whether the call is inbound (someone called the company), outbound (a rep dialed someone outside the company), or a conference call.",
+    "name": "direction",
+    "type": "select",
+    "label": "Direction",
+    "options": [
+      {
+        "value": "Conference"
+      },
+      {
+        "value": "Inbound"
+      },
+      {
+        "value": "Outbound"
+      },
+      {
+        "value": "Unknown"
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "A list of the call's participants. A party must be provided for the `Primary User`.",
+    "name": "parties",
+    "spec": [
+      {
+        "help": "An identifier that is only required when `Speakers Timeline` is provided. The partyId is used to recognize the speakers within the provided speakersTimeline.",
+        "name": "partyId",
+        "type": "text",
+        "label": "Party ID",
+        "required": true
+      },
+      {
+        "help": "A list of links to external systems such as CRM, Telephony System, Case Management, etc.",
+        "name": "context",
+        "spec": [
+          {
+            "help": "List of objects within the external system.",
+            "name": "objects",
+            "spec": [
+              {
+                "help": "For Salesforce both case-sensitive and case-insensitive formats are supported.",
+                "name": "objectId",
+                "type": "text",
+                "label": "Object ID",
+                "required": true
+              },
+              {
+                "help": "Object Type. Valid only for non-company parties. e.g. Lead.",
+                "name": "objectType",
+                "type": "select",
+                "label": "Object Type",
+                "options": [
+                  {
+                    "value": "Contact"
+                  },
+                  {
+                    "value": "Lead"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "Object fields. Intended for future use only.",
+                "name": "fields",
+                "spec": [
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Name"
+                  },
+                  {
+                    "name": "value",
+                    "type": "text",
+                    "label": "Value"
+                  }
+                ],
+                "type": "array",
+                "label": "Fields"
+              }
+            ],
+            "type": "array",
+            "label": "Objects"
+          },
+          {
+            "name": "system",
+            "type": "select",
+            "label": "System",
+            "options": [
+              {
+                "value": "Salesforce"
+              },
+              {
+                "value": "Generic"
+              }
+            ],
+            "required": true
+          }
+        ],
+        "type": "array",
+        "label": "Context"
+      },
+      {
+        "help": "The email address of the party, if available.",
+        "name": "emailAddress",
+        "type": "email",
+        "label": "Email Address"
+      },
+      {
+        "help": "The audio channel corresponding to the company team member (rep) used when the uploaded media file is multi-channel (stereo). The channel id is either 0 or 1 (representing left or right respectively).",
+        "name": "mediaChannelId",
+        "type": "number",
+        "label": "Media Channel ID",
+        "validate": {
+          "max": 1,
+          "min": 0
+        }
+      },
+      {
+        "help": "The name of the party, if available.",
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "help": "The phone number of the party, if available.",
+        "name": "phoneNumber",
+        "type": "text",
+        "label": "Phone Number"
+      },
+      {
+        "help": "The user ID of the participant within the Gong system, if the participant is a user.",
+        "name": "userId",
+        "type": "select",
+        "label": "User ID",
+        "options": "rpc://app%23gong@1/getUserId"
+      }
+    ],
+    "type": "array",
+    "label": "Parties",
+    "required": true
+  },
+  {
+    "help": "The Gong internal user ID of the team member who hosted the call.",
+    "name": "primaryUser",
+    "type": "select",
+    "label": "Primary User",
+    "options": "rpc://app%23gong@1/getUserId",
+    "required": true
+  },
+  {
+    "name": "speakersTimeline",
+    "spec": [
+      {
+        "help": "Indicates whether the provided speech segments match the media precisely or need further refinement based on the media. 'Precisely' here means that segments do not deviate from the actual speech in the media by more than 100ms.",
+        "name": "precise",
+        "type": "boolean",
+        "label": "Precise"
+      },
+      {
+        "help": "The audio recording speech segments (who spoke when).",
+        "name": "speechSegments",
+        "spec": [
+          {
+            "help": "The start time of the segment in milliseconds from the beginning of the call.",
+            "name": "fromTime",
+            "type": "number",
+            "label": "From Time",
+            "required": true
+          },
+          {
+            "help": "The speaking parties in the segment, each must have a correlating partyId within 'parties'. It is allowed to provide overlapping segments, i.e. you can either specify multiple speakers in a segment or send several overlapping segments each marked with one speaker.",
+            "name": "partyIds",
+            "type": "array",
+            "label": "Party IDs",
+            "required": true
+          },
+          {
+            "help": "The end time of the segment in milliseconds from the beginning of the call.",
+            "name": "toTime",
+            "type": "number",
+            "label": "To Time",
+            "required": true
+          }
+        ],
+        "type": "array",
+        "label": "Speech Segments",
+        "required": true
+      }
+    ],
+    "type": "collection",
+    "label": "Speakers Timeline"
+  },
+  {
+    "help": "The code identifies the provider conferencing or telephony system. For example: zoom, clearslide, gotomeeting, ringcentral, outreach, insidesales, etc. These values are predefined by Gong, please contact `redacted@example.com` to find the proper value for your system.",
+    "name": "callProviderCode",
+    "type": "text",
+    "label": "Call Provider Code"
+  },
+  {
+    "help": "A list of links to external systems such as CRM, Telephony System, Case Management, etc.",
+    "name": "context",
+    "spec": [
+      {
+        "help": "List of objects within the external system. Note: Multiple opportunities/deals belonging to the same account are not supported.",
+        "name": "objects",
+        "spec": [
+          {
+            "help": "For Salesforce both case-sensitive and case-insensitive formats are supported.",
+            "name": "objectId",
+            "type": "text",
+            "label": "Object ID",
+            "required": true
+          },
+          {
+            "name": "objectType",
+            "type": "select",
+            "label": "Object Type",
+            "options": [
+              {
+                "value": "Account"
+              },
+              {
+                "value": "Opportunity"
+              }
+            ],
+            "required": true
+          },
+          {
+            "help": "Object fields. Intended for future use only.",
+            "name": "fields",
+            "spec": [
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ],
+            "type": "array",
+            "label": "Fields"
+          }
+        ],
+        "type": "array",
+        "label": "Objects"
+      },
+      {
+        "name": "system",
+        "type": "select",
+        "label": "System",
+        "options": [
+          {
+            "value": "Salesforce"
+          },
+          {
+            "value": "Generic"
+          }
+        ],
+        "required": true
+      }
+    ],
+    "type": "array",
+    "label": "Context"
+  },
+  {
+    "help": "Optional metadata associated with the call (represented as text). Gong stores this metadata and it can be used for troubleshooting.",
+    "name": "customData",
+    "type": "text",
+    "label": "Custom Data"
+  },
+  {
+    "name": "disposition",
+    "type": "text",
+    "label": "Disposition",
+    "validate": {
+      "max": 255
+    }
+  },
+  {
+    "help": "The URL from which Gong can download the media file. The URL must be unique, the audio or video file must be a maximum of 1.5GB. If you provide this URL, you should not perform the `Add Call Media` step.",
+    "name": "downloadMediaUrl",
+    "type": "url",
+    "label": "Download Media URL"
+  },
+  {
+    "help": "The actual call duration in seconds.",
+    "name": "duration",
+    "type": "number",
+    "label": "Duration"
+  },
+  {
+    "name": "languageCode",
+    "type": "select",
+    "label": "Language Code",
+    "options": [
+      {
+        "value": "af-ZA"
+      },
+      {
+        "value": "am-ET"
+      },
+      {
+        "value": "ar-AE"
+      },
+      {
+        "value": "ar-BH"
+      },
+      {
+        "value": "ar-DZ"
+      },
+      {
+        "value": "ar-EG"
+      },
+      {
+        "value": "ar-IL"
+      },
+      {
+        "value": "ar-IQ"
+      },
+      {
+        "value": "ar-JO"
+      },
+      {
+        "value": "ar-KW"
+      },
+      {
+        "value": "ar-LB"
+      },
+      {
+        "value": "ar-MA"
+      },
+      {
+        "value": "ar-MR"
+      },
+      {
+        "value": "ar-OM"
+      },
+      {
+        "value": "ar-PS"
+      },
+      {
+        "value": "ar-QA"
+      },
+      {
+        "value": "ar-SA"
+      },
+      {
+        "value": "ar-TN"
+      },
+      {
+        "value": "ar-YE"
+      },
+      {
+        "value": "az-AZ"
+      },
+      {
+        "value": "bg-BG"
+      },
+      {
+        "value": "bn-BD"
+      },
+      {
+        "value": "bn-IN"
+      },
+      {
+        "value": "bs-BA"
+      },
+      {
+        "value": "ca-ES"
+      },
+      {
+        "value": "cs-CZ"
+      },
+      {
+        "value": "da-DK"
+      },
+      {
+        "value": "de-AT"
+      },
+      {
+        "value": "de-CH"
+      },
+      {
+        "value": "de-DE"
+      },
+      {
+        "value": "el-GR"
+      },
+      {
+        "value": "en-AB"
+      },
+      {
+        "value": "en-AU"
+      },
+      {
+        "value": "en-CA"
+      },
+      {
+        "value": "en-GB"
+      },
+      {
+        "value": "en-IE"
+      },
+      {
+        "value": "en-IN"
+      },
+      {
+        "value": "en-NZ"
+      },
+      {
+        "value": "en-PH"
+      },
+      {
+        "value": "en-SG"
+      },
+      {
+        "value": "en-US"
+      },
+      {
+        "value": "en-WL"
+      },
+      {
+        "value": "en-ZA"
+      },
+      {
+        "value": "es-AR"
+      },
+      {
+        "value": "es-BO"
+      },
+      {
+        "value": "es-CL"
+      },
+      {
+        "value": "es-CO"
+      },
+      {
+        "value": "es-CR"
+      },
+      {
+        "value": "es-DO"
+      },
+      {
+        "value": "es-EC"
+      },
+      {
+        "value": "es-ES"
+      },
+      {
+        "value": "es-GT"
+      },
+      {
+        "value": "es-HN"
+      },
+      {
+        "value": "es-MX"
+      },
+      {
+        "value": "es-NI"
+      },
+      {
+        "value": "es-PA"
+      },
+      {
+        "value": "es-PE"
+      },
+      {
+        "value": "es-PR"
+      },
+      {
+        "value": "es-PY"
+      },
+      {
+        "value": "es-SV"
+      },
+      {
+        "value": "es-US"
+      },
+      {
+        "value": "es-UY"
+      },
+      {
+        "value": "et-EE"
+      },
+      {
+        "value": "eu-ES"
+      },
+      {
+        "value": "fa-IR"
+      },
+      {
+        "value": "fi-FI"
+      },
+      {
+        "value": "fil-PH"
+      },
+      {
+        "value": "fr-BE"
+      },
+      {
+        "value": "fr-CA"
+      },
+      {
+        "value": "fr-CH"
+      },
+      {
+        "value": "fr-FR"
+      },
+      {
+        "value": "gl-ES"
+      },
+      {
+        "value": "gu-IN"
+      },
+      {
+        "value": "he-IL"
+      },
+      {
+        "value": "hi-IN"
+      },
+      {
+        "value": "hr-HR"
+      },
+      {
+        "value": "hu-HU"
+      },
+      {
+        "value": "hy-AM"
+      },
+      {
+        "value": "id-ID"
+      },
+      {
+        "value": "is-IS"
+      },
+      {
+        "value": "it-CH"
+      },
+      {
+        "value": "it-IT"
+      },
+      {
+        "value": "ja-JP"
+      },
+      {
+        "value": "jv-ID"
+      },
+      {
+        "value": "ka-GE"
+      },
+      {
+        "value": "kk-KZ"
+      },
+      {
+        "value": "km-KH"
+      },
+      {
+        "value": "kn-IN"
+      },
+      {
+        "value": "ko-KR"
+      },
+      {
+        "value": "lo-LA"
+      },
+      {
+        "value": "lt-LT"
+      },
+      {
+        "value": "lv-LV"
+      },
+      {
+        "value": "mk-MK"
+      },
+      {
+        "value": "ml-IN"
+      },
+      {
+        "value": "mn-MN"
+      },
+      {
+        "value": "mr-IN"
+      },
+      {
+        "value": "ms-MY"
+      },
+      {
+        "value": "my-MM"
+      },
+      {
+        "value": "ne-NP"
+      },
+      {
+        "value": "nl-BE"
+      },
+      {
+        "value": "nl-NL"
+      },
+      {
+        "value": "no-NO"
+      },
+      {
+        "value": "pa-Guru-IN"
+      },
+      {
+        "value": "pl-PL"
+      },
+      {
+        "value": "pt-BR"
+      },
+      {
+        "value": "pt-PT"
+      },
+      {
+        "value": "ro-RO"
+      },
+      {
+        "value": "ru-RU"
+      },
+      {
+        "value": "si-LK"
+      },
+      {
+        "value": "sk-SK"
+      },
+      {
+        "value": "sl-SI"
+      },
+      {
+        "value": "sq-AL"
+      },
+      {
+        "value": "sr-RS"
+      },
+      {
+        "value": "su-ID"
+      },
+      {
+        "value": "sv-SE"
+      },
+      {
+        "value": "sw-KE"
+      },
+      {
+        "value": "sw-TZ"
+      },
+      {
+        "value": "ta-IN"
+      },
+      {
+        "value": "ta-LK"
+      },
+      {
+        "value": "ta-MY"
+      },
+      {
+        "value": "ta-SG"
+      },
+      {
+        "value": "te-IN"
+      },
+      {
+        "value": "th-TH"
+      },
+      {
+        "value": "tr-TR"
+      },
+      {
+        "value": "uk-UA"
+      },
+      {
+        "value": "ur-IN"
+      },
+      {
+        "value": "ur-PK"
+      },
+      {
+        "value": "uz-UZ"
+      },
+      {
+        "value": "vi-VN"
+      },
+      {
+        "value": "yue-Hant-HK"
+      },
+      {
+        "value": "zh-CN"
+      },
+      {
+        "value": "zh-TW"
+      },
+      {
+        "value": "zu-ZA"
+      }
+    ]
+  },
+  {
+    "help": "The URL of the conference call by which users join the meeting.",
+    "name": "meetingUrl",
+    "type": "url",
+    "label": "Meeting URL"
+  },
+  {
+    "help": "The purpose of the call.",
+    "name": "purpose",
+    "type": "text",
+    "label": "Purpose",
+    "validate": {
+      "max": 255
+    }
+  },
+  {
+    "name": "scheduledStart",
+    "type": "date",
+    "label": "Scheduled Start"
+  },
+  {
+    "name": "scheduledEnd",
+    "type": "date",
+    "label": "Scheduled End"
+  },
+  {
+    "help": "The title of the call. This title is available in the Gong system for indexing and search.",
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "help": "Optional workspace identifier. If specified, the call will be placed into this workspace, otherwise, the default algorithm for workspace placement will be applied.",
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23gong@1/getWorkspaceId"
+  }
+]

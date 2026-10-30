@@ -1,0 +1,22 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Group ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "userIds",
+    "type": "array",
+    "label": "User IDs"
+  }
+]

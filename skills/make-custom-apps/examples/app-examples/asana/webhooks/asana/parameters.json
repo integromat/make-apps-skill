@@ -1,0 +1,918 @@
+[
+  {
+    "name": "chooseResource",
+    "type": "select",
+    "label": "Choose Resource",
+    "options": [
+      {
+        "label": "Project (Enter Manually)",
+        "value": "project",
+        "nested": [
+          {
+            "name": "resource",
+            "type": "text",
+            "label": "Project ID",
+            "required": true
+          },
+          {
+            "help": "Specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  },
+                  {
+                    "label": "Deleted",
+                    "value": "deleted"
+                  },
+                  {
+                    "label": "Undeleted",
+                    "value": "undeleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters"
+          }
+        ]
+      },
+      {
+        "label": "Project (Workspace Alternative)",
+        "value": "projectalternative",
+        "nested": [
+          {
+            "name": "workspaceRPC",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "resource",
+                  "type": "select",
+                  "label": "Project ID",
+                  "options": "rpc://app%23asana@2/GetProjects",
+                  "mappable": true,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          },
+          {
+            "help": "Specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  },
+                  {
+                    "label": "Deleted",
+                    "value": "deleted"
+                  },
+                  {
+                    "label": "Undeleted",
+                    "value": "undeleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters"
+          }
+        ]
+      },
+      {
+        "label": "Task",
+        "value": "task",
+        "nested": [
+          {
+            "help": "You must filter on workspace and assignee, project, section or tag to select a task.",
+            "name": "choice",
+            "type": "select",
+            "label": "Find Task through:",
+            "options": [
+              {
+                "label": "Enter Manually",
+                "value": "enterManually",
+                "nested": [
+                  {
+                    "name": "resource",
+                    "type": "text",
+                    "label": "Task ID",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Workspace and Assignee",
+                "value": "workspaceAssignee",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "assignee",
+                          "type": "select",
+                          "label": "Assignee ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetWorkspaceUsers",
+                            "nested": [
+                              {
+                                "name": "resource",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": "rpc://app%23asana@2/GetTasks",
+                                "mappable": true,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Project (Workspace Alternative)",
+                "value": "projectalternative",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "resource",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": "rpc://app%23asana@2/GetTasks",
+                                "mappable": true,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": true,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": true,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Section",
+                "value": "section",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "section",
+                                "type": "select",
+                                "label": "Project Section ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetProjectSections",
+                                  "nested": [
+                                    {
+                                      "name": "resource",
+                                      "type": "select",
+                                      "label": "Task ID",
+                                      "options": "rpc://app%23asana@2/GetTasks",
+                                      "mappable": true,
+                                      "required": true
+                                    }
+                                  ]
+                                },
+                                "mappable": true,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": true,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": true,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Tag",
+                "value": "tag",
+                "nested": [
+                  {
+                    "name": "tag",
+                    "type": "select",
+                    "label": "Tag ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetTags",
+                      "nested": [
+                        {
+                          "name": "resource",
+                          "type": "select",
+                          "label": "Task ID",
+                          "options": "rpc://app%23asana@2/GetTasks",
+                          "mappable": true,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": true,
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          },
+          {
+            "help": "Specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  },
+                  {
+                    "label": "Deleted",
+                    "value": "deleted"
+                  },
+                  {
+                    "label": "Undeleted",
+                    "value": "undeleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters"
+          }
+        ]
+      },
+      {
+        "label": "Story",
+        "value": "story",
+        "nested": [
+          {
+            "help": "You must filter on workspace and assignee, project, section or tag to select a task.",
+            "name": "choice",
+            "type": "select",
+            "label": "Find Task through:",
+            "options": [
+              {
+                "label": "Enter Manually",
+                "value": "enterManually",
+                "nested": [
+                  {
+                    "name": "resource",
+                    "type": "text",
+                    "label": "Story ID",
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Workspace and Assignee",
+                "value": "workspaceAssignee",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "assignee",
+                          "type": "select",
+                          "label": "Assignee",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetWorkspaceUsers",
+                            "nested": [
+                              {
+                                "name": "task_gid",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetTasks",
+                                  "nested": [
+                                    {
+                                      "name": "resource",
+                                      "type": "select",
+                                      "label": "Story ID",
+                                      "options": "rpc://app%23asana@2/GetStories",
+                                      "mappable": true,
+                                      "required": true
+                                    }
+                                  ]
+                                },
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Section",
+                "value": "section",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "section",
+                                "type": "select",
+                                "label": "Project Section ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetProjectSections",
+                                  "nested": [
+                                    {
+                                      "name": "task_gid",
+                                      "type": "select",
+                                      "label": "Task ID",
+                                      "options": {
+                                        "store": "rpc://app%23asana@2/GetTasks",
+                                        "nested": [
+                                          {
+                                            "name": "resource",
+                                            "type": "select",
+                                            "label": "Story ID",
+                                            "options": "rpc://app%23asana@2/GetStories",
+                                            "mappable": true,
+                                            "required": true
+                                          }
+                                        ]
+                                      },
+                                      "mappable": true,
+                                      "required": true
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          "mappable": true,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": true,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Tag",
+                "value": "tag",
+                "nested": [
+                  {
+                    "name": "tag",
+                    "type": "select",
+                    "label": "Tag ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetTags",
+                      "nested": [
+                        {
+                          "name": "task_gid",
+                          "type": "select",
+                          "label": "Task ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetTasks",
+                            "nested": [
+                              {
+                                "name": "resource",
+                                "type": "select",
+                                "label": "Story ID",
+                                "options": "rpc://app%23asana@2/GetStories",
+                                "mappable": true,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": true,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": true,
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          },
+          {
+            "help": "Specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  },
+                  {
+                    "label": "Undeleted",
+                    "value": "undeleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters"
+          }
+        ]
+      },
+      {
+        "label": "Tag",
+        "value": "tag",
+        "nested": [
+          {
+            "name": "resource",
+            "type": "select",
+            "label": "Tag ID",
+            "options": "rpc://app%23asana@2/GetTags",
+            "mappable": true,
+            "required": true
+          },
+          {
+            "help": "Specify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Deleted",
+                    "value": "deleted"
+                  },
+                  {
+                    "label": "Undeleted",
+                    "value": "undeleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters"
+          }
+        ]
+      },
+      {
+        "label": "Team",
+        "value": "team",
+        "nested": [
+          {
+            "help": "Filter on workspaces or organizations.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace/Organization ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "resource",
+                  "type": "select",
+                  "label": "Team ID",
+                  "options": "rpc://app%23asana@2/GetTeams",
+                  "mappable": true,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": true,
+            "required": true
+          },
+          {
+            "help": "Filters are required for team webhook events.\nSpecify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Deleted",
+                    "value": "deleted"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Workspace",
+        "value": "workspace",
+        "nested": [
+          {
+            "name": "resource",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": "rpc://app%23asana@2/GetWorkspaces",
+            "mappable": true,
+            "required": true
+          },
+          {
+            "help": "Filters are required for team webhook events.\nSpecify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Changed",
+                    "value": "changed",
+                    "nested": [
+                      {
+                        "help": "A whitelist of fields for events which will pass the filter when the resource is changed. Leaving this empty will trigger changed on any field.",
+                        "name": "fields",
+                        "spec": {
+                          "help": "For custom fields the value should be `custom_fields`.",
+                          "type": "text",
+                          "label": "Field Name, for example `due_at`"
+                        },
+                        "type": "array",
+                        "label": "Fields"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Portfolio",
+        "value": "portfolio",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "resource",
+                  "type": "select",
+                  "label": "Portfolio ID",
+                  "options": "rpc://app%23asana@2/GetPortfolios",
+                  "mappable": true,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": true,
+            "required": true
+          },
+          {
+            "help": "Filters are required for team webhook events.\nSpecify a whitelist of filters to apply to events from this webhook. If a webhook event passes any of the filters the event will be delivered.",
+            "name": "filters",
+            "spec": [
+              {
+                "name": "action",
+                "type": "select",
+                "label": "Action",
+                "options": [
+                  {
+                    "label": "Added",
+                    "value": "added"
+                  },
+                  {
+                    "label": "Removed",
+                    "value": "removed"
+                  }
+                ],
+                "required": true
+              },
+              {
+                "help": "The type of the resource which created the event. For example `task`, `project`, `story`, etc.",
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type",
+                "required": true
+              },
+              {
+                "help": "The resource subtype of the resource that the filter applies to. For example `default_task` or `milestone` for the task resource type.",
+                "name": "resource_subtype",
+                "type": "text",
+                "label": "Resource Sub Type"
+              }
+            ],
+            "type": "array",
+            "label": "Filters",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  }
+]

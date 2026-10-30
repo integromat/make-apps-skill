@@ -1,0 +1,63 @@
+[
+  {
+    "name": "select_or_manual",
+    "type": "select",
+    "label": "Enter a Card ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "help": "Enter a card ID or a shortlink.",
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://getIDcardsUnderList",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

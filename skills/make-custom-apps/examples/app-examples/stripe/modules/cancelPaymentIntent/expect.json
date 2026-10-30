@@ -1,0 +1,31 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listPaymentIntents",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        }
+      ]
+    },
+    "name": "id",
+    "type": "text",
+    "label": "Payment Intent ID",
+    "required": true
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Team ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "Filter on workspaces or organizations.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Organization ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "help": "You need to be member of the team to remove someone from it.",
+                  "name": "team_gid",
+                  "type": "select",
+                  "label": "Team ID",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetTeams",
+                    "nested": [
+                      {
+                        "name": "user",
+                        "type": "select",
+                        "label": "User ID",
+                        "options": "rpc://app%23asana@2/GetTeamUsers",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "team_gid",
+            "type": "text",
+            "label": "Team ID",
+            "required": true
+          },
+          {
+            "name": "user",
+            "type": "text",
+            "label": "User ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

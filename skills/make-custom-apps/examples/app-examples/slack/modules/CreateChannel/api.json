@@ -1,0 +1,13 @@
+{
+  "qs": {},
+  "url": "/conversations.create",
+  "body": {
+    "name": "{{parameters.name}}",
+    "is_private": "{{parameters.is_private}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.channel)}}"
+  }
+}

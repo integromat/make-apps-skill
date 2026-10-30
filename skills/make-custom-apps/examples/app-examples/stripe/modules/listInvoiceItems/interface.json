@@ -1,0 +1,206 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Invoice Item ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "discountable",
+    "type": "boolean",
+    "label": "Discountable"
+  },
+  {
+    "name": "discounts",
+    "type": "array",
+    "label": "Discounts"
+  },
+  {
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "metadata",
+    "type": "any",
+    "label": "Metadata"
+  },
+  {
+    "name": "period",
+    "spec": [
+      {
+        "name": "end",
+        "type": "date",
+        "label": "End"
+      },
+      {
+        "name": "start",
+        "type": "date",
+        "label": "Start"
+      }
+    ],
+    "type": "collection",
+    "label": "Period"
+  },
+  {
+    "name": "plan",
+    "type": "any",
+    "label": "Plan"
+  },
+  {
+    "name": "price",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Price ID"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "Active"
+      },
+      {
+        "name": "billing_scheme",
+        "type": "text",
+        "label": "Billing Scheme"
+      },
+      {
+        "name": "created",
+        "type": "date",
+        "label": "Created"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "livemode",
+        "type": "boolean",
+        "label": "Livemode"
+      },
+      {
+        "name": "lookup_key",
+        "type": "text",
+        "label": "Lookup Key"
+      },
+      {
+        "name": "metadata",
+        "type": "any",
+        "label": "Metadata"
+      },
+      {
+        "name": "nickname",
+        "type": "text",
+        "label": "Nickname"
+      },
+      {
+        "name": "product",
+        "type": "text",
+        "label": "Product"
+      },
+      {
+        "name": "recurring",
+        "type": "text",
+        "label": "Recurring"
+      },
+      {
+        "name": "tiers_mode",
+        "type": "text",
+        "label": "Tiers Mode"
+      },
+      {
+        "name": "transform_quantity",
+        "type": "text",
+        "label": "Transform Quantity"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "unit_amount",
+        "type": "number",
+        "label": "Unit Amount"
+      },
+      {
+        "name": "unit_amount_decimal",
+        "type": "text",
+        "label": "Unit Amount Decimal"
+      }
+    ],
+    "type": "collection",
+    "label": "Price"
+  },
+  {
+    "name": "proration",
+    "type": "boolean",
+    "label": "Proration"
+  },
+  {
+    "name": "quantity",
+    "type": "number",
+    "label": "Quantity"
+  },
+  {
+    "name": "subscription",
+    "type": "text",
+    "label": "Subscription"
+  },
+  {
+    "name": "tax_rates",
+    "type": "array",
+    "label": "Tax Rates"
+  },
+  {
+    "name": "unit_amount",
+    "type": "number",
+    "label": "Unit Amount"
+  },
+  {
+    "name": "unit_amount_decimal",
+    "type": "text",
+    "label": "Unit Amount Decimal"
+  }
+]

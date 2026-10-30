@@ -1,0 +1,25 @@
+{
+  "url": "/invoiceitems/{{parameters.id}}",
+  "body": "{{encodeRequestBody(temp)}}",
+  "temp": {
+    "price": "{{ifempty(parameters.price, undefined)}}",
+    "amount": "{{ifempty(parameters.amount, undefined)}}",
+    "metadata": "{{ifempty(parameters.metadata, undefined)}}",
+    "quantity": "{{ifempty(parameters.quantity, undefined)}}",
+    "discounts": "{{ifempty(parameters.discounts, undefined)}}",
+    "tax_rates": "{{ifempty(parameters.tax_rates, undefined)}}",
+    "description": "{{ifempty(parameters.description, undefined)}}",
+    "period[end]": "{{if(parameters.period.end, formatDate(parameters.period.end, 'X'), undefined)}}",
+    "unit_amount": "{{ifempty(parameters.unit_amount, undefined)}}",
+    "discountable": "{{ifempty(parameters.discountable, undefined)}}",
+    "period[start]": "{{if(parameters.period.start, formatDate(parameters.period.start, 'X'), undefined)}}",
+    "price_data[product]": "{{ifempty(parameters.price_data.product, undefined)}}",
+    "price_data[currency]": "{{ifempty(parameters.price_data.currency, undefined)}}",
+    "price_data[unit_amount]": "{{ifempty(parameters.price_data.unit_amount, undefined)}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

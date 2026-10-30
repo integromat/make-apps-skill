@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "include_cleaned": "{{parameters.include_cleaned}}",
+    "include_unsubscribed": "{{parameters.include_unsubscribed}}",
+    "include_transactional": "{{parameters.include_transactional}}"
+  },
+  "url": "/lists/{{parameters.list}}/segments",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.segments}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{switch(parameters.select, 'create', item.created_at, 'update', item.updated_at)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.segments) === 1000}}"
+  }
+}

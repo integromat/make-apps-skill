@@ -1,0 +1,113 @@
+[
+  {
+    "label": "Clients",
+    "modules": [
+      "watchClients",
+      "getClients",
+      "getAClient",
+      "createAClient",
+      "editAClient",
+      "deleteAClient"
+    ]
+  },
+  {
+    "label": "Contacts",
+    "modules": [
+      "watchContacts",
+      "listContacts",
+      "getAContact",
+      "createAContact",
+      "editAContact",
+      "deleteAContact"
+    ]
+  },
+  {
+    "label": "Projects",
+    "modules": [
+      "watchProjects",
+      "getProjectBudgetReport",
+      "getProjects",
+      "getAProject",
+      "createAProject",
+      "editAProject",
+      "deleteAProject",
+      "listTaskAssignments",
+      "getATaskAssignment",
+      "listUserAssignments",
+      "getAUserAssignment"
+    ]
+  },
+  {
+    "label": "Invoices",
+    "modules": [
+      "watchInvoices",
+      "listInvoices",
+      "getAnInvoice",
+      "createAFreeFormInvoice",
+      "editAnInvoice",
+      "deleteAnInvoice",
+      "createInvoiceLineItem",
+      "editInvoiceLineItem",
+      "deleteInvoiceLineItem",
+      "listPayments",
+      "createAnInvoicePayment"
+    ]
+  },
+  {
+    "label": "Expenses",
+    "modules": [
+      "watchExpenses",
+      "listExpenses",
+      "getExpense",
+      "createAnExpense",
+      "editAnExpense",
+      "deleteAnExpense"
+    ]
+  },
+  {
+    "label": "Tasks",
+    "modules": [
+      "watchTasks",
+      "listTasks",
+      "getATask",
+      "createATask",
+      "createTaskAssignment",
+      "editATask",
+      "deleteATask"
+    ]
+  },
+  {
+    "label": "Time Entries",
+    "modules": [
+      "watchTimeEntries",
+      "getTimeEntries",
+      "getATimeEntry",
+      "createATimeEntry",
+      "editATimeEntry",
+      "deleteATimeEntry"
+    ]
+  },
+  {
+    "label": "Users",
+    "modules": [
+      "watchUsers",
+      "getUsers",
+      "getAUser",
+      "createAUser",
+      "editAUser",
+      "deleteAUser"
+    ]
+  },
+  {
+    "label": "Billable Rates",
+    "modules": [
+      "createBillableRate"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

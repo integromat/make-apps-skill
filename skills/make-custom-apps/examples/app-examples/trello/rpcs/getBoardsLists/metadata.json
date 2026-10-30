@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "Get ID of lists under specific Board using board_id",
+  "accountName": "trello",
+  "altAccountName": null
+}

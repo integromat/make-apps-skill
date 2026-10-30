@@ -1,0 +1,69 @@
+[
+  {
+    "name": "id",
+    "type": "uinteger",
+    "label": "Answer ID"
+  },
+  {
+    "name": "value",
+    "type": "text",
+    "label": "Answer Value"
+  },
+  {
+    "name": "response_id",
+    "type": "text",
+    "label": "Response ID"
+  },
+  {
+    "name": "submitted_at",
+    "type": "date",
+    "label": "Submitted at"
+  },
+  {
+    "name": "contact",
+    "spec": [
+      {
+        "name": "email_id",
+        "type": "uinteger",
+        "label": "Email ID"
+      },
+      {
+        "name": "contact_id",
+        "type": "uinteger",
+        "label": "Contact ID"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "name": "full_name",
+        "type": "text",
+        "label": "Full Name"
+      },
+      {
+        "name": "consents_to_one_to_one_messaging",
+        "type": "boolean",
+        "label": "Consents to One to One Messaging"
+      },
+      {
+        "name": "avatar_url",
+        "type": "url",
+        "label": "Avatar URL"
+      }
+    ],
+    "type": "collection",
+    "label": "Contact"
+  },
+  {
+    "name": "is_new_contact",
+    "type": "boolean",
+    "label": "Is New Contact"
+  }
+]

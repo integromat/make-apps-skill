@@ -1,0 +1,46 @@
+[
+  {
+    "mode": "edit",
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "editable": true,
+    "required": true
+  },
+  {
+    "help": "The email address of a user to add as a member of the Board.",
+    "name": "email",
+    "type": "email",
+    "label": "Email address",
+    "required": true
+  },
+  {
+    "help": "Determines what type of member the user being added should be of the Board.",
+    "name": "type",
+    "type": "select",
+    "label": "Member type",
+    "options": [
+      {
+        "label": "Admin",
+        "value": "admin"
+      },
+      {
+        "label": "Normal",
+        "value": "normal"
+      },
+      {
+        "label": "Observer",
+        "value": "observer"
+      }
+    ],
+    "editable": true,
+    "required": true
+  },
+  {
+    "help": "The full name of the user to add as a member of the Board.",
+    "name": "name",
+    "type": "text",
+    "label": "Full name"
+  }
+]

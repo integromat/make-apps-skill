@@ -1,0 +1,264 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Channel ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "is_channel",
+    "type": "boolean",
+    "label": "Is public channel"
+  },
+  {
+    "name": "is_group",
+    "type": "boolean",
+    "label": "Is private channel"
+  },
+  {
+    "name": "is_im",
+    "type": "boolean",
+    "label": "Is direct message channel"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "is_archived",
+    "type": "boolean",
+    "label": "Is archived"
+  },
+  {
+    "name": "is_general",
+    "type": "boolean",
+    "label": "Is general"
+  },
+  {
+    "name": "unlinked",
+    "type": "number",
+    "label": "Unlinked"
+  },
+  {
+    "name": "name_normalized",
+    "type": "text",
+    "label": "Name normalized"
+  },
+  {
+    "name": "is_shared",
+    "type": "boolean",
+    "label": "Is shared"
+  },
+  {
+    "name": "is_open",
+    "type": "boolean",
+    "label": "Is open"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "priority",
+    "type": "number",
+    "label": "Priority"
+  },
+  {
+    "name": "unread_count",
+    "type": "number",
+    "label": "Unread count"
+  },
+  {
+    "name": "unread_count_display",
+    "type": "number",
+    "label": "Unread count display"
+  },
+  {
+    "name": "parent_conversation",
+    "type": "text",
+    "label": "Parent channel"
+  },
+  {
+    "name": "creator",
+    "type": "text",
+    "label": "Creator"
+  },
+  {
+    "name": "is_ext_shared",
+    "type": "boolean",
+    "label": "Is ext shared"
+  },
+  {
+    "name": "latest",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "files",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "File ID"
+            },
+            {
+              "name": "mode",
+              "type": "text",
+              "label": "Mode"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Files"
+      },
+      {
+        "name": "upload",
+        "type": "boolean",
+        "label": "Upload"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User"
+      },
+      {
+        "name": "display_as_bot",
+        "type": "text",
+        "label": "Display as bot"
+      },
+      {
+        "name": "ts",
+        "type": "text",
+        "label": "Timestamp"
+      }
+    ],
+    "type": "collection",
+    "label": "Latest"
+  },
+  {
+    "name": "is_org_shared",
+    "type": "boolean",
+    "label": "Is org shared"
+  },
+  {
+    "name": "shared_team_ids",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Shared team ids"
+  },
+  {
+    "name": "pending_connected_team_ids",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Pending connected team ids"
+  },
+  {
+    "name": "pending_shared",
+    "type": "array",
+    "label": "Pending shared"
+  },
+  {
+    "name": "is_pending_ext_shared",
+    "type": "boolean",
+    "label": "Is pending ext shared"
+  },
+  {
+    "name": "is_member",
+    "type": "boolean",
+    "label": "Is member"
+  },
+  {
+    "name": "is_private",
+    "type": "boolean",
+    "label": "Is private"
+  },
+  {
+    "name": "is_mpim",
+    "type": "boolean",
+    "label": "Is multiparty direct message channel"
+  },
+  {
+    "name": "topic",
+    "spec": [
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      },
+      {
+        "name": "creator",
+        "type": "text",
+        "label": "Creator"
+      },
+      {
+        "name": "last_set",
+        "type": "number",
+        "label": "Last set"
+      }
+    ],
+    "type": "collection",
+    "label": "Topic"
+  },
+  {
+    "name": "purpose",
+    "spec": [
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      },
+      {
+        "name": "creator",
+        "type": "text",
+        "label": "Creator"
+      },
+      {
+        "name": "last_set",
+        "type": "number",
+        "label": "Last set"
+      }
+    ],
+    "type": "collection",
+    "label": "Purpose"
+  },
+  {
+    "name": "previous_names",
+    "type": "array",
+    "label": "Previous names"
+  },
+  {
+    "name": "num_members",
+    "type": "number",
+    "label": "Num members"
+  },
+  {
+    "name": "locale",
+    "type": "text",
+    "label": "Locale"
+  },
+  {
+    "name": "last_read",
+    "type": "date",
+    "label": "Last read"
+  }
+]

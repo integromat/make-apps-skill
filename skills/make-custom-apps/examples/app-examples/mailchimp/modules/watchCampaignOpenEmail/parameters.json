@@ -1,0 +1,16 @@
+[
+  {
+    "name": "campaign_id",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23mailchimp@2/listCampaigns"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

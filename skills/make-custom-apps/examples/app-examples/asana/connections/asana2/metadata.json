@@ -1,0 +1,33 @@
+{
+  "rev": 12,
+  "type": "oauth",
+  "label": "Asana",
+  "scope": [
+    "default"
+  ],
+  "scopes": {},
+  "aliasTo": "asana",
+  "install": {
+    "common": {
+      "clientId": "{{parameters.clientId}}",
+      "clientSecret": "{{parameters.clientSecret}}"
+    }
+  },
+  "installSpec": [
+    {
+      "name": "clientId",
+      "type": "text",
+      "label": "Client ID",
+      "required": true
+    },
+    {
+      "name": "clientSecret",
+      "type": "text",
+      "label": "Client Secret",
+      "required": true
+    }
+  ],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

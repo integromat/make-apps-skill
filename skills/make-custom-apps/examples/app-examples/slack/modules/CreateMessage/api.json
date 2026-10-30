@@ -1,0 +1,26 @@
+{
+  "url": "/chat.postMessage",
+  "body": {
+    "text": "{{parameters.text}}",
+    "parse": "{{if(parameters.parse, 'full')}}",
+    "blocks": "{{getBlocksData(parameters.blocks)}}",
+    "mrkdwn": "{{parameters.mrkdwn}}",
+    "channel": "{{parameters.channel}}",
+    "icon_url": "{{parameters.icon_url}}",
+    "username": "{{parameters.username}}",
+    "thread_ts": "{{parameters.thread_ts}}",
+    "icon_emoji": "{{parameters.icon_emoji}}",
+    "link_names": "{{parameters.link_names}}",
+    "unfurl_links": "{{parameters.unfurl_links}}",
+    "unfurl_media": "{{parameters.unfurl_media}}",
+    "reply_broadcast": "{{parameters.reply_broadcast}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": {
+      "ts": "{{body.ts}}",
+      "channel": "{{body.channel}}",
+      "message": "{{getOutput(body.message)}}"
+    }
+  }
+}

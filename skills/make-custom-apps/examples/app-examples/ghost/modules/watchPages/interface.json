@@ -1,0 +1,578 @@
+[
+  {
+    "name": "current",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Page ID"
+      },
+      {
+        "name": "uuid",
+        "type": "text",
+        "label": "UUID"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "slug",
+        "type": "text",
+        "label": "Slug"
+      },
+      {
+        "name": "mobiledoc",
+        "type": "text",
+        "label": "Mobiledoc"
+      },
+      {
+        "name": "comment_id",
+        "type": "text",
+        "label": "Comment ID"
+      },
+      {
+        "name": "feature_image",
+        "type": "text",
+        "label": "Feature Image"
+      },
+      {
+        "name": "featured",
+        "type": "boolean",
+        "label": "Featured"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "name": "visibility",
+        "type": "text",
+        "label": "Visibility"
+      },
+      {
+        "name": "send_email_when_published",
+        "type": "boolean",
+        "label": "Send Email When Published"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated At"
+      },
+      {
+        "name": "published_at",
+        "type": "date",
+        "label": "Published At"
+      },
+      {
+        "name": "custom_excerpt",
+        "type": "text",
+        "label": "Custom Excerpt"
+      },
+      {
+        "name": "codeinjection_head",
+        "type": "text",
+        "label": "Codeinjection Head"
+      },
+      {
+        "name": "codeinjection_foot",
+        "type": "text",
+        "label": "Codeinjection Foot"
+      },
+      {
+        "name": "custom_template",
+        "type": "text",
+        "label": "Custom Template"
+      },
+      {
+        "name": "canonical_url",
+        "type": "text",
+        "label": "Canonical Url"
+      },
+      {
+        "name": "tags",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Tag ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "feature_image",
+            "type": "text",
+            "label": "Feature Image"
+          },
+          {
+            "name": "visibility",
+            "type": "text",
+            "label": "Visibility"
+          },
+          {
+            "name": "meta_title",
+            "type": "text",
+            "label": "Meta Title"
+          },
+          {
+            "name": "meta_description",
+            "type": "text",
+            "label": "Meta Description"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated At"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ],
+        "type": "array",
+        "label": "Tags"
+      },
+      {
+        "name": "authors",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Author ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "profile_image",
+            "type": "text",
+            "label": "Profile Image"
+          },
+          {
+            "name": "cover_image",
+            "type": "text",
+            "label": "Cover Image"
+          },
+          {
+            "name": "bio",
+            "type": "text",
+            "label": "Bio"
+          },
+          {
+            "name": "website",
+            "type": "text",
+            "label": "Website"
+          },
+          {
+            "name": "location",
+            "type": "text",
+            "label": "Location"
+          },
+          {
+            "name": "facebook",
+            "type": "text",
+            "label": "Facebook"
+          },
+          {
+            "name": "twitter",
+            "type": "text",
+            "label": "Twitter"
+          },
+          {
+            "name": "accessibility",
+            "type": "text",
+            "label": "Accessibility"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "meta_title",
+            "type": "text",
+            "label": "Meta Title"
+          },
+          {
+            "name": "meta_description",
+            "type": "text",
+            "label": "Meta Description"
+          },
+          {
+            "name": "tour",
+            "type": "text",
+            "label": "Tour"
+          },
+          {
+            "name": "last_seen",
+            "type": "date",
+            "label": "Last Seen At"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated At"
+          },
+          {
+            "name": "roles",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "Role ID"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "label": "Description"
+              },
+              {
+                "name": "created_at",
+                "type": "date",
+                "label": "Created At"
+              },
+              {
+                "name": "updated_at",
+                "type": "date",
+                "label": "Updated At"
+              }
+            ],
+            "type": "array",
+            "label": "Roles"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ],
+        "type": "array",
+        "label": "Authors"
+      },
+      {
+        "name": "primary_author",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Author ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "profile_image",
+            "type": "text",
+            "label": "Profile Image"
+          },
+          {
+            "name": "cover_image",
+            "type": "text",
+            "label": "Cover Image"
+          },
+          {
+            "name": "bio",
+            "type": "text",
+            "label": "Bio"
+          },
+          {
+            "name": "website",
+            "type": "text",
+            "label": "Website"
+          },
+          {
+            "name": "location",
+            "type": "text",
+            "label": "Location"
+          },
+          {
+            "name": "facebook",
+            "type": "text",
+            "label": "Facebook"
+          },
+          {
+            "name": "twitter",
+            "type": "text",
+            "label": "Twitter"
+          },
+          {
+            "name": "accessibility",
+            "type": "text",
+            "label": "Accessibility"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "meta_title",
+            "type": "text",
+            "label": "Meta Title"
+          },
+          {
+            "name": "meta_description",
+            "type": "text",
+            "label": "Meta Description"
+          },
+          {
+            "name": "tour",
+            "type": "text",
+            "label": "Tour"
+          },
+          {
+            "name": "last_seen",
+            "type": "date",
+            "label": "Last Seen At"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated At"
+          },
+          {
+            "name": "roles",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "Role ID"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "label": "Description"
+              },
+              {
+                "name": "created_at",
+                "type": "date",
+                "label": "Created At"
+              },
+              {
+                "name": "updated_at",
+                "type": "date",
+                "label": "Updated At"
+              }
+            ],
+            "type": "array",
+            "label": "Roles"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ],
+        "type": "collection",
+        "label": "Primary Author"
+      },
+      {
+        "name": "primary_tag",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Tag ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "slug",
+            "type": "text",
+            "label": "Slug"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "feature_image",
+            "type": "text",
+            "label": "Feature Image"
+          },
+          {
+            "name": "visibility",
+            "type": "text",
+            "label": "Visibility"
+          },
+          {
+            "name": "meta_title",
+            "type": "text",
+            "label": "Meta Title"
+          },
+          {
+            "name": "meta_description",
+            "type": "text",
+            "label": "Meta Description"
+          },
+          {
+            "name": "created_at",
+            "type": "date",
+            "label": "Created At"
+          },
+          {
+            "name": "updated_at",
+            "type": "date",
+            "label": "Updated At"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ],
+        "type": "collection",
+        "label": "Primary Tag"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "Url"
+      },
+      {
+        "name": "excerpt",
+        "type": "text",
+        "label": "Excerpt"
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "label": "Email"
+      },
+      {
+        "name": "og_image",
+        "type": "text",
+        "label": "Facebook Image"
+      },
+      {
+        "name": "og_title",
+        "type": "text",
+        "label": "Facebook Title"
+      },
+      {
+        "name": "og_description",
+        "type": "text",
+        "label": "Facebook Description"
+      },
+      {
+        "name": "twitter_image",
+        "type": "text",
+        "label": "Twitter Image"
+      },
+      {
+        "name": "twitter_title",
+        "type": "text",
+        "label": "Twitter Title"
+      },
+      {
+        "name": "twitter_description",
+        "type": "text",
+        "label": "Twitter Description"
+      },
+      {
+        "name": "meta_title",
+        "type": "text",
+        "label": "Meta Title"
+      },
+      {
+        "name": "meta_description",
+        "type": "text",
+        "label": "Meta Description"
+      },
+      {
+        "name": "email_subject",
+        "type": "text",
+        "label": "Email Subject"
+      }
+    ],
+    "type": "collection",
+    "label": "Current"
+  },
+  {
+    "name": "previous",
+    "spec": [
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated At"
+      }
+    ],
+    "type": "collection",
+    "label": "Previous"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Set the Topic of a Channel",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read",
+    "channels:write",
+    "groups:write",
+    "im:write",
+    "mpim:write"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Changes the topic of a channel.",
+  "altAccountName": null
+}

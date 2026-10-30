@@ -1,0 +1,134 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Notification ID"
+  },
+  {
+    "name": "unread",
+    "type": "boolean",
+    "label": "Unread"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "dateRead",
+    "type": "text",
+    "label": "Date read"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "due",
+            "type": "date",
+            "label": "Due date"
+          },
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Short link"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator member ID"
+  },
+  {
+    "name": "idAction",
+    "type": "text",
+    "label": "Action ID"
+  },
+  {
+    "name": "reactions",
+    "spec": [],
+    "type": "array",
+    "label": "Reactions"
+  },
+  {
+    "name": "entities",
+    "spec": {
+      "spec": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "shortLink",
+          "type": "text",
+          "label": "Short link"
+        },
+        {
+          "name": "due",
+          "type": "date",
+          "label": "Due date"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Entities"
+  }
+]

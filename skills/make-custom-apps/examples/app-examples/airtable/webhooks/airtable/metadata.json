@@ -1,0 +1,10 @@
+{
+  "rev": 10,
+  "type": "web",
+  "flags": {},
+  "label": "Airtable",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": null,
+  "altAccountName": null
+}

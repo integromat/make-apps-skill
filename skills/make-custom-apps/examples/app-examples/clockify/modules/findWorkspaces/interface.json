@@ -1,0 +1,239 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "hourlyRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "uinteger",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "memberships",
+    "spec": [
+      {
+        "name": "hourlyRate",
+        "spec": [
+          {
+            "name": "amount",
+            "type": "uinteger",
+            "label": "Amount"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          }
+        ],
+        "type": "collection",
+        "label": "HourlyRate"
+      },
+      {
+        "name": "membershipStatus",
+        "type": "text",
+        "label": "Membership Status"
+      },
+      {
+        "name": "membershipType",
+        "type": "text",
+        "label": "Membership Type"
+      },
+      {
+        "name": "membershipType",
+        "type": "text",
+        "label": "Membership Type"
+      },
+      {
+        "name": "userId",
+        "type": "text",
+        "label": "User ID"
+      }
+    ],
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "workspaceSettings",
+    "spec": [
+      {
+        "name": "adminOnlyPages",
+        "type": "array",
+        "label": "Admin Only Pages"
+      },
+      {
+        "name": "automaticLock",
+        "spec": [
+          {
+            "name": "changeDay",
+            "type": "text",
+            "label": "ChangeDay"
+          },
+          {
+            "name": "firstDay",
+            "type": "text",
+            "label": "First Day"
+          },
+          {
+            "name": "dayOfMonth",
+            "type": "uinteger",
+            "label": "Day Of Month"
+          },
+          {
+            "name": "olderThanPeriod",
+            "type": "text",
+            "label": "Older Than Period"
+          },
+          {
+            "name": "olderThanValue",
+            "type": "uinteger",
+            "label": "Older Than Value"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Automatic Lock"
+      },
+      {
+        "name": "canSeeTimeSheet",
+        "type": "boolean",
+        "label": "Can See Time Sheet"
+      },
+      {
+        "name": "defaultBillableProjects",
+        "type": "boolean",
+        "label": "Default Billable Projects"
+      },
+      {
+        "name": "forceDescription",
+        "type": "boolean",
+        "label": "Force Description"
+      },
+      {
+        "name": "forceProjects",
+        "type": "boolean",
+        "label": "Force Projects"
+      },
+      {
+        "name": "forceTags",
+        "type": "boolean",
+        "label": "Force Tags"
+      },
+      {
+        "name": "forceTasks",
+        "type": "boolean",
+        "label": "Force Tasks"
+      },
+      {
+        "name": "lockTimeEntries",
+        "type": "boolean",
+        "label": "Lock TimeEntries"
+      },
+      {
+        "name": "onlyAdminsCreateProject",
+        "type": "boolean",
+        "label": "Only Admins Create Project"
+      },
+      {
+        "name": "onlyAdminsCreateTag",
+        "type": "boolean",
+        "label": "Only Admins Create Tag"
+      },
+      {
+        "name": "onlyAdminsSeeAllTimeEntries",
+        "type": "boolean",
+        "label": "Only Admins See All Time Entries"
+      },
+      {
+        "name": "onlyAdminsSeeBillableRates",
+        "type": "boolean",
+        "label": "Only Admins See Billable Rates"
+      },
+      {
+        "name": "onlyAdminsSeeDashboard",
+        "type": "boolean",
+        "label": "Only Admins See Dashboard"
+      },
+      {
+        "name": "onlyAdminsSeePublicProjectsEntries",
+        "type": "boolean",
+        "label": "Only Admins See Public Projects Entries"
+      },
+      {
+        "name": "projectFavorites",
+        "type": "boolean",
+        "label": "Project Favorites"
+      },
+      {
+        "name": "projectPickerSpecialFilter",
+        "type": "boolean",
+        "label": "Project Picker Special Filter"
+      },
+      {
+        "name": "projectGroupingLabel",
+        "type": "boolean",
+        "label": "Project Grouping Label"
+      },
+      {
+        "name": "timeRoundingInReports",
+        "type": "boolean",
+        "label": "Time Rounding In Reports"
+      },
+      {
+        "name": "trackTimeDownToSecond",
+        "type": "boolean",
+        "label": "Track Time Down To Second"
+      },
+      {
+        "name": "round",
+        "spec": [
+          {
+            "name": "minutes",
+            "type": "text",
+            "label": "Minutes"
+          },
+          {
+            "name": "round",
+            "type": "text",
+            "label": "Round"
+          }
+        ],
+        "type": "collection",
+        "label": "Round"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace Settings"
+  },
+  {
+    "name": "imageUrl",
+    "type": "url",
+    "label": "Image Url"
+  },
+  {
+    "name": "featureSubscriptionType",
+    "type": "text",
+    "label": "Feature Subscription Type"
+  }
+]

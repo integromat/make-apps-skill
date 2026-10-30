@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Timers",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "clockify",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a timer is started or stopped.",
+  "altAccountName": null
+}

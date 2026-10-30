@@ -1,0 +1,15 @@
+[
+  {
+    "help": "The browser link to try to resolve.",
+    "name": "url",
+    "type": "url",
+    "label": "Url",
+    "required": true
+  },
+  {
+    "help": "By default, attempting to resolve the Coda URL of a deleted object will result in an error. If this flag is set, the next-available object, all the way up to the doc itself, will be resolved.",
+    "name": "degradeGracefully",
+    "type": "boolean",
+    "label": "Degrade gracefully"
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "url": "/2015-03-31/functions/{{parameters.function}}",
+  "method": "GET",
+  "response": {
+    "output": "{{functionResponse(body.Configuration)}}"
+  }
+}

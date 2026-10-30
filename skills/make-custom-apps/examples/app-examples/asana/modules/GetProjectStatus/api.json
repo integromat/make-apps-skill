@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'projectStatusId','project','selectOrMap'),'ProjectStatus')}}",
+  "url": "/project_statuses/{{parameters.projectStatusId}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

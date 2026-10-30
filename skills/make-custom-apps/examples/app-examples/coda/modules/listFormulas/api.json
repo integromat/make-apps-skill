@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "limit": 500
+  },
+  "url": "/docs/{{parameters.docId}}/formulas",
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.items}}"
+  },
+  "pagination": {
+    "qs": {
+      "pageToken": "{{body.nextPageToken}}"
+    },
+    "condition": "{{ifempty(body.nextPageToken, false)}}"
+  }
+}

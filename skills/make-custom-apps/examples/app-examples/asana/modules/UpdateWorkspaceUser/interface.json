@@ -1,0 +1,76 @@
+[
+  {
+    "name": "gid",
+    "type": "uinteger",
+    "label": "User ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "photo",
+    "spec": [
+      {
+        "name": "image_21x21",
+        "type": "url",
+        "label": "Image 21X21"
+      },
+      {
+        "name": "image_27x27",
+        "type": "url",
+        "label": "Image 27X27"
+      },
+      {
+        "name": "image_36x36",
+        "type": "url",
+        "label": "Image 36X36"
+      },
+      {
+        "name": "image_60x60",
+        "type": "url",
+        "label": "Image 60X60"
+      },
+      {
+        "name": "image_128x128",
+        "type": "url",
+        "label": "Image 128X128"
+      }
+    ],
+    "type": "collection",
+    "label": "Photo"
+  },
+  {
+    "name": "workspaces",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Workspaces"
+  }
+]

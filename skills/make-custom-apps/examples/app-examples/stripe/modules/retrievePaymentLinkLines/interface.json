@@ -1,0 +1,150 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "amount_discount",
+    "type": "number",
+    "label": "Amount Discount"
+  },
+  {
+    "name": "amount_subtotal",
+    "type": "number",
+    "label": "Amount Subtotal"
+  },
+  {
+    "name": "amount_tax",
+    "type": "number",
+    "label": "Amount Tax"
+  },
+  {
+    "name": "amount_total",
+    "type": "number",
+    "label": "Amount Total"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "price",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "Active"
+      },
+      {
+        "name": "billing_scheme",
+        "type": "text",
+        "label": "Billing Scheme"
+      },
+      {
+        "name": "created",
+        "type": "number",
+        "label": "Created"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "custom_unit_amount",
+        "type": "text",
+        "label": "Custom Unit Amount"
+      },
+      {
+        "name": "livemode",
+        "type": "boolean",
+        "label": "Livemode"
+      },
+      {
+        "name": "lookup_key",
+        "type": "text",
+        "label": "Lookup Key"
+      },
+      {
+        "name": "metadata",
+        "spec": [],
+        "type": "collection",
+        "label": "Metadata"
+      },
+      {
+        "name": "nickname",
+        "type": "text",
+        "label": "Nickname"
+      },
+      {
+        "name": "product",
+        "type": "text",
+        "label": "Product"
+      },
+      {
+        "name": "recurring",
+        "type": "text",
+        "label": "Recurring"
+      },
+      {
+        "name": "tax_behavior",
+        "type": "text",
+        "label": "Tax Behavior"
+      },
+      {
+        "name": "tiers_mode",
+        "type": "text",
+        "label": "Tiers Mode"
+      },
+      {
+        "name": "transform_quantity",
+        "type": "text",
+        "label": "Transform Quantity"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "unit_amount",
+        "type": "number",
+        "label": "Unit Amount"
+      },
+      {
+        "name": "unit_amount_decimal",
+        "type": "text",
+        "label": "Unit Amount Decimal"
+      }
+    ],
+    "type": "collection",
+    "label": "Price"
+  },
+  {
+    "name": "quantity",
+    "type": "number",
+    "label": "Quantity"
+  }
+]

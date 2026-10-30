@@ -1,0 +1,10 @@
+{
+  "rev": 3,
+  "type": "web",
+  "flags": {},
+  "label": "Ghost Tags",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": "ghost",
+  "altAccountName": null
+}

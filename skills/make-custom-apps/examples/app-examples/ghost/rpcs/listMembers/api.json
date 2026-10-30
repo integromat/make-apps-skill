@@ -1,0 +1,17 @@
+{
+  "url": "/members",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.email}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.members}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.meta.pagination.next}}"
+  }
+}

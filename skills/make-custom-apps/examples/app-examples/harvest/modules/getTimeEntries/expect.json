@@ -1,0 +1,95 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of time entries to return",
+    "default": 2
+  },
+  {
+    "name": "is_billed",
+    "type": "select",
+    "label": "Invoiced or Not invoiced",
+    "options": {
+      "store": [
+        {
+          "label": "Only invoiced",
+          "value": true
+        },
+        {
+          "label": "Only not invoiced",
+          "value": false
+        }
+      ],
+      "placeholder": "Show both"
+    },
+    "mappable": {
+      "help": "`true` = Only invoiced, `false` = Only not invoiced, leave blank for all."
+    }
+  },
+  {
+    "name": "is_running",
+    "type": "select",
+    "label": "Running or Non-running",
+    "options": {
+      "store": [
+        {
+          "label": "Only running",
+          "value": true
+        },
+        {
+          "label": "Only non-running",
+          "value": false
+        }
+      ],
+      "placeholder": "Show both"
+    },
+    "mappable": {
+      "help": "`true` = Only running, `false` = Only non-running, leave blank for all."
+    }
+  },
+  {
+    "help": "Only return time entries belonging to the user with the given ID.",
+    "mode": "edit",
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://getUsers"
+  },
+  {
+    "help": "Only return time entries belonging to the client with the given ID.",
+    "mode": "edit",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients"
+  },
+  {
+    "help": "Only return time entries belonging to the project with the given ID.",
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects"
+  },
+  {
+    "help": "Only return time entries that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  },
+  {
+    "help": "Only return time entries with a `Spent date` on or after the given date.",
+    "name": "from",
+    "time": false,
+    "type": "date",
+    "label": "From"
+  },
+  {
+    "help": "Only return time entries with a `Spent date` on or before the given date.",
+    "name": "to",
+    "time": false,
+    "type": "date",
+    "label": "To"
+  }
+]

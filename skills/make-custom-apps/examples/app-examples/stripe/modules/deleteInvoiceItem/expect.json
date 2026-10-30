@@ -1,0 +1,198 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listInvoiceItems",
+      "label": "Search",
+      "parameters": [
+        {
+          "name": "type",
+          "type": "select",
+          "label": "List By",
+          "options": [
+            {
+              "label": "Customer",
+              "value": "customer",
+              "nested": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23stripe@1/listCustomers",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "name": "email",
+                        "type": "email",
+                        "label": "Email",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "name": "customer",
+                  "type": "text",
+                  "label": "Customer ID"
+                }
+              ]
+            },
+            {
+              "label": "Invoice",
+              "value": "invoice",
+              "nested": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23stripe@1/listInvoices",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "rpc": {
+                          "url": "rpc://app%23stripe@1/listCustomers",
+                          "label": "Search",
+                          "parameters": [
+                            {
+                              "name": "email",
+                              "type": "email",
+                              "label": "Email",
+                              "required": true
+                            }
+                          ]
+                        },
+                        "name": "customer",
+                        "type": "text",
+                        "label": "Customer ID"
+                      },
+                      {
+                        "rpc": {
+                          "url": "rpc://app%23stripe@1/listSubscriptions",
+                          "label": "Search",
+                          "parameters": [
+                            {
+                              "rpc": {
+                                "url": "rpc://app%23stripe@1/listCustomers",
+                                "label": "Search",
+                                "parameters": [
+                                  {
+                                    "name": "email",
+                                    "type": "email",
+                                    "label": "Email",
+                                    "required": true
+                                  }
+                                ]
+                              },
+                              "name": "customer",
+                              "type": "text",
+                              "label": "Customer ID"
+                            },
+                            {
+                              "name": "status",
+                              "type": "select",
+                              "label": "Status",
+                              "options": [
+                                {
+                                  "label": "All",
+                                  "value": "all"
+                                },
+                                {
+                                  "label": "Active",
+                                  "value": "active"
+                                },
+                                {
+                                  "label": "Past Due",
+                                  "value": "past_due"
+                                },
+                                {
+                                  "label": "Unpaid",
+                                  "value": "unpaid"
+                                },
+                                {
+                                  "label": "Canceled",
+                                  "value": "canceled"
+                                },
+                                {
+                                  "label": "Incomplete",
+                                  "value": "incomplete"
+                                },
+                                {
+                                  "label": "Incomplete Expired",
+                                  "value": "incomplete_expired"
+                                },
+                                {
+                                  "label": "Trialing",
+                                  "value": "trialing"
+                                },
+                                {
+                                  "label": "Ended",
+                                  "value": "ended"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "name": "subscription",
+                        "type": "text",
+                        "label": "Subscription ID"
+                      },
+                      {
+                        "name": "status",
+                        "type": "select",
+                        "label": "Status",
+                        "options": [
+                          {
+                            "label": "Draft",
+                            "value": "draft"
+                          },
+                          {
+                            "label": "Open",
+                            "value": "open"
+                          },
+                          {
+                            "label": "Paid",
+                            "value": "paid"
+                          },
+                          {
+                            "label": "Uncollectible",
+                            "value": "uncollectible"
+                          },
+                          {
+                            "label": "Void",
+                            "value": "void"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "collection_method",
+                        "type": "select",
+                        "label": "Collection Method",
+                        "options": [
+                          {
+                            "label": "Charge Automatically",
+                            "value": "charge_automatically"
+                          },
+                          {
+                            "label": "Send Invoice",
+                            "value": "send_invoice"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "help": "The identifier of the desired invoice.",
+                  "name": "invoice",
+                  "type": "text",
+                  "label": "Invoice ID"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "help": "Set to true to only show pending invoice items, which are not yet attached to any invoices. Set to false to only show invoice items already attached to invoices. If unspecified, no filter is applied.",
+          "name": "pending",
+          "type": "boolean",
+          "label": "Pending"
+        }
+      ]
+    },
+    "name": "id",
+    "type": "text",
+    "label": "Invoice Item ID",
+    "required": true
+  }
+]

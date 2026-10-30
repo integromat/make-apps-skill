@@ -1,0 +1,68 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Enter Time Entry ID",
+    "options": [
+      {
+        "label": "By selecting",
+        "value": "selecting",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://listWorkspaces",
+              "nested": [
+                {
+                  "name": "user",
+                  "type": "select",
+                  "label": "Assignee ID",
+                  "options": {
+                    "store": "rpc://listUsers",
+                    "nested": [
+                      {
+                        "name": "timeEntry",
+                        "type": "select",
+                        "label": "Time Entry ID",
+                        "options": "rpc://listTimeEntries",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "workspace",
+            "type": "text",
+            "label": "Workspace ID",
+            "required": true
+          },
+          {
+            "name": "timeEntry",
+            "type": "text",
+            "label": "Time Entry ID",
+            "required": true
+          }
+        ],
+        "default": true
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

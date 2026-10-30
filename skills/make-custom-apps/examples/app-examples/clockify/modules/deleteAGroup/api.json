@@ -1,0 +1,7 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/user-groups/{{parameters.group_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": null
+  }
+}

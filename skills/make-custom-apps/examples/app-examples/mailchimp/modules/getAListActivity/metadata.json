@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List List's Activities",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Retrieves up to the previous 180 days of daily detailed aggregated activity stats for a list.",
+  "altAccountName": null
+}

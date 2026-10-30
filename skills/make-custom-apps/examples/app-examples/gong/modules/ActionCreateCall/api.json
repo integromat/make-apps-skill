@@ -1,0 +1,8 @@
+{
+  "url": "/calls",
+  "body": "{{parameters}}",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

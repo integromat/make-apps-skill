@@ -1,0 +1,8 @@
+{
+  "url": "/customer-engagement/content/viewed",
+  "body": "{{parameters}}",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "start",
+          "time": true,
+          "type": "date",
+          "label": "Start",
+          "required": true
+        },
+        {
+          "help": "If this field is added, the time entry is added manually.",
+          "name": "end",
+          "time": true,
+          "type": "date",
+          "label": "End"
+        },
+        {
+          "name": "user",
+          "type": "select",
+          "label": "Assignee ID",
+          "options": "rpc://listUsers"
+        },
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": {
+            "store": "rpc://listProjects",
+            "nested": [
+              {
+                "name": "task",
+                "type": "select",
+                "label": "Task ID",
+                "options": "rpc://listTasks"
+              }
+            ]
+          }
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "tagIds",
+          "type": "select",
+          "label": "Tags",
+          "options": "rpc://listTags",
+          "multiple": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

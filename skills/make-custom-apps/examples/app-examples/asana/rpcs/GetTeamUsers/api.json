@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.name"
+    ]
+  },
+  "url": "/teams/{{parameters.team_gid}}/users",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

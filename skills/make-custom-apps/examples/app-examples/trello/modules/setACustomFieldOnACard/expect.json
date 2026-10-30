@@ -1,0 +1,111 @@
+[
+  {
+    "name": "manual_or_select",
+    "type": "select",
+    "label": "Enter Card ID and Custom field ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          },
+          {
+            "name": "cf_id",
+            "type": "text",
+            "label": "Custom field ID",
+            "required": true
+          },
+          {
+            "help": "The type must match the Custom field type.",
+            "name": "type",
+            "type": "select",
+            "label": "Type",
+            "options": [
+              {
+                "label": "Text",
+                "value": "text"
+              },
+              {
+                "label": "Number",
+                "value": "number"
+              },
+              {
+                "label": "Date",
+                "value": "date"
+              },
+              {
+                "label": "Checkbox",
+                "value": "checked"
+              },
+              {
+                "label": "Dropdown",
+                "value": "list"
+              }
+            ],
+            "required": true
+          },
+          {
+            "help": "Value should match the type selected. If you select 'type' = 'list' the value should be ID of the option value.",
+            "name": "value",
+            "type": "text",
+            "label": "Value",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://app%23trello@4/getIDcardsUnderList",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                },
+                {
+                  "name": "cf_id",
+                  "type": "select",
+                  "label": "Custom field",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getCFid"
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

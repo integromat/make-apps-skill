@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Search for Cards",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Returns cards matching the search query.",
+  "altAccountName": null
+}

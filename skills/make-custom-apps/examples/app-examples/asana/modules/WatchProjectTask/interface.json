@@ -1,0 +1,178 @@
+[
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "User ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "User Name"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "resource",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Resource ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Resource Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Resource"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "action",
+    "type": "text",
+    "label": "Action"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Parent ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Parent Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "change",
+    "spec": [
+      {
+        "name": "action",
+        "type": "text",
+        "label": "Action"
+      },
+      {
+        "name": "added_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Global ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Added Value"
+      },
+      {
+        "name": "field",
+        "type": "text",
+        "label": "Field"
+      },
+      {
+        "name": "new_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Global ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "New Value"
+      },
+      {
+        "name": "removed_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "Global ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Removed Value"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "text",
+            "label": "User ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "collection",
+    "label": "Change"
+  }
+]

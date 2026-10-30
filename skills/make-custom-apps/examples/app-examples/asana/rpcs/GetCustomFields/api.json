@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.name",
+      "this.type"
+    ]
+  },
+  "url": "/workspaces/{{parameters.workspace}}/custom_fields",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.type}}] {{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

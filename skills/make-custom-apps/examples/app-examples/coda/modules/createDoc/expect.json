@@ -1,0 +1,16 @@
+[
+  {
+    "help": "Title of the new doc. If left blank, the new doc will have name 'Untitled'",
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "help": "An optional doc ID from which to create a copy.",
+    "mode": "edit",
+    "name": "sourceDoc",
+    "type": "select",
+    "label": "Source doc ID",
+    "options": "rpc://app%23coda@1/getDocs"
+  }
+]

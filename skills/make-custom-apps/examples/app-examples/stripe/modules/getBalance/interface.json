@@ -1,0 +1,102 @@
+[
+  {
+    "name": "available",
+    "spec": [
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "source_types",
+        "spec": [
+          {
+            "name": "card",
+            "type": "number",
+            "label": "Card"
+          },
+          {
+            "name": "bank_account",
+            "type": "number",
+            "label": "Bank account"
+          },
+          {
+            "name": "bitcoin_receiver",
+            "type": "number",
+            "label": "Bitcoin receiver"
+          }
+        ],
+        "type": "collection",
+        "label": "Source types"
+      }
+    ],
+    "type": "array",
+    "label": "Available"
+  },
+  {
+    "name": "connect_reserved",
+    "spec": [
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      }
+    ],
+    "type": "array",
+    "label": "Connect reserved"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "pending",
+    "spec": [
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      },
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "source_types",
+        "spec": [
+          {
+            "name": "card",
+            "type": "number",
+            "label": "Card"
+          },
+          {
+            "name": "bank_account",
+            "type": "number",
+            "label": "Bank account"
+          },
+          {
+            "name": "bitcoin_receiver",
+            "type": "number",
+            "label": "Bitcoin receiver"
+          }
+        ],
+        "type": "collection",
+        "label": "Source types"
+      }
+    ],
+    "type": "array",
+    "label": "Pending"
+  }
+]

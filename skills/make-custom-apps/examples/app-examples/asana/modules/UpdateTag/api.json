@@ -1,0 +1,10 @@
+{
+  "url": "/tags/{{parameters.tag}}",
+  "body": {
+    "data": "{{(omit(parameters,'tag')))}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

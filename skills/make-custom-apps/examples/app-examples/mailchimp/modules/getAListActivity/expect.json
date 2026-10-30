@@ -1,0 +1,17 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists",
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

@@ -1,0 +1,138 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Message"
+  },
+  {
+    "name": "subtype",
+    "type": "text",
+    "label": "Subtype"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Time stamp"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "User name"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "upload",
+    "type": "boolean",
+    "label": "Upload"
+  },
+  {
+    "name": "display_as_bot",
+    "type": "boolean",
+    "label": "Display as bot"
+  },
+  {
+    "name": "bot_id",
+    "type": "text",
+    "label": "Bot ID"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "files",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "File ID"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "url_private_download",
+        "type": "url",
+        "label": "Url private download"
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "label": "Size"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "mimetype",
+        "type": "text",
+        "label": "MIME type"
+      }
+    ],
+    "type": "array",
+    "label": "Files"
+  },
+  {
+    "name": "team",
+    "type": "text",
+    "label": "Team"
+  },
+  {
+    "name": "blocks",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "block_id",
+        "type": "text",
+        "label": "Block ID"
+      },
+      {
+        "name": "elements",
+        "type": "array",
+        "label": "Elements"
+      }
+    ],
+    "type": "array",
+    "label": "Blocks"
+  },
+  {
+    "name": "reactions",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "users",
+        "type": "array",
+        "label": "Users"
+      },
+      {
+        "name": "count",
+        "type": "number",
+        "label": "Count"
+      }
+    ],
+    "type": "array",
+    "label": "Reactions"
+  }
+]

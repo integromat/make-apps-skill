@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a List",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Retrieves a list by ID.",
+  "altAccountName": null
+}

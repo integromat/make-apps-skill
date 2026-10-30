@@ -1,0 +1,29 @@
+{
+  "qs": {
+    "list": true,
+    "board": true,
+    "fields": "all",
+    "members": true,
+    "stickers": true,
+    "checklists": "all",
+    "pluginData": true,
+    "attachments": true,
+    "board_fields": "all",
+    "membersVoted": true,
+    "member_fields": "all",
+    "sticker_fields": "all",
+    "checkItemStates": true,
+    "checklist_fields": "all",
+    "customFieldItems": true,
+    "attachment_fields": "all",
+    "memberVoted_fields": "all"
+  },
+  "url": "/cards/{{parameters.card_id}}",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "board_id": "{{body.idBoard}}"
+    },
+    "output": "{{body}}"
+  }
+}

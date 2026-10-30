@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Remove an Item from Checklist",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Removes an item from checklist.",
+  "altAccountName": null
+}

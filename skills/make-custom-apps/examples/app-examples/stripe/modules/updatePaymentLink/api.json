@@ -1,0 +1,9 @@
+{
+  "url": "/payment_links/{{parameters.id}}",
+  "body": "{{encodeRequestBody(omit(parameters, 'id'))}}",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

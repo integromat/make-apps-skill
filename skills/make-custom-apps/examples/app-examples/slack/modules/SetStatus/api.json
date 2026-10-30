@@ -1,0 +1,13 @@
+{
+  "qs": {},
+  "url": "/users.profile.set",
+  "body": {
+    "profile": "{{getStatusFields(parameters.status_text, parameters.status_emoji, parameters.status_expiration)}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

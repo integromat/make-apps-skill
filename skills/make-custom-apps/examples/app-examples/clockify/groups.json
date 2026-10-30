@@ -1,0 +1,88 @@
+[
+  {
+    "label": "Time Entry",
+    "modules": [
+      "watchTimeEntries",
+      "findTimeEntries",
+      "getTimeEntry",
+      "addTimeEntry",
+      "updateTimeEntry",
+      "stopTimeEntry",
+      "deleteTimeEntry"
+    ]
+  },
+  {
+    "label": "Project",
+    "modules": [
+      "watchProjects",
+      "findProjects",
+      "listProjectCustomFields",
+      "getProject",
+      "addProject",
+      "deleteProject"
+    ]
+  },
+  {
+    "label": "Task",
+    "modules": [
+      "watchTasks",
+      "addTask",
+      "updateTask",
+      "findTasks"
+    ]
+  },
+  {
+    "label": "Client",
+    "modules": [
+      "watchClients",
+      "findClients",
+      "addClient",
+      "deleteClient"
+    ]
+  },
+  {
+    "label": "Tag",
+    "modules": [
+      "watchTags",
+      "findTags",
+      "addTag"
+    ]
+  },
+  {
+    "label": "Timer",
+    "modules": [
+      "watchTimers"
+    ]
+  },
+  {
+    "label": "Workspace",
+    "modules": [
+      "findWorkspaces",
+      "addWorkspace"
+    ]
+  },
+  {
+    "label": "Reports",
+    "modules": [
+      "getSummaryReport",
+      "getDetailedReport",
+      "getWeeklyReport",
+      "getExpenseReport"
+    ]
+  },
+  {
+    "label": "Groups",
+    "modules": [
+      "addAGroup",
+      "updateAGroup",
+      "listGroups",
+      "deleteAGroup"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

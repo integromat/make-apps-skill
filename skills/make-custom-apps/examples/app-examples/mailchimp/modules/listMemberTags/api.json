@@ -1,0 +1,17 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}"
+  },
+  "url": "/lists/{{parameters.list}}/members/{{md5(lower(parameters.email))}}/tags",
+  "method": "GET",
+  "response": {
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.tags}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.lists) === 1000}}"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "MaxItems": 50,
+    "CompatibleRuntime": "{{parameters.CompatibleRuntime}}"
+  },
+  "url": "/2018-10-31/layers",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{layerResponse(item)}}",
+    "iterate": "{{body.Layers}}"
+  },
+  "pagination": {
+    "qs": {
+      "Marker": "{{body.NextMarker}}"
+    },
+    "condition": "{{ifempty(body.NextMarker, false)}}"
+  }
+}

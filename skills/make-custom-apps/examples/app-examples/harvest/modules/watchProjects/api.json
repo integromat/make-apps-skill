@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/projects",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.projects}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{switch(parameters.watch, 'new', item.created_at, 'updated', item.updated_at)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

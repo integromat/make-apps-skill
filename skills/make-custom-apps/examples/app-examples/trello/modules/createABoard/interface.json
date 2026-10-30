@@ -1,0 +1,218 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "spec": [],
+    "type": "collection",
+    "label": "Description data"
+  },
+  {
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "idOrganization",
+    "type": "text",
+    "label": "Organization ID"
+  },
+  {
+    "name": "pinned",
+    "type": "boolean",
+    "label": "Pinned"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "shortUrl",
+    "type": "url",
+    "label": "Short URL"
+  },
+  {
+    "name": "prefs",
+    "spec": [
+      {
+        "name": "permissionLevel",
+        "type": "text",
+        "label": "Permission level"
+      },
+      {
+        "name": "voting",
+        "type": "text",
+        "label": "Voting"
+      },
+      {
+        "name": "comments",
+        "type": "text",
+        "label": "Comments"
+      },
+      {
+        "name": "invitations",
+        "type": "text",
+        "label": "Invitations"
+      },
+      {
+        "name": "selfJoin",
+        "type": "boolean",
+        "label": "Self join"
+      },
+      {
+        "name": "cardCovers",
+        "type": "boolean",
+        "label": "Card covers"
+      },
+      {
+        "name": "cardAging",
+        "type": "text",
+        "label": "Card aging"
+      },
+      {
+        "name": "calendarFeedEnabled",
+        "type": "boolean",
+        "label": "Calendar feed enabled"
+      },
+      {
+        "name": "background",
+        "type": "text",
+        "label": "Background"
+      },
+      {
+        "name": "backgroundImage",
+        "type": "text",
+        "label": "Background image"
+      },
+      {
+        "name": "backgroundImageScaled",
+        "type": "text",
+        "label": "Background image scaled"
+      },
+      {
+        "name": "backgroundTile",
+        "type": "boolean",
+        "label": "Background tile"
+      },
+      {
+        "name": "backgroundBrightness",
+        "type": "text",
+        "label": "Background brightness"
+      },
+      {
+        "name": "backgroundColor",
+        "type": "color",
+        "label": "Background color"
+      },
+      {
+        "name": "backgroundBottomColor",
+        "type": "color",
+        "label": "Background bottom color"
+      },
+      {
+        "name": "backgroundTopColor",
+        "type": "color",
+        "label": "Background top color"
+      },
+      {
+        "name": "canBePublic",
+        "type": "boolean",
+        "label": "Can be public"
+      },
+      {
+        "name": "canBeOrg",
+        "type": "boolean",
+        "label": "Can be organization"
+      },
+      {
+        "name": "canBePrivate",
+        "type": "boolean",
+        "label": "Can be private"
+      },
+      {
+        "name": "canInvite",
+        "type": "boolean",
+        "label": "Can invite"
+      }
+    ],
+    "type": "collection",
+    "label": "Prefs"
+  },
+  {
+    "name": "labelNames",
+    "spec": [
+      {
+        "name": "green",
+        "type": "text",
+        "label": "Green"
+      },
+      {
+        "name": "yellow",
+        "type": "text",
+        "label": "Yellow"
+      },
+      {
+        "name": "orange",
+        "type": "text",
+        "label": "Orange"
+      },
+      {
+        "name": "red",
+        "type": "text",
+        "label": "Red"
+      },
+      {
+        "name": "purple",
+        "type": "text",
+        "label": "Purple"
+      },
+      {
+        "name": "blue",
+        "type": "text",
+        "label": "Blue"
+      },
+      {
+        "name": "sky",
+        "type": "text",
+        "label": "Sky"
+      },
+      {
+        "name": "lime",
+        "type": "text",
+        "label": "Lime"
+      },
+      {
+        "name": "pink",
+        "type": "text",
+        "label": "Pink"
+      },
+      {
+        "name": "black",
+        "type": "text",
+        "label": "Black"
+      }
+    ],
+    "type": "collection",
+    "label": "Label names"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  }
+]

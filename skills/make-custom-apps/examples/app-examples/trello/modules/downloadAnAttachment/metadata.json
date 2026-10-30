@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Download an Attachment",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Downloads an attachment.",
+  "altAccountName": null
+}

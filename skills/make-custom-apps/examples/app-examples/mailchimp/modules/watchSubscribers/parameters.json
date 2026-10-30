@@ -1,0 +1,89 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Watch Subscibers",
+    "options": [
+      {
+        "label": "New subscriber joins a list",
+        "value": "create",
+        "default": true
+      },
+      {
+        "label": "Existing subscriber is updated",
+        "value": "update"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists",
+    "required": true
+  },
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Subscribed",
+        "value": "subscribed",
+        "default": true
+      },
+      {
+        "label": "Unsubscribed",
+        "value": "unsubscribed"
+      },
+      {
+        "label": "Cleaned",
+        "value": "cleaned"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Transactional",
+        "value": "transactional"
+      },
+      {
+        "label": "Archived",
+        "value": "archived"
+      }
+    ]
+  },
+  {
+    "name": "vip_only",
+    "type": "boolean",
+    "label": "VIP only",
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "email_type",
+    "type": "select",
+    "label": "Email Type",
+    "options": [
+      {
+        "label": "HTML",
+        "value": "html",
+        "default": true
+      },
+      {
+        "label": "Text",
+        "value": "text"
+      }
+    ]
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

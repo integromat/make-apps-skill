@@ -1,0 +1,218 @@
+[
+  {
+    "name": "list_id_select_or_manual",
+    "type": "select",
+    "label": "Enter a List ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "help": "Enter the ID of the list where the card will be created.",
+            "name": "list_id",
+            "type": "text",
+            "label": "List ID",
+            "required": true
+          },
+          {
+            "help": "Label IDs to add to the card.",
+            "name": "labels_id",
+            "spec": {
+              "type": "text",
+              "label": "Label ID"
+            },
+            "type": "array",
+            "label": "Labels",
+            "advanced": true
+          },
+          {
+            "help": "Member IDs to add to the card.",
+            "name": "members_id",
+            "spec": {
+              "type": "text",
+              "label": "Member ID"
+            },
+            "type": "array",
+            "label": "Members",
+            "advanced": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": "rpc://app%23trello@4/getBoardsLists",
+                  "mappable": false,
+                  "required": true
+                },
+                {
+                  "name": "labels_id",
+                  "type": "select",
+                  "label": "Labels",
+                  "options": "rpc://app%23trello@4/getLabelsIDunderBoard",
+                  "multiple": true
+                },
+                {
+                  "name": "members_id",
+                  "type": "select",
+                  "label": "Members",
+                  "options": "rpc://app%23trello@4/getMemberIdBoard",
+                  "multiple": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "The name for the card.",
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": false
+  },
+  {
+    "help": "The description for the card.",
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "help": "The position of the new card.",
+    "name": "position",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "A start date for the card.",
+    "name": "start",
+    "time": false,
+    "type": "date",
+    "label": "Start date",
+    "advanced": true
+  },
+  {
+    "help": "A due date for the card.",
+    "name": "due_date",
+    "time": true,
+    "type": "date",
+    "label": "Due date",
+    "advanced": true
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete",
+    "advanced": true,
+    "required": true
+  },
+  {
+    "name": "urlSource",
+    "type": "url",
+    "label": "File URL",
+    "advanced": true
+  },
+  {
+    "name": "filename",
+    "type": "text",
+    "label": "File name",
+    "semantic": "file:name"
+  },
+  {
+    "help": "There is a 10 MB file upload limit per attachment. However, Business Class and Trello Gold members have a 250 MB file upload limit per attachment.",
+    "name": "filedata",
+    "type": "buffer",
+    "label": "File data",
+    "semantic": "file:data"
+  },
+  {
+    "name": "select_or_manual_cardID",
+    "type": "select",
+    "label": "Copy card",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manually",
+        "nested": [
+          {
+            "help": "Enter card ID to copy from.",
+            "name": "idCardSource",
+            "type": "text",
+            "label": "Card ID"
+          }
+        ]
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "idBoard",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "idList",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardLists2",
+                    "nested": [
+                      {
+                        "name": "idCardSource",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://app%23trello@4/getIDcardsUnderList2",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "advanced": true,
+    "mappable": false
+  }
+]

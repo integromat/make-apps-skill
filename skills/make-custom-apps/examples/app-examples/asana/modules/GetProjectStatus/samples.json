@@ -1,0 +1,13 @@
+{
+  "gid": 0,
+  "text": "REDACTED",
+  "color": "green",
+  "title": "REDACTED",
+  "created_at": "30 december 2019 04:39",
+  "created_by": {
+    "gid": 0,
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "resource_type": "project_status"
+}

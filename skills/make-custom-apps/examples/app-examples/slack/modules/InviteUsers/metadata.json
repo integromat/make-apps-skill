@@ -1,0 +1,26 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Invite Users",
+  "scope": [
+    "channels:write",
+    "channels:read",
+    "groups:write",
+    "groups:read",
+    "im:write",
+    "im:read",
+    "mpim:write",
+    "mpim:read",
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Invites 1-30 users to a public or private channel.",
+  "altAccountName": null
+}

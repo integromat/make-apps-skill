@@ -1,0 +1,90 @@
+[
+  {
+    "help": "A filter on the list based on the customer’s email field.",
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "help": "A filter on the list based on the object created field.",
+    "name": "created",
+    "type": "select",
+    "label": "Created at",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "created_timestamp",
+          "type": "number",
+          "label": "Timestamp",
+          "required": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "expand",
+    "type": "select",
+    "label": "Expand",
+    "options": [
+      {
+        "label": "Default Source",
+        "value": "data.default_source"
+      },
+      {
+        "label": "Invoice Credit Balance",
+        "value": "data.invoice_credit_balance"
+      },
+      {
+        "label": "Subscriptions",
+        "value": "data.subscriptions"
+      },
+      {
+        "label": "Sources",
+        "value": "data.sources"
+      },
+      {
+        "label": "Tax",
+        "value": "data.tax"
+      },
+      {
+        "label": "Tax IDs",
+        "value": "data.tax_ids"
+      }
+    ],
+    "advanced": true,
+    "multiple": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  }
+]

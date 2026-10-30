@@ -1,0 +1,47 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Folder ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "children",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "href",
+          "type": "url",
+          "label": "Href"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Children"
+  }
+]

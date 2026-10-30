@@ -1,0 +1,12 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "exclude_archived",
+    "type": "boolean",
+    "label": "Exclude Archived"
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://slack.com/api/auth.test",
+    "headers": {
+      "authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.user_id}}",
+      "valid": "{{body.ok}}",
+      "metadata": {
+        "type": "text",
+        "value": "{{body.user}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.body.code",
+        "request.body.client_secret",
+        "response.body.access_token",
+        "response.body.authed_user.access_token"
+      ]
+    },
+    "url": "https://slack.com/api/oauth.v2.access",
+    "body": {
+      "code": "{{temp.code}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "client_secret": "{{ifempty(parameters.clientSecret, common.clientSecret)}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "response": {
+      "data": {
+        "accessToken": "{{body.authed_user.access_token}}"
+      },
+      "valid": "{{body.ok}}"
+    }
+  },
+  "authorize": {
+    "qs": {
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "user_scope": "{{join(distinct(merge(getScopes(oauth.scope, 'user'), ifempty(parameters.scopes, emptyarray))), ',')}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code"
+    },
+    "url": "https://slack.com/oauth/v2/authorize",
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      }
+    }
+  }
+}

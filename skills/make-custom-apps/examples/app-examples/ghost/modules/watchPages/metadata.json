@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Pages",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "ghost2",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a page is created, updated or deleted.",
+  "altAccountName": null
+}

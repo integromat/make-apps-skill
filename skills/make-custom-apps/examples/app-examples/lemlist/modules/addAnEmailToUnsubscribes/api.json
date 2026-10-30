@@ -1,0 +1,7 @@
+{
+  "url": "/unsubscribes/{{parameters.email}}",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

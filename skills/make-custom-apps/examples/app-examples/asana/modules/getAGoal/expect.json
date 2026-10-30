@@ -1,0 +1,162 @@
+[
+  {
+    "name": "goal_type",
+    "type": "select",
+    "label": "Filter",
+    "options": [
+      {
+        "label": "Workspace",
+        "value": "workspace",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "goal_id",
+                  "type": "select",
+                  "label": "Goal ID",
+                  "options": "rpc://app%23asana@2/getGoals",
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Team",
+        "value": "team",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "team",
+                  "type": "select",
+                  "label": "Team",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetTeams",
+                    "nested": [
+                      {
+                        "mode": "edit",
+                        "name": "goal_id",
+                        "type": "select",
+                        "label": "Goal ID",
+                        "options": "rpc://app%23asana@2/getGoals",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Project",
+        "value": "project",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "project",
+                  "type": "select",
+                  "label": "Project",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetProjectsWorkspace",
+                    "nested": [
+                      {
+                        "mode": "edit",
+                        "name": "goal_id",
+                        "type": "select",
+                        "label": "Goal ID",
+                        "options": "rpc://app%23asana@2/getGoals",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Portfolio",
+        "value": "portfolio",
+        "nested": [
+          {
+            "mode": "edit",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "mode": "edit",
+                  "name": "owner",
+                  "type": "select",
+                  "label": "User",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetUsers",
+                    "nested": [
+                      {
+                        "mode": "edit",
+                        "name": "portfolio",
+                        "type": "select",
+                        "label": "Portfolio",
+                        "options": {
+                          "store": "rpc://app%23asana@2/GetPortfolios",
+                          "nested": [
+                            {
+                              "mode": "edit",
+                              "name": "goal_id",
+                              "type": "select",
+                              "label": "Goal ID",
+                              "options": "rpc://app%23asana@2/getGoals",
+                              "required": true
+                            }
+                          ]
+                        },
+                        "required": true
+                      }
+                    ]
+                  },
+                  "required": true
+                }
+              ]
+            },
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  }
+]

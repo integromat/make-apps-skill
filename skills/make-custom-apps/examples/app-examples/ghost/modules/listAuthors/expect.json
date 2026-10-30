@@ -1,0 +1,92 @@
+[
+  {
+    "help": "For more information about filtering, please visit [the official documentation](https://ghost.org/docs/api/v3/content/#value).",
+    "name": "filter",
+    "type": "filter",
+    "label": "Criteria",
+    "options": {
+      "store": [
+        {
+          "label": "ID (Text)",
+          "value": "text::users.id"
+        },
+        {
+          "label": "Name (Text)",
+          "value": "text::users.name"
+        },
+        {
+          "label": "Slug (Text)",
+          "value": "text::users.slug"
+        },
+        {
+          "label": "Email (Text)",
+          "value": "text::users.email"
+        },
+        {
+          "label": "Location (Text)",
+          "value": "text::users.location"
+        },
+        {
+          "label": "Facebook (Text)",
+          "value": "text::users.facebook"
+        },
+        {
+          "label": "Twitter (Text)",
+          "value": "text::users.twitter"
+        },
+        {
+          "label": "Status (Text)",
+          "value": "text::users.status"
+        },
+        {
+          "label": "Created at (Date)",
+          "value": "date::users.created_at"
+        },
+        {
+          "label": "Updated at (Date)",
+          "value": "date::users.updated_at"
+        },
+        {
+          "label": "Last seen (Date)",
+          "value": "date::users.last_seen"
+        }
+      ],
+      "operators": [
+        {
+          "label": "Operators",
+          "options": [
+            {
+              "label": "is",
+              "value": ":"
+            },
+            {
+              "label": "is not",
+              "value": ":-"
+            },
+            {
+              "label": "greater than",
+              "value": ":>"
+            },
+            {
+              "label": "greater than or equals",
+              "value": ":>="
+            },
+            {
+              "label": "less than",
+              "value": ":<"
+            },
+            {
+              "label": "less than or equals",
+              "value": ":<="
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit"
+  }
+]

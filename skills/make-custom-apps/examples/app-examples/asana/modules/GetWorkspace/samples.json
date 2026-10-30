@@ -1,0 +1,9 @@
+{
+  "gid": "00000000000000",
+  "name": "REDACTED",
+  "email_domains": [
+    "integromat.com"
+  ],
+  "resource_type": "workspace",
+  "is_organization": true
+}

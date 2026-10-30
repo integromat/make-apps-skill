@@ -1,0 +1,89 @@
+[
+  {
+    "name": "assigneeIds",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Assignee IDs"
+  },
+  {
+    "name": "estimate",
+    "type": "text",
+    "label": "Estimate"
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Task ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "projectId",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "hourlyRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "costRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Cost Rate"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "assigneeId",
+    "type": "text",
+    "label": "Assignee ID"
+  },
+  {
+    "name": "userGroupIds",
+    "type": "array",
+    "label": "User Group IDs"
+  },
+  {
+    "name": "duration",
+    "type": "text",
+    "label": "Duration"
+  }
+]

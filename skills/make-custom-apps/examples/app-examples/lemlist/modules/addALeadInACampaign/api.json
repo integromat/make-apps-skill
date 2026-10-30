@@ -1,0 +1,13 @@
+{
+  "url": "/campaigns/{{parameters.campaign}}/leads/{{parameters.email}}",
+  "body": {
+    "{{...}}": "{{toCollection(parameters.customFields, 'key', 'value')}}",
+    "lastName": "{{parameters.lastName}}",
+    "firstName": "{{parameters.firstName}}",
+    "companyName": "{{parameters.companyName}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

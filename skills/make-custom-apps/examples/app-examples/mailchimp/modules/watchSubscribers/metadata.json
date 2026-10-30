@@ -1,0 +1,24 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{switch(parameters.select, 'create', item.timestamp_opt, 'update', item.last_changed)}}",
+        "label": "{{item.email_address}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Subscribers",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a new subscriber joins a list or is updated.",
+  "altAccountName": null
+}

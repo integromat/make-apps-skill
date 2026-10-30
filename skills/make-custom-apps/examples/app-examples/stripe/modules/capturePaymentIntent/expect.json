@@ -1,0 +1,82 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listPaymentIntents",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        }
+      ]
+    },
+    "name": "ignore::id",
+    "type": "text",
+    "label": "Payment Intent ID",
+    "required": true
+  },
+  {
+    "help": "The amount to capture from the Payment Intent, which must be less than or equal to the original amount. Any additional amount will be automatically refunded. Defaults to the full `amount_capturable` if not provided.",
+    "name": "amount_to_capture",
+    "type": "uinteger",
+    "label": "Amount to Capture",
+    "validate": {
+      "max": 99999999
+    }
+  },
+  {
+    "help": "For non-card charges, you can use this value as the complete description that appears on your customers’ statements.",
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement Descriptor",
+    "advanced": true,
+    "validate": {
+      "max": 22
+    }
+  },
+  {
+    "help": "Concatenated with the statement descriptor prefix and statement descriptor to form the complete statement descriptor.",
+    "name": "statement_descriptor_suffix",
+    "type": "text",
+    "label": "Statement Descriptor Suffix",
+    "advanced": true,
+    "validate": {
+      "max": 22
+    }
+  },
+  {
+    "help": "*Stripe Connect Only* For more information, see the Payment Intents [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts).",
+    "name": "application_fee_amount",
+    "type": "uinteger",
+    "label": "Application Fee Amount",
+    "advanced": true
+  },
+  {
+    "help": "*Stripe Connect Only* The parameters used to automatically create a Transfer when the payment succeeds. For more information, see the Payment Intents use case for connected accounts.",
+    "name": "transfer_data",
+    "spec": [
+      {
+        "help": "The amount that will be transferred automatically when a charge succeeds. The amount is capped at the total transaction amount and if no amount is set, the full amount is transferred.",
+        "name": "amount",
+        "type": "uinteger",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data",
+    "advanced": true
+  }
+]

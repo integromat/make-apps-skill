@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "List All Balance History",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Returns a list of transactions that have contributed to the Stripe account balance.",
+  "altAccountName": null
+}

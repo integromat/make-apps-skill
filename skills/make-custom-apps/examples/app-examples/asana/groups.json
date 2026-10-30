@@ -1,0 +1,144 @@
+[
+  {
+    "label": "Tasks",
+    "modules": [
+      "watchTasksOrSubtasks",
+      "WatchProjectTask",
+      "WatchNewTasks",
+      "watchNewSubtasks",
+      "watchNewCompletedTasks",
+      "ListTasks",
+      "GetTask",
+      "CreateTask",
+      "UpdateTask",
+      "DeleteTask",
+      "DuplicateTask",
+      "ListTaskSubtasks",
+      "UpdateParentTask",
+      "UpdateTaskFollowers",
+      "ListTaskProjects",
+      "AddTaskProject",
+      "RemoveTaskProject",
+      "ListTaskDependencies",
+      "UpdateTaskDependencies",
+      "ListTaskDependents",
+      "UpdateTaskDependents"
+    ]
+  },
+  {
+    "label": "Projects",
+    "modules": [
+      "WatchProjects",
+      "ListProjects",
+      "GetProject",
+      "CreateProject",
+      "UpdateProject",
+      "DeleteProject",
+      "DuplicateProject",
+      "GetProjectTaskCount",
+      "ListProjectSections",
+      "GetProjectSection",
+      "CreateProjectSection",
+      "UpdateProjectSection",
+      "MoveSection",
+      "DeleteProjectSection",
+      "ListProjectStatuses",
+      "GetProjectStatus",
+      "CreateProjectStatus",
+      "DeleteProjectStatus"
+    ]
+  },
+  {
+    "label": "Workspaces, Teams, Users",
+    "modules": [
+      "ListWorkspaces",
+      "GetWorkspace",
+      "ListTeamsInOrganization",
+      "ListOrganizationUsers",
+      "UpdateWorkspaceUser",
+      "createATeam",
+      "GetTeam",
+      "ListUsersTeam",
+      "AddUserToTeam",
+      "RemoveUserFromTeam",
+      "ListUsers",
+      "GetUser",
+      "ListUsersTeams"
+    ]
+  },
+  {
+    "label": "Stories",
+    "modules": [
+      "WatchStories",
+      "ListTaskStories",
+      "GetStory",
+      "CreateStory",
+      "UpdateStory",
+      "DeleteStory"
+    ]
+  },
+  {
+    "label": "Attachments",
+    "modules": [
+      "ListTaskAttachments",
+      "GetAttachment",
+      "UploadAttachment",
+      "DeleteAttachment"
+    ]
+  },
+  {
+    "label": "Tags",
+    "modules": [
+      "WatchTags",
+      "ListTags",
+      "GetTag",
+      "CreateTag",
+      "UpdateTag",
+      "GetTaskTags",
+      "UpdateTaskTag"
+    ]
+  },
+  {
+    "label": "Custom Fields",
+    "modules": [
+      "ListWorkspaceCustomFields",
+      "GetCustomField",
+      "CreateCustomField",
+      "UpdateCustomField",
+      "DeleteCustomField",
+      "CreateEnumerationOption",
+      "UpdateEnumOption",
+      "ListProjectCustomFields",
+      "getAProjectCustomField",
+      "UpdateProjectCustomFields"
+    ]
+  },
+  {
+    "label": "Goals",
+    "modules": [
+      "listGoals",
+      "getAGoal"
+    ]
+  },
+  {
+    "label": "Portfolios",
+    "modules": [
+      "createAPortfolio",
+      "addUsersToAPortfolio",
+      "updateAPortfolio",
+      "getAPortfolio",
+      "listPortfolios",
+      "deleteAPortfolio",
+      "removeUsersFromAPortfolio"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "ListWebhooks",
+      "MakeanAPICall",
+      "watchNewTeams",
+      "listTasksWithSpecificCustomField"
+    ]
+  }
+]

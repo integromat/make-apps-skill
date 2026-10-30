@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add an Event",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Adds a new event to the member.",
+  "altAccountName": null
+}

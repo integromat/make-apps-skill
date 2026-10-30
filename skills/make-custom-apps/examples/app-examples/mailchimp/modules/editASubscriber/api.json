@@ -1,0 +1,52 @@
+[
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(parameters.email))}}",
+    "body": {
+      "vip": "{{parameters.vip}}",
+      "status": "{{parameters.status}}",
+      "language": "{{parameters.language}}",
+      "location": "{{parameters.location}}",
+      "interests": "{{interest(parameters.interests)}}",
+      "email_type": "{{parameters.email_type}}",
+      "merge_fields": "{{mergeField(parameters.merge_fields)}}",
+      "email_address": "{{parameters.email_address}}"
+    },
+    "method": "PATCH",
+    "response": {
+      "temp": {
+        "member": "{{body}}"
+      }
+    }
+  },
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(ifempty(parameters.email_address, parameters.email)))}}/tags",
+    "body": {
+      "tags": "{{parameters.tags}}"
+    },
+    "method": "POST",
+    "condition": "{{parameters.tags}}"
+  },
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(ifempty(parameters.email_address, parameters.email)))}}/notes",
+    "body": {
+      "note": "{{parameters.note}}"
+    },
+    "method": "POST",
+    "condition": "{{ifempty(parameters.note, false)}}"
+  },
+  {
+    "url": "/lists/{{parameters.list}}/members/{{md5(lower(ifempty(parameters.email_address, parameters.email)))}}",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "member": "{{body}}"
+      }
+    },
+    "condition": "{{parameters.tags || ifempty(parameters.note, false)}}"
+  },
+  {
+    "response": {
+      "output": "{{generalResponse(arrangeResponseSubscriber(temp.member, metadata.interface))}}"
+    }
+  }
+]

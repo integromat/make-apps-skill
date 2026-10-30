@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Payment Link",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Updates a payment link by its ID.",
+  "altAccountName": null
+}

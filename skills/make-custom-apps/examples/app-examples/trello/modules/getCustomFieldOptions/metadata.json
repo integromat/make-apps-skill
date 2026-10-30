@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Get Custom Field Options",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Retrieves options of dropdown custom field.",
+  "altAccountName": null
+}

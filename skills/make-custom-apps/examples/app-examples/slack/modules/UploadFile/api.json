@@ -1,0 +1,23 @@
+{
+  "qs": {},
+  "url": "/files.upload",
+  "body": {
+    "file": {
+      "value": "{{parameters.data}}",
+      "options": {
+        "filename": "{{parameters.fileName}}"
+      }
+    },
+    "title": "{{parameters.title}}",
+    "channels": "{{getChannels(parameters.channels)}}",
+    "filename": "{{parameters.fileName}}",
+    "thread_ts": "{{parameters.thread_ts}}",
+    "initial_comment": "{{parameters.initial_comment}}"
+  },
+  "type": "multipart/form-data",
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.file)}}"
+  }
+}

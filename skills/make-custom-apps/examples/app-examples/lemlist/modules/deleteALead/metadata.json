@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Lead",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "lemlist",
+  "description": "Deletes a lead from a specific campaign.",
+  "altAccountName": null
+}

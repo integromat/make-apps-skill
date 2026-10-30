@@ -1,0 +1,17 @@
+{
+  "qs": {},
+  "url": "/invoices/{{parameters.invoice_id}}",
+  "body": {
+    "line_items": [
+      {
+        "id": "{{parameters.line_item_id}}",
+        "_destroy": true
+      }
+    ]
+  },
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

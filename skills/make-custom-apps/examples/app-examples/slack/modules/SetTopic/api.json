@@ -1,0 +1,12 @@
+{
+  "url": "/conversations.setTopic",
+  "body": {
+    "topic": "{{parameters.topic}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.channel)}}"
+  }
+}

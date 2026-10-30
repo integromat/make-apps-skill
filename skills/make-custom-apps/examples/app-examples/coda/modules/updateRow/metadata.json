@@ -1,0 +1,19 @@
+{
+  "rev": 7,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Row",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "coda",
+  "description": "Updates a specified row in the table.jj",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

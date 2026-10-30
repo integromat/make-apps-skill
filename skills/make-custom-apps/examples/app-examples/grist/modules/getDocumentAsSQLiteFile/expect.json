@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": "rpc://app%23grist@1/listDocuments",
+    "required": true
+  }
+]

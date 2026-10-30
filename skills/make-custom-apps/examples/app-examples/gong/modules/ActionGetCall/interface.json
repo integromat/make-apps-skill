@@ -1,0 +1,97 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Call ID"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "scheduled",
+    "type": "date",
+    "label": "Scheduled"
+  },
+  {
+    "name": "started",
+    "type": "date",
+    "label": "Started"
+  },
+  {
+    "name": "duration",
+    "type": "number",
+    "label": "Duration"
+  },
+  {
+    "name": "primaryUserId",
+    "type": "text",
+    "label": "Primary User ID"
+  },
+  {
+    "name": "direction",
+    "type": "text",
+    "label": "Direction"
+  },
+  {
+    "name": "system",
+    "type": "text",
+    "label": "System"
+  },
+  {
+    "name": "scope",
+    "type": "text",
+    "label": "Scope"
+  },
+  {
+    "name": "media",
+    "type": "text",
+    "label": "Media"
+  },
+  {
+    "name": "language",
+    "type": "text",
+    "label": "Language"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "sdrDisposition",
+    "type": "text",
+    "label": "SDR Disposition"
+  },
+  {
+    "name": "clientUniqueId",
+    "type": "text",
+    "label": "Client Unique ID"
+  },
+  {
+    "name": "customData",
+    "type": "text",
+    "label": "Custom Data"
+  },
+  {
+    "name": "purpose",
+    "type": "text",
+    "label": "Purpose"
+  },
+  {
+    "name": "meetingUrl",
+    "type": "url",
+    "label": "Meeting URL"
+  },
+  {
+    "name": "isPrivate",
+    "type": "boolean",
+    "label": "Is Private"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "required": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Maximum number of returned lists",
+    "default": 2,
+    "required": true
+  },
+  {
+    "name": "filter",
+    "type": "select",
+    "label": "Filter",
+    "options": [
+      {
+        "label": "All lists",
+        "value": "all"
+      },
+      {
+        "label": "Closed lists",
+        "value": "closed"
+      },
+      {
+        "label": "Open lists",
+        "value": "open"
+      }
+    ]
+  }
+]

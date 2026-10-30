@@ -1,0 +1,93 @@
+[
+  {
+    "qs": {
+      "limit": 100,
+      "opt_fields": [
+        "this.name",
+        "this.type",
+        "this.gid",
+        "this.enum_options",
+        "this.enum_options.enabled",
+        "this.enum_options.name",
+        "this.enum_options.color"
+      ]
+    },
+    "url": "/workspaces/{{parameters.workspace}}/custom_fields",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "workspace_fields": "{{generateWorkspCustFieldParamsAlt(body.data)}}"
+      },
+      "limit": 300
+    },
+    "pagination": {
+      "qs": {
+        "offset": "{{body.next_page.offset}}"
+      },
+      "condition": "{{ifempty(body.next_page, false)}}"
+    }
+  },
+  {
+    "qs": {
+      "limit": 10,
+      "workspace": "{{parameters.workspace}}",
+      "opt_fields": [
+        "this.name",
+        "this.custom_field_settings",
+        "this.custom_field_settings.resource_type",
+        "this.custom_field_settings.is_important",
+        "this.custom_field_settings.parent",
+        "this.custom_field_settings.parent.name",
+        "this.custom_field_settings.parent.resource_type",
+        "this.custom_field_settings.project",
+        "this.custom_field_settings.project.name",
+        "this.custom_field_settings.project.resource_type",
+        "this.custom_field_settings.custom_field",
+        "this.custom_field_settings.custom_field.resource_type",
+        "this.custom_field_settings.custom_field.resource_subtype",
+        "this.custom_field_settings.custom_field.name",
+        "this.custom_field_settings.custom_field.type",
+        "this.custom_field_settings.custom_field.text_value",
+        "this.custom_field_settings.custom_field.description",
+        "this.custom_field_settings.custom_field.precision",
+        "this.custom_field_settings.custom_field.format",
+        "this.custom_field_settings.custom_field.currency_code",
+        "this.custom_field_settings.custom_field.custom_label",
+        "this.custom_field_settings.custom_field.custom_label_position",
+        "this.custom_field_settings.custom_field.is_global_to_workspace",
+        "this.custom_field_settings.custom_field.enum_options",
+        "this.custom_field_settings.custom_field.enum_options.name",
+        "this.custom_field_settings.custom_field.color",
+        "this.custom_field_settings.custom_field.enum_options.enabled",
+        "this.custom_field_settings.custom_field.enum_options.resource_type"
+      ]
+    },
+    "url": "/projects",
+    "method": "GET",
+    "response": {
+      "limit": 300,
+      "output": [
+        {
+          "help": "Workspace specific custom fields that can be added to the task.",
+          "name": "workspace_custom_fields",
+          "spec": "{{temp.workspace_fields}}",
+          "type": "collection",
+          "label": "Workspace Custom Fields"
+        },
+        {
+          "help": "Project specific custom fields that can be added to the task.",
+          "name": "project_custom_fields",
+          "spec": "{{generateProjCustFieldParamsAlt2(body.data)}}",
+          "type": "collection",
+          "label": "Project Custom Fields"
+        }
+      ]
+    },
+    "pagination": {
+      "qs": {
+        "offset": "{{body.next_page.offset}}"
+      },
+      "condition": "{{ifempty(body.next_page, false)}}"
+    }
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "limit": "100"
+  },
+  "url": "/charges",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": 100,
+    "output": {
+      "label": "{{item.id}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": {
+      "condition": "{{if(item.captured == false, true, false)}}",
+      "container": "{{body.data}}"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

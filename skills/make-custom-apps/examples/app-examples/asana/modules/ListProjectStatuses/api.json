@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(parameters),'project','page'),'ProjectStatus')}}",
+  "url": "/projects/{{parameters.project}}/project_statuses",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

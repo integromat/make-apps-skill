@@ -1,0 +1,24 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{switch(parameters.select, 'create', item.created_at, 'update', item.updated_at)}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch List Segments",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a segment is created or updated.",
+  "altAccountName": null
+}

@@ -15,7 +15,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync,
+  cpSync, existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, symlinkSync, writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -68,7 +68,24 @@ const REFERENCE_ROUTES = {
   webhooks: ['webhooks-and-polling.md'],
   'optional-endpoints': ['sdk-endpoints.md'],
   'compatibility-evidence': ['maintenance.md', 'review-and-qa.md', 'source-hierarchy.md'],
+  'app-architecture': ['base-and-connections.md'],
+  'auth-evidence-worked': ['base-and-connections.md'],
+  'connections-and-oauth': ['base-and-connections.md'],
+  'dynamic-data-and-files': ['parameters-and-rpcs.md'],
+  'errors-and-rate-limits': ['requests-and-responses.md'],
+  'iml-and-helpers': ['iml-functions.md'],
+  'outputs-empty-values-updates': ['requests-and-responses.md', 'parameters-and-rpcs.md'],
+  'pagination-and-trigger-state': ['modules-and-pagination.md', 'webhooks-and-polling.md'],
+  'requests-files-multistep': ['requests-and-responses.md'],
+  'role-application-examples': ['review-sweeps.md', 'review-and-qa.md'],
+  'universal-modules-and-scopes': ['modules-and-pagination.md', 'base-and-connections.md'],
 };
+// Topics that only retrieve a guide: no recipe fixtures of their own (`recipes: []`).
+const GUIDE_ONLY_TOPICS = [
+  'app-architecture', 'auth-evidence-worked', 'connections-and-oauth', 'dynamic-data-and-files',
+  'errors-and-rate-limits', 'iml-and-helpers', 'outputs-empty-values-updates', 'pagination-and-trigger-state',
+  'requests-files-multistep', 'role-application-examples', 'universal-modules-and-scopes',
+];
 
 // ---------------------------------------------------------------- harness
 let checkerModule;
@@ -240,6 +257,63 @@ test('rejects a guide that no longer links the recipe fixtures it teaches', () =
   const topic = JSON.parse(ctx.read('catalog.json')).topics.find((t) => t.id === 'headers-merge');
   ctx.write(topic.guide, ctx.read(topic.guide).replace(/\]\([^)]*recipes\/headers-merge\/[^)]*\)/g, '](#)'));
 }, ['CK-GUIDE-RECIPE-LINK']));
+
+// ---- full guide coverage: every guide on disk is a catalog topic; guide-only topics need no fixtures
+const guideFilesOnDisk = () => readdirSync(join(skillSource, 'examples/current-knowledge/guides')).filter((n) => n.endsWith('.md')).sort();
+const guideOnlyTopic = (ctx) => JSON.parse(ctx.read('catalog.json')).topics.find((t) => t.id === GUIDE_ONLY_TOPICS[0]);
+
+test('every guide on disk is represented by exactly one catalog topic, and guide-only topics declare no recipes', async () => {
+  const catalog = JSON.parse(readFileSync(join(skillSource, 'examples/current-knowledge/catalog.json'), 'utf8'));
+  const topicGuides = catalog.topics.map((t) => t.guide.replace(/^guides\//, '')).sort();
+  assert.deepEqual(topicGuides, guideFilesOnDisk());
+  assert.equal(new Set(topicGuides).size, topicGuides.length);
+  const byId = new Map(catalog.topics.map((t) => [t.id, t]));
+  for (const id of GUIDE_ONLY_TOPICS) {
+    assert.ok(byId.has(id), `missing guide-only topic ${id}`);
+    assert.deepEqual(byId.get(id).recipes, [], `${id} must declare recipes: [] (no invented fixtures)`);
+  }
+  for (const recipe of catalog.recipes) assert.ok(byId.get(recipe.topic)?.recipes.includes(recipe.id), `${recipe.id} must be listed by its topic`);
+  const result = await validate(join(skillSource, 'examples'));
+  assert.equal(result.stats.guides, guideFilesOnDisk().length);
+  assert.equal(result.stats.topics, guideFilesOnDisk().length);
+  assert.equal(result.stats.recipes, RECIPES.length);
+});
+
+test('a guide file that no topic represents is an orphan', () => assertRejected(
+  (ctx) => ctx.write('guides/unlisted-guide.md', ctx.read('guides/dates-helpers.md')), ['CK-GUIDE-ORPHAN']));
+
+test('removing a guide-only topic from the catalog orphans its guide and nothing else', () => assertRejected(
+  (ctx) => ctx.catalog((c) => { c.topics = c.topics.filter((t) => t.id !== GUIDE_ONLY_TOPICS[0]); }), ['CK-GUIDE-ORPHAN']));
+
+test('two topics must not share one guide', () => assertRejected((ctx) => ctx.catalog((c) => {
+  c.topics.push({ ...c.topics.find((t) => t.id === GUIDE_ONLY_TOPICS[0]), id: 'duplicate-guide-topic' });
+}), ['CK-GUIDE-DUPLICATE']));
+
+test('a topic whose guide file is gone is reported narrowly (plus the now-broken links)', () => assertRejected(
+  (ctx) => rmSync(join(ctx.ck, guideOnlyTopic(ctx).guide)), ['CK-LINK', 'CK-TOPIC-GUIDE']));
+
+test('every topic must declare a recipes array, empty for a guide-only topic', async () => {
+  await assertRejected((ctx) => ctx.catalog((c) => { delete c.topics.find((t) => t.id === GUIDE_ONLY_TOPICS[0]).recipes; }), ['CK-FORMAT']);
+  await assertRejected((ctx) => ctx.catalog((c) => { delete c.topics.find((t) => t.id === 'headers-merge').recipes; }), ['CK-FORMAT']);
+});
+
+test('a guide-only topic needs no fixtures section, but a recipe-backed guide still does', async () => {
+  await assertStillClean((ctx) => {
+    const guide = guideOnlyTopic(ctx).guide;
+    assert.ok(!/^## Fixtures\b/m.test(ctx.read(guide)), `${guide} is guide-only and has no Fixtures section`);
+  });
+  await assertRejected((ctx) => {
+    const guide = JSON.parse(ctx.read('catalog.json')).topics.find((t) => t.id === 'headers-merge').guide;
+    ctx.write(guide, ctx.read(guide).replace('\n## Fixtures', '\n## Samples'));
+  }, ['CK-GUIDE-SHAPE']);
+});
+
+test('a guide-only guide still needs its evidence limits and sources sections', async () => {
+  await assertRejected((ctx) => {
+    const guide = guideOnlyTopic(ctx).guide;
+    ctx.write(guide, ctx.read(guide).replace('\n## Evidence and limits', '\n## Notes'));
+  }, ['CK-GUIDE-SHAPE']);
+});
 
 for (const [label, mutate] of [
   ['an insecure URL', (s) => { s.url = s.url.replace(/^https:/, 'http:'); }],

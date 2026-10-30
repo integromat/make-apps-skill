@@ -1,0 +1,11 @@
+{
+  "url": "/conversations.leave",
+  "body": {
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

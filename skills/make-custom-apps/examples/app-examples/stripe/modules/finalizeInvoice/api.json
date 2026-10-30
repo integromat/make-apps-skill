@@ -1,0 +1,8 @@
+{
+  "url": "/invoices/{{parameters.invoice}}/finalize",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

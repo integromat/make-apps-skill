@@ -1,0 +1,85 @@
+[
+  {
+    "help": "A positive integer in the [smallest currency unit](https://support.stripe.com/questions/which-zero-decimal-currencies-does-stripe-support) (e.g., 100 cents to charge $1.00 or 100 to charge ¥100, a 0-decimal currency) representing how much to payout.",
+    "name": "amount",
+    "type": "number",
+    "label": "Amount",
+    "required": true
+  },
+  {
+    "help": "3-letter [ISO code](https://support.stripe.com/questions/which-currencies-does-stripe-support) for currency.",
+    "name": "currency",
+    "type": "text",
+    "label": "Currency",
+    "required": true,
+    "validate": {
+      "max": 3
+    }
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key"
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  },
+  {
+    "name": "method",
+    "type": "select",
+    "label": "Method",
+    "options": [
+      {
+        "label": "Standard",
+        "value": "standard"
+      },
+      {
+        "label": "Instant",
+        "value": "instant"
+      }
+    ],
+    "editable": true
+  },
+  {
+    "name": "source_type",
+    "type": "select",
+    "label": "Source type",
+    "options": [
+      {
+        "label": "Alipay account",
+        "value": "alipay_account"
+      },
+      {
+        "label": "Bank account",
+        "value": "bank_account"
+      },
+      {
+        "label": "Card",
+        "value": "card"
+      }
+    ],
+    "editable": true
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement descriptor",
+    "validate": {
+      "max": 22
+    }
+  }
+]

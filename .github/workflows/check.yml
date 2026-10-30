@@ -10,7 +10,7 @@ permissions:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,6 +23,8 @@ jobs:
           python-version: '3.11'
       # Offline static/unit checks; no Make or provider access.
       - run: npm test
+      # Installs only the pinned, published SDK example dependencies from the lockfile; no Make or provider access.
+      - run: npm run test:sdk
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:

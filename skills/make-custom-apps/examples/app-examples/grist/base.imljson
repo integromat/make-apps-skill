@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "https://{{ifempty(connection.domain, 'docs')}}.getgrist.com/api/",
+  "headers": {
+    "Authorization": "Bearer {{connection.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.error}}"
+    }
+  }
+}

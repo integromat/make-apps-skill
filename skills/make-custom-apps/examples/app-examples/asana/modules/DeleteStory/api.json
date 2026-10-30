@@ -1,0 +1,7 @@
+{
+  "url": "/stories/{{parameters.story_gid}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{}}"
+  }
+}

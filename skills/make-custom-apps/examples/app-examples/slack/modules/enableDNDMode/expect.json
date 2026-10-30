@@ -1,0 +1,7 @@
+[
+  {
+    "name": "num_minutes",
+    "type": "uinteger",
+    "label": "Duration in Minutes"
+  }
+]

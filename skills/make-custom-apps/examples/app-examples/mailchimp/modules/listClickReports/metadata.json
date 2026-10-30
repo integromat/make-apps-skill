@@ -1,0 +1,16 @@
+{
+  "rev": 5,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Click Reports",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Lists all click reports.",
+  "altAccountName": null
+}

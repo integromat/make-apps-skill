@@ -1,0 +1,15 @@
+{
+  "url": "/reporting/surveys/{{parameters.survey_id}}/questions/{{parameters.question_id}}/answers",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.answers}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.lists) === 1000}}"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "type": "task",
+  "user": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "action": "changed",
+  "change": {
+    "user": {
+      "gid": "00000",
+      "resource_type": "user"
+    },
+    "field": "assignee",
+    "action": "changed",
+    "new_value": {
+      "gid": "00000",
+      "resource_type": "user"
+    },
+    "added_value": {
+      "gid": "00000",
+      "resource_type": "user"
+    },
+    "removed_value": {
+      "gid": "00000",
+      "resource_type": "user"
+    }
+  },
+  "parent": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task",
+    "resource_subtype": "default_task"
+  },
+  "resource": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task",
+    "resource_subtype": "default_task"
+  },
+  "created_at": "2012-02-22T02:06:58.147Z"
+}

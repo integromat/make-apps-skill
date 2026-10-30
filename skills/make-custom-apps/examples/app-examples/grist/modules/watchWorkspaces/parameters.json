@@ -1,0 +1,28 @@
+[
+  {
+    "help": "Select the type of event to trigger on.",
+    "name": "event",
+    "type": "select",
+    "label": "Event Type",
+    "options": [
+      {
+        "label": "Created",
+        "value": 0,
+        "default": true
+      },
+      {
+        "label": "Updated",
+        "value": 1
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

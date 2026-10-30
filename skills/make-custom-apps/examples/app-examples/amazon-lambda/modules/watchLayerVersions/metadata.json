@@ -1,0 +1,27 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 50,
+      "output": {
+        "date": "{{parseDate(item.CreatedDate)}}",
+        "label": "{{item.Version}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Layer Versions",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "amazon-lambda",
+  "description": "Triggers when a new version of an AWS Lambda layer is created.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

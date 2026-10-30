@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "reminder": "{{parameters.reminder}}"
+  },
+  "url": "/reminders.info",
+  "body": {},
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.reminder)}}"
+  }
+}

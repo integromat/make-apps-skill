@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add a Member to a Card",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Adds a selected member to a card.",
+  "altAccountName": null
+}

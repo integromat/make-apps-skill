@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Remove a Member from a Segment",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Removes a member from the specified static segment.",
+  "altAccountName": null
+}

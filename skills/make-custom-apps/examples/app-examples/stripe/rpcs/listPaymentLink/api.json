@@ -1,0 +1,10 @@
+{
+  "url": "/payment_links",
+  "response": {
+    "output": {
+      "label": "{{item.url}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

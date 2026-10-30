@@ -1,0 +1,7 @@
+{
+  "url": "/docs/{{parameters.docId}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

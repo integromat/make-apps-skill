@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "limit": "1"
+  },
+  "url": "https://api.stripe.com/v1/charges",
+  "method": "GET",
+  "headers": {
+    "Authorization": "Bearer <REDACTED_CREDENTIAL>"
+  },
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "1",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

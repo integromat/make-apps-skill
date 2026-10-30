@@ -1,0 +1,18 @@
+[
+  {
+    "help": "Defaults to the authed user.",
+    "name": "user",
+    "type": "select",
+    "label": "User",
+    "options": "rpc://app%23slack@4/Users",
+    "required": false
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

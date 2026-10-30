@@ -1,0 +1,61 @@
+[
+  {
+    "qs": {
+      "count": 100
+    },
+    "url": "/lists/{{parameters.list}}/interest-categories",
+    "method": "GET",
+    "response": {
+      "output": "{{interestCategories(body.categories)}}"
+    },
+    "condition": "{{!parameters.interface}}"
+  },
+  {
+    "qs": {
+      "count": 100
+    },
+    "url": "/lists/{{parameters.list}}/interest-categories",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "body": "{{body.categories}}"
+      }
+    },
+    "condition": "{{parameters.interface}}"
+  },
+  {
+    "qs": {
+      "count": 100
+    },
+    "url": "/lists/{{parameters.list}}/interest-categories/{{get(temp.body, temp.i + '.id')}}/interests",
+    "temp": {
+      "i": "{{if(temp.i, temp.i+1, 1)}}",
+      "interestCategories": "{{ifempty(temp.interestCategories, emptyarray)}}"
+    },
+    "method": "GET",
+    "repeat": {
+      "limit": "{{length(temp.body)}}",
+      "condition": "{{length(temp.body) > temp.i}}"
+    },
+    "response": {
+      "temp": {
+        "interestCategories": "{{formFieldOfInterests(temp.interestCategories, body, temp.body)}}"
+      }
+    },
+    "condition": "{{temp.body && parameters.interface}}"
+  },
+  {
+    "response": {
+      "output": {
+        "name": "interests",
+        "spec": "{{temp.interestCategories}}",
+        "type": "collection",
+        "label": "Groups",
+        "metadata": {
+          "type": "interest-categories"
+        }
+      }
+    },
+    "condition": "{{parameters.interface}}"
+  }
+]

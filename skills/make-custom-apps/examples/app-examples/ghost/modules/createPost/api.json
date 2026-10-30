@@ -1,0 +1,36 @@
+{
+  "qs": {
+    "source": "{{if(parameters.source == 'html', 'html')}}"
+  },
+  "url": "/posts",
+  "body": {
+    "posts": [
+      {
+        "html": "{{parameters.html}}",
+        "slug": "{{parameters.slug}}",
+        "tags": "{{parameters.tags}}",
+        "title": "{{parameters.title}}",
+        "status": "{{parameters.status}}",
+        "authors": "{{parameters.authors}}",
+        "featured": "{{parameters.featured}}",
+        "og_image": "{{parameters.facebook_image}}",
+        "og_title": "{{parameters.facebook_title}}",
+        "mobiledoc": "{{parameters.mobiledoc}}",
+        "meta_title": "{{parameters.meta_title}}",
+        "published_at": "{{parameters.published_at}}",
+        "canonical_url": "{{parameters.canonical_url}}",
+        "feature_image": "{{parameters.feature_image}}",
+        "twitter_image": "{{parameters.twitter_image}}",
+        "twitter_title": "{{parameters.twitter_title}}",
+        "custom_excerpt": "{{parameters.custom_excerpt}}",
+        "og_description": "{{parameters.facebook_description}}",
+        "meta_description": "{{parameters.meta_description}}",
+        "twitter_description": "{{parameters.twitter_description}}"
+      }
+    ]
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.posts[1]}}"
+  }
+}

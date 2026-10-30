@@ -1,0 +1,27 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{item.created}}",
+        "label": "{{ifempty(item.name, item.text)}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Private Channel Messages",
+  "scope": [
+    "groups:history",
+    "groups:read"
+  ],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when a new message is added to a private channel.",
+  "altAccountName": null
+}

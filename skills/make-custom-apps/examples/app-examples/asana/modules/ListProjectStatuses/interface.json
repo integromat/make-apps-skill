@@ -1,0 +1,54 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Project Status ID"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "created_by",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Created By (User) ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Created By"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "limit": 100
+  },
+  "url": "/accounts",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{ifempty(item.company.name, item.individual.email)}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

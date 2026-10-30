@@ -1,0 +1,24 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{item.timestamp}}",
+        "label": "{{item.email_address}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Unsubscribes",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a subscriber unsubscribes from a campaign.",
+  "altAccountName": null
+}

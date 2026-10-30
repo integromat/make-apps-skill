@@ -1,0 +1,40 @@
+[
+  {
+    "qs": {
+      "attachments": "{{parameters.attachments}}"
+    },
+    "url": "/organizations/{{parameters.organizationId}}/exports",
+    "method": "POST",
+    "response": {
+      "temp": {
+        "exportId": "{{body.id}}"
+      }
+    }
+  },
+  {
+    "url": "/organizations/{{parameters.organizationId}}/exports/{{temp.exportId}}",
+    "method": "GET",
+    "repeat": {
+      "delay": 2000,
+      "limit": 300,
+      "condition": "{{body.status.stage !== 'Export_completed' || !body.exportUrl}}"
+    },
+    "response": {
+      "temp": "{{body}}"
+    }
+  },
+  {
+    "url": "/organizations/{{parameters.organizationId}}/exports/{{temp.exportId}}/download",
+    "method": "GET",
+    "response": {
+      "type": {
+        "200": "binary"
+      },
+      "output": {
+        "data": "{{body}}",
+        "filename": "{{replace(replace(headers['content-disposition'], '/\"/g', ''), 'attachment; filename=' , '' )}}",
+        "filesize": "{{headers['content-length']}}"
+      }
+    }
+  }
+]

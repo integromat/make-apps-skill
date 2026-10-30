@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "email": "{{parameters.email}}"
+  },
+  "url": "/users.lookupByEmail",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{getOutput(body.user)}}"
+  }
+}

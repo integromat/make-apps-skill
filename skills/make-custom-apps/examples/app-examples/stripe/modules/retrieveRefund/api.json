@@ -1,0 +1,7 @@
+{
+  "url": "/refunds/{{parameters.refund}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

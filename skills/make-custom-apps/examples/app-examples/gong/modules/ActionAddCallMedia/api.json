@@ -1,0 +1,16 @@
+{
+  "url": "/calls/{{parameters.callId}}/media",
+  "body": {
+    "mediaFile": {
+      "value": "{{parameters.mediaFile}}",
+      "options": {
+        "filename": "{{parameters.filename}}"
+      }
+    }
+  },
+  "type": "multipart/form-data",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

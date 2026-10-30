@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "workspace": "{{parameters.workspace}}"
+  },
+  "url": "/time_periods",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.display_name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

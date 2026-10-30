@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a User",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Deletes an existing user. Deleting a user is only possible if they have no time entries or expenses associated with them. Admin permissions required.",
+  "altAccountName": null
+}

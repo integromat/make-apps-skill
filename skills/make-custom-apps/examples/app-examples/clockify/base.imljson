@@ -1,0 +1,16 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.X-Api-Key"
+    ]
+  },
+  "baseUrl": "https://api.clockify.me/api/v1",
+  "headers": {
+    "X-Api-Key": "{{connection.apiKey}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.message || 'Something wrong. Please try again.'}}"
+    }
+  }
+}

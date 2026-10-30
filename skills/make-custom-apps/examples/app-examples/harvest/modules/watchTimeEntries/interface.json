@@ -1,0 +1,313 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Time entry ID"
+  },
+  {
+    "name": "spent_date",
+    "type": "text",
+    "label": "Spent date"
+  },
+  {
+    "name": "hours",
+    "type": "number",
+    "label": "Hours"
+  },
+  {
+    "name": "rounded_hours",
+    "type": "number",
+    "label": "Rounded hours"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "is_locked",
+    "type": "boolean",
+    "label": "Is locked"
+  },
+  {
+    "name": "locked_reason",
+    "type": "text",
+    "label": "Locked reason"
+  },
+  {
+    "name": "is_closed",
+    "type": "boolean",
+    "label": "Is closed"
+  },
+  {
+    "name": "is_billed",
+    "type": "boolean",
+    "label": "Is billed"
+  },
+  {
+    "name": "timer_started_at",
+    "type": "date",
+    "label": "Timer started at"
+  },
+  {
+    "name": "started_time",
+    "type": "text",
+    "label": "Started time"
+  },
+  {
+    "name": "ended_time",
+    "type": "text",
+    "label": "Ended time"
+  },
+  {
+    "name": "is_running",
+    "type": "boolean",
+    "label": "Is running"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "budgeted",
+    "type": "boolean",
+    "label": "Budgeted"
+  },
+  {
+    "name": "billable_rate",
+    "type": "text",
+    "label": "Billable rate"
+  },
+  {
+    "name": "cost_rate",
+    "type": "text",
+    "label": "Cost rate"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "code",
+        "type": "text",
+        "label": "Code"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "task",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Task"
+  },
+  {
+    "name": "user_assignment",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "is_project_manager",
+        "type": "boolean",
+        "label": "Is project manager"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "label": "Is active"
+      },
+      {
+        "name": "use_default_rates",
+        "type": "boolean",
+        "label": "Use default rates"
+      },
+      {
+        "name": "budget",
+        "type": "text",
+        "label": "Budget"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created at"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated at"
+      },
+      {
+        "name": "hourly_rate",
+        "type": "text",
+        "label": "Hourly rate"
+      }
+    ],
+    "type": "collection",
+    "label": "User assignment"
+  },
+  {
+    "name": "task_assignment",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "billable",
+        "type": "boolean",
+        "label": "Billable"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean",
+        "label": "Is active"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created at"
+      },
+      {
+        "name": "updated_at",
+        "type": "date",
+        "label": "Updated at"
+      },
+      {
+        "name": "hourly_rate",
+        "type": "text",
+        "label": "Hourly rate"
+      },
+      {
+        "name": "budget",
+        "type": "text",
+        "label": "Budget"
+      }
+    ],
+    "type": "collection",
+    "label": "Task assignment"
+  },
+  {
+    "name": "invoice",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Invoice ID"
+      },
+      {
+        "name": "number",
+        "type": "number",
+        "label": "Invoice Number"
+      }
+    ],
+    "type": "collection",
+    "label": "Invoice"
+  },
+  {
+    "name": "external_reference",
+    "spec": [
+      {
+        "name": "id",
+        "type": "uinteger",
+        "label": "External Reference ID"
+      },
+      {
+        "name": "group_id",
+        "type": "uinteger",
+        "label": "Group ID"
+      },
+      {
+        "name": "permalink",
+        "type": "url",
+        "label": "Permalink"
+      },
+      {
+        "name": "service",
+        "type": "text",
+        "label": "Service"
+      },
+      {
+        "name": "service_icon_url",
+        "type": "url",
+        "label": "Service Icon URL"
+      }
+    ],
+    "type": "collection",
+    "label": "External Reference"
+  }
+]

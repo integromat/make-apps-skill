@@ -1,0 +1,69 @@
+[
+  {
+    "name": "select_or_manual",
+    "type": "select",
+    "label": "Enter a Card ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          },
+          {
+            "help": "Fill if you would like to see names of the custom fields on Interface.",
+            "name": "board_id",
+            "type": "text",
+            "label": "Board ID",
+            "advanced": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://app%23trello@4/getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://app%23trello@4/getIDcardsUnderList",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

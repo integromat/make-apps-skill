@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Tag",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Creates a tag.",
+  "altAccountName": null
+}

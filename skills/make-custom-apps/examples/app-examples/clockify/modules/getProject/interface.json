@@ -1,0 +1,330 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "clientName",
+    "type": "text",
+    "label": "Client Name"
+  },
+  {
+    "name": "hourlyRate",
+    "spec": [
+      {
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "clientId",
+    "type": "text",
+    "label": "Client ID"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Client ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "archived",
+        "type": "boolean",
+        "label": "Archived"
+      },
+      {
+        "name": "address",
+        "type": "text",
+        "label": "Address"
+      },
+      {
+        "name": "note",
+        "type": "text",
+        "label": "Note"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "memberships",
+    "spec": {
+      "spec": [
+        {
+          "name": "userId",
+          "type": "text",
+          "label": "User ID"
+        },
+        {
+          "name": "hourlyRate",
+          "type": "text",
+          "label": "Hourly Rate"
+        },
+        {
+          "name": "costRate",
+          "type": "text",
+          "label": "Cost Rate"
+        },
+        {
+          "name": "targetId",
+          "type": "text",
+          "label": "Target ID"
+        },
+        {
+          "name": "membershipType",
+          "type": "text",
+          "label": "Membership Type"
+        },
+        {
+          "name": "membershipStatus",
+          "type": "text",
+          "label": "Membership Status"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "color",
+    "type": "color",
+    "label": "Color"
+  },
+  {
+    "name": "estimate",
+    "spec": [
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Estimate"
+  },
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "tasks",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "Task ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "projectId",
+          "type": "text",
+          "label": "Project ID"
+        },
+        {
+          "name": "assigneeIds",
+          "type": "array",
+          "label": "Assignee IDs"
+        },
+        {
+          "name": "assigneeId",
+          "type": "text",
+          "label": "Assignee ID"
+        },
+        {
+          "name": "userGroupIds",
+          "type": "array",
+          "label": "User Group IDs"
+        },
+        {
+          "name": "estimate",
+          "type": "text",
+          "label": "Estimate"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "label": "Status"
+        },
+        {
+          "name": "duration",
+          "type": "text",
+          "label": "Duration"
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "hourlyRate",
+          "type": "text",
+          "label": "Hourly Rate"
+        },
+        {
+          "name": "costRate",
+          "type": "text",
+          "label": "Cost Rate"
+        },
+        {
+          "name": "favorite",
+          "type": "boolean",
+          "label": "Favorite"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Tasks"
+  },
+  {
+    "name": "note",
+    "type": "text",
+    "label": "Note"
+  },
+  {
+    "name": "duration",
+    "type": "text",
+    "label": "Duration"
+  },
+  {
+    "name": "costRate",
+    "type": "text",
+    "label": "Cost Rate"
+  },
+  {
+    "name": "timeEstimate",
+    "spec": [
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "resetOption",
+        "type": "text",
+        "label": "Reset Option"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "label": "Active"
+      },
+      {
+        "name": "includeNonBillable",
+        "type": "boolean",
+        "label": "Include Non Billable"
+      }
+    ],
+    "type": "collection",
+    "label": "Time Estimate"
+  },
+  {
+    "name": "budgetEstimate",
+    "type": "text",
+    "label": "Budget Estimate"
+  },
+  {
+    "name": "customFields",
+    "spec": {
+      "spec": [
+        {
+          "name": "customFieldId",
+          "type": "text",
+          "label": "Custom Field ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "label": "Status"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Custom Fields"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "template",
+    "type": "boolean",
+    "label": "Template"
+  },
+  {
+    "name": "favorite",
+    "type": "boolean",
+    "label": "Favorite"
+  }
+]

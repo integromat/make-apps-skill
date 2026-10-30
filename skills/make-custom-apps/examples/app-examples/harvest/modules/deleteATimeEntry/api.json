@@ -1,0 +1,7 @@
+{
+  "url": "/time_entries/{{parameters.time_entry_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

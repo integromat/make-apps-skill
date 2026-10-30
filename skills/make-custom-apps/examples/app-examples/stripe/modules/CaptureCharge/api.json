@@ -1,0 +1,16 @@
+{
+  "url": "/charges/{{parameters.charge}}/capture",
+  "body": {
+    "amount": "{{parameters.amount}}",
+    "destination": "{{ifempty(parameters.destination.amount, undefined)}}",
+    "receipt_email": "{{parameters.receipt_email}}",
+    "application_fee": "{{parameters.application_fee}}",
+    "statement_descriptor": "{{parameters.statement_descriptor}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "type": "json",
+    "output": "{{prepareOutput(body)}}"
+  }
+}

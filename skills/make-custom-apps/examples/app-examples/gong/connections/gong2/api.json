@@ -1,0 +1,11 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "url": "https://api.gong.io/v2/users",
+  "headers": {
+    "authorization": "Basic {{base64(parameters.accessKey + ':' + parameters.accessKeySecret)}}"
+  }
+}

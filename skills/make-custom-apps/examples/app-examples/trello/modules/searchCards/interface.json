@@ -1,0 +1,527 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "address",
+    "type": "text",
+    "label": "Address"
+  },
+  {
+    "name": "badges",
+    "spec": [
+      {
+        "name": "attachmentsByType",
+        "spec": [
+          {
+            "name": "trello",
+            "spec": [
+              {
+                "name": "board",
+                "type": "number",
+                "label": "Board"
+              },
+              {
+                "name": "card",
+                "type": "number",
+                "label": "Card"
+              }
+            ],
+            "type": "collection",
+            "label": "Trello"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments by type"
+      },
+      {
+        "name": "location",
+        "type": "boolean",
+        "label": "Location"
+      },
+      {
+        "name": "votes",
+        "type": "number",
+        "label": "Votes"
+      },
+      {
+        "name": "viewingMemberVoted",
+        "type": "boolean",
+        "label": "Viewing member voted"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "fogbugz",
+        "type": "text",
+        "label": "Fogbugz"
+      },
+      {
+        "name": "checkItems",
+        "type": "number",
+        "label": "Check items"
+      },
+      {
+        "name": "checkItemsChecked",
+        "type": "number",
+        "label": "Check items checked"
+      },
+      {
+        "name": "comments",
+        "type": "number",
+        "label": "Comments"
+      },
+      {
+        "name": "attachments",
+        "type": "number",
+        "label": "Attachments"
+      },
+      {
+        "name": "description",
+        "type": "boolean",
+        "label": "Description"
+      },
+      {
+        "name": "due",
+        "type": "text",
+        "label": "Due"
+      },
+      {
+        "name": "dueComplete",
+        "type": "boolean",
+        "label": "Due complete"
+      }
+    ],
+    "type": "collection",
+    "label": "Badges"
+  },
+  {
+    "name": "checkItemStates",
+    "type": "array",
+    "label": "Check item states"
+  },
+  {
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "coordinates",
+    "type": "text",
+    "label": "Coordinates"
+  },
+  {
+    "name": "creationMethod",
+    "type": "text",
+    "label": "Creation method"
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete"
+  },
+  {
+    "name": "dateLastActivity",
+    "type": "date",
+    "label": "Date last activity"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "type": "text",
+    "label": "Description data"
+  },
+  {
+    "name": "due",
+    "type": "text",
+    "label": "Due"
+  },
+  {
+    "name": "dueReminder",
+    "type": "text",
+    "label": "Due reminder"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idChecklists",
+    "type": "array",
+    "label": "Checklists ID"
+  },
+  {
+    "name": "attachments",
+    "type": "array",
+    "label": "Attachments"
+  },
+  {
+    "name": "idLabels",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Labels ID"
+  },
+  {
+    "name": "idList",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "idMembers",
+    "type": "array",
+    "label": "Members ID"
+  },
+  {
+    "name": "idMembersVoted",
+    "type": "array",
+    "label": "Members voted ID"
+  },
+  {
+    "name": "idShort",
+    "type": "number",
+    "label": "Short ID"
+  },
+  {
+    "name": "idAttachmentCover",
+    "type": "text",
+    "label": "Attachment cover ID"
+  },
+  {
+    "name": "labels",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "idBoard",
+          "type": "text",
+          "label": "Board ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "color",
+          "type": "text",
+          "label": "Color"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Labels"
+  },
+  {
+    "name": "limits",
+    "spec": [
+      {
+        "name": "attachments",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments"
+      },
+      {
+        "name": "checklists",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warn at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Checklists"
+      },
+      {
+        "name": "stickers",
+        "spec": [
+          {
+            "name": "perCard",
+            "spec": [
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              },
+              {
+                "name": "disableAt",
+                "type": "number",
+                "label": "Disable at"
+              },
+              {
+                "name": "warnAt",
+                "type": "number",
+                "label": "Warm at"
+              }
+            ],
+            "type": "collection",
+            "label": "Per card"
+          }
+        ],
+        "type": "collection",
+        "label": "Stickers"
+      }
+    ],
+    "type": "collection",
+    "label": "Limits"
+  },
+  {
+    "name": "locationName",
+    "type": "text",
+    "label": "Location name"
+  },
+  {
+    "name": "manualCoverAttachment",
+    "type": "boolean",
+    "label": "Manual cover attachment"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "shortLink",
+    "type": "text",
+    "label": "Short link"
+  },
+  {
+    "name": "shortUrl",
+    "type": "url",
+    "label": "Short URL"
+  },
+  {
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "board",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "idOrganization",
+        "type": "text",
+        "label": "Organization ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Board"
+  },
+  {
+    "name": "list",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "closed",
+        "type": "boolean",
+        "label": "Closed"
+      },
+      {
+        "name": "idBoard",
+        "type": "text",
+        "label": "Board ID"
+      },
+      {
+        "name": "pos",
+        "type": "number",
+        "label": "Position"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "softLimit",
+        "type": "text",
+        "label": "Soft limit"
+      }
+    ],
+    "type": "collection",
+    "label": "List"
+  },
+  {
+    "name": "members",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "avatarHash",
+          "type": "text",
+          "label": "Avatar hash"
+        },
+        {
+          "name": "avatarUrl",
+          "type": "text",
+          "label": "Avatar URL"
+        },
+        {
+          "name": "fullName",
+          "type": "text",
+          "label": "Full name"
+        },
+        {
+          "name": "idMemberReferrer",
+          "type": "text",
+          "label": "Referrer member ID"
+        },
+        {
+          "name": "initials",
+          "type": "text",
+          "label": "Initials"
+        },
+        {
+          "name": "nonPublic",
+          "spec": [],
+          "type": "collection",
+          "label": "Non public"
+        },
+        {
+          "name": "nonPublicAvailable",
+          "type": "boolean",
+          "label": "Non public available"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "Username"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Members"
+  },
+  {
+    "name": "stickers",
+    "type": "array",
+    "label": "Stickers"
+  },
+  {
+    "name": "cover",
+    "spec": [
+      {
+        "name": "idAttachment",
+        "type": "text",
+        "label": "Attachment ID"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "idUploadedBackground",
+        "type": "text",
+        "label": "Uploaded Background ID"
+      },
+      {
+        "name": "size",
+        "type": "text",
+        "label": "Size"
+      },
+      {
+        "name": "brightness",
+        "type": "text",
+        "label": "Brightness"
+      }
+    ],
+    "type": "collection",
+    "label": "Cover"
+  }
+]

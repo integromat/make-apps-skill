@@ -1,0 +1,107 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First name"
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last name"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "telephone",
+    "type": "text",
+    "label": "Telephone"
+  },
+  {
+    "name": "timezone",
+    "type": "text",
+    "label": "Timezone"
+  },
+  {
+    "name": "weekly_capacity",
+    "type": "number",
+    "label": "Weekly capacity"
+  },
+  {
+    "name": "has_access_to_all_future_projects",
+    "type": "boolean",
+    "label": "Has access to all future projects"
+  },
+  {
+    "name": "is_contractor",
+    "type": "boolean",
+    "label": "Is contractor"
+  },
+  {
+    "name": "is_admin",
+    "type": "boolean",
+    "label": "Is admin"
+  },
+  {
+    "name": "is_project_manager",
+    "type": "boolean",
+    "label": "Is project manager"
+  },
+  {
+    "name": "can_see_rates",
+    "type": "boolean",
+    "label": "Can see rates"
+  },
+  {
+    "name": "can_create_projects",
+    "type": "boolean",
+    "label": "Can create projects"
+  },
+  {
+    "name": "can_create_invoices",
+    "type": "boolean",
+    "label": "Can create invoices"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is active"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "default_hourly_rate",
+    "type": "text",
+    "label": "Default hourly rate"
+  },
+  {
+    "name": "cost_rate",
+    "type": "text",
+    "label": "Cost rate"
+  },
+  {
+    "name": "roles",
+    "type": "array",
+    "label": "Roles"
+  },
+  {
+    "name": "avatar_url",
+    "type": "url",
+    "label": "Avatar URL"
+  }
+]

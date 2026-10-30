@@ -1,0 +1,11 @@
+{
+  "url": "/files.delete",
+  "body": {
+    "file": "{{parameters.file}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

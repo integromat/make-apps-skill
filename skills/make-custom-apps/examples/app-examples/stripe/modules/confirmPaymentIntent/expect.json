@@ -1,0 +1,980 @@
+[
+  {
+    "rpc": {
+      "url": "rpc://app%23stripe@1/listPaymentIntents",
+      "label": "Search",
+      "parameters": [
+        {
+          "rpc": {
+            "url": "rpc://app%23stripe@1/listCustomers",
+            "label": "Search",
+            "parameters": [
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email",
+                "required": true
+              }
+            ]
+          },
+          "name": "customer",
+          "type": "text",
+          "label": "Customer ID"
+        }
+      ]
+    },
+    "name": "ignore::id",
+    "type": "text",
+    "label": "Payment Intent ID",
+    "required": true
+  },
+  {
+    "name": "receipt_email",
+    "type": "email",
+    "label": "Receipt Email"
+  },
+  {
+    "name": "ignore::payment_method",
+    "type": "select",
+    "label": "Payment Method",
+    "options": [
+      {
+        "label": "Choose an existing Payment Method",
+        "value": "select",
+        "nested": [
+          {
+            "rpc": {
+              "url": "rpc://app%23stripe@1/listCustomerPaymentMethods",
+              "label": "Search",
+              "parameters": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23stripe@1/listCustomers",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "name": "email",
+                        "type": "email",
+                        "label": "Email",
+                        "required": true
+                      }
+                    ]
+                  },
+                  "name": "customer",
+                  "type": "text",
+                  "label": "Customer ID"
+                },
+                {
+                  "name": "type",
+                  "type": "select",
+                  "label": "Type",
+                  "options": [
+                    {
+                      "label": "Alipay",
+                      "value": "alipay"
+                    },
+                    {
+                      "label": "AU BECS Debit",
+                      "value": "au_becs_debit"
+                    },
+                    {
+                      "label": "BACS Debit",
+                      "value": "bacs_debit"
+                    },
+                    {
+                      "label": "Bancontact",
+                      "value": "bancontact"
+                    },
+                    {
+                      "label": "Card",
+                      "value": "card"
+                    },
+                    {
+                      "label": "EPS",
+                      "value": "eps"
+                    },
+                    {
+                      "label": "FPX",
+                      "value": "fpx"
+                    },
+                    {
+                      "label": "Giropay",
+                      "value": "giropay"
+                    },
+                    {
+                      "label": "iDEAL",
+                      "value": "ideal"
+                    },
+                    {
+                      "label": "OXXO",
+                      "value": "oxxo"
+                    },
+                    {
+                      "label": "Przelewy24",
+                      "value": "p24"
+                    },
+                    {
+                      "label": "SEPA Debit",
+                      "value": "sepa_debit"
+                    },
+                    {
+                      "label": "SOFORT",
+                      "value": "sofort"
+                    }
+                  ],
+                  "mappable": true
+                }
+              ]
+            },
+            "name": "payment_method",
+            "type": "text",
+            "label": "Payment Method ID"
+          }
+        ]
+      },
+      {
+        "label": "Create a Payment Method and attach to this Payment Intent",
+        "value": "create",
+        "nested": [
+          {
+            "help": "Providing this parameter will [attach the payment method](https://stripe.com/docs/payments/save-during-payment) to the Payment Intent’s Customer, if present, after the Payment Intent is confirmed and any required actions from the user are complete. If no Customer was provided, the payment method can still be [attached](https://stripe.com/docs/api/payment_methods/attach) to a Customer after the transaction completes.",
+            "name": "setup_future_usage",
+            "type": "select",
+            "label": "Setup Future Usage",
+            "options": [
+              {
+                "label": "On Session",
+                "value": "on_session"
+              },
+              {
+                "label": "Off Session",
+                "value": "off_session"
+              }
+            ],
+            "mappable": true
+          },
+          {
+            "name": "payment_method_data",
+            "spec": [
+              {
+                "name": "type",
+                "type": "select",
+                "label": "Type",
+                "options": [
+                  {
+                    "label": "Alipay",
+                    "value": "alipay"
+                  },
+                  {
+                    "label": "AU BECS Debit",
+                    "value": "au_becs_debit",
+                    "nested": [
+                      {
+                        "name": "au_becs_debit",
+                        "spec": [
+                          {
+                            "name": "account_number",
+                            "type": "text",
+                            "label": "Account Number"
+                          },
+                          {
+                            "name": "bsb_number",
+                            "type": "text",
+                            "label": "Bank-State-Branch Number"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "AU BECS Debit"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "BACS Debit",
+                    "value": "bacs_debit",
+                    "nested": [
+                      {
+                        "name": "bacs_debit",
+                        "spec": [
+                          {
+                            "name": "account_number",
+                            "type": "text",
+                            "label": "Account Number"
+                          },
+                          {
+                            "help": "Sort code of the bank account. (e.g., 10-20-30)",
+                            "name": "sort_code",
+                            "type": "text",
+                            "label": "Sort Code"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "BACS Debit"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Bancontact",
+                    "value": "bancontact"
+                  },
+                  {
+                    "label": "EPS",
+                    "value": "eps"
+                  },
+                  {
+                    "label": "FPX",
+                    "value": "fpx",
+                    "nested": [
+                      {
+                        "name": "fpx",
+                        "spec": [
+                          {
+                            "name": "bank",
+                            "type": "select",
+                            "label": "Bank",
+                            "options": [
+                              {
+                                "label": "Affin Bank",
+                                "value": "affin_bank"
+                              },
+                              {
+                                "label": "Alliance Bank",
+                                "value": "alliance_bank"
+                              },
+                              {
+                                "label": "AmBank",
+                                "value": "ambank"
+                              },
+                              {
+                                "label": "Bank Islam",
+                                "value": "bank_islam"
+                              },
+                              {
+                                "label": "Bank Muamalat",
+                                "value": "bank_muamalat"
+                              },
+                              {
+                                "label": "Bank Rakyat",
+                                "value": "bank_rakyat"
+                              },
+                              {
+                                "label": "Bank Simpanan Nasional",
+                                "value": "bsn"
+                              },
+                              {
+                                "label": "CIMB",
+                                "value": "cimb"
+                              },
+                              {
+                                "label": "Hong Leong Bank",
+                                "value": "hong_leong_bank"
+                              },
+                              {
+                                "label": "HSBC",
+                                "value": "hsbc"
+                              },
+                              {
+                                "label": "Kuwait Finance House",
+                                "value": "kfh"
+                              },
+                              {
+                                "label": "Maybank2u",
+                                "value": "maybank2u"
+                              },
+                              {
+                                "label": "OCBC",
+                                "value": "ocbc"
+                              },
+                              {
+                                "label": "Public Bank",
+                                "value": "public_bank"
+                              },
+                              {
+                                "label": "RHB Bank",
+                                "value": "rhb"
+                              },
+                              {
+                                "label": "Standard Chartered Bank",
+                                "value": "standard_chartered"
+                              },
+                              {
+                                "label": "United Overseas Bank",
+                                "value": "uob"
+                              },
+                              {
+                                "label": "Deutsche Bank",
+                                "value": "deutsche_bank"
+                              },
+                              {
+                                "label": "Maybank2E",
+                                "value": "maybank2e"
+                              },
+                              {
+                                "label": "Public Bank Enterprise",
+                                "value": "pb_enterprise"
+                              }
+                            ],
+                            "mappable": true
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "FPX"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Giropay",
+                    "value": "giropay"
+                  },
+                  {
+                    "label": "iDEAL",
+                    "value": "ideal",
+                    "nested": [
+                      {
+                        "name": "ideal",
+                        "spec": [
+                          {
+                            "name": "bank",
+                            "type": "select",
+                            "label": "Bank",
+                            "options": [
+                              {
+                                "label": "ABN AMRO Bank",
+                                "value": "abn_amro"
+                              },
+                              {
+                                "label": "ASN Bank",
+                                "value": "asn_bank"
+                              },
+                              {
+                                "label": "bunq",
+                                "value": "bunq"
+                              },
+                              {
+                                "label": "Handelsbanken",
+                                "value": "handelsbanken"
+                              },
+                              {
+                                "label": "ING",
+                                "value": "ing"
+                              },
+                              {
+                                "label": "Knab",
+                                "value": "knab"
+                              },
+                              {
+                                "label": "MoneYou",
+                                "value": "moneyou"
+                              },
+                              {
+                                "label": "Rabobank",
+                                "value": "rabobank"
+                              },
+                              {
+                                "label": "Regiobank",
+                                "value": "regiobank"
+                              },
+                              {
+                                "label": "SNS Bank",
+                                "value": "sns_bank"
+                              },
+                              {
+                                "label": "Triodos Bank",
+                                "value": "triodos_bank"
+                              },
+                              {
+                                "label": "Van Lanschot",
+                                "value": "van_lanschot"
+                              }
+                            ]
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "iDEAL"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "Przelewy24",
+                    "value": "p24"
+                  },
+                  {
+                    "label": "SEPA Debit",
+                    "value": "sepa_debit",
+                    "nested": [
+                      {
+                        "name": "sepa_debit",
+                        "spec": [
+                          {
+                            "name": "iban",
+                            "type": "text",
+                            "label": "IBAN"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "SEPA Debit"
+                      }
+                    ]
+                  },
+                  {
+                    "label": "SOFORT",
+                    "value": "sofort",
+                    "nested": [
+                      {
+                        "name": "sofort",
+                        "spec": [
+                          {
+                            "name": "country",
+                            "type": "select",
+                            "label": "Country",
+                            "options": [
+                              {
+                                "label": "Austria",
+                                "value": "AT"
+                              },
+                              {
+                                "label": "Belgium",
+                                "value": "BE"
+                              },
+                              {
+                                "label": "Germany",
+                                "value": "DE"
+                              },
+                              {
+                                "label": "Spain",
+                                "value": "ES"
+                              },
+                              {
+                                "label": "Italy",
+                                "value": "IT"
+                              },
+                              {
+                                "label": "Netherlands",
+                                "value": "NL"
+                              }
+                            ],
+                            "mappable": true
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "SOFORT"
+                      }
+                    ]
+                  }
+                ],
+                "mappable": true
+              },
+              {
+                "name": "billing_details",
+                "spec": [
+                  {
+                    "name": "address",
+                    "spec": [
+                      {
+                        "name": "line1",
+                        "type": "text",
+                        "label": "Line 1"
+                      },
+                      {
+                        "name": "line2",
+                        "type": "text",
+                        "label": "Line 2"
+                      },
+                      {
+                        "name": "postal_code",
+                        "type": "text",
+                        "label": "Postal Code"
+                      },
+                      {
+                        "name": "city",
+                        "type": "text",
+                        "label": "City"
+                      },
+                      {
+                        "name": "state",
+                        "type": "text",
+                        "label": "State"
+                      },
+                      {
+                        "name": "country",
+                        "type": "text",
+                        "label": "Country Code",
+                        "validate": {
+                          "max": 2,
+                          "min": 2
+                        }
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Address"
+                  },
+                  {
+                    "name": "email",
+                    "type": "text",
+                    "label": "Email"
+                  },
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Name"
+                  },
+                  {
+                    "name": "phone",
+                    "type": "text",
+                    "label": "Phone"
+                  }
+                ],
+                "type": "collection",
+                "label": "Billing Details"
+              },
+              {
+                "name": "metadata",
+                "spec": [
+                  {
+                    "name": "key",
+                    "type": "text",
+                    "label": "Key"
+                  },
+                  {
+                    "name": "value",
+                    "type": "any",
+                    "label": "Value"
+                  }
+                ],
+                "type": "array",
+                "label": "Metadata"
+              }
+            ],
+            "type": "collection",
+            "label": "Payment Method Data"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "shipping",
+    "spec": [
+      {
+        "name": "address",
+        "spec": [
+          {
+            "help": "This field is mandatory if `Shipping Address` is supplied.",
+            "name": "line1",
+            "type": "text",
+            "label": "Line 1"
+          },
+          {
+            "name": "line2",
+            "type": "text",
+            "label": "Line 2"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal Code"
+          },
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country Code",
+            "validate": {
+              "max": 2,
+              "min": 2
+            }
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "help": "This field is mandatory if `Shipping Address` is supplied.",
+        "name": "name",
+        "type": "text",
+        "label": "Recipient Name"
+      },
+      {
+        "name": "carrier",
+        "type": "text",
+        "label": "Carrier"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "tracking_number",
+        "type": "text",
+        "label": "Tracking Number"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping"
+  },
+  {
+    "help": "If this is not provided, defaults to [“card”]",
+    "name": "payment_method_types",
+    "type": "select",
+    "label": "Payment Method Types",
+    "dynamic": true,
+    "options": [
+      {
+        "label": "Alipay",
+        "value": "alipay"
+      },
+      {
+        "label": "AU BECS Debit",
+        "value": "au_becs_debit"
+      },
+      {
+        "label": "BACS Debit",
+        "value": "bacs_debit"
+      },
+      {
+        "label": "Bancontact",
+        "value": "bancontact"
+      },
+      {
+        "label": "Card",
+        "value": "card"
+      },
+      {
+        "label": "EPS",
+        "value": "eps"
+      },
+      {
+        "label": "FPX",
+        "value": "fpx"
+      },
+      {
+        "label": "Giropay",
+        "value": "giropay"
+      },
+      {
+        "label": "iDEAL",
+        "value": "ideal"
+      },
+      {
+        "label": "Przelewy24",
+        "value": "p24"
+      },
+      {
+        "label": "SEPA Debit",
+        "value": "sepa_debit"
+      },
+      {
+        "label": "SOFORT",
+        "value": "sofort"
+      }
+    ],
+    "advanced": true,
+    "mappable": true,
+    "multiple": true
+  },
+  {
+    "name": "payment_method_options",
+    "spec": [
+      {
+        "name": "bancontact",
+        "spec": [
+          {
+            "name": "preferred_language",
+            "type": "select",
+            "label": "Preferred Language",
+            "options": [
+              {
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "label": "German",
+                "value": "de"
+              },
+              {
+                "label": "French",
+                "value": "fr"
+              },
+              {
+                "label": "Dutch",
+                "value": "nl"
+              }
+            ],
+            "mappable": true
+          }
+        ],
+        "type": "collection",
+        "label": "Bancontact"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "installments",
+            "spec": [
+              {
+                "help": "Installment configuration for payments attempted on this Payment Intent (Mexico Only). For more information, see the [installments integration guide](https://stripe.com/docs/payments/installments).",
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Enabled",
+                "nested": [
+                  {
+                    "name": "plan",
+                    "type": "collection",
+                    "label": "Plan",
+                    "nested": [
+                      {
+                        "help": "Number of installment payments your customer will make to their credit card.",
+                        "name": "count",
+                        "type": "uinteger",
+                        "label": "Count",
+                        "required": true
+                      },
+                      {
+                        "name": "interval",
+                        "type": "hidden",
+                        "label": "Interval",
+                        "default": "month"
+                      },
+                      {
+                        "name": "type",
+                        "type": "hidden",
+                        "label": "Type",
+                        "default": "fixed_count"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "type": "collection",
+            "label": "Installments"
+          },
+          {
+            "help": "Only when `confirm` is set to true.",
+            "name": "network",
+            "type": "select",
+            "label": "Network",
+            "options": [
+              {
+                "label": "American Express",
+                "value": "amex"
+              },
+              {
+                "label": "Cartes Bancaires",
+                "value": "cartes_bancaires"
+              },
+              {
+                "label": "Diners",
+                "value": "diners"
+              },
+              {
+                "label": "Discover",
+                "value": "discover"
+              },
+              {
+                "label": "Interac",
+                "value": "interac"
+              },
+              {
+                "label": "JCB",
+                "value": "jcb"
+              },
+              {
+                "label": "Mastercard",
+                "value": "mastercard"
+              },
+              {
+                "label": "UnionPay",
+                "value": "unionpay"
+              },
+              {
+                "label": "Visa",
+                "value": "visa"
+              },
+              {
+                "label": "Unknown",
+                "value": "unknown"
+              }
+            ],
+            "mappable": true
+          },
+          {
+            "help": "Stripe strongly recommend that you rely on our SCA Engine to automatically prompt your customers for authentication based on risk level and [other requirements](https://stripe.com/docs/strong-customer-authentication). However, if you wish to request 3D Secure based on logic from your own fraud engine, provide this option. Read the guide on [manually requesting 3D Secure](https://stripe.com/docs/payments/3d-secure#manual-three-ds) for more information on how this configuration interacts with Radar and the SCA Engine.",
+            "name": "request_three_d_secure",
+            "type": "select",
+            "label": "Request 3D Secure",
+            "options": [
+              {
+                "label": "Automatic",
+                "value": "automatic"
+              },
+              {
+                "label": "Any",
+                "value": "any"
+              }
+            ],
+            "mappable": true
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      },
+      {
+        "name": "sofort",
+        "spec": [
+          {
+            "name": "preferred_language",
+            "type": "select",
+            "label": "Preferred Language",
+            "options": [
+              {
+                "label": "English",
+                "value": "en"
+              },
+              {
+                "label": "German",
+                "value": "de"
+              },
+              {
+                "label": "Spanish",
+                "value": "es"
+              },
+              {
+                "label": "French",
+                "value": "fr"
+              },
+              {
+                "label": "Italian",
+                "value": "it"
+              },
+              {
+                "label": "Dutch",
+                "value": "nl"
+              },
+              {
+                "label": "Polish",
+                "value": "pl"
+              }
+            ],
+            "mappable": true
+          }
+        ],
+        "type": "collection",
+        "label": "SOFORT"
+      }
+    ],
+    "type": "collection",
+    "label": "Payment Method Options",
+    "advanced": true
+  },
+  {
+    "help": "Indicate that the customer is not in your checkout flow during this payment attempt, and therefore is unable to authenticate. This parameter is intended for scenarios where you collect card details and [charge them later](https://stripe.com/docs/payments/cards/charging-saved-cards).",
+    "name": "off_session",
+    "type": "boolean",
+    "label": "Off Session",
+    "advanced": true
+  },
+  {
+    "help": "Fail the payment attempt if the Payment Intent transitions into requires_action. This parameter is intended for simpler integrations that do not handle customer actions, like [saving cards without authentication](https://stripe.com/docs/payments/save-card-without-authentication).",
+    "name": "error_on_requires_action",
+    "type": "boolean",
+    "label": "Error On Requires Action",
+    "advanced": true
+  },
+  {
+    "name": "ignore::mandate",
+    "type": "select",
+    "label": "Mandate",
+    "options": [
+      {
+        "label": "Input an existing mandate ID",
+        "value": "input",
+        "nested": [
+          {
+            "name": "mandate",
+            "type": "text",
+            "label": "Mandate ID",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Create a mandate",
+        "value": "create",
+        "nested": [
+          {
+            "name": "mandate_data",
+            "spec": [
+              {
+                "name": "customer_acceptance",
+                "spec": [
+                  {
+                    "name": "type",
+                    "type": "select",
+                    "label": "Type",
+                    "options": [
+                      {
+                        "label": "Online",
+                        "value": "online",
+                        "nested": [
+                          {
+                            "name": "online",
+                            "spec": [
+                              {
+                                "name": "ip_address",
+                                "type": "text",
+                                "label": "IP Address"
+                              },
+                              {
+                                "name": "user_agent",
+                                "type": "text",
+                                "label": "User Agent"
+                              }
+                            ],
+                            "type": "collection",
+                            "label": "Online"
+                          }
+                        ]
+                      },
+                      {
+                        "label": "Offline",
+                        "value": "offline"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "accepted_at",
+                    "type": "date",
+                    "label": "Accepted At"
+                  }
+                ],
+                "type": "collection",
+                "label": "Customer Acceptance"
+              }
+            ],
+            "type": "collection",
+            "label": "Mandate Data"
+          }
+        ]
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method’s app or site. If you’d prefer to redirect to a mobile application, you can alternatively supply an application URI scheme.",
+    "name": "return_url",
+    "type": "url",
+    "label": "Return URL",
+    "advanced": true
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "tableId": "{{parameters.tableId}}"
+  },
+  "url": "/docs/{{parameters.docId}}/download/csv",
+  "method": "GET",
+  "response": {
+    "output": {
+      "data": "{{body}}",
+      "fileName": "{{getFileName(headers.`content-disposition`)}}"
+    }
+  }
+}

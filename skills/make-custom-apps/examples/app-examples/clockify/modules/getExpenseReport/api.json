@@ -1,0 +1,28 @@
+{
+  "url": "https://reports.api.clockify.me/v1/workspaces/{{parameters.workspace}}/reports/expenses/detailed",
+  "body": {
+    "note": "{{parameters.note}}",
+    "page": "{{parameters.page}}",
+    "users": "{{ifObjEmpty(parameters.users)}}",
+    "clients": "{{ifObjEmpty(parameters.clients)}}",
+    "billable": "{{parameters.billable}}",
+    "pageSize": "{{parameters.pageSize}}",
+    "projects": "{{ifObjEmpty(parameters.projects)}}",
+    "timeZone": "{{parameters.timeZone}}",
+    "sortOrder": "{{parameters.sortOrder}}",
+    "weekStart": "{{parameters.weekStart}}",
+    "categories": "{{ifObjEmpty(parameters.categories)}}",
+    "exportType": "{{parameters.exportType}}",
+    "sortColumn": "{{parameters.sortColumn}}",
+    "userGroups": "{{ifObjEmpty(parameters.userGroups)}}",
+    "withoutNote": "{{parameters.withoutNote}}",
+    "dateRangeEnd": "{{parameters.dateRangeEnd}}",
+    "dateRangeStart": "{{parameters.dateRangeStart}}",
+    "invoicingState": "{{parameters.invoicingState}}"
+  },
+  "method": "POST",
+  "response": {
+    "type": "{{if(parameters.exportType === 'CSV' || parameters.exportType === 'XLSX' || parameters.exportType === 'PDF', \"binary\", \"json\")}}",
+    "output": "{{if(parameters.exportType === 'CSV' || parameters.exportType === 'XLSX' || parameters.exportType === 'PDF', null, parseDates(body, 'expenses[...].date'))}}"
+  }
+}

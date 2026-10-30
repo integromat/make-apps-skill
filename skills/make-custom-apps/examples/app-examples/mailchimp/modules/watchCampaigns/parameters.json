@@ -1,0 +1,71 @@
+[
+  {
+    "name": "select",
+    "type": "select",
+    "label": "Watch Campaigns",
+    "options": [
+      {
+        "label": "By Created Time",
+        "value": "create",
+        "default": true
+      },
+      {
+        "label": "By Sent Time",
+        "value": "sent"
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Regular",
+        "value": "regular"
+      },
+      {
+        "label": "Plaintext",
+        "value": "plaintext"
+      },
+      {
+        "label": "Absplit",
+        "value": "absplit"
+      },
+      {
+        "label": "RSS",
+        "value": "rss"
+      },
+      {
+        "label": "Variate",
+        "value": "variate"
+      }
+    ]
+  },
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists"
+  },
+  {
+    "name": "folder",
+    "type": "select",
+    "label": "Folder ID",
+    "options": "rpc://listCampaignFolders"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Member's Email"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  }
+]

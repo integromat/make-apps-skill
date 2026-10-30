@@ -1,0 +1,10 @@
+[
+  {
+    "help": "This can be an integer ID, or a string subdomain (e.g. `gristlabs`), or `current` if the organization is implied by the domain in the URL.",
+    "name": "orgId",
+    "type": "select",
+    "label": "Organization ID",
+    "options": "rpc://app%23grist@1/listOrgs",
+    "required": true
+  }
+]

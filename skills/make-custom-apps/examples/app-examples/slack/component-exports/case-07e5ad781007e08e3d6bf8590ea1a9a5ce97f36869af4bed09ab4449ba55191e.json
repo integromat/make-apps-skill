@@ -1,0 +1,219 @@
+{
+  "_modules": {
+    "GetPrivateChannelMessage": {
+      "rev": 2,
+      "crud": "read",
+      "epoch": null,
+      "flags": {},
+      "label": "Get a Private Channel Message",
+      "scope": [
+        "groups:history"
+      ],
+      "public": true,
+      "typeId": 4,
+      "hookName": null,
+      "learning": false,
+      "deprecated": false,
+      "accountName": "slack2",
+      "description": "Returns a message with a given ID from a specified private channel.",
+      "altAccountName": null,
+      "api": {
+        "qs": {
+          "limit": 1,
+          "latest": "{{parameters.ts}}",
+          "oldest": "{{parameters.ts}}",
+          "channel": "{{parameters.channel}}",
+          "inclusive": true
+        },
+        "url": "/conversations.history",
+        "body": {},
+        "method": "GET",
+        "headers": {},
+        "response": {
+          "output": "{{getMessage(body.messages)}}"
+        }
+      },
+      "expect": [
+        {
+          "name": "inputMethod",
+          "type": "select",
+          "label": "Input Method",
+          "default": "list",
+          "options": [
+            {
+              "label": "Select from a list",
+              "value": "list",
+              "nested": [
+                {
+                  "name": "channel",
+                  "type": "select",
+                  "label": "Private Channel",
+                  "options": "rpc://app%23slack@4/PrivateChannels",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "label": "Search by the name",
+              "value": "search",
+              "nested": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23slack@4/PrivateChannels",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "exclude_archived",
+                        "type": "boolean",
+                        "label": "Exclude Archived"
+                      }
+                    ]
+                  },
+                  "name": "channel",
+                  "type": "text",
+                  "label": "Private Channel",
+                  "required": true
+                }
+              ]
+            }
+          ],
+          "required": true
+        },
+        {
+          "name": "ts",
+          "type": "text",
+          "label": "Message ID (timestamp)",
+          "required": true
+        }
+      ],
+      "parameters": [],
+      "interface": [
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Message"
+        },
+        {
+          "name": "subtype",
+          "type": "text",
+          "label": "Subtype"
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text"
+        },
+        {
+          "name": "ts",
+          "type": "text",
+          "label": "Time stamp"
+        },
+        {
+          "name": "username",
+          "type": "text",
+          "label": "User name"
+        },
+        {
+          "name": "user",
+          "type": "text",
+          "label": "User"
+        },
+        {
+          "name": "upload",
+          "type": "boolean",
+          "label": "Upload"
+        },
+        {
+          "name": "display_as_bot",
+          "type": "boolean",
+          "label": "Display as bot"
+        },
+        {
+          "name": "bot_id",
+          "type": "text",
+          "label": "Bot ID"
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "name": "team",
+          "type": "text",
+          "label": "Team ID"
+        },
+        {
+          "name": "client_msg_id",
+          "type": "text",
+          "label": "Client msg ID"
+        },
+        {
+          "name": "files",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "File ID"
+            },
+            {
+              "name": "title",
+              "type": "text",
+              "label": "Title"
+            },
+            {
+              "name": "url_private_download",
+              "type": "url",
+              "label": "Url private download"
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "label": "Size"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "mimetype",
+              "type": "text",
+              "label": "MIME type"
+            }
+          ],
+          "type": "array",
+          "label": "Files"
+        },
+        {
+          "name": "blocks",
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "block_id",
+              "type": "text",
+              "label": "Block ID"
+            },
+            {
+              "name": "elements",
+              "type": "array",
+              "label": "Elements"
+            }
+          ],
+          "type": "array",
+          "label": "Blocks"
+        }
+      ],
+      "samples": null
+    }
+  }
+}

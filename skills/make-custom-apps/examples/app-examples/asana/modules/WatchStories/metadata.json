@@ -1,0 +1,24 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 300,
+      "output": {
+        "date": "{{item.created_at}}",
+        "label": "[{{item.type}}] {{item.text}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch New Stories",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Checks whether new (task) stories have been made.",
+  "altAccountName": null
+}

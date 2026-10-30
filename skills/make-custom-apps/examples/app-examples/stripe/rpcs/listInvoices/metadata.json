@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "List Invoices",
+  "accountName": "stripe",
+  "altAccountName": null
+}

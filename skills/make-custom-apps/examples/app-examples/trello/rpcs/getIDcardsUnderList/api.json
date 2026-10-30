@@ -1,0 +1,14 @@
+{
+  "qs": {},
+  "url": "/lists/{{parameters.list_id}}/cards",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

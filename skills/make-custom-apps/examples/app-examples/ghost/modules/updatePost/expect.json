@@ -1,0 +1,187 @@
+[
+  {
+    "mode": "edit",
+    "name": "postId",
+    "type": "select",
+    "label": "Post ID",
+    "options": "rpc://app%23ghost@1/listPosts",
+    "required": true
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Draft",
+        "value": "draft",
+        "nested": [
+          {
+            "name": "published_at",
+            "time": true,
+            "type": "date",
+            "label": "Published At"
+          }
+        ]
+      },
+      {
+        "label": "Scheduled",
+        "value": "scheduled",
+        "nested": [
+          {
+            "name": "published_at",
+            "time": true,
+            "type": "date",
+            "label": "Published At",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Published",
+        "value": "published",
+        "nested": [
+          {
+            "name": "published_at",
+            "time": true,
+            "type": "date",
+            "label": "Published At"
+          }
+        ]
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "name": "slug",
+    "type": "text",
+    "label": "Slug"
+  },
+  {
+    "name": "source",
+    "type": "select",
+    "label": "Type of Content",
+    "default": "html",
+    "options": [
+      {
+        "label": "HTML",
+        "value": "html",
+        "nested": [
+          {
+            "name": "html",
+            "type": "text",
+            "label": "HTML",
+            "multiline": true
+          }
+        ]
+      },
+      {
+        "label": "Mobiledoc",
+        "value": "mobiledoc",
+        "nested": [
+          {
+            "name": "mobiledoc",
+            "type": "text",
+            "label": "Mobiledoc",
+            "multiline": true
+          }
+        ]
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "name": "custom_excerpt",
+    "type": "text",
+    "label": "Custom Excerpt"
+  },
+  {
+    "name": "feature_image",
+    "type": "text",
+    "label": "Feature Image"
+  },
+  {
+    "name": "tags",
+    "spec": {
+      "type": "select",
+      "label": "Tag",
+      "options": "rpc://app%23ghost@1/listTags"
+    },
+    "type": "array",
+    "label": "Tags"
+  },
+  {
+    "name": "authors",
+    "spec": {
+      "type": "select",
+      "label": "Author",
+      "options": "rpc://app%23ghost@1/listAuthors"
+    },
+    "type": "array",
+    "label": "Authors"
+  },
+  {
+    "name": "featured",
+    "type": "boolean",
+    "label": "Featured"
+  },
+  {
+    "name": "canonical_url",
+    "type": "text",
+    "label": "Canonical URL",
+    "advanced": true
+  },
+  {
+    "name": "meta_title",
+    "type": "text",
+    "label": "Meta Title",
+    "advanced": true
+  },
+  {
+    "name": "meta_description",
+    "type": "text",
+    "label": "Meta Description",
+    "advanced": true
+  },
+  {
+    "name": "facebook_title",
+    "type": "text",
+    "label": "Facebook Title",
+    "advanced": true
+  },
+  {
+    "name": "facebook_description",
+    "type": "text",
+    "label": "Facebook Description",
+    "advanced": true
+  },
+  {
+    "name": "facebook_image",
+    "type": "url",
+    "label": "Facebook Image",
+    "advanced": true
+  },
+  {
+    "name": "twitter_title",
+    "type": "text",
+    "label": "Twitter Title",
+    "advanced": true
+  },
+  {
+    "name": "twitter_description",
+    "type": "text",
+    "label": "Twitter Description",
+    "advanced": true
+  },
+  {
+    "name": "twitter_image",
+    "type": "url",
+    "label": "Twitter Image",
+    "advanced": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Edit a Checklist Item",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Updates an item in a checklist on a card.",
+  "altAccountName": null
+}

@@ -1,0 +1,360 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "amount",
+    "type": "number",
+    "label": "Amount"
+  },
+  {
+    "name": "amount_refunded",
+    "type": "number",
+    "label": "Amount refunded"
+  },
+  {
+    "name": "application",
+    "type": "text",
+    "label": "Application"
+  },
+  {
+    "name": "application_fee",
+    "type": "text",
+    "label": "Application fee"
+  },
+  {
+    "name": "balance_transaction",
+    "type": "text",
+    "label": "Balance transaction"
+  },
+  {
+    "name": "captured",
+    "type": "boolean",
+    "label": "Captured"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "destination",
+    "type": "text",
+    "label": "Destination"
+  },
+  {
+    "name": "dispute",
+    "type": "text",
+    "label": "Dispute"
+  },
+  {
+    "name": "failure_code",
+    "type": "text",
+    "label": "Failure code"
+  },
+  {
+    "name": "failure_message",
+    "type": "text",
+    "label": "Failure message"
+  },
+  {
+    "name": "invoice",
+    "type": "text",
+    "label": "Invoice"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "on_behalf_of",
+    "type": "text",
+    "label": "On behalf of"
+  },
+  {
+    "name": "order",
+    "type": "text",
+    "label": "Order"
+  },
+  {
+    "name": "outcome",
+    "spec": [
+      {
+        "name": "network_status",
+        "type": "text",
+        "label": "Network status"
+      },
+      {
+        "name": "reason",
+        "type": "text",
+        "label": "Reason"
+      },
+      {
+        "name": "risk_level",
+        "type": "text",
+        "label": "Risk level"
+      },
+      {
+        "name": "rule",
+        "type": "text",
+        "label": "Rule"
+      },
+      {
+        "name": "seller_message",
+        "type": "text",
+        "label": "Seller message"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Outcome"
+  },
+  {
+    "name": "paid",
+    "type": "boolean",
+    "label": "Paid"
+  },
+  {
+    "name": "receipt_email",
+    "type": "text",
+    "label": "Receipt email"
+  },
+  {
+    "name": "receipt_number",
+    "type": "text",
+    "label": "Receipt number"
+  },
+  {
+    "name": "refunded",
+    "type": "boolean",
+    "label": "Refunded"
+  },
+  {
+    "name": "review",
+    "type": "text",
+    "label": "Review"
+  },
+  {
+    "name": "shipping",
+    "spec": [
+      {
+        "name": "address",
+        "spec": [
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "line1",
+            "type": "text",
+            "label": "First line"
+          },
+          {
+            "name": "line2",
+            "type": "text",
+            "label": "Second line"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal code"
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "name": "carrier",
+        "type": "text",
+        "label": "Carrier"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "tracking_number",
+        "type": "text",
+        "label": "Tracking number"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping"
+  },
+  {
+    "name": "source",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "address_city",
+        "type": "text",
+        "label": "Address city"
+      },
+      {
+        "name": "address_country",
+        "type": "text",
+        "label": "Address country"
+      },
+      {
+        "name": "address_line1",
+        "type": "text",
+        "label": "Address line 1"
+      },
+      {
+        "name": "address_line1_check",
+        "type": "text",
+        "label": "Address line 1 check"
+      },
+      {
+        "name": "address_line2",
+        "type": "text",
+        "label": "Address line 2"
+      },
+      {
+        "name": "address_state",
+        "type": "text",
+        "label": "Address state"
+      },
+      {
+        "name": "address_zip",
+        "type": "text",
+        "label": "Address ZIP"
+      },
+      {
+        "name": "address_zip_check",
+        "type": "text",
+        "label": "Address ZIP check"
+      },
+      {
+        "name": "brand",
+        "type": "text",
+        "label": "Brand"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "customer",
+        "type": "text",
+        "label": "Customer"
+      },
+      {
+        "name": "cvc_check",
+        "type": "text",
+        "label": "CVC check"
+      },
+      {
+        "name": "dynamic_last4",
+        "type": "text",
+        "label": "Dynamic last 4"
+      },
+      {
+        "name": "exp_month",
+        "type": "number",
+        "label": "Expiration month"
+      },
+      {
+        "name": "exp_year",
+        "type": "number",
+        "label": "Expiration year"
+      },
+      {
+        "name": "fingerprint",
+        "type": "text",
+        "label": "Fingerprint"
+      },
+      {
+        "name": "funding",
+        "type": "text",
+        "label": "Funding"
+      },
+      {
+        "name": "last4",
+        "type": "text",
+        "label": "Last 4"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "tokenization_method",
+        "type": "text",
+        "label": "Tokenization method"
+      }
+    ],
+    "type": "collection",
+    "label": "Source"
+  },
+  {
+    "name": "source_transfer",
+    "type": "text",
+    "label": "Source transfer"
+  },
+  {
+    "name": "statement_descriptor",
+    "type": "text",
+    "label": "Statement descriptor"
+  },
+  {
+    "name": "status",
+    "type": "text",
+    "label": "Status"
+  },
+  {
+    "name": "transfer_group",
+    "type": "text",
+    "label": "Transfer group"
+  }
+]

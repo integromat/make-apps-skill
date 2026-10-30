@@ -1,0 +1,21 @@
+[
+  {
+    "mode": "edit",
+    "name": "layer",
+    "type": "select",
+    "label": "Layer Name",
+    "options": {
+      "store": "rpc://listLayer",
+      "nested": [
+        {
+          "name": "version",
+          "type": "select",
+          "label": "Version",
+          "options": "rpc://listLayerVersions",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

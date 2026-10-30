@@ -1,0 +1,42 @@
+[
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "segment",
+          "type": "select",
+          "label": "Segment ID",
+          "options": "rpc://listSegments",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "include_cleaned",
+    "type": "boolean",
+    "label": "Include cleaned members"
+  },
+  {
+    "name": "include_transactional",
+    "type": "boolean",
+    "label": "Include transactional members"
+  },
+  {
+    "name": "include_unsubscribed",
+    "type": "boolean",
+    "label": "Include unsubscribed members"
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

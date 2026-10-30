@@ -1,0 +1,11 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/users",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name if(item.email, ' <'+ item.email+ '>')}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

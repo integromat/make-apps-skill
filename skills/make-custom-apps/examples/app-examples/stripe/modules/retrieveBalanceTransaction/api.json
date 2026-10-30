@@ -1,0 +1,7 @@
+{
+  "url": "/balance/history/{{parameters.id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

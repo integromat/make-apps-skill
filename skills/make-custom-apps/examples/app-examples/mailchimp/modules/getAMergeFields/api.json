@@ -1,0 +1,7 @@
+{
+  "url": "/lists/{{parameters.list}}/merge-fields/{{parameters.field_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

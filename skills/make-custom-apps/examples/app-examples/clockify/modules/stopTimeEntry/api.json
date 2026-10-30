@@ -1,0 +1,10 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/user/{{parameters.user}}/time-entries",
+  "body": {
+    "end": "{{parameters.end}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{parseTimeResponse(body)}}"
+  }
+}

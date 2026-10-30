@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "pos": "{{parameters.pos}}",
+    "name": "{{parameters.name}}",
+    "idBoard": "{{parameters.board_id}}",
+    "subscribed": "{{parameters.subscribed}}"
+  },
+  "url": "/lists/{{parameters.list_id}}",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

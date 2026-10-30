@@ -1,0 +1,146 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Custom Field Option ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "Filter on workspaces or organizations.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace/Organization ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "custom_field",
+                  "type": "select",
+                  "label": "Custom Field ID",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetEnumerationFields",
+                    "nested": [
+                      {
+                        "name": "enum_option",
+                        "type": "select",
+                        "label": "Enumeration Option",
+                        "options": "rpc://app%23asana@2/GetCustomFieldsEnumOptions",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "enum_option",
+            "type": "text",
+            "label": "Enumeration Option",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "Duplicate names are not allowed.",
+    "name": "name",
+    "type": "text",
+    "label": "Option Name"
+  },
+  {
+    "name": "color",
+    "type": "select",
+    "label": "Option Color",
+    "options": [
+      {
+        "label": "Blue",
+        "value": "blue"
+      },
+      {
+        "label": "Indigo",
+        "value": "indigo"
+      },
+      {
+        "label": "Green",
+        "value": "green"
+      },
+      {
+        "label": "Orange",
+        "value": "orange"
+      },
+      {
+        "label": "Pink",
+        "value": "pink"
+      },
+      {
+        "label": "Purple",
+        "value": "purple"
+      },
+      {
+        "label": "Red",
+        "value": "red"
+      },
+      {
+        "label": "Aqua",
+        "value": "aqua"
+      },
+      {
+        "label": "Yellow Orange",
+        "value": "yellow-orange"
+      },
+      {
+        "label": "Yellow",
+        "value": "yellow"
+      },
+      {
+        "label": "Yellow Green",
+        "value": "yellow-green"
+      },
+      {
+        "label": "Blue Green",
+        "value": "blue-green"
+      },
+      {
+        "label": "Magenta",
+        "value": "magenta"
+      },
+      {
+        "label": "Hot Pink",
+        "value": "hot-pink"
+      },
+      {
+        "label": "Cool Gray",
+        "value": "cool-gray"
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "enabled",
+    "type": "boolean",
+    "label": "Enabled?"
+  }
+]

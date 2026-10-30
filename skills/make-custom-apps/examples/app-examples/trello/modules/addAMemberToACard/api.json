@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "value": "{{parameters.member_id}}"
+  },
+  "url": "/cards/{{parameters.card_id}}/idMembers",
+  "method": "POST",
+  "response": {
+    "output": {
+      "member": "{{body}}"
+    }
+  }
+}

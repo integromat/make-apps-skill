@@ -1,0 +1,23 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Update a Message",
+  "scope": [
+    "chat:write",
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read",
+    "users:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Updates a message.",
+  "altAccountName": "slack3"
+}

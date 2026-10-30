@@ -1,0 +1,72 @@
+[
+  {
+    "name": "id",
+    "type": "uinteger",
+    "label": "Click Report ID"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "total_clicks",
+    "type": "number",
+    "label": "Total Clicks"
+  },
+  {
+    "name": "click_percentage",
+    "type": "number",
+    "label": "Click Percentage"
+  },
+  {
+    "name": "unique_clicks",
+    "type": "number",
+    "label": "Unique Clicks"
+  },
+  {
+    "name": "unique_click_percentage",
+    "type": "number",
+    "label": "Unique Click Percentage"
+  },
+  {
+    "name": "last_click",
+    "type": "date",
+    "label": "Last Click"
+  },
+  {
+    "name": "campaign_id",
+    "type": "uinteger",
+    "label": "Campaign ID"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "REL"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

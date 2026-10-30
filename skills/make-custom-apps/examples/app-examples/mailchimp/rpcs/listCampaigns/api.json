@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "count": 500,
+    "sort_dir": "DESC",
+    "sort_field": "create_time"
+  },
+  "url": "/campaigns",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.settings.title + if(parameters.includeTemplate, ' (' + item.type + ')')}}",
+      "value": "{{item.id + if(parameters.includeTemplate, '#' + item.settings.template_id, '')}}"
+    },
+    "iterate": {
+      "condition": "{{if(parameters.includeTemplate, item.settings.template_id != 0, true)}}",
+      "container": "{{body.campaigns}}"
+    }
+  }
+}

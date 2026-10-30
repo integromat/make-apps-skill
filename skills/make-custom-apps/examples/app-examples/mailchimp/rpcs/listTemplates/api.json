@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "type": "user",
+    "count": 500
+  },
+  "url": "/templates",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.templates}}"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "limit": 100,
+    "workspace": "{{parameters.workspace}}",
+    "opt_fields": [
+      "this.workspace.name",
+      "this.name"
+    ]
+  },
+  "url": "/projects",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.workspace.name}}] {{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

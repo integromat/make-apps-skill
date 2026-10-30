@@ -1,0 +1,364 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "List Name",
+    "required": true
+  },
+  {
+    "name": "contact",
+    "spec": [
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company Name",
+        "required": true
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Address",
+        "required": true
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Address 2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City",
+        "required": true
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "label": "State",
+        "required": true
+      },
+      {
+        "name": "zip",
+        "type": "text",
+        "label": "Zip Code",
+        "required": true
+      },
+      {
+        "help": "e.g.`US`,`CZ`",
+        "name": "country",
+        "type": "text",
+        "label": "Country Code",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone Number"
+      }
+    ],
+    "type": "collection",
+    "label": "Contacts"
+  },
+  {
+    "name": "permission_reminder",
+    "type": "text",
+    "label": "Permission Reminder",
+    "required": true
+  },
+  {
+    "name": "use_archive_bar",
+    "type": "boolean",
+    "label": "Use Archive Bar",
+    "required": true
+  },
+  {
+    "name": "campaign_defaults",
+    "spec": [
+      {
+        "name": "from_email",
+        "type": "email",
+        "label": "From Email",
+        "required": true
+      },
+      {
+        "name": "from_name",
+        "type": "text",
+        "label": "From Name",
+        "required": true
+      },
+      {
+        "name": "subject",
+        "type": "text",
+        "label": "Subject",
+        "required": true
+      },
+      {
+        "name": "language",
+        "type": "select",
+        "label": "Language Code",
+        "options": [
+          {
+            "label": "English",
+            "value": "en",
+            "default": true
+          },
+          {
+            "label": "العربية",
+            "value": "ar"
+          },
+          {
+            "label": "Afrikaans",
+            "value": "af"
+          },
+          {
+            "label": "беларуская мова",
+            "value": "be"
+          },
+          {
+            "label": "български език",
+            "value": "bg"
+          },
+          {
+            "label": "català",
+            "value": "ca"
+          },
+          {
+            "label": "中文",
+            "value": "zh"
+          },
+          {
+            "label": "hrvatski jezik",
+            "value": "hr"
+          },
+          {
+            "label": "čeština",
+            "value": "cs"
+          },
+          {
+            "label": "dansk",
+            "value": "da"
+          },
+          {
+            "label": "Nederlands",
+            "value": "nl"
+          },
+          {
+            "label": "eesti",
+            "value": "et"
+          },
+          {
+            "label": "فارسی",
+            "value": "fa"
+          },
+          {
+            "label": "suomi",
+            "value": "fi"
+          },
+          {
+            "label": "français",
+            "value": "fr"
+          },
+          {
+            "label": "français (Canada)",
+            "value": "fr_CA"
+          },
+          {
+            "label": "Deutsch",
+            "value": "de"
+          },
+          {
+            "label": "ελληνικά",
+            "value": "el"
+          },
+          {
+            "label": "עברית",
+            "value": "he"
+          },
+          {
+            "label": "हिन्दी",
+            "value": "hi"
+          },
+          {
+            "label": "magyar",
+            "value": "hu"
+          },
+          {
+            "label": "Íslenska",
+            "value": "is"
+          },
+          {
+            "label": "Bahasa Indonesia",
+            "value": "id"
+          },
+          {
+            "label": "Gaeilge",
+            "value": "ga"
+          },
+          {
+            "label": "Italiano",
+            "value": "it"
+          },
+          {
+            "label": "日本語",
+            "value": "ja"
+          },
+          {
+            "label": "ខ្មែរ",
+            "value": "km"
+          },
+          {
+            "label": "한국어",
+            "value": "ko"
+          },
+          {
+            "label": "latviešu valoda",
+            "value": "lv"
+          },
+          {
+            "label": "lietuvių kalba",
+            "value": "lt"
+          },
+          {
+            "label": "Malti",
+            "value": "mt"
+          },
+          {
+            "label": "Bahasa Melayu",
+            "value": "ms"
+          },
+          {
+            "label": "македонски јазик",
+            "value": "mk"
+          },
+          {
+            "label": "Norsk",
+            "value": "no"
+          },
+          {
+            "label": "język polski",
+            "value": "pl"
+          },
+          {
+            "label": "Português (Brazil)",
+            "value": "pt"
+          },
+          {
+            "label": "Português (Portugal)",
+            "value": "pt_PT"
+          },
+          {
+            "label": "Română",
+            "value": "ro"
+          },
+          {
+            "label": "русский",
+            "value": "ru"
+          },
+          {
+            "label": "српски језик",
+            "value": "sr"
+          },
+          {
+            "label": "Slovenčina",
+            "value": "sk"
+          },
+          {
+            "label": "Slovenski Jezik",
+            "value": "sl"
+          },
+          {
+            "label": "Español (Mexico)",
+            "value": "es"
+          },
+          {
+            "label": "Español (Spain)",
+            "value": "es_ES"
+          },
+          {
+            "label": "Kiswahili",
+            "value": "sw"
+          },
+          {
+            "label": "Svenska",
+            "value": "sv"
+          },
+          {
+            "label": "தமிழ்",
+            "value": "ta"
+          },
+          {
+            "label": "ไทย",
+            "value": "th"
+          },
+          {
+            "label": "Türkçe",
+            "value": "tr"
+          },
+          {
+            "label": "Українська",
+            "value": "uk"
+          },
+          {
+            "label": "Tiếng Việt",
+            "value": "vi"
+          }
+        ],
+        "mappable": {
+          "help": "e.g.`en`,`cs`"
+        },
+        "required": true
+      }
+    ],
+    "type": "collection",
+    "label": "Campaign Defaults"
+  },
+  {
+    "help": "The email address to send subscribe notifications to",
+    "name": "notify_on_subscribe",
+    "type": "email",
+    "label": "Notify on Subscribe"
+  },
+  {
+    "help": "The email address to send unsubscribe notifications to",
+    "name": "notify_on_unsubscribe",
+    "type": "email",
+    "label": "Notify on Unsubscribe"
+  },
+  {
+    "help": "When set to true, subscribers can choose whether they want to receive HTML or plain-text emails. When set to false, subscribers will receive HTML emails, with a plain-text alternative backup.",
+    "name": "email_type_option",
+    "type": "boolean",
+    "label": "Email Type Option",
+    "required": true
+  },
+  {
+    "name": "visibility",
+    "type": "select",
+    "label": "Visibility",
+    "options": [
+      {
+        "label": "Public",
+        "value": "pub"
+      },
+      {
+        "label": "Private",
+        "value": "prv"
+      }
+    ],
+    "required": true
+  },
+  {
+    "help": "Whether or not to require the subscriber to confirm subscription via email.",
+    "name": "double_optin",
+    "type": "boolean",
+    "label": "Double Opt in",
+    "required": true
+  },
+  {
+    "help": "Whether or not the list has marketing permissions (eg. GDPR) enabled.",
+    "name": "marketing_permissions",
+    "type": "boolean",
+    "label": "Marketing Permissions",
+    "required": true
+  }
+]

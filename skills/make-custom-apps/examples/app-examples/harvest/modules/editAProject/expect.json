@@ -1,0 +1,112 @@
+[
+  {
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects",
+    "required": true
+  },
+  {
+    "help": "The new name of the project.",
+    "name": "name",
+    "type": "text",
+    "label": "New name"
+  },
+  {
+    "help": "The method by which the project is invoiced.",
+    "name": "bill_by",
+    "type": "select",
+    "label": "Bill by",
+    "options": [
+      {
+        "label": "Do not apply hourly rate",
+        "value": "none"
+      },
+      {
+        "label": "Task hourly rate",
+        "value": "Tasks"
+      },
+      {
+        "label": "Person hourly rate",
+        "value": "People"
+      },
+      {
+        "label": "Project hourly rate",
+        "value": "Project"
+      }
+    ]
+  },
+  {
+    "help": "The method by which the project is budgeted.",
+    "name": "budget_by",
+    "type": "select",
+    "label": "Budget by",
+    "options": [
+      {
+        "label": "Hours Per Project",
+        "value": "project"
+      },
+      {
+        "label": "Total Project Fees",
+        "value": "project_cost"
+      },
+      {
+        "label": "Hours Per Task",
+        "value": "task"
+      },
+      {
+        "label": "Fees Per Task",
+        "value": "task_fees"
+      },
+      {
+        "label": "Hours Per Person",
+        "value": "person"
+      },
+      {
+        "label": "No Budget",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "help": "Project notes.",
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "help": "The ID of the client to associate this project with.",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients",
+    "advanced": true
+  },
+  {
+    "help": "The code associated with the project.",
+    "name": "code",
+    "type": "text",
+    "label": "Code",
+    "advanced": true
+  },
+  {
+    "help": "Whether the project is active or archived.",
+    "name": "is_active",
+    "type": "select",
+    "label": "Active",
+    "options": [
+      {
+        "label": "Active",
+        "value": true
+      },
+      {
+        "label": "Archived",
+        "value": false
+      }
+    ],
+    "advanced": true,
+    "mappable": {
+      "help": "Active = `true`\n Archived = `false`"
+    }
+  }
+]

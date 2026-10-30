@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Projects",
+  "scope": [],
+  "public": true,
+  "typeId": 10,
+  "hookName": "clockify4",
+  "learning": false,
+  "deprecated": false,
+  "accountName": null,
+  "description": "Triggers when a project is created.",
+  "altAccountName": null
+}

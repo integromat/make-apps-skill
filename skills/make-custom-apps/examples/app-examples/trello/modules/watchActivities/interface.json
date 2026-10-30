@@ -1,0 +1,628 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "ID"
+  },
+  {
+    "name": "idMemberCreator",
+    "type": "text",
+    "label": "Creator member ID"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "board",
+        "spec": [
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Shortlink"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "closed",
+            "type": "boolean",
+            "label": "Closed"
+          },
+          {
+            "name": "desc",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "prefs",
+            "spec": [
+              {
+                "name": "invitations",
+                "type": "text",
+                "label": "Invitation permissions"
+              },
+              {
+                "name": "comments",
+                "type": "text",
+                "label": "Commenting permissions"
+              },
+              {
+                "name": "cardCovers",
+                "type": "boolean",
+                "label": "Card covers"
+              },
+              {
+                "name": "permissionLevel",
+                "type": "text",
+                "label": "Visibility"
+              },
+              {
+                "name": "background",
+                "type": "text",
+                "label": "Background"
+              }
+            ],
+            "type": "collection",
+            "label": "Prefs"
+          }
+        ],
+        "type": "collection",
+        "label": "Board"
+      },
+      {
+        "name": "card",
+        "spec": [
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Shortlink"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "pos",
+            "type": "text",
+            "label": "Position"
+          },
+          {
+            "name": "closed",
+            "type": "boolean",
+            "label": "Closed"
+          },
+          {
+            "name": "desc",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "idList",
+            "type": "text",
+            "label": "List ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Card"
+      },
+      {
+        "name": "attachment",
+        "spec": [
+          {
+            "name": "previewUrl2x",
+            "type": "url",
+            "label": "Preview URL 2x"
+          },
+          {
+            "name": "previewUrl",
+            "type": "url",
+            "label": "Preview URL"
+          },
+          {
+            "name": "url",
+            "type": "url",
+            "label": "URL"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachment"
+      },
+      {
+        "name": "checklist",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Checklist"
+      },
+      {
+        "name": "label",
+        "spec": [
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Color"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Label"
+      },
+      {
+        "name": "idMemberAdded",
+        "type": "text",
+        "label": "Added member ID"
+      },
+      {
+        "name": "memberType",
+        "type": "text",
+        "label": "Member type"
+      },
+      {
+        "name": "idMember",
+        "type": "text",
+        "label": "Member ID"
+      },
+      {
+        "name": "organization",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "prefs",
+            "spec": [
+              {
+                "name": "permissionLevel",
+                "type": "text",
+                "label": "Visibility"
+              }
+            ],
+            "type": "collection",
+            "label": "Prefs"
+          },
+          {
+            "name": "displayName",
+            "type": "text",
+            "label": "Display name"
+          },
+          {
+            "name": "desc",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "website",
+            "type": "url",
+            "label": "Website"
+          }
+        ],
+        "type": "collection",
+        "label": "Organization"
+      },
+      {
+        "name": "list",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "closed",
+            "type": "boolean",
+            "label": "Closed"
+          }
+        ],
+        "type": "collection",
+        "label": "List"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "cardSource",
+        "spec": [
+          {
+            "name": "shortLink",
+            "type": "text",
+            "label": "Shortlink"
+          },
+          {
+            "name": "idShort",
+            "type": "number",
+            "label": "Short ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Source card"
+      },
+      {
+        "name": "boardSource",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Source board"
+      },
+      {
+        "name": "checklistSource",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Source list"
+      },
+      {
+        "name": "idOriginalCommenter",
+        "type": "text",
+        "label": "Commenter original ID"
+      },
+      {
+        "name": "checkItem",
+        "spec": [
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Checklist item"
+      },
+      {
+        "name": "plugin",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "url",
+            "type": "array",
+            "label": "URL"
+          },
+          {
+            "name": "public",
+            "type": "boolean",
+            "label": "{{!interface.public.label}}"
+          }
+        ],
+        "type": "collection",
+        "label": "Plugin"
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      },
+      {
+        "name": "member",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Member"
+      },
+      {
+        "name": "boardTarget",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Target board"
+      },
+      {
+        "name": "deactivated",
+        "type": "boolean",
+        "label": "Deactived"
+      },
+      {
+        "name": "old",
+        "spec": [
+          {
+            "name": "closed",
+            "type": "boolean",
+            "label": "Closed"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "desc",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "prefs",
+            "spec": [
+              {
+                "name": "invitations",
+                "type": "text",
+                "label": "Invitation permissions"
+              },
+              {
+                "name": "comments",
+                "type": "text",
+                "label": "Commenting permissions"
+              },
+              {
+                "name": "cardCovers",
+                "type": "boolean",
+                "label": "Card covers"
+              },
+              {
+                "name": "permissionLevel",
+                "type": "text",
+                "label": "Visibility"
+              },
+              {
+                "name": "background",
+                "type": "text",
+                "label": "Background"
+              }
+            ],
+            "type": "collection",
+            "label": "Prefs"
+          },
+          {
+            "name": "idList",
+            "type": "text",
+            "label": "List ID"
+          },
+          {
+            "name": "pos",
+            "type": "text",
+            "label": "Position"
+          },
+          {
+            "name": "text",
+            "type": "boolean",
+            "label": "Text"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Color"
+          },
+          {
+            "name": "displayName",
+            "type": "text",
+            "label": "Display name"
+          },
+          {
+            "name": "website",
+            "type": "url",
+            "label": "Website"
+          }
+        ],
+        "type": "collection",
+        "label": "Old"
+      },
+      {
+        "name": "listAfter",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "List - after"
+      },
+      {
+        "name": "listBefore",
+        "spec": [
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          }
+        ],
+        "type": "collection",
+        "label": "List - before"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type of activity"
+  },
+  {
+    "name": "date",
+    "type": "date",
+    "label": "Date"
+  },
+  {
+    "name": "memberCreator",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full name"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Creator member"
+  },
+  {
+    "name": "member",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "avatarHash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "fullName",
+        "type": "text",
+        "label": "Full name"
+      },
+      {
+        "name": "initials",
+        "type": "text",
+        "label": "Initials"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      }
+    ],
+    "type": "collection",
+    "label": "Member"
+  }
+]

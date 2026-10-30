@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Find Clients",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Finds clients by their name in a workspace.",
+  "altAccountName": null
+}

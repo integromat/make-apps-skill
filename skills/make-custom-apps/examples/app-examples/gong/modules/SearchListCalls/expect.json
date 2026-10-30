@@ -1,0 +1,28 @@
+[
+  {
+    "help": "The date from which to list calls, if not specified, the calls start with the earliest recorded call. For web-conference calls recorded by Gong, the date denotes its scheduled time, otherwise, it denotes its actual start time.",
+    "name": "fromDateTime",
+    "type": "date",
+    "label": "From Date Time"
+  },
+  {
+    "help": "The date until which to list calls, if not specified, the calls end with the latest recorded call. For web-conference calls recorded by Gong, the date denotes its scheduled time, otherwise, it denotes its actual start time.",
+    "name": "toDateTime",
+    "type": "date",
+    "label": "To Date Time"
+  },
+  {
+    "help": "Optional workspace identifier, if supplied the API will return only the calls belonging to this workspace.",
+    "name": "workspaceId",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23gong@1/getWorkspaceId"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

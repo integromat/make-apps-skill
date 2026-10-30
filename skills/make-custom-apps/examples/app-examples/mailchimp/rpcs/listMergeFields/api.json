@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "count": 500
+  },
+  "url": "/lists/{{parameters.list}}/merge-fields",
+  "method": "GET",
+  "response": {
+    "output": "{{mergeFields(body.merge_fields)}}"
+  }
+}

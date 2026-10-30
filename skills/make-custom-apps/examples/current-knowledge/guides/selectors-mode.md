@@ -8,6 +8,22 @@ A select backed by a remote procedure call (RPC) lets users pick a record instea
 
 An option RPC returns an array of `{ "label": ..., "value": ... }` (`default: true` is optional). A select refers to it as `"options": "rpc://listProjects"` or in object form `{ "store": "rpc://listProjects", "nested": [...] }`. A fields RPC returns parameter specs (`name`, `type`, `label`, ...) and is referenced from `interface` or a `parameters` array, not from `options`. Using one where the other is expected is a schema confusion: the user sees the wrong thing, or nothing.
 
+## Describing options that need explanation
+
+**Inferred UX guidance, not a documented requirement.** The public [Select page](https://developers.make.com/custom-apps-documentation/block-elements/parameters/select) documents the option forms (`value`/`label` pairs, `nested`, `store`) and the [mappable-parameters best practices](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters) cover select behaviour in mappable forms. Neither page gives guidance on an option-level `description`, so do not cite either as the source of that field or of this advice. It is a UX judgment: when the choices are not self-explanatory (for example two access levels whose difference the label cannot carry), and the authoring or editor schema you are working against accepts `option.description`, give each option its own short `description` next to `label` and `value`, instead of explaining the differing meanings in the field's help text or leaving users to guess. Verify that the section is accepted on upload and that the description is present in the read-back. If it is rejected or dropped, fall back to the field's help text. The shape, where accepted:
+
+```json
+{
+  "name": "visibility", "type": "select", "label": "Visibility",
+  "options": [
+    { "value": "private", "label": "Private", "description": "Only the owner can open the item." },
+    { "value": "shared", "label": "Shared", "description": "Everyone with the link can open the item." }
+  ]
+}
+```
+
+A description is explanatory text only. It does not change `value`, validation or `mode`, and options that are obvious (Yes, No) need none. Use it for a hand-written `options` array after the read-back confirms support; this guide does not claim it for an options RPC's `{label, value}` output. This is advice for form quality, not a requirement a missing description fails.
+
 ## `mode: "edit"`
 
 **Documented authoring requirement for Get, Update and Delete.** The best-practices page states that adding edit mode is required for a mappable RPC-backed identifier select in these modules. Initialise it with `mode: "edit"` so the user can map an ID from a previous module without first toggling the field. `mode` accepts `edit` or `choose`; the default is `choose`. State the UI/mapping consequence when reporting it; it does not make requests unexecutable, so it is an authoring correction, not an observed outage.
@@ -72,6 +88,7 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 
 * `store` for nested, connection matching, automatic parameter inheritance: **documented requirement / behaviour**. `mode: "edit"` for mappable Get/Update/Delete identifiers: documented authoring requirement; hierarchy-dependent recommendation elsewhere.
 * Search/List hierarchy and Create advice: **documented recommendation**.
+* Per-option `description` for options with differing meanings: **inferred UX guidance**. The public Select and mappable-parameters pages were checked and give no option-description guidance; the Select page supports only the adjacent option syntax (`value`, `label`, `nested`, `store`). Advisory only, depends on the schema in use accepting the field, and needs upload/read-back evidence.
 * Parent-value reading checks and the options/schema separation: **inferred implementation pattern** over declared fixtures. The checker does not run RPCs or know a provider's real hierarchy; it cannot tell a high-level from a low-level entity.
 
 ## Fixtures
@@ -88,9 +105,10 @@ Static, synthetic teaching fixtures; the checker reads the declared RPC, paramet
 
 ## Sources
 
-* https://developers.make.com/custom-apps-documentation/block-elements/parameters/select
+* https://developers.make.com/custom-apps-documentation/block-elements/parameters/select (option forms, `mode`, nested/`store`; no option `description` guidance)
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-fields-rpc (fields RPCs supply schemas, not options)
 * https://developers.make.com/custom-apps-documentation/component-blocks/interface (the interface an RPC-backed schema fills)
 * https://developers.make.com/custom-apps-documentation/best-practices/remote-procedure-calls
+* https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters (mappable select behaviour; no option description guidance)

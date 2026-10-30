@@ -1,0 +1,76 @@
+[
+  {
+    "name": "select_or_manual",
+    "type": "select",
+    "label": "Enter card ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          },
+          {
+            "name": "label_id",
+            "type": "text",
+            "label": "Label ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://getIDcardsUnderList",
+                        "editable": true,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                },
+                {
+                  "name": "label_id",
+                  "type": "select",
+                  "label": "Label",
+                  "options": "rpc://getLabelsIDunderBoard",
+                  "editable": true,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

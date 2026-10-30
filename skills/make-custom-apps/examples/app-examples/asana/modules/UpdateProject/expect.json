@@ -1,0 +1,199 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspaceRPC",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://app%23asana@2/GetProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "current_status",
+    "spec": [
+      {
+        "help": "When sending a colour, the text field below also needs to be filled.",
+        "name": "color",
+        "type": "select",
+        "label": "Color",
+        "options": [
+          {
+            "label": "Green",
+            "value": "green"
+          },
+          {
+            "label": "Yellow",
+            "value": "yellow"
+          },
+          {
+            "label": "Red",
+            "value": "red"
+          }
+        ]
+      },
+      {
+        "help": "The project status update text.",
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      }
+    ],
+    "type": "collection",
+    "label": "Current Status"
+  },
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "color",
+    "type": "select",
+    "label": "Color",
+    "options": [
+      {
+        "label": "Dark Blue",
+        "value": "dark-blue"
+      },
+      {
+        "label": "Dark Brown",
+        "value": "dark-brown"
+      },
+      {
+        "label": "Dark Green",
+        "value": "dark-green"
+      },
+      {
+        "label": "Dark Orange",
+        "value": "dark-orange"
+      },
+      {
+        "label": "Dark Pink",
+        "value": "dark-pink"
+      },
+      {
+        "label": "Dark Purple",
+        "value": "dark-purple"
+      },
+      {
+        "label": "Dark Red",
+        "value": "dark-red"
+      },
+      {
+        "label": "Dark Teal",
+        "value": "dark-teal"
+      },
+      {
+        "label": "Dark Warm Gray",
+        "value": "dark-warm-gray"
+      },
+      {
+        "label": "Light Blue",
+        "value": "light-blue"
+      },
+      {
+        "label": "Light Green",
+        "value": "light-green"
+      },
+      {
+        "label": "Light Orange",
+        "value": "light-orange"
+      },
+      {
+        "label": "Light Pink",
+        "value": "light-pink"
+      },
+      {
+        "label": "Light Purple",
+        "value": "light-purple"
+      },
+      {
+        "label": "Light Red",
+        "value": "light-red"
+      },
+      {
+        "label": "Light Teal",
+        "value": "light-teal"
+      },
+      {
+        "label": "Light Warm Gray",
+        "value": "light-warm-gray"
+      },
+      {
+        "label": "Light Yellow",
+        "value": "light-yellow"
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "default_view",
+    "type": "select",
+    "label": "Default View",
+    "options": [
+      {
+        "label": "Board",
+        "value": "board"
+      },
+      {
+        "label": "Calendar",
+        "value": "calendar"
+      },
+      {
+        "label": "List",
+        "value": "list"
+      },
+      {
+        "label": "Timeline",
+        "value": "timeline"
+      }
+    ]
+  },
+  {
+    "help": "Date will ignore time, only YYYY-MM-DD matters.",
+    "name": "due_on",
+    "type": "date",
+    "label": "Due On"
+  },
+  {
+    "help": "When this field is filled, the due on field above needs to be filled to.\nDate will ignore time, only YYYY-MM-DD matters.",
+    "name": "start_on",
+    "type": "date",
+    "label": "Start On"
+  },
+  {
+    "help": "Not possible for archived projects, personal projects, or user task lists.",
+    "name": "is_template",
+    "type": "boolean",
+    "label": "Is Template"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  }
+]

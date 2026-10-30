@@ -1,0 +1,24 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{switch(parameters.watch, 'new', item.created_at, 'updated', item.updated_at)}}",
+        "label": "{{item.first_name + ' ' + item.last_name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Users",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Triggers when a new user is created.",
+  "altAccountName": null
+}

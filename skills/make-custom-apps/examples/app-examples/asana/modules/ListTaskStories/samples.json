@@ -1,0 +1,197 @@
+{
+  "gid": "00000",
+  "tag": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "tag"
+  },
+  "task": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "text": "REDACTED",
+  "type": "comment",
+  "liked": false,
+  "likes": [
+    {
+      "gid": 0,
+      "user": {
+        "gid": 0,
+        "name": "REDACTED",
+        "resource_type": "user"
+      }
+    }
+  ],
+  "story": {
+    "gid": "00000",
+    "text": "REDACTED",
+    "type": "comment",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": {
+      "gid": "00000",
+      "name": "REDACTED",
+      "resource_type": "user"
+    },
+    "resource_type": "story",
+    "resource_subtype": "comment_added"
+  },
+  "hearts": [
+    {
+      "gid": 0,
+      "user": {
+        "gid": 0,
+        "name": "REDACTED",
+        "resource_type": "user"
+      }
+    }
+  ],
+  "source": "web",
+  "target": {
+    "gid": "0000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "hearted": false,
+  "project": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "project"
+  },
+  "assignee": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "follower": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "new_name": "This is the New Name",
+  "old_name": "This was the Old Name",
+  "previews": [
+    {
+      "text": "REDACTED",
+      "title": "REDACTED",
+      "footer": "Mar 17, 2019 1:25 PM",
+      "header": "Asana for Slack",
+      "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+      "html_text": "<body>Great! I like this idea.</body>",
+      "title_link": "https://example.invalid/xxxxxxxx/XXXXXXX/00000000",
+      "header_link": "https://example.invalid/xxxx/xxxxx"
+    }
+  ],
+  "html_text": "Get whatever Sashimi has.",
+  "is_edited": false,
+  "is_pinned": false,
+  "new_dates": {
+    "due_at": "2019-09-15T02:06:58.158Z",
+    "due_on": "2019-09-15",
+    "start_on": "2019-09-14"
+  },
+  "num_likes": 5,
+  "old_dates": {
+    "due_at": "2019-09-15T02:06:58.158Z",
+    "due_on": "2019-09-15",
+    "start_on": "2019-09-14"
+  },
+  "created_at": "2012-02-22T02:06:58.147Z",
+  "created_by": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "user"
+  },
+  "dependency": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "num_hearts": 5,
+  "is_editable": true,
+  "new_section": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "section"
+  },
+  "old_section": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "section"
+  },
+  "custom_field": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "type": "text",
+    "enabled": true,
+    "enum_value": {
+      "gid": "00000",
+      "name": "REDACTED",
+      "color": "blue",
+      "enabled": true,
+      "resource_type": "enum_option"
+    },
+    "text_value": "Some Value",
+    "enum_options": [
+      {
+        "gid": "00000",
+        "name": "REDACTED",
+        "color": "blue",
+        "enabled": true,
+        "resource_type": "enum_option"
+      }
+    ],
+    "resource_type": "custom_field",
+    "resource_subtype": "text"
+  },
+  "duplicate_of": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "resource_type": "story",
+  "new_enum_value": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "color": "blue",
+    "enabled": true,
+    "resource_type": "enum_option"
+  },
+  "new_text_value": "This is the New Text",
+  "old_enum_value": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "color": "blue",
+    "enabled": true,
+    "resource_type": "enum_option"
+  },
+  "old_text_value": "This was the Old Text",
+  "duplicated_from": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "new_number_value": 2,
+  "old_number_value": 1,
+  "resource_subtype": "comment_added",
+  "new_resource_subtype": "milestone",
+  "old_resource_subtype": "default_task",
+  "custom_fields_collection": {
+    "00000": {
+      "gid": "00000",
+      "name": "REDACTED",
+      "type": "text",
+      "enum_options": [
+        {
+          "gid": "00000",
+          "name": "REDACTED",
+          "color": "blue",
+          "enabled": true,
+          "resource_type": "enum_option"
+        }
+      ],
+      "resource_type": "custom_field",
+      "resource_subtype": "text"
+    }
+  }
+}

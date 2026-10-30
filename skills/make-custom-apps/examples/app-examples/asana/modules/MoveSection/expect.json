@@ -1,0 +1,44 @@
+[
+  {
+    "name": "workspaceRPC",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": {
+            "store": "rpc://app%23asana@2/GetProjects",
+            "nested": [
+              {
+                "name": "section",
+                "type": "select",
+                "label": "Project Section ID",
+                "options": "rpc://app%23asana@2/GetProjectSections",
+                "required": true
+              },
+              {
+                "help": "Either the before section ID is required or the after section ID.",
+                "name": "before_section",
+                "type": "select",
+                "label": "Before Section ID",
+                "options": "rpc://app%23asana@2/GetProjectSections"
+              },
+              {
+                "help": "Either the before section ID is required or the after section ID.",
+                "name": "after_section",
+                "type": "select",
+                "label": "After Section ID",
+                "options": "rpc://app%23asana@2/GetProjectSections"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "required": true
+  }
+]

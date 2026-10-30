@@ -1,0 +1,165 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "File ID"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "timestamp",
+    "type": "number",
+    "label": "Timestamp"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "mimetype",
+    "type": "text",
+    "label": "Mimetype"
+  },
+  {
+    "name": "filetype",
+    "type": "text",
+    "label": "Filetype"
+  },
+  {
+    "name": "pretty_type",
+    "type": "text",
+    "label": "Pretty type"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "editable",
+    "type": "boolean",
+    "label": "Editable"
+  },
+  {
+    "name": "size",
+    "type": "number",
+    "label": "Size"
+  },
+  {
+    "name": "mode",
+    "type": "text",
+    "label": "Mode"
+  },
+  {
+    "name": "is_external",
+    "type": "boolean",
+    "label": "Is external"
+  },
+  {
+    "name": "external_type",
+    "type": "text",
+    "label": "External type"
+  },
+  {
+    "name": "is_public",
+    "type": "boolean",
+    "label": "Is public"
+  },
+  {
+    "name": "public_url_shared",
+    "type": "boolean",
+    "label": "Public url shared"
+  },
+  {
+    "name": "display_as_bot",
+    "type": "boolean",
+    "label": "Display as bot"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "Username"
+  },
+  {
+    "name": "url_private",
+    "type": "url",
+    "label": "Url private"
+  },
+  {
+    "name": "url_private_download",
+    "type": "url",
+    "label": "Url private download"
+  },
+  {
+    "name": "permalink",
+    "type": "url",
+    "label": "Permalink"
+  },
+  {
+    "name": "permalink_public",
+    "type": "text",
+    "label": "Permalink public"
+  },
+  {
+    "name": "edit_link",
+    "type": "url",
+    "label": "Edit link"
+  },
+  {
+    "name": "preview",
+    "type": "text",
+    "label": "Preview"
+  },
+  {
+    "name": "preview_highlight",
+    "type": "text",
+    "label": "Preview highlight"
+  },
+  {
+    "name": "lines",
+    "type": "number",
+    "label": "Lines"
+  },
+  {
+    "name": "lines_more",
+    "type": "number",
+    "label": "Lines more"
+  },
+  {
+    "name": "preview_is_truncated",
+    "type": "boolean",
+    "label": "Preview is truncated"
+  },
+  {
+    "name": "channels",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Public channels"
+  },
+  {
+    "name": "groups",
+    "type": "array",
+    "label": "Private channels"
+  },
+  {
+    "name": "ims",
+    "type": "array",
+    "label": "Direct message channels"
+  },
+  {
+    "name": "comments_count",
+    "type": "number",
+    "label": "Comments count"
+  }
+]

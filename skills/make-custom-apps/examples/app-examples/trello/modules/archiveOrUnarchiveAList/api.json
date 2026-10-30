@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "value": "{{parameters.archive}}"
+  },
+  "url": "/lists/{{parameters.list_id}}/closed",
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

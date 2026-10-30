@@ -1,0 +1,16 @@
+{
+  "gid": "00000",
+  "status": "in_progress",
+  "new_task": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "task"
+  },
+  "new_project": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "project"
+  },
+  "resource_type": "task",
+  "resource_subtype": "duplicate_task"
+}

@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/projects/{{parameters.project_id}}/task_assignments",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.task.name}}",
+      "value": "{{item.task.id}}"
+    },
+    "iterate": "{{body.task_assignments}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

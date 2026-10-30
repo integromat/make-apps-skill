@@ -1,0 +1,17 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/projects/{{parameters.project}}/tasks",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) > 1}}"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete a Merge Field",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Deletes an existing merge field.",
+  "altAccountName": null
+}

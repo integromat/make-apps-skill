@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/invoices",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.number + ' - ' + item.client.name + ' [' + item.state + ']'}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.invoices}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

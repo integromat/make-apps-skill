@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "per_page": 100,
+    "is_active": "{{parameters.active}}"
+  },
+  "url": "/projects",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{if(item.code, '[' + item.code + '] ' + item.name, item.name)}} <{{if(item.is_active, 'Active', 'Archived')}}> Client: {{item.client.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.projects}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

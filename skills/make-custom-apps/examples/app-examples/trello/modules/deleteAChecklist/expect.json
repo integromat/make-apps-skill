@@ -1,0 +1,8 @@
+[
+  {
+    "name": "checklist_id",
+    "type": "text",
+    "label": "Checklist ID",
+    "required": true
+  }
+]

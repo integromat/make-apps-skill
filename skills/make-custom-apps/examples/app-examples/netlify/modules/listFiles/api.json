@@ -1,0 +1,8 @@
+{
+  "url": "/sites/{{parameters.site_id}}/files",
+  "method": "GET",
+  "response": {
+    "output": "{{formatDates(item)}}",
+    "iterate": "{{body}}"
+  }
+}

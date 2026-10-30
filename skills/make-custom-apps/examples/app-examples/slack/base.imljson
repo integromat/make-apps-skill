@@ -1,0 +1,18 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "{{ifempty(parameters.domain, 'https://slack.com/api/')}}",
+  "headers": {
+    "authorization": "Bearer {{connection.accessToken}}"
+  },
+  "response": {
+    "error": {
+      "type": "{{getErrorType(statusCode)}}",
+      "message": "{{getErrorMessage(body, statusCode)}}"
+    },
+    "valid": "{{isValid(body, headers)}}"
+  }
+}

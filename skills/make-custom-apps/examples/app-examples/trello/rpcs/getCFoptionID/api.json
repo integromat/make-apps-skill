@@ -1,0 +1,14 @@
+{
+  "qs": {},
+  "url": "/customFields/{{parameters.cf_id}}/options",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.value.text}} ({{item.color}})",
+      "value": "{{item._id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

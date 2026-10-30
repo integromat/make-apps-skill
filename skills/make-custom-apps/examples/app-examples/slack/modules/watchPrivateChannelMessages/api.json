@@ -1,0 +1,73 @@
+[
+  {
+    "response": {
+      "temp": {
+        "channels": "{{emptyarray}}"
+      },
+      "valid": true
+    },
+    "condition": "{{connection.tokenType = 'bot'}}"
+  },
+  {
+    "qs": {
+      "user": "{{connection.authedUserId}}",
+      "limit": 1000,
+      "types": "private_channel",
+      "cursor": "{{temp.cursor}}"
+    },
+    "url": "/users.conversations",
+    "method": "GET",
+    "repeat": {
+      "delay": 100,
+      "limit": 30,
+      "condition": "{{temp.cursor}}"
+    },
+    "response": {
+      "temp": {
+        "cursor": "{{body.response_metadata.next_cursor}}",
+        "channels": "{{merge(temp.channels, map(body.channels, 'id'))}}"
+      }
+    },
+    "condition": "{{connection.tokenType = 'bot'}}"
+  },
+  {
+    "response": {
+      "valid": {
+        "type": "AccountValidationError",
+        "message": "You are not authorized to access this private channel.",
+        "condition": "{{contains(temp.channels, parameters.channel)}}"
+      }
+    },
+    "condition": "{{connection.tokenType = 'bot'}}"
+  },
+  {
+    "qs": {
+      "channel": "{{parameters.channel}}"
+    },
+    "url": "/conversations.history",
+    "body": {},
+    "method": "GET",
+    "headers": {},
+    "response": {
+      "limit": "{{parameters.limit}}",
+      "output": {
+        "ts": "{{item.ts}}",
+        "text": "{{item.text}}",
+        "files": "{{item.files}}"
+      },
+      "iterate": "{{body.messages}}",
+      "trigger": {
+        "id": "{{item.ts}}",
+        "date": "{{tsToDate(item.ts)}}",
+        "type": "date",
+        "order": "desc"
+      }
+    },
+    "pagination": {
+      "qs": {
+        "cursor": "{{body.response_metadata.next_cursor}}"
+      },
+      "condition": "{{body.response_metadata.next_cursor}}"
+    }
+  }
+]

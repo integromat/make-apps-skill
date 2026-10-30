@@ -1,0 +1,48 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "https://app.lemlist.com/api",
+  "headers": {
+    "authorization": "Basic {{base64(':' + connection.apiKey)}}"
+  },
+  "response": {
+    "error": {
+      "400": {
+        "message": "[{{statusCode}}] Bad Request -- Your request is invalid."
+      },
+      "401": {
+        "message": "[{{statusCode}}] Unauthorized -- Your API key is wrong."
+      },
+      "403": {
+        "message": "[{{statusCode}}] Forbidden -- The id requested is hidden for administrators only."
+      },
+      "404": {
+        "message": "[{{statusCode}}] Not Found -- The specified id could not be found."
+      },
+      "405": {
+        "message": "[{{statusCode}}] Method Not Allowed -- You tried to access a id with an invalid method."
+      },
+      "406": {
+        "message": "[{{statusCode}}] Not Acceptable -- You requested a format that isn't json."
+      },
+      "410": {
+        "message": "[{{statusCode}}] Gone -- The id requested has been removed from our servers."
+      },
+      "418": {
+        "message": "[{{statusCode}}] I'm a teapot."
+      },
+      "429": {
+        "message": "[{{statusCode}}] Too Many Requests -- You're requesting too many ids! Slow down!."
+      },
+      "500": {
+        "message": "[{{statusCode}}] Internal Server Error -- We had a problem with our server. Try again later."
+      },
+      "503": {
+        "message": "[{{statusCode}}] Service Unavailable -- We're temporarily offline for maintenance. Please try again later."
+      }
+    }
+  }
+}

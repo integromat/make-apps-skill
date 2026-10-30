@@ -1,0 +1,57 @@
+[
+  {
+    "qs": {
+      "count": "{{min(parameters.limit, 1000)}}",
+      "status": "{{parameters.status}}",
+      "sort_dir": "{{switch(parameters.sort, 'timestamp_opt_asc' , 'ASC', 'timestamp_opt_desc', 'DESC', 'timestamp_signup_asc', 'ASC', 'timestamp_signup_desc', 'DESC', 'last_changed_asc', 'ASC', 'last_changed_desc', 'DESC')}}",
+      "vip_only": "{{parameters.vip_only}}",
+      "email_type": "{{parameters.email_type}}",
+      "sort_field": "{{switch(parameters.sort, 'timestamp_opt_asc' , 'timestamp_opt', 'timestamp_opt_desc', 'timestamp_opt', 'timestamp_signup_asc', 'timestamp_signup', 'timestamp_signup_desc', 'timestamp_signup', 'last_changed_asc', 'last_changed', 'last_changed_desc', 'last_changed')}}",
+      "unique_email_id": "{{parameters.unique_email_id}}",
+      "since_last_changed": "{{formatDate(parameters.since_last_changed, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+      "before_last_changed": "{{formatDate(parameters.before_last_changed, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+      "since_timestamp_opt": "{{formatDate(parameters.since_timestamp_opt, 'YYYY-MM-DDTHH:mm:ssZ')}}",
+      "before_timestamp_opt": "{{formatDate(parameters.before_timestamp_opt, 'YYYY-MM-DDTHH:mm:ssZ')}}"
+    },
+    "url": "/lists/{{parameters.list}}/members",
+    "method": "GET",
+    "response": {
+      "limit": "{{parameters.limit}}",
+      "output": "{{generalResponse(arrangeResponseSubscriber(item, metadata.interface))}}",
+      "iterate": "{{body.members}}"
+    },
+    "condition": "{{parameters.search_subscribers === \"full\"}}",
+    "pagination": {
+      "qs": {
+        "offset": "{{(pagination.page - 1) * 1000}}"
+      },
+      "condition": "{{parameters.limit >= 1000 && length(body.members) === 1000}}"
+    }
+  },
+  {
+    "qs": {
+      "unique_email_id": "{{parameters.unique_email_id}}"
+    },
+    "url": "/lists/{{parameters.list}}/members",
+    "method": "GET",
+    "response": {
+      "limit": "{{parameters.limit}}",
+      "output": "{{generalResponse(arrangeResponseSubscriber(item, metadata.interface))}}",
+      "iterate": "{{body.members}}"
+    },
+    "condition": "{{parameters.search_subscribers === \"uniqueEmailId\"}}"
+  },
+  {
+    "qs": {
+      "query": "{{parameters.query}}"
+    },
+    "url": "/search-members",
+    "method": "GET",
+    "response": {
+      "limit": "{{parameters.limit}}",
+      "output": "{{generalResponse(arrangeResponseSubscriber(item, metadata.interface))}}",
+      "iterate": "{{body.exact_matches.members}}"
+    },
+    "condition": "{{parameters.search_subscribers === \"email\"}}"
+  }
+]

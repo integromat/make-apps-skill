@@ -1,0 +1,28 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Label ID"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "limits",
+    "spec": [],
+    "type": "collection",
+    "label": "Limits"
+  }
+]

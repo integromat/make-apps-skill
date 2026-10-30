@@ -1,0 +1,65 @@
+{
+  "rev": 5,
+  "type": "oauth",
+  "label": "Gong",
+  "scope": [
+    "api:users:read"
+  ],
+  "scopes": {
+    "api:logs:read": "Retrieve logs.",
+    "api:crm:schema": "Upload CRM schema fields to Gong.",
+    "api:crm:upload": "Upload a CRM data file to Gong.",
+    "api:users:read": "Retrieve user data such as ID, name, and phone number.",
+    "api:calls:create": "Create a call in Gong.",
+    "api:crm:register": "Register a generic CRM integration.",
+    "api:library:read": "Retrieve Library folders details such as ID, name, last updated by and a list of calls in it.",
+    "api:crm:get-objects": "Get crm objects.",
+    "api:workspaces:read": "Retrieve a list of all workspaces.",
+    "api:calls:read:basic": "Retrieve basic call data such as title, duration, and spoken language.",
+    "api:stats:scorecards": "Retrieve scorecard statistics such as name, matching call ID, and a list of scorecard's answers.",
+    "api:data-privacy:read": "Retrieve a list of all references to either a specific email address or phone call.",
+    "api:provisioning:read": "Auto provision users and groups using SCIM protocol - Read Only.",
+    "api:stats:interaction": "Retrieve user interaction statistics including various metrics such as `Talk Ratio` and `Interactivity`.",
+    "api:stats:user-actions": "Retrieve user action statistics, such as number of feedback requests or number of call shares.",
+    "api:data-privacy:delete": "Delete all references to a given email address or phone call.",
+    "api:calls:read:extensive": "Retrieve basic call data such as title, duration, and spoken language, and extended data such as interaction stats, list of speakers, and main topics of conversation.",
+    "api:calls:read:media-url": "Retrieve a URL that can be used to play and download the call media (audio or video). CAUTION: The call media may contain PII and biometric data that should be handled according to the respective data protection & privacy laws and agreements you are bound to.",
+    "api:meetings:user:create": "Create Gong meetings.",
+    "api:meetings:user:delete": "Delete meetings.",
+    "api:meetings:user:update": "Update Gong meetings.",
+    "api:calls:read:transcript": "Retrieve a call transcript.",
+    "api:crm:integrations:read": "Read CRM integrations.",
+    "api:engagement-data:write": "Send user engagement data events to Gong.",
+    "api:permission-profile:read": "Read permission profiles.",
+    "api:provisioning:read-write": "Auto provision users and groups using SCIM protocol.",
+    "api:permission-profile:write": "Update permission profile.",
+    "api:settings:scorecards:read": "Retrieve scorecard details such as ID, name, and status (enabled/disabled).",
+    "api:meetings:integration:status": "Validate the integration status for managing meetings with Gong.",
+    "api:stats:user-actions:detailed": "Retrieve detailed user action statistics, such as a list of feedback requests or number of call shares.",
+    "api:crm-calls:manual-association:read": "Read calls that were manually associated with CRM data."
+  },
+  "aliasTo": null,
+  "install": {
+    "common": {
+      "clientId": "{{parameters.clientId}}",
+      "clientSecret": "{{parameters.clientSecret}}"
+    }
+  },
+  "installSpec": [
+    {
+      "name": "clientId",
+      "type": "text",
+      "label": "Client ID",
+      "required": true
+    },
+    {
+      "name": "clientSecret",
+      "type": "text",
+      "label": "Client Secret",
+      "required": true
+    }
+  ],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

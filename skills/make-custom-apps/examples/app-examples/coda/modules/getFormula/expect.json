@@ -1,0 +1,23 @@
+[
+  {
+    "help": "ID of the doc.",
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Doc ID",
+    "options": {
+      "store": "rpc://app%23coda@1/getDocs",
+      "nested": [
+        {
+          "help": "ID or name of the formula.",
+          "name": "formulaIdOrName",
+          "type": "select",
+          "label": "Formula ID or Name",
+          "options": "rpc://app%23coda@1/getFormulasUsingDocId",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

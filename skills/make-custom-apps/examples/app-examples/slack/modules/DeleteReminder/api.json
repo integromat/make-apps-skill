@@ -1,0 +1,12 @@
+{
+  "qs": {},
+  "url": "/reminders.delete",
+  "body": {
+    "reminder": "{{parameters.reminder}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

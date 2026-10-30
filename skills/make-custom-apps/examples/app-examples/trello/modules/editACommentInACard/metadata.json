@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Edit a Comment in a Card",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Edits an existing comment in a specific card.",
+  "altAccountName": null
+}

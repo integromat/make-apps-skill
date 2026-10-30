@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Workspace",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Creates an empty workspace. Workspaces are available on team plans.",
+  "altAccountName": null
+}

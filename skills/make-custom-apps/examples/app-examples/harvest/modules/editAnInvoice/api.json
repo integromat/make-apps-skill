@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/invoices/{{parameters.invoice_id}}",
+  "body": "{{transformRequestDates(omit(parameters,'invoice_id'))}}",
+  "method": "PATCH",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

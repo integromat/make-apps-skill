@@ -1,0 +1,41 @@
+[
+  {
+    "url": "/lists/{{parameters.list}}",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "name": "{{body.name}}",
+        "contact": "{{body.contact}}",
+        "visibility": "{{body.visibility}}",
+        "double_optin": "{{body.double_optin}}",
+        "use_archive_bar": "{{body.use_archive_bar}}",
+        "campaign_defaults": "{{body.campaign_defaults}}",
+        "email_type_option": "{{body.email_type_option}}",
+        "notify_on_subscribe": "{{body.notify_on_subscribe}}",
+        "permission_reminder": "{{body.permission_reminder}}",
+        "marketing_permissions": "{{body.marketing_permissions}}",
+        "notify_on_unsubscribe": "{{body.notify_on_unsubscribe}}"
+      }
+    }
+  },
+  {
+    "url": "/lists/{{parameters.list}}",
+    "body": {
+      "name": "{{ifempty(parameters.name, temp.name)}}",
+      "contact": "{{ifempty(checkEmptyObject(parameters.contact), temp.contact)}}",
+      "visibility": "{{ifempty(parameters.visibility, temp.visibility)}}",
+      "double_optin": "{{ifempty(parameters.double_optin, temp.double_optin)}}",
+      "use_archive_bar": "{{ifempty(parameters.use_archive_bar, temp.use_archive_bar)}}",
+      "campaign_defaults": "{{ifempty(checkEmptyObject(parameters.campaign_defaults), temp.campaign_defaults)}}",
+      "email_type_option": "{{ifempty(parameters.email_type_option, temp.email_type_option)}}",
+      "notify_on_subscribe": "{{ifempty(parameters.notify_on_subscribe, temp.notify_on_subscribe)}}",
+      "permission_reminder": "{{ifempty(parameters.permission_reminder, temp.permission_reminder)}}",
+      "marketing_permissions": "{{ifempty(parameters.marketing_permissions, temp.marketing_permissions)}}",
+      "notify_on_unsubscribe": "{{ifempty(parameters.notify_on_unsubscribe, temp.notify_on_unsubscribe)}}"
+    },
+    "method": "PATCH",
+    "response": {
+      "output": "{{generalResponse(body)}}"
+    }
+  }
+]

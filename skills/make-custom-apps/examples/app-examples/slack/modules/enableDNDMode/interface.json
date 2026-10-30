@@ -1,0 +1,17 @@
+[
+  {
+    "name": "snooze_enabled",
+    "type": "boolean",
+    "label": "Snooze Enabled"
+  },
+  {
+    "name": "snooze_endtime",
+    "type": "date",
+    "label": "Snooze Endtime"
+  },
+  {
+    "name": "snooze_remaining",
+    "type": "number",
+    "label": "Snooze Remaining"
+  }
+]

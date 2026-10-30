@@ -1,0 +1,23 @@
+[
+  {
+    "mode": "edit",
+    "name": "invoice_id",
+    "type": "select",
+    "label": "Invoice ID",
+    "options": "rpc://getInvoices",
+    "required": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of invoices to return",
+    "default": 2
+  },
+  {
+    "help": "Only return invoice payments that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  }
+]

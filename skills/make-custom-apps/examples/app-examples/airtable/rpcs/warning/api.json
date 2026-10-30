@@ -1,0 +1,10 @@
+{
+  "response": {
+    "output": [
+      {
+        "type": "html",
+        "label": "<div class=\"i-exception\"><div class=\"i-exception-description\"><h5>API keys will be deprecated by the end of January 2024</h5><p class=\"text-muted\" align=\"justify\">After this date, API keys will stop working and you will have to migrate to personal access tokens. Personal access tokens allow you to more securely grant API access to Airtable data. <a href=\"https://support.airtable.com/docs/airtable-api-key-deprecation-notice\" target=\"_blank\">Learn more</a></p></div></div>"
+      }
+    ]
+  }
+}

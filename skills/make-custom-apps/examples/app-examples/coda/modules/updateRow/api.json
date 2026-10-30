@@ -1,0 +1,14 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows/{{parameters.rowIdOrName}}",
+  "body": {
+    "row": {
+      "cells": "{{prepareColumns(parameters.columns)}}"
+    }
+  },
+  "method": "PUT",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

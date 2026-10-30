@@ -1,0 +1,7 @@
+[
+  {
+    "name": "requestId",
+    "type": "text",
+    "label": "Request ID"
+  }
+]

@@ -1,0 +1,85 @@
+[
+  {
+    "mode": "edit",
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://app%23trello@4/listBoards",
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "pos",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ],
+    "advanced": true,
+    "mappable": {
+      "help": "Provide one of the options: `top`, `bottom`, or a positive floating point number."
+    },
+    "validate": false
+  },
+  {
+    "name": "select_or_manual_listID",
+    "type": "select",
+    "label": "Copy list",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manually",
+        "nested": [
+          {
+            "help": "ID of the list to copy into the new list.",
+            "name": "list_id",
+            "type": "text",
+            "label": "List ID",
+            "advanced": true
+          }
+        ]
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "idBoard",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://app%23trello@4/listBoards",
+              "nested": [
+                {
+                  "help": "ID of the list to copy into the new list.",
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": "rpc://app%23trello@4/getBoardLists2",
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "advanced": true,
+    "mappable": false
+  }
+]

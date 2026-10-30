@@ -1,0 +1,9 @@
+[
+  {
+    "help": "The identifier of the payout to be retrieved.",
+    "name": "payout",
+    "type": "text",
+    "label": "Payout",
+    "required": true
+  }
+]

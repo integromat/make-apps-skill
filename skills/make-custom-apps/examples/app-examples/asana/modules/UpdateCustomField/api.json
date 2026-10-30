@@ -1,0 +1,10 @@
+{
+  "url": "/custom_fields/{{parameters.custom_field}}",
+  "body": {
+    "data": "{{omit(parameters,'workspace','custom_field','resource_subtype')}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

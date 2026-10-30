@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/controls/{{parameters.controlIdOrName}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

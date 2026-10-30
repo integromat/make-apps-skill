@@ -1,0 +1,91 @@
+[
+  {
+    "name": "base",
+    "type": "select",
+    "label": "Base",
+    "options": {
+      "store": "rpc://app%23airtable@3/RpcGetBases",
+      "nested": [
+        {
+          "name": "table",
+          "type": "select",
+          "label": "Table",
+          "options": {
+            "store": "rpc://app%23airtable@3/RpcGetTables",
+            "nested": {
+              "store": [
+                {
+                  "name": "sort",
+                  "spec": [
+                    {
+                      "name": "field",
+                      "type": "select",
+                      "label": "Field",
+                      "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc"
+                    },
+                    {
+                      "name": "direction",
+                      "type": "select",
+                      "label": "Direction",
+                      "options": [
+                        {
+                          "label": "Descending",
+                          "value": "desc"
+                        },
+                        {
+                          "label": "Ascending",
+                          "value": "asc"
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "array",
+                  "label": "Sort"
+                },
+                {
+                  "name": "view",
+                  "type": "select",
+                  "label": "View",
+                  "options": "rpc://app%23airtable@3/RpcGetTableViews"
+                },
+                {
+                  "help": "Limit fields in the output. Leave empty to retrieve all fields.",
+                  "name": "fields",
+                  "type": "select",
+                  "label": "Output Fields",
+                  "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc",
+                  "multiple": true
+                }
+              ],
+              "domain": "expect"
+            }
+          },
+          "required": true
+        },
+        {
+          "help": "An Airtable formula used to filter records. The formula will be evaluated for each record, and if the result is not `0`, `false`, `\"\"`, `NaN`, `[]`, or `#Error!` the record will be included in the response. You can find more information about the formula on [Airtable's website](https://support.airtable.com/hc/en-us/articles/203255215-Formula-Field-Reference).\nFor example, to only include records where `Name` isn't empty, pass in: `NOT({Name} = '')`",
+          "name": "formula",
+          "type": "text",
+          "label": "Formula"
+        },
+        {
+          "help": "The maximum number of records to return.",
+          "name": "maxRecords",
+          "type": "integer",
+          "label": "Limit",
+          "default": 10
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Use column ID instead of column name for mapping. This enable persistency over column name change. Enabling this option allows to replace entity keys in the response - instead of entity names specified as parameter keys, their identifiers will be specified. Changing this value will break all existing mappings in this scenario.",
+    "name": "useColumnId",
+    "type": "boolean",
+    "label": "Use Column ID",
+    "default": false,
+    "advanced": true,
+    "required": true
+  }
+]

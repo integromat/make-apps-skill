@@ -1,0 +1,12 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}/removeProject",
+  "body": {
+    "data": {
+      "project": "{{parameters.projectRemoved}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{}}"
+  }
+}

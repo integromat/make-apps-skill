@@ -1,0 +1,28 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "group_id",
+          "type": "select",
+          "label": "Group ID",
+          "options": "rpc://app%23clockify@1/listGroups",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "output": {
+        "date": "{{if(parameters.event, item.updatedAt, item.createdAt)}}",
+        "label": "{{item.name}}",
+        "description": "{{undefined}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Documents",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Triggers when a document is created or updated.",
+  "altAccountName": null
+}

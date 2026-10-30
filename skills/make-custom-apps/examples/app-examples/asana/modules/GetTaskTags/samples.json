@@ -1,0 +1,20 @@
+{
+  "gid": "00000",
+  "name": "REDACTED",
+  "color": "light-green",
+  "notes": "",
+  "followers": [
+    {
+      "gid": "00000",
+      "name": "REDACTED",
+      "resource_type": "user"
+    }
+  ],
+  "workspace": {
+    "gid": "00000",
+    "name": "REDACTED",
+    "resource_type": "workspace"
+  },
+  "created_at": "15 januari 2020 16:13",
+  "resource_type": "tag"
+}

@@ -1,0 +1,18 @@
+{
+  "qs": {},
+  "url": "/users",
+  "body": {
+    "email": "{{parameters.email}}",
+    "roles": "{{parameters.roles}}",
+    "is_admin": "{{parameters.is_admin}}",
+    "timezone": "{{parameters.timezone}}",
+    "last_name": "{{parameters.last_name}}",
+    "telephone": "{{parameters.telephone}}",
+    "first_name": "{{parameters.first_name}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

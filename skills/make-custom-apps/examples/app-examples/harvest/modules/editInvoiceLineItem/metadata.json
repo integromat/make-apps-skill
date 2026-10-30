@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Edit Invoice Line Item",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Edits line item on existing invoice.",
+  "altAccountName": null
+}

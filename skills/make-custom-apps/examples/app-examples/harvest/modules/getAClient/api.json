@@ -1,0 +1,7 @@
+{
+  "url": "/clients/{{parameters.client_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

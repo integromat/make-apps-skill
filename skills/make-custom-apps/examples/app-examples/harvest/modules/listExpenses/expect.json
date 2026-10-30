@@ -1,0 +1,74 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of invoices to return",
+    "default": 2
+  },
+  {
+    "help": "Only return expenses belonging to the user with the given ID.",
+    "mode": "edit",
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://getUsers"
+  },
+  {
+    "help": "Only return expenses belonging to the client with the given ID.",
+    "mode": "edit",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients"
+  },
+  {
+    "help": "Only return expenses belonging to the project with the given ID.",
+    "mode": "edit",
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects"
+  },
+  {
+    "help": "Only return expenses that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  },
+  {
+    "help": "Only return expenses with an `Spent date` on or after the given date.",
+    "name": "from",
+    "time": true,
+    "type": "date",
+    "label": "From"
+  },
+  {
+    "help": "Only return expenses with an `Spent date` on or before the given date.",
+    "name": "to",
+    "time": true,
+    "type": "date",
+    "label": "To"
+  },
+  {
+    "name": "is_billed",
+    "type": "select",
+    "label": "Invoiced",
+    "options": {
+      "store": [
+        {
+          "label": "Only invoiced",
+          "value": true
+        },
+        {
+          "label": "Only not invoiced",
+          "value": false
+        }
+      ],
+      "placeholder": "Show all"
+    },
+    "mappable": {
+      "help": "`true` = Only invoiced, `false` = Only not invoiced, leave blank for all."
+    }
+  }
+]

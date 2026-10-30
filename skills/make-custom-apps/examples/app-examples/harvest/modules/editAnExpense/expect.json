@@ -1,0 +1,54 @@
+[
+  {
+    "name": "expense_id",
+    "type": "select",
+    "label": "Expense ID",
+    "options": "rpc://getExpenses",
+    "required": true
+  },
+  {
+    "help": "Only the date is relevant, time will be ignored.",
+    "name": "spent_date",
+    "time": false,
+    "type": "date",
+    "label": "Spent date"
+  },
+  {
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects?active=true"
+  },
+  {
+    "name": "expense_category_id",
+    "type": "select",
+    "label": "Category ID",
+    "options": "rpc://getExpenseCategories",
+    "mappable": false
+  },
+  {
+    "name": "units",
+    "type": "number",
+    "label": "Units"
+  },
+  {
+    "name": "total_cost",
+    "type": "number",
+    "label": "Total cost"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "delete_receipt",
+    "type": "boolean",
+    "label": "Delete receipt"
+  }
+]

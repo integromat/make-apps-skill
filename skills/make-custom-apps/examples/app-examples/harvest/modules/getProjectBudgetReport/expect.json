@@ -1,0 +1,15 @@
+[
+  {
+    "help": "Pass `true` to only return active projects and `false` to return inactive projects.",
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is Active"
+  },
+  {
+    "help": "Maximum number of reports to return.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

@@ -1,0 +1,527 @@
+[
+  {
+    "name": "line_items",
+    "spec": [
+      {
+        "mode": "edit",
+        "name": "price",
+        "type": "select",
+        "label": "Price",
+        "options": "rpc://app%23stripe@1/listPrices",
+        "editable": true,
+        "required": true
+      },
+      {
+        "name": "quantity",
+        "type": "uinteger",
+        "label": "Quantity",
+        "required": true
+      },
+      {
+        "name": "adjustable_quantity",
+        "spec": [
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enabled",
+            "nested": [
+              {
+                "name": "minimum",
+                "type": "uinteger",
+                "label": "Minimum",
+                "validate": {
+                  "max": 98
+                }
+              },
+              {
+                "name": "maximum",
+                "type": "uinteger",
+                "label": "Maximum",
+                "validate": {
+                  "max": 99
+                }
+              }
+            ],
+            "required": true
+          }
+        ],
+        "type": "collection",
+        "label": "Adjustable Quantity"
+      }
+    ],
+    "type": "array",
+    "label": "Line Items",
+    "required": true
+  },
+  {
+    "name": "payment_method_types",
+    "type": "select",
+    "label": "Payment Method Types",
+    "dynamic": true,
+    "options": [
+      {
+        "label": "Card",
+        "value": "card"
+      },
+      {
+        "label": "Affirm",
+        "value": "affirm"
+      },
+      {
+        "label": "PromptPay",
+        "value": "promptpay"
+      },
+      {
+        "label": "BACS Debit",
+        "value": "bacs_debit"
+      },
+      {
+        "label": "Bancontact",
+        "value": "bancontact"
+      },
+      {
+        "label": "BLIK",
+        "value": "blik"
+      },
+      {
+        "label": "Boleto",
+        "value": "boleto"
+      },
+      {
+        "label": "EPS",
+        "value": "eps"
+      },
+      {
+        "label": "FPX",
+        "value": "fpx"
+      },
+      {
+        "label": "Giropay",
+        "value": "giropay"
+      },
+      {
+        "label": "GrabPay",
+        "value": "grabpay"
+      },
+      {
+        "label": "iDEAL",
+        "value": "ideal"
+      },
+      {
+        "label": "Klarna",
+        "value": "klarna"
+      },
+      {
+        "label": "Konbini",
+        "value": "konbini"
+      },
+      {
+        "label": "OXXO",
+        "value": "oxxo"
+      },
+      {
+        "label": "Przelewy24",
+        "value": "p24"
+      },
+      {
+        "label": "PayNow",
+        "value": "paynow"
+      },
+      {
+        "label": "Afterpay and Clearpay",
+        "value": "afterpay_clearpay"
+      },
+      {
+        "label": "Alipay",
+        "value": "alipay"
+      },
+      {
+        "label": "BECS Direct Debit in Australia",
+        "value": "au_becs_debit"
+      },
+      {
+        "label": "SEPA Direct Debit",
+        "value": "sepa_debit"
+      },
+      {
+        "label": "Sofort",
+        "value": "sofort"
+      },
+      {
+        "label": "US Bank Account",
+        "value": "us_bank_account"
+      },
+      {
+        "label": "Wechat Pay",
+        "value": "wechat_pay"
+      }
+    ],
+    "editable": true,
+    "multiple": true
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  },
+  {
+    "name": "after_completion",
+    "spec": [
+      {
+        "help": "`Redirect`: Redirects the customer to the specified url after the purchase is complete.\n\n`Hosted Confirmation`: Displays a message on the hosted surface after the purchase is complete.",
+        "name": "type",
+        "type": "select",
+        "label": "Type",
+        "options": [
+          {
+            "label": "Redirect",
+            "value": "redirect",
+            "nested": [
+              {
+                "name": "redirect",
+                "spec": [
+                  {
+                    "help": "The URL the customer will be redirected to after the purchase is complete. You can embed `{CHECKOUT_SESSION_ID}` into the URL to have the id of the completed checkout session included.",
+                    "name": "url",
+                    "type": "url",
+                    "label": "URL",
+                    "required": true
+                  }
+                ],
+                "type": "collection",
+                "label": "Redirect"
+              }
+            ]
+          },
+          {
+            "label": "Hosted Confirmation",
+            "value": "hosted_confirmation",
+            "nested": [
+              {
+                "name": "hosted_confirmation",
+                "spec": [
+                  {
+                    "name": "custom_message",
+                    "type": "text",
+                    "label": "Custom Message"
+                  }
+                ],
+                "type": "collection",
+                "label": "Hosted Confirmation"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "type": "collection",
+    "label": "After Completion",
+    "advanced": true
+  },
+  {
+    "name": "allow_promotion_codes",
+    "type": "boolean",
+    "label": "Allow Promotion Codes",
+    "advanced": true
+  },
+  {
+    "name": "automatic_tax",
+    "spec": [
+      {
+        "help": "If `true`, tax will be calculated automatically using the customer’s location.",
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Automatic Tax",
+    "advanced": true
+  },
+  {
+    "name": "billing_address_collection",
+    "type": "select",
+    "label": "Billing Address Collection",
+    "options": [
+      {
+        "label": "Auto",
+        "value": "auto"
+      },
+      {
+        "label": "Required",
+        "value": "required"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "consent_collection",
+    "spec": [
+      {
+        "name": "promotions",
+        "type": "select",
+        "label": "Promotions",
+        "options": [
+          {
+            "label": "Auto",
+            "value": "auto"
+          },
+          {
+            "label": "None",
+            "value": "none"
+          }
+        ]
+      }
+    ],
+    "type": "collection",
+    "label": "Consent Collection",
+    "advanced": true
+  },
+  {
+    "help": "Three-letter currency code in lowercase. For example, `usd`. Must be a supported currency and supported by each line item’s price.",
+    "name": "currency",
+    "type": "text",
+    "label": "Currency",
+    "advanced": true,
+    "validate": {
+      "max": 3,
+      "min": 3
+    }
+  },
+  {
+    "name": "customer_creation",
+    "type": "select",
+    "label": "Customer Creation",
+    "options": [
+      {
+        "label": "If Required",
+        "value": "if_required"
+      },
+      {
+        "label": "Always",
+        "value": "always"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "payment_intent_data",
+    "spec": [
+      {
+        "name": "capture_method",
+        "type": "select",
+        "label": "Capture Method",
+        "options": [
+          {
+            "label": "Automatic",
+            "value": "automatic"
+          },
+          {
+            "label": "Manual",
+            "value": "manual"
+          }
+        ]
+      },
+      {
+        "help": "`On Session`: If you intend to only reuse the payment method when your customer is present in your checkout flow.\n\n`Off Session`: If your customer may or may not be present in your checkout flow.",
+        "name": "setup_future_usage",
+        "type": "select",
+        "label": "Setup Future Usage",
+        "options": [
+          {
+            "label": "On Session",
+            "value": "on_session"
+          },
+          {
+            "label": "Off Session",
+            "value": "off_session"
+          }
+        ]
+      }
+    ],
+    "type": "collection",
+    "label": "Payment Intent Data",
+    "advanced": true
+  },
+  {
+    "name": "payment_method_collection",
+    "type": "select",
+    "label": "Payment Method Collection",
+    "options": [
+      {
+        "label": "Always",
+        "value": "always"
+      },
+      {
+        "label": "If Required",
+        "value": "if_required"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "phone_number_collection",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Phone Number Collection",
+    "advanced": true
+  },
+  {
+    "name": "shipping_address_collection",
+    "spec": [
+      {
+        "help": "Two-letter country codes representing which countries Checkout should provide as options for shipping locations. Unsupported country codes: AS, CX, CC, CU, HM, IR, KP, MH, FM, NF, MP, PW, SD, SY, UM, VI.",
+        "name": "allowed_countries",
+        "spec": {
+          "type": "text",
+          "label": "Country Code",
+          "validate": {
+            "max": 2,
+            "min": 2
+          }
+        },
+        "type": "array",
+        "label": "Allowed Countries"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping Address Collection",
+    "advanced": true
+  },
+  {
+    "name": "shipping_options",
+    "spec": {
+      "spec": [
+        {
+          "name": "shipping_rate",
+          "type": "select",
+          "label": "Shipping Rate",
+          "options": "rpc://app%23stripe@1/listShippingRates",
+          "editable": true
+        }
+      ],
+      "type": "collection",
+      "label": "Shipping Option"
+    },
+    "type": "array",
+    "label": "Shipping Options",
+    "advanced": true
+  },
+  {
+    "name": "submit_type",
+    "type": "select",
+    "label": "Submit Type",
+    "options": [
+      {
+        "label": "Auto",
+        "value": "auto"
+      },
+      {
+        "label": "Pay",
+        "value": "pay"
+      },
+      {
+        "label": "Book",
+        "value": "book"
+      },
+      {
+        "label": "Donate",
+        "value": "donate"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "subscription_data",
+    "spec": [
+      {
+        "name": "trial_period_days",
+        "type": "uinteger",
+        "label": "Trial Period Days"
+      }
+    ],
+    "type": "collection",
+    "label": "Subscription Data",
+    "advanced": true
+  },
+  {
+    "name": "tax_id_collection",
+    "spec": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Tax ID Collection",
+    "advanced": true
+  },
+  {
+    "help": "__[Stripe Connect Only]__ The amount of the application fee (if any) that will be requested to be applied to the payment and transferred to the application owner's Stripe account. Can only be applied when there are no line items with recurring prices.",
+    "name": "application_fee_amount",
+    "type": "uinteger",
+    "label": "Application Fee Amount",
+    "advanced": true
+  },
+  {
+    "help": "__[Stripe Connect Only]__ This represents the percentage of the subscription invoice subtotal that will be transferred to the application owner’s Stripe account. There must be at least 1 line item with a recurring price to use this field.",
+    "name": "application_fee_percent",
+    "type": "number",
+    "label": "Application Fee Percent",
+    "advanced": true,
+    "validate": {
+      "max": 100,
+      "min": 0
+    }
+  },
+  {
+    "help": "__[Stripe Connect Only]__ The account on behalf of which to charge.",
+    "name": "on_behalf_of",
+    "type": "select",
+    "label": "On Behalf Of",
+    "options": "rpc://app%23stripe@1/listConnectedAccounts",
+    "editable": true
+  },
+  {
+    "name": "transfer_data",
+    "spec": [
+      {
+        "help": "__[Stripe Connect Only]__ If specified, successful charges will be attributed to the destination account for tax reporting, and the funds from charges will be transferred to the destination account.",
+        "name": "destination",
+        "type": "select",
+        "label": "Destination",
+        "options": "rpc://app%23stripe@1/listConnectedAccounts",
+        "editable": true
+      },
+      {
+        "help": "__[Stripe Connect Only]__ The amount that will be transferred automatically when a charge succeeds.",
+        "name": "amount",
+        "type": "number",
+        "label": "Amount"
+      }
+    ],
+    "type": "collection",
+    "label": "Transfer Data",
+    "advanced": true
+  }
+]

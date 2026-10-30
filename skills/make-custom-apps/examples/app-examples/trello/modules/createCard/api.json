@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "due": "{{parameters.due_date}}",
+    "pos": "{{parameters.position}}",
+    "name": "{{parameters.name}}",
+    "start": "{{parameters.start}}",
+    "idLabels": "{{join(parameters.labels_id, ',')}}",
+    "idMembers": "{{join(parameters.members_id, ',')}}",
+    "urlSource": "{{parameters.urlSource}}",
+    "dueComplete": "{{parameters.dueComplete}}",
+    "idCardSource": "{{parameters.idCardSource}}"
+  },
+  "url": "/cards",
+  "body": {
+    "desc": "{{parameters.description}}",
+    "idList": "{{parameters.list_id}}",
+    "fileSource": "{{fileExistCreateCard(parameters.filename, parameters.filedata)}}"
+  },
+  "type": "multipart/form-data",
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "help": "Select which boards you want to search across. If you don't select any board, the search will be performed across all boards.",
+    "name": "board_id",
+    "type": "select",
+    "label": "Board",
+    "options": "rpc://app%23trello@4/listBoards",
+    "multiple": true,
+    "multiline": true
+  },
+  {
+    "name": "query",
+    "type": "text",
+    "label": "Query",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "help": "Maximum number of returned cards.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  },
+  {
+    "name": "partial",
+    "type": "boolean",
+    "label": "Partial",
+    "required": true
+  },
+  {
+    "help": "You can specify which card to look for here.",
+    "name": "idCards",
+    "spec": {
+      "type": "text",
+      "label": "Card ID"
+    },
+    "type": "array",
+    "label": "Cards"
+  }
+]

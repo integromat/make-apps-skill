@@ -1,0 +1,24 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 300,
+      "output": {
+        "date": "{{item.created_at}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch New Tags",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Checks whether new tags have been made.",
+  "altAccountName": null
+}

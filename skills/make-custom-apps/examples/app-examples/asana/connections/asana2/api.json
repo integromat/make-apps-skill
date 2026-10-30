@@ -1,0 +1,91 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://app.asana.com/api/1.0/users/me",
+    "headers": {
+      "authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.data.gid}}",
+      "error": {
+        "message": "[{{statusCode}}] {{body.errors[1].message}}"
+      },
+      "metadata": {
+        "type": "text",
+        "value": "{{body.data.email}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.body.code",
+        "request.body.client_secret",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://app.asana.com/-/oauth_token",
+    "body": {
+      "code": "{{temp.code}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "client_secret": "{{ifempty(parameters.clientSecret, common.clientSecret)}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}",
+        "refreshToken": "{{body.refresh_token}}"
+      }
+    }
+  },
+  "refresh": {
+    "log": {
+      "sanitize": [
+        "request.body.client_secret",
+        "request.body.refresh_token",
+        "response.body.access_token",
+        "response.body.refresh_token"
+      ]
+    },
+    "url": "https://app.asana.com/-/oauth_token",
+    "body": {
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "grant_type": "refresh_token",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "client_secret": "{{ifempty(parameters.clientSecret, common.clientSecret)}}",
+      "refresh_token": "{{data.refreshToken}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "response": {
+      "data": {
+        "expires": "{{addSeconds(now, body.expires_in)}}",
+        "accessToken": "{{body.access_token}}"
+      }
+    },
+    "condition": "{{data.expires < addMinutes(now, 1)}}"
+  },
+  "authorize": {
+    "qs": {
+      "scope": "{{join(oauth.scope, ',')}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code"
+    },
+    "url": "https://app.asana.com/-/oauth_authorize",
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      }
+    }
+  }
+}

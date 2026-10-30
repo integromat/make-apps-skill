@@ -1,0 +1,10 @@
+{
+  "url": "/stories/{{parameters.story_gid}}",
+  "body": {
+    "data": "{{omit(parameters,'choice','task_gid','story_gid','workspace','assignee','project','section','tag','selectOrMap')}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

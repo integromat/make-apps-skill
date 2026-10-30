@@ -1,0 +1,8 @@
+{
+  "url": "/payment_intents/{{parameters.id}}/cancel",
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

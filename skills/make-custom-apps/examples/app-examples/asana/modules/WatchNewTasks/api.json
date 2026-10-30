@@ -1,0 +1,22 @@
+{
+  "qs": "{{setOptFields(omit(if(parameters.filter == 'section',omit(parameters,'project'),if(parameters.filter == 'projectalternative',omit(parameters,'workspace'),parameters)),'filter','page'),'Task')}}",
+  "url": "/tasks",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{customFieldExtra(item)}}",
+    "iterate": "{{body.data}}",
+    "trigger": {
+      "id": "{{item.gid}}",
+      "date": "{{item.created_at}}",
+      "type": "date",
+      "order": "asc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

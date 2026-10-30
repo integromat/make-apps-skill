@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": "rpc://listLists",
+    "required": true
+  }
+]

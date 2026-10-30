@@ -1,0 +1,409 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Task ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "help": "You must filter on workspace and assignee, project, section or tag to select a task.",
+            "name": "choice",
+            "type": "select",
+            "label": "Find Task through",
+            "options": [
+              {
+                "label": "Workspace and Assignee",
+                "value": "workspaceAssignee",
+                "nested": [
+                  {
+                    "name": "workspace",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "assignee",
+                          "type": "select",
+                          "label": "Assignee",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetWorkspaceUsers",
+                            "nested": [
+                              {
+                                "name": "task_gid",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetTasks",
+                                  "nested": "rpc://app%23asana@2/GenerateTaskCustomFields"
+                                },
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Project",
+                "value": "project",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "task_gid",
+                                "type": "select",
+                                "label": "Task ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetTasks",
+                                  "nested": "rpc://app%23asana@2/GenerateTaskCustomFields"
+                                },
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Section",
+                "value": "section",
+                "nested": [
+                  {
+                    "name": "workspaceRPC",
+                    "type": "select",
+                    "label": "Workspace",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetWorkspaces",
+                      "nested": [
+                        {
+                          "name": "project",
+                          "type": "select",
+                          "label": "Project ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetProjects",
+                            "nested": [
+                              {
+                                "name": "section",
+                                "type": "select",
+                                "label": "Project Section ID",
+                                "options": {
+                                  "store": "rpc://app%23asana@2/GetProjectSections",
+                                  "nested": [
+                                    {
+                                      "name": "task_gid",
+                                      "type": "select",
+                                      "label": "Task ID",
+                                      "options": {
+                                        "store": "rpc://app%23asana@2/GetTasks",
+                                        "nested": "rpc://app%23asana@2/GenerateTaskCustomFields"
+                                      },
+                                      "mappable": false,
+                                      "required": true
+                                    }
+                                  ]
+                                },
+                                "mappable": false,
+                                "required": true
+                              }
+                            ]
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              },
+              {
+                "label": "Tag",
+                "value": "tag",
+                "nested": [
+                  {
+                    "name": "tag",
+                    "type": "select",
+                    "label": "Tag ID",
+                    "options": {
+                      "store": "rpc://app%23asana@2/GetTags",
+                      "nested": [
+                        {
+                          "name": "task_gid",
+                          "type": "select",
+                          "label": "Task ID",
+                          "options": {
+                            "store": "rpc://app%23asana@2/GetTasks",
+                            "nested": "rpc://app%23asana@2/GenerateTaskCustomFields"
+                          },
+                          "mappable": false,
+                          "required": true
+                        }
+                      ]
+                    },
+                    "mappable": false,
+                    "required": true
+                  }
+                ]
+              }
+            ],
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "task_gid",
+            "type": "text",
+            "label": "Task ID",
+            "required": true
+          },
+          {
+            "help": "Select the workspace to retrieve the possible custom fields.",
+            "name": "workspace",
+            "type": "select",
+            "label": "Workspace ID",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "ignoreMe",
+                  "type": "select",
+                  "label": "Generate Workspace Custom Fields",
+                  "default": "no",
+                  "options": [
+                    {
+                      "label": "No",
+                      "value": "no"
+                    },
+                    {
+                      "label": "Yes",
+                      "value": "yes",
+                      "nested": "rpc://app%23asana@2/GenerateWorkspaceCustFieldParam"
+                    }
+                  ]
+                },
+                {
+                  "name": "ignoreMeTwo",
+                  "type": "select",
+                  "label": "Generate Workspace Projects Custom Fields",
+                  "default": "no",
+                  "options": [
+                    {
+                      "label": "No",
+                      "value": "no"
+                    },
+                    {
+                      "label": "Yes",
+                      "value": "yes",
+                      "nested": "rpc://app%23asana@2/GenerateWorkspProjectsCustFields"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Task Name"
+  },
+  {
+    "help": "HTML notes are dominant over notes. This field will be overwritten by the text of HTML Notes below.",
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "help": "HTML notes are dominant over notes. Overwrites the Notes field above.",
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "help": "Select a workspace to generate the workspace's users (potential assignees).",
+    "mode": "edit",
+    "name": "workspaceAlt",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "name": "assignee",
+          "type": "select",
+          "label": "Task Assignee ID",
+          "options": {
+            "store": "rpc://app%23asana@2/GetWorkspaceUsers",
+            "nested": [
+              {
+                "help": "Setting this field to inbox or upcoming inserts it at the top of the section, while the other options will insert at the bottom.",
+                "name": "assignee_status",
+                "type": "select",
+                "label": "Assignee Status",
+                "options": [
+                  {
+                    "label": "Inbox",
+                    "value": "inbox"
+                  },
+                  {
+                    "label": "Later",
+                    "value": "later"
+                  },
+                  {
+                    "label": "Today",
+                    "value": "today"
+                  },
+                  {
+                    "label": "Upcoming",
+                    "value": "upcoming"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "help": "The due can be a date or a date time combination.",
+    "name": "due",
+    "type": "select",
+    "label": "Due",
+    "options": [
+      {
+        "label": "Date",
+        "value": "date",
+        "nested": [
+          {
+            "help": "Date on which this task is due, the time factor will be ignored.",
+            "name": "due_on",
+            "type": "date",
+            "label": "Due On"
+          },
+          {
+            "help": "Date on which the task starts, the time factor will be ignored. The due date must be present in order to set the Start On field.",
+            "name": "start_on",
+            "type": "date",
+            "label": "Start On"
+          }
+        ]
+      },
+      {
+        "label": "Date Time Combination",
+        "value": "datetime",
+        "nested": [
+          {
+            "help": "Date and time on which this task is due.",
+            "name": "due_at",
+            "type": "date",
+            "label": "Due At"
+          },
+          {
+            "help": "Date on which the task starts, the time factor will be ignored. The due date must be present in order to set the Start On field.",
+            "name": "start_on",
+            "type": "date",
+            "label": "Start On"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "help": "Default Task is the default type.\nMilestones can't have a start date.\nApprovals are only available for users in an Enterprise or Business plan.",
+    "name": "resource_subtype",
+    "type": "select",
+    "label": "Resource Subtype",
+    "options": [
+      {
+        "label": "Approval",
+        "value": "approval"
+      },
+      {
+        "label": "Default Task",
+        "value": "default_task"
+      },
+      {
+        "label": "Milestone",
+        "value": "milestone"
+      }
+    ]
+  },
+  {
+    "name": "liked",
+    "type": "boolean",
+    "label": "Liked"
+  },
+  {
+    "name": "completed",
+    "type": "boolean",
+    "label": "Task Completed?"
+  },
+  {
+    "help": "Any object can only have one external.",
+    "name": "external",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "External ID",
+        "validate": {
+          "max": 1024
+        }
+      },
+      {
+        "help": "The blob may store unicode-safe serialized data such as JSON or YAML. Data blobs are capped at 32,768 characters.",
+        "name": "data",
+        "type": "text",
+        "label": "External Data"
+      }
+    ],
+    "type": "collection",
+    "label": "External"
+  }
+]

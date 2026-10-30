@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "contact_id",
+    "type": "select",
+    "label": "Contact ID",
+    "options": "rpc://getContacts",
+    "required": true
+  }
+]

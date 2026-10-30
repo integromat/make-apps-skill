@@ -60,6 +60,7 @@ Decide from the provider's contract, not the HTTP verb: some APIs support partia
 * If the update **replaces** the resource and needs every current field, a read-and-merge sequence (get the resource, overlay the user's edits and clears, send everything) preserves unspecified values. Keep the merge aligned with the provider's writable schema and mind nested collections, where a shallow merge can be wrong.
 * If the provider documents **partial** updates, an extra read is unnecessary cost and adds concurrency and permission risk.
 * A warning in the description does not make a destructive replacement safe.
+* A read followed by one write is the valid shape of that merge. It is different from several independent writes in one module, which the [batch-actions best practices](https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions) say cannot report partial success and recommend splitting into separate modules. Classify requests by side effects, not HTTP verb, and see [requests-files-multistep](requests-files-multistep.md) for the exceptions and for what a request array does and does not guarantee.
 
 ## Dynamic fields and metadata
 

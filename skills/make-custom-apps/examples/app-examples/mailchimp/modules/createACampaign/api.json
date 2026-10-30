@@ -1,0 +1,42 @@
+[
+  {
+    "url": "/campaigns",
+    "body": {
+      "type": "regular",
+      "settings": {
+        "title": "{{parameters.title}}",
+        "to_name": "{{parameters.to_name}}",
+        "reply_to": "{{parameters.reply_to}}",
+        "folder_id": "{{parameters.folder}}",
+        "from_name": "{{parameters.from_name}}",
+        "template_id": "{{parameters.template}}",
+        "preview_text": "{{parameters.preview_text}}",
+        "subject_line": "{{parameters.subject_line}}",
+        "use_conversation": "{{parameters.use_conversation}}"
+      },
+      "recipients": {
+        "list_id": "{{parameters.list}}",
+        "segment_opts": "{{segmentOpts(parameters.segment)}}"
+      }
+    },
+    "method": "POST",
+    "response": {
+      "temp": {
+        "id": "{{body.id}}",
+        "body": "{{generalResponse(body)}}"
+      },
+      "output": "{{generalResponse(body)}}"
+    }
+  },
+  {
+    "url": "/campaigns/{{temp.id}}/content",
+    "body": {
+      "html": "{{parameters.segment_text}}"
+    },
+    "method": "PUT",
+    "response": {
+      "output": "{{mergeOutput(body, temp.body)}}"
+    },
+    "condition": "{{parameters.select === 'html' && parameters.segment_text}}"
+  }
+]

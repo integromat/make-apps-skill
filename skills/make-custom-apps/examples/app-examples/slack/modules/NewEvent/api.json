@@ -1,0 +1,6 @@
+{
+  "response": {
+    "valid": "{{true}}",
+    "output": "{{payload}}"
+  }
+}

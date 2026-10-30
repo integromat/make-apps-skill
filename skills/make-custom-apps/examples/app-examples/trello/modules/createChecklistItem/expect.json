@@ -1,0 +1,104 @@
+[
+  {
+    "name": "select_or_manual",
+    "type": "select",
+    "label": "Enter Checklist ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "checklist_id",
+            "type": "text",
+            "label": "Checklist ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://getBoardsLists",
+                    "nested": [
+                      {
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": {
+                          "store": "rpc://getIDcardsUnderList",
+                          "nested": [
+                            {
+                              "name": "checklist_id",
+                              "type": "select",
+                              "label": "Checklist",
+                              "options": "rpc://getIDchecklistOnCard",
+                              "mappable": false,
+                              "required": true
+                            }
+                          ]
+                        },
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Item name",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "name": "position",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ]
+  },
+  {
+    "name": "checked",
+    "type": "boolean",
+    "label": "Checked",
+    "required": true
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "limit": 100,
+    "fields": "all",
+    "filter": "updateCard:idList",
+    "entities": true
+  },
+  "url": "/lists/{{parameters.list_id}}/actions",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{onlyListAfter(body, parameters.list_id)}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.date}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page - 1}}"
+    },
+    "condition": "{{pagination.page <= 10 && parameters.limit > 100 && length(body) === 100}}"
+  }
+}

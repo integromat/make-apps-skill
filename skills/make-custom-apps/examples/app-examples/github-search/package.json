@@ -1,0 +1,23 @@
+{
+  "name": "github-search-create-app-example",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Typed Make SDK management script for the GitHub search example. Not Make app runtime code.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit false",
+    "test": "npm run build && node --test .build/create-app.test.js",
+    "dry-run": "npm run build && node .build/create-app.js"
+  },
+  "dependencies": {
+    "@makehq/sdk": "1.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "7.0.2"
+  }
+}

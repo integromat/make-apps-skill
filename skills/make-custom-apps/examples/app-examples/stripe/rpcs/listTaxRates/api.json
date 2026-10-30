@@ -1,0 +1,10 @@
+{
+  "url": "/tax_rates",
+  "response": {
+    "output": {
+      "label": "{{item.display_name}} - {{item.description}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Function",
+    "modules": [
+      "watchFunctions",
+      "listFunctions",
+      "getAFunction",
+      "invokeAFunction"
+    ]
+  },
+  {
+    "label": "Layer",
+    "modules": [
+      "watchLayerVersions",
+      "listLayers",
+      "listLayerVersions",
+      "getALayerVersion"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

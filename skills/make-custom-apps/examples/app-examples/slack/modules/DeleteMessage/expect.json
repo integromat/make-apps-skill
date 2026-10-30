@@ -1,0 +1,14 @@
+[
+  {
+    "name": "channel",
+    "type": "text",
+    "label": "Channel ID",
+    "required": true
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Message ID (time stamp)",
+    "required": true
+  }
+]

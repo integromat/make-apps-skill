@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Search for Organizations",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Returns workspaces matching the search query.",
+  "altAccountName": null
+}

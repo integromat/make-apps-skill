@@ -1,0 +1,9 @@
+[
+  {
+    "help": "The identifier of the balance transaction to be retrieved. Usually starts with `txn_`",
+    "name": "id",
+    "type": "text",
+    "label": "ID",
+    "required": true
+  }
+]

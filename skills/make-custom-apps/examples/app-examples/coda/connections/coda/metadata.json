@@ -1,0 +1,13 @@
+{
+  "rev": 7,
+  "type": "basic",
+  "label": "Coda",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

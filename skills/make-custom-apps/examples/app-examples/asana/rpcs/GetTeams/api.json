@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.organization.name",
+      "this.name"
+    ]
+  },
+  "url": "/organizations/{{parameters.workspace}}/teams",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.organization.name}}] {{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

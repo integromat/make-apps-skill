@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "{{...}}": "{{toCollection(parameters.qs, 'key', 'value')}}"
+  },
+  "url": "{{parameters.select}}/{{replace(parameters.url, '/^//', emptystring)}}",
+  "body": "{{parameters.body}}",
+  "type": "text",
+  "method": "{{parameters.method}}",
+  "headers": {
+    "{{...}}": "{{toCollection(parameters.headers, 'key', 'value')}}"
+  },
+  "response": {
+    "output": {
+      "body": "{{body}}",
+      "headers": "{{headers}}",
+      "statusCode": "{{statusCode}}"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "to": "{{parameters.to}}",
+    "from": "{{parameters.from}}",
+    "user_id": "{{parameters.user_id}}",
+    "per_page": 100,
+    "client_id": "{{parameters.client_id}}",
+    "is_billed": "{{parameters.is_billed}}",
+    "project_id": "{{parameters.project_id}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "/expenses",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.expenses}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

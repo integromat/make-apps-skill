@@ -1,0 +1,8 @@
+{
+  "url": "/webhook_endpoints/{{webhook.externalHookId}}",
+  "type": "urlencoded",
+  "method": "DELETE",
+  "response": {
+    "type": "json"
+  }
+}

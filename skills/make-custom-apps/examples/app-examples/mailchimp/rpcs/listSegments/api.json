@@ -1,0 +1,16 @@
+{
+  "qs": {
+    "type": "{{parameters.type || null}}",
+    "count": 500
+  },
+  "url": "/lists/{{parameters.list}}/segments",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.segments}}"
+  },
+  "condition": "{{parameters.list && !isMapping(parameters.list)}}"
+}

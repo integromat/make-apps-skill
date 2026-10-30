@@ -1,0 +1,16 @@
+{
+  "qs": "{{setOptFields(omit(setLimit(parameters),'workspace'),'WorkspaceCustomField')}}",
+  "url": "/workspaces/{{parameters.workspace}}/custom_fields",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "url": "/dnd.endDnd",
+  "method": "POST",
+  "response": {
+    "output": null
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "time_entry_id",
+    "type": "select",
+    "label": "Time entry ID",
+    "options": "rpc://getTimeEntries",
+    "required": true
+  }
+]

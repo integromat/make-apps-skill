@@ -1,0 +1,146 @@
+[
+  {
+    "name": "number",
+    "type": "number",
+    "label": "Number"
+  },
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First Name"
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last Name"
+  },
+  {
+    "name": "company",
+    "type": "text",
+    "label": "Company"
+  },
+  {
+    "name": "summary",
+    "type": "text",
+    "label": "Summary"
+  },
+  {
+    "name": "body",
+    "type": "text",
+    "label": "Body"
+  },
+  {
+    "name": "data",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "email",
+        "type": "text",
+        "label": "Email"
+      },
+      {
+        "name": "ip",
+        "type": "text",
+        "label": "Ip"
+      },
+      {
+        "name": "user_agent",
+        "type": "text",
+        "label": "User Agent"
+      },
+      {
+        "name": "referrer",
+        "type": "text",
+        "label": "Referrer"
+      }
+    ],
+    "type": "collection",
+    "label": "Data"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "human_fields",
+    "spec": [
+      {
+        "name": "Name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "Email",
+        "type": "text",
+        "label": "Email"
+      }
+    ],
+    "type": "collection",
+    "label": "Human Fields"
+  },
+  {
+    "name": "ordered_human_fields",
+    "spec": {
+      "spec": [
+        {
+          "name": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Ordered Human Fields"
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Form Submission ID"
+  },
+  {
+    "name": "form_id",
+    "type": "text",
+    "label": "Form ID"
+  },
+  {
+    "name": "site_url",
+    "type": "text",
+    "label": "Site Url"
+  },
+  {
+    "name": "form_name",
+    "type": "text",
+    "label": "Form Name"
+  }
+]

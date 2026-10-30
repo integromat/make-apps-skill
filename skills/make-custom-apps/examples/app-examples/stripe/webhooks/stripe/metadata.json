@@ -1,0 +1,10 @@
+{
+  "rev": 5,
+  "type": "web",
+  "flags": {},
+  "label": "Watch Events (Legacy)",
+  "scope": [],
+  "aliasTo": null,
+  "accountName": null,
+  "altAccountName": null
+}

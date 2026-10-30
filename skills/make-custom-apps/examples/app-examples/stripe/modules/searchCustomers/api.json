@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "email": "{{parameters.email}}",
+    "limit": 100,
+    "{{...}}": "{{encodeSearchFilter(parameters.filter)}}",
+    "expand[]": "{{if(length(parameters.expand) > 0, parameters.expand, undefined)}}"
+  },
+  "url": "/customers",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

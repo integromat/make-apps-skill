@@ -1,0 +1,10 @@
+{
+  "url": "/tasks/{{parameters.task_gid}}",
+  "body": {
+    "data": "{{removeEmptyObjects(mergeCustomFields(transformRequestDates(omit(parameters,'choice','due','task_gid','workspace','assigneeId','project','section','tag','selectOrMap','ignoreMe','ignoreMeTwo','workspaceAlt'))))}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

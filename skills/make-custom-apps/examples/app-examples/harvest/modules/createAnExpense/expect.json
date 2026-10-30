@@ -1,0 +1,37 @@
+[
+  {
+    "help": "Only the date is relevant, time will be ignored.",
+    "name": "spent_date",
+    "time": false,
+    "type": "date",
+    "label": "Spent date",
+    "required": true
+  },
+  {
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": "rpc://getProjects?active=true",
+    "required": true
+  },
+  {
+    "name": "expense_category_id",
+    "type": "select",
+    "label": "Category ID",
+    "options": "rpc://getExpenseCategLoadValue",
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable",
+    "default": true,
+    "required": true
+  }
+]

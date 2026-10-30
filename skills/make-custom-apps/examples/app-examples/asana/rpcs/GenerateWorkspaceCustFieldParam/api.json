@@ -1,0 +1,46 @@
+[
+  {
+    "qs": {
+      "limit": 100,
+      "offset": "{{temp.offset}}",
+      "opt_fields": [
+        "this.name",
+        "this.type",
+        "this.gid",
+        "this.enum_options",
+        "this.enum_options.enabled",
+        "this.enum_options.name",
+        "this.enum_options.color"
+      ]
+    },
+    "url": "/workspaces/{{parameters.workspace}}/custom_fields",
+    "temp": {
+      "fields": []
+    },
+    "method": "GET",
+    "repeat": {
+      "delay": 10,
+      "limit": 30,
+      "condition": "{{ifempty(body.next_page, false)}}"
+    },
+    "response": {
+      "temp": {
+        "fields": "{{merge(temp.fields, generateWorkspCustomFieldParams(body.data))}}",
+        "offset": "{{body.next_page.offset}}"
+      }
+    }
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "help": "Workspace specific custom fields that can be added to the task. It is the user's responsibility to only select custom fields belonging to the selected projects.",
+          "name": "workspace_custom_fields",
+          "spec": "{{temp.fields}}",
+          "type": "collection",
+          "label": "Workspace Custom Fields"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "base",
+    "type": "select",
+    "label": "Base",
+    "options": {
+      "store": "rpc://app%23airtable@3/RpcGetBases",
+      "nested": [
+        {
+          "name": "table",
+          "type": "select",
+          "label": "Table",
+          "options": {
+            "store": "rpc://app%23airtable@3/RpcGetTables",
+            "nested": [
+              {
+                "name": "config",
+                "spec": [
+                  {
+                    "help": "A `Created Time` or `Last Modified Time` field that will be used to sort records. If you do not have a `Created Time` or `Last Modified Time` field in your schema, we ask you to create one, because without this field trigger will not work correctly.",
+                    "name": "triggerField",
+                    "type": "select",
+                    "label": "Trigger field",
+                    "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc&filter=createdTime&filter=lastModifiedTime&filter=formula",
+                    "required": true
+                  },
+                  {
+                    "name": "triggerField",
+                    "type": "hidden",
+                    "default": "createdTime"
+                  },
+                  {
+                    "help": "A field that will be used as a label for a record",
+                    "name": "labelField",
+                    "type": "select",
+                    "label": "Label field",
+                    "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc",
+                    "required": true
+                  }
+                ],
+                "type": "collection",
+                "label": "Trigger configuration",
+                "required": false
+              },
+              {
+                "help": "The maximum number of records to return.",
+                "name": "maxRecords",
+                "type": "integer",
+                "label": "Limit",
+                "default": 10,
+                "required": true
+              },
+              {
+                "name": "view",
+                "type": "select",
+                "label": "View",
+                "options": "rpc://app%23airtable@3/RpcGetTableViews"
+              },
+              {
+                "help": "An Airtable formula used to filter records. The formula will be evaluated for each record, and if the result is not 0, false, \"\", NaN, [], or #Error! the record will be included in the response. You can find more information about the formula on Airtable's website",
+                "name": "formula",
+                "type": "text",
+                "label": "Formula"
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Use column ID instead of column name for mapping. This enable persistency over column name change. Changing this value will break all existing mappings in this scenario.",
+    "name": "useColumnId",
+    "type": "boolean",
+    "label": "Use Column ID",
+    "default": false,
+    "advanced": true,
+    "required": true
+  }
+]

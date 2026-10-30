@@ -1,0 +1,41 @@
+{
+  "qs": {
+    "tags": true,
+    "cards": "all",
+    "lists": "all",
+    "fields": "all",
+    "labels": "all",
+    "actions": "all",
+    "members": "all",
+    "myPrefs": true,
+    "boardStars": "mine",
+    "checkItems": "all",
+    "checklists": "all",
+    "pluginData": true,
+    "card_fields": "all",
+    "list_fields": "all",
+    "memberships": "all",
+    "card_members": true,
+    "customFields": true,
+    "label_fields": "all",
+    "labels_limit": 1000,
+    "organization": true,
+    "card_stickers": true,
+    "member_fields": "all",
+    "membersInvited": "all",
+    "card_pluginData": true,
+    "card_attachments": true,
+    "checkItem_fields": "all",
+    "checklist_fields": "all",
+    "card_member_fields": "all",
+    "card_customFieldItems": true,
+    "membersInvited_fields": "all",
+    "card_attachment_fields": "all",
+    "organization_pluginData": true
+  },
+  "url": "/boards/{{parameters.board_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Segment ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "member_count",
+    "type": "number",
+    "label": "Member Count"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated At"
+  },
+  {
+    "name": "options",
+    "spec": [
+      {
+        "name": "match",
+        "type": "text",
+        "label": "Match"
+      },
+      {
+        "name": "conditions",
+        "type": "array",
+        "label": "Conditions"
+      }
+    ],
+    "type": "collection",
+    "label": "Options"
+  },
+  {
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Links"
+  }
+]

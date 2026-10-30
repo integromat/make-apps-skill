@@ -1,0 +1,17 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "https://api.stripe.com/v1",
+  "headers": {
+    "Authorization": "Basic {{base64(connection.key + ':')}}"
+  },
+  "response": {
+    "error": {
+      "type": "{{resolveErrorType(body.error.type)}}",
+      "message": "{{if(body.error.code, '[' + body.error.code + ']\n')}}{{if(body.error.param, 'Parameter: ' + body.error.param + '\n\n')}}{{body.error.message}}{{if(body.error.doc_url, '\n\nReference: ' + body.error.doc_url)}}"
+    }
+  }
+}

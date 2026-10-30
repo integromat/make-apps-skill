@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List a Project's Sections",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Retrieves all sections of a project.",
+  "altAccountName": null
+}

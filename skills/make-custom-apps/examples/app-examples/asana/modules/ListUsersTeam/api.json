@@ -1,0 +1,10 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'team_gid','workspace','page','selectOrMap'),'User')}}",
+  "url": "/teams/{{parameters.team_gid}}/users",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}"
+  }
+}

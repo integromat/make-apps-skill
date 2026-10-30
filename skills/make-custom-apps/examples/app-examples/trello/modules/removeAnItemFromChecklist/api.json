@@ -1,0 +1,7 @@
+{
+  "url": "/checklists/{{parameters.checklist_id}}/checkItems/{{parameters.checklist_item_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

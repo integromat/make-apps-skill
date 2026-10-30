@@ -1,0 +1,96 @@
+[
+  {
+    "help": "Only return charges for the customer specified by this customer ID.",
+    "name": "customer",
+    "type": "select",
+    "label": "Customer",
+    "options": "rpc://app%23stripe@1/getCustomers",
+    "editable": true
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "required": true,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  },
+  {
+    "help": "A filter on the list based on the object created field.",
+    "name": "created",
+    "type": "select",
+    "label": "Created at",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "created_timestamp",
+          "type": "number",
+          "label": "Timestamp",
+          "required": true
+        }
+      ]
+    },
+    "advanced": true
+  },
+  {
+    "help": "A filter on the list based on the source of the charge.",
+    "name": "source",
+    "type": "select",
+    "label": "Source",
+    "options": [
+      {
+        "label": "All",
+        "value": "all"
+      },
+      {
+        "label": "Alipay account",
+        "value": "alipay_account"
+      },
+      {
+        "label": "Bank account",
+        "value": "bank_account"
+      },
+      {
+        "label": "Bitcoin receiver",
+        "value": "bitcoin_receiver"
+      },
+      {
+        "label": "Card",
+        "value": "card"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Only return charges for this transfer group.",
+    "name": "transfer_group",
+    "type": "text",
+    "label": "Transfer group"
+  }
+]

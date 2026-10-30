@@ -1,0 +1,76 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": {
+            "store": "rpc://app%23clockify@1/listProjects",
+            "nested": [
+              {
+                "mode": "edit",
+                "name": "task",
+                "type": "select",
+                "label": "Task ID",
+                "options": "rpc://app%23clockify@1/listTasks",
+                "required": true
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name",
+                "required": true
+              },
+              {
+                "mode": "edit",
+                "name": "assigneeIds",
+                "type": "select",
+                "label": "Assignee IDs",
+                "options": "rpc://app%23clockify@1/listUsers",
+                "multiple": true
+              },
+              {
+                "name": "estimateHour",
+                "type": "uinteger",
+                "label": "Estimate Hours"
+              },
+              {
+                "name": "estimateMinute",
+                "type": "uinteger",
+                "label": "Estimate Minutes",
+                "validate": {
+                  "max": 60
+                }
+              },
+              {
+                "name": "status",
+                "type": "select",
+                "label": "Status",
+                "options": [
+                  {
+                    "label": "Done",
+                    "value": "DONE"
+                  },
+                  {
+                    "label": "Active",
+                    "value": "ACTIVE"
+                  }
+                ]
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

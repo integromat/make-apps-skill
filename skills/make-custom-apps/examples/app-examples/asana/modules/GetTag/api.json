@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'tag'),'Tag')}}",
+  "url": "/tags/{{parameters.tag}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

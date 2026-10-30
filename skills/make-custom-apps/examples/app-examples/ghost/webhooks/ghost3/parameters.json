@@ -1,0 +1,22 @@
+[
+  {
+    "name": "event",
+    "type": "select",
+    "label": "Event",
+    "options": [
+      {
+        "label": "Member added",
+        "value": "member.added"
+      },
+      {
+        "label": "Member updated",
+        "value": "member.edited"
+      },
+      {
+        "label": "Member deleted",
+        "value": "member.deleted"
+      }
+    ],
+    "required": true
+  }
+]

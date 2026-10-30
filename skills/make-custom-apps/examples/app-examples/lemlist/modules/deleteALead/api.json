@@ -1,0 +1,7 @@
+{
+  "url": "/campaigns/{{parameters.campaign}}/leads/{{parameters.email}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

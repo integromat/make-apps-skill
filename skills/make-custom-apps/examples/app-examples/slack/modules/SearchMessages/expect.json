@@ -1,0 +1,47 @@
+[
+  {
+    "name": "query",
+    "type": "text",
+    "label": "Query",
+    "required": true
+  },
+  {
+    "help": "Number of returned results.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true
+  },
+  {
+    "name": "sort",
+    "type": "select",
+    "label": "Sort by",
+    "options": [
+      {
+        "label": "Score",
+        "value": "score"
+      },
+      {
+        "label": "Timestamp",
+        "value": "timestamp"
+      }
+    ]
+  },
+  {
+    "help": "By default the sorting is descending.",
+    "name": "sort_dir",
+    "type": "select",
+    "label": "Direction",
+    "options": [
+      {
+        "label": "Ascending",
+        "value": "asc"
+      },
+      {
+        "label": "Descending",
+        "value": "desc"
+      }
+    ]
+  }
+]

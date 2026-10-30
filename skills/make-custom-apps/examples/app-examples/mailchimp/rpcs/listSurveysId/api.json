@@ -1,0 +1,12 @@
+{
+  "url": "/reporting/surveys",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.surveys}}"
+  }
+}

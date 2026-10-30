@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "limit": "{{min(parameters.limit, 100)}}",
+    "charge": "{{parameters.charge}}"
+  },
+  "url": "/refunds",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

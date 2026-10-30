@@ -1,0 +1,113 @@
+[
+  {
+    "label": "Triggers",
+    "modules": [
+      "watchEvents",
+      "WatchCharges"
+    ]
+  },
+  {
+    "label": "Universal",
+    "modules": [
+      "makeAnApiCall"
+    ]
+  },
+  {
+    "label": "Charges",
+    "modules": [
+      "ListCharges",
+      "CreateCharge",
+      "CaptureCharge",
+      "RetrieveCharge",
+      "UpdateCharge"
+    ]
+  },
+  {
+    "label": "Payment Links",
+    "modules": [
+      "listPaymentLinks",
+      "createPaymentLink",
+      "getPaymentLink",
+      "updatePaymentLink"
+    ]
+  },
+  {
+    "label": "Payment Intents",
+    "modules": [
+      "listPaymentIntents",
+      "createPaymentIntent",
+      "getPaymentIntent",
+      "confirmPaymentIntent",
+      "capturePaymentIntent",
+      "updatePaymentIntent",
+      "cancelPaymentIntent"
+    ]
+  },
+  {
+    "label": "Customers",
+    "modules": [
+      "searchCustomers",
+      "listCustomers",
+      "createCustomer",
+      "retrieveCustomer",
+      "updateCustomer",
+      "deleteCustomer"
+    ]
+  },
+  {
+    "label": "Refunds",
+    "modules": [
+      "listRefunds",
+      "createRefund",
+      "retrieveRefund",
+      "updateRefund"
+    ]
+  },
+  {
+    "label": "Payouts",
+    "modules": [
+      "listPayouts",
+      "createPayout",
+      "cancelPayout",
+      "retrievePayout",
+      "updatePayout"
+    ]
+  },
+  {
+    "label": "Balance",
+    "modules": [
+      "getBalance",
+      "listAllBalanceHistory",
+      "retrieveBalanceTransaction"
+    ]
+  },
+  {
+    "label": "Invoices",
+    "modules": [
+      "listInvoices",
+      "listAllLineItems",
+      "createInvoice",
+      "retrieveInvoice",
+      "updateInvoice",
+      "finalizeInvoice",
+      "voidInvoice",
+      "deleteInvoice"
+    ]
+  },
+  {
+    "label": "Invoice Items",
+    "modules": [
+      "listInvoiceItems",
+      "createInvoiceItem",
+      "retrieveInvoiceItem",
+      "updateInvoiceItem",
+      "deleteInvoiceItem"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "retrievePaymentLinkLines"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "clientId",
+    "type": "text",
+    "label": "Client ID",
+    "advanced": true
+  },
+  {
+    "name": "clientSecret",
+    "type": "password",
+    "label": "Client Secret",
+    "advanced": true
+  },
+  {
+    "help": "Use this to get access to extra scopes.",
+    "name": "scopes",
+    "type": "array",
+    "label": "Additional Scopes",
+    "advanced": true
+  }
+]

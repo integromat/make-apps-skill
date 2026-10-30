@@ -1,0 +1,71 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Time Entry ID"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "tagIds",
+    "type": "array",
+    "label": "Tag IDs"
+  },
+  {
+    "name": "userId",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "taskId",
+    "type": "text",
+    "label": "Task ID"
+  },
+  {
+    "name": "projectId",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "timeInterval",
+    "spec": [
+      {
+        "name": "start",
+        "time": true,
+        "type": "date",
+        "label": "Start"
+      },
+      {
+        "name": "end",
+        "time": true,
+        "type": "date",
+        "label": "End"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      }
+    ],
+    "type": "collection",
+    "label": "Time Interval"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "isLocked",
+    "type": "boolean",
+    "label": "Locked"
+  }
+]

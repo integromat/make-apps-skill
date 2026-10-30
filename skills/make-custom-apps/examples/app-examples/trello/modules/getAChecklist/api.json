@@ -1,0 +1,13 @@
+{
+  "qs": {
+    "cards": "all",
+    "fields": "all",
+    "checkItems": "all",
+    "checkItem_fields": "all"
+  },
+  "url": "/checklists/{{parameters.checklist_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

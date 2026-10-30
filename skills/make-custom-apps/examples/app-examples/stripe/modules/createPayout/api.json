@@ -1,0 +1,19 @@
+{
+  "url": "/payouts",
+  "body": "{{requestBuilder(temp.body, mapToKeyVal(parameters.metadata), null, null, null)}}",
+  "temp": {
+    "body": {
+      "amount": "{{parameters.amount}}",
+      "method": "{{parameters.method}}",
+      "currency": "{{parameters.currency}}",
+      "description": "{{parameters.description}}",
+      "source_type": "{{parameters.source_type}}",
+      "statement_descriptor": "{{parameters.statement_descriptor}}"
+    }
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

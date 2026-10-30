@@ -1,0 +1,7 @@
+{
+  "url": "/2018-10-31/layers/{{parameters.layer}}/versions/{{parameters.version}}",
+  "method": "GET",
+  "response": {
+    "output": "{{layerVersionResponse(body)}}"
+  }
+}

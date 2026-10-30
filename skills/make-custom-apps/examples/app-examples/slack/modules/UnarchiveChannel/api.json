@@ -1,0 +1,11 @@
+{
+  "url": "/conversations.unarchive",
+  "body": {
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

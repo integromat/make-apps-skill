@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Delete Invoice Line Item",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Deletes line item on specific invoice.",
+  "altAccountName": null
+}

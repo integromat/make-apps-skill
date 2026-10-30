@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": "rpc://app%23asana@2/GetWorkspaces",
+    "required": true
+  }
+]

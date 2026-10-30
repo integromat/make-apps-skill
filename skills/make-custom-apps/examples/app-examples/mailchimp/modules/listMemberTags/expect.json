@@ -1,0 +1,27 @@
+[
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "email",
+          "type": "select",
+          "label": "Email",
+          "options": "rpc://listSubscribers",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Maximum number of results",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

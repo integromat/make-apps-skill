@@ -1,0 +1,19 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Get a Function",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "amazon-lambda",
+  "description": "Gets the information of an AWS Lambda function.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

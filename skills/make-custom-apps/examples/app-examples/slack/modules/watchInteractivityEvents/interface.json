@@ -1,0 +1,252 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "team_id",
+        "type": "text",
+        "label": "Team ID"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "container",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "message_ts",
+        "type": "text",
+        "label": "Message Timestamp"
+      },
+      {
+        "name": "channel_id",
+        "type": "text",
+        "label": "Channel ID"
+      },
+      {
+        "name": "is_ephemeral",
+        "type": "boolean",
+        "label": "Is Ephemeral"
+      }
+    ],
+    "type": "collection",
+    "label": "Container"
+  },
+  {
+    "name": "trigger_id",
+    "type": "text",
+    "label": "Trigger ID"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Team ID"
+      },
+      {
+        "name": "domain",
+        "type": "text",
+        "label": "Domain"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  },
+  {
+    "name": "enterprise",
+    "type": "text",
+    "label": "Enterprise"
+  },
+  {
+    "name": "is_enterprise_install",
+    "type": "boolean",
+    "label": "Is Enterprise Install"
+  },
+  {
+    "name": "channel",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Channel ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Channel"
+  },
+  {
+    "name": "message",
+    "spec": [
+      {
+        "name": "bot_id",
+        "type": "text",
+        "label": "Bot ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User ID"
+      },
+      {
+        "name": "ts",
+        "type": "text",
+        "label": "Timestamp"
+      },
+      {
+        "name": "app_id",
+        "type": "text",
+        "label": "App ID"
+      },
+      {
+        "name": "team",
+        "type": "text",
+        "label": "Team"
+      },
+      {
+        "name": "blocks",
+        "spec": {
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "block_id",
+              "type": "text",
+              "label": "Block ID"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Blocks"
+      }
+    ],
+    "type": "collection",
+    "label": "Message"
+  },
+  {
+    "name": "state",
+    "spec": [
+      {
+        "name": "values",
+        "spec": [],
+        "type": "collection",
+        "label": "Values"
+      }
+    ],
+    "type": "collection",
+    "label": "State"
+  },
+  {
+    "name": "response_url",
+    "type": "text",
+    "label": "Response URL"
+  },
+  {
+    "name": "actions",
+    "spec": {
+      "spec": [
+        {
+          "name": "action_id",
+          "type": "text",
+          "label": "Action ID"
+        },
+        {
+          "name": "block_id",
+          "type": "text",
+          "label": "Block ID"
+        },
+        {
+          "name": "text",
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "text",
+              "type": "text",
+              "label": "Text"
+            },
+            {
+              "name": "emoji",
+              "type": "boolean",
+              "label": "Emoji"
+            }
+          ],
+          "type": "collection",
+          "label": "Text"
+        },
+        {
+          "name": "value",
+          "type": "text",
+          "label": "Value"
+        },
+        {
+          "name": "style",
+          "type": "text",
+          "label": "Style"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "label": "Type"
+        },
+        {
+          "name": "action_ts",
+          "type": "text",
+          "label": "Action Timestamp"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Actions"
+  }
+]

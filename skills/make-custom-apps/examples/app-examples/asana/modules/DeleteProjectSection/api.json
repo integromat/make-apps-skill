@@ -1,0 +1,7 @@
+{
+  "url": "/sections/{{parameters.section_gid}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{}}"
+  }
+}

@@ -1,0 +1,174 @@
+[
+  {
+    "name": "base",
+    "type": "text",
+    "label": "Base",
+    "required": true
+  },
+  {
+    "name": "table",
+    "type": "text",
+    "label": "Table",
+    "required": true
+  },
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Record ID",
+    "required": true
+  },
+  {
+    "name": "record",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Column ID"
+      },
+      {
+        "name": "type",
+        "type": "select",
+        "label": "Type of the Field",
+        "options": [
+          {
+            "label": "Text",
+            "value": "text",
+            "nested": [
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ]
+          },
+          {
+            "label": "Number",
+            "value": "number",
+            "nested": [
+              {
+                "name": "value",
+                "type": "number",
+                "label": "Value"
+              }
+            ]
+          },
+          {
+            "label": "Date",
+            "value": "date",
+            "nested": [
+              {
+                "name": "value",
+                "type": "date",
+                "label": "Value"
+              }
+            ]
+          },
+          {
+            "label": "Boolean",
+            "value": "boolean",
+            "nested": [
+              {
+                "name": "value",
+                "type": "boolean",
+                "label": "Value"
+              }
+            ]
+          },
+          {
+            "label": "Multiple Values",
+            "value": "multiple",
+            "nested": [
+              {
+                "name": "value",
+                "type": "array",
+                "label": "Values"
+              }
+            ]
+          },
+          {
+            "label": "Barcode",
+            "value": "bar",
+            "nested": [
+              {
+                "name": "value",
+                "spec": [
+                  {
+                    "name": "text",
+                    "type": "text",
+                    "label": "Text"
+                  }
+                ],
+                "type": "collection",
+                "label": "Barcode"
+              }
+            ]
+          },
+          {
+            "label": "User",
+            "value": "user",
+            "nested": [
+              {
+                "name": "value",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "User ID"
+                  },
+                  {
+                    "name": "email",
+                    "type": "email",
+                    "label": "User Email"
+                  },
+                  {
+                    "help": "User's display name (may be empty if the user hasn't created an account)",
+                    "name": "name",
+                    "type": "text",
+                    "label": "User Name"
+                  }
+                ],
+                "type": "collection",
+                "label": "User"
+              }
+            ]
+          },
+          {
+            "label": "Open URL",
+            "value": "openUrl",
+            "nested": [
+              {
+                "name": "value",
+                "spec": [
+                  {
+                    "help": "Airtable will download the file at the given url and keep its own copy of it.",
+                    "name": "url",
+                    "type": "url",
+                    "label": "File URL"
+                  },
+                  {
+                    "help": "If empty, Airtable will generate the name automatically.",
+                    "name": "filename",
+                    "type": "text",
+                    "label": "File Name"
+                  }
+                ],
+                "type": "array",
+                "label": "Open URL"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "type": "array",
+    "label": "Record fields"
+  },
+  {
+    "help": "If smart links is enabled, you can a) use names in linked record fields instead of record IDs to select an existing record or create a new one if it doesn't exist b) use (add) new options in single/multiple select fields.\nThe Airtable API will perform best-effort automatic data conversion from string values. It is disabled by default to ensure data integrity, but it may be helpful for integrating with 3rd party data sources.",
+    "name": "typecast",
+    "type": "boolean",
+    "label": "Smart links",
+    "default": false,
+    "required": true
+  }
+]

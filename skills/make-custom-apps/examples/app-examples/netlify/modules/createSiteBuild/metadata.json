@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Start a Deploy",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "netlify",
+  "description": "Starts a new deploy on a specified site.",
+  "altAccountName": null
+}

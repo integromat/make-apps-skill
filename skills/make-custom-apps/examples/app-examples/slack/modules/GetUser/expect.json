@@ -1,0 +1,8 @@
+[
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User ID",
+    "required": true
+  }
+]

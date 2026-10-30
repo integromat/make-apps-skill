@@ -1,0 +1,76 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Tag ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "followers",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Follower ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  }
+]

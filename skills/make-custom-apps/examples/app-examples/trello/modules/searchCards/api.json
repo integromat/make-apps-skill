@@ -1,0 +1,31 @@
+{
+  "qs": {
+    "query": "{{parameters.query}}",
+    "idCards": "{{ifempty(join(parameters.idCards, ','), undefined)}}",
+    "partial": "{{parameters.partial}}",
+    "idBoards": "{{ifempty(join(parameters.board_id, ','), undefined)}}",
+    "card_list": true,
+    "card_board": true,
+    "modelTypes": "cards",
+    "card_fields": "all",
+    "cards_limit": 100,
+    "card_members": true,
+    "card_stickers": true,
+    "card_attachments": true
+  },
+  "url": "/search",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.cards}}"
+  },
+  "pagination": {
+    "qs": {
+      "cards_page": "{{pagination.page-1}}"
+    },
+    "condition": "{{pagination.page < ((parameters.limit/100) + 1)}}"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "/boards/{{parameters.board_id}}/customFields",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": {
+      "label": "{{item.name}} <{{if(item.type == 'list', 'Dropdown', capitalize(item.type))}}>",
+      "value": "{{item.id}}",
+      "nested": "{{customFieldTypeValue(item.type)}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

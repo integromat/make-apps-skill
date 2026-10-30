@@ -1,0 +1,11 @@
+{
+  "qs": {
+    "valueFormat": "{{parameters.valueFormat}}",
+    "useColumnNames": "{{parameters.useColumnNames}}"
+  },
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows/{{parameters.rowIdOrName}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

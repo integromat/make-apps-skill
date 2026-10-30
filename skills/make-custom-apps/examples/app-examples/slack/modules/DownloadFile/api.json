@@ -1,0 +1,15 @@
+{
+  "qs": {},
+  "url": "{{parameters.url}}",
+  "body": {},
+  "json": false,
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "type": "binary",
+    "output": {
+      "data": "{{body}}",
+      "fileName": "{{getFileName(headers)}}"
+    }
+  }
+}

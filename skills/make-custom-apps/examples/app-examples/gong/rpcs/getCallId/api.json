@@ -1,0 +1,18 @@
+{
+  "url": "/calls",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.title}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.calls}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.records.cursor}}"
+    },
+    "condition": "{{body.records.cursor}}"
+  }
+}

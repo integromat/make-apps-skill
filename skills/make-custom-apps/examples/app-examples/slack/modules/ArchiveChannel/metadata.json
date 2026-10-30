@@ -1,0 +1,21 @@
+{
+  "rev": 2,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Archive a Channel",
+  "scope": [
+    "channels:write",
+    "groups:write",
+    "im:write",
+    "mpim:write"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Archives a channel.",
+  "altAccountName": null
+}

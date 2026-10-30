@@ -1,0 +1,8 @@
+[
+  {
+    "name": "accessToken",
+    "type": "password",
+    "label": "Access Token",
+    "required": true
+  }
+]

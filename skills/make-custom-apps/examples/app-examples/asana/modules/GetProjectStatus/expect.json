@@ -1,0 +1,63 @@
+[
+  {
+    "name": "selectOrMap",
+    "sort": "text",
+    "type": "select",
+    "label": "Enter a Project Status ID",
+    "default": "map",
+    "options": [
+      {
+        "label": "Select from the list",
+        "value": "select",
+        "nested": [
+          {
+            "name": "workspaceRPC",
+            "type": "select",
+            "label": "Workspace",
+            "options": {
+              "store": "rpc://app%23asana@2/GetWorkspaces",
+              "nested": [
+                {
+                  "name": "project",
+                  "type": "select",
+                  "label": "Project ID",
+                  "options": {
+                    "store": "rpc://app%23asana@2/GetProjects",
+                    "nested": [
+                      {
+                        "name": "projectStatusId",
+                        "type": "select",
+                        "label": "Project Status ID",
+                        "options": "rpc://app%23asana@2/GetProjectStatuses",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Enter manually",
+        "value": "map",
+        "nested": [
+          {
+            "name": "projectStatusId",
+            "type": "text",
+            "label": "Project Status ID",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  }
+]

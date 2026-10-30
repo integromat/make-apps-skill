@@ -1,0 +1,20 @@
+{
+  "gid": "000000000000000",
+  "name": "REDACTED",
+  "email": "redacted@example.com",
+  "photo": {
+    "image_21x21": "https://example.invalid...",
+    "image_27x27": "https://example.invalid...",
+    "image_36x36": "https://example.invalid...",
+    "image_60x60": "https://example.invalid...",
+    "image_128x128": "https://example.invalid..."
+  },
+  "workspaces": [
+    {
+      "gid": "00000000000000",
+      "name": "REDACTED",
+      "resource_type": "workspace"
+    }
+  ],
+  "resource_type": "user"
+}

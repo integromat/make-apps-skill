@@ -1,0 +1,18 @@
+{
+  "url": "/hooks",
+  "body": {
+    "data": {
+      "url": "{{webhook.url}}"
+    },
+    "type": "url",
+    "event": "submission_created",
+    "form_id": "{{parameters.form_id}}",
+    "site_id": "{{parameters.site_id}}"
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "webhook_id": "{{body.id}}"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "campaign",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23lemlist@1/listCampaigns",
+    "required": true
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email",
+    "required": true
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "url": "/stars.remove",
+  "body": {
+    "file": "{{parameters.file}}",
+    "timestamp": "{{parameters.timestamp}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

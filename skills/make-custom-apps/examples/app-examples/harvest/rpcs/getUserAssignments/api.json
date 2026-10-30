@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "per_page": 100
+  },
+  "url": "/user_assignments",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "Project: {{item.project.name}} User: {{item.user.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.user_assignments}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

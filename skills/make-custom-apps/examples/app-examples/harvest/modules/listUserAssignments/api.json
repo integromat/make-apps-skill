@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "user_id": "{{parameters.user_id}}",
+    "per_page": 100,
+    "is_active": "{{parameters.is_active}}",
+    "updated_since": "{{parameters.updated_since}}"
+  },
+  "url": "{{if(parameters.project_id, '/projects/' + parameters.project_id + '/user_assignments', '/user_assignments')}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{transformResponseDates(item)}}",
+    "iterate": "{{body.user_assignments}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

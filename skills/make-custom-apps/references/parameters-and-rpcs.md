@@ -90,6 +90,53 @@ Sources: [Collection](https://developers.make.com/custom-apps-documentation/bloc
 [Select](https://developers.make.com/custom-apps-documentation/block-elements/parameters/select.md),
 [Handling empty inputs](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/processing-of-input-parameters.md#handling-arrays-nulls-and-empty-strings).
 
+## Form quality (UX guidance, not schema rules)
+
+These points make a form readable. They are recommendations from the public
+[mappable parameters](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters)
+and [parameter hints](https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/input-parameters/parameter-hints)
+pages plus authoring judgment (option descriptions below are judgment only). A layout or
+wording deviation is advice to raise, not a validation failure. A wrong type that loses a
+value or contradicts documented provider behavior is a different matter: see "Accurate
+types". An existing app's parameter names and types should not change in place without
+checking what saved scenarios already map.
+
+- **Order.** Required parameters first, then conditionally required, then optional. A
+  logical group overrides that order: a start and an end, or the parts of one address,
+  stay together even when their required status differs. Put `advanced` parameters at the
+  bottom. In a search or list module, `Limit` is the last parameter.
+- **Conditionally required fields.** Do not mark a field `required: true` at the top level
+  when the provider requires it only in some states ("only when Type is Custom"): the flag
+  would demand it in every state. Where the form supports it, place the field in the
+  structure that is only active for that case (a selected branch or nested fields, or fields
+  supplied by a condition-aware RPC) and keep `required: true` there, where it is true. Where
+  there is no such structure, leave the flag off and say it in the help text ("Required when
+  Type is Custom."), so the user does not learn it from a failed run. Do not invent
+  conditional syntax.
+- **Array wording.** Three labels name three things: the array `label` is the whole list
+  (`Attendees`), an item `spec.label` is one entry (`Attendee`), and `labels.add`
+  replaces the add button text (`Add attendee`). Keep them coherent. An item label needs
+  the collection form `spec: {"type": "collection", "label": "Attendee", "spec": [...]}`;
+  the documented array-of-fields form has no item label.
+- **Option descriptions (inferred UX guidance).** The public Select and mappable-parameters
+  pages give no option-description guidance, so do not cite them for it. When choices differ
+  in meaning that a bare label cannot carry and the authoring or editor schema in use
+  accepts `option.description`, give each option its own `description` and verify the
+  section is accepted and read back. Otherwise explain the choices in the field's help text.
+  Do not assume the field for an RPC's `{label, value}` output.
+- **Accurate types.** Declare the type the value really is: `date` for a date-time,
+  `number` or `integer` for numbers, `boolean` for flags, `text` for opaque identifiers.
+  The exception is a value that is only a date (`2026-10-29`) or only a time of day
+  (`14:30`): it is not a date-time, so declare it `text` and state the exact format in
+  the help text. A `date` parameter would offer and produce a full date-time. Choosing a
+  more accurate type for a value that already works is advice. A type the schema rejects,
+  one that loses or alters the value, or one that contradicts documented provider behavior
+  is a defect when evidence shows it.
+
+Guides: [labels and visibility](../examples/current-knowledge/guides/labels-visibility.md),
+[selectors and mode](../examples/current-knowledge/guides/selectors-mode.md),
+[interfaces and required flags](../examples/current-knowledge/guides/interfaces-required.md).
+
 ## Dynamic options RPCs
 
 RPCs execute during scenario configuration, not as substitutes for action execution.
@@ -154,8 +201,13 @@ authored synthetic correct/incorrect fixtures (static teaching material, not run
   [RPC page budgets](../examples/current-knowledge/guides/rpc-page-budgets.md).
 - Required flags, interface drift, falsy values:
   [interfaces and required flags](../examples/current-knowledge/guides/interfaces-required.md).
-- Labels and field visibility (cosmetic wording vs behavior):
+- Labels and field visibility (cosmetic wording vs behavior), array label vs item label vs
+  `labels.add`, field order:
   [labels and visibility](../examples/current-knowledge/guides/labels-visibility.md).
+- Options, fields and sample RPCs; metadata-driven schemas:
+  [dynamic data and files](../examples/current-knowledge/guides/dynamic-data-and-files.md).
+- Omit, clear and set, and what an interface does and does not convert:
+  [outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md).
 
 ## Verification gate
 

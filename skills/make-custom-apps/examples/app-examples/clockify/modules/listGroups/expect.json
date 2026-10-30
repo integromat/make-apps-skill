@@ -1,0 +1,31 @@
+[
+  {
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "name": "projectId",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://app%23clockify@1/listProjects"
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "help": "Number of custom fields to return.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

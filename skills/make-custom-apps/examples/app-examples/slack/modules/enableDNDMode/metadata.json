@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Enable Do Not Disturb Mode",
+  "scope": [
+    "dnd:write"
+  ],
+  "public": false,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Turns on Do Not Disturb mode for the current user, or changes its duration.",
+  "altAccountName": null
+}

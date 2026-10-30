@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "is_active": true
+  },
+  "url": "/expense_categories",
+  "method": "GET",
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.expense_categories}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{body.next_page}}"
+  }
+}

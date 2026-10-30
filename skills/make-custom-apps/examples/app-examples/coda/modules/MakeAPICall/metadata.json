@@ -1,0 +1,19 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Make an API Call",
+  "scope": [],
+  "public": true,
+  "typeId": 12,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "coda",
+  "description": "Performs an arbitrary authorized API call.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

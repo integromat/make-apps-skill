@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "delete",
+  "epoch": null,
+  "flags": {},
+  "label": "Void an Invoice",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "stripe",
+  "description": "Voids a finalized invoice with the given ID. This cannot be undone.",
+  "altAccountName": null
+}

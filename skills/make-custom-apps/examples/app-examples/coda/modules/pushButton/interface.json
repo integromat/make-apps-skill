@@ -1,0 +1,17 @@
+[
+  {
+    "name": "rowId",
+    "type": "text",
+    "label": "Row ID"
+  },
+  {
+    "name": "columnId",
+    "type": "text",
+    "label": "Column ID"
+  },
+  {
+    "name": "requestId",
+    "type": "text",
+    "label": "Request ID"
+  }
+]

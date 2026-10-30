@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://getUsers",
+    "required": true
+  }
+]

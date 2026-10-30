@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "{{...}}": "{{deleteEmptyParameters(setOptFields(if(parameters.sort_by === 'completed_at', omit(parameters, 'workspace', 'project'), omit(parameters, 'completed', 'workspace', 'project')), 'Task'))}}",
+    "assignee.any": "{{transformStringArrayToNormalArray(parameters.`assignee.any`)}}",
+    "projects.any": "{{transformStringArrayToNormalArray(parameters.`projects.any`)}}",
+    "portfolios.any": "{{transformStringArrayToNormalArray(parameters.`portfolios.any`)}}"
+  },
+  "url": "/workspaces/{{parameters.workspace}}/tasks/search",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.data}}",
+    "trigger": {
+      "id": "{{item.gid}}",
+      "date": "{{item[parameters.sort_by]}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

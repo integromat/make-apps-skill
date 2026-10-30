@@ -1,0 +1,22 @@
+{
+  "qs": "{{setOptFields(if(parameters.workspace == undefined,omit(parameters,'page'),omit(setParam(parameters,'limit',100),'page')),'Project')}}",
+  "url": "/projects",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{customFieldExtra(item)}}",
+    "iterate": "{{body.data}}",
+    "trigger": {
+      "id": "{{item.gid}}",
+      "date": "{{item.created_at}}",
+      "type": "date",
+      "order": "asc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

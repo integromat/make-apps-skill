@@ -1,0 +1,15 @@
+{
+  "url": "/hooks",
+  "body": {
+    "type": "{{parameters.type}}",
+    "isFirst": "{{parameters.isFirst}}",
+    "targetUrl": "{{webhook.url}}",
+    "campaignId": "{{parameters.campaign}}"
+  },
+  "method": "POST",
+  "response": {
+    "data": {
+      "externalHookId": "{{body._id}}"
+    }
+  }
+}

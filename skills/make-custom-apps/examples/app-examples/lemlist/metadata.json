@@ -1,0 +1,21 @@
+{
+  "name": "lemlist",
+  "label": "lemlist",
+  "version": 1,
+  "rev": 5,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": null,
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#4242ff",
+  "versionFull": "1.1.0",
+  "website": null
+}

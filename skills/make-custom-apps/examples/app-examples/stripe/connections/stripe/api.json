@@ -1,0 +1,18 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "url": "https://api.stripe.com/v1/balance",
+  "method": "GET",
+  "headers": {
+    "Authorization": "Basic {{base64(parameters.key + ':')}}"
+  },
+  "response": {
+    "error": {
+      "type": "{{resolveErrorType(body.error.type)}}",
+      "message": "{{body.error.message}}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "qs": {},
+  "url": "/reminders.add",
+  "body": {
+    "text": "{{parameters.text}}",
+    "time": "{{parameters.time}}",
+    "user": "{{parameters.user}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": {
+      "id": "{{body.reminder.id}}"
+    }
+  }
+}

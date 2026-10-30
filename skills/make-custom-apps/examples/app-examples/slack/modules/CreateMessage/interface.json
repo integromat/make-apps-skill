@@ -1,0 +1,135 @@
+[
+  {
+    "name": "channel",
+    "type": "text",
+    "label": "Channel"
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Timestamp"
+  },
+  {
+    "name": "message",
+    "spec": [
+      {
+        "name": "bot_id",
+        "type": "text",
+        "label": "Bot ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User"
+      },
+      {
+        "name": "ts",
+        "type": "text",
+        "label": "Timestamp"
+      },
+      {
+        "name": "team",
+        "type": "text",
+        "label": "Team"
+      },
+      {
+        "name": "bot_profile",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Bot ID"
+          },
+          {
+            "name": "deleted",
+            "type": "boolean",
+            "label": "Deleted"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "updated",
+            "type": "number",
+            "label": "Updated"
+          },
+          {
+            "name": "app_id",
+            "type": "text",
+            "label": "App ID"
+          },
+          {
+            "name": "icons",
+            "spec": [
+              {
+                "name": "image_36",
+                "type": "text",
+                "label": "Image 36"
+              },
+              {
+                "name": "image_48",
+                "type": "text",
+                "label": "Image 48"
+              },
+              {
+                "name": "image_72",
+                "type": "text",
+                "label": "Image 72"
+              }
+            ],
+            "type": "collection",
+            "label": "Icons"
+          },
+          {
+            "name": "team_id",
+            "type": "text",
+            "label": "Team ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Bot profile"
+      },
+      {
+        "name": "blocks",
+        "spec": [
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "block_id",
+            "type": "text",
+            "label": "Block ID"
+          },
+          {
+            "name": "elements",
+            "type": "array",
+            "label": "Elements"
+          }
+        ],
+        "type": "array",
+        "label": "Blocks"
+      },
+      {
+        "name": "attachments",
+        "type": "array",
+        "label": "Attachments"
+      }
+    ],
+    "type": "collection",
+    "label": "Message"
+  }
+]

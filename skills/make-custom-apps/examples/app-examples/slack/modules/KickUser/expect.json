@@ -1,0 +1,45 @@
+[
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Channel type",
+    "options": [
+      {
+        "label": "Public channel",
+        "value": "public",
+        "nested": [
+          {
+            "name": "channel",
+            "type": "select",
+            "label": "Public channel",
+            "options": "rpc://app%23slack@4/PublicChannels",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Private channel",
+        "value": "private",
+        "nested": [
+          {
+            "name": "channel",
+            "type": "select",
+            "label": "Private channel",
+            "options": "rpc://app%23slack@4/PrivateChannels",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "user",
+    "type": "select",
+    "label": "User",
+    "options": "rpc://app%23slack@4/Users",
+    "required": true
+  }
+]

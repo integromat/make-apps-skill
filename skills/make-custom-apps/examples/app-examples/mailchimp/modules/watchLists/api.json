@@ -1,0 +1,27 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "email": "{{parameters.email}}",
+    "sort_dir": "DESC",
+    "sort_field": "date_created"
+  },
+  "url": "/lists",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.lists}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.date_created}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.lists) === 1000}}"
+  }
+}

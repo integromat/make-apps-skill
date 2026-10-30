@@ -1,0 +1,24 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 500,
+      "output": {
+        "date": "{{item.date_created}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Lists",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a new list is created.",
+  "altAccountName": null
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://listLists",
+      "nested": [
+        {
+          "name": "email",
+          "type": "select",
+          "label": "Email",
+          "options": "rpc://listSubscribers",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "spec": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name",
+              "required": true
+            },
+            {
+              "name": "status",
+              "type": "select",
+              "label": "Status",
+              "options": [
+                {
+                  "label": "Add",
+                  "value": "active"
+                },
+                {
+                  "label": "Delete",
+                  "value": "inactive"
+                }
+              ],
+              "required": true
+            }
+          ],
+          "type": "array",
+          "label": "Tags"
+        }
+      ]
+    },
+    "required": true
+  }
+]

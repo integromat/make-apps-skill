@@ -1,0 +1,306 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Time Entry ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "kioskId",
+    "type": "text",
+    "label": "Kiosk ID"
+  },
+  {
+    "name": "currentlyRunning",
+    "type": "boolean",
+    "label": "Currently Running"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "userId",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "billable",
+    "type": "boolean",
+    "label": "Billable"
+  },
+  {
+    "name": "projectId",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "timeInterval",
+    "spec": [
+      {
+        "name": "start",
+        "type": "text",
+        "label": "Start"
+      },
+      {
+        "name": "end",
+        "type": "text",
+        "label": "End"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      }
+    ],
+    "type": "collection",
+    "label": "Time Interval"
+  },
+  {
+    "name": "workspaceId",
+    "type": "text",
+    "label": "Workspace ID"
+  },
+  {
+    "name": "isLocked",
+    "type": "boolean",
+    "label": "Is Locked"
+  },
+  {
+    "name": "hourlyRate",
+    "type": "text",
+    "label": "Hourly Rate"
+  },
+  {
+    "name": "costRate",
+    "type": "text",
+    "label": "Cost Rate"
+  },
+  {
+    "name": "customFieldValues",
+    "type": "array",
+    "label": "Custom Field Values"
+  },
+  {
+    "name": "project",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "clientId",
+        "type": "text",
+        "label": "Client ID"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "billable",
+        "type": "boolean",
+        "label": "Billable"
+      },
+      {
+        "name": "estimate",
+        "spec": [
+          {
+            "name": "estimate",
+            "type": "text",
+            "label": "Estimate"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Estimate"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "archived",
+        "type": "boolean",
+        "label": "Archived"
+      },
+      {
+        "name": "clientName",
+        "type": "text",
+        "label": "Client Name"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      },
+      {
+        "name": "note",
+        "type": "text",
+        "label": "Note"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "public",
+        "type": "boolean",
+        "label": "Public"
+      },
+      {
+        "name": "template",
+        "type": "boolean",
+        "label": "Template"
+      },
+      {
+        "name": "budgetEstimate",
+        "type": "text",
+        "label": "Budget Estimate"
+      },
+      {
+        "name": "timeEstimate",
+        "spec": [
+          {
+            "name": "includeNonBillable",
+            "type": "boolean",
+            "label": "Include Non Billable"
+          },
+          {
+            "name": "estimate",
+            "type": "number",
+            "label": "Estimate"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "resetOption",
+            "type": "text",
+            "label": "Reset Option"
+          }
+        ],
+        "type": "collection",
+        "label": "Time Estimate"
+      },
+      {
+        "name": "activeEstimate",
+        "type": "text",
+        "label": "Active Estimate"
+      }
+    ],
+    "type": "collection",
+    "label": "Project"
+  },
+  {
+    "name": "task",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "projectId",
+        "type": "text",
+        "label": "Project ID"
+      },
+      {
+        "name": "assigneeId",
+        "type": "text",
+        "label": "Assignee ID"
+      },
+      {
+        "name": "estimate",
+        "type": "text",
+        "label": "Estimate"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "duration",
+        "type": "text",
+        "label": "Duration"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Task"
+  },
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "status",
+        "type": "text",
+        "label": "Status"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "tags",
+    "spec": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "workspaceId",
+        "type": "text",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "archived",
+        "type": "boolean",
+        "label": "Archived"
+      },
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Tag ID"
+      }
+    ],
+    "type": "array",
+    "label": "Tags"
+  }
+]

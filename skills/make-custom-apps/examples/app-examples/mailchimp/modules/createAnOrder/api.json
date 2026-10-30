@@ -1,0 +1,10 @@
+{
+  "url": "/ecommerce/stores/{{parameters.store_id}}/orders",
+  "body": {
+    "{{...}}": "{{processInput(parameters)}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

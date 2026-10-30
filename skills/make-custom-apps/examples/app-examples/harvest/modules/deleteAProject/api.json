@@ -1,0 +1,7 @@
+{
+  "url": "/projects/{{parameters.project_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "gong",
+  "label": "Gong",
+  "version": 1,
+  "rev": 10,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": "Gong captures and analyzes frontline interactions so you can make data-backed decisions that propel revenue growth.",
+  "docs": null,
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#8039df",
+  "versionFull": "1.0.4",
+  "website": null
+}

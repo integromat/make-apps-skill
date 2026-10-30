@@ -1,0 +1,489 @@
+[
+  {
+    "name": "gid",
+    "type": "uinteger",
+    "label": "Project ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "layout",
+    "type": "text",
+    "label": "Layout"
+  },
+  {
+    "name": "section_migration_status",
+    "type": "text",
+    "label": "Section Migration Status"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created At"
+  },
+  {
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "current_status",
+    "spec": [
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Current Status ID"
+      },
+      {
+        "name": "author",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "Author ID"
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "label": "Email"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Author Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Author"
+      },
+      {
+        "name": "created_at",
+        "type": "date",
+        "label": "Created At"
+      },
+      {
+        "name": "created_by",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "Created By ID"
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "label": "Email"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Created By Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Created By"
+      },
+      {
+        "name": "modified_at",
+        "type": "date",
+        "label": "Modified At"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Current Status"
+  },
+  {
+    "name": "custom_field_settings_collection",
+    "spec": [],
+    "type": "collection",
+    "label": "Custom Field Settings Collection"
+  },
+  {
+    "name": "custom_field_settings",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Custom Field Setting ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "project",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "Project ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Project Name"
+          }
+        ],
+        "type": "collection",
+        "label": "Project"
+      },
+      {
+        "name": "is_important",
+        "type": "boolean",
+        "label": "Is Important?"
+      },
+      {
+        "name": "parent",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "Parent ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Parent Name"
+          }
+        ],
+        "type": "collection",
+        "label": "Parent"
+      },
+      {
+        "name": "custom_field",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "Custom Field ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Custom Field Name"
+          },
+          {
+            "name": "resource_subtype",
+            "type": "text",
+            "label": "Resource Subtype"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Custom Field Type"
+          },
+          {
+            "name": "enum_options",
+            "spec": [
+              {
+                "name": "gid",
+                "type": "uinteger",
+                "label": "Option ID"
+              },
+              {
+                "name": "resource_type",
+                "type": "text",
+                "label": "Resource Type"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Option Name"
+              },
+              {
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Option Enabled"
+              },
+              {
+                "name": "color",
+                "type": "text",
+                "label": "Option Color"
+              }
+            ],
+            "type": "array",
+            "label": "Enumeration Options"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Custom Field Enabled?"
+          },
+          {
+            "name": "text_value",
+            "type": "text",
+            "label": "Text Value"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "precision",
+            "type": "uinteger",
+            "label": "Number Precision"
+          },
+          {
+            "name": "format",
+            "type": "text",
+            "label": "Format"
+          },
+          {
+            "name": "currency_code",
+            "type": "text",
+            "label": "Currency Code"
+          },
+          {
+            "name": "custom_label",
+            "type": "text",
+            "label": "Custom Label"
+          },
+          {
+            "name": "custom_label_position",
+            "type": "text",
+            "label": "Custom Label Position"
+          },
+          {
+            "name": "is_global_to_workspace",
+            "type": "boolean",
+            "label": "Is Global To Workspace?"
+          },
+          {
+            "name": "has_notifications_enabled",
+            "type": "boolean",
+            "label": "Has Notifications Enabled?"
+          }
+        ],
+        "type": "collection",
+        "label": "Custom Field"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Field Settings"
+  },
+  {
+    "name": "followers",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Follower ID"
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "members",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Member ID"
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      }
+    ],
+    "type": "array",
+    "label": "Members"
+  },
+  {
+    "name": "owner",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Owner ID"
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Owner"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Team ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "Workspace ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  },
+  {
+    "name": "start_on",
+    "type": "text",
+    "label": "Start On"
+  },
+  {
+    "name": "default_view",
+    "type": "text",
+    "label": "Default View"
+  },
+  {
+    "name": "due_on",
+    "type": "date",
+    "label": "Due On"
+  },
+  {
+    "name": "due_date",
+    "type": "date",
+    "label": "Due Date"
+  },
+  {
+    "name": "is_template",
+    "type": "boolean",
+    "label": "Is Template"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "name": "modified_at",
+    "type": "date",
+    "label": "Modified At"
+  }
+]

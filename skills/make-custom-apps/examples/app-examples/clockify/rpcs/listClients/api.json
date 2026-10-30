@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "page-size": 1000
+  },
+  "url": "/workspaces/{{parameters.workspace}}/clients",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "qs": {},
+  "url": "/reminders.list",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.reminders}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

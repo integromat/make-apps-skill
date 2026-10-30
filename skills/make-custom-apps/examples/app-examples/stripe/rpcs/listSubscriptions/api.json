@@ -1,0 +1,23 @@
+{
+  "qs": {
+    "limit": 100,
+    "status": "{{parameters.status}}",
+    "customer": "{{parameters.customer}}"
+  },
+  "url": "/subscriptions",
+  "method": "GET",
+  "response": {
+    "limit": 100,
+    "output": {
+      "label": "{{item.id}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

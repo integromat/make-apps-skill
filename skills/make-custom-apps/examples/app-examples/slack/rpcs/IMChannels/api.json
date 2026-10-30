@@ -1,0 +1,71 @@
+[
+  {
+    "response": {
+      "temp": {
+        "members": "{{emptyarray}}",
+        "channels": "{{emptyarray}}"
+      },
+      "valid": true
+    }
+  },
+  {
+    "qs": {
+      "limit": 1000,
+      "cursor": "{{temp.cursor}}"
+    },
+    "url": "/users.list",
+    "method": "GET",
+    "repeat": {
+      "delay": 100,
+      "limit": 30,
+      "condition": "{{temp.cursor}}"
+    },
+    "response": {
+      "temp": {
+        "cursor": "{{body.response_metadata.next_cursor}}",
+        "members": "{{merge(temp.members, body.members)}}"
+      }
+    }
+  },
+  {
+    "response": {
+      "temp": {
+        "cursor": "{{undefined}}",
+        "members": "{{toCollection(temp.members, 'id', 'name')}}"
+      },
+      "valid": true
+    }
+  },
+  {
+    "qs": {
+      "limit": 50,
+      "types": "im",
+      "cursor": "{{temp.cursor}}",
+      "exclude_archived": "{{parameters.exclude_archived}}"
+    },
+    "url": "/conversations.list",
+    "method": "GET",
+    "repeat": {
+      "delay": 100,
+      "limit": 30,
+      "condition": "{{temp.cursor}}"
+    },
+    "response": {
+      "temp": {
+        "cursor": "{{body.response_metadata.next_cursor}}",
+        "channels": "{{merge(temp.channels, getConversationName(body.channels, temp.members))}}"
+      }
+    }
+  },
+  {
+    "response": {
+      "limit": "{{ifempty(parameters.limit, 3000)}}",
+      "valid": true,
+      "output": "{{item}}",
+      "iterate": {
+        "condition": "{{if(parameters.name, contains(lower(item.label), lower(parameters.name)), true)}}",
+        "container": "{{sort(temp.channels, 'label')}}"
+      }
+    }
+  }
+]

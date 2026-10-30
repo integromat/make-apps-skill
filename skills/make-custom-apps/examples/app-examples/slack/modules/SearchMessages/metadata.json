@@ -1,0 +1,18 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Search for Message",
+  "scope": [
+    "search:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Returns messages matching a search query.",
+  "altAccountName": null
+}

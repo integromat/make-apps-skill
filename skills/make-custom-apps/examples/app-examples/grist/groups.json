@@ -1,0 +1,63 @@
+[
+  {
+    "label": "Organizations",
+    "modules": [
+      "listOrgs",
+      "getOrg",
+      "updateOrg",
+      "listOrgsUsers",
+      "updateOrgsAccess",
+      "listOrgWorkspaces"
+    ]
+  },
+  {
+    "label": "Workspaces",
+    "modules": [
+      "createWorkspace",
+      "getWorkspace",
+      "updateWorkspace",
+      "deleteWorkspace",
+      "listWorkspaceUsers",
+      "updateWorkspaceAccess",
+      "listWorkspaces"
+    ]
+  },
+  {
+    "label": "Documents",
+    "modules": [
+      "createDocument",
+      "deleteDocument",
+      "updateDocument",
+      "getDocument",
+      "moveDocument",
+      "getDocumentAsExcel",
+      "updateDocumentAccess",
+      "listDocumentsUsers",
+      "getDocumentAsSQLiteFile",
+      "getDocumentTableCSV"
+    ]
+  },
+  {
+    "label": "Tables",
+    "modules": [
+      "listRecordsFromTable",
+      "addRecordsToTable",
+      "updateTableRecords",
+      "listColumns",
+      "deleteTableRows"
+    ]
+  },
+  {
+    "label": "Triggers",
+    "modules": [
+      "watchDocuments",
+      "watchWorkspaces"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "makeApiCall"
+    ]
+  }
+]

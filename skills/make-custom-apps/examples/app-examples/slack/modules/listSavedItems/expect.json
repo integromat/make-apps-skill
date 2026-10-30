@@ -1,0 +1,12 @@
+[
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "validate": {
+      "max": 3200
+    }
+  }
+]

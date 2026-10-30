@@ -26,7 +26,7 @@ Before adapting templates:
 - Replace URLs/response fields only from current provider documentation. Confirm safe read-only connection validation; never use event ingestion or a send operation as a credential test.
 - Inspect secret-log masks against actual requests/responses. A list of example masks is not proof that all credentials are redacted.[41]
 - Match bundle projections to Interface/Samples and preserve valid zero/false values. Check pagination empty/boundary/multi-page cases and limit ceilings in Make.[12]
-- Keep the separately shipped [webhook lifecycle](../github-webhook/README.md) **blocked** until signature verification and replay handling are implemented and tested. No copied snippet changes that security gate.
+- Keep the separately shipped [webhook lifecycle](../app-examples/github-webhook/README.md) **blocked** until signature verification and replay handling are implemented and tested. No copied snippet changes that security gate.
 - Use the internal QA records only to plan real assertions and prerequisites. Unknown data prerequisites mean inconclusive, not a passing provider test.
 
 ## Index

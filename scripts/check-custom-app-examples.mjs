@@ -12,7 +12,9 @@ export const DEFAULT_EXAMPLES = fileURLToPath(new URL(
 ));
 
 function filesUnder(root) {
-  return readdirSync(root, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))
+  // Locally installed dependencies are never skill content; packaging rejects them separately.
+  return readdirSync(root, { withFileTypes: true }).filter((entry) => entry.name !== 'node_modules')
+    .sort((a, b) => a.name.localeCompare(b.name))
     .flatMap((entry) => entry.isDirectory() ? filesUnder(join(root, entry.name)) : [join(root, entry.name)]);
 }
 
@@ -104,10 +106,10 @@ function checkParameterValidation(value) {
 }
 
 function checkRegressionContracts(read) {
-  const search = read('github-search/api.imljson');
+  const search = read('app-examples/github-search/api.imljson');
   assert.equal(search.response.iterate, '{{body.items}}', 'Search item container');
   assert.equal(search.response.limit, '{{parameters.limit}}', 'Search bundle limit');
-  const poll = read('github-polling/api.imljson');
+  const poll = read('app-examples/github-polling/api.imljson');
   assert.deepEqual(poll.response.trigger, {
     type: 'date', order: 'desc', id: '{{item.id}}', date: '{{parseDate(item.created_at)}}',
   }, 'Polling trigger contract must match created-date descending provider order');
@@ -115,12 +117,12 @@ function checkRegressionContracts(read) {
   assert.equal(poll.qs.direction, 'desc', 'Polling trigger contract: provider order');
   assert.equal(poll.qs.state, 'all', 'Polling trigger contract: include closed records');
   assert.equal(poll.response.iterate, '{{body}}', 'Polling item container');
-  const epoch = read('github-polling/epoch.imljson');
+  const epoch = read('app-examples/github-polling/epoch.imljson');
   assert.deepEqual(Object.keys(epoch.response.output).sort(), ['date', 'label'], 'Epoch output must contain only date and label');
   assert.equal(epoch.response.output.date, poll.response.trigger.date, 'Epoch output date');
   assert.equal(epoch.response.limit, 300, 'Epoch UI record limit');
 
-  const oauth = read('dropbox-oauth/api.imljson');
+  const oauth = read('app-examples/dropbox-oauth/api.imljson');
   assert.equal(oauth.authorize.qs.token_access_type, 'offline', 'Dropbox offline authorization');
   assert.equal(oauth.refresh.response.data.refreshToken, '{{data.refreshToken}}', 'Dropbox refresh token must be retained');
   assert.equal(oauth.refresh.body.refresh_token, '{{data.refreshToken}}', 'Dropbox refresh token dependency');
@@ -135,12 +137,12 @@ function checkRegressionContracts(read) {
   }
   assert.equal(oauth.token.condition, undefined, 'Do not repeat a one-use authorization code');
   assert.equal(oauth.authorize.qs.redirect_uri, oauth.token.body.redirect_uri, 'OAuth callback mismatch');
-  assert.deepEqual(read('dropbox-oauth/scope.imljson'), ['account_info.read'], 'Dropbox info scope');
+  assert.deepEqual(read('app-examples/dropbox-oauth/scope.imljson'),['account_info.read'], 'Dropbox info scope');
   assert.ok(oauth.info.log?.sanitize?.includes('request.headers.authorization'), 'Secret log mask missing: info authorization');
 
-  const attach = read('github-webhook/webhook/attach.imljson');
-  const detach = read('github-webhook/webhook/detach.imljson');
-  const receive = read('github-webhook/webhook/api.imljson');
+  const attach = read('app-examples/github-webhook/webhook/attach.imljson');
+  const detach = read('app-examples/github-webhook/webhook/detach.imljson');
+  const receive = read('app-examples/github-webhook/webhook/api.imljson');
   for (const component of [attach, detach, receive, receive.verification]) {
     assert.equal(component.condition, false, 'Webhook deployment block must remain disabled');
   }
@@ -167,10 +169,12 @@ function checkRegressionContracts(read) {
 
 export function validateExamples(root = DEFAULT_EXAMPLES) {
   const required = {
-    'github-search': ['api.imljson', 'parameters.imljson', 'expect.imljson', 'interface.imljson', 'samples.imljson'],
-    'github-polling': ['api.imljson', 'parameters.imljson', 'epoch.imljson', 'interface.imljson', 'samples.imljson'],
-    'dropbox-oauth': ['api.imljson', 'parameters.imljson', 'scope.imljson', 'common.example.json'],
-    'github-webhook': ['connection/api.imljson', 'connection/parameters.imljson',
+    'app-examples': [],
+    'app-examples/github-search': ['base.imljson', 'api.imljson', 'parameters.imljson', 'expect.imljson', 'interface.imljson', 'samples.imljson',
+      'create-app.ts', 'create-app-core.ts', 'mock-client.ts', 'create-app.test.ts', 'package.json', 'package-lock.json', 'tsconfig.json'],
+    'app-examples/github-polling': ['api.imljson', 'parameters.imljson', 'epoch.imljson', 'interface.imljson', 'samples.imljson'],
+    'app-examples/dropbox-oauth': ['api.imljson', 'parameters.imljson', 'scope.imljson', 'common.example.json'],
+    'app-examples/github-webhook': ['connection/api.imljson', 'connection/parameters.imljson',
       'webhook/api.imljson', 'webhook/parameters.imljson', 'webhook/attach.imljson', 'webhook/detach.imljson',
       'trigger/api.imljson', 'trigger/parameters.imljson', 'trigger/interface.imljson', 'trigger/samples.imljson'],
     'custom-iml': ['defaultIfNull.js', 'default-if-null.test.mjs', 'expect.imljson',
@@ -202,18 +206,20 @@ export function validateExamples(root = DEFAULT_EXAMPLES) {
   assert.ok(json.size > 0, 'No example JSON files found');
   const read = (name) => json.get(join(root, name));
   for (const name of ['github-search', 'github-polling']) {
-    const api = read(`${name}/api.imljson`);
-    const inputs = [...read(`${name}/parameters.imljson`), ...(read(`${name}/expect.imljson`) ?? [])];
+    const folder = `app-examples/${name}`;
+    const api = read(`${folder}/api.imljson`);
+    const inputs = [...read(`${folder}/parameters.imljson`), ...(read(`${folder}/expect.imljson`) ?? [])];
     checkInputs(api, inputs, name);
-    checkFlatOutput(api.response.output, read(`${name}/interface.imljson`), read(`${name}/samples.imljson`), name);
+    checkFlatOutput(api.response.output, read(`${folder}/interface.imljson`), read(`${folder}/samples.imljson`), name);
     assert.equal(api?.qs?.page, 1, `${name}: first one-based page must be 1`);
     assert.equal(api?.pagination?.qs?.page, '{{pagination.page}}',
       `${name}: one-based page must use pagination.page without + 1`);
   }
-  checkInputs(read('github-webhook/webhook/attach.imljson'), read('github-webhook/webhook/parameters.imljson'), 'webhook attach');
-  checkInputs(read('github-webhook/connection/api.imljson'), read('github-webhook/connection/parameters.imljson'), 'webhook connection');
-  checkFlatOutput(read('github-webhook/webhook/api.imljson').output, read('github-webhook/trigger/interface.imljson'),
-    read('github-webhook/trigger/samples.imljson'), 'webhook trigger');
+  const webhook = 'app-examples/github-webhook';
+  checkInputs(read(`${webhook}/webhook/attach.imljson`), read(`${webhook}/webhook/parameters.imljson`), 'webhook attach');
+  checkInputs(read(`${webhook}/connection/api.imljson`), read(`${webhook}/connection/parameters.imljson`), 'webhook connection');
+  checkFlatOutput(read(`${webhook}/webhook/api.imljson`).output, read(`${webhook}/trigger/interface.imljson`),
+    read(`${webhook}/trigger/samples.imljson`), 'webhook trigger');
   const helperOutput = read('custom-iml/output.imljson');
   assert.deepEqual(helperOutput, {
     count: '{{defaultIfNull(parameters.count, 10)}}', active: '{{defaultIfNull(parameters.active, true)}}',

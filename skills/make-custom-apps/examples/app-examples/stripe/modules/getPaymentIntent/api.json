@@ -1,0 +1,7 @@
+{
+  "url": "/payment_intents/{{parameters.id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 1000,
+      "output": {
+        "date": "{{parseDate(item.LastModified)}}",
+        "label": "{{item.FunctionName}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Functions",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "amazon-lambda",
+  "description": "Triggers when a function is last updated.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

@@ -1,0 +1,21 @@
+{
+  "name": "coda",
+  "label": "Coda",
+  "version": 1,
+  "rev": 16,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": "Automate data flows between Coda and Google Drive, Gmail, Telegram Bot, ClickUp and more apps. Back up, share, inform, duplicate. With {{integromat}}, there's no limit to what you can do!",
+  "docs": "List Folders Search - NEFUNGUJE",
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 2,
+  "opensource": false,
+  "theme": "#f46a54",
+  "versionFull": "1.5.8",
+  "website": null
+}

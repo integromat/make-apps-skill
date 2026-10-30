@@ -1,0 +1,11 @@
+{
+  "gid": 0,
+  "status": "in_progress",
+  "new_project": {
+    "gid": 0,
+    "name": "REDACTED",
+    "resource_type": "project"
+  },
+  "resource_type": "job",
+  "resource_subtype": "duplicate_project"
+}

@@ -1,0 +1,131 @@
+[
+  {
+    "name": "iid",
+    "type": "text",
+    "label": "Iid"
+  },
+  {
+    "name": "team",
+    "type": "text",
+    "label": "Team"
+  },
+  {
+    "name": "channel",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "is_channel",
+        "type": "boolean",
+        "label": "Is public channel"
+      },
+      {
+        "name": "is_group",
+        "type": "boolean",
+        "label": "Is private channel"
+      },
+      {
+        "name": "is_im",
+        "type": "boolean",
+        "label": "Is direct message channel"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "is_shared",
+        "type": "boolean",
+        "label": "Is shared"
+      },
+      {
+        "name": "is_org_shared",
+        "type": "boolean",
+        "label": "Is org shared"
+      },
+      {
+        "name": "is_ext_shared",
+        "type": "boolean",
+        "label": "Is ext shared"
+      },
+      {
+        "name": "is_private",
+        "type": "boolean",
+        "label": "Is private"
+      },
+      {
+        "name": "is_mpim",
+        "type": "boolean",
+        "label": "Is multiparty direct message channel"
+      },
+      {
+        "name": "pending_shared",
+        "type": "array",
+        "label": "Pending shared"
+      },
+      {
+        "name": "is_pending_ext_shared",
+        "type": "boolean",
+        "label": "Is pending ext shared"
+      }
+    ],
+    "type": "collection",
+    "label": "Channel"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "user",
+    "type": "text",
+    "label": "User"
+  },
+  {
+    "name": "username",
+    "type": "text",
+    "label": "Username"
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Ts"
+  },
+  {
+    "name": "text",
+    "type": "text",
+    "label": "Text"
+  },
+  {
+    "name": "permalink",
+    "type": "url",
+    "label": "Permalink"
+  },
+  {
+    "name": "blocks",
+    "spec": [
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "block_id",
+        "type": "text",
+        "label": "Block ID"
+      },
+      {
+        "name": "elements",
+        "type": "array",
+        "label": "Elements"
+      }
+    ],
+    "type": "array",
+    "label": "Blocks"
+  }
+]

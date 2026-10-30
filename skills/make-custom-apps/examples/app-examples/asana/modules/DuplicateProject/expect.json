@@ -1,0 +1,125 @@
+[
+  {
+    "name": "workspaceRPC",
+    "type": "select",
+    "label": "Workspace",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "default": "map",
+          "options": "rpc://app%23asana@2/GetProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "help": "Filter on workspaces or organizations to find teams.",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "help": "If team is not defined, the new project will be in the same team as the the original project.",
+          "name": "team",
+          "type": "select",
+          "label": "Team ID",
+          "options": "rpc://app%23asana@2/GetTeams"
+        }
+      ]
+    }
+  },
+  {
+    "help": "The elements that will be duplicated to the new project. Tasks are always included.",
+    "name": "include",
+    "type": "select",
+    "label": "Include",
+    "options": [
+      {
+        "label": "Members",
+        "value": "members"
+      },
+      {
+        "label": "Notes",
+        "value": "notes"
+      },
+      {
+        "label": "Task: Notes",
+        "value": "task_notes"
+      },
+      {
+        "label": "Task: Assignee",
+        "value": "task_assignee"
+      },
+      {
+        "label": "Task: Subtasks",
+        "value": "task_subtasks"
+      },
+      {
+        "label": "Task: Attachments",
+        "value": "task_attachments"
+      },
+      {
+        "label": "Task: Dates",
+        "value": "task_dates"
+      },
+      {
+        "label": "Task: Dependencies",
+        "value": "task_dependencies"
+      },
+      {
+        "label": "Task: Followers",
+        "value": "task_followers"
+      },
+      {
+        "label": "Task: Tags",
+        "value": "task_tags"
+      },
+      {
+        "label": "Task: Projects",
+        "value": "task_projects"
+      }
+    ],
+    "multiple": true
+  },
+  {
+    "help": "If team is not defined, the new project will be in the same team as the the original project.",
+    "name": "schedule_dates",
+    "spec": [
+      {
+        "help": "Do not forget to select `Task: Dates` in the above `Include` field. It's required when using the `Schedule Dates` parameters.",
+        "name": "should_skip_weekends",
+        "type": "boolean",
+        "label": "Should Skip Weekends",
+        "required": true
+      },
+      {
+        "help": "Either 'due on' or 'start on' needs to be filled in.\nSets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.",
+        "name": "due_on",
+        "type": "date",
+        "label": "Due On"
+      },
+      {
+        "help": "Either 'due on' or 'start on' needs to be filled in.\nSets the first start date in the duplicated project to the given date. The rest of the start dates will be offset by the same amount as the start dates in the original project.",
+        "name": "start_on",
+        "type": "date",
+        "label": "Start On"
+      }
+    ],
+    "type": "collection",
+    "label": "Schedule Dates"
+  }
+]

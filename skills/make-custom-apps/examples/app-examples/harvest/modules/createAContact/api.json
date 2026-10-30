@@ -1,0 +1,17 @@
+{
+  "url": "/contacts",
+  "body": {
+    "fax": "{{parameters.fax}}",
+    "email": "{{parameters.email}}",
+    "title": "{{parameters.title}}",
+    "client_id": "{{parameters.client_id}}",
+    "last_name": "{{parameters.last_name}}",
+    "first_name": "{{parameters.first_name}}",
+    "phone_mobile": "{{parameters.phone_mobile}}",
+    "phone_office": "{{parameters.phone_office}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

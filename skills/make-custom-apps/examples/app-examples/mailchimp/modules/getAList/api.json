@@ -1,0 +1,7 @@
+{
+  "url": "/lists/{{parameters.list}}",
+  "method": "GET",
+  "response": {
+    "output": "{{generalResponse(body)}}"
+  }
+}

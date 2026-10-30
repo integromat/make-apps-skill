@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Label",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Creates a new label on a board.",
+  "altAccountName": null
+}

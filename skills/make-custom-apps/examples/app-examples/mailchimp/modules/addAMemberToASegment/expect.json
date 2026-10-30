@@ -1,0 +1,29 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "help": "Adding a member is only possible for segments with `Static` type. Segments with `Saved` type will not be shown. You will receive an error message if `Saved` segment ID is provided.",
+          "name": "segment",
+          "type": "select",
+          "label": "Segment ID",
+          "options": "rpc://app%23mailchimp@2/listSegments?type=static",
+          "required": true
+        },
+        {
+          "name": "email_address",
+          "type": "select",
+          "label": "Email Address",
+          "options": "rpc://app%23mailchimp@2/listSubscribers",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

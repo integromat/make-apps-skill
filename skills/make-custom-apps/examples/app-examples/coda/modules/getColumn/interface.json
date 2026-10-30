@@ -1,0 +1,54 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Column ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "display",
+    "type": "boolean",
+    "label": "Display"
+  },
+  {
+    "name": "calculated",
+    "type": "boolean",
+    "label": "Calculated"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "href",
+        "type": "url",
+        "label": "Href"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent"
+  }
+]

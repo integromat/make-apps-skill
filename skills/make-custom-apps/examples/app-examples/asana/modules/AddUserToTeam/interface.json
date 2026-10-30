@@ -1,0 +1,61 @@
+[
+  {
+    "name": "gid",
+    "type": "text",
+    "label": "Team Membership ID"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "team",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "Team ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Team Name"
+      }
+    ],
+    "type": "collection",
+    "label": "Team"
+  },
+  {
+    "name": "user",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "text",
+        "label": "User ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "User Name"
+      }
+    ],
+    "type": "collection",
+    "label": "User"
+  },
+  {
+    "name": "is_guest",
+    "type": "boolean",
+    "label": "Is Guest"
+  }
+]

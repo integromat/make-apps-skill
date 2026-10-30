@@ -1,0 +1,20 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Open a Conversation",
+  "scope": [
+    "im:write",
+    "mpim:write",
+    "users:read"
+  ],
+  "public": false,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack3",
+  "description": "Opens or resumes a direct message or multi-person direct message.",
+  "altAccountName": null
+}

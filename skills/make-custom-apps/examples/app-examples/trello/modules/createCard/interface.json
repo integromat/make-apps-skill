@@ -1,0 +1,453 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Card ID"
+  },
+  {
+    "name": "badges",
+    "spec": [
+      {
+        "name": "attachmentsByType",
+        "spec": [
+          {
+            "name": "trello",
+            "spec": [
+              {
+                "name": "board",
+                "type": "number",
+                "label": "Board"
+              },
+              {
+                "name": "card",
+                "type": "number",
+                "label": "Card"
+              }
+            ],
+            "type": "collection",
+            "label": "Trello"
+          }
+        ],
+        "type": "collection",
+        "label": "Attachments by type"
+      },
+      {
+        "name": "location",
+        "type": "boolean",
+        "label": "Location"
+      },
+      {
+        "name": "votes",
+        "type": "number",
+        "label": "Votes"
+      },
+      {
+        "name": "viewingMemberVoted",
+        "type": "boolean",
+        "label": "Viewing member voted"
+      },
+      {
+        "name": "subscribed",
+        "type": "boolean",
+        "label": "Subscribed"
+      },
+      {
+        "name": "fogbugz",
+        "type": "text",
+        "label": "Fogbugz"
+      },
+      {
+        "name": "checkItems",
+        "type": "number",
+        "label": "Check items"
+      },
+      {
+        "name": "checkItemsChecked",
+        "type": "number",
+        "label": "Check items checked"
+      },
+      {
+        "name": "comments",
+        "type": "number",
+        "label": "Comments"
+      },
+      {
+        "name": "attachments",
+        "type": "number",
+        "label": "Attachments"
+      },
+      {
+        "name": "description",
+        "type": "boolean",
+        "label": "Description"
+      },
+      {
+        "name": "due",
+        "type": "text",
+        "label": "Due date"
+      },
+      {
+        "name": "dueComplete",
+        "type": "boolean",
+        "label": "Due complete"
+      }
+    ],
+    "type": "collection",
+    "label": "Badges"
+  },
+  {
+    "name": "checkItemStates",
+    "type": "array",
+    "label": "Check item states"
+  },
+  {
+    "name": "closed",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "name": "dueComplete",
+    "type": "boolean",
+    "label": "Due complete"
+  },
+  {
+    "name": "dateLastActivity",
+    "type": "date",
+    "label": "Last activity date"
+  },
+  {
+    "name": "desc",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "descData",
+    "spec": [
+      {
+        "name": "emoji",
+        "spec": [],
+        "type": "collection",
+        "label": "Emoji"
+      }
+    ],
+    "type": "collection",
+    "label": "Description data"
+  },
+  {
+    "name": "due",
+    "type": "text",
+    "label": "Due date"
+  },
+  {
+    "name": "dueReminder",
+    "type": "text",
+    "label": "Due reminder"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email"
+  },
+  {
+    "name": "idBoard",
+    "type": "text",
+    "label": "Board ID"
+  },
+  {
+    "name": "idChecklists",
+    "type": "array",
+    "label": "Checklists ID"
+  },
+  {
+    "name": "attachments",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "Attachment ID"
+        },
+        {
+          "name": "bytes",
+          "type": "number",
+          "label": "Bytes"
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "label": "Date"
+        },
+        {
+          "name": "edgeColor",
+          "type": "text",
+          "label": "Edge color"
+        },
+        {
+          "name": "idMember",
+          "type": "text",
+          "label": "Member ID"
+        },
+        {
+          "name": "isUpload",
+          "type": "boolean",
+          "label": "Is upload"
+        },
+        {
+          "name": "mimeType",
+          "type": "text",
+          "label": "Mime type"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Attachment Name"
+        },
+        {
+          "name": "previews",
+          "spec": {
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "_id",
+                "type": "text",
+                "label": "_ID"
+              },
+              {
+                "name": "scaled",
+                "type": "boolean",
+                "label": "Scaled"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              },
+              {
+                "name": "bytes",
+                "type": "number",
+                "label": "Bytes"
+              },
+              {
+                "name": "height",
+                "type": "number",
+                "label": "Height"
+              },
+              {
+                "name": "width",
+                "type": "number",
+                "label": "Width"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Previews"
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "label": "Url"
+        },
+        {
+          "name": "pos",
+          "type": "number",
+          "label": "Position"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Attachments"
+  },
+  {
+    "name": "idList",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "idMembers",
+    "type": "array",
+    "label": "Members ID"
+  },
+  {
+    "name": "idMembersVoted",
+    "type": "array",
+    "label": "Members voted ID"
+  },
+  {
+    "name": "idShort",
+    "type": "number",
+    "label": "Short ID"
+  },
+  {
+    "name": "idAttachmentCover",
+    "type": "text",
+    "label": "Attachment cover ID"
+  },
+  {
+    "name": "labels",
+    "spec": {
+      "spec": [
+        {
+          "name": "id",
+          "type": "text",
+          "label": "ID"
+        },
+        {
+          "name": "idBoard",
+          "type": "text",
+          "label": "Board ID"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "name": "color",
+          "type": "text",
+          "label": "Color"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Labels"
+  },
+  {
+    "name": "idLabels",
+    "type": "array",
+    "label": "Labels IDs"
+  },
+  {
+    "name": "manualCoverAttachment",
+    "type": "boolean",
+    "label": "Manual cover attachment"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "pos",
+    "type": "number",
+    "label": "Position"
+  },
+  {
+    "name": "shortLink",
+    "type": "text",
+    "label": "Short link"
+  },
+  {
+    "name": "shortUrl",
+    "type": "url",
+    "label": "Short URL"
+  },
+  {
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed"
+  },
+  {
+    "name": "stickers",
+    "type": "array",
+    "label": "Stickers"
+  },
+  {
+    "name": "url",
+    "type": "url",
+    "label": "URL"
+  },
+  {
+    "name": "cover",
+    "spec": [
+      {
+        "name": "idAttachment",
+        "type": "text",
+        "label": "Attachment ID"
+      },
+      {
+        "name": "color",
+        "type": "text",
+        "label": "Color"
+      },
+      {
+        "name": "idUploadedBackground",
+        "type": "text",
+        "label": "Uploaded Background ID"
+      },
+      {
+        "name": "size",
+        "type": "text",
+        "label": "Size"
+      },
+      {
+        "name": "brightness",
+        "type": "text",
+        "label": "Brightness"
+      },
+      {
+        "name": "scaled",
+        "spec": {
+          "spec": [
+            {
+              "name": "_id",
+              "type": "text",
+              "label": "_ID"
+            },
+            {
+              "name": "scaled",
+              "type": "boolean",
+              "label": "Scaled"
+            },
+            {
+              "name": "url",
+              "type": "text",
+              "label": "Url"
+            },
+            {
+              "name": "bytes",
+              "type": "number",
+              "label": "Bytes"
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "label": "Height"
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "label": "Width"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Scaled"
+      },
+      {
+        "name": "edgeColor",
+        "type": "color",
+        "label": "Color edge"
+      }
+    ],
+    "type": "collection",
+    "label": "Cover"
+  },
+  {
+    "name": "isTemplate",
+    "type": "boolean",
+    "label": "Is template"
+  },
+  {
+    "name": "limits",
+    "type": "collection",
+    "label": "Limits"
+  }
+]

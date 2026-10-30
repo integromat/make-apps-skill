@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "include_locale": true
+  },
+  "url": "/users.list",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{getOutput(item)}}",
+    "iterate": "{{body.members}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{parseDate(item.updated)}}",
+      "type": "date",
+      "order": "unordered"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.response_metadata.next_cursor}}"
+    },
+    "condition": "{{body.response_metadata.next_cursor}}"
+  }
+}

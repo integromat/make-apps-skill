@@ -1,0 +1,34 @@
+[
+  {
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": {
+      "store": "rpc://app%23grist@1/listDocuments",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "tableId",
+          "type": "text",
+          "label": "Table Name",
+          "nested": [
+            {
+              "mode": "edit",
+              "name": "rows",
+              "spec": {
+                "type": "select",
+                "label": "Row ID",
+                "options": "rpc://app%23grist@1/listRows"
+              },
+              "type": "array",
+              "label": "Row IDs"
+            }
+          ],
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

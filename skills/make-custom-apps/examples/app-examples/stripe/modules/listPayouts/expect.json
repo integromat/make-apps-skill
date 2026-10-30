@@ -1,0 +1,124 @@
+[
+  {
+    "help": "The ID of an external account - only return payouts sent to this external account.",
+    "name": "destination",
+    "type": "text",
+    "label": "Destination"
+  },
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10,
+    "required": true,
+    "validate": {
+      "max": 1000,
+      "min": 1
+    }
+  },
+  {
+    "help": "A filter on the list based on the object created field.",
+    "name": "created",
+    "type": "select",
+    "label": "Created at",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "created_timestamp",
+          "type": "number",
+          "label": "Timestamp",
+          "required": true
+        }
+      ]
+    },
+    "advanced": true
+  },
+  {
+    "help": "Filter the list based on the payout arrival.",
+    "name": "arrival",
+    "type": "select",
+    "label": "Arrival date",
+    "options": {
+      "store": [
+        {
+          "label": "Before",
+          "short": "<",
+          "value": "lt"
+        },
+        {
+          "label": "Before or equals",
+          "short": "<=",
+          "value": "lte"
+        },
+        {
+          "label": "After",
+          "short": ">",
+          "value": "gt"
+        },
+        {
+          "label": "After or equals",
+          "short": ">=",
+          "value": "gte"
+        }
+      ],
+      "nested": [
+        {
+          "help": "The value must be an integer Unix timestamp",
+          "name": "arrival_timestamp",
+          "type": "number",
+          "label": "Timestamp",
+          "required": true
+        }
+      ]
+    },
+    "advanced": true
+  },
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Failed",
+        "value": "failed"
+      },
+      {
+        "label": "Canceled",
+        "value": "canceled"
+      }
+    ],
+    "advanced": true,
+    "editable": true
+  }
+]

@@ -1,0 +1,589 @@
+[
+  {
+    "name": "store_id",
+    "type": "select",
+    "label": "Store ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listStores",
+      "nested": [
+        {
+          "name": "customer",
+          "spec": [
+            {
+              "name": "select",
+              "type": "select",
+              "label": "Select",
+              "options": [
+                {
+                  "label": "Select an Existing Customer",
+                  "value": "selectAnExistingCustomer",
+                  "nested": [
+                    {
+                      "name": "id",
+                      "type": "select",
+                      "label": "Customer ID",
+                      "options": "rpc://app%23mailchimp@2/listCustomers",
+                      "required": true
+                    }
+                  ]
+                },
+                {
+                  "label": "Create a New Customer",
+                  "value": "createANewCustomer",
+                  "nested": [
+                    {
+                      "help": "A unique identifier for the customer.",
+                      "name": "id",
+                      "type": "text",
+                      "label": "Customer ID",
+                      "required": true,
+                      "validate": {
+                        "max": 50
+                      }
+                    },
+                    {
+                      "name": "email_address",
+                      "type": "email",
+                      "label": "Email Address",
+                      "required": true
+                    },
+                    {
+                      "help": "The customer's opt-in status. This value will never overwrite the opt-in status of a pre-existing Mailchimp list member, but will apply to list members that are added through the e-commerce API endpoints. Customers who don't opt in to your Mailchimp list will be added as Transactional members.",
+                      "name": "opt_in_status",
+                      "type": "boolean",
+                      "label": "Opt-in Status",
+                      "required": true
+                    },
+                    {
+                      "name": "company",
+                      "type": "text",
+                      "label": "Company"
+                    },
+                    {
+                      "name": "first_name",
+                      "type": "text",
+                      "label": "First Name"
+                    },
+                    {
+                      "name": "last_name",
+                      "type": "text",
+                      "label": "Last Name"
+                    },
+                    {
+                      "help": "The customer's address.",
+                      "name": "address",
+                      "spec": [
+                        {
+                          "help": "The mailing address of the customer.",
+                          "name": "address1",
+                          "type": "text",
+                          "label": "Address 1"
+                        },
+                        {
+                          "help": "An additional field for the customer's mailing address.",
+                          "name": "address2",
+                          "type": "text",
+                          "label": "Address 2"
+                        },
+                        {
+                          "help": "The city the customer is located in.",
+                          "name": "city",
+                          "type": "text",
+                          "label": "City"
+                        },
+                        {
+                          "help": "The customer's state name or normalized province.",
+                          "name": "province",
+                          "type": "text",
+                          "label": "Province"
+                        },
+                        {
+                          "help": "The two-letter code for the customer's province or state.",
+                          "name": "province_code",
+                          "type": "text",
+                          "label": "Province Code"
+                        },
+                        {
+                          "help": "The customer's postal or zip code.",
+                          "name": "postal_code",
+                          "type": "text",
+                          "label": "Postal Code"
+                        },
+                        {
+                          "help": "The customer's country.",
+                          "name": "country",
+                          "type": "text",
+                          "label": "Country"
+                        },
+                        {
+                          "help": "The two-letter code for the customer's country.",
+                          "name": "country_code",
+                          "type": "text",
+                          "label": "Country Code"
+                        }
+                      ],
+                      "type": "collection",
+                      "label": "Address"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "type": "collection",
+          "label": "Customer",
+          "required": true
+        },
+        {
+          "help": "An array of the order's line items.",
+          "name": "lines",
+          "spec": [
+            {
+              "help": "A unique identifier for the order line item.",
+              "name": "id",
+              "type": "text",
+              "label": "Line ID",
+              "required": true
+            },
+            {
+              "help": "A unique identifier for the product associated with the order line item.",
+              "name": "product_id",
+              "type": "select",
+              "label": "Product ID",
+              "options": {
+                "store": "rpc://app%23mailchimp@2/listProducts",
+                "nested": [
+                  {
+                    "help": "A unique identifier for the product variant associated with the order line item.",
+                    "name": "product_variant_id",
+                    "type": "select",
+                    "label": "Product Variant ID",
+                    "options": "rpc://app%23mailchimp@2/listProductVariants",
+                    "required": true
+                  }
+                ]
+              },
+              "required": true
+            },
+            {
+              "help": "The quantity of an order line item.",
+              "name": "quantity",
+              "type": "integer",
+              "label": "Quantity",
+              "required": true
+            },
+            {
+              "help": "The price of an order line item.",
+              "name": "price",
+              "type": "number",
+              "label": "Price",
+              "required": true
+            },
+            {
+              "help": "The total discount amount applied to this line item.",
+              "name": "discount",
+              "type": "number",
+              "label": "Discount"
+            }
+          ],
+          "type": "array",
+          "label": "Lines",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "A unique identifier for the order.",
+    "name": "id",
+    "type": "text",
+    "label": "Order ID",
+    "required": true
+  },
+  {
+    "help": "The three-letter ISO 4217 code for the currency that the store accepts.",
+    "name": "currency_code",
+    "type": "text",
+    "label": "Currency Code",
+    "required": true,
+    "validate": {
+      "max": 3,
+      "min": 3
+    }
+  },
+  {
+    "help": "The total for the order.",
+    "name": "order_total",
+    "type": "number",
+    "label": "Order Total",
+    "required": true
+  },
+  {
+    "help": "A string that uniquely identifies the campaign for an order.",
+    "name": "campaign_id",
+    "type": "select",
+    "label": "Campaign ID",
+    "options": "rpc://app%23mailchimp@2/listCampaigns"
+  },
+  {
+    "help": "The URL for the page where the buyer landed when entering the shop.",
+    "name": "landing_site",
+    "type": "select",
+    "label": "Landing Site",
+    "options": "rpc://app%23mailchimp@2/listLandingPagesIDs"
+  },
+  {
+    "help": "The order status.",
+    "name": "financial_status",
+    "type": "select",
+    "label": "Financial Status",
+    "options": [
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Refunded",
+        "value": "refunded"
+      },
+      {
+        "label": "Cancelled",
+        "value": "cancelled"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "The fulfillment status for the order.",
+    "name": "fulfillment_status",
+    "type": "select",
+    "label": "Fulfillment Status",
+    "options": [
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Refunded",
+        "value": "refunded"
+      },
+      {
+        "label": "Cancelled",
+        "value": "cancelled"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "The URL for the order.",
+    "name": "order_url",
+    "type": "url",
+    "label": "Order URL"
+  },
+  {
+    "help": "The total amount of the discounts to be applied to the price of the order.",
+    "name": "discount_total",
+    "type": "number",
+    "label": "Discount Total"
+  },
+  {
+    "help": "The tax total for the order.",
+    "name": "tax_total",
+    "type": "number",
+    "label": "Tax Total"
+  },
+  {
+    "help": "The shipping total for the order.",
+    "name": "shipping_total",
+    "type": "number",
+    "label": "Shipping Total"
+  },
+  {
+    "help": "The Mailchimp tracking code for the order. Uses the 'mc_tc' parameter in E-Commerce tracking URLs. Possible value: `\"prec\"`.",
+    "name": "tracking_code",
+    "type": "select",
+    "label": "Tracking Code",
+    "options": [
+      {
+        "label": "Prec",
+        "value": "prec"
+      }
+    ]
+  },
+  {
+    "help": "The date and time the order was processed in ISO 8601 format.",
+    "name": "processed_at_foreign",
+    "type": "date",
+    "label": "Processed at Foreign"
+  },
+  {
+    "help": "The date and time the order was cancelled in ISO 8601 format.\nNote: passing a value for this parameter will cancel the order being created.",
+    "name": "cancelled_at_foreign",
+    "type": "date",
+    "label": "Cancelled at Foreign"
+  },
+  {
+    "help": "The date and time the order was updated in ISO 8601 format.",
+    "name": "updated_at_foreign",
+    "type": "date",
+    "label": "Updated at Foreign"
+  },
+  {
+    "help": "The shipping address for the order.",
+    "name": "shipping_address",
+    "spec": [
+      {
+        "help": "The name associated with an order's shipping address.",
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "help": "The shipping address for the order.",
+        "name": "address1",
+        "type": "text",
+        "label": "Address 1"
+      },
+      {
+        "help": "An additional field for the shipping address.",
+        "name": "address2",
+        "type": "text",
+        "label": "Address 2"
+      },
+      {
+        "help": "The city in the order's shipping address.",
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "help": "The state or normalized province in the order's shipping address.",
+        "name": "province",
+        "type": "text",
+        "label": "Province"
+      },
+      {
+        "help": "The two-letter code for the province or state in the shipping address.",
+        "name": "province_code",
+        "type": "text",
+        "label": "Province Code",
+        "validate": {
+          "max": 2,
+          "min": 2
+        }
+      },
+      {
+        "help": "The postal or zip code in the shipping address.",
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "help": "The country in the shipping address.",
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "help": "The two-letter code for the country in the shipping address.",
+        "name": "country_code",
+        "type": "text",
+        "label": "Country Code"
+      },
+      {
+        "help": "The longitude for the shipping address location.",
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      },
+      {
+        "help": "The latitude for the shipping address location.",
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "help": "The phone number for the order's shipping address.",
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "help": "The company associated with the shipping address.",
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping Address"
+  },
+  {
+    "help": "The billing address for the order.",
+    "name": "billing_address",
+    "spec": [
+      {
+        "help": "The name associated with an order's billing address.",
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "help": "The billing address for the order.",
+        "name": "address1",
+        "type": "text",
+        "label": "Address 1"
+      },
+      {
+        "help": "An additional field for the billing address.",
+        "name": "address2",
+        "type": "text",
+        "label": "Address 2"
+      },
+      {
+        "help": "The city in the order's billing address.",
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "help": "The state or normalized province in the order's billing address.",
+        "name": "province",
+        "type": "text",
+        "label": "Province"
+      },
+      {
+        "help": "The two-letter code for the province or state in the billing address.",
+        "name": "province_code",
+        "type": "text",
+        "label": "Province Code",
+        "validate": {
+          "max": 2,
+          "min": 2
+        }
+      },
+      {
+        "help": "The postal or zip code in the billing address.",
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "help": "The country in the billing address.",
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "help": "The two-letter code for the country in the billing address.",
+        "name": "country_code",
+        "type": "text",
+        "label": "Country Code"
+      },
+      {
+        "help": "The longitude for the billing address location.",
+        "name": "longitude",
+        "type": "number",
+        "label": "Longitude"
+      },
+      {
+        "help": "The latitude for the billing address location.",
+        "name": "latitude",
+        "type": "number",
+        "label": "Latitude"
+      },
+      {
+        "help": "The phone number for the order's billing address.",
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "help": "The company associated with the billing address.",
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      }
+    ],
+    "type": "collection",
+    "label": "Billing Address"
+  },
+  {
+    "help": "The promo codes applied on the order",
+    "name": "promos",
+    "spec": [
+      {
+        "help": "The promo code.",
+        "name": "code",
+        "type": "text",
+        "label": "Code"
+      },
+      {
+        "help": "The amount of discount applied on the total price. For example if the total cost was $100 and the customer paid $95.5, amount_discounted will be 4.5 For free shipping set amount_discounted to 0",
+        "name": "amount_discounted",
+        "type": "number",
+        "label": "Amount Discounted"
+      },
+      {
+        "help": "Type of discount. For free shipping set type to `fixed`.",
+        "name": "type",
+        "type": "select",
+        "label": "Type",
+        "options": [
+          {
+            "label": "Fixed",
+            "value": "fixed"
+          },
+          {
+            "label": "Percentage",
+            "value": "percentage"
+          }
+        ],
+        "mappable": false
+      }
+    ],
+    "type": "array",
+    "label": "Promos"
+  },
+  {
+    "help": "The outreach associated with this order. For example, an email campaign or Facebook ad.",
+    "name": "outreach",
+    "spec": [
+      {
+        "help": "A unique identifier for the outreach. Can be an email campaign ID.",
+        "name": "id",
+        "type": "text",
+        "label": "Outreach ID"
+      }
+    ],
+    "type": "collection",
+    "label": "Outreach"
+  },
+  {
+    "help": "The tracking number associated with the order.",
+    "name": "tracking_number",
+    "type": "text",
+    "label": "Tracking Number"
+  },
+  {
+    "help": "The tracking carrier associated with the order.",
+    "name": "tracking_carrier",
+    "type": "text",
+    "label": "Tracking Carrier"
+  },
+  {
+    "help": "The tracking URL associated with the order.",
+    "name": "tracking_url",
+    "type": "url",
+    "label": "Tracking URL"
+  }
+]

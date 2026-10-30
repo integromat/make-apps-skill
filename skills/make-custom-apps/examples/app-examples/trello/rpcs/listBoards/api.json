@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "fields": "all",
+    "filter": "open",
+    "organization": true
+  },
+  "url": "/members/me/boards",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": 500,
+    "output": {
+      "label": "{{item.name}} ({{item.organization.displayName}})",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

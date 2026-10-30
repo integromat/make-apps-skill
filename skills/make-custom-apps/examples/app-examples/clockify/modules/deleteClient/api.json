@@ -1,0 +1,7 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/clients/{{parameters.client}}",
+  "method": "DELETE",
+  "response": {
+    "output": null
+  }
+}

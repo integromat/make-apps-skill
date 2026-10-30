@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','selectOrMap','story_gid'),'Attachment')}}",
+  "url": "/attachments/{{parameters.attachment_gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

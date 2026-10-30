@@ -1,0 +1,4 @@
+{
+  "url": "/lists/{{webhook.list_id}}/webhooks/{{webhook.webhook_id}}",
+  "method": "DELETE"
+}

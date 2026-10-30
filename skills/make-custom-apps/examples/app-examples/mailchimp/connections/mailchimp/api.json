@@ -1,0 +1,69 @@
+{
+  "info": {
+    "log": {
+      "sanitize": [
+        "request.headers.authorization"
+      ]
+    },
+    "url": "https://login.mailchimp.com/oauth2/metadata",
+    "headers": {
+      "authorization": "Bearer {{connection.accessToken}}"
+    },
+    "response": {
+      "uid": "{{body.user_id}}",
+      "data": {
+        "apiEndpoint": "{{body.api_endpoint}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.detail || 'Something wrong. Please try again.'}}"
+      },
+      "metadata": {
+        "type": "text",
+        "value": "{{if(body.login.login_name, body.login.login_name, body.accountname)}}"
+      }
+    }
+  },
+  "token": {
+    "log": {
+      "sanitize": [
+        "request.body.code",
+        "request.body.client_secret",
+        "response.body.access_token"
+      ]
+    },
+    "url": "https://login.mailchimp.com/oauth2/token",
+    "body": {
+      "code": "{{temp.code}}",
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "grant_type": "authorization_code",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "client_secret": "{{ifempty(parameters.clientSecret, common.clientSecret)}}"
+    },
+    "type": "urlencoded",
+    "method": "POST",
+    "response": {
+      "data": {
+        "accessToken": "{{body.access_token}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.detail || 'Something wrong. Please try again.'}}"
+      }
+    }
+  },
+  "authorize": {
+    "qs": {
+      "client_id": "{{ifempty(parameters.clientId, common.clientId)}}",
+      "redirect_uri": "{{oauth.redirectUri}}",
+      "response_type": "code"
+    },
+    "url": "https://login.mailchimp.com/oauth2/authorize",
+    "response": {
+      "temp": {
+        "code": "{{query.code}}"
+      },
+      "error": {
+        "message": "[{{statusCode}}] {{body.detail || 'Something wrong. Please try again.'}}"
+      }
+    }
+  }
+}

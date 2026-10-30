@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'section_gid','project','selectOrMap'),'ProjectSection')}}",
+  "url": "/sections/{{parameters.section_gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

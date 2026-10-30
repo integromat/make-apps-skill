@@ -1,0 +1,13 @@
+{
+  "rev": 2,
+  "type": "basic",
+  "label": "Grist",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

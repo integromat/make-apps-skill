@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add/Update a Subscriber",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Adds an email address to a subscriber list.",
+  "altAccountName": null
+}

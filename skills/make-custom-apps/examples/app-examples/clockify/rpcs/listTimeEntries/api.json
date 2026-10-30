@@ -1,0 +1,20 @@
+{
+  "qs": {
+    "hydrated": true
+  },
+  "url": "/workspaces/{{parameters.workspace}}/user/{{parameters.user}}/time-entries",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{formatDate(item.timeInterval.start,'YYYY-MM-DD HH:mm') if(item.timeInterval.end, ' ~ '+ formatDate(item.timeInterval.end,'YYYY-MM-DD HH:mm'), ' on now tracking currently') if(item.project.name, ' in '+item.project.name if(item.task.name, ': '+item.task.name))}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  },
+  "pagination": {
+    "qs": {
+      "page": "{{pagination.page}}"
+    },
+    "condition": "{{length(body) > 1}}"
+  }
+}

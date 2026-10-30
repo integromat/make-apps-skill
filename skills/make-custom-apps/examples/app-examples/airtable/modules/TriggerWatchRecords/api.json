@@ -1,0 +1,45 @@
+[
+  {
+    "url": "https://api.airtable.com/v0/meta/bases/{{parameters.base}}/tables",
+    "headers": {
+      "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+    },
+    "response": {
+      "temp": {
+        "schema": "{{getSchema(body, parameters.table, 'interface', , true)}}"
+      }
+    },
+    "condition": "{{parameters.useColumnId && !temp.isEpoch}}"
+  },
+  {
+    "qs": {
+      "view": "{{parameters.view}}",
+      "pageSize": 100,
+      "sort[0][field]": "{{parameters.config.triggerField}}",
+      "filterByFormula": "AND({{temp.triggerDateFilter}}{{if(parameters.formula, ',' + parameters.formula)}})",
+      "sort[0][direction]": "desc"
+    },
+    "url": "/{{parameters.base}}/{{encodeURL(parameters.table)}}",
+    "temp": {
+      "triggerDateFilter": "NOT({{'{' + parameters.config.triggerField + '}'}} = BLANK())"
+    },
+    "response": {
+      "limit": "{{parameters.maxRecords}}",
+      "output": "{{processRecord(item, temp.schema)}}",
+      "iterate": "{{body.records}}",
+      "trigger": {
+        "id": "{{item.id}}",
+        "date": "{{safeGet(item.fields, parameters.config.triggerField)}}",
+        "type": "date",
+        "order": "desc"
+      }
+    },
+    "encodeUrl": false,
+    "pagination": {
+      "qs": {
+        "offset": "{{body.offset}}"
+      },
+      "condition": "{{body.offset}}"
+    }
+  }
+]

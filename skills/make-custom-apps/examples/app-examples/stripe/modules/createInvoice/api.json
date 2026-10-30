@@ -1,0 +1,29 @@
+{
+  "url": "/invoices",
+  "body": "{{encodeRequestBody(temp)}}",
+  "temp": {
+    "footer": "{{parameters.footer}}",
+    "customer": "{{parameters.customer}}",
+    "due_date": "{{formatDate(parameters.due_date, 'X')}}",
+    "metadata": "{{parameters.metadata}}",
+    "discounts": "{{parameters.discounts}}",
+    "description": "{{parameters.description}}",
+    "auto_advance": "{{parameters.auto_advance}}",
+    "subscription": "{{parameters.subscription}}",
+    "custom_fields": "{{parameters.custom_fields}}",
+    "transfer_data": "{{parameters.transfer_data}}",
+    "days_until_due": "{{parameters.days_until_due}}",
+    "default_source": "{{parameters.default_source}}",
+    "collection_method": "{{parameters.collection_method}}",
+    "default_tax_rates": "{{parameters.default_tax_rates}}",
+    "statement_descriptor": "{{parameters.statement_descriptor}}",
+    "application_fee_amount": "{{parameters.application_fee_amount}}",
+    "default_payment_method": "{{parameters.default_payment_method}}",
+    "pending_invoice_items_behavior": "{{parameters.pending_invoice_items_behavior}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

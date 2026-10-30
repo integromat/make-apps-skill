@@ -1,0 +1,389 @@
+[
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "channel",
+    "type": "text",
+    "label": "Channel"
+  },
+  {
+    "name": "date_create",
+    "type": "date",
+    "label": "Date Created"
+  },
+  {
+    "name": "message",
+    "spec": [
+      {
+        "name": "client_msg_id",
+        "type": "text",
+        "label": "Client Msg ID"
+      },
+      {
+        "name": "bot_id",
+        "type": "text",
+        "label": "Bot ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "text",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User"
+      },
+      {
+        "name": "ts",
+        "type": "text",
+        "label": "Timestamp"
+      },
+      {
+        "name": "app_id",
+        "type": "text",
+        "label": "App ID"
+      },
+      {
+        "name": "team",
+        "type": "text",
+        "label": "Team"
+      },
+      {
+        "name": "bot_profile",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Bot ID"
+          },
+          {
+            "name": "deleted",
+            "type": "boolean",
+            "label": "Deleted"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "updated",
+            "type": "date",
+            "label": "Updated"
+          },
+          {
+            "name": "app_id",
+            "type": "text",
+            "label": "App ID"
+          },
+          {
+            "name": "icons",
+            "spec": [
+              {
+                "name": "image_36",
+                "type": "text",
+                "label": "Image 36"
+              },
+              {
+                "name": "image_48",
+                "type": "text",
+                "label": "Image 48"
+              },
+              {
+                "name": "image_72",
+                "type": "text",
+                "label": "Image 72"
+              }
+            ],
+            "type": "collection",
+            "label": "Icons"
+          },
+          {
+            "name": "team_id",
+            "type": "text",
+            "label": "Team ID"
+          }
+        ],
+        "type": "collection",
+        "label": "Bot Profile"
+      },
+      {
+        "name": "blocks",
+        "spec": {
+          "spec": [
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "block_id",
+              "type": "text",
+              "label": "Block ID"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Blocks"
+      },
+      {
+        "name": "is_starred",
+        "type": "boolean",
+        "label": "Is Starred"
+      },
+      {
+        "name": "permalink",
+        "type": "text",
+        "label": "Permalink"
+      }
+    ],
+    "type": "collection",
+    "label": "Message"
+  },
+  {
+    "name": "file",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "File ID"
+      },
+      {
+        "name": "created",
+        "type": "date",
+        "label": "Created"
+      },
+      {
+        "name": "timestamp",
+        "type": "number",
+        "label": "Timestamp"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "mimetype",
+        "type": "text",
+        "label": "MIME type"
+      },
+      {
+        "name": "filetype",
+        "type": "text",
+        "label": "Filetype"
+      },
+      {
+        "name": "pretty_type",
+        "type": "text",
+        "label": "Pretty Type"
+      },
+      {
+        "name": "user",
+        "type": "text",
+        "label": "User"
+      },
+      {
+        "name": "editable",
+        "type": "boolean",
+        "label": "Editable"
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "label": "Size"
+      },
+      {
+        "name": "mode",
+        "type": "text",
+        "label": "Mode"
+      },
+      {
+        "name": "is_external",
+        "type": "boolean",
+        "label": "Is External"
+      },
+      {
+        "name": "external_type",
+        "type": "text",
+        "label": "External Type"
+      },
+      {
+        "name": "is_public",
+        "type": "boolean",
+        "label": "Is Public"
+      },
+      {
+        "name": "public_url_shared",
+        "type": "boolean",
+        "label": "Public URL Shared"
+      },
+      {
+        "name": "display_as_bot",
+        "type": "boolean",
+        "label": "Display As Bot"
+      },
+      {
+        "name": "username",
+        "type": "text",
+        "label": "Username"
+      },
+      {
+        "name": "url_private",
+        "type": "text",
+        "label": "URL Private"
+      },
+      {
+        "name": "url_private_download",
+        "type": "text",
+        "label": "URL Private Download"
+      },
+      {
+        "name": "media_display_type",
+        "type": "text",
+        "label": "Media Display Type"
+      },
+      {
+        "name": "thumb_64",
+        "type": "text",
+        "label": "Thumb 64"
+      },
+      {
+        "name": "thumb_80",
+        "type": "text",
+        "label": "Thumb 80"
+      },
+      {
+        "name": "thumb_360",
+        "type": "text",
+        "label": "Thumb 360"
+      },
+      {
+        "name": "thumb_360_w",
+        "type": "number",
+        "label": "Thumb 360 W"
+      },
+      {
+        "name": "thumb_360_h",
+        "type": "number",
+        "label": "Thumb 360 H"
+      },
+      {
+        "name": "thumb_480",
+        "type": "text",
+        "label": "Thumb 480"
+      },
+      {
+        "name": "thumb_480_w",
+        "type": "number",
+        "label": "Thumb 480 W"
+      },
+      {
+        "name": "thumb_480_h",
+        "type": "number",
+        "label": "Thumb 480 H"
+      },
+      {
+        "name": "thumb_160",
+        "type": "text",
+        "label": "Thumb 160"
+      },
+      {
+        "name": "thumb_720",
+        "type": "text",
+        "label": "Thumb 720"
+      },
+      {
+        "name": "thumb_720_w",
+        "type": "number",
+        "label": "Thumb 720 W"
+      },
+      {
+        "name": "thumb_720_h",
+        "type": "number",
+        "label": "Thumb 720 H"
+      },
+      {
+        "name": "original_w",
+        "type": "number",
+        "label": "Original W"
+      },
+      {
+        "name": "original_h",
+        "type": "number",
+        "label": "Original H"
+      },
+      {
+        "name": "thumb_tiny",
+        "type": "text",
+        "label": "Thumb Tiny"
+      },
+      {
+        "name": "permalink",
+        "type": "text",
+        "label": "Permalink"
+      },
+      {
+        "name": "permalink_public",
+        "type": "text",
+        "label": "Permalink Public"
+      },
+      {
+        "name": "comments_count",
+        "type": "number",
+        "label": "Comments Count"
+      },
+      {
+        "name": "is_starred",
+        "type": "boolean",
+        "label": "Is Starred"
+      },
+      {
+        "name": "shares",
+        "spec": [],
+        "type": "collection",
+        "label": "Shares"
+      },
+      {
+        "name": "channels",
+        "spec": {
+          "type": "text"
+        },
+        "type": "array",
+        "label": "Channels"
+      },
+      {
+        "name": "groups",
+        "type": "array",
+        "label": "Groups"
+      },
+      {
+        "name": "ims",
+        "type": "array",
+        "label": "IMS"
+      },
+      {
+        "name": "has_rich_preview",
+        "type": "boolean",
+        "label": "Has Rich Preview"
+      }
+    ],
+    "type": "collection",
+    "label": "File"
+  }
+]

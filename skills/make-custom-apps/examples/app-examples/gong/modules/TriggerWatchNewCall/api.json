@@ -1,0 +1,21 @@
+{
+  "url": "/calls",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{parseDates(item, 'started', 'scheduled')}}",
+    "iterate": "{{body.calls}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{item.started}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.records.cursor}}"
+    },
+    "condition": "{{body.records.cursor}}"
+  }
+}

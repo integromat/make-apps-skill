@@ -1,0 +1,22 @@
+{
+  "qs": "{{setOptFields(omit(setParam(parameters,'limit',100),'choice','task_gid','workspace','assignee','project','section','tag','selectOrMap','page'),'Story')}}",
+  "url": "/tasks/{{parameters.task_gid}}/stories",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.page}}",
+    "output": "{{customFieldExtra(item)}}",
+    "iterate": "{{body.data}}",
+    "trigger": {
+      "id": "{{item.gid}}",
+      "date": "{{item.created_at}}",
+      "type": "date",
+      "order": "asc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

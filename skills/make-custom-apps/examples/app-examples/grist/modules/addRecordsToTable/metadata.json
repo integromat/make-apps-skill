@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add Records to a Table",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Add new records to a specified table.",
+  "altAccountName": null
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "project_id",
+    "type": "select",
+    "label": "Project ID",
+    "options": {
+      "store": "rpc://getProjects",
+      "nested": [
+        {
+          "name": "task_id",
+          "type": "select",
+          "label": "Task ID",
+          "options": "rpc://getTasksForProject",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Only the date is relevant, time will be ignored.",
+    "name": "spent_date",
+    "time": false,
+    "type": "date",
+    "label": "Spent at",
+    "required": true
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "help": "Enter the number of (decimal time) hours. Example: 1:30 (1hour and 30 minutes)= 1.5 hours. To start a timer, leave the hours parameter blank.",
+    "name": "hours",
+    "type": "number",
+    "label": "Hours"
+  }
+]

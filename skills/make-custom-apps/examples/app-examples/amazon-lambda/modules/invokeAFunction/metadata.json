@@ -1,0 +1,19 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Invoke a Function",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "amazon-lambda",
+  "description": "Invokes a AWS Lambda function synchronously or asynchronously.",
+  "altAccountName": null,
+  "centicreditsFormula": null,
+  "centicreditsFormulaDescription": null,
+  "centicreditsFormulaDocumentationUrl": null
+}

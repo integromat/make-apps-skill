@@ -1,0 +1,22 @@
+{
+  "rev": 2,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Text File",
+  "scope": [
+    "files:write",
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Creates a text file.",
+  "altAccountName": null
+}

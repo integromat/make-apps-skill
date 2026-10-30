@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "invoice": "{{parameters.invoice}}",
+    "pending": "{{parameters.pending}}",
+    "{{...}}": "{{encodeSearchFilter(parameters.filter)}}",
+    "customer": "{{parameters.customer}}"
+  },
+  "url": "/invoiceitems",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": {
+      "label": "{{ifempty(item.description, item.id)}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{iterate.container.last.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

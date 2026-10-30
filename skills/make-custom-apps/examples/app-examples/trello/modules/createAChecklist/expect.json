@@ -1,0 +1,156 @@
+[
+  {
+    "name": "manual_or_select_card",
+    "type": "select",
+    "label": "Enter a Card ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "card_id",
+            "type": "text",
+            "label": "Card ID",
+            "required": true
+          }
+        ],
+        "default": true
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "board_id",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "list_id",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://getBoardsLists",
+                    "nested": [
+                      {
+                        "help": "The card that the checklist should be added to.",
+                        "name": "card_id",
+                        "type": "select",
+                        "label": "Card",
+                        "options": "rpc://getIDcardsUnderList",
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false,
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "name": "position",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ],
+    "editable": true
+  },
+  {
+    "help": "The ID of a checklist to copy into the new checklist.",
+    "name": "select_or_manual_checklist",
+    "type": "select",
+    "label": "Enter Checklist ID",
+    "options": [
+      {
+        "label": "Enter manually",
+        "value": "manual",
+        "nested": [
+          {
+            "name": "idChecklistSource",
+            "type": "text",
+            "label": "Checklist ID"
+          }
+        ]
+      },
+      {
+        "label": "Select",
+        "value": "select",
+        "nested": [
+          {
+            "name": "idBoard",
+            "type": "select",
+            "label": "Board",
+            "options": {
+              "store": "rpc://listBoards",
+              "nested": [
+                {
+                  "name": "idList",
+                  "type": "select",
+                  "label": "List",
+                  "options": {
+                    "store": "rpc://getBoardLists2",
+                    "nested": [
+                      {
+                        "name": "idCard",
+                        "type": "select",
+                        "label": "Card",
+                        "options": {
+                          "store": "rpc://getIDcardsUnderList2",
+                          "nested": [
+                            {
+                              "name": "idChecklistSource",
+                              "type": "select",
+                              "label": "Checklist",
+                              "options": "rpc://getIDchecklistOnCard2"
+                            }
+                          ]
+                        },
+                        "mappable": false,
+                        "required": true
+                      }
+                    ]
+                  },
+                  "mappable": false,
+                  "required": true
+                }
+              ]
+            },
+            "mappable": false,
+            "required": true
+          }
+        ]
+      }
+    ],
+    "mappable": false
+  }
+]

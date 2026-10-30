@@ -1,0 +1,14 @@
+[
+  {
+    "name": "consumerKey",
+    "type": "text",
+    "label": "Consumer Key",
+    "advanced": true
+  },
+  {
+    "name": "consumerSecret",
+    "type": "password",
+    "label": "Consumer Secret",
+    "advanced": true
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "dnd_enabled",
+    "type": "boolean",
+    "label": "DND Enabled"
+  },
+  {
+    "name": "next_dnd_start_ts",
+    "type": "date",
+    "label": "Next DND Start"
+  },
+  {
+    "name": "next_dnd_end_ts",
+    "type": "date",
+    "label": "Next DND End"
+  },
+  {
+    "name": "snooze_enabled",
+    "type": "boolean",
+    "label": "Snooze Enabled"
+  },
+  {
+    "name": "snooze_endtime",
+    "type": "date",
+    "label": "Snooze Endtime"
+  },
+  {
+    "name": "snooze_remaining",
+    "type": "number",
+    "label": "Snooze Remaining"
+  },
+  {
+    "name": "snooze_is_indefinite",
+    "type": "boolean",
+    "label": "Snooze Is Indefinite"
+  }
+]

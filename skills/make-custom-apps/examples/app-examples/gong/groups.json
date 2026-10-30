@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Calls",
+    "modules": [
+      "TriggerWatchNewCall",
+      "ActionCreateCall",
+      "ActionAddCallMedia",
+      "ActionGetCall",
+      "SearchListCalls"
+    ]
+  },
+  {
+    "label": "Reports",
+    "modules": [
+      "ActionReportEventCustomAction",
+      "ActionReportEventOfContentShare",
+      "ActionReportEventOfContentView"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "MakeAPICall"
+    ]
+  }
+]

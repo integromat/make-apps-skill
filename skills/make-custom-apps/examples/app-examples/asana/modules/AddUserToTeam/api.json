@@ -1,0 +1,10 @@
+{
+  "url": "/teams/{{parameters.team_gid}}/addUser",
+  "body": {
+    "data": "{{omit(parameters,'team_gid','workspace','selectOrMap','workspaceAlt')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

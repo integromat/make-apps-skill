@@ -1,0 +1,13 @@
+{
+  "rev": 4,
+  "type": "basic",
+  "label": "Clockify",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {},
+  "installSpec": [],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

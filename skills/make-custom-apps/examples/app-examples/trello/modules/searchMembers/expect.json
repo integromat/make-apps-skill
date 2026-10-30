@@ -1,0 +1,29 @@
+[
+  {
+    "help": "For example, type name of the member you want to look for.",
+    "name": "query",
+    "type": "text",
+    "label": "Query",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "name": "partial",
+    "type": "boolean",
+    "label": "Partial",
+    "required": true
+  },
+  {
+    "help": "Maximum number of returned members.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2,
+    "required": true,
+    "validate": {
+      "max": 1000
+    }
+  }
+]

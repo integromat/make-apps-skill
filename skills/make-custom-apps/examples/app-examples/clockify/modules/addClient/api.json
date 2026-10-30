@@ -1,0 +1,10 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/clients",
+  "body": {
+    "name": "{{parameters.name}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body}}"
+  }
+}

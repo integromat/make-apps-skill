@@ -1,0 +1,26 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 100,
+      "output": {
+        "date": "{{parseDate(item.date_create)}}",
+        "label": "[{{startcase(item.type)}}] {{switch(item.type, 'message', item.message.text, 'file', item.file.title)}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Starred Messages",
+  "scope": [
+    "stars:read"
+  ],
+  "public": false,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Triggers when a new message is starred.",
+  "altAccountName": null
+}

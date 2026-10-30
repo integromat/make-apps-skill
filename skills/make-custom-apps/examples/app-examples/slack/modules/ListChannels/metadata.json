@@ -1,0 +1,21 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Channels",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Returns a list of channels in a workspace.",
+  "altAccountName": null
+}

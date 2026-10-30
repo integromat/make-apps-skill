@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "fields": "name,id",
+    "checkItems": "none"
+  },
+  "url": "/cards/{{parameters.card_id}}/checklists",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

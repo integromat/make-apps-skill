@@ -1,0 +1,22 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23clockify@1/listWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "client",
+          "type": "select",
+          "label": "Client ID",
+          "options": "rpc://app%23clockify@1/listClients",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

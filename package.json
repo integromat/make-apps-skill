@@ -15,6 +15,7 @@
     "test": "npm run test:node && npm run test:package",
     "test:node": "node --test scripts/check-custom-app-examples.test.mjs tests/*.test.mjs",
     "test:package": "python3 -B -m unittest discover -s tests -p \"test_*.py\" -v",
+    "test:sdk": "node scripts/test-sdk-example.mjs",
     "build": "python3 scripts/build-skill.py",
     "check-build": "python3 scripts/build-skill.py --check"
   }

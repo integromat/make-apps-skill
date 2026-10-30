@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "List Payment Intents",
+  "accountName": "stripe",
+  "altAccountName": null
+}

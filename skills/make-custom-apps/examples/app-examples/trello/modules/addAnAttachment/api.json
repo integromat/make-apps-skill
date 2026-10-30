@@ -1,0 +1,36 @@
+[
+  {
+    "qs": {
+      "url": "{{parameters.url}}",
+      "name": "{{parameters.name}}"
+    },
+    "url": "/cards/{{parameters.card_id}}/attachments",
+    "method": "POST",
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{parameters.attachment_type === 'attachment_url'}}"
+  },
+  {
+    "qs": {
+      "url": "{{parameters.url}}",
+      "name": "{{parameters.name}}"
+    },
+    "url": "/cards/{{parameters.card_id}}/attachments",
+    "body": {
+      "file": {
+        "value": "{{parameters.data}}",
+        "options": {
+          "filename": "{{parameters.filename}}",
+          "knownLength": "{{length(parameters.data}}"
+        }
+      }
+    },
+    "type": "multipart/form-data",
+    "method": "POST",
+    "response": {
+      "output": "{{body}}"
+    },
+    "condition": "{{parameters.attachment_type === 'attachment_file'}}"
+  }
+]

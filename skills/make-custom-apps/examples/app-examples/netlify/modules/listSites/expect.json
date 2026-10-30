@@ -1,0 +1,33 @@
+[
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Site Name"
+  },
+  {
+    "name": "filter",
+    "type": "select",
+    "label": "Filter",
+    "options": [
+      {
+        "label": "All",
+        "value": "all"
+      },
+      {
+        "label": "Owner",
+        "value": "owner"
+      },
+      {
+        "label": "Guest",
+        "value": "guest"
+      }
+    ]
+  },
+  {
+    "help": "Number of Sites to return",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2
+  }
+]

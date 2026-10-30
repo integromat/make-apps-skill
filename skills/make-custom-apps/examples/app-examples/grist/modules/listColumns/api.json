@@ -1,0 +1,9 @@
+{
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableId}}/columns",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.columns}}"
+  }
+}

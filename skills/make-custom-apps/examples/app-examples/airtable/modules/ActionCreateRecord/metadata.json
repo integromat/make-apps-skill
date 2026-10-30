@@ -1,0 +1,20 @@
+{
+  "rev": 3,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Record",
+  "scope": [
+    "schema.bases:read",
+    "data.records:read",
+    "data.records:write"
+  ],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "airtable3",
+  "description": "Creates a new record in Airtable.",
+  "altAccountName": "airtable2"
+}

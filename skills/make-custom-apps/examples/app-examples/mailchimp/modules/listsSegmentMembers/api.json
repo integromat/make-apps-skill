@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "count": "{{min(parameters.limit, 1000)}}",
+    "include_cleaned": "{{parameters.include_cleaned}}",
+    "include_unsubscribed": "{{parameters.include_unsubscribed}}",
+    "include_transactional": "{{parameters.include_transactional}}"
+  },
+  "url": "/lists/{{parameters.list}}/segments/{{parameters.segment}}/members",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(arrangeResponseSubscriber(item, metadata.interface))}}",
+    "iterate": "{{body.members}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.lists) === 1000}}"
+  }
+}

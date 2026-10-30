@@ -1,0 +1,50 @@
+[
+  {
+    "name": "base",
+    "type": "select",
+    "label": "Base",
+    "options": {
+      "store": "rpc://app%23airtable@3/RpcGetBases",
+      "nested": [
+        {
+          "name": "table",
+          "type": "select",
+          "label": "Table",
+          "options": {
+            "store": "rpc://app%23airtable@3/RpcGetTables",
+            "nested": [
+              {
+                "rpc": {
+                  "url": "rpc://app%23airtable@3/searchRecords",
+                  "label": "Search",
+                  "parameters": [
+                    {
+                      "help": "Show records using this field, e.g. `Name` or `Email`. The selected field cannot be an object, e.g. type `user`.",
+                      "name": "field",
+                      "type": "select",
+                      "label": "Display Field",
+                      "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc",
+                      "required": true
+                    },
+                    {
+                      "help": " For example `FIND('Jane', {Name})` or `{Name}>='Jane'`. You can find more information about the formula on [Airtable's website](https://support.airtable.com/hc/en-us/articles/203255215-Formula-Field-Reference).",
+                      "name": "formula",
+                      "type": "text",
+                      "label": "Formula"
+                    }
+                  ]
+                },
+                "name": "id",
+                "type": "text",
+                "label": "Record ID",
+                "required": true
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

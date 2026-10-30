@@ -1,0 +1,10 @@
+[
+  {
+    "name": "idLabel",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Label ID"
+  }
+]

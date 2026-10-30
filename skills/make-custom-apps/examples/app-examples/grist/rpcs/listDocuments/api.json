@@ -1,0 +1,12 @@
+{
+  "url": "/orgs/current/workspaces",
+  "method": "GET",
+  "response": {
+    "limit": 100,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{getDocs(body)}}"
+  }
+}

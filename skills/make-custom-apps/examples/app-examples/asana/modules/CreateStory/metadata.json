@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Add a Story Comment",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Adds a comment to a task.",
+  "altAccountName": null
+}

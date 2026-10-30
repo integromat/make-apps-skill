@@ -1,0 +1,96 @@
+[
+  {
+    "mode": "edit",
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "merge_id",
+          "type": "select",
+          "label": "Merge ID",
+          "options": "rpc://app%23mailchimp@2/listMergeFieldsIDs",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "The name of the merge field (audience field).",
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "help": "The merge tag used for Mailchimp campaigns and adding contact information.",
+    "name": "tag",
+    "type": "text",
+    "label": "Tag"
+  },
+  {
+    "help": "Whether the merge field is required to import a contact.",
+    "name": "required",
+    "type": "boolean",
+    "label": "Required"
+  },
+  {
+    "help": "The default value for the merge field if null.",
+    "name": "default_value",
+    "type": "text",
+    "label": "Default Value"
+  },
+  {
+    "help": "Whether the merge field is displayed on the signup form.",
+    "name": "public",
+    "type": "boolean",
+    "label": "Public"
+  },
+  {
+    "help": "The order that the merge field displays on the list signup form.",
+    "name": "display_order",
+    "type": "integer",
+    "label": "Display Order"
+  },
+  {
+    "name": "options",
+    "spec": [
+      {
+        "help": "In an `address` field, the default country code if none supplied.",
+        "name": "default_country",
+        "type": "integer",
+        "label": "Default Country"
+      },
+      {
+        "help": "In a `phone` field, the phone number type: US or International.",
+        "name": "phone_format",
+        "type": "text",
+        "label": "Phone Format"
+      },
+      {
+        "help": "In a `date` or `birthday` field, the format of the date.",
+        "name": "date_format",
+        "type": "text",
+        "label": "Date Format"
+      },
+      {
+        "help": "In a `radio` or `dropdown` non-group field, the available options for members to pick from.",
+        "name": "choices",
+        "spec": [],
+        "type": "array",
+        "label": "Choices"
+      }
+    ],
+    "type": "collection",
+    "label": "Options"
+  },
+  {
+    "help": "Extra text to help the subscriber fill out the form.",
+    "name": "help_text",
+    "type": "text",
+    "label": "Help Text"
+  }
+]

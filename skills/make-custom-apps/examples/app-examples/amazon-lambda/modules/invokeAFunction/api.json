@@ -1,0 +1,25 @@
+{
+  "url": "/2015-03-31/functions/{{parameters.function}}/invocations",
+  "body": "{{if(parameters.body, parseJSON(parameters.body), undefined)}}",
+  "method": "POST",
+  "headers": {
+    "X-Amz-Log-Type": "Tail",
+    "X-Amz-Invocation-Type": "{{parameters.InvocationType}}"
+  },
+  "timeout": 120000,
+  "response": {
+    "error": {
+      "200": {
+        "message": "{{body.errorMessage if(body.trace, if(length(body.trace)>0, '\n' +'Stack Trace: \n ◼ '+ join(body.trace, '\n ◼ ', '')), if(length(body.stackTrace)>0, '\n' +'Stack Trace: \n ◼ '+ join(body.stackTrace, '\n ◼ ', ''))) }}"
+      },
+      "403": {
+        "message": "[403] Unable to determine service/operation name to be authorized."
+      },
+      "message": "[{{statusCode}}] {{body.message}}"
+    },
+    "valid": "{{if(headers['x-amz-function-error'], false, true)}}",
+    "output": {
+      "body": "{{body}}"
+    }
+  }
+}

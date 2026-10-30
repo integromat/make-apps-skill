@@ -1,0 +1,11 @@
+{
+  "url": "/docs/{{parameters.docId}}",
+  "body": {
+    "name": "{{parameters.name}}",
+    "isPinned": "{{parameters.isPinned}}"
+  },
+  "method": "PATCH",
+  "response": {
+    "output": "{{body}}"
+  }
+}

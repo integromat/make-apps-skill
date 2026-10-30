@@ -1,0 +1,24 @@
+{
+  "log": {
+    "sanitize": [
+      "request.headers.authorization",
+      "response.body.secret"
+    ]
+  },
+  "url": "/webhook_endpoints",
+  "body": {
+    "url": "{{webhook.url}}",
+    "connect": "{{parameters.connect}}",
+    "api_version": "{{parameters.api_version}}",
+    "enabled_events[]": "{{parameters.events}}"
+  },
+  "type": "urlencoded",
+  "method": "POST",
+  "response": {
+    "data": {
+      "secret": "{{body.secret}}",
+      "externalHookId": "{{body.id}}"
+    },
+    "type": "json"
+  }
+}

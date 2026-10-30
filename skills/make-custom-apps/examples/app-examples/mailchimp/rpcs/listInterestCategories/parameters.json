@@ -1,0 +1,8 @@
+[
+  {
+    "name": "interface",
+    "type": "boolean",
+    "label": "Interface",
+    "default": false
+  }
+]

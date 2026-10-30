@@ -1,0 +1,7 @@
+{
+  "url": "/custom_fields/{{parameters.custom_field}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{}}"
+  }
+}

@@ -46,6 +46,24 @@ Text conversion is not a harmless default for binary content. A file-like URL or
 ]
 ```
 
+## Independent writes in one module
+
+**Documented behaviour.** The [batch-actions best practices](https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions) say that a module cannot report partial success: it either succeeds or fails as a whole, so a module that performs several independent changes can fail after the first one has already been applied. The recommendation is separate modules, one change each, so that every success and every failure is visible and can be handled on its own. The [multiple-requests page](https://developers.make.com/custom-apps-documentation/component-blocks/api/multiple-requests) defines what a request array does: the requests run in sequence and the last request's output is the module's output. It does not promise a transaction, a rollback or an automatic retry, and an HTTP error cannot be reclassified as success so that a later request can continue as recovery.
+
+**Classify each request by its side effects, not its HTTP verb.** A `POST` that only searches is a read. A `GET` that marks something as seen, starts a job or consumes a token is a write. Then judge the sequence:
+
+| Sequence in one module | Treatment |
+| --- | --- |
+| read, read (metadata, then the file download) | Valid; nothing is changed. |
+| read, then write (fetch the object, merge, full `PUT`) | Valid; the read exists to make the single write correct ([outputs-empty-values-updates](outputs-empty-values-updates.md)). |
+| write, then read (re-fetch the full object to return it) | Valid enrichment. The write is the change; if the read fails, the module reports an error although the change was applied, so keep that read cheap and state it. |
+| the provider's own multi-step upload (open a session, send the chunks, finish) | Valid when the provider designs the sequence as one operation. |
+| start a job once, then bounded polling of its status | Valid; see the next section. |
+| provider upsert (read, then create or update; or one atomic provider call) | Valid when the provider defines it so. |
+| two or more independent writes (create a record, then add it to a list; update two objects) | Prefer separate modules. If the first write succeeds and the second fails, the user sees one error and cannot tell what was applied, and a rerun can duplicate the first write. |
+
+This is design guidance, not an app rejection rule: a module with several writes is a recommendation to split, argued from the provider's contract, and it is not a blocker on its own. Where the provider offers one call that performs the whole change atomically, use that call instead of a chain. Keep the earlier statement in force that several requests are legitimate when each has a reason; the question is whether the writes are independent of each other.
+
 ## Bounded repeats and asynchronous work
 
 Separate three things: *starting* a job, *observing* progress, and *retrieving* the result.
@@ -76,6 +94,8 @@ Multi-step and binary flows add failure modes the user cannot see. Making each s
 * Treating the repeat limit as success.
 * Using `temp` for a value a later module needs.
 * Using a request array where plain pagination fits.
+* Chaining independent writes in one module and assuming a later request can undo an earlier one; nothing here is transactional.
+* Classifying a request as a read or a write from its HTTP verb alone.
 
 ## Exceptions and applicability
 
@@ -86,6 +106,7 @@ Multi-step and binary flows add failure modes the user cannot see. Making each s
 ## Evidence and limits
 
 * Buffer, multipart, `temp`, `repeat` semantics and the sequential output rule: **documented behaviour** (request, buffer, multipart and temp pages).
+* Partial success being unsupported and separate modules being recommended: **documented best practice**. The side-effect classification and the treatment of each sequence are an authoring judgment built on it. No static rule here evaluates it, and nothing in this tree shows how a particular provider or Make execution behaves after a partial failure.
 * Job states, idempotency and file protocols: **provider contract**; verify against the provider.
 * The static checker does not examine files, multipart bodies or request arrays.
 
@@ -93,6 +114,7 @@ Multi-step and binary flows add failure modes the user cannot see. Making each s
 
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/multiple-requests
+* https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions (partial success, separate modules, valid exceptions)
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/buffer
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/multipart-form-data
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/type

@@ -1,0 +1,21 @@
+{
+  "name": "stripe",
+  "label": "Stripe",
+  "version": 1,
+  "rev": 22,
+  "beta": false,
+  "billable": true,
+  "categories": [],
+  "countries": null,
+  "description": null,
+  "docs": "# Getting started with Stripe\nTo use any of the above modules, you need to connect your Stripe account to Integromat. If you do not have a Stripe account yet, you can create one [here]((https://stripe.com).\n\n# Connecting Stripe to Integromat\n\nTo connect your Stripe account to Integromat, follow the general instructions for [Connecting to services](https://support.integromat.com/hc/en-us/articles/360001990194#create-a-connection). When creating a connection, you will be requested to enter your Stripe API key. A quick quide to getting an API key can be found [here](https://stripe.com/docs/dashboard#api-keys). Once you have copied your API key to Integromat, click on **Continue** and finish your scenario.\n\n![Connection](https://integromat.zendesk.com/hc/article_attachments/360009183433/file.png)\n\n# Using an instant trigger\nStripe currently does not support automatic registration of webhooks, so you need to register your webhook manually. When you create a webhook in Integromat, copy the webhook URL address into your clipboard. **In order that the webhook data can be mapped properly, it is important that the webhook setting you have selected in Integromat matches the setting you'll make for the webhook in Stripe.**\n\n![Hook1](https://integromat.zendesk.com/hc/article_attachments/360009183453/file.png)\n\nLogin to your Stripe account and on your Stripe dashboard, go to **API** > **Webhooks** and click on **Add endpoint**.\n\n![Hook2](https://integromat.zendesk.com/hc/article_attachments/360009137974/file.png)\n\nPaste the URL from Integromat into the **URL to be called field** and choose which event types you want to be notified about.\n\n![Hook3](https://integromat.zendesk.com/hc/article_attachments/360009137994/file.png)\n\nFinally, confirm by clicking the **Add endpoint** button. \n\n### Important\n\nAll Stripe app modules expect amounts to be provided in a currency's smallest unit. For example, to charge $1 USD, provide an amount value of 100 (i.e. 100 cents). The same applies to output fields of the modules.\n\n![9 USD = 900 cents](https://integromat.zendesk.com/hc/article_attachments/360009183473/file.jpeg)\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "flags": {},
+  "global": true,
+  "keywords": null,
+  "language": "en",
+  "manifestVersion": 1,
+  "opensource": false,
+  "theme": "#359ad5",
+  "versionFull": "1.32.3",
+  "website": "https://stripe.com"
+}

@@ -1,0 +1,8 @@
+{
+  "qs": "{{setOptFields(omit(parameters,'choice','task_gid','workspace','assignee','project','section','tag','selectOrMap','workspaceRPC'),'Task')}}",
+  "url": "/tasks/{{parameters.task_gid}}",
+  "method": "GET",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "url": "/chat.delete",
+  "body": {
+    "ts": "{{parameters.ts}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

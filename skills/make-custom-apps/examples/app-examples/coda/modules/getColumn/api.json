@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/columns/{{parameters.columnIdOrName}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

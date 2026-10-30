@@ -1,0 +1,35 @@
+[
+  {
+    "name": "user_id",
+    "type": "select",
+    "label": "User ID",
+    "options": "rpc://getUsers",
+    "required": true
+  },
+  {
+    "name": "first_name",
+    "type": "text",
+    "label": "First name"
+  },
+  {
+    "name": "last_name",
+    "type": "text",
+    "label": "Last name"
+  },
+  {
+    "name": "email",
+    "type": "email",
+    "label": "Email address"
+  },
+  {
+    "name": "telephone",
+    "type": "text",
+    "label": "Telephone"
+  },
+  {
+    "name": "is_admin",
+    "type": "boolean",
+    "label": "Administrator",
+    "advanced": true
+  }
+]

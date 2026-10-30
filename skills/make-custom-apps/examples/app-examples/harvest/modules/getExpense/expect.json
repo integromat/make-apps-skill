@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "expense_id",
+    "type": "select",
+    "label": "Expense ID",
+    "options": "rpc://getExpenses",
+    "required": true
+  }
+]

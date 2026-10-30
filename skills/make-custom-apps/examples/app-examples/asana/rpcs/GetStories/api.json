@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.text",
+      "this.resource_subtype",
+      "this.created_at"
+    ]
+  },
+  "url": "/tasks/{{parameters.task_gid}}/stories",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{item.resource_subtype}}] [{{item.created_at}}] {{item.text}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

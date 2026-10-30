@@ -1,0 +1,25 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Replies",
+  "scope": [
+    "channels:read",
+    "groups:read",
+    "im:read",
+    "mpim:read",
+    "channels:history",
+    "groups:history",
+    "im:history",
+    "mpim:history"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Retrieves a thread of messages posted to a conversation.",
+  "altAccountName": null
+}

@@ -1,0 +1,10 @@
+{
+  "url": "/tasks",
+  "body": {
+    "data": "{{removeEmptyObjects(mergeCustomFields(transformRequestDates(omit(omitComplex(parameters),'choice','destination','due','ignoreMe','ignoreMeTwo','workspaceAlt','workspaceAlt2','workspaceAlt3'))))}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{customFieldExtra(body.data)}}"
+  }
+}

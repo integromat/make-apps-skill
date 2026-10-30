@@ -1,0 +1,18 @@
+{
+  "qs": {},
+  "url": "/projects",
+  "body": {
+    "code": "{{parameters.code}}",
+    "name": "{{parameters.name}}",
+    "notes": "{{parameters.notes}}",
+    "bill_by": "{{parameters.bill_by}}",
+    "budget_by": "{{parameters.budget_by}}",
+    "client_id": "{{parameters.client_id}}",
+    "is_active": "{{parameters.is_active}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

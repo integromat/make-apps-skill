@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Set a Custom Field on a Card",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "trello",
+  "description": "Sets or updates a custom field value on a card.",
+  "altAccountName": null
+}

@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "fields": "all"
+  },
+  "url": "/lists/{{parameters.list_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{body}}"
+  }
+}

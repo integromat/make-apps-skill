@@ -1,0 +1,19 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Calls",
+  "scope": [
+    "api:calls:read:basic",
+    "api:workspaces:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "gong",
+  "description": "List calls that took place during a specified date range.",
+  "altAccountName": "gong2"
+}

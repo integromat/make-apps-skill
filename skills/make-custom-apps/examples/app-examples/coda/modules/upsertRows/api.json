@@ -1,0 +1,17 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows",
+  "body": {
+    "rows": [
+      {
+        "cells": "{{prepareColumns(parameters.columns)}}"
+      }
+    ],
+    "keyColumns": "{{fetchKeys(parameters.keyColumns)}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": ""
+  }
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "help": "ID of the doc.",
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Doc ID",
+    "options": {
+      "store": "rpc://app%23coda@1/getDocs",
+      "nested": [
+        {
+          "help": "ID or name of the table.",
+          "name": "tableIdOrName",
+          "type": "select",
+          "label": "Table ID or Name",
+          "options": "rpc://app%23coda@1/getTablesUsingdocId",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "Maximum number of rows to return.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2
+  },
+  {
+    "help": "Query used to filter returned rows, specified as `<column_id_or_name>:<value>`. If you'd like to use a column name instead of an ID, you must quote it (e.g., `\"My Column\":123`). Also note that `value` is a JSON value; if you'd like to use a string, you must surround it in quotes (e.g., `\"groceries\"`).",
+    "name": "query",
+    "type": "text",
+    "label": "Query"
+  },
+  {
+    "help": "Use column names instead of column IDs in the returned output.",
+    "name": "useColumnNames",
+    "type": "boolean",
+    "label": "Use column names",
+    "required": false
+  },
+  {
+    "name": "sortBy",
+    "type": "select",
+    "label": "Sort By",
+    "options": [
+      {
+        "label": "Created At",
+        "value": "createdAt"
+      },
+      {
+        "label": "Natural",
+        "value": "natural"
+      }
+    ]
+  },
+  {
+    "name": "valueFormat",
+    "type": "select",
+    "label": "Value format",
+    "options": [
+      {
+        "label": "Simple",
+        "value": "simple"
+      },
+      {
+        "label": "Simple with arrays",
+        "value": "simpleWithArrays"
+      },
+      {
+        "label": "Rich",
+        "value": "rich"
+      }
+    ]
+  }
+]

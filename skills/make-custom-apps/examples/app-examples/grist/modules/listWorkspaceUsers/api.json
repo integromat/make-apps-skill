@@ -1,0 +1,8 @@
+{
+  "url": "/workspaces/{{parameters.workspaceId}}/access",
+  "method": "GET",
+  "response": {
+    "output": "{{item}}",
+    "iterate": "{{body.users}}"
+  }
+}

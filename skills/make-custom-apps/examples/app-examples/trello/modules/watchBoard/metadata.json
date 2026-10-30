@@ -1,0 +1,16 @@
+{
+  "rev": 2,
+  "crud": null,
+  "epoch": null,
+  "flags": {},
+  "label": "Watch Activities",
+  "scope": [],
+  "public": false,
+  "typeId": 10,
+  "hookName": "trello",
+  "learning": false,
+  "deprecated": true,
+  "accountName": null,
+  "description": "spatny interni nazev",
+  "altAccountName": null
+}

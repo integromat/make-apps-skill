@@ -1,0 +1,19 @@
+{
+  "qs": {
+    "formats": "html,mobiledoc"
+  },
+  "log": {
+    "sanitize": [
+      "request.headers.authorization"
+    ]
+  },
+  "baseUrl": "{{connection.host}}/ghost/api/v3/admin",
+  "headers": {
+    "authorization": "Ghost {{createJWT(connection.key)}}"
+  },
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{body.errors[1].type}}\n{{body.errors[1].message}}\n{{body.errors[1].context}}"
+    }
+  }
+}

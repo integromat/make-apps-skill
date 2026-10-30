@@ -1,0 +1,37 @@
+[
+  {
+    "name": "id",
+    "type": "number",
+    "label": "ID"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "picture",
+    "type": "text",
+    "label": "Picture"
+  },
+  {
+    "name": "access",
+    "type": "text",
+    "label": "Access"
+  },
+  {
+    "name": "parentAccess",
+    "type": "text",
+    "label": "Parent Access"
+  },
+  {
+    "name": "isMember",
+    "type": "boolean",
+    "label": "Is Member"
+  }
+]

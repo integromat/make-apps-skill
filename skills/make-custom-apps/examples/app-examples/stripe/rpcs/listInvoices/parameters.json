@@ -1,0 +1,54 @@
+[
+  {
+    "name": "customer",
+    "type": "text",
+    "label": "Customer ID"
+  },
+  {
+    "name": "subscription",
+    "type": "text",
+    "label": "Subscription ID"
+  },
+  {
+    "name": "status",
+    "type": "select",
+    "label": "Status",
+    "options": [
+      {
+        "label": "Draft",
+        "value": "draft"
+      },
+      {
+        "label": "Open",
+        "value": "open"
+      },
+      {
+        "label": "Paid",
+        "value": "paid"
+      },
+      {
+        "label": "Uncollectible",
+        "value": "uncollectible"
+      },
+      {
+        "label": "Void",
+        "value": "void"
+      }
+    ]
+  },
+  {
+    "name": "collection_method",
+    "type": "select",
+    "label": "Collection Method",
+    "options": [
+      {
+        "label": "Charge Automatically",
+        "value": "charge_automatically"
+      },
+      {
+        "label": "Send Invoice",
+        "value": "send_invoice"
+      }
+    ]
+  }
+]

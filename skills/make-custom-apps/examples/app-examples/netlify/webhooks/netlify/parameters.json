@@ -1,0 +1,20 @@
+[
+  {
+    "name": "site_id",
+    "type": "select",
+    "label": "Site ID",
+    "options": {
+      "store": "rpc://app%23netlify@1/listSites",
+      "nested": [
+        {
+          "name": "form_id",
+          "type": "select",
+          "label": "Form ID",
+          "options": "rpc://app%23netlify@1/listSiteForms",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

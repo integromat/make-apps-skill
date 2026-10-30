@@ -1,0 +1,39 @@
+{
+  "id": "xxxxx_0XX0XX0xXxXXxx0Xx0xXXXxx",
+  "url": "https://example.invalid/xxxx_0xXxXxxxXxXXxXx0xx",
+  "active": true,
+  "object": "payment_link",
+  "currency": "usd",
+  "livemode": false,
+  "metadata": {},
+  "submit_type": "auto",
+  "on_behalf_of": null,
+  "automatic_tax": {
+    "enabled": false
+  },
+  "transfer_data": null,
+  "after_completion": {
+    "type": "hosted_confirmation",
+    "hosted_confirmation": {
+      "custom_message": null
+    }
+  },
+  "shipping_options": [],
+  "customer_creation": "always",
+  "subscription_data": null,
+  "tax_id_collection": {
+    "enabled": false
+  },
+  "consent_collection": null,
+  "payment_intent_data": null,
+  "payment_method_types": null,
+  "allow_promotion_codes": false,
+  "application_fee_amount": null,
+  "application_fee_percent": null,
+  "phone_number_collection": {
+    "enabled": false
+  },
+  "payment_method_collection": "always",
+  "billing_address_collection": "auto",
+  "shipping_address_collection": null
+}

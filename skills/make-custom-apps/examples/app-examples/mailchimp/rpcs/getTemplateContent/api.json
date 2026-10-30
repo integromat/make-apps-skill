@@ -1,0 +1,10 @@
+{
+  "qs": {
+    "fields": "sections"
+  },
+  "url": "/templates/{{extractTemplateId(parameters.campaign)}}/default-content",
+  "method": "GET",
+  "response": {
+    "output": "{{returnSectionsKeys(body.sections)}}"
+  }
+}

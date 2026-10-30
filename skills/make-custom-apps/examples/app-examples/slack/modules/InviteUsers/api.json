@@ -1,0 +1,12 @@
+{
+  "url": "/conversations.invite",
+  "body": {
+    "users": "{{ifempty(join(parameters.users, ','))}}",
+    "channel": "{{parameters.channel}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": null
+  }
+}

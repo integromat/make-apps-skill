@@ -1,0 +1,17 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Tag ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "date_added",
+    "type": "date",
+    "label": "Date Added"
+  }
+]

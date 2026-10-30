@@ -1,0 +1,9 @@
+[
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "page",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

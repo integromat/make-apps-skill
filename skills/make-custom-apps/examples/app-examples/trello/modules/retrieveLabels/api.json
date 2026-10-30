@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "limit": "{{parameters.limit}}",
+    "fields": "all"
+  },
+  "url": "/boards/{{parameters.board_id}}/labels",
+  "method": "GET",
+  "response": {
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  }
+}

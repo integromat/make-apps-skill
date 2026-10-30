@@ -20,7 +20,7 @@ Offline static/unit/packaging checks are not Make or provider validation.
 """
 
 
-ALLOWED_SUFFIXES = {'.md', '.txt', '.json', '.imljson', '.js', '.mjs', '.cjs', '.py', '.sh',
+ALLOWED_SUFFIXES = {'.md', '.txt', '.json', '.imljson', '.js', '.mjs', '.cjs', '.ts', '.py', '.sh',
                     '.yml', '.yaml', '.png', '.jpg', '.jpeg', '.svg', '.webp'}
 PRIVATE_NAMES = {'node_modules', '__pycache__', 'runtime', 'private', 'evidence', 'raw_data',
                  'cache', 'dist', 'build', 'coverage', 'tmp', 'temp', 'venv',

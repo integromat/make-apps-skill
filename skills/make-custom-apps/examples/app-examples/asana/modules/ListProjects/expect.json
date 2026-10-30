@@ -1,0 +1,33 @@
+[
+  {
+    "help": "Filter on workspaces. Default is all workspaces.",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "help": "Filter on teams.",
+          "name": "team",
+          "type": "select",
+          "label": "Team ID",
+          "options": "rpc://app%23asana@2/GetWorkspaceTeams"
+        }
+      ]
+    }
+  },
+  {
+    "help": "Filter on the archived flag.",
+    "name": "archived",
+    "type": "boolean",
+    "label": "Archived"
+  },
+  {
+    "help": "The maximum number of results to be worked with during one execution cycle.",
+    "name": "page",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

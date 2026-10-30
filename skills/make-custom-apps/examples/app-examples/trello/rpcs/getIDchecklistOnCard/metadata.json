@@ -1,0 +1,6 @@
+{
+  "rev": 2,
+  "label": "Get ID of checklist on a card using card_id",
+  "accountName": "trello",
+  "altAccountName": null
+}

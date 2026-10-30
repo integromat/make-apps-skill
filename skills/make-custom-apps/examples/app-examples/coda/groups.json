@@ -1,0 +1,70 @@
+[
+  {
+    "label": "Docs",
+    "modules": [
+      "watchNewDocs",
+      "createDoc",
+      "listDocs",
+      "getDoc"
+    ]
+  },
+  {
+    "label": "Doc Structure",
+    "modules": [
+      "listSections",
+      "getSection",
+      "listFolders",
+      "getFolder"
+    ]
+  },
+  {
+    "label": "Pages",
+    "modules": [
+      "UpdatePage"
+    ]
+  },
+  {
+    "label": "Tables",
+    "modules": [
+      "watchNewRows",
+      "watchUpdatedRow",
+      "createARow",
+      "updateRow",
+      "upsertRows",
+      "deleteRow",
+      "listRows",
+      "getRow",
+      "listTables",
+      "getTable",
+      "listColumns",
+      "getColumn"
+    ]
+  },
+  {
+    "label": "Formulas & Controls",
+    "modules": [
+      "listFormulas",
+      "getFormula",
+      "listControls",
+      "getControl"
+    ]
+  },
+  {
+    "label": "Buttons",
+    "modules": [
+      "pushButton"
+    ]
+  },
+  {
+    "label": "Links",
+    "modules": [
+      "resolveBrowserLink"
+    ]
+  },
+  {
+    "label": "Other",
+    "modules": [
+      "MakeAPICall"
+    ]
+  }
+]

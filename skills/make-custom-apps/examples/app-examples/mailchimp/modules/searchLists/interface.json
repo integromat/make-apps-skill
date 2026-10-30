@@ -1,0 +1,288 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "List ID"
+  },
+  {
+    "name": "web_id",
+    "type": "number",
+    "label": "Web ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "contact",
+    "spec": [
+      {
+        "name": "company",
+        "type": "text",
+        "label": "Company"
+      },
+      {
+        "name": "address1",
+        "type": "text",
+        "label": "Address 1"
+      },
+      {
+        "name": "address2",
+        "type": "text",
+        "label": "Address 2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "label": "State"
+      },
+      {
+        "name": "zip",
+        "type": "text",
+        "label": "Zip"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      }
+    ],
+    "type": "collection",
+    "label": "Contact"
+  },
+  {
+    "name": "permission_reminder",
+    "type": "text",
+    "label": "Permission Reminder"
+  },
+  {
+    "name": "use_archive_bar",
+    "type": "boolean",
+    "label": "Use Archive Bar"
+  },
+  {
+    "name": "campaign_defaults",
+    "spec": [
+      {
+        "name": "from_name",
+        "type": "text",
+        "label": "From Name"
+      },
+      {
+        "name": "from_email",
+        "type": "text",
+        "label": "From Email"
+      },
+      {
+        "name": "subject",
+        "type": "text",
+        "label": "Subject"
+      },
+      {
+        "name": "language",
+        "type": "text",
+        "label": "Language"
+      }
+    ],
+    "type": "collection",
+    "label": "Campaign Defaults"
+  },
+  {
+    "name": "notify_on_subscribe",
+    "type": "text",
+    "label": "Notify On Subscribe"
+  },
+  {
+    "name": "notify_on_unsubscribe",
+    "type": "text",
+    "label": "Notify On Unsubscribe"
+  },
+  {
+    "name": "date_created",
+    "type": "date",
+    "label": "Date Created"
+  },
+  {
+    "name": "list_rating",
+    "type": "number",
+    "label": "List Rating"
+  },
+  {
+    "name": "email_type_option",
+    "type": "boolean",
+    "label": "Email Type Option"
+  },
+  {
+    "name": "subscribe_url_short",
+    "type": "text",
+    "label": "Subscribe Url Short"
+  },
+  {
+    "name": "subscribe_url_long",
+    "type": "text",
+    "label": "Subscribe Url Long"
+  },
+  {
+    "name": "beamer_address",
+    "type": "text",
+    "label": "Beamer Address"
+  },
+  {
+    "name": "visibility",
+    "type": "text",
+    "label": "Visibility"
+  },
+  {
+    "name": "double_optin",
+    "type": "boolean",
+    "label": "Double Optin"
+  },
+  {
+    "name": "has_welcome",
+    "type": "boolean",
+    "label": "Has Welcome"
+  },
+  {
+    "name": "marketing_permissions",
+    "type": "boolean",
+    "label": "Marketing Permissions"
+  },
+  {
+    "name": "modules",
+    "type": "array",
+    "label": "Modules"
+  },
+  {
+    "name": "stats",
+    "spec": [
+      {
+        "name": "member_count",
+        "type": "number",
+        "label": "Member Count"
+      },
+      {
+        "name": "unsubscribe_count",
+        "type": "number",
+        "label": "Unsubscribe Count"
+      },
+      {
+        "name": "cleaned_count",
+        "type": "number",
+        "label": "Cleaned Count"
+      },
+      {
+        "name": "member_count_since_send",
+        "type": "number",
+        "label": "Member Count Since Send"
+      },
+      {
+        "name": "unsubscribe_count_since_send",
+        "type": "number",
+        "label": "Unsubscribe Count Since Send"
+      },
+      {
+        "name": "cleaned_count_since_send",
+        "type": "number",
+        "label": "Cleaned Count Since Send"
+      },
+      {
+        "name": "campaign_count",
+        "type": "number",
+        "label": "Campaign Count"
+      },
+      {
+        "name": "campaign_last_sent",
+        "type": "text",
+        "label": "Campaign Last Sent"
+      },
+      {
+        "name": "merge_field_count",
+        "type": "number",
+        "label": "Merge Field Count"
+      },
+      {
+        "name": "avg_sub_rate",
+        "type": "number",
+        "label": "Avg Sub Rate"
+      },
+      {
+        "name": "avg_unsub_rate",
+        "type": "number",
+        "label": "Avg Unsub Rate"
+      },
+      {
+        "name": "target_sub_rate",
+        "type": "number",
+        "label": "Target Sub Rate"
+      },
+      {
+        "name": "open_rate",
+        "type": "number",
+        "label": "Open Rate"
+      },
+      {
+        "name": "click_rate",
+        "type": "number",
+        "label": "Click Rate"
+      },
+      {
+        "name": "last_sub_date",
+        "type": "date",
+        "label": "Last Sub Date"
+      },
+      {
+        "name": "last_unsub_date",
+        "type": "date",
+        "label": "Last Unsub Date"
+      }
+    ],
+    "type": "collection",
+    "label": "Stats"
+  },
+  {
+    "name": "_links",
+    "spec": {
+      "spec": [
+        {
+          "name": "rel",
+          "type": "text",
+          "label": "Rel"
+        },
+        {
+          "name": "href",
+          "type": "text",
+          "label": "Href"
+        },
+        {
+          "name": "method",
+          "type": "text",
+          "label": "Method"
+        },
+        {
+          "name": "targetSchema",
+          "type": "text",
+          "label": "Target Schema"
+        },
+        {
+          "name": "schema",
+          "type": "text",
+          "label": "Schema"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": " Links"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "qs": {},
+  "url": "/docs",
+  "body": {
+    "title": "{{parameters.title}}",
+    "sourceDoc": "{{parameters.sourceDoc}}"
+  },
+  "method": "POST",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

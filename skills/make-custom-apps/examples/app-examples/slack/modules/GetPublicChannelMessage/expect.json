@@ -1,0 +1,58 @@
+[
+  {
+    "name": "inputMethod",
+    "type": "select",
+    "label": "Input Method",
+    "default": "list",
+    "options": [
+      {
+        "label": "Select from a list",
+        "value": "list",
+        "nested": [
+          {
+            "name": "channel",
+            "type": "select",
+            "label": "Public Channel",
+            "options": "rpc://app%23slack@4/PublicChannels",
+            "required": true
+          }
+        ]
+      },
+      {
+        "label": "Search by the name",
+        "value": "search",
+        "nested": [
+          {
+            "rpc": {
+              "url": "rpc://app%23slack@4/PublicChannels",
+              "label": "Search",
+              "parameters": [
+                {
+                  "name": "name",
+                  "type": "text",
+                  "label": "Name"
+                },
+                {
+                  "name": "exclude_archived",
+                  "type": "boolean",
+                  "label": "Exclude Archived"
+                }
+              ]
+            },
+            "name": "channel",
+            "type": "text",
+            "label": "Public Channel",
+            "required": true
+          }
+        ]
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "ts",
+    "type": "text",
+    "label": "Message ID (timestamp)",
+    "required": true
+  }
+]

@@ -1,0 +1,219 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "User ID"
+  },
+  {
+    "name": "team_id",
+    "type": "text",
+    "label": "Team ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "deleted",
+    "type": "boolean",
+    "label": "Deleted"
+  },
+  {
+    "name": "color",
+    "type": "text",
+    "label": "Color"
+  },
+  {
+    "name": "real_name",
+    "type": "text",
+    "label": "Real name"
+  },
+  {
+    "name": "tz",
+    "type": "text",
+    "label": "Tz"
+  },
+  {
+    "name": "tz_label",
+    "type": "text",
+    "label": "Tz label"
+  },
+  {
+    "name": "tz_offset",
+    "type": "number",
+    "label": "Tz offset"
+  },
+  {
+    "name": "profile",
+    "spec": [
+      {
+        "name": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      },
+      {
+        "name": "skype",
+        "type": "text",
+        "label": "Skype"
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email"
+      },
+      {
+        "name": "real_name",
+        "type": "text",
+        "label": "Real name"
+      },
+      {
+        "name": "real_name_normalized",
+        "type": "text",
+        "label": "Real name normalized"
+      },
+      {
+        "name": "display_name",
+        "type": "text",
+        "label": "Display name"
+      },
+      {
+        "name": "display_name_normalized",
+        "type": "text",
+        "label": "Display name normalized"
+      },
+      {
+        "name": "fields",
+        "type": "text",
+        "label": "Fields"
+      },
+      {
+        "name": "status_text",
+        "type": "text",
+        "label": "Status text"
+      },
+      {
+        "name": "status_emoji",
+        "type": "text",
+        "label": "Status emoji"
+      },
+      {
+        "name": "status_expiration",
+        "type": "number",
+        "label": "Status expiration"
+      },
+      {
+        "name": "avatar_hash",
+        "type": "text",
+        "label": "Avatar hash"
+      },
+      {
+        "name": "always_active",
+        "type": "boolean",
+        "label": "Always active"
+      },
+      {
+        "name": "first_name",
+        "type": "text",
+        "label": "First name"
+      },
+      {
+        "name": "last_name",
+        "type": "text",
+        "label": "Last name"
+      },
+      {
+        "name": "image_24",
+        "type": "text",
+        "label": "Image 24"
+      },
+      {
+        "name": "image_32",
+        "type": "text",
+        "label": "Image 32"
+      },
+      {
+        "name": "image_48",
+        "type": "text",
+        "label": "Image 48"
+      },
+      {
+        "name": "image_72",
+        "type": "text",
+        "label": "Image 72"
+      },
+      {
+        "name": "image_192",
+        "type": "text",
+        "label": "Image 192"
+      },
+      {
+        "name": "image_512",
+        "type": "text",
+        "label": "Image 512"
+      },
+      {
+        "name": "status_text_canonical",
+        "type": "text",
+        "label": "Status text canonical"
+      },
+      {
+        "name": "team",
+        "type": "text",
+        "label": "Team"
+      }
+    ],
+    "type": "collection",
+    "label": "Profile"
+  },
+  {
+    "name": "is_admin",
+    "type": "boolean",
+    "label": "Is admin"
+  },
+  {
+    "name": "is_owner",
+    "type": "boolean",
+    "label": "Is owner"
+  },
+  {
+    "name": "is_primary_owner",
+    "type": "boolean",
+    "label": "Is primary owner"
+  },
+  {
+    "name": "is_restricted",
+    "type": "boolean",
+    "label": "Is restricted"
+  },
+  {
+    "name": "is_ultra_restricted",
+    "type": "boolean",
+    "label": "Is ultra restricted"
+  },
+  {
+    "name": "is_bot",
+    "type": "boolean",
+    "label": "Is bot"
+  },
+  {
+    "name": "is_app_user",
+    "type": "boolean",
+    "label": "Is app user"
+  },
+  {
+    "name": "updated",
+    "type": "date",
+    "label": "Updated"
+  },
+  {
+    "name": "has_2fa",
+    "type": "boolean",
+    "label": "Has 2 FA"
+  }
+]

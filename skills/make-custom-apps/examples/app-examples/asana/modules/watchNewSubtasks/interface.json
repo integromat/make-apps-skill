@@ -1,0 +1,527 @@
+[
+  {
+    "name": "gid",
+    "type": "uinteger",
+    "label": "Task ID"
+  },
+  {
+    "name": "assignee",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Assignee"
+  },
+  {
+    "name": "assignee_status",
+    "type": "text",
+    "label": "Assignee Status"
+  },
+  {
+    "name": "completed",
+    "type": "boolean",
+    "label": "Completed"
+  },
+  {
+    "name": "completed_at",
+    "type": "date",
+    "label": "Completed at"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "custom_fields_collection",
+    "spec": [],
+    "type": "collection",
+    "label": "Custom Fields Collection"
+  },
+  {
+    "name": "custom_fields",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_subtype",
+        "type": "text",
+        "label": "Resource Subtype"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "enum_options",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Color"
+          }
+        ],
+        "type": "array",
+        "label": "Enumeration Options"
+      },
+      {
+        "name": "number_value",
+        "type": "number",
+        "label": "Number Value"
+      },
+      {
+        "name": "enum_value",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enabled"
+          },
+          {
+            "name": "color",
+            "type": "text",
+            "label": "Color"
+          }
+        ],
+        "type": "collection",
+        "label": "Enumeration Value"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Custom Field Enabled?"
+      },
+      {
+        "name": "text_value",
+        "type": "text",
+        "label": "Text Value"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "name": "precision",
+        "type": "uinteger",
+        "label": "Number Precision"
+      },
+      {
+        "name": "format",
+        "type": "text",
+        "label": "Format"
+      },
+      {
+        "name": "currency_code",
+        "type": "text",
+        "label": "Currency Code"
+      },
+      {
+        "name": "custom_label",
+        "type": "text",
+        "label": "Custom Label"
+      },
+      {
+        "name": "custom_label_position",
+        "type": "text",
+        "label": "Custom Label Position"
+      },
+      {
+        "name": "is_global_to_workspace",
+        "type": "boolean",
+        "label": "Is Global to Workspace?"
+      },
+      {
+        "name": "has_notifications_enabled",
+        "type": "boolean",
+        "label": "Has Notifications Enabled?"
+      }
+    ],
+    "type": "array",
+    "label": "Custom Fields"
+  },
+  {
+    "name": "due_at",
+    "type": "date",
+    "label": "Due at"
+  },
+  {
+    "name": "due_on",
+    "type": "date",
+    "label": "Due on"
+  },
+  {
+    "name": "external",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "data",
+        "type": "text",
+        "label": "Data"
+      }
+    ],
+    "type": "collection",
+    "label": "External"
+  },
+  {
+    "name": "followers",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Followers"
+  },
+  {
+    "name": "hearted",
+    "type": "boolean",
+    "label": "Hearted"
+  },
+  {
+    "name": "hearts",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Hearts"
+  },
+  {
+    "name": "liked",
+    "type": "boolean",
+    "label": "Liked"
+  },
+  {
+    "name": "likes",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "user",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "User"
+      }
+    ],
+    "type": "array",
+    "label": "Likes"
+  },
+  {
+    "name": "memberships",
+    "spec": [
+      {
+        "name": "project",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Project"
+      },
+      {
+        "name": "section",
+        "spec": [
+          {
+            "name": "gid",
+            "type": "uinteger",
+            "label": "ID"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "resource_type",
+            "type": "text",
+            "label": "Resource Type"
+          }
+        ],
+        "type": "collection",
+        "label": "Section"
+      }
+    ],
+    "type": "array",
+    "label": "Memberships"
+  },
+  {
+    "name": "modified_at",
+    "type": "date",
+    "label": "Modified at"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "html_notes",
+    "type": "text",
+    "label": "HTML Notes"
+  },
+  {
+    "name": "num_hearts",
+    "type": "uinteger",
+    "label": "Number of Hearts"
+  },
+  {
+    "name": "num_likes",
+    "type": "uinteger",
+    "label": "Number of Likes"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent Task"
+  },
+  {
+    "name": "permalink_url",
+    "type": "url",
+    "label": "Permalink URL"
+  },
+  {
+    "name": "projects",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Projects"
+  },
+  {
+    "name": "resource_type",
+    "type": "text",
+    "label": "Resource Type"
+  },
+  {
+    "name": "start_at",
+    "type": "date",
+    "label": "Start at"
+  },
+  {
+    "name": "start_on",
+    "type": "date",
+    "label": "Start on"
+  },
+  {
+    "name": "tags",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "array",
+    "label": "Tags"
+  },
+  {
+    "name": "resource_subtype",
+    "type": "text",
+    "label": "Resource Subtype"
+  },
+  {
+    "name": "workspace",
+    "spec": [
+      {
+        "name": "gid",
+        "type": "uinteger",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "resource_type",
+        "type": "text",
+        "label": "Resource Type"
+      }
+    ],
+    "type": "collection",
+    "label": "Workspace"
+  }
+]

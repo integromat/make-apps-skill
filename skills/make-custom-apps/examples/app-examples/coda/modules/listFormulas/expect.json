@@ -1,0 +1,17 @@
+[
+  {
+    "help": "ID of the doc.",
+    "name": "docId",
+    "type": "select",
+    "label": "Doc ID",
+    "options": "rpc://app%23coda@1/getDocs",
+    "required": true
+  },
+  {
+    "help": "Maximum number of formulas to return.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 2
+  }
+]

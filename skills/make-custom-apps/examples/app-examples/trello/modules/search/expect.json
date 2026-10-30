@@ -1,0 +1,53 @@
+[
+  {
+    "name": "query",
+    "type": "text",
+    "label": "Query",
+    "required": true,
+    "validate": {
+      "max": 16384
+    }
+  },
+  {
+    "help": "Returns all types if nothing is checked.",
+    "name": "modelTypes",
+    "type": "select",
+    "label": "Object type",
+    "options": [
+      {
+        "label": "Boards",
+        "value": "boards",
+        "nested": [
+          {
+            "name": "idBoards",
+            "type": "text",
+            "label": "Boards ID",
+            "default": [
+              "mine"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Cards",
+        "value": "cards"
+      },
+      {
+        "label": "Members",
+        "value": "members"
+      },
+      {
+        "label": "Organizations",
+        "value": "organizations"
+      }
+    ],
+    "multiple": true
+  },
+  {
+    "help": "By default, Trello searches for each word in your query against exactly matching words within Member content. Specifying partial to be true means that we will look for content that starts with any of the words in your query. If you are looking for a Card titled 'My Development Status Report', by default you would need to search for 'Development'. If you have partial enabled, you will be able to search for 'dev' but not 'velopment'.",
+    "name": "partial",
+    "type": "boolean",
+    "label": "Partial",
+    "required": true
+  }
+]

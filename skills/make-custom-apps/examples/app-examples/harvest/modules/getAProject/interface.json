@@ -1,0 +1,139 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Project ID"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "code",
+    "type": "text",
+    "label": "Code"
+  },
+  {
+    "name": "is_active",
+    "type": "boolean",
+    "label": "Is active"
+  },
+  {
+    "name": "is_billable",
+    "type": "boolean",
+    "label": "Is billable"
+  },
+  {
+    "name": "is_fixed_fee",
+    "type": "boolean",
+    "label": "Is fixed fee"
+  },
+  {
+    "name": "bill_by",
+    "type": "text",
+    "label": "Bill by"
+  },
+  {
+    "name": "budget",
+    "type": "number",
+    "label": "Budget"
+  },
+  {
+    "name": "budget_by",
+    "type": "text",
+    "label": "Budget by"
+  },
+  {
+    "name": "budget_is_monthly",
+    "type": "boolean",
+    "label": "Budget is monthly"
+  },
+  {
+    "name": "notify_when_over_budget",
+    "type": "boolean",
+    "label": "Notify when over budget"
+  },
+  {
+    "name": "over_budget_notification_percentage",
+    "type": "number",
+    "label": "Over budget notification percentage"
+  },
+  {
+    "name": "show_budget_to_all",
+    "type": "boolean",
+    "label": "Show budget to all"
+  },
+  {
+    "name": "created_at",
+    "type": "date",
+    "label": "Created at"
+  },
+  {
+    "name": "updated_at",
+    "type": "date",
+    "label": "Updated at"
+  },
+  {
+    "name": "starts_on",
+    "type": "text",
+    "label": "Starts on"
+  },
+  {
+    "name": "ends_on",
+    "type": "text",
+    "label": "Ends on"
+  },
+  {
+    "name": "over_budget_notification_date",
+    "type": "text",
+    "label": "Over budget notification date"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "name": "cost_budget",
+    "type": "text",
+    "label": "Cost budget"
+  },
+  {
+    "name": "cost_budget_include_expenses",
+    "type": "boolean",
+    "label": "Cost budget include expenses"
+  },
+  {
+    "name": "hourly_rate",
+    "type": "text",
+    "label": "Hourly rate"
+  },
+  {
+    "name": "fee",
+    "type": "text",
+    "label": "Fee"
+  },
+  {
+    "name": "client",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "currency",
+        "type": "text",
+        "label": "Currency"
+      }
+    ],
+    "type": "collection",
+    "label": "Client"
+  }
+]

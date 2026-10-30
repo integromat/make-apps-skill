@@ -1,0 +1,24 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 300,
+      "output": {
+        "date": "{{item.completed_at}}",
+        "label": "{{item.name}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Completed Tasks",
+  "scope": [],
+  "public": true,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Checks whether new tasks have been completed.",
+  "altAccountName": null
+}

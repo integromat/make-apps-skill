@@ -1,0 +1,26 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.workspace.name",
+      "this.name",
+      "this.is_organization"
+    ]
+  },
+  "url": "/workspaces",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "[{{if(item.is_organization,'Organization','Workspace')}}] {{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

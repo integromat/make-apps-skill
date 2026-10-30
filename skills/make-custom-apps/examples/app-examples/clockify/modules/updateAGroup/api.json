@@ -1,0 +1,10 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}/user-groups/{{parameters.group_id}}",
+  "body": {
+    "name": "{{parameters.name}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

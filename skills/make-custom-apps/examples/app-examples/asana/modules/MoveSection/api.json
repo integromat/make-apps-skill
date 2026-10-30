@@ -1,0 +1,10 @@
+{
+  "url": "/projects/{{parameters.project}}/sections/insert",
+  "body": {
+    "data": "{{omit(parameters,'project')}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{}}"
+  }
+}

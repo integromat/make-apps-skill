@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "pos": "{{parameters.position}}",
+    "name": "{{parameters.name}}",
+    "closed": "{{parameters.closed}}",
+    "idList": "{{parameters.idList}}",
+    "idBoard": "{{parameters.idBoard}}",
+    "idLabels": "{{parameters.labels_id}}",
+    "idMembers": "{{parameters.members_id}}",
+    "subscribed": "{{parameters.subscribed}}",
+    "dueComplete": "{{parameters.dueComplete}}",
+    "idAttachmentCover": "{{parameters.idAttachmentCover}}"
+  },
+  "url": "/cards/{{parameters.card_id}}",
+  "body": {
+    "due": "{{checkErasePill(parameters.due_date)}}",
+    "desc": "{{parameters.description}}",
+    "cover": "{{parameters.cover}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body}}"
+  }
+}

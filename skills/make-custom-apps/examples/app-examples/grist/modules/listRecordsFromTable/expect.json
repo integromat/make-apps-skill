@@ -1,0 +1,39 @@
+[
+  {
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Document ID",
+    "options": {
+      "store": "rpc://app%23grist@1/listDocuments",
+      "nested": [
+        {
+          "name": "tableId",
+          "type": "text",
+          "label": "Table Name",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "help": "This is a JSON object mapping column names to arrays of allowed values. Multiple columns can be filtered. For example, `{\"A\":[\"0\",\"1\"]}`.",
+    "name": "search",
+    "type": "text",
+    "label": "Filter"
+  },
+  {
+    "help": "Order in which to return results. If a single column name is given (e.g. `pet`), results are placed in ascending order of values in that column. Multiple columns can be specified, separated by commas (e.g. `pet,age`). For descending order, prefix a column name with a `-` character (e.g. `pet,-age`).",
+    "name": "sort",
+    "type": "text",
+    "label": "Sort"
+  },
+  {
+    "help": "Maximum number of items to output.",
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Limit",
+    "default": 10
+  }
+]

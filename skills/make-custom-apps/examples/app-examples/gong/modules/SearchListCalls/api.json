@@ -1,0 +1,16 @@
+{
+  "qs": "{{omit(parameters, 'limit')}}",
+  "url": "/calls",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{parseDates(item, 'started', 'scheduled')}}",
+    "iterate": "{{body.calls}}"
+  },
+  "pagination": {
+    "qs": {
+      "cursor": "{{body.records.cursor}}"
+    },
+    "condition": "{{body.records.cursor}}"
+  }
+}

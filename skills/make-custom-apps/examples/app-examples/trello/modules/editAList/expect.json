@@ -1,0 +1,47 @@
+[
+  {
+    "help": "The ID of the list to update.",
+    "name": "list_id",
+    "type": "text",
+    "label": "List ID",
+    "required": true
+  },
+  {
+    "help": "New name for the list.",
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "help": "ID of a board the list should be moved to.",
+    "mode": "edit",
+    "name": "board_id",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "advanced": true
+  },
+  {
+    "name": "pos",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "help": "Whether the active member is subscribed to this list.",
+    "name": "subscribed",
+    "type": "boolean",
+    "label": "Subscribed",
+    "advanced": true
+  }
+]

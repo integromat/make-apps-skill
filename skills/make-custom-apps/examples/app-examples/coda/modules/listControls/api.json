@@ -1,0 +1,14 @@
+{
+  "qs": {
+    "limit": 500
+  },
+  "url": "/docs/{{parameters.docId}}/controls",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.items}}"
+  }
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Page ID"
+  },
+  {
+    "name": "type",
+    "type": "text",
+    "label": "Type"
+  },
+  {
+    "name": "href",
+    "type": "url",
+    "label": "Href"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "browserLink",
+    "type": "url",
+    "label": "Browser Link"
+  },
+  {
+    "name": "parent",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "ID"
+      },
+      {
+        "name": "type",
+        "type": "text",
+        "label": "Type"
+      },
+      {
+        "name": "href",
+        "type": "url",
+        "label": "Href"
+      }
+    ],
+    "type": "collection",
+    "label": "Parent"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "rev": 3,
+  "crud": "create",
+  "epoch": null,
+  "flags": {},
+  "label": "Create a Document",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "grist",
+  "description": "Creates an empty document.",
+  "altAccountName": null
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "type",
+    "type": "select",
+    "label": "List By",
+    "options": [
+      {
+        "label": "Customer",
+        "value": "customer",
+        "nested": [
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer ID"
+          }
+        ]
+      },
+      {
+        "label": "Invoice",
+        "value": "invoice",
+        "nested": [
+          {
+            "help": "The identifier of the desired invoice.",
+            "name": "invoice",
+            "type": "text",
+            "label": "Invoice ID"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "help": "Set to true to only show pending invoice items, which are not yet attached to any invoices. Set to false to only show invoice items already attached to invoices. If unspecified, no filter is applied.",
+    "name": "pending",
+    "type": "boolean",
+    "label": "Pending"
+  }
+]

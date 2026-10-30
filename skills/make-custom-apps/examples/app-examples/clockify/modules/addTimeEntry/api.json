@@ -1,0 +1,16 @@
+{
+  "url": "/workspaces/{{parameters.workspace}}{{if(parameters.user, '/user/'+ parameters.user)}}/time-entries",
+  "body": {
+    "end": "{{parameters.end}}",
+    "start": "{{parameters.start}}",
+    "tagIds": "{{parameters.tagIds}}",
+    "taskId": "{{parameters.task}}",
+    "billable": "{{parameters.billable}}",
+    "projectId": "{{parameters.project}}",
+    "description": "{{parameters.description}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{parseTimeResponse(body)}}"
+  }
+}

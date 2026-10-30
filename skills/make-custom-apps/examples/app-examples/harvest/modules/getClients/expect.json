@@ -1,0 +1,36 @@
+[
+  {
+    "name": "limit",
+    "type": "uinteger",
+    "label": "Number of clients to return",
+    "default": 2
+  },
+  {
+    "name": "is_active",
+    "type": "select",
+    "label": "Active or inactive",
+    "options": {
+      "store": [
+        {
+          "label": "Only active",
+          "value": true
+        },
+        {
+          "label": "Only inactive",
+          "value": false
+        }
+      ],
+      "placeholder": "Show both"
+    },
+    "mappable": {
+      "help": "`true` = Only active, `false` = Only inactive, leave blank for all."
+    }
+  },
+  {
+    "help": "Only return clients that have been updated since the given date and time.",
+    "name": "updated_since",
+    "time": true,
+    "type": "date",
+    "label": "Updated since"
+  }
+]

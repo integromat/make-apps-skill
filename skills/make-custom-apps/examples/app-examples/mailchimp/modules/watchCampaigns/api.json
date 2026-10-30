@@ -1,0 +1,31 @@
+{
+  "qs": {
+    "type": "{{ifempty(parameters.type, undefined)}}",
+    "count": "{{min(parameters.limit, 1000)}}",
+    "status": "{{if(parameters.select === 'sent', 'sent', undefined)}}",
+    "list_id": "{{ifempty(parameters.list, undefined)}}",
+    "sort_dir": "DESC",
+    "folder_id": "{{ifempty(parameters.folder, undefined)}}",
+    "member_id": "{{if(parameters.email, md5(lower(parameters.email)), undefined)}}",
+    "sort_field": "{{switch(parameters.select, 'create', 'create_time', 'sent', 'send_time')}}"
+  },
+  "url": "/campaigns",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item)}}",
+    "iterate": "{{body.campaigns}}",
+    "trigger": {
+      "id": "{{item.id}}",
+      "date": "{{switch(parameters.select, 'create', item.create_time, 'sent', item.send_time)}}",
+      "type": "date",
+      "order": "desc"
+    }
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 1000}}"
+    },
+    "condition": "{{parameters.limit >= 1000 && length(body.campaigns) === 1000}}"
+  }
+}

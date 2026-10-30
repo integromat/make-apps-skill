@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "Find Workspaces",
+  "scope": [],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "clockify",
+  "description": "Finds workspaces for a currently logged-in user.",
+  "altAccountName": null
+}

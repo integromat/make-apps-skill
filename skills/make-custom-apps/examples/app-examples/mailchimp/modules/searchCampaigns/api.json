@@ -1,0 +1,12 @@
+{
+  "qs": {
+    "query": "{{parameters.query}}"
+  },
+  "url": "/search-campaigns",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{generalResponse(item.campaign)}}",
+    "iterate": "{{body.results}}"
+  }
+}

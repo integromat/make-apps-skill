@@ -1,0 +1,40 @@
+{
+  "qs": {},
+  "url": "/boards/{{parameters.board_id}}/customFields",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": [
+      {
+        "name": "{{item.id}}",
+        "label": "{{item.id}}"
+      },
+      {
+        "name": "{{item.idModel}}",
+        "label": "{{item.idModel}}"
+      },
+      {
+        "name": "{{item.modelType}}",
+        "label": "{{item.modelType}}"
+      },
+      {
+        "name": "{{item.fieldGroup}}",
+        "label": "{{item.fieldGroup}}"
+      },
+      {
+        "name": "{{item.name}}",
+        "label": "{{item.name}}"
+      },
+      {
+        "name": "{{item.pos}}",
+        "label": "{{item.pos}}"
+      },
+      {
+        "name": "{{item.type}}",
+        "label": "{{item.type}}"
+      }
+    ],
+    "iterate": "{{body}}"
+  }
+}

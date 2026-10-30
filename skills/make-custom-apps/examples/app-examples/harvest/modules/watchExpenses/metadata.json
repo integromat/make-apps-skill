@@ -1,0 +1,24 @@
+{
+  "rev": 3,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "limit": 300,
+      "output": {
+        "date": "{{item.created_at}}",
+        "label": "Cost: {{item.total_cost}} Note: {{item.notes}} Spent date: {{item.spent_date}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Expenses",
+  "scope": [],
+  "public": false,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "harvest2",
+  "description": "Triggers when a new expense is made.",
+  "altAccountName": null
+}

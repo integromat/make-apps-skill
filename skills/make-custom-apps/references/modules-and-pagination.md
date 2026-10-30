@@ -139,6 +139,18 @@ pagination, and repeat polling solve different problems and are not interchangea
 Sources: [REST universal module](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/rest.md),
 [Multiple requests](https://developers.make.com/custom-apps-documentation/component-blocks/api/multiple-requests.md).
 
+## Current-knowledge guides
+
+- Pagination protocols, merge and stop defaults, polling state and ordering:
+  [pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md).
+- Relative-path boundary, REST and GraphQL conventions, inherited auth and scopes:
+  [universal modules and scopes](../examples/current-knowledge/guides/universal-modules-and-scopes.md).
+- Output shaping, interface honesty, omit, clear and set, partial versus replacing updates:
+  [outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md).
+- Several writes in one module are not reported as partial success; classify requests by
+  side effects and see the valid exceptions in
+  [requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md).
+
 ## Verification gate
 
 - Exercise at least three pages; inspect the exact outgoing page or offset sequence.

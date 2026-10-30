@@ -1,0 +1,332 @@
+[
+  {
+    "mode": "edit",
+    "name": "id",
+    "type": "select",
+    "label": "Payment Link ID",
+    "options": "rpc://app%23stripe@1/listPaymentLink",
+    "editable": true,
+    "required": true
+  },
+  {
+    "name": "active",
+    "type": "boolean",
+    "label": "Active"
+  },
+  {
+    "name": "line_items",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Line Item ID"
+      },
+      {
+        "name": "quantity",
+        "type": "uinteger",
+        "label": "Quantity"
+      },
+      {
+        "name": "adjustable_quantity",
+        "spec": [
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "label": "Enabled",
+            "nested": [
+              {
+                "name": "minimum",
+                "type": "uinteger",
+                "label": "Minimum",
+                "validate": {
+                  "max": 98
+                }
+              },
+              {
+                "name": "maximum",
+                "type": "uinteger",
+                "label": "Maximum",
+                "validate": {
+                  "max": 99
+                }
+              }
+            ],
+            "required": true
+          }
+        ],
+        "type": "collection",
+        "label": "Adjustable Quantity"
+      }
+    ],
+    "type": "array",
+    "label": "Line Items"
+  },
+  {
+    "name": "payment_method_types",
+    "type": "select",
+    "label": "Payment Method Types",
+    "dynamic": true,
+    "options": [
+      {
+        "label": "Card",
+        "value": "card"
+      },
+      {
+        "label": "Affirm",
+        "value": "affirm"
+      },
+      {
+        "label": "PromptPay",
+        "value": "promptpay"
+      },
+      {
+        "label": "BACS Debit",
+        "value": "bacs_debit"
+      },
+      {
+        "label": "Bancontact",
+        "value": "bancontact"
+      },
+      {
+        "label": "BLIK",
+        "value": "blik"
+      },
+      {
+        "label": "Boleto",
+        "value": "boleto"
+      },
+      {
+        "label": "EPS",
+        "value": "eps"
+      },
+      {
+        "label": "FPX",
+        "value": "fpx"
+      },
+      {
+        "label": "Giropay",
+        "value": "giropay"
+      },
+      {
+        "label": "GrabPay",
+        "value": "grabpay"
+      },
+      {
+        "label": "iDEAL",
+        "value": "ideal"
+      },
+      {
+        "label": "Klarna",
+        "value": "klarna"
+      },
+      {
+        "label": "Konbini",
+        "value": "konbini"
+      },
+      {
+        "label": "OXXO",
+        "value": "oxxo"
+      },
+      {
+        "label": "Przelewy24",
+        "value": "p24"
+      },
+      {
+        "label": "PayNow",
+        "value": "paynow"
+      },
+      {
+        "label": "Afterpay and Clearpay",
+        "value": "afterpay_clearpay"
+      },
+      {
+        "label": "Alipay",
+        "value": "alipay"
+      },
+      {
+        "label": "BECS Direct Debit in Australia",
+        "value": "au_becs_debit"
+      },
+      {
+        "label": "SEPA Direct Debit",
+        "value": "sepa_debit"
+      },
+      {
+        "label": "Sofort",
+        "value": "sofort"
+      },
+      {
+        "label": "US Bank Account",
+        "value": "us_bank_account"
+      },
+      {
+        "label": "Wechat Pay",
+        "value": "wechat_pay"
+      }
+    ],
+    "editable": true,
+    "multiple": true
+  },
+  {
+    "name": "metadata",
+    "spec": [
+      {
+        "name": "key",
+        "type": "text",
+        "label": "Key",
+        "required": true
+      },
+      {
+        "name": "value",
+        "type": "text",
+        "label": "Value"
+      }
+    ],
+    "type": "array",
+    "label": "Metadata"
+  },
+  {
+    "name": "after_completion",
+    "spec": [
+      {
+        "help": "`Redirect`: Redirects the customer to the specified url after the purchase is complete.\n\n`Hosted Confirmation`: Displays a message on the hosted surface after the purchase is complete.",
+        "name": "type",
+        "type": "select",
+        "label": "Type",
+        "options": [
+          {
+            "label": "Redirect",
+            "value": "redirect",
+            "nested": [
+              {
+                "name": "redirect",
+                "spec": [
+                  {
+                    "help": "The URL the customer will be redirected to after the purchase is complete. You can embed `{CHECKOUT_SESSION_ID}` into the URL to have the id of the completed checkout session included.",
+                    "name": "url",
+                    "type": "url",
+                    "label": "URL",
+                    "required": true
+                  }
+                ],
+                "type": "collection",
+                "label": "Redirect"
+              }
+            ]
+          },
+          {
+            "label": "Hosted Confirmation",
+            "value": "hosted_confirmation",
+            "nested": [
+              {
+                "name": "hosted_confirmation",
+                "spec": [
+                  {
+                    "name": "custom_message",
+                    "type": "text",
+                    "label": "Custom Message"
+                  }
+                ],
+                "type": "collection",
+                "label": "Hosted Confirmation"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "type": "collection",
+    "label": "After Completion",
+    "advanced": true
+  },
+  {
+    "name": "allow_promotion_codes",
+    "type": "boolean",
+    "label": "Allow Promotion Codes",
+    "advanced": true
+  },
+  {
+    "name": "automatic_tax",
+    "spec": [
+      {
+        "help": "If `true`, tax will be calculated automatically using the customer’s location.",
+        "name": "enabled",
+        "type": "boolean",
+        "label": "Enabled"
+      }
+    ],
+    "type": "collection",
+    "label": "Automatic Tax",
+    "advanced": true
+  },
+  {
+    "name": "billing_address_collection",
+    "type": "select",
+    "label": "Billing Address Collection",
+    "options": [
+      {
+        "label": "Auto",
+        "value": "auto"
+      },
+      {
+        "label": "Required",
+        "value": "required"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "customer_creation",
+    "type": "select",
+    "label": "Customer Creation",
+    "options": [
+      {
+        "label": "If Required",
+        "value": "if_required"
+      },
+      {
+        "label": "Always",
+        "value": "always"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "payment_method_collection",
+    "type": "select",
+    "label": "Payment Method Collection",
+    "options": [
+      {
+        "label": "Always",
+        "value": "always"
+      },
+      {
+        "label": "If Required",
+        "value": "if_required"
+      }
+    ],
+    "advanced": true
+  },
+  {
+    "name": "shipping_address_collection",
+    "spec": [
+      {
+        "help": "Two-letter country codes representing which countries Checkout should provide as options for shipping locations. Unsupported country codes: AS, CX, CC, CU, HM, IR, KP, MH, FM, NF, MP, PW, SD, SY, UM, VI.",
+        "name": "allowed_countries",
+        "spec": {
+          "type": "text",
+          "label": "Country Code",
+          "validate": {
+            "max": 2,
+            "min": 2
+          }
+        },
+        "type": "array",
+        "label": "Allowed Countries"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping Address Collection",
+    "advanced": true
+  }
+]

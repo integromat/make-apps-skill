@@ -1,0 +1,7 @@
+{
+  "url": "/invoices/{{parameters.invoice}}/void",
+  "method": "POST",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

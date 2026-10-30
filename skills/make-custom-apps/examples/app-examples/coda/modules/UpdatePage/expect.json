@@ -1,0 +1,47 @@
+[
+  {
+    "help": "ID of the doc.",
+    "mode": "edit",
+    "name": "docId",
+    "type": "select",
+    "label": "Doc ID",
+    "options": {
+      "store": "rpc://app%23coda@1/getDocs",
+      "nested": [
+        {
+          "help": "ID or name of the page.",
+          "name": "sectionIdOrName",
+          "type": "select",
+          "label": "Page ID or Name",
+          "options": "rpc://app%23coda@1/getSectionsUsingdocId",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": false
+  },
+  {
+    "name": "subtitle",
+    "type": "text",
+    "label": "Subtitle",
+    "required": false
+  },
+  {
+    "name": "iconName",
+    "type": "text",
+    "label": "Icon name",
+    "required": false
+  },
+  {
+    "name": "imageUrl",
+    "type": "text",
+    "label": "Image URL",
+    "required": false
+  }
+]

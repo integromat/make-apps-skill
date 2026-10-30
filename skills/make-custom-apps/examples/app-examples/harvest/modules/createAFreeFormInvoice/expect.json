@@ -1,0 +1,160 @@
+[
+  {
+    "help": "The ID of the client this invoice belongs to.",
+    "name": "client_id",
+    "type": "select",
+    "label": "Client ID",
+    "options": "rpc://getClients",
+    "required": true
+  },
+  {
+    "help": "If no value is set, the number will be automatically generated.",
+    "name": "number",
+    "type": "text",
+    "label": "Number"
+  },
+  {
+    "name": "purchase_order",
+    "type": "text",
+    "label": "Purchase order number"
+  },
+  {
+    "help": "This percentage is applied to the subtotal, including line items and discounts. Example: use 10.0 for 10.0%",
+    "name": "tax",
+    "type": "number",
+    "label": "Tax"
+  },
+  {
+    "help": "This percentage is applied to the subtotal, including line items and discounts. Example: use 10.0 for 10.0%",
+    "name": "tax2",
+    "type": "number",
+    "label": "Tax 2"
+  },
+  {
+    "help": "This percentage is subtracted from the subtotal. Example: use 10.0 for 10.0%",
+    "name": "discount",
+    "type": "number",
+    "label": "Discount"
+  },
+  {
+    "name": "subject",
+    "type": "text",
+    "label": "Subject"
+  },
+  {
+    "name": "notes",
+    "type": "text",
+    "label": "Notes"
+  },
+  {
+    "help": "The currency used by the invoice. If not provided, the client’s currency will be used. See a [list of supported currencies](https://help.getharvest.com/api-v2/introduction/overview/supported-currencies/)",
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "help": "Date the invoice was issued. Defaults to today’s date.\nOnly the date is relevant, time will be ignored.",
+    "name": "issue_date",
+    "time": true,
+    "type": "date",
+    "label": "Issue date"
+  },
+  {
+    "help": "This field is ignored if any option from `Payment term` is selected.\nOnly the date is relevant, time will be ignored.",
+    "name": "due_date",
+    "time": true,
+    "type": "date",
+    "label": "Due date"
+  },
+  {
+    "help": "The timeframe in which the invoice should be paid. Any selected option has priority over `Due date`.",
+    "name": "payment_term",
+    "type": "select",
+    "label": "Payment term",
+    "options": [
+      {
+        "label": "Upon receipt",
+        "value": "upon receipt"
+      },
+      {
+        "label": "Net 15",
+        "value": "net 15"
+      },
+      {
+        "label": "Net 30",
+        "value": "net 30"
+      },
+      {
+        "label": "Net 45",
+        "value": "net 45"
+      },
+      {
+        "label": "Net 60",
+        "value": "net 60"
+      }
+    ]
+  },
+  {
+    "name": "line_items",
+    "spec": [
+      {
+        "help": "The ID of the project associated with this line item.",
+        "mode": "edit",
+        "name": "project_id",
+        "type": "select",
+        "label": "Project ID",
+        "options": "rpc://getProjects"
+      },
+      {
+        "mode": "edit",
+        "name": "kind",
+        "type": "select",
+        "label": "Kind",
+        "options": "rpc://getInvoiceCategories"
+      },
+      {
+        "name": "description",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "help": "The unit quantity of the item. Defaults to 1.",
+        "name": "quantity",
+        "type": "number",
+        "label": "Quantity"
+      },
+      {
+        "name": "unit_price",
+        "type": "number",
+        "label": "Unit price",
+        "required": true
+      },
+      {
+        "name": "taxed",
+        "type": "boolean",
+        "label": "Taxed"
+      },
+      {
+        "name": "taxed2",
+        "type": "boolean",
+        "label": "Taxed 2"
+      }
+    ],
+    "type": "array",
+    "label": "Line items"
+  },
+  {
+    "help": "The ID of the retainer associated with this invoice.",
+    "name": "retainer_id",
+    "type": "text",
+    "label": "Retainer ID",
+    "advanced": true
+  },
+  {
+    "help": "The ID of the estimate associated with this invoice.",
+    "name": "estimate_id",
+    "type": "text",
+    "label": "Estimate ID",
+    "advanced": true
+  }
+]

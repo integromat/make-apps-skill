@@ -1,6 +1,7 @@
 # Local builds and tool caches; never generate platform skill mirrors.
 /dist/
 node_modules/
+/skills/make-custom-apps/examples/app-examples/github-search/.build/
 __pycache__/
 *.py[cod]
 .cache/

@@ -1,0 +1,9 @@
+{
+  "url": "https://api.airtable.com/v0/meta/bases/{{parameters.base}}/tables",
+  "headers": {
+    "X-Airtable-Client-Secret": "{{common.metadataClientSecret}}"
+  },
+  "response": {
+    "output": "{{getViews(body, parameters.table)}}"
+  }
+}

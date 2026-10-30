@@ -1,0 +1,10 @@
+{
+  "url": "/sections/{{parameters.section_gid}}",
+  "body": {
+    "data": "{{omit(parameters,'section_gid','project','selectOrMap')}}"
+  },
+  "method": "PUT",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

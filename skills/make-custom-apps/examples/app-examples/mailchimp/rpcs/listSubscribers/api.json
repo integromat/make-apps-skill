@@ -1,0 +1,18 @@
+{
+  "qs": {
+    "count": 500,
+    "status": "subscribed",
+    "sort_dir": "DESC",
+    "sort_field": "last_changed"
+  },
+  "url": "/lists/{{parameters.list}}/members",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.email_address}}",
+      "value": "{{item.email_address}}"
+    },
+    "iterate": "{{body.members}}"
+  },
+  "condition": "{{parameters.listId && isMapping(parameters.listId) !== false}}"
+}

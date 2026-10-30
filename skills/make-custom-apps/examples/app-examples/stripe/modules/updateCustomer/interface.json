@@ -1,0 +1,485 @@
+[
+  {
+    "name": "id",
+    "type": "text",
+    "label": "Customer ID"
+  },
+  {
+    "name": "object",
+    "type": "text",
+    "label": "Object"
+  },
+  {
+    "name": "address",
+    "spec": [
+      {
+        "name": "line1",
+        "type": "text",
+        "label": "Line 1"
+      },
+      {
+        "name": "line2",
+        "type": "text",
+        "label": "Line 2"
+      },
+      {
+        "name": "city",
+        "type": "text",
+        "label": "City"
+      },
+      {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+      },
+      {
+        "name": "postal_code",
+        "type": "text",
+        "label": "Postal Code"
+      },
+      {
+        "name": "state",
+        "type": "text",
+        "label": "State"
+      }
+    ],
+    "type": "collection",
+    "label": "Address"
+  },
+  {
+    "name": "description",
+    "type": "text",
+    "label": "Description"
+  },
+  {
+    "name": "email",
+    "type": "text",
+    "label": "Email"
+  },
+  {
+    "name": "metadata",
+    "type": "any",
+    "label": "Metadata"
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name"
+  },
+  {
+    "name": "phone",
+    "type": "text",
+    "label": "Phone"
+  },
+  {
+    "name": "shipping",
+    "spec": [
+      {
+        "name": "address",
+        "spec": [
+          {
+            "name": "line1",
+            "type": "text",
+            "label": "Line 1"
+          },
+          {
+            "name": "line2",
+            "type": "text",
+            "label": "Line 2"
+          },
+          {
+            "name": "city",
+            "type": "text",
+            "label": "City"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "postal_code",
+            "type": "text",
+            "label": "Postal Code"
+          },
+          {
+            "name": "state",
+            "type": "text",
+            "label": "State"
+          }
+        ],
+        "type": "collection",
+        "label": "Address"
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Name"
+      },
+      {
+        "name": "phone",
+        "type": "text",
+        "label": "Phone"
+      }
+    ],
+    "type": "collection",
+    "label": "Shipping"
+  },
+  {
+    "name": "balance",
+    "type": "number",
+    "label": "Balance"
+  },
+  {
+    "name": "created",
+    "type": "date",
+    "label": "Created"
+  },
+  {
+    "name": "currency",
+    "type": "text",
+    "label": "Currency"
+  },
+  {
+    "name": "default_source",
+    "type": "any",
+    "label": "Default Source"
+  },
+  {
+    "name": "delinquent",
+    "type": "boolean",
+    "label": "Delinquent"
+  },
+  {
+    "name": "discount",
+    "spec": [
+      {
+        "name": "id",
+        "type": "text",
+        "label": "Discount ID"
+      },
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "coupon",
+        "spec": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Coupon ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount_off",
+            "type": "text",
+            "label": "Amount Off"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "duration",
+            "type": "text",
+            "label": "Duration"
+          },
+          {
+            "name": "duration_in_months",
+            "type": "number",
+            "label": "Duration In Months"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "max_redemptions",
+            "type": "text",
+            "label": "Max Redemptions"
+          },
+          {
+            "name": "metadata",
+            "type": "any",
+            "label": "Metadata"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "percent_off",
+            "type": "number",
+            "label": "Percent Off"
+          },
+          {
+            "name": "redeem_by",
+            "type": "text",
+            "label": "Redeem By"
+          },
+          {
+            "name": "times_redeemed",
+            "type": "number",
+            "label": "Times Redeemed"
+          },
+          {
+            "name": "valid",
+            "type": "boolean",
+            "label": "Valid"
+          }
+        ],
+        "type": "collection",
+        "label": "Coupon"
+      },
+      {
+        "name": "customer",
+        "type": "text",
+        "label": "Customer"
+      },
+      {
+        "name": "end",
+        "type": "date",
+        "label": "End"
+      },
+      {
+        "name": "invoice",
+        "type": "text",
+        "label": "Invoice"
+      },
+      {
+        "name": "invoice_item",
+        "type": "text",
+        "label": "Invoice Item"
+      },
+      {
+        "name": "promotion_code",
+        "type": "text",
+        "label": "Promotion Code"
+      },
+      {
+        "name": "start",
+        "type": "date",
+        "label": "Start"
+      },
+      {
+        "name": "subscription",
+        "type": "text",
+        "label": "Subscription"
+      }
+    ],
+    "type": "collection",
+    "label": "Discount"
+  },
+  {
+    "name": "invoice_prefix",
+    "type": "text",
+    "label": "Invoice Prefix"
+  },
+  {
+    "name": "invoice_settings",
+    "spec": [
+      {
+        "name": "custom_fields",
+        "spec": {
+          "spec": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "value",
+              "type": "text",
+              "label": "Value"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Custom Fields"
+      },
+      {
+        "name": "default_payment_method",
+        "type": "text",
+        "label": "Default Payment Method"
+      },
+      {
+        "name": "footer",
+        "type": "text",
+        "label": "Footer"
+      }
+    ],
+    "type": "collection",
+    "label": "Invoice Settings"
+  },
+  {
+    "name": "livemode",
+    "type": "boolean",
+    "label": "Livemode"
+  },
+  {
+    "name": "next_invoice_sequence",
+    "type": "number",
+    "label": "Next Invoice Sequence"
+  },
+  {
+    "name": "preferred_locales",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Preferred Locales"
+  },
+  {
+    "name": "sources",
+    "spec": [
+      {
+        "name": "data",
+        "type": "array",
+        "label": "Data"
+      },
+      {
+        "name": "total_count",
+        "type": "number",
+        "label": "Total Count"
+      }
+    ],
+    "type": "collection",
+    "label": "Sources"
+  },
+  {
+    "name": "subscriptions",
+    "spec": [
+      {
+        "name": "total_count",
+        "type": "number",
+        "label": "Total Count"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "URL"
+      }
+    ],
+    "type": "collection",
+    "label": "Subscriptions"
+  },
+  {
+    "name": "tax_exempt",
+    "type": "text",
+    "label": "Tax Exempt"
+  },
+  {
+    "name": "tax_ids",
+    "spec": [
+      {
+        "name": "object",
+        "type": "text",
+        "label": "Object"
+      },
+      {
+        "name": "data",
+        "spec": {
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Tax ID"
+            },
+            {
+              "name": "object",
+              "type": "text",
+              "label": "Object"
+            },
+            {
+              "name": "country",
+              "type": "text",
+              "label": "Country"
+            },
+            {
+              "name": "created",
+              "type": "date",
+              "label": "Created"
+            },
+            {
+              "name": "customer",
+              "type": "text",
+              "label": "Customer"
+            },
+            {
+              "name": "livemode",
+              "type": "boolean",
+              "label": "Livemode"
+            },
+            {
+              "name": "type",
+              "type": "text",
+              "label": "Type"
+            },
+            {
+              "name": "value",
+              "type": "text",
+              "label": "Value"
+            },
+            {
+              "name": "verification",
+              "spec": [
+                {
+                  "name": "status",
+                  "type": "text",
+                  "label": "Status"
+                },
+                {
+                  "name": "verified_address",
+                  "type": "text",
+                  "label": "Verified Address"
+                },
+                {
+                  "name": "verified_name",
+                  "type": "text",
+                  "label": "Verified Name"
+                }
+              ],
+              "type": "collection",
+              "label": "Verification"
+            }
+          ],
+          "type": "collection"
+        },
+        "type": "array",
+        "label": "Data"
+      },
+      {
+        "name": "has_more",
+        "type": "boolean",
+        "label": "Has More"
+      },
+      {
+        "name": "total_count",
+        "type": "number",
+        "label": "Total Count"
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "URL"
+      }
+    ],
+    "type": "collection",
+    "label": "Tax IDs"
+  }
+]

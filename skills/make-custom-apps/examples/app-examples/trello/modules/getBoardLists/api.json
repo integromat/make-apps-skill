@@ -1,0 +1,15 @@
+{
+  "qs": {
+    "card": "all",
+    "fields": "all",
+    "filter": "{{parameters.filter}}",
+    "card_fields": "all"
+  },
+  "url": "/boards/{{parameters.board_id}}/lists",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body}}"
+  }
+}

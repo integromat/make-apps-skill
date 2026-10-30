@@ -1,0 +1,25 @@
+{
+  "qs": {
+    "limit": 100,
+    "opt_fields": [
+      "this.projects",
+      "this.projects.name"
+    ]
+  },
+  "url": "/tasks/{{parameters.task_gid}}",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.name}}",
+      "value": "{{item.gid}}"
+    },
+    "iterate": "{{body.data.projects}}"
+  },
+  "pagination": {
+    "qs": {
+      "offset": "{{body.next_page.offset}}"
+    },
+    "condition": "{{ifempty(body.next_page, false)}}"
+  }
+}

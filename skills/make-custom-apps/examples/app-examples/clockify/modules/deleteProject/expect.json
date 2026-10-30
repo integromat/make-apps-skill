@@ -1,0 +1,21 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://listWorkspaces",
+      "nested": [
+        {
+          "name": "project",
+          "type": "select",
+          "label": "Project ID",
+          "options": "rpc://listProjects",
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]

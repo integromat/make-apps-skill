@@ -1,0 +1,69 @@
+[
+  {
+    "name": "list",
+    "type": "select",
+    "label": "List ID",
+    "options": {
+      "store": "rpc://app%23mailchimp@2/listLists"
+    },
+    "required": true
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Text",
+        "value": "text"
+      },
+      {
+        "label": "Number",
+        "value": "number"
+      },
+      {
+        "label": "Address",
+        "value": "address"
+      },
+      {
+        "label": "Phone",
+        "value": "phone"
+      },
+      {
+        "label": "Date",
+        "value": "date"
+      },
+      {
+        "label": "URL",
+        "value": "url"
+      },
+      {
+        "label": "Image URL",
+        "value": "imageurl"
+      },
+      {
+        "label": "Radio",
+        "value": "radio"
+      },
+      {
+        "label": "Dropdown",
+        "value": "dropdown"
+      },
+      {
+        "label": "Birthday",
+        "value": "birthday"
+      },
+      {
+        "label": "ZIP",
+        "value": "zip"
+      }
+    ],
+    "mappable": false
+  },
+  {
+    "help": "Whether it's a required merge field.",
+    "name": "required",
+    "type": "boolean",
+    "label": "Required"
+  }
+]

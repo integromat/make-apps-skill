@@ -1,0 +1,141 @@
+[
+  {
+    "help": "ID of the board where the custom field will be created.",
+    "name": "idModel",
+    "type": "select",
+    "label": "Board ID",
+    "options": "rpc://listBoards",
+    "required": true
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "options": [
+      {
+        "label": "Number",
+        "value": "number"
+      },
+      {
+        "label": "Date",
+        "value": "date"
+      },
+      {
+        "label": "Text",
+        "value": "text"
+      },
+      {
+        "label": "Checkbox",
+        "value": "checkbox"
+      },
+      {
+        "label": "Dropdown",
+        "value": "list",
+        "nested": [
+          {
+            "name": "options",
+            "spec": {
+              "spec": [
+                {
+                  "name": "color",
+                  "type": "select",
+                  "label": "Color",
+                  "options": [
+                    {
+                      "label": "None",
+                      "value": "none",
+                      "default": true
+                    },
+                    {
+                      "label": "Green",
+                      "value": "green"
+                    },
+                    {
+                      "label": "Sky",
+                      "value": "sky"
+                    },
+                    {
+                      "label": "Yellow",
+                      "value": "yellow"
+                    },
+                    {
+                      "label": "Lime",
+                      "value": "lime"
+                    },
+                    {
+                      "label": "Orange",
+                      "value": "orange"
+                    },
+                    {
+                      "label": "Pink",
+                      "value": "pink"
+                    },
+                    {
+                      "label": "Red",
+                      "value": "red"
+                    },
+                    {
+                      "label": "Black",
+                      "value": "black"
+                    },
+                    {
+                      "label": "Purple",
+                      "value": "purple"
+                    },
+                    {
+                      "label": "Blue",
+                      "value": "blue"
+                    }
+                  ]
+                },
+                {
+                  "name": "value",
+                  "spec": [
+                    {
+                      "name": "text",
+                      "type": "text",
+                      "label": "Text"
+                    }
+                  ],
+                  "type": "collection",
+                  "label": "Value"
+                }
+              ],
+              "type": "collection"
+            },
+            "type": "array",
+            "label": "Options"
+          }
+        ]
+      }
+    ],
+    "required": true
+  },
+  {
+    "name": "name",
+    "type": "text",
+    "label": "Name",
+    "required": true
+  },
+  {
+    "name": "pos",
+    "type": "select",
+    "label": "Position",
+    "options": [
+      {
+        "label": "To the top",
+        "value": "top"
+      },
+      {
+        "label": "Bottom",
+        "value": "bottom"
+      }
+    ]
+  },
+  {
+    "name": "display_cardFront",
+    "type": "boolean",
+    "label": "Display on front of card",
+    "required": true
+  }
+]

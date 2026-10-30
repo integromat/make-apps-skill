@@ -1,0 +1,12 @@
+{
+  "url": "/portfolios/{{parameters.portfolio}}/removeMembers",
+  "body": {
+    "data": {
+      "members": "{{parameters.members}}"
+    }
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{body.data}}"
+  }
+}

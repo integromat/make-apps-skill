@@ -1,0 +1,8 @@
+{
+  "qs": {},
+  "url": "/boards/{{parameters.board_id}}/members/{{parameters.member_id}}",
+  "method": "DELETE",
+  "response": {
+    "output": "{{body}}"
+  }
+}

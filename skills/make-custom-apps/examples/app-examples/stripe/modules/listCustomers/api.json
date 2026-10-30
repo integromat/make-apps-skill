@@ -1,0 +1,24 @@
+{
+  "qs": {
+    "email": "{{parameters.email}}",
+    "limit": "{{min(parameters.limit, 100)}}",
+    "expand[]": "{{if(length(parameters.expand) > 0, parameters.expand, undefined)}}",
+    "created[{{parameters.created}}]": "{{if(parameters.created !== '', parameters.created_timestamp, undefined)}}"
+  },
+  "url": "/customers",
+  "method": "GET",
+  "response": {
+    "temp": {
+      "id": "{{get(body.data, length(body.data) +'.id')}}"
+    },
+    "limit": "{{parameters.limit}}",
+    "output": "{{prepareOutput(item)}}",
+    "iterate": "{{body.data}}"
+  },
+  "pagination": {
+    "qs": {
+      "starting_after": "{{temp.id}}"
+    },
+    "condition": "{{body.has_more}}"
+  }
+}

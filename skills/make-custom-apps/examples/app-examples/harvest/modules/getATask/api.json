@@ -1,0 +1,7 @@
+{
+  "url": "/tasks/{{parameters.task_id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

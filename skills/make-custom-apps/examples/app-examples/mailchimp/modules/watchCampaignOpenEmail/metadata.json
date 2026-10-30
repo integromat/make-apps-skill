@@ -1,0 +1,23 @@
+{
+  "rev": 5,
+  "crud": "read",
+  "epoch": {
+    "response": {
+      "output": {
+        "date": "{{item.opens[].timestamp}}",
+        "label": "{{item.opens[].timestamp}}"
+      }
+    }
+  },
+  "flags": {},
+  "label": "Watch Campaign Open Email !!! DO NOT RELEASE",
+  "scope": [],
+  "public": false,
+  "typeId": 1,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "mailchimp",
+  "description": "Triggers when a campaign email is opened.",
+  "altAccountName": null
+}

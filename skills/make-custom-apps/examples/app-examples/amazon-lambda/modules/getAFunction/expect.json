@@ -1,0 +1,10 @@
+[
+  {
+    "mode": "edit",
+    "name": "function",
+    "type": "select",
+    "label": "Function Name",
+    "options": "rpc://listFunctions",
+    "required": true
+  }
+]

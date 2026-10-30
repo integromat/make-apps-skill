@@ -1,0 +1,31 @@
+{
+  "rev": 5,
+  "type": "oauth",
+  "label": "Mailchimp",
+  "scope": [],
+  "scopes": {},
+  "aliasTo": "mailchimp",
+  "install": {
+    "common": {
+      "clientId": "{{parameters.clientId}}",
+      "clientSecret": "{{parameters.clientSecret}}"
+    }
+  },
+  "installSpec": [
+    {
+      "name": "clientId",
+      "type": "text",
+      "label": "Client ID",
+      "required": true
+    },
+    {
+      "name": "clientSecret",
+      "type": "text",
+      "label": "Client Secret",
+      "required": true
+    }
+  ],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

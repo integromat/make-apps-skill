@@ -1,0 +1,218 @@
+[
+  {
+    "name": "reportData",
+    "type": "buffer",
+    "label": "Report Data"
+  },
+  {
+    "name": "totals",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Total ID"
+        },
+        {
+          "name": "totalTime",
+          "type": "number",
+          "label": "Total Time"
+        },
+        {
+          "name": "totalBillableTime",
+          "type": "number",
+          "label": "Total Billable Time"
+        },
+        {
+          "name": "entriesCount",
+          "type": "number",
+          "label": "Entries Count"
+        },
+        {
+          "name": "totalAmount",
+          "type": "number",
+          "label": "Total Amount"
+        },
+        {
+          "name": "amounts",
+          "spec": {
+            "spec": [
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "value",
+                "type": "number",
+                "label": "Value"
+              }
+            ],
+            "type": "collection"
+          },
+          "type": "array",
+          "label": "Amounts"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Totals"
+  },
+  {
+    "name": "timeentries",
+    "spec": {
+      "spec": [
+        {
+          "name": "_id",
+          "type": "text",
+          "label": "Time Entry ID"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description"
+        },
+        {
+          "name": "userId",
+          "type": "text",
+          "label": "User ID"
+        },
+        {
+          "name": "timeInterval",
+          "spec": [
+            {
+              "name": "start",
+              "type": "date",
+              "label": "Start"
+            },
+            {
+              "name": "end",
+              "type": "date",
+              "label": "End"
+            },
+            {
+              "name": "duration",
+              "type": "number",
+              "label": "Duration"
+            }
+          ],
+          "type": "collection",
+          "label": "Time Interval"
+        },
+        {
+          "name": "billable",
+          "type": "boolean",
+          "label": "Billable"
+        },
+        {
+          "name": "projectId",
+          "type": "text",
+          "label": "Project ID"
+        },
+        {
+          "name": "taskId",
+          "type": "text",
+          "label": "Task ID"
+        },
+        {
+          "name": "approvalRequestId",
+          "type": "text",
+          "label": "Approval Request ID"
+        },
+        {
+          "name": "taskName",
+          "type": "text",
+          "label": "Task Name"
+        },
+        {
+          "name": "tags",
+          "spec": [
+            {
+              "name": "id",
+              "type": "text",
+              "label": "Tag ID"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            }
+          ],
+          "type": "array",
+          "label": "Tags"
+        },
+        {
+          "name": "tagIds",
+          "spec": [
+            {
+              "name": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "name": "_id",
+              "type": "text",
+              "label": "Tag ID"
+            }
+          ],
+          "type": "array",
+          "label": "Tag IDs"
+        },
+        {
+          "name": "isLocked",
+          "type": "boolean",
+          "label": "Is Locked"
+        },
+        {
+          "name": "customFields",
+          "type": "text",
+          "label": "Custom Fields"
+        },
+        {
+          "name": "amount",
+          "type": "text",
+          "label": "Amount"
+        },
+        {
+          "name": "rate",
+          "type": "text",
+          "label": "Rate"
+        },
+        {
+          "name": "userName",
+          "type": "text",
+          "label": "User Name"
+        },
+        {
+          "name": "userEmail",
+          "type": "email",
+          "label": "User Email"
+        },
+        {
+          "name": "projectName",
+          "type": "text",
+          "label": "Project Name"
+        },
+        {
+          "name": "projectColor",
+          "type": "text",
+          "label": "Project Color"
+        },
+        {
+          "name": "clientName",
+          "type": "text",
+          "label": "Client Name"
+        },
+        {
+          "name": "clientId",
+          "type": "text",
+          "label": "Client ID"
+        }
+      ],
+      "type": "collection"
+    },
+    "type": "array",
+    "label": "Time Entries"
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "help": "ID returned from 'Add New Call' request.",
+    "name": "callId",
+    "type": "text",
+    "label": "Call ID",
+    "required": true
+  },
+  {
+    "name": "mediaFile",
+    "type": "buffer",
+    "label": "Media File",
+    "required": true,
+    "semantic": "file:data"
+  },
+  {
+    "help": "File name, including the extension, e.g.`invoice.xml`.",
+    "name": "filename",
+    "type": "filename",
+    "label": "File Name",
+    "required": true,
+    "semantic": "file:name"
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "url": "/workspaces/{{parameters.workspace}}/time-entries/{{parameters.timeEntry}}",
+    "method": "GET",
+    "response": {
+      "temp": {
+        "end": "{{body.timeInterval.end}}",
+        "start": "{{body.timeInterval.start}}",
+        "tagIds": "{{body.tagIds}}",
+        "taskId": "{{body.taskId}}",
+        "billable": "{{body.billable}}",
+        "projectId": "{{body.projectId}}",
+        "description": "{{body.description}}"
+      }
+    }
+  },
+  {
+    "url": "/workspaces/{{parameters.workspace}}/time-entries/{{parameters.timeEntry}}",
+    "body": {
+      "end": "{{ifempty(parameters.end ,temp.end)}}",
+      "start": "{{ifempty(parameters.start ,temp.start)}}",
+      "tagIds": "{{ifempty(parameters.tagIds ,temp.tagIds)}}",
+      "taskId": "{{ifempty(parameters.task ,temp.taskId)}}",
+      "billable": "{{ifempty(parameters.billable ,temp.billable)}}",
+      "projectId": "{{ifempty(parameters.project ,temp.projectId)}}",
+      "description": "{{ifempty(parameters.description ,temp.description)}}"
+    },
+    "method": "PUT",
+    "response": {
+      "output": "{{parseTimeResponse(body)}}"
+    }
+  }
+]

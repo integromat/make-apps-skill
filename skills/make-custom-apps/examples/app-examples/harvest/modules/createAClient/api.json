@@ -1,0 +1,13 @@
+{
+  "url": "/clients",
+  "body": {
+    "name": "{{parameters.name}}",
+    "address": "{{parameters.address}}",
+    "currency": "{{parameters.currency}}",
+    "is_active": "{{parameters.is_active}}"
+  },
+  "method": "POST",
+  "response": {
+    "output": "{{transformResponseDates(body)}}"
+  }
+}

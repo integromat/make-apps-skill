@@ -1,0 +1,6155 @@
+[
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "business_logo",
+            "type": "text",
+            "label": "Business logo"
+          },
+          {
+            "name": "business_name",
+            "type": "text",
+            "label": "Business name"
+          },
+          {
+            "name": "business_url",
+            "type": "text",
+            "label": "Business url"
+          },
+          {
+            "name": "charges_enabled",
+            "type": "boolean",
+            "label": "Charges enabled"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "debit_negative_balances",
+            "type": "boolean",
+            "label": "Debit negative balances"
+          },
+          {
+            "name": "decline_charge_on",
+            "spec": [
+              {
+                "name": "avs_failure",
+                "type": "boolean",
+                "label": "AVS failure"
+              },
+              {
+                "name": "cvc_failure",
+                "type": "boolean",
+                "label": "CVC failure"
+              }
+            ],
+            "type": "collection",
+            "label": "Decline charge on"
+          },
+          {
+            "name": "default_currency",
+            "type": "text",
+            "label": "Default currency"
+          },
+          {
+            "name": "details_submitted",
+            "type": "boolean",
+            "label": "Details submitted"
+          },
+          {
+            "name": "display_name",
+            "type": "text",
+            "label": "Display name"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "external_accounts",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "URL"
+              }
+            ],
+            "type": "collection",
+            "label": "External accounts"
+          },
+          {
+            "name": "legal_entity",
+            "spec": [
+              {
+                "name": "additional_owners",
+                "type": "array",
+                "label": "Additional owners"
+              },
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "business_name",
+                "type": "text",
+                "label": "Business name"
+              },
+              {
+                "name": "business_tax_id_provided",
+                "type": "boolean",
+                "label": "Business tax ID provided"
+              },
+              {
+                "name": "dob",
+                "spec": [
+                  {
+                    "name": "day",
+                    "type": "text",
+                    "label": "Day"
+                  },
+                  {
+                    "name": "month",
+                    "type": "text",
+                    "label": "Month"
+                  },
+                  {
+                    "name": "year",
+                    "type": "text",
+                    "label": "Year"
+                  }
+                ],
+                "type": "collection",
+                "label": "DOB"
+              },
+              {
+                "name": "first_name",
+                "type": "text",
+                "label": "First name"
+              },
+              {
+                "name": "last_name",
+                "type": "text",
+                "label": "Last name"
+              },
+              {
+                "name": "personal_address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Personal address"
+              },
+              {
+                "name": "personal_id_number_provided",
+                "type": "boolean",
+                "label": "Personal ID number provided"
+              },
+              {
+                "name": "ssn_last_4_provided",
+                "type": "boolean",
+                "label": "SSN last 4 provided"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "verification",
+                "spec": [
+                  {
+                    "name": "details",
+                    "type": "text",
+                    "label": "Details"
+                  },
+                  {
+                    "name": "details_code",
+                    "type": "text",
+                    "label": "Details code"
+                  },
+                  {
+                    "name": "document",
+                    "type": "text",
+                    "label": "Document"
+                  },
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  }
+                ],
+                "type": "collection",
+                "label": "Verification"
+              }
+            ],
+            "type": "collection",
+            "label": "Legal entity"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "payout_schedule",
+            "spec": [
+              {
+                "name": "delay_days",
+                "type": "number",
+                "label": "Delay days"
+              },
+              {
+                "name": "interval",
+                "type": "text",
+                "label": "Interval"
+              }
+            ],
+            "type": "collection",
+            "label": "Payout schedule"
+          },
+          {
+            "name": "payout_statement_descriptor",
+            "type": "text",
+            "label": "Payout statement descriptor"
+          },
+          {
+            "name": "payouts_enabled",
+            "type": "boolean",
+            "label": "Payouts enabled"
+          },
+          {
+            "name": "product_description",
+            "type": "text",
+            "label": "Product description"
+          },
+          {
+            "name": "statement_descriptor",
+            "type": "text",
+            "label": "Statement descriptor"
+          },
+          {
+            "name": "support_email",
+            "type": "text",
+            "label": "Support email"
+          },
+          {
+            "name": "support_phone",
+            "type": "text",
+            "label": "Support phone"
+          },
+          {
+            "name": "timezone",
+            "type": "text",
+            "label": "Timezone"
+          },
+          {
+            "name": "tos_acceptance",
+            "spec": [
+              {
+                "name": "date",
+                "type": "text",
+                "label": "Date"
+              },
+              {
+                "name": "ip",
+                "type": "text",
+                "label": "IP"
+              },
+              {
+                "name": "user_agent",
+                "type": "text",
+                "label": "User agent"
+              }
+            ],
+            "type": "collection",
+            "label": "TOS acceptance"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "verification",
+            "spec": [
+              {
+                "name": "disabled_reason",
+                "type": "text",
+                "label": "Disabled reason"
+              },
+              {
+                "name": "due_by",
+                "type": "text",
+                "label": "Due by"
+              },
+              {
+                "name": "fields_needed",
+                "type": "array",
+                "label": "Fields needed"
+              }
+            ],
+            "type": "collection",
+            "label": "Verification"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'account'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'account.application'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "address_city",
+            "type": "text",
+            "label": "Address city"
+          },
+          {
+            "name": "address_country",
+            "type": "text",
+            "label": "Address country"
+          },
+          {
+            "name": "address_line1",
+            "type": "text",
+            "label": "Address line 1"
+          },
+          {
+            "name": "address_line1_check",
+            "type": "text",
+            "label": "Address line 1 check"
+          },
+          {
+            "name": "address_line2",
+            "type": "text",
+            "label": "Address line 2"
+          },
+          {
+            "name": "address_state",
+            "type": "text",
+            "label": "Address state"
+          },
+          {
+            "name": "address_zip",
+            "type": "text",
+            "label": "Address ZIP"
+          },
+          {
+            "name": "address_zip_check",
+            "type": "text",
+            "label": "Address ZIP check"
+          },
+          {
+            "name": "brand",
+            "type": "text",
+            "label": "Brand"
+          },
+          {
+            "name": "country",
+            "type": "text",
+            "label": "Country"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "cvc_check",
+            "type": "text",
+            "label": "CVC check"
+          },
+          {
+            "name": "dynamic_last4",
+            "type": "text",
+            "label": "Dynamic last 4"
+          },
+          {
+            "name": "exp_month",
+            "type": "number",
+            "label": "Expiration month"
+          },
+          {
+            "name": "exp_year",
+            "type": "number",
+            "label": "Expiration year"
+          },
+          {
+            "name": "fingerprint",
+            "type": "text",
+            "label": "Fingerprint"
+          },
+          {
+            "name": "funding",
+            "type": "text",
+            "label": "Funding"
+          },
+          {
+            "name": "last4",
+            "type": "text",
+            "label": "Last 4"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "tokenization_method",
+            "type": "text",
+            "label": "Tokenization method"
+          },
+          {
+            "name": "account",
+            "type": "text",
+            "label": "Account"
+          },
+          {
+            "name": "account_holder_name",
+            "type": "text",
+            "label": "Account holder name"
+          },
+          {
+            "name": "account_holder_type",
+            "type": "text",
+            "label": "Account holder type"
+          },
+          {
+            "name": "bank_name",
+            "type": "text",
+            "label": "Bank name"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "default_for_currency",
+            "type": "boolean",
+            "label": "Default for currency"
+          },
+          {
+            "name": "routing_number",
+            "type": "text",
+            "label": "Routing number"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'account.external_account' || webhook.group == 'customer.source' || webhook.group == 'source'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "account",
+            "type": "text",
+            "label": "Account"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "amount_refunded",
+            "type": "number",
+            "label": "Amount refunded"
+          },
+          {
+            "name": "application",
+            "type": "text",
+            "label": "Application"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "originating_transaction",
+            "type": "text",
+            "label": "Originating transaction"
+          },
+          {
+            "name": "refunded",
+            "type": "boolean",
+            "label": "Refunded"
+          },
+          {
+            "name": "refunds",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "URL"
+              }
+            ],
+            "type": "collection",
+            "label": "Refunds"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'application_fee'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "fee",
+            "type": "text",
+            "label": "Fee"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'application_fee.refund'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "available",
+            "spec": [
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "source_types",
+                "spec": [
+                  {
+                    "name": "card",
+                    "type": "number",
+                    "label": "Card"
+                  },
+                  {
+                    "name": "bank_account",
+                    "type": "number",
+                    "label": "Bank account"
+                  },
+                  {
+                    "name": "bitcoin_receiver",
+                    "type": "number",
+                    "label": "Bitcoin receiver"
+                  }
+                ],
+                "type": "collection",
+                "label": "Source types"
+              }
+            ],
+            "type": "array",
+            "label": "Available"
+          },
+          {
+            "name": "connect_reserved",
+            "spec": [
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              }
+            ],
+            "type": "array",
+            "label": "Connect reserved"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "pending",
+            "spec": [
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "source_types",
+                "spec": [
+                  {
+                    "name": "card",
+                    "type": "number",
+                    "label": "Card"
+                  },
+                  {
+                    "name": "bank_account",
+                    "type": "number",
+                    "label": "Bank account"
+                  },
+                  {
+                    "name": "bitcoin_receiver",
+                    "type": "number",
+                    "label": "Bitcoin receiver"
+                  }
+                ],
+                "type": "collection",
+                "label": "Source types"
+              }
+            ],
+            "type": "array",
+            "label": "Pending"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'balance'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "amount_refunded",
+            "type": "number",
+            "label": "Amount refunded"
+          },
+          {
+            "name": "application",
+            "type": "text",
+            "label": "Application"
+          },
+          {
+            "name": "application_fee",
+            "type": "text",
+            "label": "Application fee"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "captured",
+            "type": "boolean",
+            "label": "Captured"
+          },
+          {
+            "name": "created",
+            "type": "date",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "destination",
+            "type": "text",
+            "label": "Destination"
+          },
+          {
+            "name": "dispute",
+            "type": "text",
+            "label": "Dispute"
+          },
+          {
+            "name": "failure_code",
+            "type": "text",
+            "label": "Failure code"
+          },
+          {
+            "name": "failure_message",
+            "type": "text",
+            "label": "Failure message"
+          },
+          {
+            "name": "fraud_details",
+            "spec": [],
+            "type": "collection",
+            "label": "Fraud details"
+          },
+          {
+            "name": "invoice",
+            "type": "text",
+            "label": "Invoice"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "on_behalf_of",
+            "type": "text",
+            "label": "On behalf of"
+          },
+          {
+            "name": "order",
+            "type": "text",
+            "label": "Order"
+          },
+          {
+            "name": "outcome",
+            "spec": [
+              {
+                "name": "network_status",
+                "type": "text",
+                "label": "Network status"
+              },
+              {
+                "name": "reason",
+                "type": "text",
+                "label": "Reason"
+              },
+              {
+                "name": "risk_level",
+                "type": "text",
+                "label": "Risk level"
+              },
+              {
+                "name": "rule",
+                "type": "text",
+                "label": "Rule"
+              },
+              {
+                "name": "seller_message",
+                "type": "text",
+                "label": "Seller message"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              }
+            ],
+            "type": "collection",
+            "label": "Outcome"
+          },
+          {
+            "name": "paid",
+            "type": "boolean",
+            "label": "Paid"
+          },
+          {
+            "name": "receipt_email",
+            "type": "text",
+            "label": "Receipt email"
+          },
+          {
+            "name": "receipt_number",
+            "type": "text",
+            "label": "Receipt number"
+          },
+          {
+            "name": "refunded",
+            "type": "boolean",
+            "label": "Refunded"
+          },
+          {
+            "name": "refunds",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "URL"
+              }
+            ],
+            "type": "collection",
+            "label": "Refunds"
+          },
+          {
+            "name": "review",
+            "type": "text",
+            "label": "Review"
+          },
+          {
+            "name": "shipping",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "carrier",
+                "type": "text",
+                "label": "Carrier"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              },
+              {
+                "name": "tracking_number",
+                "type": "text",
+                "label": "Tracking number"
+              }
+            ],
+            "type": "collection",
+            "label": "Shipping"
+          },
+          {
+            "name": "source",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "address_city",
+                "type": "text",
+                "label": "Address city"
+              },
+              {
+                "name": "address_country",
+                "type": "text",
+                "label": "Address country"
+              },
+              {
+                "name": "address_line1",
+                "type": "text",
+                "label": "Address line 1"
+              },
+              {
+                "name": "address_line1_check",
+                "type": "text",
+                "label": "Address line 1 check"
+              },
+              {
+                "name": "address_line2",
+                "type": "text",
+                "label": "Address line 2"
+              },
+              {
+                "name": "address_state",
+                "type": "text",
+                "label": "Address state"
+              },
+              {
+                "name": "address_zip",
+                "type": "text",
+                "label": "Address ZIP"
+              },
+              {
+                "name": "address_zip_check",
+                "type": "text",
+                "label": "Address ZIP check"
+              },
+              {
+                "name": "brand",
+                "type": "text",
+                "label": "Brand"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "customer",
+                "type": "text",
+                "label": "Customer"
+              },
+              {
+                "name": "cvc_check",
+                "type": "text",
+                "label": "CVC check"
+              },
+              {
+                "name": "dynamic_last4",
+                "type": "text",
+                "label": "Dynamic last 4"
+              },
+              {
+                "name": "exp_month",
+                "type": "number",
+                "label": "Expiration month"
+              },
+              {
+                "name": "exp_year",
+                "type": "number",
+                "label": "Expiration year"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "funding",
+                "type": "text",
+                "label": "Funding"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last 4"
+              },
+              {
+                "name": "metadata",
+                "spec": [],
+                "type": "collection",
+                "label": "Metadata"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "tokenization_method",
+                "type": "text",
+                "label": "Tokenization method"
+              }
+            ],
+            "type": "collection",
+            "label": "Source"
+          },
+          {
+            "name": "source_transfer",
+            "type": "text",
+            "label": "Source transfer"
+          },
+          {
+            "name": "statement_descriptor",
+            "type": "text",
+            "label": "Statement descriptor"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "transfer_group",
+            "type": "text",
+            "label": "Transfer group"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'charge'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "balance_transactions",
+            "type": "array",
+            "label": "Balance transactions"
+          },
+          {
+            "name": "billing_details",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal Code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "email",
+                "type": "email",
+                "label": "Email"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              }
+            ],
+            "type": "collection",
+            "label": "Billing Details"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "evidence",
+            "spec": [
+              {
+                "name": "access_activity_log",
+                "type": "text",
+                "label": "Access activity log"
+              },
+              {
+                "name": "billing_address",
+                "type": "text",
+                "label": "Billing address"
+              },
+              {
+                "name": "cancellation_policy",
+                "type": "text",
+                "label": "Cancellation policy"
+              },
+              {
+                "name": "cancellation_policy_disclosure",
+                "type": "text",
+                "label": "Cancellation policy disclosure"
+              },
+              {
+                "name": "cancellation_rebuttal",
+                "type": "text",
+                "label": "Cancellation rebuttal"
+              },
+              {
+                "name": "customer_communication",
+                "type": "text",
+                "label": "Custromer communication"
+              },
+              {
+                "name": "customer_email_address",
+                "type": "text",
+                "label": "Customer email address"
+              },
+              {
+                "name": "customer_name",
+                "type": "text",
+                "label": "Customer name"
+              },
+              {
+                "name": "customer_purchase_ip",
+                "type": "text",
+                "label": "Customer purchase IP"
+              },
+              {
+                "name": "customer_signature",
+                "type": "text",
+                "label": "Customer signature"
+              },
+              {
+                "name": "duplicate_charge_documentation",
+                "type": "text",
+                "label": "Duplicate charge documentation"
+              },
+              {
+                "name": "duplicate_charge_explanation",
+                "type": "text",
+                "label": "Duplicate charge explanation"
+              },
+              {
+                "name": "duplicate_charge_id",
+                "type": "text",
+                "label": "Duplicate charge ID"
+              },
+              {
+                "name": "product_description",
+                "type": "text",
+                "label": "Product description"
+              },
+              {
+                "name": "receipt",
+                "type": "text",
+                "label": "Receipt"
+              },
+              {
+                "name": "refund_policy",
+                "type": "text",
+                "label": "Refund policy"
+              },
+              {
+                "name": "refund_policy_disclosure",
+                "type": "text",
+                "label": "Refun policy disclosure"
+              },
+              {
+                "name": "refund_refusal_explanation",
+                "type": "text",
+                "label": "Refund refusal explanation"
+              },
+              {
+                "name": "service_date",
+                "type": "text",
+                "label": "Service date"
+              },
+              {
+                "name": "service_documentation",
+                "type": "text",
+                "label": "Service documentation"
+              },
+              {
+                "name": "shipping_address",
+                "type": "text",
+                "label": "Shipping address"
+              },
+              {
+                "name": "shipping_carrier",
+                "type": "text",
+                "label": "Shipping carrier"
+              },
+              {
+                "name": "shipping_date",
+                "type": "text",
+                "label": "Shipping date"
+              },
+              {
+                "name": "shipping_documentation",
+                "type": "text",
+                "label": "Shipping documentation"
+              },
+              {
+                "name": "shipping_tracking_number",
+                "type": "text",
+                "label": "Shipping tracking number"
+              },
+              {
+                "name": "uncategorized_file",
+                "type": "text",
+                "label": "Uncategorized file"
+              },
+              {
+                "name": "uncategorized_text",
+                "type": "text",
+                "label": "Uncategorized text"
+              }
+            ],
+            "type": "collection",
+            "label": "Evidence"
+          },
+          {
+            "name": "evidence_details",
+            "spec": [
+              {
+                "name": "due_by",
+                "type": "number",
+                "label": "Due by"
+              },
+              {
+                "name": "has_evidence",
+                "type": "boolean",
+                "label": "Has evidence"
+              },
+              {
+                "name": "past_due",
+                "type": "boolean",
+                "label": "Past due"
+              },
+              {
+                "name": "submission_count",
+                "type": "number",
+                "label": "Submission count"
+              }
+            ],
+            "type": "collection",
+            "label": "Evidence details"
+          },
+          {
+            "name": "is_charge_refundable",
+            "type": "boolean",
+            "label": "Is charge refundable"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "reason",
+            "type": "text",
+            "label": "Reason"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'charge.dispute'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "reason",
+            "type": "text",
+            "label": "Reason"
+          },
+          {
+            "name": "receipt_number",
+            "type": "text",
+            "label": "Receipt number"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'charge.refund'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Text"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount_off",
+            "type": "text",
+            "label": "Amount off"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "duration",
+            "type": "text",
+            "label": "Duration"
+          },
+          {
+            "name": "duration_in_months",
+            "type": "number",
+            "label": "Duration in months"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "max_redemptions",
+            "type": "text",
+            "label": "Max redemptions"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "percent_off",
+            "type": "number",
+            "label": "Percent off"
+          },
+          {
+            "name": "redeem_by",
+            "type": "text",
+            "label": "Redeem by"
+          },
+          {
+            "name": "times_redeemed",
+            "type": "number",
+            "label": "Times redeemed"
+          },
+          {
+            "name": "valid",
+            "type": "boolean",
+            "label": "Valid"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'coupon'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "address",
+            "spec": [
+              {
+                "name": "line1",
+                "type": "text",
+                "label": "Line 1"
+              },
+              {
+                "name": "line2",
+                "type": "text",
+                "label": "Line 2"
+              },
+              {
+                "name": "city",
+                "type": "text",
+                "label": "City"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "postal_code",
+                "type": "text",
+                "label": "Postal Code"
+              },
+              {
+                "name": "state",
+                "type": "text",
+                "label": "State"
+              }
+            ],
+            "type": "collection",
+            "label": "Address"
+          },
+          {
+            "name": "account_balance",
+            "type": "number",
+            "label": "Account balance"
+          },
+          {
+            "name": "balance",
+            "type": "number",
+            "label": "Balance"
+          },
+          {
+            "name": "business_vat_id",
+            "type": "text",
+            "label": "Business VAT ID"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "default_source",
+            "type": "text",
+            "label": "Default source"
+          },
+          {
+            "name": "delinquent",
+            "type": "boolean",
+            "label": "Delinquent"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "discount",
+            "type": "text",
+            "label": "Discount"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "invoice_prefix",
+            "type": "text",
+            "label": "Invoice prefix"
+          },
+          {
+            "name": "invoice_settings",
+            "spec": [
+              {
+                "name": "custom_fields",
+                "spec": {
+                  "spec": [
+                    {
+                      "name": "name",
+                      "type": "text",
+                      "label": "Name"
+                    },
+                    {
+                      "name": "value",
+                      "type": "text",
+                      "label": "Value"
+                    }
+                  ],
+                  "type": "collection"
+                },
+                "type": "array",
+                "label": "Custom Fields"
+              },
+              {
+                "name": "default_payment_method",
+                "type": "text",
+                "label": "Default Payment Method"
+              },
+              {
+                "name": "footer",
+                "type": "text",
+                "label": "Footer"
+              }
+            ],
+            "type": "collection",
+            "label": "Invoice Settings"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "phone",
+            "type": "text",
+            "label": "Phone"
+          },
+          {
+            "name": "shipping",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              }
+            ],
+            "type": "collection",
+            "label": "Shipping"
+          },
+          {
+            "name": "preferred_locales",
+            "spec": {
+              "type": "text"
+            },
+            "type": "array",
+            "label": "Preferred Locales"
+          },
+          {
+            "name": "sources",
+            "spec": [
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "address_city",
+                    "type": "text",
+                    "label": "Address city"
+                  },
+                  {
+                    "name": "address_country",
+                    "type": "text",
+                    "label": "Address country"
+                  },
+                  {
+                    "name": "address_line1",
+                    "type": "text",
+                    "label": "Address line 1"
+                  },
+                  {
+                    "name": "address_line1_check",
+                    "type": "text",
+                    "label": "Address line 1 check"
+                  },
+                  {
+                    "name": "address_line2",
+                    "type": "text",
+                    "label": "Address line 2"
+                  },
+                  {
+                    "name": "address_state",
+                    "type": "text",
+                    "label": "Address state"
+                  },
+                  {
+                    "name": "address_zip",
+                    "type": "text",
+                    "label": "Address ZIP"
+                  },
+                  {
+                    "name": "address_zip_check",
+                    "type": "text",
+                    "label": "Address ZIP check"
+                  },
+                  {
+                    "name": "brand",
+                    "type": "text",
+                    "label": "Brand"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "customer",
+                    "type": "text",
+                    "label": "Customer"
+                  },
+                  {
+                    "name": "cvc_check",
+                    "type": "text",
+                    "label": "CVC check"
+                  },
+                  {
+                    "name": "dynamic_last4",
+                    "type": "text",
+                    "label": "Dynamic last 4"
+                  },
+                  {
+                    "name": "exp_month",
+                    "type": "number",
+                    "label": "Expiration month"
+                  },
+                  {
+                    "name": "exp_year",
+                    "type": "number",
+                    "label": "Expiration year"
+                  },
+                  {
+                    "name": "fingerprint",
+                    "type": "text",
+                    "label": "Fingerprint"
+                  },
+                  {
+                    "name": "funding",
+                    "type": "text",
+                    "label": "Funding"
+                  },
+                  {
+                    "name": "last4",
+                    "type": "text",
+                    "label": "Last 4"
+                  },
+                  {
+                    "name": "metadata",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "name",
+                    "type": "text",
+                    "label": "Name"
+                  },
+                  {
+                    "name": "tokenization_method",
+                    "type": "text",
+                    "label": "Tokenization method"
+                  },
+                  {
+                    "name": "account",
+                    "type": "text",
+                    "label": "Account"
+                  },
+                  {
+                    "name": "account_holder_name",
+                    "type": "text",
+                    "label": "Account holder name"
+                  },
+                  {
+                    "name": "account_holder_type",
+                    "type": "text",
+                    "label": "Account holder type"
+                  },
+                  {
+                    "name": "bank_name",
+                    "type": "text",
+                    "label": "Bank name"
+                  },
+                  {
+                    "name": "currency",
+                    "type": "text",
+                    "label": "Currency"
+                  },
+                  {
+                    "name": "default_for_currency",
+                    "type": "boolean",
+                    "label": "Default for currency"
+                  },
+                  {
+                    "name": "routing_number",
+                    "type": "text",
+                    "label": "Routing number"
+                  },
+                  {
+                    "name": "status",
+                    "type": "text",
+                    "label": "Status"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              }
+            ],
+            "type": "collection",
+            "label": "Sources"
+          },
+          {
+            "name": "subscriptions",
+            "spec": [
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Subscriptions URL"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              }
+            ],
+            "type": "collection",
+            "label": "Subscriptions"
+          },
+          {
+            "name": "tax_exempt",
+            "type": "text",
+            "label": "Tax Exempt"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'customer'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "coupon",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "amount_off",
+                "type": "text",
+                "label": "Amount off"
+              },
+              {
+                "name": "created",
+                "type": "number",
+                "label": "Created"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "duration",
+                "type": "text",
+                "label": "Duration"
+              },
+              {
+                "name": "duration_in_months",
+                "type": "number",
+                "label": "Duration in months"
+              },
+              {
+                "name": "livemode",
+                "type": "boolean",
+                "label": "Livemode"
+              },
+              {
+                "name": "max_redemptions",
+                "type": "text",
+                "label": "Max redemptions"
+              },
+              {
+                "name": "metadata",
+                "spec": [],
+                "type": "collection",
+                "label": "Metadata"
+              },
+              {
+                "name": "percent_off",
+                "type": "number",
+                "label": "Percent off"
+              },
+              {
+                "name": "redeem_by",
+                "type": "text",
+                "label": "Redeem by"
+              },
+              {
+                "name": "times_redeemed",
+                "type": "number",
+                "label": "Times redeemed"
+              },
+              {
+                "name": "valid",
+                "type": "boolean",
+                "label": "Valid"
+              }
+            ],
+            "type": "collection",
+            "label": "Coupon"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "end",
+            "type": "number",
+            "label": "End"
+          },
+          {
+            "name": "start",
+            "type": "number",
+            "label": "Start"
+          },
+          {
+            "name": "subscription",
+            "type": "text",
+            "label": "Subscription"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'customer.discount'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "application_fee_percent",
+            "type": "text",
+            "label": "Application fee percent"
+          },
+          {
+            "name": "billing",
+            "type": "text",
+            "label": "Billing"
+          },
+          {
+            "name": "billing_cycle_anchor",
+            "type": "number",
+            "label": "Billing cycle anchor"
+          },
+          {
+            "name": "cancel_at_period_end",
+            "type": "boolean",
+            "label": "Cancel at perion end"
+          },
+          {
+            "name": "canceled_at",
+            "type": "text",
+            "label": "Canceled at"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "current_period_end",
+            "type": "number",
+            "label": "Current period end"
+          },
+          {
+            "name": "current_period_start",
+            "type": "number",
+            "label": "Current period start"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "days_until_due",
+            "type": "text",
+            "label": "Days until due"
+          },
+          {
+            "name": "discount",
+            "type": "text",
+            "label": "Discount"
+          },
+          {
+            "name": "ended_at",
+            "type": "text",
+            "label": "Ended at"
+          },
+          {
+            "name": "items",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "created",
+                    "type": "number",
+                    "label": "Created"
+                  },
+                  {
+                    "name": "metadata",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "plan",
+                    "spec": [
+                      {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                      },
+                      {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                      },
+                      {
+                        "name": "amount",
+                        "type": "number",
+                        "label": "Amount"
+                      },
+                      {
+                        "name": "created",
+                        "type": "number",
+                        "label": "Created"
+                      },
+                      {
+                        "name": "currency",
+                        "type": "text",
+                        "label": "Currency"
+                      },
+                      {
+                        "name": "interval",
+                        "type": "text",
+                        "label": "Interval"
+                      },
+                      {
+                        "name": "interval_count",
+                        "type": "number",
+                        "label": "Interval count"
+                      },
+                      {
+                        "name": "livemode",
+                        "type": "boolean",
+                        "label": "Livemode"
+                      },
+                      {
+                        "name": "metadata",
+                        "spec": [],
+                        "type": "collection",
+                        "label": "Metadata"
+                      },
+                      {
+                        "name": "nickname",
+                        "type": "text",
+                        "label": "Nickname"
+                      },
+                      {
+                        "name": "product",
+                        "type": "text",
+                        "label": "Product"
+                      },
+                      {
+                        "name": "trial_period_days",
+                        "type": "text",
+                        "label": "Trial period days"
+                      },
+                      {
+                        "name": "statement_descriptor",
+                        "type": "text",
+                        "label": "Statement descriptor"
+                      },
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Plan"
+                  },
+                  {
+                    "name": "quantity",
+                    "type": "number",
+                    "label": "Quantity"
+                  },
+                  {
+                    "name": "subscription",
+                    "type": "text",
+                    "label": "Subscription"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "URL"
+              }
+            ],
+            "type": "collection",
+            "label": "Items"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "plan",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "created",
+                "type": "number",
+                "label": "Created"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "interval",
+                "type": "text",
+                "label": "Interval"
+              },
+              {
+                "name": "interval_count",
+                "type": "number",
+                "label": "Interval count"
+              },
+              {
+                "name": "livemode",
+                "type": "boolean",
+                "label": "Livemode"
+              },
+              {
+                "name": "metadata",
+                "spec": [],
+                "type": "collection",
+                "label": "Metadata"
+              },
+              {
+                "name": "nickname",
+                "type": "text",
+                "label": "Nickname"
+              },
+              {
+                "name": "product",
+                "type": "text",
+                "label": "Product"
+              },
+              {
+                "name": "trial_period_days",
+                "type": "text",
+                "label": "Trial period days"
+              },
+              {
+                "name": "statement_descriptor",
+                "type": "text",
+                "label": "Statement descriptor"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              }
+            ],
+            "type": "collection",
+            "label": "Plan"
+          },
+          {
+            "name": "quantity",
+            "type": "number",
+            "label": "Quantity"
+          },
+          {
+            "name": "start",
+            "type": "number",
+            "label": "Start"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "tax_percent",
+            "type": "text",
+            "label": "Tax percent"
+          },
+          {
+            "name": "trial_end",
+            "type": "text",
+            "label": "Trial end"
+          },
+          {
+            "name": "trial_start",
+            "type": "text",
+            "label": "Trial start"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'customer.subscription'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "filename",
+            "type": "text",
+            "label": "Filename"
+          },
+          {
+            "name": "purpose",
+            "type": "text",
+            "label": "Purpose"
+          },
+          {
+            "name": "size",
+            "type": "number",
+            "label": "Size"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'file'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount_due",
+            "type": "number",
+            "label": "Amount due"
+          },
+          {
+            "name": "application_fee",
+            "type": "text",
+            "label": "Application fee"
+          },
+          {
+            "name": "attempt_count",
+            "type": "number",
+            "label": "Attempt count"
+          },
+          {
+            "name": "attempted",
+            "type": "boolean",
+            "label": "Attempted"
+          },
+          {
+            "name": "billing",
+            "type": "text",
+            "label": "Billing"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "closed",
+            "type": "boolean",
+            "label": "Closed"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "date",
+            "type": "number",
+            "label": "Date"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "discount",
+            "type": "text",
+            "label": "Discount"
+          },
+          {
+            "name": "due_date",
+            "type": "text",
+            "label": "Due date"
+          },
+          {
+            "name": "ending_balance",
+            "type": "text",
+            "label": "Ending balance"
+          },
+          {
+            "name": "forgiven",
+            "type": "boolean",
+            "label": "Forgiven"
+          },
+          {
+            "name": "lines",
+            "spec": [
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Id"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "amount",
+                    "type": "number",
+                    "label": "Amount"
+                  },
+                  {
+                    "name": "currency",
+                    "type": "text",
+                    "label": "Currency"
+                  },
+                  {
+                    "name": "description",
+                    "type": "text",
+                    "label": "Description"
+                  },
+                  {
+                    "name": "discountable",
+                    "type": "boolean",
+                    "label": "Discountable"
+                  },
+                  {
+                    "name": "livemode",
+                    "type": "boolean",
+                    "label": "Livemode"
+                  },
+                  {
+                    "name": "metadata",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "period",
+                    "spec": [
+                      {
+                        "name": "start",
+                        "type": "number",
+                        "label": "Start"
+                      },
+                      {
+                        "name": "end",
+                        "type": "number",
+                        "label": "End"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Period"
+                  },
+                  {
+                    "name": "plan",
+                    "spec": [
+                      {
+                        "name": "id",
+                        "type": "text",
+                        "label": "Id"
+                      },
+                      {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                      },
+                      {
+                        "name": "amount",
+                        "type": "number",
+                        "label": "Amount"
+                      },
+                      {
+                        "name": "created",
+                        "type": "number",
+                        "label": "Created"
+                      },
+                      {
+                        "name": "currency",
+                        "type": "text",
+                        "label": "Currency"
+                      },
+                      {
+                        "name": "interval",
+                        "type": "text",
+                        "label": "Interval"
+                      },
+                      {
+                        "name": "interval_count",
+                        "type": "number",
+                        "label": "Interval count"
+                      },
+                      {
+                        "name": "livemode",
+                        "type": "boolean",
+                        "label": "Livemode"
+                      },
+                      {
+                        "name": "metadata",
+                        "spec": [],
+                        "type": "collection",
+                        "label": "Metadata"
+                      },
+                      {
+                        "name": "nickname",
+                        "type": "text",
+                        "label": "Nickname"
+                      },
+                      {
+                        "name": "product",
+                        "type": "text",
+                        "label": "Product"
+                      },
+                      {
+                        "name": "trial_period_days",
+                        "type": "text",
+                        "label": "Trial period days"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Plan"
+                  },
+                  {
+                    "name": "proration",
+                    "type": "boolean",
+                    "label": "Proration"
+                  },
+                  {
+                    "name": "quantity",
+                    "type": "number",
+                    "label": "Quantity"
+                  },
+                  {
+                    "name": "subscription",
+                    "type": "text",
+                    "label": "Subscription"
+                  },
+                  {
+                    "name": "subscription_item",
+                    "type": "text",
+                    "label": "Subscription item"
+                  },
+                  {
+                    "name": "type",
+                    "type": "text",
+                    "label": "Type"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              }
+            ],
+            "type": "collection",
+            "label": "Lines"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "next_payment_attempt",
+            "type": "number",
+            "label": "Next payment attempt"
+          },
+          {
+            "name": "number",
+            "type": "text",
+            "label": "Number"
+          },
+          {
+            "name": "paid",
+            "type": "boolean",
+            "label": "Paid"
+          },
+          {
+            "name": "period_end",
+            "type": "number",
+            "label": "Period end"
+          },
+          {
+            "name": "period_start",
+            "type": "number",
+            "label": "Period start"
+          },
+          {
+            "name": "receipt_number",
+            "type": "text",
+            "label": "Receipt number"
+          },
+          {
+            "name": "starting_balance",
+            "type": "number",
+            "label": "Starting balance"
+          },
+          {
+            "name": "statement_descriptor",
+            "type": "text",
+            "label": "Statement descriptor"
+          },
+          {
+            "name": "subscription",
+            "type": "text",
+            "label": "Subscription"
+          },
+          {
+            "name": "subtotal",
+            "type": "number",
+            "label": "Subtotal"
+          },
+          {
+            "name": "tax",
+            "type": "text",
+            "label": "Tax"
+          },
+          {
+            "name": "tax_percent",
+            "type": "text",
+            "label": "Tax percent"
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "label": "Total"
+          },
+          {
+            "name": "webhooks_delivered_at",
+            "type": "text",
+            "label": "Webhooks delivered at"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'invoice'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "date",
+            "type": "number",
+            "label": "Date"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "discountable",
+            "type": "boolean",
+            "label": "Discountable"
+          },
+          {
+            "name": "invoice",
+            "type": "text",
+            "label": "Invoice"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "period",
+            "spec": [
+              {
+                "name": "start",
+                "type": "number",
+                "label": "Start"
+              },
+              {
+                "name": "end",
+                "type": "number",
+                "label": "End"
+              }
+            ],
+            "type": "collection",
+            "label": "Period"
+          },
+          {
+            "name": "plan",
+            "type": "text",
+            "label": "Plan"
+          },
+          {
+            "name": "proration",
+            "type": "boolean",
+            "label": "Proration"
+          },
+          {
+            "name": "quantity",
+            "type": "number",
+            "label": "Quantity"
+          },
+          {
+            "name": "subscription",
+            "type": "text",
+            "label": "Subscription"
+          },
+          {
+            "name": "unit_amount",
+            "type": "number",
+            "label": "Unit amount"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'invoiceitem'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "amount_returned",
+            "type": "text",
+            "label": "Amount returned"
+          },
+          {
+            "name": "application",
+            "type": "text",
+            "label": "Application"
+          },
+          {
+            "name": "application_fee",
+            "type": "text",
+            "label": "Application fee"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "items",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "label": "Description"
+              },
+              {
+                "name": "parent",
+                "type": "text",
+                "label": "Parent"
+              },
+              {
+                "name": "quantity",
+                "type": "text",
+                "label": "Quantity"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              }
+            ],
+            "type": "array",
+            "label": "Items"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "returns",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              }
+            ],
+            "type": "collection",
+            "label": "Returns"
+          },
+          {
+            "name": "selected_shipping_method",
+            "type": "text",
+            "label": "Selected shipping method"
+          },
+          {
+            "name": "shipping",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "carrier",
+                "type": "text",
+                "label": "Carrier"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              },
+              {
+                "name": "tracking_number",
+                "type": "text",
+                "label": "Tracking number"
+              }
+            ],
+            "type": "collection",
+            "label": "Shipping"
+          },
+          {
+            "name": "shipping_methods",
+            "type": "text",
+            "label": "Shipping methods"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "status_transitions",
+            "spec": [
+              {
+                "name": "canceled",
+                "type": "text",
+                "label": "Canceled"
+              },
+              {
+                "name": "fulfiled",
+                "type": "text",
+                "label": "Fulfiled"
+              },
+              {
+                "name": "paid",
+                "type": "text",
+                "label": "Paid"
+              },
+              {
+                "name": "returned",
+                "type": "text",
+                "label": "Returned"
+              }
+            ],
+            "type": "collection",
+            "label": "Status transitions"
+          },
+          {
+            "name": "updated",
+            "type": "number",
+            "label": "Updated"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'order'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "items",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "description",
+                "type": "text",
+                "label": "Description"
+              },
+              {
+                "name": "parent",
+                "type": "text",
+                "label": "Parent"
+              },
+              {
+                "name": "quantity",
+                "type": "text",
+                "label": "Quantity"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              }
+            ],
+            "type": "array",
+            "label": "Items"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "order",
+            "type": "text",
+            "label": "Order"
+          },
+          {
+            "name": "refund",
+            "type": "text",
+            "label": "Refund"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'order_return'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "arrival_date",
+            "type": "number",
+            "label": "Arrival date"
+          },
+          {
+            "name": "automatic",
+            "type": "boolean",
+            "label": "Automatic"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "destination",
+            "type": "text",
+            "label": "Destination"
+          },
+          {
+            "name": "failure_balance_transaction",
+            "type": "text",
+            "label": "Failure balance transaction"
+          },
+          {
+            "name": "failure_code",
+            "type": "text",
+            "label": "Failure code"
+          },
+          {
+            "name": "failure_message",
+            "type": "text",
+            "label": "Failure message"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "method",
+            "type": "text",
+            "label": "Method"
+          },
+          {
+            "name": "source_type",
+            "type": "text",
+            "label": "Source type"
+          },
+          {
+            "name": "statement_descriptor",
+            "type": "text",
+            "label": "Statement descriptor"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "date",
+            "type": "number",
+            "label": "Date"
+          },
+          {
+            "name": "transfer_group",
+            "type": "text",
+            "label": "Transfer group"
+          },
+          {
+            "name": "recipient",
+            "type": "text",
+            "label": "Recipient"
+          },
+          {
+            "name": "bank_account",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "ID"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "account_holder_name",
+                "type": "text",
+                "label": "Account holder name"
+              },
+              {
+                "name": "account_holder_type",
+                "type": "text",
+                "label": "Account holder type"
+              },
+              {
+                "name": "bank_name",
+                "type": "text",
+                "label": "Bank name"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "last4",
+                "type": "number",
+                "label": "Last 4"
+              },
+              {
+                "name": "routing_number",
+                "type": "number",
+                "label": "Routing number"
+              },
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              }
+            ],
+            "type": "collection",
+            "label": "Bank account"
+          },
+          {
+            "name": "amount_reversed",
+            "type": "number",
+            "label": "Amount reversed"
+          },
+          {
+            "name": "reversed",
+            "type": "boolean",
+            "label": "Reversed"
+          },
+          {
+            "name": "reversals",
+            "spec": [
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "ID"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "amount",
+                    "type": "number",
+                    "label": "Amount"
+                  },
+                  {
+                    "name": "balance_transaction",
+                    "type": "text",
+                    "label": "Balance transaction"
+                  },
+                  {
+                    "name": "created",
+                    "type": "number",
+                    "label": "Created"
+                  },
+                  {
+                    "name": "currency",
+                    "type": "text",
+                    "label": "Currency"
+                  },
+                  {
+                    "name": "metadata",
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "transfer",
+                    "type": "text",
+                    "label": "Transfer"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              }
+            ],
+            "type": "collection",
+            "label": "Reversals"
+          },
+          {
+            "name": "application_fee",
+            "type": "number",
+            "label": "Application fee"
+          },
+          {
+            "name": "source_transaction",
+            "type": "text",
+            "label": "Source transaction"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'payout'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Payment Link ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "active",
+            "type": "boolean",
+            "label": "Active"
+          },
+          {
+            "name": "after_completion",
+            "spec": [
+              {
+                "name": "hosted_confirmation",
+                "spec": [
+                  {
+                    "name": "custom_message",
+                    "type": "text",
+                    "label": "Custom Message"
+                  }
+                ],
+                "type": "collection",
+                "label": "Hosted Confirmation"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              }
+            ],
+            "type": "collection",
+            "label": "After Completion"
+          },
+          {
+            "name": "allow_promotion_codes",
+            "type": "boolean",
+            "label": "Allow Promotion Codes"
+          },
+          {
+            "name": "application_fee_amount",
+            "type": "number",
+            "label": "Application Fee Amount"
+          },
+          {
+            "name": "application_fee_percent",
+            "type": "number",
+            "label": "Application Fee Percent"
+          },
+          {
+            "name": "automatic_tax",
+            "spec": [
+              {
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Enabled"
+              }
+            ],
+            "type": "collection",
+            "label": "Automatic Tax"
+          },
+          {
+            "name": "billing_address_collection",
+            "type": "text",
+            "label": "Billing Address Collection"
+          },
+          {
+            "name": "consent_collection",
+            "spec": [
+              {
+                "name": "promotions",
+                "type": "text",
+                "label": "Promotions"
+              }
+            ],
+            "type": "collection",
+            "label": "Consent Collection"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer_creation",
+            "type": "text",
+            "label": "Customer Creation"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "on_behalf_of",
+            "type": "text",
+            "label": "On Behalf Of"
+          },
+          {
+            "name": "payment_intent_data",
+            "spec": [
+              {
+                "name": "capture_method",
+                "type": "text",
+                "label": "Capture Method"
+              },
+              {
+                "name": "setup_future_usage",
+                "type": "text",
+                "label": "Setup Future Usage"
+              }
+            ],
+            "type": "collection",
+            "label": "Payment Intent Data"
+          },
+          {
+            "name": "payment_method_collection",
+            "type": "text",
+            "label": "Payment Method Collection"
+          },
+          {
+            "name": "payment_method_types",
+            "spec": {
+              "type": "text"
+            },
+            "type": "array",
+            "label": "Payment Method Types"
+          },
+          {
+            "name": "phone_number_collection",
+            "spec": [
+              {
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Enabled"
+              }
+            ],
+            "type": "collection",
+            "label": "Phone Number Collection"
+          },
+          {
+            "name": "shipping_address_collection",
+            "spec": [
+              {
+                "name": "allowed_countries",
+                "spec": {
+                  "type": "text"
+                },
+                "type": "array",
+                "label": "Allowed Countries"
+              }
+            ],
+            "type": "collection",
+            "label": "Shipping Address Collection"
+          },
+          {
+            "name": "shipping_options",
+            "spec": {
+              "spec": [
+                {
+                  "name": "shipping_amount",
+                  "type": "number",
+                  "label": "Shipping Amount"
+                },
+                {
+                  "name": "shipping_rate",
+                  "type": "text",
+                  "label": "Shipping Rate"
+                }
+              ],
+              "type": "collection"
+            },
+            "type": "array",
+            "label": "Shipping Options"
+          },
+          {
+            "name": "submit_type",
+            "type": "text",
+            "label": "Submit Type"
+          },
+          {
+            "name": "subscription_data",
+            "spec": [
+              {
+                "name": "trial_period_days",
+                "type": "uinteger",
+                "label": "Trial Period Days"
+              }
+            ],
+            "type": "collection",
+            "label": "Subscription Data"
+          },
+          {
+            "name": "tax_id_collection",
+            "spec": [
+              {
+                "name": "enabled",
+                "type": "boolean",
+                "label": "Enabled"
+              }
+            ],
+            "type": "collection",
+            "label": "Tax ID Collection"
+          },
+          {
+            "name": "transfer_data",
+            "spec": [
+              {
+                "name": "destination",
+                "type": "text",
+                "label": "Destination"
+              },
+              {
+                "name": "amount",
+                "type": "number",
+                "label": "Amount"
+              }
+            ],
+            "type": "collection",
+            "label": "Transfer Data"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "URL"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'payment_link'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Payment Intent ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "amount_capturable",
+            "type": "number",
+            "label": "Amount Capturable"
+          },
+          {
+            "name": "amount_received",
+            "type": "number",
+            "label": "Amount Received"
+          },
+          {
+            "name": "application",
+            "type": "text",
+            "label": "Application"
+          },
+          {
+            "name": "application_fee_amount",
+            "type": "number",
+            "label": "Application Fee Amount"
+          },
+          {
+            "name": "canceled_at",
+            "type": "date",
+            "label": "Canceled At"
+          },
+          {
+            "name": "cancellation_reason",
+            "type": "text",
+            "label": "Cancellation Reason"
+          },
+          {
+            "name": "capture_method",
+            "type": "text",
+            "label": "Capture Method"
+          },
+          {
+            "name": "charges",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has More"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total Count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "URL"
+              }
+            ],
+            "type": "collection",
+            "label": "Charges"
+          },
+          {
+            "name": "client_secret",
+            "type": "text",
+            "label": "Client Secret"
+          },
+          {
+            "name": "confirmation_method",
+            "type": "text",
+            "label": "Confirmation Method"
+          },
+          {
+            "name": "created",
+            "type": "date",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "invoice",
+            "type": "text",
+            "label": "Invoice"
+          },
+          {
+            "name": "last_payment_error",
+            "type": "text",
+            "label": "Last Payment Error"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "type": "any",
+            "label": "Metadata"
+          },
+          {
+            "name": "next_action",
+            "type": "text",
+            "label": "Next Action"
+          },
+          {
+            "name": "on_behalf_of",
+            "type": "text",
+            "label": "On Behalf Of"
+          },
+          {
+            "name": "payment_method",
+            "type": "text",
+            "label": "Payment Method"
+          },
+          {
+            "name": "payment_method_options",
+            "type": "any",
+            "label": "Payment Method Options"
+          },
+          {
+            "name": "payment_method_types",
+            "spec": {
+              "type": "text"
+            },
+            "type": "array",
+            "label": "Payment Method Types"
+          },
+          {
+            "name": "receipt_email",
+            "type": "text",
+            "label": "Receipt Email"
+          },
+          {
+            "name": "review",
+            "type": "text",
+            "label": "Review"
+          },
+          {
+            "name": "setup_future_usage",
+            "type": "text",
+            "label": "Setup Future Usage"
+          },
+          {
+            "name": "shipping",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal Code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "carrier",
+                "type": "text",
+                "label": "Carrier"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              },
+              {
+                "name": "tracking_number",
+                "type": "text",
+                "label": "Tracking Number"
+              }
+            ],
+            "type": "collection",
+            "label": "Shipping"
+          },
+          {
+            "name": "source",
+            "type": "text",
+            "label": "Source"
+          },
+          {
+            "name": "statement_descriptor",
+            "type": "text",
+            "label": "Statement Descriptor"
+          },
+          {
+            "name": "statement_descriptor_suffix",
+            "type": "text",
+            "label": "Statement Descriptor Suffix"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "transfer_data",
+            "spec": [
+              {
+                "name": "destination",
+                "type": "text",
+                "label": "Destination"
+              },
+              {
+                "name": "amount",
+                "type": "text",
+                "label": "Amount"
+              }
+            ],
+            "type": "collection",
+            "label": "Transfer Data"
+          },
+          {
+            "name": "transfer_group",
+            "type": "text",
+            "label": "Transfer Group"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'payment_intent'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Payment Method ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "billing_details",
+            "spec": [
+              {
+                "name": "address",
+                "spec": [
+                  {
+                    "name": "city",
+                    "type": "text",
+                    "label": "City"
+                  },
+                  {
+                    "name": "country",
+                    "type": "text",
+                    "label": "Country"
+                  },
+                  {
+                    "name": "line1",
+                    "type": "text",
+                    "label": "Line 1"
+                  },
+                  {
+                    "name": "line2",
+                    "type": "text",
+                    "label": "Line 2"
+                  },
+                  {
+                    "name": "postal_code",
+                    "type": "text",
+                    "label": "Postal Code"
+                  },
+                  {
+                    "name": "state",
+                    "type": "text",
+                    "label": "State"
+                  }
+                ],
+                "type": "collection",
+                "label": "Address"
+              },
+              {
+                "name": "email",
+                "type": "text",
+                "label": "Email"
+              },
+              {
+                "name": "name",
+                "type": "text",
+                "label": "Name"
+              },
+              {
+                "name": "phone",
+                "type": "text",
+                "label": "Phone"
+              }
+            ],
+            "type": "collection",
+            "label": "Billing Details"
+          },
+          {
+            "name": "alipay",
+            "spec": [],
+            "type": "collection",
+            "label": "Alipay"
+          },
+          {
+            "name": "au_becs_debit",
+            "spec": [
+              {
+                "name": "bsb_number",
+                "type": "text",
+                "label": "Bank-State-Branch Number"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last 4"
+              }
+            ],
+            "type": "collection",
+            "label": "AU BECS Debit"
+          },
+          {
+            "name": "bacs_debit",
+            "spec": [
+              {
+                "name": "sort_code",
+                "type": "text",
+                "label": "Sort Code"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last 4"
+              }
+            ],
+            "type": "collection",
+            "label": "BACS Debit"
+          },
+          {
+            "name": "card",
+            "spec": [
+              {
+                "name": "brand",
+                "type": "text",
+                "label": "Brand"
+              },
+              {
+                "name": "checks",
+                "spec": [
+                  {
+                    "name": "address_line1_check",
+                    "type": "text",
+                    "label": "Address Line 1 Check"
+                  },
+                  {
+                    "name": "address_postal_code_check",
+                    "type": "text",
+                    "label": "Address Postal Code Check"
+                  },
+                  {
+                    "name": "cvc_check",
+                    "type": "text",
+                    "label": "CVC Check"
+                  }
+                ],
+                "type": "collection",
+                "label": "Checks"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "exp_month",
+                "type": "number",
+                "label": "Exp Month"
+              },
+              {
+                "name": "exp_year",
+                "type": "number",
+                "label": "Exp Year"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "funding",
+                "type": "text",
+                "label": "Funding"
+              },
+              {
+                "name": "generated_from",
+                "type": "text",
+                "label": "Generated From"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last 4"
+              },
+              {
+                "name": "networks",
+                "spec": [
+                  {
+                    "name": "available",
+                    "spec": {
+                      "type": "text"
+                    },
+                    "type": "array",
+                    "label": "Available"
+                  },
+                  {
+                    "name": "preferred",
+                    "type": "text",
+                    "label": "Preferred"
+                  }
+                ],
+                "type": "collection",
+                "label": "Networks"
+              },
+              {
+                "name": "three_d_secure_usage",
+                "spec": [
+                  {
+                    "name": "supported",
+                    "type": "boolean",
+                    "label": "Supported"
+                  }
+                ],
+                "type": "collection",
+                "label": "3D Secure Usage"
+              },
+              {
+                "name": "wallet",
+                "type": "text",
+                "label": "Wallet"
+              }
+            ],
+            "type": "collection",
+            "label": "Card"
+          },
+          {
+            "name": "card_present",
+            "spec": [],
+            "type": "collection",
+            "label": "Card Present"
+          },
+          {
+            "name": "eps",
+            "spec": [],
+            "type": "collection",
+            "label": "EPS"
+          },
+          {
+            "name": "fpx",
+            "spec": [
+              {
+                "name": "bank",
+                "type": "text",
+                "label": "Bank"
+              }
+            ],
+            "type": "collection",
+            "label": "FPX"
+          },
+          {
+            "name": "giropay",
+            "spec": [],
+            "type": "collection",
+            "label": "Giropay"
+          },
+          {
+            "name": "ideal",
+            "spec": [
+              {
+                "name": "bank",
+                "type": "text",
+                "label": "Bank"
+              },
+              {
+                "name": "bic",
+                "type": "text",
+                "label": "BIC"
+              }
+            ],
+            "type": "collection",
+            "label": "iDEAL"
+          },
+          {
+            "name": "interac_present",
+            "spec": [],
+            "type": "collection",
+            "label": "Interac Present"
+          },
+          {
+            "name": "p24",
+            "spec": [],
+            "type": "collection",
+            "label": "Przelewy24"
+          },
+          {
+            "name": "sepa_debit",
+            "spec": [
+              {
+                "name": "bank_code",
+                "type": "text",
+                "label": "Bank Code"
+              },
+              {
+                "name": "branch_code",
+                "type": "text",
+                "label": "Branch Code"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last 4"
+              }
+            ],
+            "type": "collection",
+            "label": "SEPA Debit"
+          },
+          {
+            "name": "sofort",
+            "spec": [
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              }
+            ],
+            "type": "collection",
+            "label": "SOFORT"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "type": "any",
+            "label": "Metadata"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'payment_method'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "interval",
+            "type": "text",
+            "label": "Interval"
+          },
+          {
+            "name": "interval_count",
+            "type": "number",
+            "label": "Interval count"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "nickname",
+            "type": "text",
+            "label": "Nickname"
+          },
+          {
+            "name": "product",
+            "type": "text",
+            "label": "Product"
+          },
+          {
+            "name": "trial_period_days",
+            "type": "text",
+            "label": "Trial period days"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'plan'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "active",
+            "type": "boolean",
+            "label": "Active"
+          },
+          {
+            "name": "attributes",
+            "spec": [],
+            "type": "array",
+            "label": "Attributes"
+          },
+          {
+            "name": "caption",
+            "type": "text",
+            "label": "Caption"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "deactivate_on",
+            "type": "array",
+            "label": "Deactivate on"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "images",
+            "type": "array",
+            "label": "Images"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "package_dimensions",
+            "spec": [
+              {
+                "name": "height",
+                "type": "number",
+                "label": "Height"
+              },
+              {
+                "name": "length",
+                "type": "number",
+                "label": "Length"
+              },
+              {
+                "name": "weight",
+                "type": "number",
+                "label": "Weight"
+              },
+              {
+                "name": "width",
+                "type": "number",
+                "label": "Width"
+              }
+            ],
+            "type": "collection",
+            "label": "Package dimensions"
+          },
+          {
+            "name": "shippable",
+            "type": "boolean",
+            "label": "Shippable"
+          },
+          {
+            "name": "skus",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Id"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "active",
+                    "type": "boolean",
+                    "label": "Active"
+                  },
+                  {
+                    "name": "attributes",
+                    "spec": [
+                      {
+                        "name": "size",
+                        "type": "text",
+                        "label": "Size"
+                      },
+                      {
+                        "name": "gender",
+                        "type": "text",
+                        "label": "Gender"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Attributes"
+                  },
+                  {
+                    "name": "created",
+                    "type": "number",
+                    "label": "Created"
+                  },
+                  {
+                    "name": "currency",
+                    "type": "text",
+                    "label": "Currency"
+                  },
+                  {
+                    "name": "image",
+                    "type": "text",
+                    "label": "Image"
+                  },
+                  {
+                    "name": "inventory",
+                    "spec": [
+                      {
+                        "name": "quantity",
+                        "type": "number",
+                        "label": "Quantity"
+                      },
+                      {
+                        "name": "type",
+                        "type": "text",
+                        "label": "Type"
+                      },
+                      {
+                        "name": "value",
+                        "type": "text",
+                        "label": "Value"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Inventory"
+                  },
+                  {
+                    "name": "livemode",
+                    "type": "boolean",
+                    "label": "Livemode"
+                  },
+                  {
+                    "name": "metadata",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "package_dimensions",
+                    "type": "text",
+                    "label": "Package dimensions"
+                  },
+                  {
+                    "name": "price",
+                    "type": "number",
+                    "label": "Price"
+                  },
+                  {
+                    "name": "product",
+                    "type": "text",
+                    "label": "Product"
+                  },
+                  {
+                    "name": "updated",
+                    "type": "number",
+                    "label": "Updated"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              }
+            ],
+            "type": "collection",
+            "label": "Skus"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "updated",
+            "type": "number",
+            "label": "Updated"
+          },
+          {
+            "name": "url",
+            "type": "text",
+            "label": "Url"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'product'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "active_account",
+            "spec": [
+              {
+                "name": "id",
+                "type": "text",
+                "label": "Id"
+              },
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "account_holder_name",
+                "type": "text",
+                "label": "Account holder name"
+              },
+              {
+                "name": "account_holder_type",
+                "type": "text",
+                "label": "Account holder type"
+              },
+              {
+                "name": "bank_name",
+                "type": "text",
+                "label": "Bank name"
+              },
+              {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+              },
+              {
+                "name": "currency",
+                "type": "text",
+                "label": "Currency"
+              },
+              {
+                "name": "customer",
+                "type": "text",
+                "label": "Customer"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              },
+              {
+                "name": "last4",
+                "type": "text",
+                "label": "Last4"
+              },
+              {
+                "name": "metadata",
+                "spec": [],
+                "type": "collection",
+                "label": "Metadata"
+              },
+              {
+                "name": "routing_number",
+                "type": "text",
+                "label": "Routing number"
+              },
+              {
+                "name": "status",
+                "type": "text",
+                "label": "Status"
+              }
+            ],
+            "type": "collection",
+            "label": "Active account"
+          },
+          {
+            "name": "cards",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              }
+            ],
+            "type": "collection",
+            "label": "Cards"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "default_card",
+            "type": "text",
+            "label": "Default card"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "email",
+            "type": "text",
+            "label": "Email"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "migrated_to",
+            "type": "text",
+            "label": "Migrated to"
+          },
+          {
+            "name": "name",
+            "type": "text",
+            "label": "Name"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "verified",
+            "type": "boolean",
+            "label": "Verified"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'recipient'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "label": "Open"
+          },
+          {
+            "name": "reason",
+            "type": "text",
+            "label": "Reason"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'review'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Setup Intent ID"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "application",
+            "type": "text",
+            "label": "Application"
+          },
+          {
+            "name": "cancellation_reason",
+            "type": "text",
+            "label": "Cancellation Reason"
+          },
+          {
+            "name": "client_secret",
+            "type": "text",
+            "label": "Client Secret"
+          },
+          {
+            "name": "created",
+            "type": "date",
+            "label": "Created"
+          },
+          {
+            "name": "customer",
+            "type": "text",
+            "label": "Customer"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "last_setup_error",
+            "spec": [
+              {
+                "name": "code",
+                "type": "text",
+                "label": "Code"
+              },
+              {
+                "name": "decline_code",
+                "type": "text",
+                "label": "Decline Code"
+              },
+              {
+                "name": "doc_url",
+                "type": "text",
+                "label": "Doc URL"
+              },
+              {
+                "name": "message",
+                "type": "text",
+                "label": "Message"
+              },
+              {
+                "name": "param",
+                "type": "text",
+                "label": "Param"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "payment_method",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Payment Method ID"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "billing_details",
+                    "spec": [
+                      {
+                        "name": "address",
+                        "spec": [
+                          {
+                            "name": "city",
+                            "type": "text",
+                            "label": "City"
+                          },
+                          {
+                            "name": "country",
+                            "type": "text",
+                            "label": "Country"
+                          },
+                          {
+                            "name": "line1",
+                            "type": "text",
+                            "label": "Line 1"
+                          },
+                          {
+                            "name": "line2",
+                            "type": "text",
+                            "label": "Line 2"
+                          },
+                          {
+                            "name": "postal_code",
+                            "type": "text",
+                            "label": "Postal Code"
+                          },
+                          {
+                            "name": "state",
+                            "type": "text",
+                            "label": "State"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "Address"
+                      },
+                      {
+                        "name": "email",
+                        "type": "text",
+                        "label": "Email"
+                      },
+                      {
+                        "name": "name",
+                        "type": "text",
+                        "label": "Name"
+                      },
+                      {
+                        "name": "phone",
+                        "type": "text",
+                        "label": "Phone"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Billing Details"
+                  },
+                  {
+                    "name": "alipay",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Alipay"
+                  },
+                  {
+                    "name": "au_becs_debit",
+                    "spec": [
+                      {
+                        "name": "bsb_number",
+                        "type": "text",
+                        "label": "Bank-State-Branch Number"
+                      },
+                      {
+                        "name": "fingerprint",
+                        "type": "text",
+                        "label": "Fingerprint"
+                      },
+                      {
+                        "name": "last4",
+                        "type": "text",
+                        "label": "Last 4"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "AU BECS Debit"
+                  },
+                  {
+                    "name": "bacs_debit",
+                    "spec": [
+                      {
+                        "name": "sort_code",
+                        "type": "text",
+                        "label": "Sort Code"
+                      },
+                      {
+                        "name": "fingerprint",
+                        "type": "text",
+                        "label": "Fingerprint"
+                      },
+                      {
+                        "name": "last4",
+                        "type": "text",
+                        "label": "Last 4"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "BACS Debit"
+                  },
+                  {
+                    "name": "card",
+                    "spec": [
+                      {
+                        "name": "brand",
+                        "type": "text",
+                        "label": "Brand"
+                      },
+                      {
+                        "name": "checks",
+                        "spec": [
+                          {
+                            "name": "address_line1_check",
+                            "type": "text",
+                            "label": "Address Line 1 Check"
+                          },
+                          {
+                            "name": "address_postal_code_check",
+                            "type": "text",
+                            "label": "Address Postal Code Check"
+                          },
+                          {
+                            "name": "cvc_check",
+                            "type": "text",
+                            "label": "CVC Check"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "Checks"
+                      },
+                      {
+                        "name": "country",
+                        "type": "text",
+                        "label": "Country"
+                      },
+                      {
+                        "name": "exp_month",
+                        "type": "number",
+                        "label": "Exp Month"
+                      },
+                      {
+                        "name": "exp_year",
+                        "type": "number",
+                        "label": "Exp Year"
+                      },
+                      {
+                        "name": "fingerprint",
+                        "type": "text",
+                        "label": "Fingerprint"
+                      },
+                      {
+                        "name": "funding",
+                        "type": "text",
+                        "label": "Funding"
+                      },
+                      {
+                        "name": "generated_from",
+                        "type": "text",
+                        "label": "Generated From"
+                      },
+                      {
+                        "name": "last4",
+                        "type": "text",
+                        "label": "Last 4"
+                      },
+                      {
+                        "name": "networks",
+                        "spec": [
+                          {
+                            "name": "available",
+                            "spec": {
+                              "type": "text"
+                            },
+                            "type": "array",
+                            "label": "Available"
+                          },
+                          {
+                            "name": "preferred",
+                            "type": "text",
+                            "label": "Preferred"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "Networks"
+                      },
+                      {
+                        "name": "three_d_secure_usage",
+                        "spec": [
+                          {
+                            "name": "supported",
+                            "type": "boolean",
+                            "label": "Supported"
+                          }
+                        ],
+                        "type": "collection",
+                        "label": "3D Secure Usage"
+                      },
+                      {
+                        "name": "wallet",
+                        "type": "text",
+                        "label": "Wallet"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "Card"
+                  },
+                  {
+                    "name": "card_present",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Card Present"
+                  },
+                  {
+                    "name": "eps",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "EPS"
+                  },
+                  {
+                    "name": "fpx",
+                    "spec": [
+                      {
+                        "name": "bank",
+                        "type": "text",
+                        "label": "Bank"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "FPX"
+                  },
+                  {
+                    "name": "giropay",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Giropay"
+                  },
+                  {
+                    "name": "ideal",
+                    "spec": [
+                      {
+                        "name": "bank",
+                        "type": "text",
+                        "label": "Bank"
+                      },
+                      {
+                        "name": "bic",
+                        "type": "text",
+                        "label": "BIC"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "iDEAL"
+                  },
+                  {
+                    "name": "interac_present",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Interac Present"
+                  },
+                  {
+                    "name": "p24",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Przelewy24"
+                  },
+                  {
+                    "name": "sepa_debit",
+                    "spec": [
+                      {
+                        "name": "bank_code",
+                        "type": "text",
+                        "label": "Bank Code"
+                      },
+                      {
+                        "name": "branch_code",
+                        "type": "text",
+                        "label": "Branch Code"
+                      },
+                      {
+                        "name": "country",
+                        "type": "text",
+                        "label": "Country"
+                      },
+                      {
+                        "name": "fingerprint",
+                        "type": "text",
+                        "label": "Fingerprint"
+                      },
+                      {
+                        "name": "last4",
+                        "type": "text",
+                        "label": "Last 4"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "SEPA Debit"
+                  },
+                  {
+                    "name": "sofort",
+                    "spec": [
+                      {
+                        "name": "country",
+                        "type": "text",
+                        "label": "Country"
+                      }
+                    ],
+                    "type": "collection",
+                    "label": "SOFORT"
+                  },
+                  {
+                    "name": "created",
+                    "type": "number",
+                    "label": "Created"
+                  },
+                  {
+                    "name": "customer",
+                    "type": "text",
+                    "label": "Customer"
+                  },
+                  {
+                    "name": "livemode",
+                    "type": "boolean",
+                    "label": "Livemode"
+                  },
+                  {
+                    "name": "metadata",
+                    "type": "any",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "type",
+                    "type": "text",
+                    "label": "Type"
+                  }
+                ],
+                "type": "collection",
+                "label": "Payment Method"
+              }
+            ],
+            "type": "collection",
+            "label": "Last Setup Error"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "mandate",
+            "type": "text",
+            "label": "Mandate"
+          },
+          {
+            "name": "metadata",
+            "type": "any",
+            "label": "Metadata"
+          },
+          {
+            "name": "next_action",
+            "spec": [
+              {
+                "name": "redirect_to_url",
+                "spec": [
+                  {
+                    "name": "return_url",
+                    "type": "text",
+                    "label": "Return URL"
+                  },
+                  {
+                    "name": "url",
+                    "type": "text",
+                    "label": "URL"
+                  }
+                ],
+                "type": "collection",
+                "label": "Redirect To URL"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "use_stripe_sdk",
+                "type": "any",
+                "label": "Use Stripe SDK"
+              }
+            ],
+            "type": "collection",
+            "label": "Next Action"
+          },
+          {
+            "name": "on_behalf_of",
+            "type": "text",
+            "label": "On Behalf Of"
+          },
+          {
+            "name": "payment_method",
+            "type": "text",
+            "label": "Payment Method"
+          },
+          {
+            "name": "payment_method_options",
+            "spec": [
+              {
+                "name": "card",
+                "spec": [
+                  {
+                    "name": "request_three_d_secure",
+                    "type": "text",
+                    "label": "Request 3D Secure"
+                  }
+                ],
+                "type": "collection",
+                "label": "Card"
+              }
+            ],
+            "type": "collection",
+            "label": "Payment Method Options"
+          },
+          {
+            "name": "payment_method_types",
+            "spec": {
+              "type": "text"
+            },
+            "type": "array",
+            "label": "Payment Method Types"
+          },
+          {
+            "name": "single_use_mandate",
+            "type": "text",
+            "label": "Single Use Mandate"
+          },
+          {
+            "name": "status",
+            "type": "text",
+            "label": "Status"
+          },
+          {
+            "name": "usage",
+            "type": "text",
+            "label": "Usage"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'setup_intent'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "charge",
+            "type": "text",
+            "label": "Charge"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "label": "Open"
+          },
+          {
+            "name": "reason",
+            "type": "text",
+            "label": "Reason"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'sigma.scheduled_query_run'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "active",
+            "type": "boolean",
+            "label": "Active"
+          },
+          {
+            "name": "attributes",
+            "spec": [
+              {
+                "name": "size",
+                "type": "text",
+                "label": "Size"
+              },
+              {
+                "name": "gender",
+                "type": "text",
+                "label": "Gender"
+              }
+            ],
+            "type": "collection",
+            "label": "Attributes"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "image",
+            "type": "text",
+            "label": "Image"
+          },
+          {
+            "name": "inventory",
+            "spec": [
+              {
+                "name": "quantity",
+                "type": "number",
+                "label": "Quantity"
+              },
+              {
+                "name": "type",
+                "type": "text",
+                "label": "Type"
+              },
+              {
+                "name": "value",
+                "type": "text",
+                "label": "Value"
+              }
+            ],
+            "type": "collection",
+            "label": "Inventory"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "package_dimensions",
+            "type": "text",
+            "label": "Package dimensions"
+          },
+          {
+            "name": "price",
+            "type": "number",
+            "label": "Price"
+          },
+          {
+            "name": "product",
+            "type": "text",
+            "label": "Product"
+          },
+          {
+            "name": "updated",
+            "type": "number",
+            "label": "Updated"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'sku'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "customer_data",
+            "type": "text",
+            "label": "Customer data"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "type",
+            "type": "text",
+            "label": "Type"
+          },
+          {
+            "name": "ach_credit_transfer",
+            "spec": [
+              {
+                "name": "last4",
+                "type": "number",
+                "label": "Last4"
+              },
+              {
+                "name": "routing_number",
+                "type": "text",
+                "label": "Routing number"
+              },
+              {
+                "name": "fingerprint",
+                "type": "text",
+                "label": "Fingerprint"
+              }
+            ],
+            "type": "collection",
+            "label": "Ach credit transfer"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'source.transaction'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": []
+      }
+    },
+    "condition": "{{webhook.group == 'topup'}}"
+  },
+  {
+    "response": {
+      "temp": {
+        "object": [
+          {
+            "name": "id",
+            "type": "text",
+            "label": "Id"
+          },
+          {
+            "name": "object",
+            "type": "text",
+            "label": "Object"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "label": "Amount"
+          },
+          {
+            "name": "amount_reversed",
+            "type": "number",
+            "label": "Amount reversed"
+          },
+          {
+            "name": "balance_transaction",
+            "type": "text",
+            "label": "Balance transaction"
+          },
+          {
+            "name": "created",
+            "type": "number",
+            "label": "Created"
+          },
+          {
+            "name": "currency",
+            "type": "text",
+            "label": "Currency"
+          },
+          {
+            "name": "description",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "name": "destination",
+            "type": "text",
+            "label": "Destination"
+          },
+          {
+            "name": "destination_payment",
+            "type": "text",
+            "label": "Destination payment"
+          },
+          {
+            "name": "livemode",
+            "type": "boolean",
+            "label": "Livemode"
+          },
+          {
+            "name": "metadata",
+            "spec": [
+              {
+                "name": "order_id",
+                "type": "text",
+                "label": "Order id"
+              }
+            ],
+            "type": "collection",
+            "label": "Metadata"
+          },
+          {
+            "name": "reversals",
+            "spec": [
+              {
+                "name": "object",
+                "type": "text",
+                "label": "Object"
+              },
+              {
+                "name": "data",
+                "spec": [
+                  {
+                    "name": "id",
+                    "type": "text",
+                    "label": "Id"
+                  },
+                  {
+                    "name": "object",
+                    "type": "text",
+                    "label": "Object"
+                  },
+                  {
+                    "name": "amount",
+                    "type": "number",
+                    "label": "Amount"
+                  },
+                  {
+                    "name": "balance_transaction",
+                    "type": "text",
+                    "label": "Balance transaction"
+                  },
+                  {
+                    "name": "created",
+                    "type": "number",
+                    "label": "Created"
+                  },
+                  {
+                    "name": "currency",
+                    "type": "text",
+                    "label": "Currency"
+                  },
+                  {
+                    "name": "metadata",
+                    "spec": [],
+                    "type": "collection",
+                    "label": "Metadata"
+                  },
+                  {
+                    "name": "transfer",
+                    "type": "text",
+                    "label": "Transfer"
+                  }
+                ],
+                "type": "array",
+                "label": "Data"
+              },
+              {
+                "name": "has_more",
+                "type": "boolean",
+                "label": "Has more"
+              },
+              {
+                "name": "total_count",
+                "type": "number",
+                "label": "Total count"
+              },
+              {
+                "name": "url",
+                "type": "text",
+                "label": "Url"
+              }
+            ],
+            "type": "collection",
+            "label": "Reversals"
+          },
+          {
+            "name": "reversed",
+            "type": "boolean",
+            "label": "Reversed"
+          },
+          {
+            "name": "source_transaction",
+            "type": "text",
+            "label": "Source transaction"
+          },
+          {
+            "name": "source_type",
+            "type": "text",
+            "label": "Source type"
+          },
+          {
+            "name": "transfer_group",
+            "type": "text",
+            "label": "Transfer group"
+          }
+        ]
+      }
+    },
+    "condition": "{{webhook.group == 'transfer'}}"
+  },
+  {
+    "response": {
+      "output": [
+        {
+          "name": "created",
+          "type": "date",
+          "label": "Created"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "label": "Event Type"
+        },
+        {
+          "name": "event_id",
+          "type": "text",
+          "label": "Event ID"
+        },
+        {
+          "name": "object",
+          "spec": "{{temp.object}}",
+          "type": "collection",
+          "label": "Object"
+        },
+        {
+          "name": "raw",
+          "spec": [],
+          "type": "collection",
+          "label": "Raw Webhook Data"
+        }
+      ]
+    }
+  }
+]

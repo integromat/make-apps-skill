@@ -1,0 +1,11 @@
+{
+  "url": "/checklists/{{parameters.checklist_id}}/checkItems",
+  "method": "GET",
+  "response": {
+    "output": {
+      "label": "{{item.name}} <{{item.state}}>",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body}}"
+  }
+}

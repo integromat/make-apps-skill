@@ -1,0 +1,22 @@
+{
+  "qs": {
+    "limit": 500,
+    "query": "{{parameters.query}}",
+    "sortBy": "{{parameters.sortBy}}",
+    "valueFormat": "{{parameters.valueFormat}}",
+    "useColumnNames": "{{parameters.useColumnNames}}"
+  },
+  "url": "/docs/{{parameters.docId}}/tables/{{parameters.tableIdOrName}}/rows",
+  "method": "GET",
+  "response": {
+    "limit": "{{parameters.limit}}",
+    "output": "{{item}}",
+    "iterate": "{{body.items}}"
+  },
+  "pagination": {
+    "qs": {
+      "pageToken": "{{body.nextPageToken}}"
+    },
+    "condition": "{{ifempty(body.nextPageToken, false)}}"
+  }
+}

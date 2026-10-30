@@ -1,0 +1,7 @@
+{
+  "url": "/invoiceitems/{{parameters.id}}",
+  "method": "GET",
+  "response": {
+    "output": "{{prepareOutput(body)}}"
+  }
+}

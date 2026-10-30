@@ -1,0 +1,23 @@
+{
+  "rev": 2,
+  "crud": "read",
+  "epoch": null,
+  "flags": {},
+  "label": "List Files",
+  "scope": [
+    "files:read",
+    "channels:read",
+    "groups:read",
+    "users:read",
+    "im:read",
+    "mpim:read"
+  ],
+  "public": true,
+  "typeId": 9,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "slack2",
+  "description": "Returns a list of files within a team.",
+  "altAccountName": null
+}

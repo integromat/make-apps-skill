@@ -1,0 +1,10 @@
+{
+  "qs": {},
+  "url": "/docs/{{parameters.docId}}/formulas/{{parameters.formulaIdOrName}}",
+  "body": {},
+  "method": "GET",
+  "headers": {},
+  "response": {
+    "output": "{{body}}"
+  }
+}

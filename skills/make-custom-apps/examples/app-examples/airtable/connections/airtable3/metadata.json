@@ -1,0 +1,33 @@
+{
+  "rev": 6,
+  "type": "oauth",
+  "label": "Airtable OAuth",
+  "scope": [
+    "schema.bases:read"
+  ],
+  "scopes": {},
+  "aliasTo": null,
+  "install": {
+    "common": {
+      "clientId": "{{parameters.clientId}}",
+      "clientSecret": "{{parameters.clientSecret}}"
+    }
+  },
+  "installSpec": [
+    {
+      "name": "clientId",
+      "type": "text",
+      "label": "Client ID",
+      "required": true
+    },
+    {
+      "name": "clientSecret",
+      "type": "text",
+      "label": "Client Secret",
+      "required": true
+    }
+  ],
+  "depAccountName": null,
+  "depAccountScope": null,
+  "connectedSystemName": null
+}

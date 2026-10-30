@@ -1,0 +1,73 @@
+[
+  {
+    "name": "base",
+    "type": "select",
+    "label": "Base",
+    "options": {
+      "store": "rpc://app%23airtable@3/RpcGetBases",
+      "nested": [
+        {
+          "name": "table",
+          "type": "select",
+          "label": "Table",
+          "options": {
+            "store": "rpc://app%23airtable@3/RpcGetTables",
+            "nested": {
+              "store": [
+                {
+                  "rpc": {
+                    "url": "rpc://app%23airtable@3/searchRecords",
+                    "label": "Search",
+                    "parameters": [
+                      {
+                        "help": "Show records using this field, e.g. `Name` or `Email`. The selected field cannot be an object, e.g. type `user`.",
+                        "name": "field",
+                        "type": "select",
+                        "label": "Display Field",
+                        "options": "rpc://app%23airtable@3/RpcGetSchema?for=rpc",
+                        "required": true
+                      },
+                      {
+                        "help": " For example `FIND('Jane', {Name})` or `{Name}>='Jane'`. You can find more information about the formula on [Airtable's website](https://support.airtable.com/hc/en-us/articles/203255215-Formula-Field-Reference).",
+                        "name": "formula",
+                        "type": "text",
+                        "label": "Formula"
+                      }
+                    ]
+                  },
+                  "help": "If an existing record ID is filled, the record will be updated with inserted data.",
+                  "name": "recordId",
+                  "type": "text",
+                  "label": "Record ID"
+                },
+                "rpc://app%23airtable@3/RpcGetSchema?useColumnId=true"
+              ],
+              "domain": "expect"
+            }
+          },
+          "mappable": false,
+          "required": true
+        }
+      ]
+    },
+    "mappable": false,
+    "required": true
+  },
+  {
+    "help": "If smart links is enabled, you can a) use names in linked record fields instead of record IDs to select an existing record or create a new one if it doesn't exist b) use (add) new options in single/multiple select fields.\nThe Airtable API will perform best-effort automatic data conversion from string values. It is disabled by default to ensure data integrity, but it may be helpful for integrating with 3rd party data sources.",
+    "name": "typecast",
+    "type": "boolean",
+    "label": "Smart links",
+    "default": false,
+    "required": true
+  },
+  {
+    "help": "Use column ID instead of column name for mapping. This enable persistency over column name change. Changing this value will break all existing mappings in this scenario.",
+    "name": "useColumnId",
+    "type": "boolean",
+    "label": "Use Column ID",
+    "default": false,
+    "advanced": true,
+    "required": true
+  }
+]

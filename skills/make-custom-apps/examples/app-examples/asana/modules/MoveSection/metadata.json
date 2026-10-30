@@ -1,0 +1,16 @@
+{
+  "rev": 4,
+  "crud": "update",
+  "epoch": null,
+  "flags": {},
+  "label": "Move a Project Section",
+  "scope": [],
+  "public": true,
+  "typeId": 4,
+  "hookName": null,
+  "learning": false,
+  "deprecated": false,
+  "accountName": "asana2",
+  "description": "Moves a project section relative to other project sections in the project's board view.",
+  "altAccountName": null
+}

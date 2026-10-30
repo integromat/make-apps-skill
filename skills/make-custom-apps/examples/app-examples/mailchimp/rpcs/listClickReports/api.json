@@ -1,0 +1,21 @@
+{
+  "qs": {
+    "count": 100
+  },
+  "url": "/reports/{{parameters.campaign_id}}/click-details",
+  "method": "GET",
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.id}}",
+      "value": "{{item.id}}"
+    },
+    "iterate": "{{body.urls_clicked}}"
+  },
+  "condition": "{{parameters.listId && isMapping(parameters.listId) !== false}}",
+  "pagination": {
+    "qs": {
+      "offset": "{{(pagination.page - 1) * 100}}"
+    }
+  }
+}

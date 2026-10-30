@@ -1,0 +1,36 @@
+[
+  {
+    "mode": "edit",
+    "name": "workspace",
+    "type": "select",
+    "label": "Workspace ID",
+    "options": {
+      "store": "rpc://app%23asana@2/GetWorkspaces",
+      "nested": [
+        {
+          "mode": "edit",
+          "name": "portfolio",
+          "type": "select",
+          "label": "Portfolio",
+          "options": {
+            "store": "rpc://app%23asana@2/GetPortfolios",
+            "nested": [
+              {
+                "help": "These can either be the string `me`, an email, or the ID of a user.",
+                "mode": "edit",
+                "name": "members",
+                "type": "select",
+                "label": "Members",
+                "options": "rpc://app%23asana@2/getPortfolioMembers",
+                "multiple": true,
+                "required": true
+              }
+            ]
+          },
+          "required": true
+        }
+      ]
+    },
+    "required": true
+  }
+]
