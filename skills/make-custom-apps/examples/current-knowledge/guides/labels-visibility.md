@@ -98,7 +98,7 @@ Do not infer an all-hidden blocker for a private or draft target, no stated targ
 | Marketplace target, complete 3-module inventory, all three `public: false` | Class (d); reject, naming the owner decision needed (not safely fixable by the reviewer) |
 | Same target, 2 modules: one intended visible, one hidden legacy | No all-hidden rule; assess the intended published scope |
 | App unapproved, intended modules visible | Do not infer hidden or unusable modules |
-| Flags missing, truncated or contradictory | Ask for evidence; no all-hidden claim |
+| Flags missing, truncated or contradictory | No all-hidden claim; advisory unless the missing flag is essential to judging a class (d) requirement and could plausibly hide that defect (then reject, naming the missing flag) |
 
 ## Rationale
 

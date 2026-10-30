@@ -65,7 +65,7 @@ The platform hides most of the plumbing, so each part can silently fail: an atta
 * Detach reading `webhook.id` while attach only saved `externalHookId`.
 * A verification `condition` of `{{true}}`: every delivery is treated as a challenge and no event is ever delivered.
 * Calling the challenge reply "signature verification", or reporting a missing signature check without a provider contract that demands one.
-* Shipping a not-attached webhook with no connection instructions (advisory; report it as a fix). A banner is the recommended way, so a different clear place for the instructions is not the same gap as having none.
+* Shipping a not-attached webhook with no connection instructions (advisory; report it as a suggested fix). A banner is the recommended way, so a different clear place for the instructions is not the same gap as having none.
 * Shared webhook without `uid` in both places.
 * Responding 4xx/5xx in `respond` for a delivery that was accepted.
 * Treating a missing connection as harmless on a shared webhook; it is mandatory.
