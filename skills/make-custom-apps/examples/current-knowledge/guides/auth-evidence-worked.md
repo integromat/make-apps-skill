@@ -61,15 +61,15 @@ Contract facts (synthetic provider `vault.example.invalid`):
 
 Facts to establish: where the key goes (header name, query parameter, Basic-encoded and with what username and password split); whether an empty password is intended; whether a harmless authenticated check exists.
 
-Conclusion: **evidence hold.** The credential wire mapping, which is essential to the requested operation, is unknown. Do not read it from the name `basicKey`. Do not derive a check from the server URL alone, and do not invent `/ping`, `/me` or `/health`. (A `GET /` would be fine only if the contract documented it as an authenticated operation, which it does not here.) Do not claim the connection is broken or insecure: nothing was observed. Ask the owner: "How is the API key transmitted (header or query name, or Basic with which username and password)? Is there a documented authenticated read-only route usable as a check?"
+Conclusion: **reject for missing essential evidence (`needs_evidence`).** The credential wire mapping, which is essential to the requested operation, is unknown and the supplied documentation cannot settle it. Do not read it from the name `basicKey`. Do not derive a check from the server URL alone, and do not invent `/ping`, `/me` or `/health`. (A `GET /` would be fine only if the contract documented it as an authenticated operation, which it does not here.) Do not claim the connection is broken or insecure: nothing was observed. Name the missing fact in the rejection: "How is the API key transmitted (header or query name, or Basic with which username and password)? Is there a documented authenticated read-only route usable as a check?"
 
 Once placement is answered, the check route is a separate question, resolved as follows:
 
 | Placement | Check route | Action |
 | --- | --- | --- |
 | Known | Documented and harmless | Generate both, disclose static-only |
-| Known | Not documented | Do not invent one. If the selected authoring surface genuinely allows no check, omit it and state the limitation; if it requires a communication request, hold for that evidence. Do not assert omission is supported unless documented |
-| Unknown or contradictory | Any | Evidence hold; a partial draft must not downgrade this to optional advice |
+| Known | Not documented | Do not invent one. If the selected authoring surface genuinely allows no check, omit it and state the limitation; if it requires a communication request and none is documented, that is a missing essential fact: reject and name it. Do not assert omission is supported unless documented |
+| Unknown or contradictory | Any | Reject (`needs_evidence`) naming the missing fact; a partial draft must not downgrade this to optional advice |
 
 ## Evidence and limits
 

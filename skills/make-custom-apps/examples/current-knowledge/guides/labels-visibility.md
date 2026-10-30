@@ -25,7 +25,8 @@ A label can be wrong in a way that matters:
 **Inferred implementation pattern.**
 
 * A field the provider requires and that has no default should not be hidden under advanced settings: the user will not see why the call failed. `CK-VISIBILITY` flags `advanced: true` together with `required: true`; with a default, see the exception below.
-* A secret-named **connection** parameter (`apiKey`, `clientSecret`, `password`, `token`) should use `type: password` so that it is masked in the UI. **Documented behaviour:** `password` is available only in a connection; in modules and other contexts it behaves like `text` and masks nothing. So this check applies to connection parameters only. A secret-named field in a module's parameters is not made safe by `password`; do not report it as a missing mask, and do not add `password` there expecting masking. Handle such a value through the right credential mechanism and log sanitization instead.
+* A secret-named **connection** parameter (`apiKey`, `clientSecret`, `password`, `token`) should use `type: password` so that it is masked in the UI. **Documented behaviour:** `password` is available only in a connection; in modules and other contexts it behaves like `text` and masks nothing. So this check applies to connection parameters only. A user-entered secret in a non-`password` connection or install parameter is a class (b) security defect (reject) under [Approval gating](../../../references/review-and-qa.md#2a-approval-gating).
+* Separately, a secret-named field in a module's parameters is not made safe by `password`; do not report it as a missing mask, and do not add `password` there expecting masking. Handle such a value through the right credential mechanism and log sanitization instead.
 * Hidden fields should not vanish from review. If a field is hidden for a reason (e.g. set by a connection), it should still be traceable in the module's parameters and in the catalog entry, so a reviewer can see what the request sends.
 
 ```json
@@ -87,17 +88,17 @@ Three different things share the word "hidden". Do not infer one from another:
 
 **Documented behaviour.** Test your app: newly created modules are hidden by default, which is the normal draft state. Request review (step 3): set the modules you intend to publish visible. App visibility: hidden modules still run in existing scenarios but are not offered when adding new modules, so an existing scenario running does not show distribution readiness.
 
-**Review treatment (inferred, target-specific).** Raise a required readiness finding or owner decision only when all hold: the stated target is marketplace or new-user availability; the module inventory is complete, nonempty and unambiguous; and every module's visibility is literally `false`. Then do not call the app ready or approved as if it were an ordinary draft. The owner decides which modules become visible; never expose all modules or publish automatically. When a requested fix makes an intended module visible, judge the resulting graph, not the baseline hidden flags.
+**Review treatment (inferred, target-specific).** Raise a required readiness finding or owner decision (a class (d) request-scope finding under [Approval gating](../../../references/review-and-qa.md#2a-approval-gating)) only when all hold: the stated target is marketplace or new-user availability; the module inventory is complete, nonempty and unambiguous; and every module's visibility is literally `false`. This is class (d); the reviewer cannot safely fix it (the owner chooses visible modules), so reject and name the decision needed. Never expose all modules or publish automatically. When a requested fix makes an intended module visible, judge the resulting graph, not the baseline hidden flags.
 
 Do not infer an all-hidden blocker for a private or draft target, no stated target, unknown, missing or truncated flags (a partial create or read projection is not explicit `false`), a partial module list, app-level `public: false`, or approval flags. One hidden legacy module beside an intended visible one is not an all-hidden case.
 
 | Synthetic case | Treatment |
 | --- | --- |
 | Private draft app, two modules, both hidden, code review only | Probably intentional; no blocker |
-| Marketplace target, complete 3-module inventory, all three `public: false` | Required readiness finding and owner decision |
+| Marketplace target, complete 3-module inventory, all three `public: false` | Class (d); reject, naming the owner decision needed (not safely fixable by the reviewer) |
 | Same target, 2 modules: one intended visible, one hidden legacy | No all-hidden rule; assess the intended published scope |
 | App unapproved, intended modules visible | Do not infer hidden or unusable modules |
-| Flags missing, truncated or contradictory | Ask for evidence; no all-hidden claim |
+| Flags missing, truncated or contradictory | No all-hidden claim; advisory unless the missing flag is essential to judging a class (d) requirement and could plausibly hide that defect (then reject, naming the missing flag) |
 
 ## Rationale
 

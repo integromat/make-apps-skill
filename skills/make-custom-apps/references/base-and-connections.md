@@ -113,8 +113,8 @@ that the contract actually specifies it.
 | Established facts | Conclusion |
 | --- | --- |
 | (a) Standard username/password HTTP Basic is specified, or provider-specific key placement is explicit, **and** a harmless authenticated check is documented | Generate the defined requests and connection check. Disclose that nothing was executed (static-only). |
-| (b) Auth mapping and the requested operations are known, but **no check route is documented** | Never invent a `ping`, `me`, `health` or undocumented root request (a documented authenticated `GET /` is not invented), and do not claim a connection outage or failure. Read the selected authoring surface: if the check is genuinely optional there, omit it and state the limitation. If the surface requires a communication request and no supported check exists, hold for that essential evidence instead of fabricating one. Do not assert that omission is supported unless it is documented. |
-| (c) The credential wire mapping or an essential requested operation is **unknown or contradictory** | Evidence hold with a clear question to the owner. Not ready, and not a proven defect or security claim. A partial draft must not turn essential uncertainty into optional advice. |
+| (b) Auth mapping and the requested operations are known, but **no check route is documented** | Never invent a `ping`, `me`, `health` or undocumented root request (a documented authenticated `GET /` is not invented), and do not claim a connection outage or failure. Read the selected authoring surface: if the check is genuinely optional there, omit it and state the limitation. If the surface requires a communication request and no supported check exists, that is an essential missing fact: reject and name it instead of fabricating one. Do not assert that omission is supported unless it is documented. |
+| (c) The credential wire mapping or an essential requested operation is **unknown or contradictory** | Resolve it from the supplied provider documentation first; if it stays unknown and is essential to the requested operation, reject (`needs_evidence`) and name the exact missing fact. It is not a proven defect or security claim. A partial draft must not turn essential uncertainty into optional advice. |
 
 Sources: [Basic connection](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection),
 [OpenAPI 3.0.3 Security Scheme Object](https://spec.openapis.org/oas/v3.0.3.html#security-scheme-object).
@@ -193,5 +193,7 @@ Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-c
   renewal separately. A saved app definition does not prove either flow works.
 - Report local validation, remote definition readback, and provider-authenticated
   execution as different evidence levels. Never imply live verification without a run.
+
+Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a consumer with no credential binding is a class (c) defect (fix it by adding the binding when exactly one compatible connection exists; otherwise reject), a user-entered secret in a non-password parameter is a class (b) defect (reject), an omitted shared or external connection import is `needs_evidence` only if it is essential to judging an applicable class (a)-(d) requirement and could plausibly hide that defect (otherwise advisory), and a connection check that may not distinguish valid credentials is advisory without evidence.
 
 Source: [Sanitization](https://developers.make.com/custom-apps-documentation/app-components/base/sanitization.md).

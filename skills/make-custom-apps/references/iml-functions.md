@@ -173,7 +173,7 @@ in [dates and helpers](../examples/current-knowledge/guides/dates-helpers.md).
 Points 1-6 are standards for authoring or evaluating a new or changed function test. Missing
 comprehensive helper tests in a working legacy app (maintenance that does not change the helper)
 are an evidence limitation and advice, not an automatic defect or approval blocker, unless the
-task's explicit review criteria require them or the helper's actual behavior lacks essential
+task's explicit review criteria or request-scope requirements (which can block when unmet) require them or the helper's actual behavior lacks essential
 evidence. Demonstrably incorrect behavior stays a finding.
 
 ## Transformation and verification gate

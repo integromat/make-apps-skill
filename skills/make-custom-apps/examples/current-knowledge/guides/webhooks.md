@@ -9,7 +9,7 @@ An instant trigger is more than a receiver. There is a lifecycle (how the provid
 **Documented behaviour.**
 
 * **Dedicated, attached.** Make registers the URL with the provider by running an *attach* RPC when the scenario is activated, and removes it by running *detach* when it is deactivated or deleted.
-* **Dedicated, not attached.** The user copies the URL and pastes it into the provider by hand. For an app Make is to approve, instructions on how to connect the webhook are **required**; the documentation recommends delivering them as an `info` banner in the instant trigger's static parameters, so the banner is the recommended form and the instructions are the requirement. Usually no connection is linked, unless RPCs or extra requests need one.
+* **Dedicated, not attached.** The user copies the URL and pastes it into the provider by hand. For an app Make is to approve, the documentation asks for instructions on how to connect the webhook, delivered as an `info` banner in the instant trigger's static parameters. Report missing instructions as a fix; they are advisory and do not block a working webhook. Usually no connection is linked, unless RPCs or extra requests need one.
 * **Shared.** The provider sends all events for all users to one URL that the *developer* registers. The app must be published, the connection's `info` and the webhook must both define `uid`, and a connection is mandatory. A single URL registered under a user's account is a dedicated webhook even if the provider sends everything to it.
 
 ## Attach and detach identity
@@ -65,7 +65,7 @@ The platform hides most of the plumbing, so each part can silently fail: an atta
 * Detach reading `webhook.id` while attach only saved `externalHookId`.
 * A verification `condition` of `{{true}}`: every delivery is treated as a challenge and no event is ever delivered.
 * Calling the challenge reply "signature verification", or reporting a missing signature check without a provider contract that demands one.
-* Shipping a not-attached webhook with no connection instructions; approval requires them. A banner is the recommended way, so a different clear place for the instructions is not the same defect as having none.
+* Shipping a not-attached webhook with no connection instructions (advisory; report it as a suggested fix). A banner is the recommended way, so a different clear place for the instructions is not the same gap as having none.
 * Shared webhook without `uid` in both places.
 * Responding 4xx/5xx in `respond` for a delivery that was accepted.
 * Treating a missing connection as harmless on a shared webhook; it is mandatory.
@@ -76,10 +76,11 @@ The platform hides most of the plumbing, so each part can silently fail: an atta
 * Shared webhooks normally do not need attach/detach.
 * `verification` is needed only if the provider sends a handshake; if it does not, omit the block (the fixture models a provider that does).
 * Whether a given provider retries, signs or rotates secrets is provider-side and outside this tree.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Missing signature or verification handling is a security defect (reject) only when the provider documents a verification protocol; challenge handling, an authentication requirement and ingress proof are separate claims. Missing setup instructions for a manually registered webhook are advisory.
 
 ## Evidence and limits
 
-* Attach/detach identity, shared `uid`, connection instructions for approval of a not-attached webhook: **documented requirement**; the banner form: **documented recommendation**.
+* Attach/detach identity and the shared `uid`: **documented requirements**; a missing or wrong `uid` or attach/detach identity that breaks routing, or a missing or incorrect detach that leaves orphaned provider hooks, is class (c) in [Approval gating](../../../references/review-and-qa.md#2a-approval-gating). Connection or setup instructions for a manually registered webhook: documented by Make's app review, but advisory for approval (report as a suggested fix); the banner form: **documented recommendation**.
 * Challenge-only verification: **documented behaviour**; signature checking: **not documented**, therefore never demonstrated here.
 * Delivery/interface alignment: **inferred implementation pattern**. The checker never receives a real request and proves nothing about a provider.
 

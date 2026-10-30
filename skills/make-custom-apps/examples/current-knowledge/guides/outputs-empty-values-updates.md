@@ -87,6 +87,7 @@ Make already ignores empty values and offers erase; it already lets you return r
 * Version 1 apps have different empty-value behaviour.
 * Providers that treat omitted and empty values identically need less machinery.
 * Read-and-merge needs read permission and tolerates last-writer-wins races; weigh it.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Requiredness advice (key presence versus a nonempty value, create requiredness copied into an update form, conditional or at-least-one groups) is advisory unless the operation contract documents omission semantics that make the input impossible to supply. Falsy or null values that are dropped, or a clearing operation that becomes a no-op, remain established functional failures when shown.
 
 ## Evidence and limits
 
