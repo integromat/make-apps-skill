@@ -89,7 +89,7 @@ changes only what may block.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
-| **blocks** | Only for class (a), (b) or (c) below, established by the applicable contract and cited evidence. |
+| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. |
 | **needs_evidence** | An independently essential fact is missing: the consequence would block, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact. It holds approval until resolved. |
 | **advisory** | Everything else, including documented conventions and quality. Report it as a fix or suggestion; it does not hold approval. |
 
@@ -113,21 +113,22 @@ Classes that may block:
   verification, only when the provider documents a verification protocol.
 - (c) **A documented Make platform requirement whose violation itself causes failure**, for example a missing
   connection binding on an authenticated module.
+- (d) **An explicit request-scope requirement is unmet**: requested capabilities, endpoints or operations are
+  missing, an explicit marketplace or visibility target is not met, or a task-specific review criterion fails.
 
 Advisory by default, including when a guide calls it a requirement, convention or recommendation: interface
 completeness or typing (see class (a) for structural contradictions), a date typed as text, help text and labels,
 selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only CRUD, version drift without shown
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
-without evidence. A documented requirement that is not a class (a) to (c) failure is reported and stays advisory.
-Explicit task or request-scope requirements (requested capabilities, endpoints, review criteria) can block when unmet.
+without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: reject or hold approval only with at least one blocking finding of class (a) to (c) or one essential
+Rule: reject or hold approval only with at least one blocking finding of class (a) to (d) or one essential
 `needs_evidence` finding; never for an accumulation of advisory items, however many.
 
-How to record: a blocking-class defect uses the requirement-violation basis, the highest severity and `blocks`;
-an essential unverified consequence uses the unverified basis, question severity and `needs_evidence`; a
-convention or quality point uses the recommendation or observation basis, a non-holding severity (Warning or
-Suggestion) and `advisory`. Name a service-specific field only where the review service defines it.
+How to record: a blocking-class defect uses the requirement-violation basis, Error severity and `blocks`;
+an essential unverified consequence uses the unverified basis, Warning severity and `needs_evidence`; a
+convention or quality point uses the recommendation or observation basis, Warning or
+Suggestion severity and `advisory`. Name a service-specific field only where the review service defines it.
 
 ## 3. Approve a bounded test plan
 

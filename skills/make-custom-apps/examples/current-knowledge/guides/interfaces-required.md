@@ -18,7 +18,7 @@ Do not infer "required" from a field being present in a provider's response, fro
 
 Before accepting a required flag, compare the provider's omission and default behaviour, the effective UI requirement (including defaults and conditions), and every request, RPC, dynamic-interface and helper consumer. A read proves use, not necessity. Cite independent evidence that omission prevents the component's documented function, or an owner decision to narrow its input scope. A provider-optional input can legitimately be required under that contract, including a technical RPC parent; the existing required flag alone does not establish the contract.
 
-Where that comparison establishes an applicable, unmet input requirement, record an authoring correction (advisory unless class (a) to (c) applies). Neither a consumer read nor the app's rejection for another reason changes the independent evidence needed to establish necessity or makes the correction optional.
+Where that comparison establishes an applicable, unmet input requirement, record an authoring correction (advisory unless class (a) to (d) applies). Neither a consumer read nor the app's rejection for another reason changes the independent evidence needed to establish necessity or makes the correction optional.
 
 ## Conditionally required fields and parameter types (UX guidance)
 

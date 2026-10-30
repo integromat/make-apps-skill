@@ -41,7 +41,7 @@ This guide is about the *budget* of a dropdown. The protocol itself (cursor, off
 
 ## Rationale
 
-A user opens a dropdown; two minutes of crawling is not acceptable and the platform will cut the call at 40 seconds anyway. A bounded, predictable budget turns a possible timeout into a known, explainable truncation.
+A user opens a dropdown; two minutes of crawling is not acceptable and the platform will cut the call at 40 seconds anyway. A bounded, predictable budget turns a possible timeout into a known, explainable truncation. This is a dropdown design; a search or list module that promises all matches must not silently drop records.
 
 ## Pitfalls
 
@@ -61,7 +61,7 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 ## Evidence and limits
 
 * Time, request and record limits: **documented requirement**.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Option-RPC bounds and the 500-item output limit are advisory by themselves; an RPC or search that loses records (a truncated page budget that drops results) is class (a).
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A bounded option or dropdown RPC budget is the recommended design; its bounds and the 500-item output limit are advisory. Class (a) applies only when a search or list module, or a trigger, that promises all matching records silently drops records (for example pagination stops early or ignores a documented next-page signal).
 * 3-request and 3×page-size budgets, the 300-500 range: **documented recommendation**.
 * Consistency between page size, qs and limit in a fixture: **inferred implementation pattern**. The checker does not call a provider, measure latency or know any real page maximum.
 
