@@ -50,7 +50,7 @@ A universal module is the only place where a user, not the author, decides the r
 * Apps without a universal module need none of this.
 * The versioned-path guidance depends on the provider's API versioning.
 * Provider restrictions on allowed destinations or content still apply.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A destination that can leave the service authority, or a credential sent to it, is a security exposure and may block. Path normalization effects such as an unverified double slash, and scope or header conventions without a shown failure, are advisory or `needs_evidence`.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A destination that can leave the service authority, or a credential sent to it, is a security exposure (class (b)): reject. Path normalization effects such as an unverified double slash, and scope or header conventions without a shown failure, are advisory or `needs_evidence`.
 
 ## Evidence and limits
 

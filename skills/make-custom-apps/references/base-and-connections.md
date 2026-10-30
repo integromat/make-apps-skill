@@ -194,6 +194,6 @@ Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-c
 - Report local validation, remote definition readback, and provider-authenticated
   execution as different evidence levels. Never imply live verification without a run.
 
-Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a consumer with no credential binding blocks, while an omitted shared or external connection import stays unresolved (`needs_evidence`), and a connection check that may not distinguish valid credentials is advisory without evidence.
+Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a consumer with no credential binding is a defect (fix it by adding the binding; a user-entered secret in a non-password parameter is a security defect and rejects), while an omitted shared or external connection import stays unresolved (`needs_evidence`), and a connection check that may not distinguish valid credentials is advisory without evidence.
 
 Source: [Sanitization](https://developers.make.com/custom-apps-documentation/app-components/base/sanitization.md).

@@ -10,7 +10,7 @@ Every guide separates three kinds of statement. Do not merge them when you revie
 
 | Label | Meaning | What a reviewer may do with it |
 |---|---|---|
-| **Documented requirement** | A public Make page says "must", "required", "mandatory", or the platform demonstrably fails otherwise. | Report it; approval impact follows [Approval gating](../../references/review-and-qa.md#2a-approval-gating) (blocks only for classes a-d). |
+| **Documented requirement** | A public Make page says "must", "required", "mandatory", or the platform demonstrably fails otherwise. | Report it; approval impact follows [Approval gating](../../references/review-and-qa.md#2a-approval-gating) (a defect only for classes a-d: fix a, c, d when a safe local fix exists, reject class b). |
 | **Documented recommendation** | A public page recommends, suggests or calls something best practice. | Raise as advice; explain the trade-off. Do not call it a defect or a platform limit. |
 | **Inferred implementation pattern** | A way of working that follows from the documented behaviour but is not stated as such. | Use as a teaching aid and a review prompt. Never present it as a Make rule. |
 

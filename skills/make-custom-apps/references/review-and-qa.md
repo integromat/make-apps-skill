@@ -20,11 +20,11 @@ Make's public review prerequisites require functional test scenarios and recent,
 
 Use the current public rules, not internal category codes or an old app's style as universal requirements.
 Approval impact is decided separately in [Approval gating](#2a-approval-gating).
-Report an **Error** for a demonstrated blocking-class defect, **Warning** for risk or missing evidence, and
+Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for risk or missing evidence, and
 **Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
-or Suggestion, since only blocking-class findings use the Error level. Cite the applicable rule and exact component/section for each finding.
+or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
-Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) keeps its affected component blocked while unresolved, even if another finding already rejects the app; advisory findings leave the component acceptable. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
+Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) keeps its affected component from plain approval until it is fixed (approve with adjustments) or the app is rejected; advisory findings leave the component acceptable. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
@@ -82,18 +82,43 @@ For worked synthetic examples and a per-check application table, see
 
 ## 2a. Approval gating
 
-This section defines `approvalImpact`. Type-specific guides refine it for their topic, but none of them may raise
-a convention to blocking on its own. A finding's severity (Error, Warning, Suggestion) says how serious it is;
-`approvalImpact` says whether it can hold approval. Report every finding the other rules require; this section
-changes only what may block.
+This section defines `approvalImpact` and the three review outcomes. Type-specific guides refine it for their
+topic, but none of them may raise a convention to a defect class on its own. A finding's severity (Error,
+Warning, Suggestion) says how serious it is; `approvalImpact` says whether it must be resolved before the work
+can be approved as it stands. Report every finding the other rules require; this section changes only what must
+be resolved and what the outcome is.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
-| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. |
-| **needs_evidence** | An independently essential fact is missing: the consequence would block, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact. It holds approval until resolved. |
-| **advisory** | Everything else, including documented conventions and quality. Report it as a fix or suggestion; it does not hold approval. |
+| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. It must be resolved (fixed, or the app rejected) before plain approval. |
+| **needs_evidence** | An unresolvable open question could plausibly hide a class (a) to (d) defect: the consequence would be a defect, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact and the class it might hide. Any other open question is advisory. |
+| **advisory** | Everything else, including documented conventions and quality. Report it as a fix or suggestion; it never blocks. |
 
-Classes that may block:
+Review outcomes. The reviewer may fix defects and return the complete adjusted files; a review is not limited to
+reporting.
+
+- **Approve**: nothing to fix.
+- **Approve with adjustments**: the reviewer fixes the defects and returns the complete adjusted files, reporting
+  each fix (the finding, the changed component and the evidence for the change).
+- **Reject**: security or privacy defects (class (b)), or a fundamental defect for which no safe fix exists.
+
+Outcome rules:
+
+- Class (a) functional, (c) platform-failure and (d) request-scope defects: when a safe, local, evidence-backed
+  fix exists, apply it and approve with adjustments, reporting each fix. Reject only when no safe fix exists
+  (a fundamental defect). A fix is safe when it stays inside the affected component, follows the applicable
+  contract and cited evidence, and needs no guess about provider behavior or owner intent; otherwise it is not a
+  safe fix.
+- Class (b) security or privacy defects, including a user-entered secret collected through a non-password
+  parameter: reject.
+- Advisory items never block. Fix one when the fix is trivial and safe (and report it as a fix); otherwise
+  report it and leave the files unchanged.
+- `needs_evidence` applies only when an unresolvable open question could plausibly hide a class (a) to (d)
+  defect; any other open question is advisory. Name the missing fact so the owner can resolve it.
+- Keep the evidence gates separate: adjusted files are not tested or uploaded because they were returned, and
+  every required QA, execution and publication gate still applies to them.
+
+Defect classes (a) to (d):
 
 - (a) **Established functional failure** under the applicable contract. This list is open; it includes a request
   the provider rejects or routes wrongly, an invalid enum or value, broken IML or JSON, a wrong key that leaves a
@@ -122,10 +147,11 @@ selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only C
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
 without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: reject or hold approval only with at least one blocking finding of class (a) to (d) or one essential
-`needs_evidence` finding; never for an accumulation of advisory items, however many.
+Rule: only a class (a) to (d) defect or an essential `needs_evidence` finding keeps plain approval from being
+given, and only class (b) or a defect with no safe fix leads to rejection; never reject or hold approval for an
+accumulation of advisory items, however many.
 
-How to record: a blocking-class defect uses the requirement-violation basis, Error severity and `blocks`;
+How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
 an essential unverified consequence uses the unverified basis, Warning severity and `needs_evidence`; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. Name a service-specific field only where the review service defines it.

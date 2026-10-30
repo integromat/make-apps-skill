@@ -76,7 +76,7 @@ The platform hides most of the plumbing, so each part can silently fail: an atta
 * Shared webhooks normally do not need attach/detach.
 * `verification` is needed only if the provider sends a handshake; if it does not, omit the block (the fixture models a provider that does).
 * Whether a given provider retries, signs or rotates secrets is provider-side and outside this tree.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Missing signature or verification handling blocks only when the provider documents a verification protocol; challenge handling, an authentication requirement and ingress proof are separate claims. Missing setup instructions for a manually registered webhook are advisory.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Missing signature or verification handling is a security defect (reject) only when the provider documents a verification protocol; challenge handling, an authentication requirement and ingress proof are separate claims. Missing setup instructions for a manually registered webhook are advisory.
 
 ## Evidence and limits
 

@@ -4,7 +4,7 @@ Load this when reviewing or auditing an app. Opening a guide is retrieval; this 
 
 ## Per-component rule-application table
 
-For each applicable check, record: source/rule, strength (documented requirement, recommendation, inferred pattern), why it applies, the exception considered, status (`finding`, `passed`, `not_applicable`, `uncertain`), exact evidence, and the linked finding. A skipped applicable check is a coverage gap. Keep authoring requirements, recommendations and essential evidence gaps separate in severity; recommendations do not automatically block, and authoring corrections are not observed outages. Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a documented requirement is reported but blocks only in classes a-d.
+For each applicable check, record: source/rule, strength (documented requirement, recommendation, inferred pattern), why it applies, the exception considered, status (`finding`, `passed`, `not_applicable`, `uncertain`), exact evidence, and the linked finding. A skipped applicable check is a coverage gap. Keep authoring requirements, recommendations and essential evidence gaps separate in severity; recommendations never block, and authoring corrections are not observed outages. Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a documented requirement is reported and is a defect to fix (approve with adjustments) or reject only in classes a-d; classes a, c and d are fixed when a safe local fix exists, class b is rejected.
 
 ## Sweeps
 
