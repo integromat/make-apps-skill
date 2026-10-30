@@ -5,7 +5,7 @@ status checks. Use [modules-and-pagination.md](modules-and-pagination.md) for pa
 
 ## Match the provider's wire contract
 
-Approval impact for any request-contract finding follows [Approval gating](review-and-qa.md#2a-approval-gating). Resolve `requestBody` references and read-only or write-on-create prose before calling a field writable; treat it as a defect only on an established rejection or unusable value (fix it when the fix is safe and local), and keep other mismatches advisory.
+Approval impact for any request-contract finding follows [Approval gating](review-and-qa.md#2a-approval-gating). Resolve `requestBody` references and read-only or write-on-create prose before calling a field writable; treat it as a defect only on an established rejection or unusable value (fix it when the fix is safe and local, otherwise reject), and keep other mismatches advisory.
 
 - Define the exact `url`, `method`, headers, query, and body from provider evidence.
   Relative module/RPC paths use Base; connection requests need their own full configuration.

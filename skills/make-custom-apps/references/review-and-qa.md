@@ -24,7 +24,7 @@ Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for 
 **Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
 or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
-Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) keeps its affected component from plain approval until it is fixed (approve with adjustments) or the app is rejected; advisory findings leave the component acceptable. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
+Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments) or the review rejects; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
@@ -59,7 +59,7 @@ Assess each finding before deriving the overall verdict. A finding that blocks u
 - Preserve existing samples and unrelated section contents during updates; see [maintenance](maintenance.md).
 - When a helper's implementation changes, review its existing tests too, and when you author or evaluate a new or changed custom-function test, assert exact values/types and edge cases;
   distinguish local JavaScript tests from the restricted Make runtime.[27] Trace the reachable call sites,
-  require exact `strictEqual`/`deepStrictEqual` results and exact error type and message, and reject a vacuous
+  require exact `strictEqual`/`deepStrictEqual` results and exact error type and message, and do not accept a vacuous
   pass (a test that never calls the helper or asserts a constant). `assert.ok(value, expected)` does not compare
   `expected`; its second argument is only the failure message. Do not demand a test for an input no call site
   can send, and a pure static helper may need no behavioral test if the reason is stated. These are standards
@@ -82,41 +82,61 @@ For worked synthetic examples and a per-check application table, see
 
 ## 2a. Approval gating
 
-This section defines `approvalImpact` and the three review outcomes. Type-specific guides refine it for their
-topic, but none of them may raise a convention to a defect class on its own. A finding's severity (Error,
-Warning, Suggestion) says how serious it is; `approvalImpact` says whether it must be resolved before the work
-can be approved as it stands. Report every finding the other rules require; this section changes only what must
-be resolved and what the outcome is.
+This section defines `approvalImpact` and the three review outcomes. They are the reviewer's verdict on the
+reviewed files, not Make's app-review or publication approval. Type-specific guides refine this section for
+their topic, but none of them may raise a convention to a defect class on its own. A finding's severity (Error,
+Warning, Suggestion) says how serious it is; `approvalImpact` says whether it is a defect that must be fixed or
+rejected. Report every finding the other rules require; this section changes only what is a defect and what the
+outcome is.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
-| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. It must be resolved (fixed, or the app rejected) before plain approval. |
-| **needs_evidence** | An unresolvable open question could plausibly hide a class (a) to (d) defect: the consequence would be a defect, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact and the class it might hide. Any other open question is advisory. |
-| **advisory** | Everything else, including documented conventions and quality. Report it as a fix or suggestion; it never blocks. |
+| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. The defect is fixed (approve with adjustments) or the review rejects. |
+| **needs_evidence** | A fact that the supplied provider documentation and source cannot settle is essential to judging an applicable class (a)-(d) requirement and could plausibly hide that defect. It is not a fourth outcome and nothing is put on hold: the review rejects and names the exact missing fact. Any other open question is advisory and does not affect the outcome. |
+| **advisory** | Everything else, including documented conventions and quality. Report it as a suggested fix or suggestion; it never blocks. |
 
-Review outcomes. The reviewer may fix defects and return the complete adjusted files; a review is not limited to
-reporting.
+A review job is asynchronous: the reviewer cannot ask the owner mid-review. Resolve each open question from the
+supplied provider documentation and the source first. If it resolves, classify the finding and fix or reject per
+the rules below.
 
-- **Approve**: nothing to fix.
-- **Approve with adjustments**: the reviewer fixes the defects and returns the complete adjusted files, reporting
-  each fix (the finding, the changed component and the evidence for the change).
-- **Reject**: security or privacy defects (class (b)), or a fundamental defect for which no safe fix exists.
+Review outcomes. A review fixes every defect that has a safe fix and returns the complete adjusted files; it
+never ends with findings only. Each review has exactly one outcome, and reject takes precedence.
+
+- **Approve**: no class (a)-(d) defect and no change applied.
+- **Approve with adjustments**: the reviewer applied at least one change (a fixed class (a), (c) or (d) defect,
+  or even a trivial advisory fix) and returns the complete adjusted files, reporting each fix with its finding,
+  changed component and evidence. A fixed defect keeps its class and is reported as fixed.
+- **Reject**: a class (b) defect, or a class (a), (c) or (d) defect with no safe fix, or an essential
+  `needs_evidence` fact. Return no adjusted files as approved work; the report names the fixes that would apply
+  and, for `needs_evidence`, the exact missing fact. Each finding keeps its own `approvalImpact` even when
+  another finding already rejects the app.
 
 Outcome rules:
 
 - Class (a) functional, (c) platform-failure and (d) request-scope defects: when a safe, local, evidence-backed
-  fix exists, apply it and approve with adjustments, reporting each fix. Reject only when no safe fix exists
-  (a fundamental defect). A fix is safe when it stays inside the affected component, follows the applicable
-  contract and cited evidence, and needs no guess about provider behavior or owner intent; otherwise it is not a
-  safe fix.
-- Class (b) security or privacy defects, including a user-entered secret collected through a non-password
-  parameter: reject.
-- Advisory items never block. Fix one when the fix is trivial and safe (and report it as a fix); otherwise
-  report it and leave the files unchanged.
-- `needs_evidence` applies only when an unresolvable open question could plausibly hide a class (a) to (d)
-  defect; any other open question is advisory. Name the missing fact so the owner can resolve it.
+  fix exists, apply it and approve with adjustments, reporting each fix; otherwise reject. A missing connection
+  binding on an authenticated module (class (c)) is fixed only when exactly one compatible connection exists;
+  otherwise reject. Missing requested capabilities, endpoints or operations (class (d)) are not a local fix,
+  because adding components is never safe: reject and name what is missing.
+- Class (b) security or privacy defects always reject, including a missing `log.sanitize` path and a
+  user-entered secret in a non-password parameter; the rejection names the exact fix. There is no carve-out.
+- Advisory items never block. Apply one only when its fix is trivial and safe (and report it as a fix; this makes
+  the outcome approve with adjustments); otherwise report it as a suggested fix and leave the files unchanged.
 - Keep the evidence gates separate: adjusted files are not tested or uploaded because they were returned, and
   every required QA, execution and publication gate still applies to them.
+
+A fix is safe only when all hold: it is the smallest change that removes the cited defect; it stays inside the
+affected component (Base, a connection or a shared helper only when every consumer is traced and keeps its
+behavior); the applicable contract and cited evidence determine the corrected value, with no guess about
+provider behavior or owner intent; and existing scenarios and connections keep working. Never a safe fix:
+changing authentication type, grant, flow or scopes; renaming, retyping or removing a published identifier
+(module, RPC, connection or parameter name, stored connection-data key, output key) unless it is already
+unusable; adding or deleting a module, RPC, webhook, connection, function or Endpoint; changing visibility,
+audience or publication. Typical safe fixes: wrong request key, path or query name; wrong enum or option value;
+value sent with the wrong type; dropped 0, false or null, or missing empty-value handling; page size or limit
+above the documented maximum; non-advancing pagination; wrong output container or iterate path; invalid IML or
+JSON; missing binding when exactly one compatible connection exists. Re-parse and re-check every adjusted file
+before returning it.
 
 Defect classes (a) to (d):
 
@@ -132,12 +152,13 @@ Defect classes (a) to (d):
   non-numeric values; see [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md));
   a date trigger cursor that reads a provider format Make does not auto-parse and so skips or duplicates records;
   and pagination on documented paged responses with no, or non-advancing, page progression.
-- (b) **Security or privacy exposure**: a credential in a URL, log or output; missing log sanitization of
-  credentials; a user-entered secret collected through a plain `text` (non-`password`) connection or install
-  parameter; an authenticated call without auth; an unsafe destination or host injection; missing webhook
-  verification, only when the provider documents a verification protocol.
+- (b) **Security or privacy exposure**: an operation that sends credentials to another host, or exposes
+  protected data or actions without authentication; a secret stored or logged in plain text, including a
+  credential in a URL, log or output, missing log sanitization of credentials, and a user-entered secret
+  collected through a plain `text` (non-`password`) connection or install parameter; an unsafe destination or
+  host injection; missing webhook verification, only when the provider documents a verification protocol.
 - (c) **A documented Make platform requirement whose violation itself causes failure**, for example a missing
-  connection binding on an authenticated module.
+  connection binding on an authenticated module (a platform failure, not a security exposure).
 - (d) **An explicit request-scope requirement is unmet**: requested capabilities, endpoints or operations are
   missing, an explicit marketplace or visibility target is not met, or a task-specific review criterion fails.
 
@@ -147,14 +168,16 @@ selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only C
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
 without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: only a class (a) to (d) defect or an essential `needs_evidence` finding keeps plain approval from being
-given, and only class (b) or a defect with no safe fix leads to rejection; never reject or hold approval for an
-accumulation of advisory items, however many.
+Rule: only a class (a) to (d) defect, or an essential `needs_evidence` fact, can stop a plain approve; only
+class (b), a defect with no safe fix, or an essential `needs_evidence` fact leads to rejection. Never reject
+for an accumulation of advisory items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
 an essential unverified consequence uses the unverified basis, Warning severity and `needs_evidence`; a
 convention or quality point uses the recommendation or observation basis, Warning or
-Suggestion severity and `advisory`. Name a service-specific field only where the review service defines it.
+Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
+for adjustments, list each fix next to its finding. Name a service-specific field only where the review service
+defines it.
 
 ## 3. Approve a bounded test plan
 

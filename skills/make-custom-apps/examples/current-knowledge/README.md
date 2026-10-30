@@ -21,7 +21,7 @@ Strength words in the catalog follow the same split: `must` only for documented 
 * The checker, `scripts/check-current-knowledge.mjs`, is a **narrow, static validator of declared recipes**. It verifies that guides link their sources and fixtures, that each correct fixture satisfies the rule its recipe declares, and that each incorrect fixture breaks that declared rule.
 * It is **not** a general IML interpreter, not an SDK or JSON-schema validator, not a Make upload check, and not a provider test. It never runs fixture code and never calls the network.
 * A pass proves the teaching fixtures are internally consistent. It does not prove that your app works on Make, that a provider accepts a request, or that a webhook verifies a signature.
-* Real apps still need Make's own validation, upload and readback, and execution against the real provider. Missing proof of an important behaviour can make an app *unapproved for lack of evidence*; that is different from asserting a runtime failure. See [compatibility-evidence](guides/compatibility-evidence.md).
+* Real apps still need Make's own validation, upload and readback, and execution against the real provider. Missing proof of an important behaviour can lead to rejection for lack of essential evidence (`needs_evidence`); that is different from asserting a runtime failure. See [compatibility-evidence](guides/compatibility-evidence.md).
 * Routes or capabilities that the public pages do not mention are *unverified*, not proven absent.
 
 ## Core topic guides

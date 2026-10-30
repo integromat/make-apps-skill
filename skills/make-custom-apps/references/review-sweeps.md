@@ -50,4 +50,4 @@ Retrieve only the guides relevant to the components and claims at hand. Do not l
 
 ## Limits
 
-Static review establishes candidates and locations. It does not execute QA plans, live provider calls or Make runs. Keep documented requirements, recommendations and unknown evidence distinct. Do not present a definite provider or runtime claim without evidence; record uncertainty and the evidence needed.
+Static review establishes findings and locations and applies safe fixes per [QA 2a](review-and-qa.md#2a-approval-gating); it does not execute QA plans, live provider calls or Make runs. Keep documented requirements, recommendations and unknown evidence distinct. Do not present a definite provider or runtime claim without evidence; record uncertainty and the evidence needed.

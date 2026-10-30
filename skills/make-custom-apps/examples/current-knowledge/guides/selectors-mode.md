@@ -83,7 +83,7 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 * The mode rule applies to the selector that addresses the record in Get/Update/Delete. A static, non-mappable select (`mappable: false`) is outside it.
 * Selects with hand-written `options` arrays have no RPC and no mode requirement.
 * Search/List and Create follow the hierarchy guidance above as recommendations; there is no blanket exemption of Search/List filters and no blanket rule.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Selector edit mode, option description and a missing RPC are advisory by themselves. A picker option whose value the consuming request cannot use is a functional failure, fixed when a safe local fix exists; keep it separate from label clarity and from endpoint execution failure.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). Selector edit mode, option description and a missing RPC are advisory by themselves. A picker option whose value the consuming request cannot use is a functional failure, fixed when a safe local fix exists, otherwise reject; keep it separate from label clarity and from endpoint execution failure.
 
 ## Evidence and limits
 
