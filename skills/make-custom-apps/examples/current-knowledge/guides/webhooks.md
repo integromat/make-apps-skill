@@ -80,7 +80,7 @@ The platform hides most of the plumbing, so each part can silently fail: an atta
 
 ## Evidence and limits
 
-* Attach/detach identity and the shared `uid`: **documented requirements**; a missing or wrong `uid` or attach/detach identity that breaks routing is class (c) in [Approval gating](../../../references/review-and-qa.md#2a-approval-gating). Connection or setup instructions for a manually registered webhook: documented by Make's app review, but advisory for approval (report as a fix); the banner form: **documented recommendation**.
+* Attach/detach identity and the shared `uid`: **documented requirements**; a missing or wrong `uid` or attach/detach identity that breaks routing, or a missing or incorrect detach that leaves orphaned provider hooks, is class (c) in [Approval gating](../../../references/review-and-qa.md#2a-approval-gating). Connection or setup instructions for a manually registered webhook: documented by Make's app review, but advisory for approval (report as a fix); the banner form: **documented recommendation**.
 * Challenge-only verification: **documented behaviour**; signature checking: **not documented**, therefore never demonstrated here.
 * Delivery/interface alignment: **inferred implementation pattern**. The checker never receives a real request and proves nothing about a provider.
 
