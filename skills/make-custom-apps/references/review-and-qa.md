@@ -19,6 +19,7 @@ Make's public review prerequisites require functional test scenarios and recent,
 ## 2. Static and UX review
 
 Use the current public rules, not internal category codes or an old app's style as universal requirements.
+Approval impact is decided separately in [Approval gating](#approval-gating).
 Report an **Error** for a demonstrated defect, **Warning** for risk or missing evidence, and **Suggestion**
 for optional improvement. Cite the applicable rule and exact component/section for each finding.
 
@@ -64,7 +65,9 @@ Assess each finding before deriving the overall verdict. A demonstrated, applica
   for the tests under review. Missing comprehensive helper tests in a working legacy app (existing-app
   maintenance, no helper change) is an evidence limitation to report and advice to add them, not a defect or an
   approval blocker, unless the task's explicit review criteria require them or the helper's actual behavior
-  lacks essential evidence. Incorrect helper behavior you can demonstrate stays a finding. Details:
+  lacks essential evidence. Incorrect helper behavior you can demonstrate stays a finding. Legacy helpers without tests, unused helper
+  code, generic error types and metadata-only CRUD omissions stay advisory unless a traced consumer or an
+  independently essential unknown behavior makes them gating ([Approval gating](#approval-gating)). Details:
   [IML functions](iml-functions.md) and the [IML tests page](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests).
 - Verify credential sanitization in connection and base requests, responses and error paths.[36]
 
@@ -74,6 +77,41 @@ values into CLI/API create values. Validate the selected operation's contract se
 For worked synthetic examples and a per-check application table, see
 [role application examples](../examples/current-knowledge/guides/role-application-examples.md) and
 [review sweeps](review-sweeps.md).
+
+## Approval gating
+
+This section is the single source of truth for `approvalImpact`. A finding's severity (Error, Warning,
+Suggestion) says how well the evidence supports it; `approvalImpact` says whether it can hold approval.
+Report every finding the other rules require; this section changes only what may block.
+
+| `approvalImpact` | Use it when |
+| --- | --- |
+| **blocks** | Only for class (a), (b) or (c) below, established by the applicable contract and cited evidence. |
+| **needs_evidence** | The consequence would block, but it depends on runtime or provider behavior that the admitted documents do not establish. Name the missing fact. |
+| **advisory** | Everything else, including documented conventions and quality. |
+
+Classes that may block:
+
+- (a) **Established functional failure** under the applicable contract: a request the provider rejects or
+  routes wrongly, an invalid enum or value, broken IML or JSON, a wrong key that leaves a mapped value
+  unusable, a required input that cannot be supplied, pagination that loses records, or falsy/null values
+  dropped, or a clearing operation turned into a no-op.
+- (b) **Security or privacy exposure**: a credential in a URL, log or output; an authenticated call without
+  auth; an unsafe destination or host injection; missing webhook verification, only when the provider
+  documents a verification protocol.
+- (c) **A documented Make platform requirement whose violation itself causes failure**, for example a missing
+  connection binding on an authenticated module.
+
+Advisory by default: interface completeness or typing, a date typed as text, help text and labels, selector
+edit mode, RPC option bounds, legacy or unused helpers, metadata-only CRUD, version drift without shown
+breakage, and ordering or polling assumptions without evidence.
+
+Rule: a rejection needs at least one blocking finding of class (a) to (c). Never reject for an accumulation
+of advisory items, however many. A guide that calls something a convention, recommendation or required
+authoring correction does not make it blocking on its own; it stays advisory unless class (a) to (c) applies.
+
+The plain-text secret input rule (a secret collected through a plain `text` connection parameter) keeps its
+current treatment; its approval impact is an owner policy decision, not set here.
 
 ## 3. Approve a bounded test plan
 

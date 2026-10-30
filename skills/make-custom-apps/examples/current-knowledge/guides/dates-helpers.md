@@ -97,6 +97,7 @@ Make compares and sorts dates internally. A string like `03/04/2026 10:00` is am
 * Input serialization is ISO and is its own check; do not replace calendar-date semantics with midnight UTC by habit.
 * Does not apply to `type: id` triggers for the parse rule, but the order rule still applies.
 * Epoch triggers: the epoch RPC `response.output` should carry only `label` and `date`.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#approval-gating)). A date typed as text, missing conversion, polling-order assumptions without evidence and missing helper tests are advisory. Call removed clock time or a date shift a defect only with the full temporal contract and a shown consequence; keep helper reachability, parser behavior and consequence as separate claims.
 
 ## Evidence and limits
 

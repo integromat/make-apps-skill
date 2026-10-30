@@ -106,6 +106,7 @@ Without recorded status, a review treats every statement with the same confidenc
 * Applies to knowledge, review notes and the catalog; not to an app's runtime behaviour.
 * Small teaching examples may mark everything `static: performed` and the rest `skipped`; real submissions should record each gate truthfully.
 * Where a claim concerns the provider's own behaviour, provider documentation can be the public source, but a Make page is still needed for statements about Make.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#approval-gating)). Block only when an applicable contract establishes the consequence. When a static observation lacks evidence of failure (string versus integer option values, unverified IML or parser behavior, absent pagination metadata, a legacy route absent from partial documentation, prose that conflicts with a schema), report `needs_evidence` or advisory and keep the observation. Version drift without shown breakage and a missing citation range are advisory; a cited range must still support its claim semantically, and an identical-content group does not replace per-component coverage.
 
 ## Evidence and limits
 
