@@ -64,7 +64,7 @@ contract/access.
 1. **Scope/inventory.** Bind provider docs/API version, app/version/origin, environment, real
    IDs/permissions—not labels. Existing app: current metadata, complete components, relevant
    sections/revisions; preserve dirty work/generators. Failed list ≠ empty; export ≠ deployed
-   baseline. Review/audit → findings plus exactly one outcome (approve / approve with adjustments, returning complete adjusted local files / reject; see QA 2a); no unsolicited remote writes; fix →
+   baseline. Review/audit → findings plus exactly one outcome (approve / approve with adjustments, returning complete adjusted local files / reject only for security, scam or trash; see QA 2a); no unsolicited remote writes; fix →
    reproduction/regressions; API change → vendor delta, compatibility and test scope.
 2. **Design.** Coverage matrix: operation → method/path/version, auth/scopes, path/query/body
    inputs, list/item outputs, pagination/errors/limits → component. Keep omissions/provider limits

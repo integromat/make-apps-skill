@@ -72,7 +72,7 @@ A helper that formats, parses or shifts dates is where a one-line test passes wh
 | An explicitly set extension timezone | A test that relies on the machine or editor default passes on one machine and fails on another. Set the zone the test is about, by IANA name. |
 | `undefined`, `null`, `''`, an unparsable string, and a non-string such as `0` or `false` where the call site can supply one | Pin the contract: either the exact return value (`undefined`, `''`) or the exact thrown error type and message. Do not demand types the module can never pass. |
 
-These cases are for writing or evaluating a new or changed date-helper test. Missing coverage in a working legacy app is an evidence limitation and advice, not an automatic defect or approval blocker, unless the task's review criteria or explicit request-scope requirements require it or the helper's actual behavior lacks essential evidence; a demonstrably wrong date result remains a finding.
+These cases are for writing or evaluating a new or changed date-helper test. Missing coverage in a working legacy app is an evidence limitation and advice, not an automatic defect or approval blocker, unless the task's review criteria or explicit request-scope requirements require it or the helper's actual behavior lacks evidence (then fix it); a demonstrably wrong date result remains a finding.
 
 Assert exact results: the complete expected string, or a deep comparison for objects, never only that something "is truthy" or "does not throw". Local Node tests with a mock exercise your logic; they are not proof of how Make runs the function, and the Make documentation for editor tests, not the mock, defines how `it()` tests and timezones behave there.
 

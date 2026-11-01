@@ -24,7 +24,7 @@ Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for 
 **Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
 or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
-Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments) or the review rejects; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias, optional Endpoint and essential-evidence rules remain unchanged, as do every required execution and publication gate.
+Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), except class (b), which rejects; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
@@ -66,10 +66,10 @@ Assess each finding before deriving the overall verdict. A finding that blocks u
   for the tests under review. Missing comprehensive helper tests in a working legacy app (existing-app
   maintenance, no helper change) is an evidence limitation to report and advice to add them, not a defect or an
   approval blocker, unless the task's explicit review criteria require them or the helper's actual behavior
-  lacks essential evidence (an explicit task or request-scope requirement can block when unmet).
+  lacks evidence (an explicit task or request-scope requirement is a class (d) defect when unmet, and is fixed).
   Incorrect helper behavior you can demonstrate stays a finding. Legacy helpers without tests, unused helper
-  code, generic error types and metadata-only CRUD omissions stay advisory unless a traced consumer or an
-  independently essential unknown behavior makes them gating ([Approval gating](#2a-approval-gating)). Details:
+  code, generic error types and metadata-only CRUD omissions stay advisory unless a traced consumer shows a
+  demonstrated defect, which makes them gating ([Approval gating](#2a-approval-gating)). Details:
   [IML functions](iml-functions.md) and the [IML tests page](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/iml-tests).
 - Verify credential sanitization in connection and base requests, responses and error paths.[36]
 
@@ -85,58 +85,60 @@ For worked synthetic examples and a per-check application table, see
 This section defines `approvalImpact` and the three review outcomes. They are the reviewer's verdict on the
 reviewed files, not Make's app-review or publication approval. Type-specific guides refine this section for
 their topic, but none of them may raise a convention to a defect class on its own. A finding's severity (Error,
-Warning, Suggestion) says how serious it is; `approvalImpact` says whether it is a defect that must be fixed or
-rejected. Report every finding the other rules require; this section changes only what is a defect and what the
+Warning, Suggestion) says how serious it is; `approvalImpact` says whether it is a defect that must be fixed.
+Report every finding the other rules require; this section changes only what is a defect and what the
 outcome is.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
-| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. The defect is fixed (approve with adjustments) or the review rejects. |
-| **needs_evidence** | A fact that the supplied provider documentation and source cannot settle is essential to judging an applicable class (a)-(d) requirement and could plausibly hide that defect. It is not a fourth outcome and nothing is put on hold: the review rejects and names the exact missing fact. Any other open question is advisory and does not affect the outcome. |
-| **advisory** | Everything else, including documented conventions and quality. Report it as a suggested fix or suggestion; it never blocks. |
+| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. A class (a), (c) or (d) defect is fixed; a class (b) defect rejects. |
+| **needs_evidence** | Only when an open question could hide a security or privacy (class (b)) defect and the supplied provider documentation and source cannot settle it. Name the exact missing fact. It is not a fourth outcome and nothing is put on hold. Every other open question is advisory and never prevents approval with adjustments. |
+| **advisory** | Everything else, including documented conventions and quality. Report it, and fix it when the fix is clear; it never blocks. |
 
 A review job is asynchronous: the reviewer cannot ask the owner mid-review. Resolve each open question from the
-supplied provider documentation and the source first. If it resolves, classify the finding and fix or reject per
-the rules below.
+supplied provider documentation and the source first, then classify the finding and fix it.
 
-Review outcomes. A review fixes every defect that has a safe fix and returns the complete adjusted files; it
-never ends with findings only. Each review has exactly one outcome, and reject takes precedence.
+Review outcomes. Each review has exactly one outcome. Approve with adjustments is the normal case; most apps
+end there. A review never ends with findings only.
 
-- **Approve**: no class (a)-(d) defect and no change applied.
-- **Approve with adjustments**: the reviewer applied at least one change (a fixed class (a), (c) or (d) defect,
-  or even a trivial advisory fix) and returns the complete adjusted files, reporting each fix with its finding,
-  changed component and evidence. A fixed defect keeps its class and is reported as fixed.
-- **Reject**: a class (b) defect, or a class (a), (c) or (d) defect with no safe fix, or an essential
-  `needs_evidence` fact. Return no adjusted files as approved work; the report names the fixes that would apply
-  and, for `needs_evidence`, the exact missing fact. Each finding keeps its own `approvalImpact` even when
-  another finding already rejects the app.
+- **Approve**: the app is perfect. There is no defect and no change applied.
+- **Approve with adjustments**: the reviewer fixes every defect it finds (class (a) functional, (c) platform,
+  (d) request-scope, and any advisory item it chooses to fix) and returns the complete adjusted files,
+  reporting each fix with its finding, changed component and evidence. Any applied change, including an
+  advisory fix, makes the outcome approve with adjustments. A fixed defect keeps its class and is reported as
+  fixed.
+- **Reject**: rare, and only for one of three reasons. (1) Security or privacy, a class (b) defect.
+  (2) Scam: the app deceives users or acts maliciously, for example hidden data exfiltration, credential
+  harvesting, or misrepresenting the service or its owner. (3) Trash: the source is complete nonsense, not a
+  coherent app that could be adjusted into a working one, for example garbage or placeholder components with no
+  working operation. Return no adjusted files; the report names the reason and, for security, the exact fix.
+  Never reject for a defect that can be fixed. Each finding keeps its own `approvalImpact` even when another
+  finding already rejects the app.
 
 Outcome rules:
 
-- Class (a) functional, (c) platform-failure and (d) request-scope defects: when a safe, local, evidence-backed
-  fix exists, apply it and approve with adjustments, reporting each fix; otherwise reject. A missing connection
-  binding on an authenticated module (class (c)) is fixed only when exactly one compatible connection exists;
-  otherwise reject. Missing requested capabilities, endpoints or operations (class (d)) are not a local fix,
-  because adding components is never safe: reject and name what is missing.
+- Class (a) functional, (c) platform-failure and (d) request-scope defects are fixed, never rejected, and the
+  review approves with adjustments, reporting each fix. A missing connection binding on an authenticated module
+  (class (c)) is fixed by binding the compatible connection; when several exist, choose the one the module's
+  API and scopes require and state the choice. A missing requested capability, endpoint or operation (class
+  (d)) is implemented when the request and the provider documentation determine it.
 - Class (b) security or privacy defects always reject, including a missing `log.sanitize` path and a
   user-entered secret in a non-password parameter; the rejection names the exact fix. There is no carve-out.
-- Advisory items never block. Apply one only when its fix is trivial and safe (and report it as a fix; this makes
-  the outcome approve with adjustments); otherwise report it as a suggested fix and leave the files unchanged.
+- Advisory items never block. Fix the ones whose fix is clear (this makes the outcome approve with
+  adjustments); report any other as a suggestion with the decision needed, and leave the files unchanged for it.
 - Keep the evidence gates separate: adjusted files are not tested or uploaded because they were returned, and
   every required QA, execution and publication gate still applies to them.
 
-A fix is safe only when all hold: it is the smallest change that removes the cited defect; it stays inside the
-affected component (Base, a connection or a shared helper only when every consumer is traced and keeps its
-behavior); the applicable contract and cited evidence determine the corrected value, with no guess about
-provider behavior or owner intent; and existing scenarios and connections keep working. Never a safe fix:
-changing authentication type, grant, flow or scopes; renaming, retyping or removing a published identifier
-(module, RPC, connection or parameter name, stored connection-data key, output key) unless it is already
-unusable; adding or deleting a module, RPC, webhook, connection, function or Endpoint; changing visibility,
-audience or publication. Typical safe fixes: wrong request key, path or query name; wrong enum or option value;
-value sent with the wrong type; dropped 0, false or null, or missing empty-value handling; page size or limit
-above the documented maximum; non-advancing pagination; wrong output container or iterate path; invalid IML or
-JSON; missing binding when exactly one compatible connection exists. Re-parse and re-check every adjusted file
-before returning it.
+Fix guidance. Make the smallest change that removes the cited defect, with the corrected value taken from the
+provider documentation, the Make contract and the cited evidence. Do not make unrelated changes. Prefer the fix
+that keeps existing scenarios and connections working. When the correct fix must change a published type,
+identifier, parameter, output key or authentication configuration because the current one is wrong (for
+example an ID typed as an unsigned integer while the provider's IDs are alphanumeric), make that change and state
+its compatibility impact in the finding. For Base, connections and shared helpers, trace every consumer and keep
+their behavior. Typical fixes: wrong request key, path or query name; wrong enum or option value; value sent
+with the wrong type; dropped 0, false or null, or missing empty-value handling; page size or limit above the
+documented maximum; non-advancing pagination; wrong output container or iterate path; invalid IML or JSON;
+a missing binding. Re-parse and re-check every adjusted file before returning it.
 
 Defect classes (a) to (d):
 
@@ -168,15 +170,15 @@ selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only C
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
 without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: only a class (a) to (d) defect, or an essential `needs_evidence` fact, can stop a plain approve; only
-class (b), a defect with no safe fix, or an essential `needs_evidence` fact leads to rejection. Never reject
-for an accumulation of advisory items, however many.
+Rule: only a class (a) to (d) defect can stop a plain approve, and it is fixed. Only a class (b) defect, a
+scam or trash source leads to rejection. Never reject for a fixable defect or for an accumulation of advisory
+items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
-an essential unverified consequence uses the unverified basis, Warning severity and `needs_evidence`; a
+an open question that could hide a class (b) defect uses the unverified basis, Warning severity and `needs_evidence`; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
-for adjustments, list each fix next to its finding. Name a service-specific field only where the review service
+for adjustments, list each fix next to its finding; for a rejection, name the reason (security, scam or trash). Name a service-specific field only where the review service
 defines it.
 
 ## 3. Approve a bounded test plan

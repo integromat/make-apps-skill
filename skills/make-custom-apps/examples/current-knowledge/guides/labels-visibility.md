@@ -88,17 +88,17 @@ Three different things share the word "hidden". Do not infer one from another:
 
 **Documented behaviour.** Test your app: newly created modules are hidden by default, which is the normal draft state. Request review (step 3): set the modules you intend to publish visible. App visibility: hidden modules still run in existing scenarios but are not offered when adding new modules, so an existing scenario running does not show distribution readiness.
 
-**Review treatment (inferred, target-specific).** Raise a required readiness finding or owner decision (a class (d) request-scope finding under [Approval gating](../../../references/review-and-qa.md#2a-approval-gating)) only when all hold: the stated target is marketplace or new-user availability; the module inventory is complete, nonempty and unambiguous; and every module's visibility is literally `false`. This is class (d); the reviewer cannot safely fix it (the owner chooses visible modules), so reject and name the decision needed. Never expose all modules or publish automatically. When a requested fix makes an intended module visible, judge the resulting graph, not the baseline hidden flags.
+**Review treatment (inferred, target-specific).** Raise a readiness finding (a class (d) request-scope finding under [Approval gating](../../../references/review-and-qa.md#2a-approval-gating)) only when all hold: the stated target is marketplace or new-user availability; the module inventory is complete, nonempty and unambiguous; and every module's visibility is literally `false`. This is class (d). Fix it when the request or the docs determine which modules are visible; otherwise report it as advisory with the decision needed. Never reject for it, and never expose all modules or publish automatically. When a requested fix makes an intended module visible, judge the resulting graph, not the baseline hidden flags.
 
 Do not infer an all-hidden blocker for a private or draft target, no stated target, unknown, missing or truncated flags (a partial create or read projection is not explicit `false`), a partial module list, app-level `public: false`, or approval flags. One hidden legacy module beside an intended visible one is not an all-hidden case.
 
 | Synthetic case | Treatment |
 | --- | --- |
 | Private draft app, two modules, both hidden, code review only | Probably intentional; no blocker |
-| Marketplace target, complete 3-module inventory, all three `public: false` | Class (d); reject, naming the owner decision needed (not safely fixable by the reviewer) |
+| Marketplace target, complete 3-module inventory, all three `public: false` | Class (d); fix when the request or docs determine which modules are visible, otherwise advisory naming the decision needed; never reject |
 | Same target, 2 modules: one intended visible, one hidden legacy | No all-hidden rule; assess the intended published scope |
 | App unapproved, intended modules visible | Do not infer hidden or unusable modules |
-| Flags missing, truncated or contradictory | No all-hidden claim; advisory unless the missing flag is essential to judging a class (d) requirement and could plausibly hide that defect (then reject, naming the missing flag) |
+| Flags missing, truncated or contradictory | No all-hidden claim; advisory, naming the missing flag |
 
 ## Rationale
 
