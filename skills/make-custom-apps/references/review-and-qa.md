@@ -24,7 +24,7 @@ Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for 
 **Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
 or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
-Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), except a class (b) exposure, which rejects; credential handling is fixed; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
+Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), including class (b) findings; only the scam reasons under Reject end in rejection; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
 - Validate every component file against its Make editor schema and fix demonstrated unknown keys or invalid values
@@ -93,8 +93,8 @@ outcome is.
 
 | `approvalImpact` | Use it when |
 | --- | --- |
-| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. A class (a), (c) or (d) defect is fixed, and so is class (b) credential handling; a class (b) exposure rejects. |
-| **needs_evidence** | Only when an open question could hide a class (b) exposure (not credential handling) and the supplied provider documentation and source cannot settle it. When the documentation and source cannot settle it, the review is rejected (a security reason) and the report names the exact missing fact. It is not a fourth outcome and nothing is put on hold. Every other open question is advisory and never prevents approval with adjustments. |
+| **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. Every such defect is fixed, including class (b) credential handling and hardening; only the scam reasons under Reject end in rejection. |
+| **needs_evidence** | Only when an open question could hide a scam, meaning the app author's own code sending credentials or user data to a party other than the provider without the user choosing it, and the supplied documentation and source cannot settle it. The review is then rejected and the report names the exact missing fact. It is not a fourth outcome and nothing is put on hold. Every other open question, including every privacy or security question that is not author-controlled exfiltration, is advisory or fixed preventively and never rejects. |
 | **advisory** | Everything else, including documented conventions and quality. Report it, and fix it when the fix is clear; it never blocks. |
 
 A review job is asynchronous: the reviewer cannot ask the owner mid-review. Resolve each open question from the
@@ -109,13 +109,16 @@ end there. A review never ends with findings only.
   reporting each fix with its finding, changed component and evidence. Any applied change, including an
   advisory fix, makes the outcome approve with adjustments. A fixed defect keeps its class and is reported as
   fixed.
-- **Reject**: rare, and only for one of three reasons. (1) Security or privacy exposure that is not credential handling: a credential sent anywhere other than where the provider documents it, to another host or to another place in the request (for example the query string instead of the documented header), which is rejected as scam prevention; user data sent to a host other than the provider's documented API (exfiltration); protected data or actions exposed without authentication when no connection binding can fix it; a privacy defect that exposes user content against the user's choice (for example content created public before the requested private visibility is applied); or a `needs_evidence` question about such an exposure that the documentation and source cannot settle.
-  (2) Scam: the app deceives users or acts maliciously, for example hidden data exfiltration, credential
-  harvesting, or misrepresenting the service or its owner. (3) Trash: the source is complete nonsense, not a
+- **Reject**: rare, and only for one of these reasons. (1) Scam prevention: the app author's own code sends
+  credentials or user data to a party other than the provider without the user choosing it, for example a hidden
+  or hard-coded third-party host, a collector or analytics endpoint receiving credentials or user data,
+  credential harvesting, or misrepresenting the service or its owner; or a `needs_evidence` question about such
+  a thing that the documentation and source cannot settle. (2) Trash: the source is complete nonsense, not a
   coherent app that could be adjusted into a working one, for example garbage or placeholder components with no
-  working operation. Return no adjusted files; the report names the reason and, for security, the exact fix that would apply.
-  Never reject for a defect that can be fixed. Each finding keeps its own `approvalImpact` even when another
-  finding already rejects the app.
+  working operation. (3) A security exposure that no change inside the app can remove (rare). Return no adjusted
+  files; the report names the reason and, for security, the exact fix that would apply. Never reject for a
+  defect that can be fixed. Each finding keeps its own `approvalImpact` even when another finding already
+  rejects the app.
 
 Outcome rules:
 
@@ -124,14 +127,24 @@ Outcome rules:
   (class (c)) is fixed by binding the compatible connection; when several exist, choose the one the module's
   API and scopes require and state the choice. A missing requested capability, endpoint or operation (class
   (d)) is implemented when the request and the provider documentation determine it.
-- Class (b) credential handling is fixed, never rejected, and the review approves with adjustments (unless
-  something else rejects it). It covers a secret (API key, token, password, OAuth client secret, private key)
-  collected in a non-password parameter of a connection or installation form (change the type to `password`);
-  a missing `log.sanitize` path for a credential (add it); and a credential stored, refreshed or referenced
-  wrongly in connection data (correct it). Report each as a security finding with the fix applied. Moving a
-  credential to the documented place is not a fix: a credential sent anywhere other than where the provider
-  documents it rejects. A class (b) exposure that is not credential handling
-  (see Reject, reason 1) rejects; the rejection names the exact fix that would apply.
+- Class (b) security and privacy findings are fixed, never rejected, and the review approves with adjustments
+  (unless a Reject reason applies). Adjust: credential handling (a secret collected in a non-password parameter
+  of a connection or installation form becomes `password`; a missing `log.sanitize` path for a credential is
+  added; credential storage or refresh in connection data is corrected); a credential placement or host the
+  provider API does not accept (move it to the accepted one, a functional defect); hardening of user- or
+  data-controlled URLs and hostnames where untrusted scenario data could steer a credential elsewhere (restrict
+  a download URL to the provider's file host, validate a hostname input, keep a universal module's input
+  relative); a privacy defect such as content created public before the requested private visibility is
+  applied (apply the visibility at creation); and an unproven privacy or security question, fixed preventively
+  when a safe change exists (for example dropping a default that could widen access), otherwise reported as an
+  unverified advisory finding naming the missing fact. Report each as a security finding with the fix applied.
+- Not a defect, never rejected, and nothing to fix unless the provider API does not accept it: a host,
+  subdomain, region, data-center or instance or base URL entered by the connection owner (multi-tenant and
+  self-hosted APIs are a Make feature, and the owner can only send their own credential to a host they chose);
+  a URL the scenario passes to a module for the provider's own resources (for example a file download URL)
+  and the universal "Make an API call" module; any credential placement the provider API accepts (header, query
+  string, body, Basic auth), since documentation that merely recommends another placement does not make an
+  accepted one wrong; and the provider's own legacy or regional domains.
 - Advisory items never block. Fix the ones whose fix is clear (this makes the outcome approve with
   adjustments); report any other as a suggestion with the decision needed, and leave the files unchanged for it.
 - Keep the evidence gates separate: adjusted files are not tested or uploaded because they were returned, and
@@ -162,19 +175,16 @@ Defect classes (a) to (d):
   non-numeric values; see [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md));
   a date trigger cursor that reads a provider format Make does not auto-parse and so skips or duplicates records;
   and pagination on documented paged responses with no, or non-advancing, page progression.
-- (b) **Security or privacy**. Two kinds, handled differently.
-  *Credential handling* is fixed: a secret stored or logged in plain text, including a credential written to a log
-  or output; missing log sanitization of credentials; a user-entered secret collected through a plain `text`
-  (non-`password`) connection or install parameter; a credential stored, refreshed or referenced wrongly in
-  connection data.
-  *Exposure* rejects: a credential sent anywhere other than where the provider documents it (another host, or
-  another place in the request such as the query string instead of the documented header; scam prevention),
-  including an unsafe destination or host injection; user data sent to a host other than the provider's
-  documented API; protected data or actions exposed
-  without authentication when no connection binding can fix it; user content exposed against the user's choice.
-  Missing webhook verification, only when the provider documents a verification protocol, is fixed by
-  implementing the documented verification when the documentation determines it; otherwise it is an unverified
-  advisory finding naming the missing fact.
+- (b) **Security or privacy**, always fixed (see the Outcome rules for what is adjusted and what is not a
+  defect): a secret collected through a plain `text` (non-`password`) connection or install parameter; a
+  secret stored or logged in plain text, including a credential written to a log or output; missing log
+  sanitization of credentials; credential storage or refresh in connection data that is wrong; a credential
+  placement or host the provider API does not accept; user- or data-controlled URLs and hostnames that
+  untrusted scenario data could use to steer a credential elsewhere; a privacy defect that exposes user content
+  against the user's choice; and missing webhook verification, only when the provider documents a verification
+  protocol (implement it when the documentation determines it, otherwise an unverified advisory finding naming
+  the missing fact). Only author-controlled sending of credentials or user data to a party other than the
+  provider, without the user choosing it, is a scam and rejects.
 - (c) **A documented Make platform requirement whose violation itself causes failure**, for example a missing
   connection binding on an authenticated module (a platform failure, not a security exposure).
 - (d) **An explicit request-scope requirement is unmet**: requested capabilities, endpoints or operations are
@@ -186,15 +196,16 @@ selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only C
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
 without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: only a class (a) to (d) defect can stop a plain approve, and it is fixed. Only a class (b) exposure, an unsettled `needs_evidence` security question, a
-scam or trash source leads to rejection. Never reject for a fixable defect or for an accumulation of advisory
+Rule: only a class (a) to (d) defect can stop a plain approve, and it is fixed. Only a scam (author-controlled sending of credentials or user data to a party other than the provider
+without the user choosing it), an unsettled `needs_evidence` scam question, a trash source or a security
+exposure that no change inside the app can remove leads to rejection. Never reject for a fixable defect or for an accumulation of advisory
 items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
-an open question that could hide a class (b) exposure uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed credential-handling defect is a security finding with the fix applied; a
+an open question that could hide a scam uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed security, credential-handling or privacy defect is a security finding with the fix applied; an unproven privacy or security question that is not a scam is advisory; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
-for adjustments, list each fix next to its finding; for a rejection, name the reason (security, scam or trash). Name a service-specific field only where the review service
+for adjustments, list each fix next to its finding; for a rejection, name the reason (scam, trash or an unremovable exposure). Name a service-specific field only where the review service
 defines it.
 
 ## 3. Approve a bounded test plan
