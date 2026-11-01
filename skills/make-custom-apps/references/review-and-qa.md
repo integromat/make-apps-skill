@@ -104,7 +104,7 @@ Review outcomes. Each review has exactly one outcome. Approve with adjustments i
 end there. A review never ends with findings only.
 
 - **Approve**: the app is perfect. There is no defect and no change applied.
-- **Approve with adjustments**: the reviewer fixes every defect it finds (class (a) functional, (c) platform,
+- **Approve with adjustments**: the reviewer fixes every defect it finds (class (a) functional, (b) security and privacy, (c) platform,
   (d) request-scope, and any advisory item it chooses to fix) and returns the complete adjusted files,
   reporting each fix with its finding, changed component and evidence. Any applied change, including an
   advisory fix, makes the outcome approve with adjustments. A fixed defect keeps its class and is reported as
