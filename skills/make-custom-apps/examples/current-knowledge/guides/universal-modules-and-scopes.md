@@ -50,7 +50,7 @@ A universal module is the only place where a user, not the author, decides the r
 * Apps without a universal module need none of this.
 * The versioned-path guidance depends on the provider's API versioning.
 * Provider restrictions on allowed destinations or content still apply.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A destination that can leave the service authority, or a credential sent to it, is a security exposure (class (b)): reject. Path normalization effects such as an unverified double slash, and scope or header conventions without a shown failure, are advisory, or `needs_evidence` only if the open question could hide a class (b) defect. A header input that can wipe inherited authorisation makes calls fail (class (a)): fix it with a guard; it is class (b) only when protected data or actions are exposed without authentication.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A destination that can leave the service authority, or a credential sent to it, is a security exposure (class (b)): reject. Path normalization effects such as an unverified double slash, and scope or header conventions without a shown failure, are advisory, or `needs_evidence` only if the open question could hide a class (b) defect (unsettled, it rejects and names the missing fact). A header input that can wipe inherited authorisation makes calls fail (class (a)): fix it with a guard; it is class (b) only when protected data or actions are exposed without authentication.
 
 ## Evidence and limits
 

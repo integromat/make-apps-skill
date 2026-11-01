@@ -143,6 +143,7 @@ apps/installers or current-provider behavior.
 | Interface/auth/upload/readback/visibility/release | [Tooling](references/tooling-and-release.md) |
 | Review/severity/QA cases/evidence | [QA](references/review-and-qa.md) |
 | Auditing an app against the rules (applicability tables, sweeps) | [Review sweeps](references/review-sweeps.md) |
+| Validating component files against Make's editor JSON schemas | [Editor schema validation](references/editor-schema-validation.md) |
 | Changelogs/deprecation/migration/breaking changes | [Maintenance](references/maintenance.md) |
 
 For dates/helpers, selectors/mode, RPC limits, header merging, required flags, labels, auth

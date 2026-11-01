@@ -27,6 +27,8 @@ or Suggestion, since only class (a) to (d) defects use the Error level. Cite the
 Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), except class (b), which rejects; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
 
 - Parse every changed JSON/JSONC/IMLJSON file with the appropriate parser; report the number checked.
+- Validate every component file against its Make editor schema and fix demonstrated unknown keys or invalid values
+  (see [editor schema validation](editor-schema-validation.md)); adjusted files must add no new warning.
   Count zero files as a failed validation setup, not a passing app. Parsing does not validate IML semantics.
 - Trace base/auth/error handling, connection and webhook bindings, RPC references and function calls.
 - Use accurate verb/entity module labels; current guidance calls for sentence case and familiar provider
@@ -92,7 +94,7 @@ outcome is.
 | `approvalImpact` | Use it when |
 | --- | --- |
 | **blocks** | Only for class (a), (b), (c) or (d) below, established by the applicable contract and cited evidence. A class (a), (c) or (d) defect is fixed; a class (b) defect rejects. |
-| **needs_evidence** | Only when an open question could hide a security or privacy (class (b)) defect and the supplied provider documentation and source cannot settle it. Name the exact missing fact. It is not a fourth outcome and nothing is put on hold. Every other open question is advisory and never prevents approval with adjustments. |
+| **needs_evidence** | Only when an open question could hide a security or privacy (class (b)) defect and the supplied provider documentation and source cannot settle it. When the documentation and source cannot settle it, the review is rejected (a security reason) and the report names the exact missing fact. It is not a fourth outcome and nothing is put on hold. Every other open question is advisory and never prevents approval with adjustments. |
 | **advisory** | Everything else, including documented conventions and quality. Report it, and fix it when the fix is clear; it never blocks. |
 
 A review job is asynchronous: the reviewer cannot ask the owner mid-review. Resolve each open question from the
@@ -107,7 +109,7 @@ end there. A review never ends with findings only.
   reporting each fix with its finding, changed component and evidence. Any applied change, including an
   advisory fix, makes the outcome approve with adjustments. A fixed defect keeps its class and is reported as
   fixed.
-- **Reject**: rare, and only for one of three reasons. (1) Security or privacy, a class (b) defect.
+- **Reject**: rare, and only for one of three reasons. (1) Security or privacy: a class (b) defect, or a `needs_evidence` question about one that the documentation and source cannot settle.
   (2) Scam: the app deceives users or acts maliciously, for example hidden data exfiltration, credential
   harvesting, or misrepresenting the service or its owner. (3) Trash: the source is complete nonsense, not a
   coherent app that could be adjusted into a working one, for example garbage or placeholder components with no
@@ -118,7 +120,7 @@ end there. A review never ends with findings only.
 Outcome rules:
 
 - Class (a) functional, (c) platform-failure and (d) request-scope defects are fixed, never rejected, and the
-  review approves with adjustments, reporting each fix. A missing connection binding on an authenticated module
+  review approves with adjustments, reporting each fix. If the supplied provider documentation and source cannot determine the correct fix, do not reject and do not hold: fix everything that can be fixed, and report the remainder as an unverified, advisory finding that names the exact missing fact and the decision needed. A missing connection binding on an authenticated module
   (class (c)) is fixed by binding the compatible connection; when several exist, choose the one the module's
   API and scopes require and state the choice. A missing requested capability, endpoint or operation (class
   (d)) is implemented when the request and the provider documentation determine it.
@@ -170,12 +172,12 @@ selector edit mode, RPC option bounds, legacy or unused helpers, metadata-only C
 breakage, missing setup instructions for a manually registered webhook, and ordering or polling assumptions
 without evidence. A documented requirement that is not a class (a) to (d) failure is reported and stays advisory.
 
-Rule: only a class (a) to (d) defect can stop a plain approve, and it is fixed. Only a class (b) defect, a
+Rule: only a class (a) to (d) defect can stop a plain approve, and it is fixed. Only a class (b) defect, an unsettled `needs_evidence` security question, a
 scam or trash source leads to rejection. Never reject for a fixable defect or for an accumulation of advisory
 items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
-an open question that could hide a class (b) defect uses the unverified basis, Warning severity and `needs_evidence`; a
+an open question that could hide a class (b) defect uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
 for adjustments, list each fix next to its finding; for a rejection, name the reason (security, scam or trash). Name a service-specific field only where the review service
