@@ -50,7 +50,7 @@ Authentication fails far from where it is configured: a token that cannot refres
 * Making an extra-scopes field mandatory for a connection whose operations never need it, or declaring a universal call broken without checking its endpoint group's required scopes.
 * Declaring an inconsistency because one block uses `data.x` and another `parameters.x` inside connection communication.
 * Treating `common` as the same store as `data`/`parameters`, which defeats the documented `ifempty(parameters.clientId, common.clientId)` fallback.
-* Credentials in query strings or request bodies of ordinary modules, outside Base.
+* Credentials placed per module (query string, body or header) instead of once in Base, which is a maintainability and sanitization risk only; a placement the provider API accepts is not a defect, and one it does not accept is a functional fix.
 
 ## Exceptions and applicability
 

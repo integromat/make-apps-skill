@@ -33,7 +33,7 @@ The wrapper (`optional`, `endpoint`) belongs to this tree's synthetic fixtures. 
 
 ## Never required
 
-The rule here is deliberately one-directional. An Endpoint is optional by request scope. It is never a gate on approval, never something a review may demand because a provider has "more routes", and ordinary modules must never depend on one. `CK-ENDPOINT-OPTIONAL` enforces that a fixture marks it optional, and the catalog rejects a recipe that depends on the Endpoint recipe.
+The rule here is deliberately one-directional. An Endpoint is optional by request scope. It is not a gate on approval unless the request explicitly requires endpoints (class (d) in [Approval gating](../../../references/review-and-qa.md#2a-approval-gating)), never something a review may demand because a provider has "more routes", and ordinary modules must never depend on one. `CK-ENDPOINT-OPTIONAL` enforces that a fixture marks it optional, and the catalog rejects a recipe that depends on the Endpoint recipe.
 
 When a request does ask for Endpoint definitions, the design questions are the ones in the SDK reference: one useful provider operation per regular Endpoint, inputs that follow the provider's wire contract (not a module's form layout, mapping pills or UI defaults), outputs that keep continuation metadata, connection and scope attachment by definition name, annotations selected from actual effects, and a separate, explicitly marked arbitrary-call fallback. A module run is not proof that an Endpoint works; an Endpoint needs its own execution evidence.
 
