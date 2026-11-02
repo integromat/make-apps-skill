@@ -64,7 +64,7 @@ contract/access.
 1. **Scope/inventory.** Bind provider docs/API version, app/version/origin, environment, real
    IDs/permissions—not labels. Existing app: current metadata, complete components, relevant
    sections/revisions; preserve dirty work/generators. Failed list ≠ empty; export ≠ deployed
-   baseline. Audit → component/section/severity findings, no unsolicited writes; fix →
+   baseline. Review/audit → findings plus exactly one outcome (approve / approve with adjustments, returning complete adjusted local files / reject only for scam, trash or an unremovable exposure; see QA 2a); no unsolicited remote writes; fix →
    reproduction/regressions; API change → vendor delta, compatibility and test scope.
 2. **Design.** Coverage matrix: operation → method/path/version, auth/scopes, path/query/body
    inputs, list/item outputs, pagination/errors/limits → component. Keep omissions/provider limits
@@ -143,6 +143,7 @@ apps/installers or current-provider behavior.
 | Interface/auth/upload/readback/visibility/release | [Tooling](references/tooling-and-release.md) |
 | Review/severity/QA cases/evidence | [QA](references/review-and-qa.md) |
 | Auditing an app against the rules (applicability tables, sweeps) | [Review sweeps](references/review-sweeps.md) |
+| Validating component files against Make's editor JSON schemas | [Editor schema validation](references/editor-schema-validation.md) |
 | Changelogs/deprecation/migration/breaking changes | [Maintenance](references/maintenance.md) |
 
 For dates/helpers, selectors/mode, RPC limits, header merging, required flags, labels, auth
@@ -154,6 +155,6 @@ documentation, never frequency.
 
 Report scope, non-secret app/version/origin/IDs, component paths, coverage/compatibility,
 checks/results, blockers and verified links. Mark local validation, upload/readback, provider
-execution and publication performed/skipped/unavailable; none implies another. Investigation may end
+execution and publication performed/skipped/unavailable; none implies another. Research may end
 with findings; authorized implementation delivers working artifacts + verification, not another
-plan.
+plan. A review reports its outcome, each fix and the complete adjusted files.
