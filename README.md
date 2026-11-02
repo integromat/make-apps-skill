@@ -50,10 +50,8 @@ The inherited `npm run check:custom-apps` command remains available. Checks exer
 
 `npm run build` creates `dist/make-custom-apps.zip`, containing the complete skill plus MIT attribution. CI builds the same archive and attaches it to the workflow run; generated ZIPs are not committed. `npm run check-build` verifies that a local archive matches the current source exactly.
 
-## Source and contribution
+## Contributing
 
-This repository carries the app-authoring work from [make-skills PR #70](https://github.com/integromat/make-skills/pull/70), pinned at `3dcad8e96a6e040e7eeaf344c16efec25685b5e8`. The initial import preserves all 122 skill files and both checker sources byte-for-byte. The immutable [baseline manifest](provenance/pr70-baseline.json) records that source; [adaptations](provenance/adaptations.json) identify the hash-pinned standalone portability changes.
-
-Edit `skills/make-custom-apps/` directly; there are no generated platform mirrors. Keep the entry concise, retain source-grounded guidance, preserve evidence limitations and run the checks above. The provenance files record this migration, not a permanent checksum lock on subsequent improvements.
+Edit `skills/make-custom-apps/` directly; there are no generated platform mirrors. Keep the entry concise, retain source-grounded guidance, preserve evidence limitations and run the checks above.
 
 [MIT License](LICENSE) · Copyright 2026 Make.
