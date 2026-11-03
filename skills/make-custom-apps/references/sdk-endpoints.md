@@ -57,10 +57,11 @@ requirement. Any helper must exist before use and preserve the operation's valid
 containers, false/zero, dates and intentional clearing.
 
 For an in-scope generic fallback, keep `arbitraryCall` separate from regular operations and set
-`arbitraryCallHint: true`.[1] Derive its base/version prefix and nonstandard request behavior from the
-existing API-call module or verified Base; constrain destinations to the authorized provider. Test method,
-headers, query, Content-Type, structured bodies and already-serialized text. Reproduce a serializer defect
-on the selected runtime before adding a workaround; do not assume an old defect still applies.
+`arbitraryCallHint: true`.[1] Derive its base prefix and version handling, and its nonstandard request
+behavior, from the existing API-call module or verified Base; constrain destinations to the authorized
+provider. Test method, headers, query, Content-Type, structured bodies and already-serialized text.
+Reproduce a serializer defect on the selected runtime before adding a workaround; do not assume an old
+defect still applies.
 
 A JSON execution envelope is not raw-file transport. Prefer documented URL/base64 inputs where suitable;
 verify provider-facing binary/multipart support end-to-end rather than claiming a universal ban or inventing

@@ -20,9 +20,10 @@ Make's public review prerequisites require functional test scenarios and recent,
 
 Use the current public rules, not internal category codes or an old app's style as universal requirements.
 Approval impact is decided separately in [Approval gating](#2a-approval-gating).
-Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for risk or missing evidence, and
-**Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
-or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
+Report an **Error** for a demonstrated class (a) to (d) defect, except credential masking (a missing
+`log.sanitize` path): Warning, still `blocks` and fixed; see How to record. Report a **Warning** for risk or
+missing evidence, and **Suggestion** for optional improvement; a demonstrated convention or quality
+deviation is recorded as a Warning or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
 Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), including class (b) findings; only the scam reasons under Reject end in rejection; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
 
@@ -185,7 +186,7 @@ Defect classes (a) to (d):
   and pagination on documented paged responses with no, or non-advancing, page progression.
 - (b) **Security or privacy**, always fixed (see the Outcome rules for what is adjusted and what is not a
   defect): a secret collected through a plain `text` (non-`password`) connection or install parameter; a
-  secret stored or logged in plain text, including a credential written to a log or output; missing log
+  secret stored in plain text, including a credential written to output; missing log
   sanitization of credentials (masking, a minor fix; see Fix quality rules and How to record); credential storage or refresh in connection data that is wrong; a credential
   placement or host the provider API does not accept; user- or data-controlled URLs and hostnames that
   untrusted scenario data could use to steer a credential elsewhere; a privacy defect that exposes user content
