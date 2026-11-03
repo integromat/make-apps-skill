@@ -33,6 +33,37 @@ are likewise preserved.
 - **Annotations:** select `readOnlyHint`, `destructiveHint`, `idempotentHint`, `openWorldHint` and
   `arbitraryCallHint` from actual effects, not HTTP verbs. A POST query can be read-only; idempotence needs
   provider evidence. Hints are neither permission grants nor retry guarantees.[1]
+- **Run-time-chosen effects:** when an input such as a prompt, query statement or script lets the provider
+  choose the operation at run time (for example an agent that picks its own tools), set the hints from the
+  widest effect that input allows, not from typical or example input. If it can create or update records,
+  set `readOnlyHint: false`; if those updates can overwrite data, set `destructiveHint: true`; if repeating
+  the same input can create again, set `idempotentHint: false`. Keep `readOnlyHint: true` only when the
+  provider itself restricts the channel to reads, and cite that restriction in context. In context, also say
+  that an autonomous or no-confirmation flag removes only the pause, not the effect.
+- **Write results:** when a create, update or duplicate does not return the stored resource (only
+  identifiers, an empty success such as 204, or a partial object while the provider finishes the work
+  asynchronously), say so in context and name the exact Endpoint that reads it back; pass any async or
+  status flag the provider returns through unchanged. If the new identifier arrives only in a response
+  header such as `Location`, map that header into the output instead of returning an empty object, and add
+  no success field the provider did not send. Otherwise callers treat a partial write result as final.
+- **Value facts:** record in context what the output types cannot show: timestamps that are not ISO or not
+  in the expected unit (with the conversion factor); numbers or amounts sent as strings; JSON-encoded text
+  or union results whose shape depends on another field (name that field); raw codes and the Endpoint that
+  resolves them; relative URLs and the host they resolve against; fields omitted rather than `null`; and
+  expiries or caps such as cursor or pre-signed URL lifetimes and maximum retrievable rows. Also state what
+  an unknown or inaccessible ID returns: an error, an empty object or an empty list.
+- **Cheaper alternatives:** when the provider meters by query cost, payload size or a per-operation rate
+  limit, state this Endpoint's own extra limit in context and name, by exact Endpoint or input name, the
+  cheaper way the app offers for common needs: an aggregate or query Endpoint instead of one read per
+  record, or field selection instead of the full object. Callers and agents choose Endpoints from these
+  descriptions.
+- **Caller-chosen fields:** when a query Endpoint lets the caller choose fields, aggregates or columns, the
+  record shape depends on the input. Declare the record with the documented generic shape (an array without
+  `spec`, or a collection with `"spec": []`) or with only the fields every record carries, and keep
+  continuation metadata in separate typed outputs. In help or context, say that only requested fields
+  return, what returns when none are requested, how keys are formed (aliases, case), and which identifier to
+  request for each follow-up Endpoint, named exactly (for example "request `id` for `getRecord` and
+  `updateRecord`").
 
 ## 3. Implement and verify request semantics
 
@@ -66,6 +97,9 @@ defect still applies.
 A JSON execution envelope is not raw-file transport. Prefer documented URL/base64 inputs where suitable;
 verify provider-facing binary/multipart support end-to-end rather than claiming a universal ban or inventing
 an equivalent operation.
+
+Record the tested empty-value results in context: which empty inputs are dropped, which are sent as given,
+which value or flag clears a field, and what this Endpoint cannot clear; mark untested cases as unverified.
 
 ## 4. Save in stages and read back
 

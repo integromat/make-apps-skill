@@ -20,6 +20,24 @@ several events. Do not invent attach/detach endpoints from a provider's event na
 Sources: [Webhook types](https://developers.make.com/custom-apps-documentation/app-components/webhooks.md),
 [Dedicated webhooks](https://developers.make.com/custom-apps-documentation/app-components/webhooks/dedicated.md).
 
+### Callback URL sent with each job request
+
+Some providers have no subscription endpoint. Instead, each job-creating request
+accepts a callback URL, and the provider posts the result there when the job ends.
+Model this as manual registration:
+
+- Use a non-attached dedicated webhook (no attach or detach) and an instant trigger.
+  Make generates the address when the user creates the webhook in that trigger. The job
+  module does not receive that address, so it offers an optional URL field for it. The
+  field's help names the watch module whose address belongs there, and the trigger's
+  banner explains the same pairing.
+- If the job module also offers a mode that waits for the result with
+  [bounded asynchronous polling](requests-and-responses.md#bounded-asynchronous-polling-with-repeat),
+  do not send the callback URL in that mode, or the result reaches both the module and
+  the watch module. Say in help that the waiting mode does not start the watch module.
+
+Source: [Manual registration](https://developers.make.com/custom-apps-documentation/app-components/webhooks/dedicated/not-attached.md).
+
 ## Implement attach and detach together
 
 1. Link the instant trigger to the intended webhook definition and connection.
@@ -134,6 +152,35 @@ with an appropriate IML conversion; do not manufacture timestamps to mask missin
 
 Source: [Polling trigger contract](https://developers.make.com/custom-apps-documentation/app-components/modules/trigger.md).
 
+### Polls that change provider state
+
+Some sources change state when they are read. A queue receive can hide each item
+for a lease period, and a list option can mark fetched items as read or processed.
+Classify such a trigger request as a write, as
+[requests and responses](requests-and-responses.md#independent-writes-in-one-module)
+does for any request with side effects, not as a plain read.
+
+- The epoch inherits the trigger's request, so each opening of **Choose where to start**
+  also leases or marks the items it lists. Where the provider documents one, override
+  the epoch request with a non-claiming variant, such as a zero lease or a peek.
+- Make restores its saved trigger progress after a failed run, but not the provider-side
+  change. A leased item stays hidden until its lease expires, an item marked as read no
+  longer matches a filter on unread items, and an item that returns with a date older
+  than the saved progress is skipped by a date trigger. No module reports an error.
+- Make chooses the items to emit only after the trigger's requests have run: it drops
+  items already covered by the saved progress, sorts, and applies the limit. A marking
+  flag on the list request therefore also marks items that Make drops or holds back for
+  a later run, and a follow-up request inside the trigger cannot know which items were
+  emitted. Prefer a separate action module that marks or acknowledges items after the
+  scenario has processed them. Keep any built-in marking option off by default and say
+  in help what it changes.
+- When the lease length is a parameter, give it a safe default within the provider's
+  documented range, and say in help that retrieved items stay hidden for that time and
+  come back unless they are deleted or acknowledged.
+
+Sources: [Epoch inheritance](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md),
+[Polling trigger contract](https://developers.make.com/custom-apps-documentation/app-components/modules/trigger.md).
+
 ## Current-knowledge guides
 
 - Date-only, time-only and unknown-timezone values, trigger order and helper tracing:
@@ -155,5 +202,66 @@ different starting options; test the options appropriate to the selected trigger
   delivery, enrichment failure, and detach without affecting unrelated subscriptions.
 - Separate fixture tests from authenticated provider delivery and scenario execution.
   A linked trigger and successful upload do not prove registration or receipt.
+
+Source: [Epoch inheritance and output](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md).
+
+### Epoch overrides and the dates users pick from
+
+The epoch request is the trigger's request plus the epoch's overrides, so review the
+two files together rather than the epoch alone.
+
+- Put an override where the trigger actually sends that value. When the trigger posts
+  its query in `body`, an epoch override in `qs` does not replace it. The epoch still
+  sends the inherited body, now with an extra query parameter. The provider, not the
+  epoch, then decides which query runs, so an intended override (a smaller field set or
+  page size) can be silently ignored.
+- Map `output.date` from the same field and conversion as `trigger.date`. The start
+  point a user picks comes from the inherited `response.trigger` values, so a date from
+  another field (such as a creation date on an update trigger) shows the user a different
+  timeline from the one the cursor follows.
+- Check that `label` and `date` read fields the iterated items really contain. Blank
+  labels or missing dates in the panel mean the epoch maps names the response lacks.
+
+~~~json
+{
+  "response": {
+    "limit": 300,
+    "output": {
+      "label": "{{item.title}}",
+      "date": "{{parseDate(item.updatedAt, 'X')}}"
+    }
+  }
+}
+~~~
+
+The fragment assumes a trigger whose `trigger.date` is
+`{{parseDate(item.updatedAt, 'X')}}` and whose items carry `title`. Copy the
+trigger's expression rather than retyping it.
+
+Sources: [Epoch inheritance and output](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md),
+[Trigger best practices](https://developers.make.com/custom-apps-documentation/best-practices/trigger-modules.md).
+
+### A trigger that still matches the starter template
+
+A new trigger module can start from an editor template. The template requests a
+placeholder `/users` list, iterates `body.users`, uses `item.id` and `item.created` for
+the trigger, has an epoch that labels items with `item.name` and dates them with
+`item.created`, a user-shaped interface (`id`, `email`, `name`, `created`), empty
+samples and tutorial comments. It is easy to leave all of this in place under a
+resource-specific label. It is also easy to adapt the request but keep the template's
+epoch field names. Either way the module uploads and validates, then returns the
+wrong resource or blank **Choose where to start** entries.
+
+When reviewing a trigger, confirm that these all describe one resource and one field
+set: the module label and description, `url`, `response.iterate`, `trigger.id` and
+`trigger.date`, the epoch `output`, the interface and samples, and `scope`. Leftover
+template comments are a prompt for this check, not a defect on their own. The response
+fragment under polling progress uses the same placeholder names, so a trigger that
+matches it still needs provider evidence. A visible module with this mismatch is the
+functional label mismatch described in [review sweeps](review-sweeps.md): fix it from
+the provider documentation as a class (a) defect under
+[Approval gating](review-and-qa.md#2a-approval-gating). One leftover template module
+does not make the app trash. A hidden one still belongs in the inventory; the module-wide check is
+[Leftover editor-template modules](review-and-qa.md#leftover-editor-template-modules).
 
 Source: [Epoch inheritance and output](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md).

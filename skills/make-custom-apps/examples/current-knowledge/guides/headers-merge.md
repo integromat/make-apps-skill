@@ -19,6 +19,36 @@ Authentication usually lives in the Base `headers`. A module that adds a header 
 }
 ```
 
+### Dropping one inherited header in one request
+
+**Inferred implementation pattern** (it combines the documented per-name merge above with the input-parameters page's examples, where a value of `undefined` leaves the key out of the request body). To keep one request from sending a single Base header, keep `headers` a collection and set that name to `"{{undefined}}"`. The module entry wins by name, its value evaluates to `undefined`, and the header is left out of the request. Every other Base header, including the credential, is still sent.
+
+```json
+{
+  "headers": {
+    "x-api-version": "{{undefined}}"
+  }
+}
+```
+
+Use it when the provider documents that one endpoint, or one endpoint family, rejects or misreads a header the rest of the API needs (a version header, for instance), or when one endpoint takes the same credential in a different place from where Base sends it:
+
+```json
+{
+  "headers": {
+    "authorization": "{{undefined}}"
+  },
+  "qs": {
+    "access_token": "{{connection.accessToken}}"
+  }
+}
+```
+
+* Write the name the way Base writes it. Names are case-insensitive, but the same spelling keeps the effective set obvious and does not depend on how case-variant collisions resolve (see Evidence and limits).
+* Move the credential only where the provider requires that placement for the endpoint, and mask its new location: add the path (here `request.qs.access_token`) to Base `log.sanitize`, which every module inherits ([auth-context](auth-context.md)). As a reviewer, a placement the provider accepts is not a defect; a missing `log.sanitize` path for it is fixed as credential masking.
+* When computing the effective headers, remove every name whose module value is `undefined`.
+* This is narrower than the alternatives. A whole-expression `headers` value drops all of Base, and repeating the whole Base set in the module copies the credential into every such module (see Pitfalls). A reviewer does not flag the dropped name as "ignoring Base" and does not replace it with a full override.
+
 ## Computing the effective headers
 
 Do it in this order and write the result down:
@@ -40,6 +70,7 @@ The checker's `CK-HEADERS-MERGE` rule does this computation over a declared fixt
 * **Absolute URLs.** An absolute request URL does not by itself prove that inherited authentication is lost. Check which configuration the documented context applies and what the effective request carries. The security question for user-supplied destinations is separate (see [universal-modules-and-scopes](universal-modules-and-scopes.md)).
 * **Customisable headers on universal modules.** Two independent checks. *Customisation:* the documented REST universal example exposes an optional Headers array mapped into the request headers, so assess header capability for every REST universal module, not only once a provider is already known to need one. Any equivalent mapped input counts; no parameter name is mandated. A missing REST capability is at least a documented-convention recommendation; being unable to send a header the provider requires (a version or content negotiation header) is a concrete, scoped capability defect. It is not an unqualified publication blocker: the GraphQL universal example has query/variables inputs and no Headers input (its Headers field is output), so the generic REST Headers-input convention is not by itself a GraphQL finding. That does not exempt provider-required headers: independently check that any header the provider requires can be sent (the official GraphQL example sets a request header in Communication). *Authentication:* trace whether the effective request keeps the credentials. Missing customisation never shows auth was lost, and a spread does not by itself prove every credential collision safe. Input headers and response headers are different things.
 * **Pagination and repeats.** Pagination merges parent request parameters by default, and overriding only the URL does not make other inherited values vanish ([pagination-and-trigger-state](pagination-and-trigger-state.md)).
+* **Signed and external file URLs in a request chain.** An absolute URL replaces only the Base URL, so the Base headers, credential included, still go with a step that calls a URL the API returned on another host. When and how to drop the credential on that step only (by name, with `"{{undefined}}"`), and how a reviewer treats it: [requests-files-multistep](requests-files-multistep.md#a-follow-up-request-to-a-url-the-provider-returned).
 
 ## Rationale
 
@@ -53,6 +84,8 @@ The spread exists precisely so that a computed set of headers can be added witho
 * Re-adding the token by hand in every module. When the credential changes, the modules silently disagree.
 * Putting credentials in `qs` for convenience; then they appear in URLs and logs.
 * Mixing `qs` and a query string in the URL; use one.
+* Reading the module template's empty `"headers": {}` as clearing the Base headers, either to keep the credential off one step or as a finding that the module lost authentication. An empty collection merges, so every Base header, credential included, is still sent; that boilerplate is not a finding.
+* Blanking an inherited header with `""`, or setting `"headers": null`, to stop it being sent. Neither is documented to remove a header, so new code sets the one name to `"{{undefined}}"` instead (see *Dropping one inherited header in one request*). In review, an existing blank or `null` on a step that works is not a finding. What `"headers": null` does to the rest of Base is not documented, so do not claim from it alone that the credential is kept off or that it leaks.
 
 ## Exceptions and applicability
 
@@ -65,6 +98,7 @@ The spread exists precisely so that a computed set of headers can be added witho
 * Merge, overwrite and case-insensitivity: **documented requirement** (documented behaviour).
 * Replacement versus merge and case-insensitive names are what the checked primary pages establish. The within-collection "apply entries in order, later write wins" step (and mixed spread/explicit or case-variant collisions) is a **bounded fixture model, not proven platform precedence**: do not use it alone to assert an authentication failure; seek explicit documentation or runtime evidence first.
 * The modelled effective-headers computation: **inferred implementation pattern**. The checker takes `spreadProduces` from the fixture; it never evaluates the helper that would really produce the headers, and it does not model every IML edge case.
+* Dropping one inherited header with `"{{undefined}}"`: **inferred implementation pattern**. It combines the documented per-name merge with the input-parameters page's examples, where `undefined` leaves a key out of the request body. The headers reference itself does not mention `undefined`; do not extend the rule to `""`, `null` or an empty collection, which are not documented to remove a header.
 
 ## Fixtures
 

@@ -28,6 +28,8 @@ Where that comparison establishes an applicable, unmet input requirement, record
 
 Both points are mostly form-quality guidance: a more accurate type or clearer help for a field that already works is a recommendation, not a blocker, and an existing app's types should not be changed in place without checking what its saved scenarios already map. That does not downgrade a demonstrated defect. A type the schema rejects, a declared type that loses or alters the value, a `required: true` that blocks a valid state, or a mismatch with documented provider behavior is a concrete finding when the evidence is cited, even though adjacent layout advice stays advice. The date-only and time-only `text` exception above is unchanged.
 
+**Alternative inputs.** "Either field A or field B is required" is one of the conditionally required cases the mappable-parameters best practices name, and a clear hint is mandatory for it. Marking every alternative `required: true` forces the user to fill all of them. Use a branch structure as described above where one fits. Otherwise leave the alternatives optional and put the rule in the help of each one, naming every alternative ("At least one of **Email** or **Phone** is required."), because a user who maps one field reads only that field's hint. Alternatives whose hints name the rule are not "optional but actually required"; a missing hint is the conditional-help gap in the approval impact below and stays advisory.
+
 ## Falsy values and empty values
 
 **Documented recommendation.** The input-processing page recommends `"body": "{{parameters}}"` or `"{{...}}": "{{omit(parameters, 'id')}}"` and says that using `ifempty(..., undefined)` or an `if` to drop empty values is a bad practice, since `null`, empty string, `0` and empty arrays could then never be sent. On platform version 2 empty values are already ignored by default; update and universal modules show an `erase` pill so users can send an explicit empty value.
@@ -53,6 +55,13 @@ A known useful field included in the selected output contract still needs the ap
 }
 ```
 
+**Inferred implementation pattern.** Names are unique per level and compare exactly, case included. Run the name comparison above on every level, nested `spec` levels included, in static interfaces and in interfaces an RPC builds:
+
+* **Twins.** Two entries with the same `name` at one level describe one key of the emitted object, so at most one of them can be right. Besides merged response variants ([outputs-empty-values-updates](outputs-empty-values-updates.md)), a common cause is a copied entry that kept its original name, such as an entry labelled "Line 2" that still has the name of "Line 1". Two inputs that share a name in one parameter list likewise compete for one key of `parameters`.
+* **Case variants.** An entry `accountID` next to an emitted `accountId` names a key the output never carries. Keys match exactly, so a value mapped from that entry is empty while the real key stays undeclared.
+
+Both usually arrive with a long interface or parameter list copied from a sibling module, which can also bring fields that only the other resource returns. For interfaces, impact follows the approval rules below. An identical twin, or one that differs only in a scalar type, is advisory cleanup. A twin whose type contradicts the emitted container, or a case variant the output never carries, is a wrong key and is fixed. For a parameter twin, judge impact from the value the request actually receives.
+
 ## Related output and input details
 
 * **Precision.** A provider identifier too large for a JSON number can be rounded when the response is parsed, and declaring the interface field as `text` afterwards cannot restore digits. If the provider cannot send such identifiers as strings, use the documented response-parsing option before precision is lost ([outputs-empty-values-updates](outputs-empty-values-updates.md)).
@@ -73,6 +82,7 @@ The form and the request are written at different times by different people (or 
 * Using `ifempty(parameters.x, undefined)` to hide empty values, then wondering why nobody can clear the field.
 * Output keys renamed in the projection but the interface still lists the old names.
 * Declaring an interface numeric when the provider returns an ID string, which breaks mapping downstream.
+* Copying the keys of one test response into a collection whose keys each user defines (custom attributes, metadata), such as `"spec": [{ "name": "test_attr" }, { "name": "key1" }]`. The interface generator does this when it is given one sample, and the interface page says that generated code still needs review. Every user then sees those sample keys as mappable fields with misleading labels, while their own keys stay undeclared. Declare such a map with the documented unknown-structure shape, `{ "name": "metadata", "type": "collection", "label": "Metadata", "spec": [] }`, so whatever keys the provider returns can be mapped. Keys the provider itself defines stay declared; only the user-defined map gets the empty `spec`.
 
 ## Exceptions and applicability
 

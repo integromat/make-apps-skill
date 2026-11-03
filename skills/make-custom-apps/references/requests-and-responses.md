@@ -25,6 +25,152 @@ Approval impact for any request-contract finding follows [Approval gating](revie
 Sources: [Request directives](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md),
 [Special query encoding](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/processing-of-input-parameters.md#special-case-query-string-parameters-in-the-url).
 
+### Array fields: match the shape of the input
+
+A literal array around a single-value input is how one value reaches an array field:
+`"ids": ["{{parameters.id}}"]`. Around a `multiple: true` select or an `array` input it nests
+the user's array inside another one and sends `[["a", "b"]]`; pass such a parameter directly
+(`"ids": "{{parameters.ids}}"`). Check every literal `[...]` in a body against the
+multiplicity of what it wraps, and compare sibling components (attach and update, create and
+update) that send the same field.
+
+### Key/value rows for open maps
+
+For a provider field that is an open map (custom attributes, metadata, template variables),
+offer an array of key/value rows and convert it with `toCollection(rows, 'key', 'value')`;
+the GraphQL universal module example converts its variables the same way. Combine it with
+whole-parameter mapping: spread the other parameters first, then write the converted field
+after the spread so it is the value that is sent.
+
+```json
+{
+  "body": {
+    "{{...}}": "{{omit(parameters, 'attributes')}}",
+    "attributes": "{{if(parameters.attributes, toCollection(parameters.attributes, 'key', 'value'), undefined)}}"
+  }
+}
+```
+
+`toCollection()` returns `{}` for a missing value, and on Apps platform version 2 an array
+input the user left blank is missing, so without the guard a blank field is sent as an empty
+map. Test presence, not length: an erased input arrives as `[]`, still passes the test and is
+sent as `{}`, so a user can clear the map where the provider documents that. A guard such as
+`if(length(...) > 0, ...)` would make clearing impossible, which the input-processing best
+practices list as a bad practice. Use the row field names the parameter actually declares
+(`key`/`value`, `title`/`value`, `name`/`value`).
+
+### Optional groups and empty-collection cleanup
+
+When every field of a collection is left empty, Make still sends the collection as `{}`
+([Processing of empty values](https://developers.make.com/custom-apps-documentation/other/processing-of-empty-values.md)),
+and a parent written literally in the request (`"filters": {"a": ..., "b": ...}`) is sent as
+`"filters": {}` when every child resolves empty. Some APIs reject an empty object or read it
+differently from an absent group. Clean the whole group in one expression instead of
+cleaning each child, and test the all-empty case, not only a filled form.
+
+Check a copied removal helper before relying on it: the documented example sends an array of
+plain values (`["a", "b"]`, a multiple select) as `[null, null]`, and still sends an erased
+collection such as `{"street": null}` as `{}`. The branch-by-branch checks and a corrected
+helper are in
+[outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md#recursive-cleanup-helpers-check-every-branch).
+Like any removal helper, it does not belong where an empty value must clear a field.
+
+Source: [Removal of empty collections and nulls](https://developers.make.com/custom-apps-documentation/app-components/iml-functions/removal-of-empty-collections-and-nulls.md).
+
+### A computed method must always resolve
+
+`method` accepts an IML expression (the request directives page shows
+`{{if(parameters.create, 'POST', 'PUT')}}`), so one module can choose `POST`, `PATCH` or
+`PUT` from a select. The expression must yield a method for every value the field can hold,
+including an empty one. A `switch()` without a final fallback returns nothing for an
+unmatched value (for example a select default `create` against option values `Create`), and
+the request then goes out with the default `GET`, which drops the body without any error.
+
+```json
+{
+  "method": "{{switch(parameters.action, 'create', 'POST', 'update', 'PATCH', 'upsert', 'PUT', 'POST')}}",
+  "body": {"{{...}}": "{{omit(parameters, 'action', 'id')}}"}
+}
+```
+
+Keep the select default identical to one option value, end `switch()` with a fallback,
+remove the selector and path-only fields from the body, and say in the help what each choice
+does.
+
+### Path segments when `encodeUrl` is off
+
+`encodeUrl: false` hands URL encoding to the module: Make no longer encodes the path. Pass
+every interpolated path segment through `encodeURL()`, not only the one that prompted the
+change. Do not hand-replace a single character (`:` to `%3A`): `/`, `?`, `#`, `%` and spaces
+in a mapped ID stay raw, so a slash changes the route and a `?` or `#` starts a query or a
+fragment.
+
+```json
+{"url": "/objects/{{encodeURL(parameters.type)}}/{{encodeURL(parameters.key)}}", "encodeUrl": false}
+```
+
+This is about path segments. Keep query values in `qs`: with `encodeUrl: false`, Make
+decodes percent-encoded characters in a query string written into the `url`, so a
+hand-encoded query there needs the default `true` (see the `encodeUrl` warning in the
+request directives). Test IDs that contain the characters above.
+
+### User values inside provider query languages
+
+Some APIs take a filter, search or key expression in their own syntax: a `$filter`-style
+query parameter, a search string, a key predicate in the path. When a module or helper
+builds that expression from mapped values, treat each value as a literal of that language:
+
+- escape its quote character the way the provider documents; languages that quote text with
+  single quotes usually double an embedded one (`O'Brien` becomes `'O''Brien'`);
+- check numbers and dates before formatting them in: a non-number becomes `NaN`, and an
+  unparsable date throws inside the helper;
+- take field and operator names from a fixed list or your own RPC, never from free text;
+- send a finished query expression through `qs` so Make encodes it.
+
+```js
+function quoteLiteral(value) {
+  return "'" + String(value).replace(/'/g, "''") + "'";
+}
+// `${field} eq ${quoteLiteral(value)}`
+```
+
+An unescaped quote turns a valid input, such as a surname, into a 400 or a different filter.
+Give the helper tests with quotes, empty values, numbers and dates.
+
+### GraphQL operations in ordinary modules
+
+Keep the operation text fixed and pass every user value through `variables`, declared with
+its GraphQL type in the operation signature, as the GraphQL universal module does. Splicing
+mapped values into the query text breaks on quotes, backslashes, braces and newlines, lets a
+mapped value change the operation, and needs string fragments for optional arguments. With
+variables, an optional value left empty is simply omitted and no escaping helper is needed.
+
+```json
+{
+  "url": "/graphql",
+  "method": "POST",
+  "body": {
+    "query": "mutation ($id: ID!, $name: String!, $note: String) { renameItem(id: $id, name: $name, note: $note) { id name } }",
+    "variables": {
+      "id": "{{parameters.itemId}}",
+      "name": "{{parameters.name}}",
+      "note": "{{parameters.note}}"
+    }
+  }
+}
+```
+
+Avoid `"query": "mutation { renameItem(id: {{parameters.itemId}}, name: \"{{parameters.name}}\") { id } }"`.
+
+When the provider's schema expects a JSON-encoded string for a variable (check its scalar
+documentation), that is the JSON-string-inside-JSON case above: serialize an object once and
+pass an already encoded string unchanged, so it is not encoded twice. When part of the
+document must be generated (a field selection chosen in the module), build it only from names
+your own RPC returned, never from free text, and test the helper with quotes, backslashes and
+newlines. Errors inside HTTP 200 responses still need `valid` (see below).
+
+Source: [GraphQL universal module: query, operation name and variables](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/graphql.md).
+
 ## Parse before shaping output
 
 `response.type` controls parsing, independently of request `type`. Automatic parsing
@@ -78,6 +224,51 @@ Sources: [Valid responses](https://developers.make.com/custom-apps-documentation
 [Error schema, status defaults, and precedence](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/error.md),
 [HTTP errors cannot be evaluated as success](https://developers.make.com/custom-apps-documentation/app-components/base/error-handling.md).
 
+### Messages from a list of provider errors
+
+When the provider returns a list of field errors next to, or instead of, one message, join
+the list and fall back to the top-level message. The user then sees every failing field, and
+an empty or missing list does not leave a bare status code:
+
+```json
+{
+  "response": {
+    "error": {
+      "message": "[{{statusCode}}] {{ifempty(join(map(body.error.details, 'message'), '; '), body.error.message)}}"
+    }
+  }
+}
+```
+
+Map the property that holds the readable text (`message`, `detail`), keep the status prefix,
+and leave credentials and request echoes out. `map()` needs an array or nothing: check that
+the provider's error shape never puts a single object in that field. The batch-actions
+asynchronous example joins a stored error list into its message the same way.
+
+### A lookup that finds nothing
+
+A Get module that reads one record through a list, filter, by-IDs or parent query
+(`body.items[1]`, `body.data.parents[1].children`) usually receives HTTP 200 with an empty
+list when the ID is unknown or deleted. The module then succeeds with an empty or almost
+empty bundle, and the scenario continues with blank values. Decide it explicitly: mark the
+response invalid with a not-found message, or state in the help that an empty result means
+"not found".
+
+```json
+{
+  "response": {
+    "valid": {
+      "condition": "{{length(body.items) > 0}}",
+      "message": "No record found for ID {{parameters.id}}."
+    },
+    "output": "{{body.items[1]}}"
+  }
+}
+```
+
+This is a design decision to make visible, not by itself a rejection reason
+(see [Approval gating](review-and-qa.md#2a-approval-gating)).
+
 ## Keep output, temporary state, and wrappers distinct
 
 - `response.iterate` selects an array; `response.output` shapes each selected `item`.
@@ -92,6 +283,42 @@ Sources: [Valid responses](https://developers.make.com/custom-apps-documentation
 
 Sources: [Output and wrapper](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/output.md),
 [Response temp](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/temp.md).
+
+### Values from response headers
+
+Besides `body` and `statusCode`, the response context has `headers`: the response headers
+of the last request. Some values exist only there: the ID or location of a resource whose
+create call answers with an empty body, the file name of a download
+(`Content-Disposition`), and next-page cursors or links. Read them by their lower-case name,
+with backticks around a name that contains special characters
+(``{{headers.`x-request-id`}}``, `{{headers.location}}`).
+
+```json
+{
+  "url": "/records",
+  "method": "POST",
+  "body": "{{parameters}}",
+  "response": {
+    "temp": {"newId": "{{last(split(headers.location, '/'))}}"},
+    "output": {"id": "{{temp.newId}}", "location": "{{headers.location}}"}
+  }
+}
+```
+
+In a request array each later response replaces `headers`, so copy a value into
+`response.temp` in the step that received it. Give header-derived values a fallback (a
+download without `Content-Disposition` still needs a file name), and declare every value you
+output in the interface.
+
+Source: [Action module IML variables](https://developers.make.com/custom-apps-documentation/app-components/modules/action/components.md).
+
+### Temporary values merge, they do not replace
+
+See [requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md#how-temp-merges-arrays-and-objects)
+— how `temp` merges arrays position by position and collections key by key, and why each
+processing stage and loop control needs its own key and an explicit end value.
+
+Source: [Response temp](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/temp.md).
 
 ## Multiple requests and safe updates
 
@@ -140,6 +367,41 @@ and [outputs, empty values and updates](../examples/current-knowledge/guides/out
 Guides for the neighbouring questions: default 429 and 5xx handling, `valid` and per-status
 errors in [errors and rate limits](../examples/current-knowledge/guides/errors-and-rate-limits.md).
 
+### Steps without a request
+
+An element of the request array that omits `url` sends nothing (request-less communication).
+Its request directives (`method`, `qs`, `headers`, `body`, `type`) are ignored, while its
+`condition`, `temp` and response directives (`valid`, `error`, `output`) still run, against
+`temp` and the `body`, `headers` and `statusCode` of the last real response. The
+batch-actions asynchronous example closes its chain this way. Use such a step to:
+
+- fail early with a clear message when an input combination cannot work;
+- turn a status collected by earlier steps into a success or a clear error;
+- emit the output of the branch that ran: give each branch its own closing step with its own
+  `condition`, instead of relying on an earlier output surviving a skipped step.
+
+```json
+[
+  {"url": "/jobs", "method": "POST", "body": "{{parameters}}", "response": {"temp": {"job": "{{body}}"}}},
+  {
+    "response": {
+      "valid": {
+        "condition": "{{temp.job.status != 'rejected'}}",
+        "message": "Job {{temp.job.id}} was rejected: {{temp.job.reason}}"
+      },
+      "output": "{{temp.job}}"
+    }
+  }
+]
+```
+
+Omit `url` entirely: a `url` expression that resolves to an empty value is not the same and
+still sends a request. Keep the closing steps' conditions mutually exclusive so exactly one
+of them produces the output.
+
+Sources: [Request-less communication](https://developers.make.com/custom-apps-documentation/component-blocks/api/request-less-communication.md),
+[Asynchronous process](https://developers.make.com/custom-apps-documentation/best-practices/modules/batch-actions.md#asynchronous-process).
+
 ## Bounded asynchronous polling with repeat
 
 Start a job once, retain its ID, then repeat a read-only status request.
@@ -165,6 +427,48 @@ the target runtime's time limits; a larger app timeout is not unlimited executio
 Never blindly repeat a non-idempotent creation request to wait for its completion.
 
 Source: [Repeat, delay, limit, and temporary state](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md#repeat).
+
+### Optional waiting, user-set bounds and partial results
+
+- **Optional waiting.** When a boolean input chooses between "start and return the job ID"
+  and "wait for the result", put a `condition` on the polling step and close each branch
+  with its own request-less step (see "Steps without a request"), with the same job-ID key
+  and status field in both outputs. Say in the help that waiting is bounded and that a
+  status module or a webhook fits long jobs.
+- **A bound the user can set.** `delay` and `limit` are not evaluated, so
+  `"limit": "{{parameters.maxChecks}}"` offers a setting that is ignored and can leave the
+  loop without a working bound. Count the checks in `temp`, test the count in
+  `repeat.condition`, keep a literal `limit` as the ceiling, and cap the input at that
+  ceiling (`validate.max`).
+- **Check before you iterate.** A failed job usually has no result array; iterating it
+  returns zero bundles and no error. Check the stored status first, in a closing step whose
+  `valid` accepts only success and whose message names the status and the job ID.
+- **Partial results.** When a batch call or a finished job answers with success but lists
+  unprocessed or failed items, do not report full success: return those items, or fail with
+  them, as the provider contract allows. Do not re-send them inside the polling loop; rate
+  limits stay with Make's error handling (see the error section above).
+
+```json
+[
+  {"url": "/jobs", "method": "POST", "body": "{{parameters.job}}",
+   "response": {"temp": {"jobId": "{{body.id}}", "accepted": "{{body}}"}}},
+  {"condition": "{{parameters.wait}}", "url": "/jobs/{{temp.jobId}}", "method": "GET",
+   "response": {"temp": {"status": "{{body.status}}", "job": "{{body}}", "checks": "{{ifempty(temp.checks, 0) + 1}}"}},
+   "repeat": {
+     "condition": "{{(temp.status == 'queued' || temp.status == 'running') && temp.checks < ifempty(parameters.maxChecks, 30)}}",
+     "delay": 5000,
+     "limit": 60
+   }},
+  {"condition": "{{parameters.wait}}",
+   "response": {
+     "valid": {"condition": "{{temp.status == 'succeeded'}}",
+               "message": "Job {{temp.jobId}} has status {{ifempty(temp.status, 'unknown')}}, not succeeded."},
+     "output": {"{{...}}": "{{temp.job}}", "jobId": "{{temp.jobId}}"}
+   }},
+  {"condition": "{{!parameters.wait}}",
+   "response": {"output": {"{{...}}": "{{temp.accepted}}", "jobId": "{{temp.jobId}}"}}}
+]
+```
 
 ## Multipart, binary, and verification
 
@@ -200,3 +504,26 @@ A syntactically valid request or uploaded definition is not evidence of successf
 Sources: [Multipart uploads](https://developers.make.com/custom-apps-documentation/component-blocks/api/multipart-form-data.md),
 [Buffer and file semantics](https://developers.make.com/custom-apps-documentation/component-blocks/api/buffer.md),
 [Custom CA scope](https://developers.make.com/custom-apps-documentation/other/https-custom-ca.md).
+
+### Raw binary uploads
+
+`type: "binary"` sends the buffer as the whole body. Unlike `json`, `urlencoded` and
+`multipart/form-data`, it sets no Content-Type of its own, so set the one the provider
+expects in the request `headers`: a fixed type when the endpoint accepts one format, a
+mapped MIME-type input, or a type derived from the file extension with
+`application/octet-stream` as the fallback. Keep the file name and the MIME type as separate
+values, and check that a helper used in the header really returns a MIME type. A per-name
+header in the request also replaces a JSON Content-Type inherited from Base.
+
+```json
+{
+  "url": "/uploads",
+  "method": "POST",
+  "type": "binary",
+  "headers": {"Content-Type": "{{ifempty(parameters.mimeType, 'application/octet-stream')}}"},
+  "body": "{{parameters.data}}"
+}
+```
+
+Providers that trust the header reject or mislabel a wrong type; others sniff the bytes and
+hide the mistake until a stricter endpoint is used.

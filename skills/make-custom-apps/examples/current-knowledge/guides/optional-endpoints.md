@@ -31,6 +31,46 @@ The nearest *public* concept for a free-form call is the **universal module**. *
 
 The wrapper (`optional`, `endpoint`) belongs to this tree's synthetic fixtures. It is not a whole deployable Endpoint definition, and the example above only shows the declare-then-read relationship. Whether a free-form `path` input should exist at all is the arbitrary-call question the SDK reference treats separately.
 
+### State repeat, reply and replace behaviour in the context
+
+The input and output schema does not tell a caller what a second identical call does, what the reply describes, or whether a list or role input adds to the current value or replaces it. Write these facts into the Endpoint's context, as part of the side effects the [SDK Endpoints reference](../../../references/sdk-endpoints.md) already asks it to document, and choose the annotations from the same provider evidence:
+
+* **Repeat call.** Say what a second identical call does. It may leave the record unchanged, return the existing record (a create-or-get by name), create a second record, or fail (a delete that answers "not found" because the record is already gone). `idempotentHint` describes effects, not replies: a repeat that creates a duplicate is not idempotent, while a repeat that has no further effect but returns an error can be. Say which case applies, so that a caller's retry does not read that error as a new failure. For a create that is not idempotent, say how to check before retrying (for example a search by a unique field), and name the upsert Endpoint by its exact name if the app has one.
+* **What the reply reflects.** Say whether the reply shows the record as it was *before* the change (a delete whose reply still shows the record as active), the new state, only identifiers, or no body at all. If the app has a read Endpoint that returns the current state, name it.
+* **Set, not add.** Say when an input replaces the current value instead of adding to it: a role that is set, or a list that becomes the complete set. Such an input removes what was there, so `destructiveHint` cannot be `false`, which the SDK type reserves for only additive updates. Repeat the warning in that input's `help`, where the caller reads it while filling in the value. Warn explicitly when the call can remove the connected account's own access: a lower role set on the connection's own user can make every later call on that resource fail with a permission error.
+
+~~~json
+{
+  "name": "role",
+  "type": "select",
+  "label": "Role",
+  "options": [
+    { "label": "Owner", "value": "owner" },
+    { "label": "Member", "value": "member" }
+  ],
+  "help": "Replaces the user's current role instead of adding to it, including an owner role. Setting a lower role on the connected account's own user removes its own access."
+}
+~~~
+
+**Inferred implementation pattern.** Released apps with Endpoints state these facts in their contexts and repeat the replace warning in the input help, and the parameter hints convention asks a hint to describe the result of a value. A missing note is context quality to improve, an advisory point. A note or annotation that contradicts the provider-evidenced behaviour is a finding to fix; its approval impact follows [Approval gating](../../../references/review-and-qa.md#2a-approval-gating).
+
+### Empty lists in Endpoint inputs
+
+**Documented behaviour.** The IML guide lets `ifempty` fall back only when the value is not defined, `null` or an empty string. An empty array is none of these, so `{{ifempty(parameters.fields, undefined)}}` still sends `[]`. To test a list, use `length()`, which returns the number of items in an array; the IML library also returns `0` for a missing value.
+
+**Inferred implementation pattern.** An Endpoint caller sends literal data, not scenario mappings: no erase pill and no scenario empty-value setting applies, and the caller tells omission and `[]` apart itself (under `fillDefaults: 'requiredOnly'` an optional input it leaves out stays absent). Verify that on the selected runner, then decide per list input from what the provider does with `[]`:
+
+* **A list that only shapes a read** (selected fields, sort keys), where the provider treats an absent list as its default but rejects `[]` or returns nothing useful for it. An empty list has no useful meaning there, so omit it with a length test and say so in the input's `help`. Do not apply this to a list of records to match, where omission would widen the read to every record.
+
+~~~json
+"fields": "{{if(length(parameters.fields) > 0, parameters.fields, undefined)}}"
+~~~
+
+* **A list on an update.** Forward the list as given: an omitted list leaves the field unchanged, and `[]` clears it where the provider clears with `[]`. Do not use the length test here. If the mapping must still drop `[]` (the provider rejects it, or clears through another value), give the caller an explicit way to clear, such as a boolean input that sends the provider's clear value. Without one the Endpoint cannot clear that field, and the clearing operation becomes a no-op.
+* **Say it where the caller reads it.** In the context and in the input's `help`, state what an omitted list does (for example the provider's default field set), what an empty list does, and how to clear.
+
+The length test on a read list is a narrow exception to the documented input-processing recommendation, which calls dropping empty arrays with `if` and `length` a bad practice because the user then cannot remove all values. That reason applies to updates, and there the recommendation stands. Test each list input with the value omitted, `[]` and one item through the actual request mapping, as the [SDK Endpoints reference](../../../references/sdk-endpoints.md) asks for empty containers.
+
 ## Never required
 
 The rule here is deliberately one-directional. An Endpoint is optional by request scope. It is not a gate on approval unless the request explicitly requires endpoints (class (d) in [Approval gating](../../../references/review-and-qa.md#2a-approval-gating)), never something a review may demand because a provider has "more routes", and ordinary modules must never depend on one. `CK-ENDPOINT-OPTIONAL` enforces that a fixture marks it optional, and the catalog rejects a recipe that depends on the Endpoint recipe.

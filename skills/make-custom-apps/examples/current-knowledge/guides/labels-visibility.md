@@ -18,6 +18,34 @@ A label can be wrong in a way that matters:
 * Two fields in the same form share a label, so the user cannot tell them apart (`CK-LABEL-UNIQUE`).
 * The label or description promises something the request does not do (for example "Delete permanently" on a call that archives). This one needs human review; no static rule covers it.
 
+### Help text that contradicts its own field
+
+Users treat a help text as the field's contract, so it must describe the field it sits on. Two slips appear even in approved apps. Both show up when you read each help against its own `label`, `validate` and `default`:
+
+* **A range or special value that the validator rejects.** Help that says "From `0` to `5`. `0` turns retries off." next to `"validate": {"min": 1, "max": 5}` documents a value the form refuses. Make checks `validate` on a value typed into the field, so the user gets an error for the very value the help recommends. Take the range from the provider's documentation and make all three agree: widen `validate` when the provider accepts the value, otherwise correct the help. A default that the help states ("Defaults to `3`.") must match the field's `default`, or, for a field without one, the provider's documented behaviour for an empty value; a `default` should itself satisfy `validate`. A bound that rejects a value the provider documents as valid is a concrete finding when the provider page is cited, like a required flag that blocks a valid state. A mismatch in the help alone is a wording fix and advisory.
+* **Help copied from a neighbouring field.** An "End date" whose help says "Start of the interval…", or a second key-value field that repeats the first field's sentence, misleads the user about what the value does. Look closely at paired fields (start/end, from/to, minimum/maximum). Identical help on a pair is correct when it describes what both share, such as a format ("Date in the format `DD-MM-YYYY`."). It is wrong when it names one side of the pair or another field's purpose. Fix only the wording; it changes neither validation nor the request.
+
+Help, `validate` and `default` that agree:
+
+~~~json
+{
+  "name": "retries",
+  "type": "uinteger",
+  "label": "Retries",
+  "validate": { "min": 0, "max": 5 },
+  "default": 3,
+  "help": "Number of times a failed delivery is retried, from `0` to `5`. `0` turns retries off. Defaults to `3`."
+}
+~~~
+
+### Delete, trash, archive and remove
+
+**Documented recommendation.** Make's [module descriptions](https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/modules/module-descriptions) page gives these operations their own patterns. "Delete a/an [item]" is described as "Deletes a/an [item]…", and "This action cannot be undone." is added only when the API documentation says so. "Move a/an [item] to trash" is described as "Moves a [item] to the trash." The [module labels](https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/modules/module-labels) page lists both "Delete a user from a list" and "Remove a user from a list", and asks for the third-party terminology users know where it differs from the suggested format. The label verb alone therefore does not tell the user whether the item can be recovered; the description must.
+
+**Inferred implementation pattern** (seen in approved apps). Name and describe the effect that the provider documents, not the HTTP verb: one provider's `DELETE` request moves a record to a recoverable trash, while another's removes it for good. Where the provider's own UI calls the recoverable operation "Delete", the familiar label can stay, but the description says what happens ("Deletes a file by moving it to the trash."). Claim permanence only with provider evidence ("Permanently deletes a file. This action cannot be undone."). Keep a permanent delete and a recoverable one apart: as separate, clearly named modules or Endpoints, or as an explicit choice inside one module. Where a recoverable alternative exists, mention it in the permanent one's description. Use the same wording in an Endpoint's description and context and in the ID field's help ("ID of the file to move to the trash."), because an AI agent chooses a tool largely from that text, and set the Endpoint's hints from the same documented effect (see [SDK Endpoints](../../../references/sdk-endpoints.md) for side effects and hints).
+
+The understated case is the more harmful mirror of the "Delete permanently" example above: "Archive" or "Move to trash" on a request that permanently deletes hides data loss from the user. Both directions are a label or description that promises something the request does not do. They are functional, not cosmetic, so trace them to the provider's documentation before you report them. A recoverable operation that keeps the provider's own word "Delete" and whose description says the item goes to the trash is not a defect. If that sentence is missing, add it as an advisory wording fix; do not rename the module.
+
 ## Visibility: advanced fields, secrets, hidden fields
 
 **Documented behaviour.** Parameters can be marked `advanced`, which tucks them under an "Show advanced settings" toggle, and static parameters can be mappable or not. Text parameters offer `validate.min` and `validate.max` for length and `validate.pattern` (wrapped in `^$`); the validator keys are `min`/`max`, not `maxLength` (`maxLength` is a property of the provider's JSON schema, which is a different thing).

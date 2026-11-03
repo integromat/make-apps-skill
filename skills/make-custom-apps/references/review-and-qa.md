@@ -83,6 +83,91 @@ For worked synthetic examples and a per-check application table, see
 [role application examples](../examples/current-knowledge/guides/role-application-examples.md) and
 [review sweeps](review-sweeps.md).
 
+### Leftover editor-template modules
+
+A module created from an editor template keeps plausible defaults until each part is replaced: a
+generic path such as `/users` or `/users/{{parameters.id}}`, an `iterate` of `body.users`, template
+inputs (`id`, `email`, `name`, `search`, `limit`), a matching interface, and `item.created` as a
+trigger date. Released apps still ship such modules, usually hidden or labelled as not for use, and
+occasionally visible under a label for an operation the request never performs. Sweep every module,
+hidden ones included, and compare its label and description with its request, inputs and interface.
+
+- Template comments alone prove nothing: finished modules often keep them, and the documentation's
+  own snippets use the same comment style. Judge the request, not the comments.
+- A visible module whose request does not perform the operation its label names is a functional
+  defect (class (a)). Implement it when the provider documentation determines the operation;
+  otherwise report an unverified advisory finding that names the missing fact and the decision
+  (implement it or hide it). Do not delete a module from a released app in a review: saved
+  scenarios may use it, and even a hidden module still runs in them
+  ([labels-visibility](../examples/current-knowledge/guides/labels-visibility.md#module-distribution-visibility-not-parameterhidden)).
+- A hidden module, or one whose label already marks it as not for use, is retired. Leave it unchanged
+  and at most note it as advisory. One leftover module is never a trash rejection while the rest of
+  the app works.
+- When authoring, start from a blank module or replace every template part before the module is made
+  visible. Delete an unfinished module only if it was never visible in a released version.
+
+```json
+{ "url": "/users", "method": "GET", "qs": { "search": "{{parameters.search}}" },
+  "response": { "iterate": "{{body.users}}", "output": "{{item}}" } }
+```
+
+In a module labelled for another resource, this shape is the template, not an implementation.
+
+### Identifying values in samples
+
+Samples are part of the app definition and are shown to the app's users while they set up a module,
+so a sample copied from a real run distributes whatever that run returned. Released apps carry
+account numbers inside resource URLs and resource names, personal email addresses, phone-number chat
+identifiers, message or session handles and trace IDs. Check every static sample for values that
+identify a real account, person or resource.
+
+- Replace only the identifying part with a neutral placeholder of the same type and shape: a
+  zero-filled account number inside an otherwise unchanged URL, an `example.com` email address or
+  tenant host, a short dummy handle, a fictional phone number. Keep every key, nesting level and
+  value type so the sample still matches the interface. This changes values only; the rule to
+  preserve existing samples still holds.
+- A live credential, API key, access token or signed URL in a sample is a secret stored in plain
+  text (class (b)) and is fixed. Other identifying values are advisory with a clear fix, so replace
+  them (approve with adjustments).
+- Not a finding: the provider's public hosts and support addresses, documented example values, and
+  values that are already placeholders or redacted.
+
+```json
+{ "resourceUrl": "https://api.example.com/accounts/000000000000/items/42",
+  "handle": "dummy-handle", "email": "user@example.com" }
+```
+
+Make's review prerequisites ask that test scenarios and their logs contain no personal or sensitive
+data; samples taken from those runs need the same care.[8][19]
+
+### Identifiers inside nested selects
+
+`required` belongs to each parameter; a nested child does not inherit it from its parent select. The
+Select documentation's nested-RPC example marks both the parent and the nested child
+`required: true`. A child that supplies an identifier for the request path needs its own flag, as
+any path parameter does
+([interfaces-required](../examples/current-knowledge/guides/interfaces-required.md#required-parameters)).
+Otherwise the form accepts an empty value and the request goes out with an empty path segment, for
+example `DELETE /items/` instead of `DELETE /items/{id}`. The provider then answers for another route,
+with an error or a different operation, instead of Make's required-field validation stopping it.
+
+- In Get, Update, Delete and other single-record modules, trace every identifier the request always
+  needs to its declaration, including `nested` arrays (on the parameter, on its options store or on
+  an option) and fields an RPC returns. A required parent does not cover its child.
+- Compare sibling modules: the same nested identifier marked required in Get but not in Delete is
+  direct evidence of the gap.
+- Record it as the authoring correction that guide describes (advisory unless class (a) to (d)
+  applies) and add `required: true` on the child; the fix is clear, so apply it. A saved scenario
+  that leaves the value empty never reached the intended record, so the flag replaces a misrouted
+  request with Make's required-field validation.
+
+```json
+{ "name": "parentId", "type": "select", "label": "Parent", "required": true,
+  "options": { "store": "rpc://listParents", "nested": [
+    { "name": "id", "type": "select", "label": "Item", "options": "rpc://listItems", "required": true }
+  ] } }
+```
+
 ## 2a. Approval gating
 
 This section defines `approvalImpact` and the three review outcomes. They are the reviewer's verdict on the

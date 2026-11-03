@@ -25,6 +25,87 @@ For each applicable check, record: source/rule, strength (documented requirement
 | Output, interface, samples | Output projection or spread, interface entries, sample values, and the actual interface and empty-value handling in the output | Names, types and samples agree; omit, clear and set behave as promised; falsy values survive. Dates are one case of this, not the whole check. | [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md), [outputs-empty-values-updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md) |
 | Endpoints | Only if the request or review scope names SDK Endpoints | Endpoints are optional; absence is not a finding. Review them only when explicitly in scope. | [optional-endpoints](../examples/current-knowledge/guides/optional-endpoints.md) |
 
+### Sweep: lookup results that build the next request
+
+Inspect every request array in which an earlier request stores a value from its response in
+`temp` (often the first item of a filtered list, such as `body.items[1].id`) and a later
+request puts that value into its `url`, path, query, body or headers.
+
+Decide whether the lookup can succeed without a usable value: a list or search that answers
+2xx with an empty list, or a documented optional field that is absent. A missing path resolves
+to empty without any error, and an empty value inside URL text becomes an empty string, so the
+next request silently runs against a different or malformed route. A write can land on a
+parent route or the collection root, a read on a malformed path, and the user sees a confusing
+provider error or none at all. A 4xx for no match already stops the module through error
+handling, before `valid` runs; the silent case is the 2xx one.
+
+- A route whose documented response is a list or search result can answer a no-match with an
+  empty 2xx list; that documentation is enough evidence. An unguarded chain on it is a
+  functional defect (class (a) in [Approval gating](review-and-qa.md#2a-approval-gating)). Fix
+  it on the lookup request with `response.valid` and a message that names the missing input.
+  Where an absent value is a legitimate outcome, give the later request a `condition` instead
+  (object form with `default` when the module must still return something). Apply the same fix
+  to every module that repeats the lookup.
+- When the provider documentation cannot settle the no-match behaviour (for example a
+  single-object route whose not-found answer is undocumented), record the check as `uncertain`
+  with that missing fact rather than adding an unexplained guard.
+- The lookup itself is legitimate ([requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md));
+  its extra request per run is a design point, not a finding.
+
+```json
+[
+  {
+    "url": "/lists",
+    "qs": { "name": "{{parameters.listName}}" },
+    "response": {
+      "valid": {
+        "condition": "{{length(body.items) > 0}}",
+        "message": "No list named '{{parameters.listName}}' was found."
+      },
+      "temp": { "listId": "{{body.items[1].id}}" }
+    }
+  },
+  { "url": "/lists/{{temp.listId}}/entries", "method": "POST", "body": "{{parameters.entry}}" }
+]
+```
+
+Guide: [errors and rate limits](../examples/current-knowledge/guides/errors-and-rate-limits.md)
+(failures inside successful responses; errors in multi-step communication).
+
+### Sweep: comments and commented-out code
+
+Component files are parsed as JSON with comments, and approved apps routinely ship comments:
+template explanations, notes, and commented-out alternative requests, option blocks or whole
+`pagination` blocks. A comment does nothing at runtime, so it is neither a defect nor
+evidence. Read every comment anyway, as the author's own statement about the component, and
+test it against the active code:
+
+- A comment that admits a gap names a check to run: "add pagination" on an options RPC, a
+  commented-out `pagination` block, a TODO about unhandled error fields, or a note that a
+  provider field cannot drive the stop condition. Apply the matching sweep or checklist item
+  to the active code (pagination where the provider pages, the RPC record budget, documented
+  error shapes) and report what that check finds, not the comment.
+- A comment that claims behaviour is not proof. A pagination body that writes
+  `"filters": { /* unchanged */ }` sends an empty `filters` object on later pages, because a
+  supplied pagination `body` replaces the original one
+  ([pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md));
+  page two then runs without the user's filters. Repeat the complete body instead:
+
+  ```json
+  "pagination": {
+    "body": {
+      "filters": "{{parameters.filters}}",
+      "page": "{{pagination.page}}"
+    }
+  }
+  ```
+
+- The comment or the dead code itself is cosmetic: never blocking, and not a reason to delete
+  or rewrite it when no finding requires the change. A change that only removes comments would
+  turn a plain approve into an adjustment for nothing. When building, resolve the gap a TODO
+  names instead of shipping the note, and keep one active definition instead of a
+  commented-out alternative, so the next reviewer does not have to guess which one is meant.
+
 ## Mandatory per-component checklist
 
 For every component, answer each item below as `finding`, `passed`, `not_applicable` or `uncertain` with the missing fact (never skip silently):
