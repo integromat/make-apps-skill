@@ -21,6 +21,8 @@ Make already treats failed HTTP calls in a sensible way. Good error handling in 
 
 A field named `error` in a success response is not automatically a failure; it may be informational. Read the provider contract and a real response before writing `valid`.
 
+**Documented error shapes.** When the provider documents an error body (for example a 4xx or 422 with a message or a list of field errors), handle it in Base `response.error` or the module so the user sees that message, consistent with the provider's documented shape. Do not leave a documented shape to the generic default.
+
 ## Errors in multi-step communication
 
 An HTTP error in one request of a request array cannot be turned into success by a later request, so decide the error policy per request. Do not build a flow that expects an optional lookup to fail quietly; if a step may be unnecessary, make it conditional or split it into its own module. See [requests-files-multistep](requests-files-multistep.md) for sequences and repeats.

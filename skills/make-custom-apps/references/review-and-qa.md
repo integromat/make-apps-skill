@@ -161,6 +161,14 @@ with the wrong type; dropped 0, false or null, or missing empty-value handling; 
 documented maximum; non-advancing pagination; wrong output container or iterate path; invalid IML or JSON;
 a missing binding. Re-parse and re-check every adjusted file before returning it.
 
+Fix quality rules.
+
+- Evidence threshold: change an existing working mapping, output path or request only when the provider's schema or reference (not an abridged or illustrative example) or other cited evidence shows the current one is wrong. An example that omits a field is not evidence the field is absent. Otherwise keep the working code and report an advisory finding naming the doubt.
+- Scope: change only the files a finding requires. Do not touch README or documentation files, hidden modules or unrelated components unless a finding is about them, and make each change's explanation describe that change.
+- Prefer a minimal inline fix over a new helper. A new or changed helper function updates its test file in the same change.
+- Do not add requests, polling or retries the contract does not require. Verify the runtime semantics (pagination stop, repeat, retries) before changing them.
+- Prioritise functional defects. Credential masking is a minor fix and never displaces a functional one.
+
 Defect classes (a) to (d):
 
 - (a) **Established functional failure** under the applicable contract. This list is open; it includes a request

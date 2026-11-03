@@ -25,6 +25,17 @@ For each applicable check, record: source/rule, strength (documented requirement
 | Output, interface, samples | Output projection or spread, interface entries, sample values, and the actual interface and empty-value handling in the output | Names, types and samples agree; omit, clear and set behave as promised; falsy values survive. Dates are one case of this, not the whole check. | [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md), [outputs-empty-values-updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md) |
 | Endpoints | Only if the request or review scope names SDK Endpoints | Endpoints are optional; absence is not a finding. Review them only when explicitly in scope. | [optional-endpoints](../examples/current-knowledge/guides/optional-endpoints.md) |
 
+## Mandatory per-component checklist
+
+For every component, answer each item below as `finding`, `passed`, `not_applicable` or `uncertain` with the missing fact (never skip silently):
+
+- Output dates are parsed to the Make date type where the provider value is a real timestamp.
+- Documented error shapes, including 4xx and 422 bodies, are handled in Base or the module, consistent with the provider.
+- Authentication is inherited from Base or the connection and not duplicated in modules.
+- Pagination exists where the provider pages results: for list and search modules and also for pickers and RPCs.
+- Output and interface agree: no stale or missing fields.
+- File inputs and outputs keep their file semantics (name, data, MIME type).
+
 ## Auth-alias counterexample review
 
 A difference in spelling (`data.x` vs `parameters.x`, or `common`) is not a static defect by itself. Before reporting, trace the specific OAuth phase (authorize, token, info, refresh, invalidate; Base; module) and the store the value actually lives in. In connection communication `data`, `parameters` and `connection` reach the same stored data; `common` is a separate store with its own role. This holds in the initial authorization-code token exchange as well as refresh. An empty `common: {}` does not mean credentials are missing when they are supplied as connection inputs, and `common` is not an alias: a read of `common.x` with the value only in inputs, or the reverse, is a real source-selection gap. In an ordinary module, `data` is persistent module state, `parameters` are inputs and `connection` is the attached store; do not transfer token-phase aliases there. Do not claim namespace equivalence outside the traced context, or that a live flow works from static reading. A real defect is a response-only variable in a request, a literal credential, or a module reading credentials from a store the actual flow never populates. See the worked case in [auth-context](../examples/current-knowledge/guides/auth-context.md#worked-case-initial-authorization-code-token-exchange-with-empty-common).
