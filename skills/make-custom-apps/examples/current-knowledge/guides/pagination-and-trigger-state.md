@@ -24,6 +24,8 @@ Add an explicit condition when the provider repeats its last page, returns empty
 
 Keep the iterated resource, selected fields, filters and response shape the same on later pages. Client-side filtering should be tested with eligible records on later pages; do not assume an undocumented order between filtering and the limit.
 
+Offset positions are not stable identities. When a record is created or deleted between two page requests, every later record shifts: in a newest-first list an insert pushes the last record of one page onto the next, so it is fetched twice, and a delete pulls a record into the range already fetched, so it is never fetched. A polling trigger may never return to that record, because it is older than the date saved after the run. Prefer a cursor, a next link or a filter bound by the saved date or ID when the provider offers one. With offsets, request a stable sort with a unique tie-breaker (date, then ID), and add a record created or deleted between two page requests to the edge tests.
+
 ### Test the edges
 
 Initial page, one continuation, final page, empty result, and a small total limit (smaller than one page). Use distinguishable test records and a tiny page size to reveal overlap or skipped records. The pagination debugging page describes how to inspect each request.
@@ -41,6 +43,42 @@ Initial page, one continuation, final page, empty result, and a small total limi
 * Equal timestamps need an ID tie-breaker in the design.
 * Updated, deleted and late-arriving records are separate cases; decide whether the trigger watches creation or modification and say so in the module description.
 * Declared order must describe the order actually requested. A mismatch between the request's direction and `order` is a genuine inconsistency; a missing manual state assignment is not.
+* A request that sends no sort or direction parameter still declares an `order`; it then describes the provider's *default* order. Make uses the declared order to decide whether more pages are needed and how to sort what it emits, so that default has to be real. The trigger guidance accepts results that are "sorted or defaulted in descending order", so a missing sort parameter is not a defect when the provider documents a newest-first default. It is not proof of consistency either: a comparison of declared and requested direction has nothing to compare here, so check the provider documentation or a recorded response with several items. When the provider offers a sort parameter but documents no default order, send the sort explicitly in the declared direction; when neither is possible, declare `unordered`.
+
+**Inferred implementation pattern: request the fields the trigger reads.** `trigger.id` must return each item's ID and, for a date trigger, `trigger.date` its date. When the module lets the user choose which fields the provider returns (a field list, `$select`, attributes), add the fields the trigger reads to a non-empty selection even if the user did not pick them; otherwise the provider leaves them out, the ID or date evaluates empty, and the item cannot be compared with the saved state. When the selection is empty and the provider then returns its default field set, confirm that set contains them. For a date trigger, use one field for the provider sort, any date filter, the forced field and `trigger.date`, so that the declared order describes the field Make compares; when the user chooses what to watch (for example created or updated), derive all of them from that one parameter.
+
+```json
+{
+  "qs": {
+    "fields": "{{if(length(parameters.fields), join(distinct(add(parameters.fields, 'id', parameters.watchBy)), ','), undefined)}}",
+    "sort": "-{{parameters.watchBy}}"
+  },
+  "response": {
+    "trigger": {
+      "type": "date",
+      "order": "desc",
+      "id": "{{item.id}}",
+      "date": "{{get(item, parameters.watchBy)}}"
+    }
+  }
+}
+```
+
+**Documented recommendation: bound the request with the saved state.** Where the provider can return only records after a date or numeric ID, pass `data.lastDate` or `data.lastId` into that filter instead of asking the user for fixed dates; an interval API takes `data.lastDate` as the start and `{{now}}` as the end. Still request newest first where the provider allows it. Where it does not, the bound is what keeps an ascending or unordered trigger workable within the 3200-record limit, because it reduces the records fetched. In a request, `{{data.lastDate}}` is sent as ISO 8601 text in UTC with milliseconds (`1970-01-01T00:00:00.001Z`), which the trigger page does not state, so check a run's request log; convert it only when the provider's filter expects another unit or precision, for example Unix seconds with `formatDate(data.lastDate, 'X')`. Prefer an inclusive bound (`since`, `gte`): the trigger returns only unprocessed items (it compares each item with the saved date and ID), so the boundary record is not emitted twice, while an exclusive bound at second or day precision can lose records that share the boundary timestamp.
+
+**Documented behaviour: there is no empty start date.** The **Choose where to start** options all send a date in `data.lastDate`: the current date (From now on), the given date (Since specific date), the chosen item's date (Choose manually) or the default `1970-01-01` (All). A trigger run with no saved date receives the Unix epoch start `1970-01-01T00:00:00.001Z` (not stated on the trigger page; confirm in a run), also when the trigger has no epoch. On an `id` trigger `data.lastDate` stays at that start across runs (not stated on the trigger page; confirm in a run), so bound an `id` trigger by `data.lastId`. A truthiness test such as `{{if(data.lastDate, ..., fallback)}}` is therefore not a first-run test, and a fallback window (for example "the last 24 hours") never runs in trigger executions; the user's start choice, or the epoch start when the trigger has no epoch, is the first-run policy. When the provider rejects so old a bound, test for the epoch start explicitly and omit the filter, which still means "all records". Compare the year, not an exact value: formatted in a zone west of UTC, the start falls in 1969. For a provider whose filter takes Unix seconds:
+
+```json
+{
+  "qs": {
+    "updated_since": "{{if(formatDate(data.lastDate, 'YYYY') <= '1970', undefined, formatDate(data.lastDate, 'X'))}}",
+    "sort": "-updated_at"
+  },
+  "response": {
+    "trigger": { "type": "date", "order": "desc", "id": "{{item.id}}", "date": "{{item.updated_at}}" }
+  }
+}
+```
 
 ## Rationale
 
@@ -56,6 +94,10 @@ Pagination and trigger state both trade completeness against budget. Make's defa
 * Using ascending order against a busy provider because it is the provider's default.
 * Reporting missing trigger state because no assignment of previous-run values appears.
 * Changing a pagination field selection between pages.
+* Letting a user-selected field list leave out the field that `trigger.id`, `trigger.date` or the provider sort reads.
+* Using `{{if(data.lastDate, ...)}}` as a first-run test, or overriding the user's **Choose where to start** choice with a fallback window; in a trigger run `data.lastDate` always carries a date, the Unix epoch start when nothing was saved or All was chosen.
+* Accepting or rejecting a trigger that sends no sort parameter without checking the provider's documented default order.
+* Offset paging over a list that changes during the run without a stable sort and a test that creates or deletes a record between pages.
 
 ## Exceptions and applicability
 
@@ -68,6 +110,9 @@ Pagination and trigger state both trade completeness against budget. Make's defa
 * Page counting, merge behaviour, default stop conditions, trigger state and epoch: **documented behaviour** (pagination, response limit and trigger pages).
 * Newest-first ordering and the lost-window reason: **documented recommendation**.
 * Provider cursor semantics, tie handling and exhaustion are provider facts; only execution against the provider and fresh pagination evidence show them.
+* Bounding the request with `data.lastDate` or `data.lastId` (with `{{now}}` as an interval end), the dates sent by the **Choose where to start** options including `1970-01-01` for All, the trigger returning only unprocessed items, and acceptance of a documented descending default: **documented recommendation** and **documented behaviour** (trigger best practices and trigger pages).
+* The Unix epoch start in `data.lastDate` when no date was saved, its ISO 8601 UTC serialisation in a request, and `data.lastDate` staying at that start on an `id` trigger: **not documented**: not stated on the trigger page, so confirm them in a run's request log before relying on them.
+* Requesting the fields the trigger reads, one field for sort, filter and `trigger.date`, the year test for the epoch start, and offset shifts under inserts and deletes: **inferred implementation pattern** from the documented trigger and pagination semantics; whether a provider's offsets shift, and its default order, are provider facts to check against its documentation or a recorded run.
 
 ## Sources
 

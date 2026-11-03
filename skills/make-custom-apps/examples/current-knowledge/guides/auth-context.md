@@ -82,6 +82,69 @@ The checker's `CK-SECRET-LOG` rule applies this to fixtures: a Base authorisatio
 }
 ```
 
+### One list per block, built from where that block puts the secret
+
+**Documented behaviour (sanitization page).** A request without `log.sanitize` writes no request or response log, so nobody can debug it, and the list is still required. A request with a list is logged, and only the paths in the list are masked. **Not stated on the public pages (confirm in a test run's log):** an empty list (`"sanitize": []`) counts as a list. It turns logging on and masks nothing.
+
+So a missing list hides the log, while a list that misses the secret shows the secret in clear text. A check that only asks whether a block has a list catches none of these common causes:
+
+* **A list copied from another block.** The token block sends the credentials in the body. The refresh block sends the refresh token as `Authorization: Bearer`, but its list still names the token block's body paths. The same mistake shows up when an `invalidate` posts the token in the body but its list masks only the header. It also shows up when a connection check sends the token in a custom header (for example `x-session-token`) but its list names only `request.headers.authorization`.
+* **The right key in the wrong section.** `request.body.client_secret` does not mask a client secret sent in `qs`. That needs `request.qs.client_secret`.
+* **IML quoting in a path.** A sanitize path is not an IML expression. A hyphenated header name is one plain segment: `request.headers.x-api-key`. Backticks (`` request.headers.`x-api-key` ``) become part of the name. The path then matches nothing, and the key stays in clear text with no error.
+
+Go through each block: `preauthorize`, `token`, `refresh`, `info`, `invalidate`, the check of a basic connection, Base, and every module or RPC that places a credential where Base does not mask it. For each one, list what the block sends (headers, query, body) and what it receives (response headers, response body). Then write that block's list from this inventory. Use an empty list only when no logged field carries a secret.
+
+```json
+{
+  "refresh": {
+    "url": "https://auth.example.com/refresh",
+    "method": "POST",
+    "headers": { "authorization": "Bearer {{data.refreshToken}}" },
+    "response": { "data": { "accessToken": "{{body.accessToken}}", "refreshToken": "{{body.refreshToken}}" } },
+    "log": { "sanitize": ["request.headers.authorization", "response.body.accessToken", "response.body.refreshToken"] }
+  }
+}
+```
+
+### Secrets inside a text, XML or raw body
+
+**Documented behaviour (authorization and sanitization best practice).** A field path such as `request.body.client_secret` addresses a key of a parsed body (JSON or urlencoded). Some bodies are sent as one string, and a string has no keys. This covers `type` `text` (or `string` or `raw`), an XML or SOAP envelope, and a string returned by a custom function. Neither a field path nor a Base header path reaches a secret written into such a string. Mask the secret by its value instead: `request.body<parameters.secret>` replaces every occurrence of that value in the logged body with `***`. The rest of the body stays readable for debugging.
+
+**Not stated on the public pages; confirm in a test run's log.** The name inside `<>` is looked up in the context where the request runs, so the [table above](#where-each-variable-lives) applies. Name the variable the request reads the secret from. In a connection block that is, for example, `parameters.*`, `data.*` or `common.*`. In a module or RPC it is usually `connection.*`; a secret the module takes as an input is `parameters.*`, as in the documented example, and app common data is `common.*`. The value is matched exactly as stored, so an encoded copy (base64, XML-escaped) is not found. If the name resolves to nothing, the whole field is masked. `request.body` with no field and no value also masks the whole body. That is safe, but it hides the request you need for debugging.
+
+A response declared or detected as XML is parsed before it is logged, so a field path can reach a secret in it. Below the root element every element is parsed as an array. A path that passes through such an element needs an array step on it, and array steps work only for all-lower-case names (see the next section). The last element can be named without brackets, which masks its whole array.
+
+```json
+{
+  "url": "/service",
+  "method": "POST",
+  "type": "text",
+  "headers": { "content-type": "text/xml" },
+  "body": "{{buildEnvelope(parameters, connection)}}",
+  "log": { "sanitize": ["request.body<connection.accessToken>", "request.body<connection.apiKey>"] }
+}
+```
+
+### Arrays, and the limits of path matching
+
+**Not described in the public request reference; confirm each mask in a test run's log.** A path step can address array elements:
+
+* `items[*]` covers every element: `response.body.data[*].access_token` masks the token in each object of a returned list. Nested arrays need one `[*]` per level. A payload that can nest to different depths needs one entry per depth the provider can return.
+* `items[1]` covers only the first element, because counting starts at 1. `items[]` and `items[0]` match nothing, and no error is shown.
+* An array step only finds an array whose key is all lower-case in the payload. For a key such as `lineItems`, or an XML element such as `SessionId`, name the array without brackets (`response.body.lineItems`). This masks the whole array: a coarser mask, but the secret is hidden.
+* This narrows the case-insensitivity note under Pitfalls. Only the field and header names after the section name are case-insensitive. The `request.`/`response.` prefix and the section name (`qs`, `headers`, `body`) must be lower-case. `request.headers.Authorization` works. `Request.Headers.authorization` and `request.Headers.authorization` are skipped without an error.
+
+A listed path is masked whether or not it holds a secret. Listing a bulky non-secret field, such as base64 file content or a raw message, is a legitimate way to keep the log readable. Do not report such an entry as a defect or remove it as noise. Binary `buffer` values need no entry: the log already shows them as a short placeholder with length and checksum.
+
+```json
+"log": { "sanitize": [
+  "request.headers.authorization",
+  "response.body.data[*].access_token",
+  "response.body.files[*].content",
+  "response.body.files[*].versions[*].content"
+] }
+```
+
 ## Rationale
 
 Credentials are the one thing a log must never contain. Because the connection block, Base and modules each see a different slice of variables, the safe habit is to keep credentials in Base from `{{connection.*}}`, keep token handling in the connection, and sanitise every path where a secret passes.
@@ -96,6 +159,12 @@ Credentials are the one thing a log must never contain. Because the connection b
 * Sanitising only the request while the secret also appears in the response, or naming a path that is not where the secret actually sits. Sanitize paths are written in dot notation and are **case-insensitive** (documented in the request reference), so `request.headers.Authorization` and `request.headers.authorization` match the same path. Casing alone is never a sanitisation defect; the lower-case spelling used in the examples is only a consistency convention.
 * Forgetting the response side: the access token appears in the token response.
 * Using `token.condition` with an authorisation-code flow.
+* Copying one block's `log.sanitize` list into another block, or Base's list into a connection block, without checking where that block puts the secret: a refresh token in a header, a token in an `invalidate` body, a credential in `qs` or in a custom header.
+* Reading an empty `log.sanitize` list as "no logging". It turns logging on and masks nothing.
+* Writing a sanitize path like an IML expression or a JavaScript index: backticks around a header name, `[]`, or the 0-based `[0]`. None of them is path syntax, and each matches nothing without an error. Use the plain name and `[*]` (or the 1-based `[1]`).
+* Exception to the case-insensitivity pitfall for sanitize paths: the `request.`/`response.` prefix and the section name (`qs`, `headers`, `body`) must be lower-case. `Request.Headers.authorization` is skipped without an error and leaves the header in clear text.
+* Masking a secret inside a text, XML or raw body with a field path, which cannot reach into a string. Use the value form, for example `request.body<connection.accessToken>` in a module.
+* Removing a sanitize entry for a bulky, non-secret field as noise.
 
 ## Exceptions and applicability
 
@@ -108,6 +177,17 @@ Credentials are the one thing a log must never contain. Because the connection b
 * `log.sanitize` mandatory and its case-insensitive dot-notation paths: **documented requirement**. The variable roles of `parameters`, `common` and `data` in connection communication: **documented** (variable table and code-grant example). The `data`/`parameters`/`connection` equivalence in connection communication: **runtime-confirmed, adjudicated allowance**, not read from the public variable table (which describes variable roles only); `common` is outside that equivalence.
 * Which header names count as sensitive and which body keys are secret-named: **inferred implementation pattern** (a regular expression in the checker). Any real secret path outside those patterns still needs your own review.
 * The checker is static; it does not call an authorisation server.
+* No request or response log without a sanitize list, and the value form `request.body<parameters.secret>` for a string body: **documented behaviour** (sanitization page; authorization and sanitization best practice). The following are not stated by the public request reference; treat them as expectations to confirm in a run's log:
+  * an empty list turns logging on and masks nothing;
+  * a hyphenated header name is one plain segment, and backticks become part of the name;
+  * `[*]` and the 1-based `[n]` array steps work, while `[]` and `[0]` match nothing;
+  * array steps need an all-lower-case key;
+  * the prefix and section name must be lower-case, while field and header names are case-insensitive;
+  * the name in `<>` is looked up in the request's own context, its value is matched exactly as stored, and a name that resolves to nothing masks the whole field;
+  * XML responses are parsed, with every element below the root as an array, before they are logged;
+  * binary buffers are logged as a placeholder with length and checksum.
+
+  Confirm each mask in the sanitized log of a real run. A static reading cannot show that a path matched.
 
 ## Fixtures
 

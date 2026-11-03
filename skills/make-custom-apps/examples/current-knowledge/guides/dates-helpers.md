@@ -18,6 +18,13 @@ Dates are a place where polling triggers and search modules can go quietly wrong
 
 **Review each emitted temporal field in this order:** establish meaning, zone and unit; inspect its output expression or helper and the matching interface declaration; apply the documented exception. The bare absence of the token `parseDate` does not prove failure: inspect equivalent conversion and the resulting representation. Applicable omissions are authoring corrections, not invented observed outages. A raw field that is retained but not declared in the interface is a declaration gap, not proof it was dropped or cannot be mapped (Make can suggest undeclared incoming fields); an explicit projection that discards a required field is a different, demonstrable loss. Worked example: [role-application-examples](role-application-examples.md).
 
+### A date parameter sent as a calendar date or as parts
+
+**Documented behaviour.** The date parameter page's own example: 17 September 2025 entered in Prague with `time: false` reaches the request as `2025-09-16T22:00:00.000Z`. Where a module uses a `date` parameter for a value the provider wants as a calendar date, or as day, month and year, derive them with `formatDate` in the communication. Without a zone argument it formats in the organisation's timezone, so `{{formatDate(parameters.startDate, 'YYYY-MM-DD')}}` returns `2025-09-17` when that is the zone the user entered the date in. The first ten characters of the ISO text return `2025-09-16`. JavaScript date methods in a helper read the instant in whatever zone runs the function, so they can return the 16th too: the previous day for users east of UTC. Inside a helper, call `iml.formatDate` instead. For a value that is only a date, a `text` parameter whose help states the format is still the documented alternative (Input side under [Choosing the temporal meaning first](#choosing-the-temporal-meaning-first)).
+
+* **Numeric parts.** `parseNumber(formatDate(parameters.endDate, 'DD'))`, and the same with `MM` and `YYYY`. An object assembled from those parts in `temp` still exists when the date is empty, so emit it only when the date is set: `"endDate": "{{if(parameters.endDate, temp.endDate, undefined)}}"`. The object is derived, so omitting it drops nothing the user set.
+* **Help text that names another format.** A `date` parameter whose help says `YYYY-MM-DD` while the request maps it unchanged tells the user one format and sends another (the ISO date-time above). Format it as shown, or use a `text` parameter whose help states the format.
+
 ## Polling trigger order
 
 **Documented recommendation.** Polling triggers should ask the provider for newest first and declare `response.trigger.order: "desc"`. Make keeps at most 3200 past records, so with ascending order the newest records can fall outside the window. `response.trigger` needs `type` (`id` or `date`), `order` (`asc`, `desc` or `unordered`), `id` always, and `date` when the type is `date`.
@@ -48,6 +55,35 @@ A helper is only useful if the field travels through it and it changes the value
 
 The recipe's `functions/normalizeDate.js` is the teaching helper. The checker's `CK-HELPER-TRACE` rule performs a textual version of those three steps and rejects an undefined helper, a helper that ignores its argument, an identity helper and a call that is not given a provider field. "Given a provider field" means a real `item.FIELD` reference outside quoted literals in some argument: `normalizeDate('item.updated_at')` passes a constant string, not the field, while `normalizeDate(item.updated_at, 'YYYY-MM-DD')` passes the field plus a format literal. This is lexical provenance only; it does not execute the helper or show the conversion is correct.
 
+### Helpers that decide by value shape
+
+**Inferred implementation pattern.** A helper that walks a whole response and converts every value that *looks* like a timestamp can pass all three links above and still convert the wrong values, because it decides per value instead of per documented field. Read what its pattern accepts and what it rejects:
+
+* **Zone-less values.** A pattern that does not require `Z` or an offset (`^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}`, or one that also accepts `YYYY-MM-DD HH:mm:ss`) hands values such as `2026-10-29T13:45:30` to `iml.parseDate`. Without a zone argument, `parseDate` reads them in the organisation's timezone. That is the substitution the output-processing page rules out unless the provider documents a zone ([Exceptions and applicability](#exceptions-and-applicability)).
+* **Prefix matches.** A pattern anchored only at the start, or not at all, also matches free text that begins with a date-time, such as a note `2026-10-29T13:45:30 call back`. Without a format, `parseDate` returns no date for that text; with a format, it returns the leading date. Either way the note's text is lost. Anchor the whole value (`^…$`).
+* **Partial spellings.** A pattern that accepts only some spellings of one instant (only `Z`, only three fraction digits, no `+00:00`) leaves the others as text, so the same output field is a date in one bundle and text in the next. Match every form the provider documents, for example `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:?\d{2})$`.
+* **Several locales.** Patterns for both `MM/DD/YYYY` and `DD.MM.YYYY` guess day-first against month-first, the guess the [Rationale](#rationale) says Make cannot make.
+* **Numbers.** A pattern test on a number tests its shortest decimal text: `1717243200.100` is tested as `1717243200.1`, so `/^\d{10}\.\d{3}$/` converts some values of a field and skips others. A digit count is no evidence of a timestamp either (Numerics under [Choosing the temporal meaning first](#choosing-the-temporal-meaning-first)).
+
+Prefer a list of the documented date fields, each converted with its documented format or unit token, such as `iml.parseDate(item.updated, 'x')` for a field the provider documents as epoch milliseconds. The list also tells you which interface fields to declare `date`. If a shape-based walker stays, declare `date` only for fields it converts in every bundle, and test each spelling the provider can send (`Z` and `+00:00`, no fraction and 3, 6 or 9 fraction digits), a text value that starts with a date-time, and a zone-less value that must stay text. A documented or sampled value that the walker loses or converts wrongly is a finding; a pattern that merely could match something unexpected is advice.
+
+A sketch of the list form for a response with nested records, converting only listed keys that carry a zone:
+
+```js
+function parseDateFields(value, dateKeys) {
+  if (Array.isArray(value)) return value.map((item) => parseDateFields(item, dateKeys));
+  if (value === null || typeof value !== 'object' || value instanceof Date) return value;
+  const zoned = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:?\d{2})$/;
+  const out = {};
+  for (const [key, child] of Object.entries(value)) {
+    out[key] = dateKeys.includes(key) && typeof child === 'string' && zoned.test(child)
+      ? iml.parseDate(child)
+      : parseDateFields(child, dateKeys);
+  }
+  return out;
+}
+```
+
 ## Choosing the temporal meaning first
 
 Before choosing a function, name what the value is: a calendar date, a time of day, a timezone-aware date-time, a date-time with no zone, a duration, or a numeric timestamp. Each has its own contract.
@@ -58,6 +94,12 @@ Before choosing a function, name what the value is: a calendar date, a time of d
 * **Existing scenarios.** Changing a string output into a date changes what downstream mappings receive. For a shipped module, add a compatible alternative or follow the breaking-change guidance in [compatibility-evidence](compatibility-evidence.md) instead of silently changing the type.
 
 Polling state (what Make remembers between runs, what the epoch controls) is covered in [pagination-and-trigger-state](pagination-and-trigger-state.md); the language rules for `parseDate`, array indexing and fallbacks are in [iml-and-helpers](iml-and-helpers.md).
+
+### Epoch units: `X` and `x`
+
+**Documented behaviour.** In Make's date tokens, `X` is a Unix timestamp in seconds (`1360013296`) and `x` a Unix timestamp in milliseconds (`1360013296123`). Pass the token for the unit the provider documents, in both directions: `parseDate(item.sent_at_ms, 'x')` in output, `formatDate(parameters.since, 'X')` in a request. Pass it even when the value is already a number: the IML library reads a bare number without a token as seconds (observed library behaviour, not documented), so a millisecond value parsed without `x` lands far in the future. The wrong token is off by a factor of 1000: milliseconds read with `X` land tens of thousands of years ahead, and seconds read with `x` land in January 1970. Use the same token wherever the same field is read (`trigger.date`, the epoch output, other modules).
+
+`formatDate` returns text. Where the provider's schema wants a JSON number, such as an epoch value, wrap the result: `{{parseNumber(formatDate(parameters.startsAt, 'x'))}}`.
 
 ## Testing a date helper
 

@@ -40,6 +40,57 @@ Sources: [Base](https://developers.make.com/custom-apps-documentation/app-compon
 [Advanced inheritance](https://developers.make.com/custom-apps-documentation/app-components/base/advanced-inheritance.md),
 [Connection inheritance and CA configuration](https://developers.make.com/custom-apps-documentation/other/https-custom-ca.md).
 
+### Client certificates (mutual TLS)
+
+When the provider authenticates the client by certificate as well as by token, collect the PEM
+certificate with a `cert` parameter and the PEM private key with a `pkey` parameter (both are
+documented parameter types). Name the expected file format in the help text, keep any other secret
+(such as a client secret) a `password`, and mark the certificate and key `editable` so a rotated
+certificate does not force a new connection.
+
+Send the pair with the `cert` and `key` request directives in Base and in every connection request
+that reaches the certificate-protected host. Connection communication does not inherit Base, and,
+as the custom-CA guide documents for `ca`, each OAuth 2.0 request (`token`, `refresh`, `info`)
+carries its own configuration, so a value at the top level of an OAuth 2.0 communication does
+nothing. If the pair is left out of Base, the token request can succeed while
+every module call fails the TLS handshake.
+
+```json
+{"cert": "{{connection.certificate}}", "key": "{{connection.privateKey}}"}
+```
+
+In the connection's own requests, read the same values as `{{parameters.certificate}}` and
+`{{parameters.privateKey}}`. `cert` and `key` are not on the public request reference; they are
+seen in approved apps, so prove the wiring with a real connection and one module call, not from
+the definition alone.
+
+Sources: [Cert parameter](https://developers.make.com/custom-apps-documentation/block-elements/parameters/cert.md),
+[Pkey parameter](https://developers.make.com/custom-apps-documentation/block-elements/parameters/pkey.md),
+[Connection inheritance and CA configuration](https://developers.make.com/custom-apps-documentation/other/https-custom-ca.md).
+
+### Apply one host rule everywhere
+
+When the host depends on connection values (subdomain, tenant, region, environment or a
+self-hosted URL), write the rule once and use the same expression in Base, in the connection's
+own requests, and in every module or RPC whose URL leaves Base. The documented variable base URL
+example puts the condition in both the connection and Base for this reason. Two failures seen in
+approved apps:
+
+- The connection check goes to a fixed host. It proves only that the key works somewhere, so a
+  wrong subdomain or workspace ID is accepted at connect time and every module fails later. Check
+  against the host built from the submitted values, preferably on a path that includes the tenant
+  identifier, so both are verified.
+- A component needs a second host (for example a separate messaging service). One module derives
+  it from the connection while the matching RPC hard-codes it, so a self-hosted connection lists
+  from one server and writes to another. Use the identical expression in both.
+
+```json
+{"url": "https://{{parameters.subdomain}}.example.com/api/v2/workspaces/{{parameters.workspaceId}}"}
+```
+
+Sources: [Base URL](https://developers.make.com/custom-apps-documentation/best-practices/base/base-url.md),
+[Variable base URL](https://developers.make.com/custom-apps-documentation/app-components/base/base-url.md).
+
 ## Use the right variable context
 
 | Context | Read or write |
@@ -58,6 +109,20 @@ Never infer variable availability from a different component's example.
 Sources: [Basic variables and persisted data](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md),
 [OAuth variables and flow](https://developers.make.com/custom-apps-documentation/app-components/connections/oauth2.md),
 [Common data](https://developers.make.com/custom-apps-documentation/app-components/connections.md#common-data).
+
+### Trace every `connection.*` read to a writer
+
+In Base, modules, RPCs and webhooks, `connection.X` holds only what the connection stored: one of
+its parameters or a key written by `response.data`. A key that nothing stores does not raise an
+error; it evaluates to empty. `if(connection.sandbox, 'sandbox.', '')` then never selects the
+sandbox host, and help text or URLs built from an unstored region render broken. For each distinct
+`connection.*` key, find the parameter or `response.data` assignment in every connection the
+component accepts; a key that only one connection variant stores is empty for the others. Declare
+the parameter (and use it in the connection's own requests too, as the documented sandbox example
+does) or store the value.
+
+Sources: [Variable base URL](https://developers.make.com/custom-apps-documentation/app-components/base/base-url.md),
+[Basic connection data](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md).
 
 ## API key and HTTP Basic validation
 
@@ -120,6 +185,44 @@ Sources: [Basic connection](https://developers.make.com/custom-apps-documentatio
 [OpenAPI 3.0.3 Security Scheme Object](https://spec.openapis.org/oas/v3.0.3.html#security-scheme-object).
 Worked contrast: [auth evidence worked](../examples/current-knowledge/guides/auth-evidence-worked.md).
 
+### A check that every module-capable credential passes
+
+Pick the check so that it succeeds for every credential that can run the modules; the
+validation-endpoint guidance asks for an endpoint "that will work in every case". Providers that
+authorise per action (scoped keys, policy-based permissions) can reject a valid, narrowly scoped key
+on a convenient list call that no module makes. Prefer, in this order: an identity, account or
+token-introspection call that any valid credential may make; then a cheap, bounded read (page size
+1) that the modules themselves need. A lookup of a fixed record (a hard-coded domain, email or ID)
+is not such a call: its result depends on data outside the user's account, and on usage-metered APIs
+it spends quota on every check. If no call fits, state in the connection help which permission the
+check needs, so a missing permission is not mistaken for invalid credentials. A list call is fine
+when every supported key can make it. In review, replace an existing check only with provider
+evidence that a supported key lacks the permission it needs. Without a shown failure, a weaker check
+stays advisory (see the gate below).
+
+Source: [Validation endpoints](https://developers.make.com/custom-apps-documentation/best-practices/connections.md).
+
+### Bind the connection label to a returned field
+
+`response.metadata`, in `info` or in the single request of a Basic connection, is the label that
+lets a user with several connections to one service tell them apart. It takes `type` (`text` or
+`email`; use `email` only for an email address) and `value`; Make sets a limit of 512 characters for
+a string, so keep the label short. Bind `value` to a field the check response really returns. A path
+the response lacks (for example `{{body.email}}` on an endpoint that returns a list) and a zero
+index (`{{body.items[0].name}}`; IML arrays start at 1) both evaluate to empty without an error, so
+the connection simply shows no label. When the check returns no identity, use a non-secret value the
+user entered (an account or company ID) or fixed text, never a credential, and confirm the label
+against a real check response. Build the value from non-secret identity fields that every account
+has (name, email, account or workspace name, user ID), never from a token or session identifier, not
+even part of one. When the label joins optional fields, give each part a fallback, for example
+`{{ifempty(body.account.name, body.user.email)}}`. A helper that joins parts must skip missing ones
+and fall back to a stable value; a part that returns `false` or `undefined` produces labels such as
+`false false`, so test it with missing parts, not only with a complete profile. A missing or empty
+label is advisory.
+
+Sources: [Connection metadata](https://developers.make.com/custom-apps-documentation/best-practices/connections/connection-metadata.md),
+[Basic connection metadata](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md#metadata).
+
 ## OAuth 2.0 lifecycle
 
 - Register the provider client and exact callback before implementing the flow.
@@ -147,6 +250,71 @@ Worked contrast: [auth evidence worked](../examples/current-knowledge/guides/aut
 
 Source: [OAuth 2.0, expiry and token conditions](https://developers.make.com/custom-apps-documentation/app-components/connections/oauth2.md).
 
+### Token conditions and edited connections
+
+Make evaluates `token.condition` against the stored connection data whenever a module is about to
+use the connection, and when the connection is created or verified; when it is false, the stored
+token is used. Two consequences for any `token` block with a condition (client credentials or
+another grant that needs no user):
+
+- The condition can read only what the token response stored. When the connection has no stored
+  expiry, the documented condition is true, so a `token` whose `response.data` never writes
+  `expires` requests a new token on every use, exactly like `"condition": true`. Store the
+  provider's expiry, or a fixed lifetime such as `addMinutes(now, 55)` for a one-hour token.
+- An expiry-only condition does not react to an edit. Changing the credentials, company or tenant
+  of an editable connection does not make `data.expires < ...` true, so the old token can stay in
+  use until it expires, and a verification after the edit can pass with that old token. One
+  pattern seen in approved apps: an advanced, editable boolean (for example `forceRefresh`, help:
+  request a new token after you edit this connection), checked before the expiry and written back
+  as `false` in `response.data` so it acts once; in connection communication `parameters` and
+  `data` are the same store. Without that reset, a ticked flag requests a new token on every use.
+  Prove the edit path with a real connection.
+
+```json
+{
+  "condition": "{{parameters.forceRefresh || data.expires < addMinutes(now, 15)}}",
+  "response": {"data": {
+    "accessToken": "{{body.access_token}}",
+    "expires": "{{addSeconds(now, body.expires_in)}}",
+    "forceRefresh": false
+  }}
+}
+```
+
+Source: [token.condition](https://developers.make.com/custom-apps-documentation/app-components/connections/oauth2.md#token.condition).
+
+### Hosts returned by the authorization callback
+
+Some multi-region providers return the account's server in the authorization callback; the app
+stores that query value through `authorize.response.data` and uses it as the host of `token`,
+`refresh`, `info` and Base. The callback passes through the browser of whoever runs the flow, so
+that person can change the value, and the token request then sends the authorization code, the
+client ID and secret and later the refresh token to the host it names. When the client ID and
+secret can come from the connection's common data (for example
+`ifempty(parameters.clientSecret, common.clientSecret)`), a tampered callback hands the app's
+shared secret to a host of the user's choosing. That differs from an owner-entered host, which the
+gate below treats as a Make feature because the owner can only send their own credential: it is a
+fixable class (b) finding (add the allowlist), not a reason to reject. When everything the token
+request sends belongs to the user, the owner-entered rule applies and the allowlist is advisory.
+
+Accept the value only if it is one of the provider's documented hosts, before it is stored or used.
+`authorize.response.valid` is evaluated against the callback query before the token request, so an
+unknown host fails the flow there:
+
+```json
+{"authorize": {"response": {
+  "valid": "{{query.server === 'https://accounts.example.com' || query.server === 'https://accounts.eu.example.com'}}",
+  "temp": {"code": "{{query.code}}"},
+  "data": {"accountsServer": "{{query.server}}"}
+}}}
+```
+
+Use an exact list, or a pattern anchored on scheme and full host suffix with no user info, port or
+path; a substring or replace check passes unknown hosts through. A callback value inserted into a
+host label (`https://{{connection.account}}.api.example.com`) needs the same care: allow only the
+provider's identifier characters, because `/`, `?` or `#` end the host early. Test with every
+documented region, an unknown host and a look-alike host.
+
 ## OAuth 1.0, JWT, and request signing
 
 Use OAuth 1.0 when required by the provider: implement `requestToken`, `authorize`,
@@ -166,6 +334,51 @@ unreproducible signing flow blocked instead of weakening authentication.
 Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-components/connections/oauth1.md),
 [JWT](https://developers.make.com/custom-apps-documentation/app-components/connections/jwt.md),
 [Request signing](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md#aws).
+
+### Signed requests with the `aws` directive
+
+Some providers sign every request with an access key pair instead of sending a token. Make's
+`aws` directive does the signing; put it in Base and read the pair from the connection.
+
+```json
+{
+  "baseUrl": "https://service.{{connection.region}}.example.com",
+  "aws": {
+    "key": "{{connection.key}}",
+    "secret": "{{connection.secret}}",
+    "sign_version": "4",
+    "service": "example-service"
+  }
+}
+```
+
+- The documented property table lists `secret`, `session`, `bucket`, `sign_version` and `service`;
+  approved apps were seen passing the access key identifier as `key`; prove it with a real
+  signed call.
+- Set `sign_version` to 4 explicitly; the documented default is 2. `service` applies only to
+  version 4 and must be the provider's signing name for the endpoint, which is not always the
+  first label of the host. A module that calls an endpoint signed under another service name
+  needs its own complete `aws` block.
+- The directive has no documented region property. Approved apps on AWS hosts were seen keeping the
+  region in the host name, taken from one connection value (a required select), and set no region in
+  the block. For any other host whose signature includes a region, prove a non-default region with a
+  real signed call before relying on it.
+- Collect the secret as `password`. The access key identifier is not the secret and may be `text`.
+- The credentials appear only inside the signing block. When tracing which context reads each
+  credential, trace the `aws` block: a request with no Authorization header is not unauthenticated.
+- Signing does not remove the need to mask. List `request.headers.authorization` (the signed
+  header carries the access key identifier) and, when `session` is set,
+  `request.headers.x-amz-security-token` in `log.sanitize`. An empty list does not show that
+  nothing needs masking.
+- The connection does not inherit Base, and an unsigned check does not test the key pair. Approved
+  apps were seen signing the Basic connection check with the same block, reading `parameters.*`,
+  although the connection references list `aws` as not available there (see the caution above).
+  Treat a signed check as a runtime fact to prove: create one connection with a valid pair and one
+  with a wrong secret. Do not replace it with an unsigned request, and do not report it as a defect
+  from that reference line alone.
+
+Sources: [aws request directive](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md#aws),
+[Basic connection communication](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md).
 
 ## Current-knowledge guides
 
@@ -197,3 +410,17 @@ Sources: [OAuth 1.0](https://developers.make.com/custom-apps-documentation/app-c
 Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): a consumer with no credential binding is a class (c) defect (fix it by binding the compatible connection; when several exist, choose the one the module's API and scopes require and state the choice), a user-entered secret in a non-password parameter is class (b) credential handling (change it to `password`; approve with adjustments), a host, subdomain, region or instance URL entered by the connection owner is a Make feature and not a defect, a credential placement the provider API accepts is correct, an omitted shared or external connection import is `needs_evidence` only if the open question could hide a scam (unsettled, it rejects and names the missing fact; otherwise advisory), and a connection check that may not distinguish valid credentials is advisory without evidence.
 
 Source: [Sanitization](https://developers.make.com/custom-apps-documentation/app-components/base/sanitization.md).
+
+### Leftover connection scaffolds
+
+Review every connection directory, not only the one the modules use. Approved apps were seen
+shipping extra connections that still hold the editor's prefilled template: a check against a
+placeholder host (`https://www.example.com/api/whoami`), the template comments and no help text.
+While no module, RPC or webhook accepts such a connection it does no harm, so report it as advisory:
+relabel it as not for use, or finish it with a real check, help text and the same host rule as Base.
+Connections are app-scoped, not version-scoped, so check the modules, RPCs and webhooks of every
+major version (`connection` and `altConnection`) before calling one unused, and suggest deleting it
+only if it was never part of a released version. A connection that a component does accept but that
+still points at the placeholder host can never pass its check; that is a functional defect to fix.
+
+Source: [Connections](https://developers.make.com/custom-apps-documentation/app-components/connections.md).
