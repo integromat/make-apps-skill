@@ -58,7 +58,7 @@ The spread exists precisely so that a computed set of headers can be added witho
 
 * Applies to modules and RPCs that inherit Base. A universal module must use a relative path so that tokens cannot be redirected to another host; a header merge does not change that.
 * A whole-expression override is legitimate for an unauthenticated provider endpoint or a sign-in call; in that case the missing Base auth is intended.
-* A fixed `baseUrl` containing a path is not changed by a suffix in the module URL pointing elsewhere.
+* A fixed `baseUrl`, with or without a path, does not on its own keep a user-supplied module URL on the provider host: a complete URL in the input is treated as absolute. A universal module puts its own fixed prefix, ending with `/`, directly before the input ([universal-modules-and-scopes](universal-modules-and-scopes.md)).
 
 ## Evidence and limits
 

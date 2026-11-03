@@ -30,9 +30,9 @@ For each applicable check, record: source/rule, strength (documented requirement
 For every component, answer each item below as `finding`, `passed`, `not_applicable` or `uncertain` with the missing fact (never skip silently):
 
 - Output dates are parsed to the Make date type where the provider value is a real timestamp.
-- Documented error shapes, including 4xx and 422 bodies, are handled in Base or the module, consistent with the provider.
+- Documented error shapes (4xx bodies, including 422 validation errors) are handled in Base or the module, consistent with the provider.
 - Authentication is inherited from Base or the connection and not duplicated in modules.
-- Pagination exists where the provider pages results: for list and search modules and also for pickers and RPCs.
+- Pagination exists where the provider pages results: for list and search modules and also for pickers and RPCs; RPC paging stays within the RPC record budget above.
 - Output and interface agree: no stale or missing fields.
 - File inputs and outputs keep their file semantics (name, data, MIME type).
 

@@ -50,7 +50,7 @@ Authentication fails far from where it is configured: a token that cannot refres
 * Making an extra-scopes field mandatory for a connection whose operations never need it, or declaring a universal call broken without checking its endpoint group's required scopes.
 * Declaring an inconsistency because one block uses `data.x` and another `parameters.x` inside connection communication.
 * Treating `common` as the same store as `data`/`parameters`, which defeats the documented `ifempty(parameters.clientId, common.clientId)` fallback.
-* Reading a redacted placeholder (for example `<redacted>` or `***`) in supplied common data or connection data as missing configuration. It is present-but-hidden configuration: the value exists in the real app and was masked for review, so do not report it missing or replace it.
+* Reading a redacted placeholder (for example `<redacted>` or `***`) in supplied common data or connection data as missing configuration. It is present-but-hidden configuration: the value exists in the real app and was masked for review, so do not report it missing or replace it, and never write the placeholder back as a value in an adjusted file (a returned `<redacted>` would overwrite the real secret).
 * Credentials placed per module (query string, body or header) instead of once in Base, which is a maintainability and sanitization risk only; a placement the provider API accepts is not a defect, and one it does not accept is a functional fix.
 
 ## Exceptions and applicability

@@ -13,6 +13,7 @@ Make already treats failed HTTP calls in a sensible way. Good error handling in 
 * `response.error.message` supplies the user-facing text. Prefer the provider's message (`{{body.error.message}}`) over a generic one; keep it free of credentials.
 * Per-status entries (`"400": { "type": "DataError", "message": "..." }` and similar) change the type and message for one status. The Error reference requires every status-code specification to contain `message`; `type` is optional. A per-status object that has only `type` does not match that documented shape, and the generic top-level `message` does not satisfy it. (This is an authoring-contract point from the reference; static review does not prove how the runtime treats an object without `message`.) A per-status specification takes precedence over the generic `message` and `type`; when it omits `type`, the generic `type` applies, and when there is none, the default for that HTTP status.
 * A generic `type` set at the top level of `response.error` **overrides** the default type mapping, including the 429 and 5xx defaults. That is easy to do by accident: setting one generic type to improve a message can turn rate limits into ordinary errors. Prefer per-status entries and leave the statuses you do not understand to the defaults.
+* **Documented error shapes.** When the provider documents an error body (4xx bodies, including 422 validation errors, with a message or a list of field errors), handle it in Base `response.error` or the module, consistent with the provider's documented shape and without a generic `type`, so the user sees that message and the 429 and 5xx defaults stay. Do not leave a documented shape to the generic default.
 * Error text belongs to the error directive, never to `output`.
 
 ## Failures inside successful responses
@@ -20,8 +21,6 @@ Make already treats failed HTTP calls in a sensible way. Good error handling in 
 **Documented behaviour.** A 2xx or 3xx response is not an error by default. If the provider signals failure with a 200 and an envelope (`{ "ok": false, "error": ... }`), use the `valid` directive to declare when the response is valid. Per-status error entries for 200-399 only fire after `valid` has marked the response invalid. Also check batch results: a bulk call can return overall success with per-item failures, and the module must define whether it reports overall or item-level outcomes according to what the provider supplies.
 
 A field named `error` in a success response is not automatically a failure; it may be informational. Read the provider contract and a real response before writing `valid`.
-
-**Documented error shapes.** When the provider documents an error body (for example a 4xx or 422 with a message or a list of field errors), handle it in Base `response.error` or the module so the user sees that message, consistent with the provider's documented shape. Do not leave a documented shape to the generic default.
 
 ## Errors in multi-step communication
 

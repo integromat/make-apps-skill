@@ -167,7 +167,7 @@ Fix quality rules.
 - Scope: change only the files a finding requires. Do not touch README or documentation files, hidden modules or unrelated components unless a finding is about them, and make each change's explanation describe that change.
 - Prefer a minimal inline fix over a new helper. A new or changed helper function updates its test file in the same change.
 - Do not add requests, polling or retries the contract does not require. Verify the runtime semantics (pagination stop, repeat, retries) before changing them.
-- Prioritise functional defects. Credential masking is a minor fix and never displaces a functional one.
+- Prioritise functional defects. Credential masking (a missing `log.sanitize` path) is a minor fix: it is still fixed (approve with adjustments) and listed after the functional fixes, and it never displaces a functional one. A credential written to output or sent to another host is not masking and keeps its full severity.
 
 Defect classes (a) to (d):
 
@@ -186,7 +186,7 @@ Defect classes (a) to (d):
 - (b) **Security or privacy**, always fixed (see the Outcome rules for what is adjusted and what is not a
   defect): a secret collected through a plain `text` (non-`password`) connection or install parameter; a
   secret stored or logged in plain text, including a credential written to a log or output; missing log
-  sanitization of credentials; credential storage or refresh in connection data that is wrong; a credential
+  sanitization of credentials (masking, a minor fix; see Fix quality rules and How to record); credential storage or refresh in connection data that is wrong; a credential
   placement or host the provider API does not accept; user- or data-controlled URLs and hostnames that
   untrusted scenario data could use to steer a credential elsewhere; a privacy defect that exposes user content
   against the user's choice; and missing webhook verification, only when the provider documents a verification
@@ -210,7 +210,7 @@ exposure that no change inside the app can remove leads to rejection. Never reje
 items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
-an open question that could hide a scam uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed security, credential-handling or privacy defect is a security finding with the fix applied; an unproven privacy or security question that is not a scam is advisory; a
+an open question that could hide a scam uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed security, credential-handling or privacy defect is a security finding with the fix applied; credential masking (a missing `log.sanitize` path) is a minor fix, recorded with Warning instead of Error severity, still `blocks` and fixed, and listed after the functional fixes, while a credential written to output or sent to another host is not masking and keeps Error severity; an unproven privacy or security question that is not a scam is advisory; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
 for adjustments, list each fix next to its finding; for a rejection, name the reason (scam, trash or an unremovable exposure). Name a service-specific field only where the review service
