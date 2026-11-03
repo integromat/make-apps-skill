@@ -135,8 +135,9 @@ quote, a backslash or a line break.
   `ifempty(createJSON(parameters.k), 'null')` or leave the member out. Outside this text-body
   case, keep objects as objects ([requests-and-responses.md](requests-and-responses.md)).
 - `escapeHTML()` (`iml.escapeHTML()` in a function) replaces only `&`, `<` and `>`. Inside a
-  quoted HTML attribute value also replace `"` with `&quot;` (and `'` with `&#39;` in a
-  single-quoted one). Replacing line breaks with `<br>` is formatting, not escaping.
+  quoted HTML attribute value, after `escapeHTML()`, also replace `"` with `&quot;` (and `'`
+  with `&#39;` in a single-quoted one). Replacing line breaks with `<br>` is formatting, not
+  escaping.
 - In a MIME message, multipart part or other header block assembled as text, remove CR and LF
   from every user value (header names and values, file names, display names), so a value
   cannot start a new header line.
@@ -257,7 +258,7 @@ evidence. Demonstrably incorrect behavior stays a finding.
 Execute every shipped test against the current function source: with the editor's
 **Run IML test**, or with the local harness above when the helper makes no `iml.*` call. A
 test that cannot run locally only because the harness lacks `iml` is an evidence limit, not a
-finding. Released apps ship tests that fail or cannot run; look for these forms:
+finding. Tests that fail or cannot run were seen in approved apps; look for these forms:
 
 - an assertion on a property the function never sets, such as
   `assert.strictEqual(attr.time, false)` when the code never adds `time`;
@@ -267,10 +268,10 @@ finding. Released apps ship tests that fail or cannot run; look for these forms:
   `expect(...).toEqual(...)` or a `require()` of a fixture or module. Rewrite it with `it`
   and the documented `assert` functions.
 
-Report a red or unrunnable test as a finding. Decide from the real call sites whether the
-test or the function is wrong, and fix that side: a wrong function is a demonstrated defect;
-a wrong test alone is advisory under [Approval gating](review-and-qa.md#2a-approval-gating)
-and is fixed because the fix is clear.
+Report a red test, or one the editor's **Run IML test** cannot execute, as a finding. Decide
+from the real call sites whether the test or the function is wrong, and fix that side: a wrong
+function is a demonstrated defect; a wrong test alone is advisory under [Approval
+gating](review-and-qa.md#2a-approval-gating) and is fixed because the fix is clear.
 
 ## Transformation and verification gate
 
@@ -301,7 +302,7 @@ hash is accepted by the API and silently never matches.
   and per provider; do not copy them from another integration.
 - Hash only present, non-blank values and leave the field out otherwise. `sha256()` of a
   missing value fails the module, and `sha256('')` returns the digest of the empty string
-  (`e3b0c442…`), which the provider accepts as a real value.
+  (`e3b0c442…`), which a provider can accept as a real value.
 - Pass fields the provider wants raw (for example an IP address or user agent) through
   unhashed, and keep it visible which fields are hashed and which are raw.
 - Use the digest encoding the provider expects; `sha256()` returns hex by default.

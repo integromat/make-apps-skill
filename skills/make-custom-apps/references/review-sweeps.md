@@ -74,9 +74,9 @@ Guide: [errors and rate limits](../examples/current-knowledge/guides/errors-and-
 
 ### Sweep: comments and commented-out code
 
-Component files are parsed as JSON with comments, and approved apps routinely ship comments:
-template explanations, notes, and commented-out alternative requests, option blocks or whole
-`pagination` blocks. A comment does nothing at runtime, so it is neither a defect nor
+Component files are parsed as JSON with comments, and approved apps were seen shipping comments
+routinely: template explanations, notes, and commented-out alternative requests, option blocks
+or whole `pagination` blocks. A comment does nothing at runtime, so it is neither a defect nor
 evidence. Read every comment anyway, as the author's own statement about the component, and
 test it against the active code:
 
@@ -86,10 +86,11 @@ test it against the active code:
   to the active code (pagination where the provider pages, the RPC record budget, documented
   error shapes) and report what that check finds, not the comment.
 - A comment that claims behaviour is not proof. A pagination body that writes
-  `"filters": { /* unchanged */ }` sends an empty `filters` object on later pages, because a
-  supplied pagination `body` replaces the original one
-  ([pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md));
-  page two then runs without the user's filters. Repeat the complete body instead:
+  `"filters": { /* unchanged */ }` relies on the original body being merged in, which the
+  pagination page does not promise: it documents that a supplied pagination `body` overrides
+  the original one ([pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md)).
+  Do not report lost filters on page two from the file alone; repeat the complete body instead,
+  which is correct whether or not the two bodies are merged:
 
   ```json
   "pagination": {

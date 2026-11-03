@@ -84,7 +84,7 @@ The checker's `CK-SECRET-LOG` rule applies this to fixtures: a Base authorisatio
 
 ### One list per block, built from where that block puts the secret
 
-**Documented behaviour (sanitization page).** A request without `log.sanitize` writes no request or response log, so nobody can debug it, and the list is still required. A request with a list is logged, and only the paths in the list are masked. **Runtime-confirmed:** an empty list (`"sanitize": []`) counts as a list. It turns logging on and masks nothing.
+**Documented behaviour (sanitization page).** A request without `log.sanitize` writes no request or response log, so nobody can debug it, and the list is still required. A request with a list is logged, and only the paths in the list are masked. **Not stated on the public pages (confirm in a test run's log):** an empty list (`"sanitize": []`) counts as a list. It turns logging on and masks nothing.
 
 So a missing list hides the log, while a list that misses the secret shows the secret in clear text. A check that only asks whether a block has a list catches none of these common causes:
 
@@ -110,7 +110,7 @@ Go through each block: `preauthorize`, `token`, `refresh`, `info`, `invalidate`,
 
 **Documented behaviour (authorization and sanitization best practice).** A field path such as `request.body.client_secret` addresses a key of a parsed body (JSON or urlencoded). Some bodies are sent as one string, and a string has no keys. This covers `type` `text` (or `string` or `raw`), an XML or SOAP envelope, and a string returned by a custom function. Neither a field path nor a Base header path reaches a secret written into such a string. Mask the secret by its value instead: `request.body<parameters.secret>` replaces every occurrence of that value in the logged body with `***`. The rest of the body stays readable for debugging.
 
-**Runtime-confirmed.** The name inside `<>` is looked up in the context where the request runs, so the [table above](#where-each-variable-lives) applies. Name the variable the request reads the secret from. In a connection block that is, for example, `parameters.*`, `data.*` or `common.*`. In a module or RPC it is `connection.*`. The value is matched exactly as stored, so an encoded copy (base64, XML-escaped) is not found. If the name resolves to nothing, the whole field is masked. `request.body` with no field and no value also masks the whole body. That is safe, but it hides the request you need for debugging.
+**Not stated on the public pages; confirm in a test run's log.** The name inside `<>` is looked up in the context where the request runs, so the [table above](#where-each-variable-lives) applies. Name the variable the request reads the secret from. In a connection block that is, for example, `parameters.*`, `data.*` or `common.*`. In a module or RPC it is usually `connection.*`; a secret the module takes as an input is `parameters.*`, as in the documented example, and app common data is `common.*`. The value is matched exactly as stored, so an encoded copy (base64, XML-escaped) is not found. If the name resolves to nothing, the whole field is masked. `request.body` with no field and no value also masks the whole body. That is safe, but it hides the request you need for debugging.
 
 A response declared or detected as XML is parsed before it is logged, so a field path can reach a secret in it. Below the root element every element is parsed as an array. A path that passes through such an element needs an array step on it, and array steps work only for all-lower-case names (see the next section). The last element can be named without brackets, which masks its whole array.
 
@@ -127,7 +127,7 @@ A response declared or detected as XML is parsed before it is logged, so a field
 
 ### Arrays, and the limits of path matching
 
-**Runtime-confirmed (not described in the public request reference).** A path step can address array elements:
+**Not described in the public request reference; confirm each mask in a test run's log.** A path step can address array elements:
 
 * `items[*]` covers every element: `response.body.data[*].access_token` masks the token in each object of a returned list. Nested arrays need one `[*]` per level. A payload that can nest to different depths needs one entry per depth the provider can return.
 * `items[1]` covers only the first element, because counting starts at 1. `items[]` and `items[0]` match nothing, and no error is shown.
@@ -177,7 +177,7 @@ Credentials are the one thing a log must never contain. Because the connection b
 * `log.sanitize` mandatory and its case-insensitive dot-notation paths: **documented requirement**. The variable roles of `parameters`, `common` and `data` in connection communication: **documented** (variable table and code-grant example). The `data`/`parameters`/`connection` equivalence in connection communication: **runtime-confirmed, adjudicated allowance**, not read from the public variable table (which describes variable roles only); `common` is outside that equivalence.
 * Which header names count as sensitive and which body keys are secret-named: **inferred implementation pattern** (a regular expression in the checker). Any real secret path outside those patterns still needs your own review.
 * The checker is static; it does not call an authorisation server.
-* No request or response log without a sanitize list, and the value form `request.body<parameters.secret>` for a string body: **documented behaviour** (sanitization page; authorization and sanitization best practice). The following are **runtime-confirmed** and not stated by the public request reference:
+* No request or response log without a sanitize list, and the value form `request.body<parameters.secret>` for a string body: **documented behaviour** (sanitization page; authorization and sanitization best practice). The following are not stated by the public request reference; treat them as expectations to confirm in a run's log:
   * an empty list turns logging on and masks nothing;
   * a hyphenated header name is one plain segment, and backticks become part of the name;
   * `[*]` and the 1-based `[n]` array steps work, while `[]` and `[0]` match nothing;

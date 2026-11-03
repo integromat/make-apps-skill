@@ -65,8 +65,12 @@ When every field of a collection is left empty, Make still sends the collection 
 ([Processing of empty values](https://developers.make.com/custom-apps-documentation/other/processing-of-empty-values.md)),
 and a parent written literally in the request (`"filters": {"a": ..., "b": ...}`) is sent as
 `"filters": {}` when every child resolves empty. Some APIs reject an empty object or read it
-differently from an absent group. Clean the whole group in one expression instead of
-cleaning each child, and test the all-empty case, not only a filled form.
+differently from an absent group. Clean the whole group in one expression instead of cleaning
+each child: for a collection parameter, use the `length(keys(...)) > 0` guard in
+[outputs, empty values and updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md#optional-collections-send-them-only-when-filled);
+for a parent built from separate inputs, use a custom function (where custom IML functions are
+enabled) that returns `undefined` when every child is empty. Test the all-empty case, not only a
+filled form.
 
 Check a copied removal helper before relying on it: the documented example sends an array of
 plain values (`["a", "b"]`, a multiple select) as `[null, null]`, and still sends an erased
@@ -228,22 +232,27 @@ Sources: [Valid responses](https://developers.make.com/custom-apps-documentation
 
 When the provider returns a list of field errors next to, or instead of, one message, join
 the list and fall back to the top-level message. The user then sees every failing field, and
-an empty or missing list does not leave a bare status code:
+an empty or missing list still leaves a message. Put the list in the per-status entries whose
+body the provider documents as JSON (often 400 and 422). `map()` accepts only an array or
+nothing, so in the generic message a text or HTML gateway body, or a single error object,
+replaces the status with a function error.
 
 ```json
 {
   "response": {
     "error": {
-      "message": "[{{statusCode}}] {{ifempty(join(map(body.error.details, 'message'), '; '), body.error.message)}}"
+      "message": "[{{statusCode}}] {{body.error.message}}",
+      "400": {
+        "message": "[{{statusCode}}] {{ifempty(join(map(body.error.details, 'message'), '; '), body.error.message)}}"
+      }
     }
   }
 }
 ```
 
 Map the property that holds the readable text (`message`, `detail`), keep the status prefix,
-and leave credentials and request echoes out. `map()` needs an array or nothing: check that
-the provider's error shape never puts a single object in that field. The batch-actions
-asynchronous example joins a stored error list into its message the same way.
+and leave credentials and request echoes out. More message shapes are in
+[errors and rate limits](../examples/current-knowledge/guides/errors-and-rate-limits.md#building-the-message-from-the-providers-error-shape).
 
 ### A lookup that finds nothing
 
@@ -371,9 +380,12 @@ errors in [errors and rate limits](../examples/current-knowledge/guides/errors-a
 
 An element of the request array that omits `url` sends nothing (request-less communication).
 Its request directives (`method`, `qs`, `headers`, `body`, `type`) are ignored, while its
-`condition`, `temp` and response directives (`valid`, `error`, `output`) still run, against
-`temp` and the `body`, `headers` and `statusCode` of the last real response. The
-batch-actions asynchronous example closes its chain this way. Use such a step to:
+`condition`, `temp`, `valid` and `output` still run. The step has no response of its own, so
+read `temp` there, not `body`: copy what it needs into `response.temp` in the step that
+received it. Put the failure text in `valid.message`. The request-less page says `valid` and
+`error` lose their value in this mode, and a `response.error` message is not applied to a step
+that sent no request. The batch-actions asynchronous example closes its chain with such a step.
+Use such a step to:
 
 - fail early with a clear message when an input combination cannot work;
 - turn a status collected by earlier steps into a success or a clear error;
@@ -436,10 +448,10 @@ Source: [Repeat, delay, limit, and temporary state](https://developers.make.com/
   and status field in both outputs. Say in the help that waiting is bounded and that a
   status module or a webhook fits long jobs.
 - **A bound the user can set.** `delay` and `limit` are not evaluated, so
-  `"limit": "{{parameters.maxChecks}}"` offers a setting that is ignored and can leave the
-  loop without a working bound. Count the checks in `temp`, test the count in
-  `repeat.condition`, keep a literal `limit` as the ceiling, and cap the input at that
-  ceiling (`validate.max`).
+  `"limit": "{{parameters.maxChecks}}"` offers a setting that is ignored and can leave the loop
+  without a working bound. Count the checks in `temp`, copy the user's bound into `temp` too (a
+  `repeat.condition` reads only `temp`), test both there, keep a literal `limit` as the
+  ceiling, and cap the input at that ceiling (`validate.max`).
 - **Check before you iterate.** A failed job usually has no result array; iterating it
   returns zero bundles and no error. Check the stored status first, in a closing step whose
   `valid` accepts only success and whose message names the status and the job ID.
@@ -453,9 +465,9 @@ Source: [Repeat, delay, limit, and temporary state](https://developers.make.com/
   {"url": "/jobs", "method": "POST", "body": "{{parameters.job}}",
    "response": {"temp": {"jobId": "{{body.id}}", "accepted": "{{body}}"}}},
   {"condition": "{{parameters.wait}}", "url": "/jobs/{{temp.jobId}}", "method": "GET",
-   "response": {"temp": {"status": "{{body.status}}", "job": "{{body}}", "checks": "{{ifempty(temp.checks, 0) + 1}}"}},
+   "response": {"temp": {"status": "{{body.status}}", "job": "{{body}}", "checks": "{{ifempty(temp.checks, 0) + 1}}", "maxChecks": "{{ifempty(parameters.maxChecks, 30)}}"}},
    "repeat": {
-     "condition": "{{(temp.status == 'queued' || temp.status == 'running') && temp.checks < ifempty(parameters.maxChecks, 30)}}",
+     "condition": "{{(temp.status == 'queued' || temp.status == 'running') && temp.checks < temp.maxChecks}}",
      "delay": 5000,
      "limit": 60
    }},

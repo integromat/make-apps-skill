@@ -88,9 +88,10 @@ For worked synthetic examples and a per-check application table, see
 A module created from an editor template keeps plausible defaults until each part is replaced: a
 generic path such as `/users` or `/users/{{parameters.id}}`, an `iterate` of `body.users`, template
 inputs (`id`, `email`, `name`, `search`, `limit`), a matching interface, and `item.created` as a
-trigger date. Released apps still ship such modules, usually hidden or labelled as not for use, and
-occasionally visible under a label for an operation the request never performs. Sweep every module,
-hidden ones included, and compare its label and description with its request, inputs and interface.
+trigger date. Approved apps were seen still shipping such modules, usually hidden or labelled as not
+for use, and occasionally visible under a label for an operation the request never performs. Sweep
+every module, hidden ones included, and compare its label and description with its request, inputs
+and interface.
 
 - Template comments alone prove nothing: finished modules often keep them, and the documentation's
   own snippets use the same comment style. Judge the request, not the comments.
@@ -116,10 +117,10 @@ In a module labelled for another resource, this shape is the template, not an im
 ### Identifying values in samples
 
 Samples are part of the app definition and are shown to the app's users while they set up a module,
-so a sample copied from a real run distributes whatever that run returned. Released apps carry
-account numbers inside resource URLs and resource names, personal email addresses, phone-number chat
-identifiers, message or session handles and trace IDs. Check every static sample for values that
-identify a real account, person or resource.
+so a sample copied from a real run distributes whatever that run returned. Approved apps were seen
+carrying account numbers inside resource URLs and resource names, personal email addresses,
+phone-number chat identifiers, message or session handles and trace IDs. Check every static sample
+for values that identify a real account, person or resource.
 
 - Replace only the identifying part with a neutral placeholder of the same type and shape: a
   zero-filled account number inside an otherwise unchanged URL, an `example.com` email address or
@@ -152,14 +153,16 @@ example `DELETE /items/` instead of `DELETE /items/{id}`. The provider then answ
 with an error or a different operation, instead of Make's required-field validation stopping it.
 
 - In Get, Update, Delete and other single-record modules, trace every identifier the request always
-  needs to its declaration, including `nested` arrays (on the parameter, on its options store or on
-  an option) and fields an RPC returns. A required parent does not cover its child.
+  needs to its declaration, including `nested` arrays (on the parameter, in its `options` object or
+  its placeholder, or on an option) and fields an RPC returns. A required parent does not cover its
+  child.
 - Compare sibling modules: the same nested identifier marked required in Get but not in Delete is
   direct evidence of the gap.
 - Record it as the authoring correction that guide describes (advisory unless class (a) to (d)
-  applies) and add `required: true` on the child; the fix is clear, so apply it. A saved scenario
-  that leaves the value empty never reached the intended record, so the flag replaces a misrouted
-  request with Make's required-field validation.
+  applies) and add `required: true` on the child; the fix is clear, so apply it, and state the
+  compatibility impact in the finding, because the breaking-changes page lists changing `required`
+  from false to true. A saved scenario that leaves the value empty never reached the intended
+  record, so the flag replaces a misrouted request with Make's required-field validation.
 
 ```json
 { "name": "parentId", "type": "select", "label": "Parent", "required": true,

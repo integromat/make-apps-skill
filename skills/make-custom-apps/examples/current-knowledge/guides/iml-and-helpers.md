@@ -33,18 +33,20 @@ A `filter` parameter returns an array of condition groups. The groups are joined
 Test a value containing a quote, a backslash and a line break, every offered operator, an unknown operator and, where OR is allowed, two groups.
 
 ```js
-// values are assumed to arrive with their declared parameter type
-const literal = (v) => (typeof v === 'string' ? `'${v.replace(/'/g, "''")}'` : String(v));
+// quote by the operator's value type, not by the JavaScript type of b:
+// a filter's b can arrive as text even when the user typed a number
+const text = (v) => `'${String(v).replace(/'/g, "''")}'`;
 
 const OPERATORS = {
-  'text:equal': (field, value) => `${field} eq ${value}`,
-  'text:startwith': (field, value) => `startswith(${field}, ${value})`,
-  // one entry per offered operator, negations included; an operator without b ignores value
+  'text:equal': (field, value) => `${field} eq ${text(value)}`,
+  'text:startwith': (field, value) => `startswith(${field}, ${text(value)})`,
+  // one entry per offered operator, negations included; a numeric operator converts and
+  // checks its value instead of quoting it; an operator without b ignores value
 };
 
 function toCondition({ a, o, b }) {
   if (!Object.prototype.hasOwnProperty.call(OPERATORS, o)) throw new Error(`Unsupported filter operator: ${o}`);
-  return OPERATORS[o](a, literal(b));
+  return OPERATORS[o](a, b);
 }
 
 // JSON text: build an object, never a template
@@ -88,7 +90,7 @@ Do not use a number's magnitude, an identifier's type name or a parameter name a
 
 A helper can act by changing an object it was given instead of returning a new one: it assigns or deletes keys on its argument, or on the items of an array argument. Within one function's code the caller then sees the change even if it ignores the return value. Whether a change made by another custom function, called through `iml.`, reaches the caller is not documented. This has two consequences:
 
-* **Tracing.** Before calling a helper call ineffective because its result is unused (link 4), check whether the helper mutates an argument that the caller keeps using. If it does, the effect is invisible at the call site; settle it with an editor test or an execution, not from the call site alone.
+* **Tracing.** Before you report a helper call as not consumed because its return value is unused (link 4), check whether the helper mutates an argument that the caller keeps using. If it does, the effect is invisible at the call site; settle it with an editor test or an execution, not from the call site alone.
 * **Authoring.** Return a new value and use it at the call site, or copy before editing. A helper that edits its input in place gives a different result when the same object is processed twice. That happens with a repeated call, a recursive walk that reaches a shared object again, or a test that reuses one fixture for two assertions: the second pass sees already converted values or keys already deleted. When the contract is non-mutating, add a test that the input is unchanged after the call.
 
 ```js

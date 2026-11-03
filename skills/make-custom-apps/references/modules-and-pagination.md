@@ -194,16 +194,20 @@ rules above (query merging, allowed destination hosts, retained credentials) sti
 An endpoint that returns the records for IDs the user supplies is not paginated: its result
 size is set by the input. Providers usually cap the number of IDs per call and return no
 cursor, so a call above the cap fails or drops IDs. Declare the documented cap on the input
-array and state it in the help:
+array and state it in the help. On a module that is already released, add the bound only where
+the provider already rejects a longer list; where it silently drops IDs, state the cap in the
+help and treat a new bound as a compatibility change ([limits the help text already states](parameters-and-rpcs.md#limits-the-help-text-already-states)):
 
 ~~~json
 {"name": "ids", "type": "array", "label": "IDs", "spec": {"type": "text", "label": "ID"},
  "validate": {"maxItems": 25}, "help": "Up to 25 IDs per run."}
 ~~~
 
-Pagination does not lift the cap. Do not ask for a `pagination` block on such an endpoint;
-an existing cursor block there never runs when no cursor is returned, and it only suggests
-that the module handles more IDs than one call accepts.
+Pagination does not lift the cap. Do not ask for a `pagination` block on such an endpoint.
+An existing cursor block there stops after the first call only when its `condition` tests the
+cursor; without one it re-sends the same IDs and repeats their records until the Limit or the
+pagination request cap stops it. Either way it suggests that the module handles more IDs than
+one call accepts.
 
 ## Universal and multi-request boundaries
 

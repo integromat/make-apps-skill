@@ -14,7 +14,7 @@ Using an options RPC where a schema is expected, or the reverse, shows the user 
 
 ### Request-less RPCs with conditional branches
 
-**Documented behaviour.** An RPC needs no request when it only returns definitions: omit `url` and return them from `response.output` (request-less communication). Communication may also be an array of requests, each with its own `condition`. A request whose condition is false is skipped, and the output of the last request is used. Together they give a fields RPC that returns a different set of fields for each value of another parameter. This is the "condition-aware RPC" that the conditionally required guidance refers to: `required: true` inside a branch applies only while that branch is active.
+**Documented behaviour.** An RPC needs no request when it only returns definitions: omit `url` and return them from `response.output` (request-less communication). Communication may also be an array of requests, each with its own `condition`. A request whose condition is false is skipped, and the output of the last request is used. Together they give a fields RPC that returns a different set of fields for each value of another parameter. This is the condition-aware RPC described in [parameters and RPCs](../../../references/parameters-and-rpcs.md#condition-aware-rpcs-steps-with-condition): `required: true` inside a branch applies only while that branch is active.
 
 ```json
 [
@@ -25,14 +25,14 @@ Using an options RPC where a schema is expected, or the reverse, shows the user 
   { "condition": "{{parameters.rangeType == 'last'}}",
     "response": { "output": { "name": "days", "type": "uinteger", "label": "Number of days" } } },
   { "condition": "{{!parameters.rangeType}}",
-    "response": { "output": null } }
+    "response": { "output": [] } }
 ]
 ```
 
 **Inferred implementation pattern.**
 
 * Reference the RPC where the documentation places dynamic fields that depend on a choice: in the controlling select's `nested` (on an option, or as `options.nested` together with `store`). If each option's fields are fixed and need no connection data, plain `nested` arrays on the options do the same without an RPC. The RPC pays off when several modules share the variants, or when a branch needs a lookup or connection data.
-* Make the conditions mutually exclusive and cover every value of the controlling parameter, so exactly one branch decides the fields, or deliberately none (an explicit `null` branch records that choice). If two conditions are true, only the later branch's output is used and the earlier branch's fields silently disappear.
+* Make the conditions mutually exclusive and cover every value of the controlling parameter, so exactly one branch decides the fields, or deliberately none (a branch that returns `[]` records that choice). If two conditions are true, the later branch's output replaces the earlier one and the earlier branch's fields silently disappear. A `null` output replaces nothing, so after a step that already produced a result it lets that result through ([parameters and RPCs](../../../references/parameters-and-rpcs.md#condition-aware-rpcs-steps-with-condition)).
 * A branch may still call the provider (give it a `url`) when only that case needs a lookup, for example loading custom fields only once the parent is set.
 * A first, request-less step can set `temp` with definitions that several branches reuse (see "Define a repeated structure once").
 * Review check: list the controlling parameter's values, confirm each has its branch, and confirm no field appears for the wrong value. If the controlling field can be mapped, its value may be unresolved while the form loads and no branch matches; make it non-mappable or handle the map path (end of "Inputs, dependencies and connection").
@@ -42,7 +42,7 @@ Using an options RPC where a schema is expected, or the reverse, shows the user 
 **Documented building blocks, inferred use.** The `banner` parameter is the documented way to show a message in a module form ([parameters and RPCs](../../../references/parameters-and-rpcs.md#banners) has its shape and when to prefer it over an `html` notice). A request-less RPC entry in a `parameters` or `expect` array can return one, so the notice can depend on other inputs or on the connection, which RPCs can read:
 
 * A rule that `required` cannot express, such as "set at least one of these fields", shown next to those fields.
-* A step the user must take, or a warning that applies only to some connections or settings: give the branch a `condition` and return `null` when it does not apply.
+* A step the user must take, or a warning that applies only to some connections or settings: give the branch a `condition` and return `[]` when it does not apply.
 * Help that must name connection data, such as the regional base URL in a universal module's path field. The RPC returns that single field with the same `name`, `type`, `label` and `required` it would have as a static field, and builds only the help from `connection`. The help keeps the universal-module wording: the base without a trailing slash, and an example that starts with `/` and the version. It does not replace the fixed prefix in the module's own `url` ([universal-modules-and-scopes](universal-modules-and-scopes.md)).
 
 ```json
@@ -94,7 +94,7 @@ Users then cannot pick a field the provider rejects, and the form follows the pr
 
 ### Concrete fallbacks for unsupported types
 
-**Inferred implementation pattern** (rule 3 above, made concrete). Two shapes recur in released apps:
+**Inferred implementation pattern** (rule 3 above, made concrete). Two shapes were seen in approved apps:
 
 * **Per field.** End the type map with an explicit default instead of silently dropping the field: map an unknown provider type to `any` (listed in the editor schema; it accepts whatever the user maps) or to `text` with help that states the expected format. Add help for kinds the metadata cannot describe fully (for example a date-only field: "Date in the format `YYYY-MM-DD`."). A type left out on purpose is documented as a limitation (rule 3).
 * **Per item.** When a whole selected item (a model, a record type) has no built-in form, return a `warning` banner that says so, followed by a generic array of name, type and value rows. The request folds the rows into the payload with `toCollection(parameters.extraParameters, 'key', 'value')`. Let the helper that classifies items end with an explicit "unknown" result, and give every `switch` a default that routes to this fallback.

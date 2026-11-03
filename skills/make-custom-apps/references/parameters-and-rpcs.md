@@ -247,8 +247,8 @@ banner has no `name` and sends no value.
   [notices from an RPC](../examples/current-knowledge/guides/dynamic-data-and-files.md#notices-and-connection-specific-help-from-an-rpc)).
 - Prefer a banner to a field of type `html` whose label carries inline markup and fixed
   colors. `html` is in neither the documented parameter types nor the editor schema's `type`
-  enum, so schema validation warns on it. Published apps do use such fields for notes that
-  render, so replacing one is advisory, not a defect to fix.
+  enum, so schema validation warns on it. Such fields are seen in approved apps,
+  so replacing one is advisory, not a defect to fix.
 - A missing banner, or one worded differently, is advisory.
 
 Sources: [Messages (banners)](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters.md#messages-banners),
@@ -288,8 +288,7 @@ Sources: [RPC connection contract](https://developers.make.com/custom-apps-docum
 ### Search buttons (ID finder)
 
 A field can carry an `rpc` object: a button opens a small form, the RPC searches the
-provider with that form's values, and the chosen result's `value` fills the field. Use it
-when the provider can search but the records do not fit a practical options list.
+provider with that form's values, and the chosen result's `value` fills the field.
 
 ~~~json
 {
@@ -311,7 +310,7 @@ The RPC reads the form as `parameters.<name>` and returns `{label, value}` like 
 {
   "url": "/records/search",
   "qs": {"q": "{{parameters.keywords}}"},
-  "response": {"limit": 100, "iterate": "{{body.items}}", "output": {"label": "{{item.name}}", "value": "{{item.id}}"}}
+  "response": {"limit": 100, "iterate": "{{body.items}}", "output": {"label": "{{item.name}} ({{item.id}})", "value": "{{item.id}}"}}
 }
 ~~~
 
@@ -354,14 +353,14 @@ Source: [Select: grouped](https://developers.make.com/custom-apps-documentation/
 
 ### Option and finder RPCs only read
 
-An RPC runs while a person configures the module, each time its field loads or is
-refreshed. Classify its request by effect, as for module requests: an options, fields or
-finder RPC must not call an endpoint that receives, leases, claims, marks as read or
-otherwise changes provider state, because opening a dropdown would then hide or alter live
-data. Its values must also be identifiers a user can save; a short-lived token issued per
-delivery (a receipt handle, a lease ID) has expired by the time the scenario runs. Offer a
-mappable text field instead, with help naming the earlier module output to map. Fix a
-state-changing RPC; it is not a style point.
+An RPC runs while a person configures the module, each time its field loads or is refreshed.
+Classify its request by effect, as for module requests: an options, fields or finder RPC
+must not call an endpoint that receives, leases, claims, marks as read or otherwise changes
+provider state, because opening a dropdown would then hide or alter live data. Its values
+must also be identifiers a user can save; a short-lived token issued per delivery (a receipt
+handle, a lease ID) is usually no longer valid when the scenario runs. Offer a mappable text
+field instead, with help naming the earlier module output to map. Fix a state-changing RPC;
+it is not a style point.
 
 Source: [RPCs run while the user builds the scenario](https://developers.make.com/custom-apps-documentation/app-components/rpcs.md).
 
@@ -442,11 +441,12 @@ and for a lookup that must not run with empty input. Values pass between steps t
   cover every case, as the documented request-less example does with a condition and its
   negation. Where no step applies, the user sees nothing and gets no error.
 - A step without `output` returns the response body by default, so a step that only fills
-  `response.temp` still produces a result, and a later step that is skipped or returns
-  `null` does not replace it. Give a gathering step `"output": null` and the no-match case an
-  explicit result: a last step with the negated condition (an empty array means no fields or
-  no options), or the documented `condition` object, whose `default` is the result when the
-  condition is false.
+  `response.temp` still produces a result, and a later step that is skipped or returns `null`
+  does not replace it. Give a gathering step `"output": null` (a deliberate exception to the
+  Output page's advice to define `output` only in the final step, so its body cannot become the
+  result) and the no-match case an explicit result: a last step with the negated condition (an
+  empty array means no fields or no options), or the documented `condition` object, whose
+  `default` is the result when the condition is false.
 - Guard a request that depends on an earlier step's result, for example
   `"condition": "{{length(temp.ids) > 0}}"` before a batch lookup of those IDs, so an empty
   first result gives an empty list instead of a provider error. Keep the batch within the
@@ -458,8 +458,8 @@ and for a lookup that must not run with empty input. Values pass between steps t
 - A field `name` built by an expression or helper must be defined in every state, including
   an empty parent selection.
 - Some apps detect a mapped parent with `contains(parameters.parentId, '{{')`, assuming the
-  RPC then receives the unresolved mapping text, and return a generic input. This is an
-  observed technique, not a documented signal: do not report it as wrong where both the
+  RPC then receives the unresolved mapping text, and return a generic input. This is a
+  technique seen in approved apps, not a documented signal: do not report it as wrong where both the
   choose path and the map path work, and do not add it as a universal guard (see the
   selectors guide).
 

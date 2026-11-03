@@ -258,10 +258,11 @@ set: the module label and description, `url`, `response.iterate`, `trigger.id` a
 template comments are a prompt for this check, not a defect on their own. The response
 fragment under polling progress uses the same placeholder names, so a trigger that
 matches it still needs provider evidence. A visible module with this mismatch is the
-functional label mismatch described in [review sweeps](review-sweeps.md): fix it from
-the provider documentation as a class (a) defect under
-[Approval gating](review-and-qa.md#2a-approval-gating). One leftover template module
-does not make the app trash. A hidden one still belongs in the inventory; the module-wide check is
-[Leftover editor-template modules](review-and-qa.md#leftover-editor-template-modules).
+functional label mismatch described in [review sweeps](review-sweeps.md), a class (a)
+defect under [Approval gating](review-and-qa.md#2a-approval-gating): fix it when the
+provider documentation determines the resource and fields; otherwise report an
+unverified advisory finding that names the missing fact. Treat hidden or retired modules
+as [Leftover editor-template modules](review-and-qa.md#leftover-editor-template-modules)
+describes; one leftover template module does not make the app trash.
 
 Source: [Epoch inheritance and output](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md).

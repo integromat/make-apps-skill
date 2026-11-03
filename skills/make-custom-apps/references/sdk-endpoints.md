@@ -58,12 +58,12 @@ are likewise preserved.
   record, or field selection instead of the full object. Callers and agents choose Endpoints from these
   descriptions.
 - **Caller-chosen fields:** when a query Endpoint lets the caller choose fields, aggregates or columns, the
-  record shape depends on the input. Declare the record with the documented generic shape (an array without
-  `spec`, or a collection with `"spec": []`) or with only the fields every record carries, and keep
-  continuation metadata in separate typed outputs. In help or context, say that only requested fields
-  return, what returns when none are requested, how keys are formed (aliases, case), and which identifier to
-  request for each follow-up Endpoint, named exactly (for example "request `id` for `getRecord` and
-  `updateRecord`").
+  record shape depends on the input. Declare the records with the generic shape the Interface page documents
+  for unknown structures (an array without `spec`, or a collection with `"spec": []`) or with only the fields
+  every record carries, and keep continuation metadata in separate typed outputs. In help or context, say that
+  only requested fields return, what returns when none are requested, how keys are formed (aliases, case), and
+  which identifier to request for each follow-up Endpoint, named exactly (for example "request `id` for
+  `getRecord` and `updateRecord`").
 
 ## 3. Implement and verify request semantics
 

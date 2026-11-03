@@ -52,7 +52,7 @@ Send the pair with the `cert` and `key` request directives in Base and in every 
 that reaches the certificate-protected host. Connection communication does not inherit Base, and,
 as the custom-CA guide documents for `ca`, each OAuth 2.0 request (`token`, `refresh`, `info`)
 carries its own configuration, so a value at the top level of an OAuth 2.0 communication does
-nothing. Leaving the pair out of Base is the typical failure: the token request succeeds, then
+nothing. If the pair is left out of Base, the token request can succeed while
 every module call fails the TLS handshake.
 
 ```json
@@ -60,9 +60,9 @@ every module call fails the TLS handshake.
 ```
 
 In the connection's own requests, read the same values as `{{parameters.certificate}}` and
-`{{parameters.privateKey}}`. `cert` and `key` are not on the public request reference; released
-apps rely on them and the runtime applies them, so prove the wiring with a real connection and one
-module call, not from the definition alone.
+`{{parameters.privateKey}}`. `cert` and `key` are not on the public request reference; they are
+seen in approved apps, so prove the wiring with a real connection and one module call, not from
+the definition alone.
 
 Sources: [Cert parameter](https://developers.make.com/custom-apps-documentation/block-elements/parameters/cert.md),
 [Pkey parameter](https://developers.make.com/custom-apps-documentation/block-elements/parameters/pkey.md),
@@ -74,7 +74,7 @@ When the host depends on connection values (subdomain, tenant, region, environme
 self-hosted URL), write the rule once and use the same expression in Base, in the connection's
 own requests, and in every module or RPC whose URL leaves Base. The documented variable base URL
 example puts the condition in both the connection and Base for this reason. Two failures seen in
-released apps:
+approved apps:
 
 - The connection check goes to a fixed host. It proves only that the key works somewhere, so a
   wrong subdomain or workspace ID is accepted at connect time and every module fails later. Check
@@ -206,15 +206,15 @@ Source: [Validation endpoints](https://developers.make.com/custom-apps-documenta
 
 `response.metadata`, in `info` or in the single request of a Basic connection, is the label that
 lets a user with several connections to one service tell them apart. It takes `type` (`text` or
-`email`; use `email` only for an email address) and `value`; Make keeps up to 512 characters of a
-string. Bind `value` to a field the check response really returns. A path the response lacks
-(for example `{{body.email}}` on an endpoint that returns a list) and a zero index
-(`{{body.items[0].name}}`; IML arrays start at 1) both evaluate to empty without an error, so the
-connection simply shows no label. When the check returns no identity, use a non-secret value the
+`email`; use `email` only for an email address) and `value`; Make sets a limit of 512 characters for
+a string, so keep the label short. Bind `value` to a field the check response really returns. A path
+the response lacks (for example `{{body.email}}` on an endpoint that returns a list) and a zero
+index (`{{body.items[0].name}}`; IML arrays start at 1) both evaluate to empty without an error, so
+the connection simply shows no label. When the check returns no identity, use a non-secret value the
 user entered (an account or company ID) or fixed text, never a credential, and confirm the label
 against a real check response. Build the value from non-secret identity fields that every account
-has (name, email, account or workspace name, user ID), never from a token or session identifier,
-not even part of one. When the label joins optional fields, give each part a fallback, for example
+has (name, email, account or workspace name, user ID), never from a token or session identifier, not
+even part of one. When the label joins optional fields, give each part a fallback, for example
 `{{ifempty(body.account.name, body.user.email)}}`. A helper that joins parts must skip missing ones
 and fall back to a stable value; a part that returns `false` or `undefined` produces labels such as
 `false false`, so test it with missing parts, not only with a complete profile. A missing or empty
@@ -264,7 +264,7 @@ another grant that needs no user):
 - An expiry-only condition does not react to an edit. Changing the credentials, company or tenant
   of an editable connection does not make `data.expires < ...` true, so the old token can stay in
   use until it expires, and a verification after the edit can pass with that old token. One
-  pattern from released apps: an advanced, editable boolean (for example `forceRefresh`, help:
+  pattern seen in approved apps: an advanced, editable boolean (for example `forceRefresh`, help:
   request a new token after you edit this connection), checked before the expiry and written back
   as `false` in `response.data` so it acts once; in connection communication `parameters` and
   `data` are the same store. Without that reset, a ticked flag requests a new token on every use.
@@ -353,14 +353,15 @@ Some providers sign every request with an access key pair instead of sending a t
 ```
 
 - The documented property table lists `secret`, `session`, `bucket`, `sign_version` and `service`;
-  released apps pass the access key identifier as `key`, which the signer needs.
+  approved apps were seen passing the access key identifier as `key`; prove it with a real
+  signed call.
 - Set `sign_version` to 4 explicitly; the documented default is 2. `service` applies only to
   version 4 and must be the provider's signing name for the endpoint, which is not always the
   first label of the host. A module that calls an endpoint signed under another service name
   needs its own complete `aws` block.
-- The directive has no documented region property. Released apps on AWS hosts keep the region in
-  the host name, taken from one connection value (a required select), and set no region in the
-  block. For any other host whose signature includes a region, prove a non-default region with a
+- The directive has no documented region property. Approved apps on AWS hosts were seen keeping the
+  region in the host name, taken from one connection value (a required select), and set no region in
+  the block. For any other host whose signature includes a region, prove a non-default region with a
   real signed call before relying on it.
 - Collect the secret as `password`. The access key identifier is not the secret and may be `text`.
 - The credentials appear only inside the signing block. When tracing which context reads each
@@ -369,12 +370,12 @@ Some providers sign every request with an access key pair instead of sending a t
   header carries the access key identifier) and, when `session` is set,
   `request.headers.x-amz-security-token` in `log.sanitize`. An empty list does not show that
   nothing needs masking.
-- The connection does not inherit Base, and an unsigned check does not test the key pair. Released
-  apps sign the Basic connection check with the same block, reading `parameters.*`, although the
-  connection references list `aws` as not available there (see the caution above). Treat a signed
-  check as a runtime fact to prove: create one connection with a valid pair and one with a wrong
-  secret. Do not replace it with an unsigned request, and do not report it as a defect from that
-  reference line alone.
+- The connection does not inherit Base, and an unsigned check does not test the key pair. Approved
+  apps were seen signing the Basic connection check with the same block, reading `parameters.*`,
+  although the connection references list `aws` as not available there (see the caution above).
+  Treat a signed check as a runtime fact to prove: create one connection with a valid pair and one
+  with a wrong secret. Do not replace it with an unsigned request, and do not report it as a defect
+  from that reference line alone.
 
 Sources: [aws request directive](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md#aws),
 [Basic connection communication](https://developers.make.com/custom-apps-documentation/app-components/connections/basic-connection.md).
@@ -412,12 +413,14 @@ Source: [Sanitization](https://developers.make.com/custom-apps-documentation/app
 
 ### Leftover connection scaffolds
 
-Review every connection directory, not only the one the modules use. Released apps ship extra
-connections that still hold the editor's prefilled template: a check against a placeholder host
-(`https://www.example.com/api/whoami`), the template comments and no help text. While no module,
-RPC or webhook accepts such a connection it does no harm, so report it as advisory: remove it, or
-finish it with a real check, help text and the same host rule as Base. A connection that a
-component does accept but that still points at the placeholder host can never pass its check;
-that is a functional defect to fix.
+Review every connection directory, not only the one the modules use. Approved apps were seen
+shipping extra connections that still hold the editor's prefilled template: a check against a
+placeholder host (`https://www.example.com/api/whoami`), the template comments and no help text.
+While no module, RPC or webhook accepts such a connection it does no harm, so report it as advisory:
+relabel it as not for use, or finish it with a real check, help text and the same host rule as Base.
+Connections are app-scoped, not version-scoped, so check the modules, RPCs and webhooks of every
+major version (`connection` and `altConnection`) before calling one unused, and suggest deleting it
+only if it was never part of a released version. A connection that a component does accept but that
+still points at the placeholder host can never pass its check; that is a functional defect to fix.
 
 Source: [Connections](https://developers.make.com/custom-apps-documentation/app-components/connections.md).

@@ -141,7 +141,7 @@ Download and upload flows often end with a request to a URL that an earlier resp
 * Remove the credential on purpose: set each credential entry to `"{{undefined}}"` by name in that step (a Base header, or a Base query parameter; see [headers-merge](headers-merge.md#dropping-one-inherited-header-in-one-request)), or give the step a whole-expression `headers` value that returns only what the step needs, for example the upload's content type. Check a test run's request log to see what the step actually sent. Treat any other form, such as a blank `""` or `"headers": null`, as unproven until that log shows the credential is gone. A credential that reaches another host is a security finding, not a masking issue ([approval gating](../../../references/review-and-qa.md#2a-approval-gating)): fix it on that step. The provider chose the host, so it is never a reason to reject.
 * Validate the lookup on the request that returns the URL (`response.valid` with a message). An empty value does not fail on its own: it is treated as a relative URL, so the step calls the Base URL itself, with the credential.
 * Give the step its own `response.error` message, and parse error answers per status ([requests and responses](../../../references/requests-and-responses.md)). The inherited Base `response` handling expects the API's body. A storage host answers in its own format, often XML, so an inherited message renders as a bare status code. Also check that an inherited `valid` condition or per-status error entry still fits this step: a per-status entry takes precedence over the step's generic message.
-* Pass the URL exactly as it was returned, and keep `encodeUrl` at its default: with `false`, Make decodes the percent-encoded query string, which can break a signature. Test with a file name that contains a space or a non-ASCII character.
+* Pass the URL exactly as it was returned. No `encodeUrl` setting fits every returned URL: with `false`, Make decodes the percent-encoded query string, which can break a signature; with the default `true`, Make encodes special characters again, `%` included, so a path the provider already percent-encoded (`my%20file.pdf`) can be sent double-encoded. Keep the default unless the test below shows a double-encoded path in the request log. Test with a file name that contains a space or a non-ASCII character.
 * Repeat on each request any module-level header it needs, such as a tenant or scope header. A request in the array gets Base plus its own settings, not the headers of the request before it.
 
 ```json
@@ -167,13 +167,13 @@ Download and upload flows often end with a request to a URL that an earlier resp
 ]
 ```
 
-Approved apps follow both branches: some keep the credential because the provider requires it at the upload URL, and others clear it for a storage or CDN host.
+Approved apps were seen following both branches: some keep the credential because the provider requires it at the upload URL, and others clear it for a storage or CDN host.
 
 ### How `temp` merges arrays and objects
 
 **Documented behaviour.** Values written to `temp` are merged into what is already there, not overwritten.
 
-**Observed behaviour, not stated on the public page.** The same merge applies across requests, repeat iterations and pagination within one execution. Objects merge key by key, so a key that a later write omits keeps its old value, and a shrinking "still pending" map never empties. Arrays merge position by position: when a shorter array is written, the old elements beyond its end survive, and each element object keeps any properties the new element lacks. An `undefined` value or an empty array leaves the old value in place. A `temp` array is therefore safe while it only grows: append with `add()` or `merge()`, and use `distinct()` by id where needed. Writing a filtered, re-sorted or retried subset back to the same key is not safe. It moves records onto the wrong positions, leaves stale elements behind, and can carry one record's properties, such as an old error or a field, into another record. A happy-path test does not show this.
+**Not stated on the public page; confirm it with a test run.** The same merge applies across requests, repeat iterations and pagination within one execution. Objects merge key by key, so a key that a later write omits keeps its old value, and a shrinking "still pending" map never empties. Arrays merge position by position: when a shorter array is written, the old elements beyond its end survive, and each element object keeps any properties the new element lacks. An `undefined` value or an empty array leaves the old value in place. A `temp` array is therefore safe while it only grows: append with `add()` or `merge()`, and use `distinct()` by id where needed. Writing a filtered, re-sorted or retried subset back to the same key is not safe. It moves records onto the wrong positions, leaves stale elements behind, and can carry one record's properties, such as an old error or a field, into another record. A happy-path test does not show this.
 
 **Design rules.**
 
@@ -245,7 +245,7 @@ When the provider has no bulk endpoint, a module can request each element of a l
   },
   {
     "condition": "{{parameters.includeContent && length(temp.parts) > 0}}",
-    "temp": { "partIndex": "{{ifempty(temp.partIndex, 1)}}" },
+    "temp": { "partIndex": "{{ifempty(temp.partIndex, 1)}}", "includeContent": "{{parameters.includeContent}}" },
     "url": "/messages/{{parameters.messageId}}/attachments/{{get(temp.parts, temp.partIndex + '.id')}}",
     "method": "GET",
     "response": {
@@ -254,14 +254,14 @@ When the provider has no bulk endpoint, a module can request each element of a l
         "partIndex": "{{temp.partIndex + 1}}"
       }
     },
-    "repeat": { "condition": "{{parameters.includeContent && temp.partIndex <= length(temp.parts)}}", "delay": 200, "limit": 50 }
+    "repeat": { "condition": "{{temp.includeContent && temp.partIndex <= length(temp.parts)}}", "delay": 200, "limit": 50 }
   },
   { "response": { "output": { "attachments": "{{temp.parts}}", "contents": "{{temp.contents}}" } } }
 ]
 ```
 
 * IML arrays are one-based, so start the position at 1 in the request's own `temp` and read the element with `get(list, position + '.field')`. Advance the position in `response.temp`, after the request has used it. The request-level `temp` runs before every repetition: if a position that starts at 1 is advanced there, the loop skips the first element and reads past the end.
-* Append the results ([How `temp` merges arrays and objects](#how-temp-merges-arrays-and-objects)). Stop with `position <= length(list)`, and gate the whole step with a `condition` so that an empty list or an unset opt-in sends no request. Put the same gate into `repeat.condition`: a pass that the request's `condition` skips does not advance the position, so without it the step can keep repeating until the limit.
+* Append the results ([How `temp` merges arrays and objects](#how-temp-merges-arrays-and-objects)). Stop with `position <= length(list)`, and gate the whole step with a `condition` so that an empty list or an unset opt-in sends no request. Put the same gate into `repeat.condition`, read from `temp`, because a repeat condition can read only `temp` (the request's own `temp` copies the opt-in there before every pass): a pass that the request's `condition` skips does not advance the position, so without it the step can keep repeating until the limit.
 * `temp` keys live for the whole execution, so give each loop its own position key; otherwise a second loop starts where the first one stopped.
 * Each element costs one request against the call timeout and the provider's rate limit. Cap the list, set a literal `limit` at least that large, and add a `delay` where the provider needs one. A loop that reaches its limit with elements left has not finished the list. When the per-element data is large or not always needed, make fetching it opt-in.
 
@@ -305,7 +305,7 @@ Multi-step and binary flows add failure modes the user cannot see. Making each s
 * Job states, idempotency and file protocols: **provider contract**; verify against the provider.
 * The static checker does not examine files, multipart bodies or request arrays.
 * Absolute URLs replacing only the Base URL, a relative URL being appended to the Base URL, Base inheritance, header merging by name and whole-expression replacement, per-status error entries taking precedence over the generic message, `encodeUrl: false` decoding the query string, `toBinary` with base64 and `mime()`, request and response types, and `temp` merging rather than overwriting: **documented behaviour**.
-* `temp` arrays merging position by position, `undefined` and `[]` not clearing a key, a request's own `temp` running before every repetition, and a request in an array not receiving the headers of the request before it: **observed** platform behaviour from execution evidence, not stated on a public page. Confirm it with a test run when a decision depends on it.
+* `temp` arrays merging position by position, `undefined` and `[]` not clearing a key, a request's own `temp` running before every repetition, and a request in an array not receiving the headers of the request before it: **not documented**: not stated on a public page. Confirm it with a test run when a decision depends on it.
 * Whether a returned URL expects the API credential, multipart batch formats, per-part statuses and `Content-Disposition` forms: **provider contract** and HTTP standards; verify them against the provider.
 
 ## Sources

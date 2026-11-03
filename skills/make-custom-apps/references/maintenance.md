@@ -27,7 +27,7 @@ only the components that inherit it. Before a version upgrade, list every litera
 | Copy | Why it exists | Upgrade action |
 | --- | --- | --- |
 | Base `headers` or `baseUrl` | The single source that modules and RPCs inherit. | Change it here. |
-| Connection check | Connection communication does not inherit Base. | Change it in the same edit as Base. |
+| Connection check | Connection communication does not inherit Base. | Change it in the same edit as Base when the check calls a versioned endpoint, and re-check any `response.data` or `metadata` it reads from the response, since another version can return another shape. |
 | Connection token or refresh request | Connection communication does not inherit Base; many providers do not version their auth endpoints. | Change it only when the provider versions that endpoint, and handle it as an authentication migration (section 4), not as part of the version edit. |
 | Module or RPC header with the same value as Base | A same-named module header wins over Base, so it keeps the old value after Base moves. | Change it in the same edit as Base, or remove it so the component inherits; both send the new version. |
 | Module or RPC that rebuilds headers by hand (a whole-expression `headers`, or a `temp` copy of auth and version) | A whole-expression `headers` replaces Base, so the credential and version were copied. | Change every copied header; for new work, prefer the `"{{...}}"` spread so Base stays the source ([headers-merge](../examples/current-knowledge/guides/headers-merge.md)). |
