@@ -10,6 +10,19 @@ to each other with cross-file `$ref`, so load them from one directory). Use the 
 [README](editor-schemas/README.md). The editor shows violations as warnings, so treat each one as a finding to
 read, not as proof of failure. Report how many files were validated and which had warnings.
 
+Run the bundled script instead of writing a validator: `node references/editor-schemas/validate.mjs <app-dir>`
+(add `--json` for a machine-readable report). It needs Node.js 18+ and Ajv 8, which is not shipped with the
+skill: in a scratch directory run `npm install --no-save ajv@8` and start the script from there. It reads files
+only and makes no network request. If you validate another way, use the same settings, because the schemas do
+not load with Ajv's defaults: `strict: false`, `unicodeRegExp: false`, and every schema registered under its
+file name so that the cross-file `$ref` values resolve.
+
+The script maps files to schemas as the [README](editor-schemas/README.md) lists them. A connection `api` is
+checked against `api-oauth.json` when it holds OAuth steps (`authorize`, `token` and similar) and against
+`api.json` otherwise. Some sections have no editor schema: the receiver `api` and `update` of a webhook,
+`install`, `installSpec` and the app metadata. The script lists them as not validated. Report them the same
+way: read them by hand, and do not count them as passed.
+
 ## 2. Read the warnings
 
 An unknown key (`additionalProperties`) or an invalid enum value usually means the runtime ignores or misreads
