@@ -41,6 +41,13 @@ value, keeping the rest of the file unchanged (see [Approval gating](review-and-
 - A null or absent section.
 - A key that the current Make documentation shows as valid but the schema does not know yet. Record an
   advisory note naming the documentation page; do not rewrite the key.
+- `timeout` on a module, RPC or webhook request, or `timeout` written as an IML expression. The schemas list
+  the key for Base only and as an integer, so `"timeout": 300000` in a module request and the documented
+  `"timeout": "{{common.timeout}}"` both produce a warning. The runtime reads `timeout` from the request it
+  sends, wherever the request is defined, so a value on one request applies to that request and overrides the
+  Base value. Do not move it to Base: that would lengthen the limit of every call the app makes. Check only
+  that the value is in milliseconds and no higher than 300000
+  ([Base](https://developers.make.com/custom-apps-documentation/app-components/base)).
 
 ## 4. Adjusted files
 
