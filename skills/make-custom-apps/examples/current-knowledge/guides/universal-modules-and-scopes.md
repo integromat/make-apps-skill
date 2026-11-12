@@ -13,6 +13,7 @@ For a REST universal module the documented shape is: a clear relative URL input 
 ## Keep the destination inside the service
 
 * A fixed `baseUrl` (with or without a path prefix) is compatible with a relative user input. Formatting of a fixed prefix does not by itself prove the user can replace the host.
+* A doubled slash at the boundary between a REST universal module's fixed prefix and the user's relative path is not a defect. The [REST universal-module documentation](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/rest) explicitly permits a prefix ending with `/` and input starting with `/`, and says the extra slash is removed. Thus `https://api.example.com/` + `/v1/items` becomes `https://api.example.com/v1/items`. A direct provider call to `//v1/items` does not reproduce that Make request. Do not raise a finding or add a slash-stripping expression for this boundary alone. This documented rule does not establish normalization of repeated slashes elsewhere in the path.
 * An absolute URL typed by the user would be the boundary violation; relative-only is the documented rule. A module that accepts one is hardened (add a fixed prefix or validation), not rejected.
 * Inheritance must keep working when users add headers: Base authorisation stays in place when the module's `headers` collection uses the spread ([headers-merge](headers-merge.md)). For REST universal modules, assess whether an optional header input (any equivalent mapped input) exists and reaches the request, whatever the provider; a missing one is at least a documented-convention recommendation, and a concrete defect when a required provider header cannot be sent. It is not proof that authentication fails, and absence of a Headers input is not by itself a REST-convention finding for GraphQL universal modules, whose documented shape is query/variables; independently check that any provider-required headers can still be sent ([headers-merge](headers-merge.md)). Empty customisation fields must not remove inherited authorisation either; test the effective request with empty and populated fields.
 
@@ -38,6 +39,7 @@ A universal module is the only place where a user, not the author, decides the r
 ## Pitfalls
 
 * Accepting an absolute URL.
+* Reporting a doubled slash between the fixed prefix and the user's path as a broken request, or "fixing" it by stripping slashes.
 * Treating a fixed prefix format as a host-replacement vulnerability.
 * A header input that, when empty, wipes inherited authorisation, or a `{{...}}` mistake that does the same.
 * Treating missing header customisation as broken authentication.
@@ -50,12 +52,12 @@ A universal module is the only place where a user, not the author, decides the r
 * Apps without a universal module need none of this.
 * The versioned-path guidance depends on the provider's API versioning.
 * Provider restrictions on allowed destinations or content still apply.
-* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A universal module input that untrusted scenario data could use to steer the connection's credential to another host is hardening: add a fixed prefix or validation and approve with adjustments. A credential placement the provider accepts (header, query string, body, Basic auth) is correct, and a host, subdomain or instance URL entered by the connection owner is a Make feature; neither is a defect. Only the app author's own code sending credentials or user data to a party other than the provider, without the user choosing it, is a scam and rejects. Path normalization effects such as an unverified double slash, and scope or header conventions without a shown failure, are advisory, or `needs_evidence` only if the open question could hide a scam (unsettled, it rejects and names the missing fact). A header input that can wipe inherited authorisation makes calls fail (class (a)): fix it with a guard; it is a class (b) finding, fixed by the guard or the binding, when protected data or actions would be exposed without authentication.
+* **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A universal module input that untrusted scenario data could use to steer the connection's credential to another host is hardening: add a fixed prefix or validation and approve with adjustments. A credential placement the provider accepts (header, query string, body, Basic auth) is correct, and a host, subdomain or instance URL entered by the connection owner is a Make feature; neither is a defect. Only the app author's own code sending credentials or user data to a party other than the provider, without the user choosing it, is a scam and rejects. A doubled slash between the fixed prefix and the user's path is not a finding at all, because Make collapses it before sending (see above). Other path normalization effects, and scope or header conventions without a shown failure, are advisory, or `needs_evidence` only if the open question could hide a scam (unsettled, it rejects and names the missing fact). A header input that can wipe inherited authorisation makes calls fail (class (a)): fix it with a guard; it is a class (b) finding, fixed by the guard or the binding, when protected data or actions would be exposed without authentication.
 
 ## Evidence and limits
 
 * Relative path, single module and security rationale: **documented requirement** (universal module page).
-* REST and GraphQL conventions and the conditional scope extension: **documented guidance**.
+* REST and GraphQL conventions, the conditional scope extension and extra-slash removal at the REST fixed-prefix/input boundary: **documented guidance**.
 * Which scopes cover which endpoint groups: **provider contract**; the static checker never evaluates scopes.
 
 ## Sources
