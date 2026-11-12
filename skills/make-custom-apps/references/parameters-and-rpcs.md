@@ -163,6 +163,10 @@ search exists and the available records cannot fit a practical options list.
 Use `mode: "edit"` for mappable identifier selectors in Get, Update, and Delete
 modules; the RPC guide requires it. Search/List and Create follow hierarchy-based
 recommendations (see the selectors guide), and the user can still choose a value.
+The form accepts five `mode` values: `edit` and `map` open the mappable field,
+`choose`, `chose`, and `pick` open the picker. `chose` is an accepted legacy
+spelling, not a typo, so do not report it or ask for a change; only a value
+outside these five is a defect.
 
 Sources: [RPC connection contract](https://developers.make.com/custom-apps-documentation/app-components/rpcs.md),
 [Dynamic options](https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc.md),
