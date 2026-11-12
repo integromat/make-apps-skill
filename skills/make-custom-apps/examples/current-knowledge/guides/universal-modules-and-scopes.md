@@ -13,7 +13,7 @@ For a REST universal module the documented shape is: a clear relative URL input 
 ## Keep the destination inside the service
 
 * A fixed `baseUrl` (with or without a path prefix) is compatible with a relative user input. Formatting of a fixed prefix does not by itself prove the user can replace the host.
-* Repeated slashes in the path are not a defect. Make normalizes the request URL before it sends it and collapses consecutive slashes in the path, so a fixed prefix that ends with `/` joined with a user path that starts with `/` (`https://api.example.com/` + `/v1/items`) goes out as `https://api.example.com/v1/items`. A provider that answers `//v1/items` with an error when it is called directly, outside Make, therefore shows nothing about the module. Do not raise a finding for it, and do not add a slash-stripping expression to a working `url` (**observed in the runtime**; if a finding would depend on the opposite, confirm it in a run first).
+* A doubled slash at the boundary between a REST universal module's fixed prefix and the user's relative path is not a defect. The [REST universal-module documentation](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/rest) explicitly permits a prefix ending with `/` and input starting with `/`, and says the extra slash is removed. Thus `https://api.example.com/` + `/v1/items` becomes `https://api.example.com/v1/items`. A direct provider call to `//v1/items` does not reproduce that Make request. Do not raise a finding or add a slash-stripping expression for this boundary alone. This documented rule does not establish normalization of repeated slashes elsewhere in the path.
 * An absolute URL typed by the user would be the boundary violation; relative-only is the documented rule. A module that accepts one is hardened (add a fixed prefix or validation), not rejected.
 * Inheritance must keep working when users add headers: Base authorisation stays in place when the module's `headers` collection uses the spread ([headers-merge](headers-merge.md)). For REST universal modules, assess whether an optional header input (any equivalent mapped input) exists and reaches the request, whatever the provider; a missing one is at least a documented-convention recommendation, and a concrete defect when a required provider header cannot be sent. It is not proof that authentication fails, and absence of a Headers input is not by itself a REST-convention finding for GraphQL universal modules, whose documented shape is query/variables; independently check that any provider-required headers can still be sent ([headers-merge](headers-merge.md)). Empty customisation fields must not remove inherited authorisation either; test the effective request with empty and populated fields.
 
@@ -57,7 +57,7 @@ A universal module is the only place where a user, not the author, decides the r
 ## Evidence and limits
 
 * Relative path, single module and security rationale: **documented requirement** (universal module page).
-* REST and GraphQL conventions and the conditional scope extension: **documented guidance**.
+* REST and GraphQL conventions, the conditional scope extension and extra-slash removal at the REST fixed-prefix/input boundary: **documented guidance**.
 * Which scopes cover which endpoint groups: **provider contract**; the static checker never evaluates scopes.
 
 ## Sources
