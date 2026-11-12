@@ -10,10 +10,10 @@ Two mechanisms decide how much data a module returns and what it returns next ti
 
 Page number, offset, cursor, next URL, or a has-more flag. Advance it the way the provider defines it, and keep the provider's *request page size* separate from the *total records* the module exposes to the user.
 
-**Documented behaviour.**
+**Documented behaviour and author-observed runtime behaviour.**
 
 * `pagination.page` starts at 1 and counts the page about to be requested. Adapt it for zero-based providers or offsets.
-* Pagination `qs` and `headers` merge with the parent request by default (`mergeWithParent`, default `true`) and override same-named entries, so the first request's filters and page size carry forward. `url`, `method` and a supplied `body` are different: each **replaces** the original value regardless of `mergeWithParent`; the body is never merged, so a continuation body must be the complete body the provider requires (filters and required fields included), not only the changed field. A `body` is only used for non-`GET` methods. Setting `mergeWithParent` to `false` means no `qs` or `headers` are merged and the pagination request is used directly, so it must then be a complete, usable continuation request. Overriding only the URL does not make inherited `qs` or `headers` disappear.
+* Pagination `qs` and `headers` merge with the parent request by default (`mergeWithParent`, default `true`) and override same-named entries, so the first request's filters and page size carry forward. `url` and `method` are different: each **replaces** the original value regardless of `mergeWithParent`. A supplied `body` is only used for non-`GET` methods. The [Pagination page](https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination) says it overrides the original body, but the author-observed runtime behaviour with `mergeWithParent` at its default is a deep merge: when the original body and the pagination body are both collections (and the request `type` is `json`, `urlencoded` or `multipart/form-data`), the pagination body's keys are merged over the original body, so a continuation body holding only the page or cursor field keeps the first request's filters, page size and any body field inherited from Base. With that default, the pagination body replaces the original one only when either body is not a collection (a string, an array) or the type is something else; an array value inside the body is replaced, not concatenated. In those eligible merge cases, do not report a cursor-only or page-only pagination `body` as losing the original fields, and do not rewrite it into a full copy of the body, without a run that shows the fields missing on the second request. Setting `mergeWithParent` to `false` means no `qs`, `headers` or `body` are merged and the pagination request is used directly, so it must then be a complete, usable continuation request. Overriding only the URL does not make inherited `qs` or `headers` disappear.
 * Defaults stop paging when a page has zero records or when `response.limit` is reached. An explicit stop condition is therefore not mandatory for every paginator.
 * A bigger `response.limit` fetches nothing extra unless pagination is working.
 * The time and request budgets are shared: a pagination `delay` counts toward the call timeout, and the request timeout setting does not raise the pagination limits.
@@ -51,7 +51,7 @@ Pagination and trigger state both trade completeness against budget. Make's defa
 * Adding one to `pagination.page` for a one-based provider and skipping page two.
 * Assuming a short page ends the data, or that a larger `response.limit` can substitute for a working paginator.
 * Disabling `mergeWithParent` and losing filters on page two.
-* Supplying a pagination `body` that carries only the cursor and assuming the original body fields are merged in; a supplied body replaces the original one, with or without `mergeWithParent`.
+* Reporting or rewriting a cursor-only or page-only pagination `body` as dropping original fields when `mergeWithParent` is at its default, both bodies are collections and the request `type` is `json`, `urlencoded` or `multipart/form-data`. In those eligible cases the author-observed behaviour is a merge; with `mergeWithParent: false`, a non-collection body or another request type, the continuation body replaces the original.
 * Requiring an explicit stop condition for every paginator, or imposing a universal three-request cap.
 * Using ascending order against a busy provider because it is the provider's default.
 * Reporting missing trigger state because no assignment of previous-run values appears.
@@ -65,7 +65,8 @@ Pagination and trigger state both trade completeness against budget. Make's defa
 
 ## Evidence and limits
 
-* Page counting, merge behaviour, default stop conditions, trigger state and epoch: **documented behaviour** (pagination, response limit and trigger pages).
+* Page counting, `qs`/`headers` merging, default stop conditions, trigger state and epoch: **documented behaviour** (pagination, response limit and trigger pages).
+* Collection-body deep merging for eligible request types and replacement of array values: **author-observed runtime behaviour**, contrary to the Pagination page's body-replacement wording; not established by that published page or by static checks.
 * Newest-first ordering and the lost-window reason: **documented recommendation**.
 * Provider cursor semantics, tie handling and exhaustion are provider facts; only execution against the provider and fresh pagination evidence show them.
 
