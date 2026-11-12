@@ -29,5 +29,10 @@ Taken from the source package's `contributes.jsonValidation`.
 | `api-oauth.json` | OAuth connection communication (`api-oauth`) |
 | `groups.json` | `groups` |
 | `enums.json`, `response.json`, `sources.json` | Shared definitions referenced from the files above |
+| none | The receiver `api` and `update` of a webhook, `install`, `installSpec` and the app metadata have no editor schema |
+
+[validate.mjs](validate.mjs) applies this mapping to an app directory. It is not part of the source package;
+it needs Ajv 8 with `strict: false` and `unicodeRegExp: false`, because the schemas do not load with Ajv's
+defaults.
 
 See [editor schema validation](../editor-schema-validation.md) for how to apply them in a review.
