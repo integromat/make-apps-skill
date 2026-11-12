@@ -10,7 +10,7 @@
 // A warning is something to read, not proof of a defect: see ../editor-schema-validation.md.
 
 import { createRequire } from 'node:module';
-import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'node:fs';
 import { basename, dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -28,6 +28,7 @@ const BY_SECTION = {
 	scope: 'scope.json',
 	epoch: 'epoch.json',
 	base: 'base.json',
+	'api-oauth': 'api-oauth.json',
 	groups: 'groups.json',
 	attach: 'api.json',
 	detach: 'api.json',
@@ -48,11 +49,13 @@ export function stripComments(text) {
 		} else if (ch === '"') {
 			inString = true; out += ch;
 		} else if (ch === '/' && text[i + 1] === '/') {
-			while (i < text.length && text[i] !== '\n') i += 1;
-			out += '\n';
+			while (i < text.length && text[i] !== '\n' && text[i] !== '\r') i += 1;
+			out += text[i] ?? '';
 		} else if (ch === '/' && text[i + 1] === '*') {
 			const end = text.indexOf('*/', i + 2);
-			i = end === -1 ? text.length : end + 1;
+			if (end === -1) throw new SyntaxError('Unterminated block comment');
+			out += ' ';
+			i = end + 1;
 		} else out += ch;
 	}
 	return out;
@@ -154,4 +157,4 @@ function main() {
 	process.exit(report.withWarnings || report.unparseable.length ? 1 : 0);
 }
 
-if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) main();
+if (process.argv[1] && existsSync(process.argv[1]) && fileURLToPath(import.meta.url) === realpathSync(process.argv[1])) main();
