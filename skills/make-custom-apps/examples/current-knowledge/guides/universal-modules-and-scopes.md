@@ -36,6 +36,7 @@ The user fills in one field, and the protocol detail stays inside the app, so th
 ## Keep the destination inside the service
 
 * A fixed `baseUrl` (with or without a path prefix) is compatible with a relative user input, but on its own it does not keep a complete URL typed by the user on the provider host (see the safe pattern below). Whether a fixed prefix in the module `url` lets the user replace the host depends on where the host ends: a `/` after the host keeps the input in the path, while a host that runs straight into the input (`https://api.example.com{{parameters.url}}`) does not.
+* A doubled slash at the boundary between a REST universal module's fixed prefix and the user's relative path is not a defect. The [REST universal-module documentation](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module/rest) explicitly permits a prefix ending with `/` and input starting with `/`, and says the extra slash is removed. Thus `https://api.example.com/` + `/v1/items` becomes `https://api.example.com/v1/items`. A direct provider call to `//v1/items` does not reproduce that Make request. Do not raise a finding or add a slash-stripping expression for this boundary alone. This documented rule does not establish normalization of repeated slashes elsewhere in the path.
 * An absolute URL typed by the user would be the boundary violation; relative-only is the documented rule. A module that accepts one is hardened (add a fixed prefix or validation), not rejected.
 * Safe pattern (the REST page's good practice): put the fixed prefix in the module's own Communication `url`, directly before the input, ending with `/`: `"url": "https://api.example.com/{{parameters.url}}"` (the host may come from connection data). The prefix stops before the API version segment. The trailing `/` closes the host, so `@other.example` or `https://other.example` stays in the path. Base `baseUrl` alone does not make a bare `{{parameters.url}}` safe. The help names the base without the trailing slash and gives an example that starts with `/` and the version: "Enter a path relative to `https://api.example.com`. For example: `/v1/users`." The resulting double slash is removed automatically and is not a defect. Without such a prefix (for example a bare `{{parameters.url}}`), reject or strip an absolute URL (`scheme://` or a leading `//`) so the credential cannot be sent to another host; a module that already has the prefix needs no extra validation. Do not recommend a module that sends the user's input as the complete URL together with Base authentication.
 * Inheritance must keep working when users add headers: Base authorisation stays in place when the module's `headers` collection uses the spread ([headers-merge](headers-merge.md)). For REST universal modules, assess whether an optional header input (any equivalent mapped input) exists and reaches the request, whatever the provider; a missing one is at least a documented-convention recommendation, and a concrete defect when a required provider header cannot be sent. It is not proof that authentication fails, and absence of a Headers input is not by itself a REST-convention finding for GraphQL universal modules, whose documented shape is query/variables; independently check that any provider-required headers can still be sent ([headers-merge](headers-merge.md)). Empty customisation fields must not remove inherited authorisation either; test the effective request with empty and populated fields.
@@ -90,6 +91,7 @@ A universal module is the only place where a user, not the author, decides the r
 ## Pitfalls
 
 * Accepting an absolute URL.
+* Reporting a doubled slash between the fixed prefix and the user's path as a broken request, or "fixing" it by stripping slashes.
 * Treating a fixed prefix that closes the host with `/` as a host-replacement vulnerability, or a host that runs straight into the input as safe.
 * A header input that, when empty, wipes inherited authorisation, or a `{{...}}` mistake that does the same.
 * Treating missing header customisation as broken authentication.
@@ -108,7 +110,7 @@ A universal module is the only place where a user, not the author, decides the r
 ## Evidence and limits
 
 * Relative path, single module and security rationale: **documented requirement** (universal module page).
-* REST and GraphQL conventions and the conditional scope extension: **documented guidance**.
+* REST and GraphQL conventions, the conditional scope extension and extra-slash removal at the REST fixed-prefix/input boundary: **documented guidance**.
 * Which scopes cover which endpoint groups: **provider contract**; the static checker never evaluates scopes.
 
 ## Sources

@@ -335,6 +335,17 @@ Use an array of request specifications for a sequential chain. Persist only requ
 intermediate values in `temp` and define final output at the end. A later request
 cannot recover an earlier HTTP error by treating that failed response as success.
 
+An entry in the chain may omit `url` for documented
+[request-less/static communication](https://developers.make.com/custom-apps-documentation/component-blocks/api/request-less-communication.md).
+Make permits mixing static entries with ordinary HTTP requests; no HTTP request is
+sent for a static entry. Such an entry may contain `temp` preparation or input guards
+before the real request. In a review, do not report the omitted URL alone as a broken
+request, do not probe the provider for the route it "would" call, and do not remove the
+entry as a fix; assess what its directives do. The documentation makes response
+directives available but cautions about `response.valid` and `response.error` in static
+mode. Confirm in a run before a finding depends on how the entry's own `response`
+directives are evaluated.
+
 For full-replacement updates, confirm actual provider behavior rather than assuming
 PUT always replaces or PATCH always preserves. When replacement is required, fetch
 the current object, merge explicitly supplied changes, then write it back. Preserve
