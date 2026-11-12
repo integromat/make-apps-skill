@@ -191,10 +191,14 @@ rules above (query merging, allowed destination hosts, retained credentials) sti
 
 ### Lookups by a list of IDs
 
-An endpoint that returns the records for IDs the user supplies is not paginated: its result
-size is set by the input. Providers usually cap the number of IDs per call and return no
-cursor, so a call above the cap fails or drops IDs. Declare the documented cap on the input
-array and state it in the help. On a module that is already released, add the bound only where
+An ID filter limits which records match; it does not establish that the endpoint is
+unpaginated. Check the provider's pagination contract even when the user supplies every ID.
+For example, the [WordPress posts API](https://developer.wordpress.org/rest-api/reference/posts/#arguments)
+accepts an `include` ID filter alongside `page` and `per_page` (default `10`). Preserve
+pagination when that contract requires it to retrieve all matching records.
+
+For a provider-documented unpaginated batch-get endpoint, declare its documented per-call ID
+cap on the input array and state it in the help. On a module that is already released, add the bound only where
 the provider already rejects a longer list; where it silently drops IDs, state the cap in the
 help and treat a new bound as a compatibility change ([limits the help text already states](parameters-and-rpcs.md#limits-the-help-text-already-states)):
 
@@ -203,7 +207,8 @@ help and treat a new bound as a compatibility change ([limits the help text alre
  "validate": {"maxItems": 25}, "help": "Up to 25 IDs per run."}
 ~~~
 
-Pagination does not lift the cap. Do not ask for a `pagination` block on such an endpoint.
+Pagination does not lift that batch-get input cap. Do not ask for a `pagination` block on a
+provider-documented unpaginated endpoint.
 An existing cursor block there stops after the first call only when its `condition` tests the
 cursor; without one it re-sends the same IDs and repeats their records until the Limit or the
 pagination request cap stops it. Either way it suggests that the module handles more IDs than

@@ -95,15 +95,21 @@ and interface.
 
 - Template comments alone prove nothing: finished modules often keep them, and the documentation's
   own snippets use the same comment style. Judge the request, not the comments.
-- A visible module whose request does not perform the operation its label names is a functional
-  defect (class (a)). Implement it when the provider documentation determines the operation;
+- An executable module in the intended review scope whose request does not perform the operation
+  its label names has a functional defect (class (a)), including a newly created hidden module.
+  Implement it when the provider documentation determines the operation;
   otherwise report an unverified advisory finding that names the missing fact and the decision
   (implement it or hide it). Do not delete a module from a released app in a review: saved
   scenarios may use it, and even a hidden module still runs in them
   ([labels-visibility](../examples/current-knowledge/guides/labels-visibility.md#module-distribution-visibility-not-parameterhidden)).
-- A hidden module, or one whose label already marks it as not for use, is retired. Leave it unchanged
-  and at most note it as advisory. One leftover module is never a trash rejection while the rest of
-  the app works.
+- Hidden status or a not-for-use label alone does not prove retirement: [new modules start
+  hidden](https://developers.make.com/custom-apps-documentation/create-your-first-app/test-your-app),
+  and [hidden modules can still execute in existing scenarios](https://developers.make.com/custom-apps-documentation/create-your-first-app/app-visibility).
+  Require explicit retirement evidence (such as a maintained module inventory or deprecation notes)
+  and evidence that the module is outside the intended review scope before leaving its template
+  implementation unchanged with an advisory note. Fix established defects in executable, in-scope
+  modules regardless of visibility. One leftover module is never a trash rejection while the rest
+  of the app works.
 - When authoring, start from a blank module or replace every template part before the module is made
   visible. Delete an unfinished module only if it was never visible in a released version.
 

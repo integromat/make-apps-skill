@@ -257,12 +257,15 @@ set: the module label and description, `url`, `response.iterate`, `trigger.id` a
 `trigger.date`, the epoch `output`, the interface and samples, and `scope`. Leftover
 template comments are a prompt for this check, not a defect on their own. The response
 fragment under polling progress uses the same placeholder names, so a trigger that
-matches it still needs provider evidence. A visible module with this mismatch is the
+matches it still needs provider evidence. An executable module in the intended review scope
+with this mismatch, including a newly created hidden module, has the
 functional label mismatch described in [review sweeps](review-sweeps.md), a class (a)
 defect under [Approval gating](review-and-qa.md#2a-approval-gating): fix it when the
 provider documentation determines the resource and fields; otherwise report an
-unverified advisory finding that names the missing fact. Treat hidden or retired modules
-as [Leftover editor-template modules](review-and-qa.md#leftover-editor-template-modules)
-describes; one leftover template module does not make the app trash.
+unverified advisory finding that names the missing fact. Hidden status alone does not prove
+retirement; require evidence of retirement and exclusion from the intended review scope as
+[Leftover editor-template modules](review-and-qa.md#leftover-editor-template-modules)
+describes before leaving a template implementation unchanged. One leftover template module
+does not make the app trash.
 
 Source: [Epoch inheritance and output](https://developers.make.com/custom-apps-documentation/component-blocks/epoch.md).

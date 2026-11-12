@@ -86,21 +86,12 @@ test it against the active code:
   to the active code (pagination where the provider pages, the RPC record budget, documented
   error shapes) and report what that check finds, not the comment.
 - A comment that claims behaviour is not proof. A pagination body that writes
-  `"filters": { /* unchanged */ }` relies on the original body being merged in, which the
-  pagination page does not promise: it documents that a supplied pagination `body` overrides
-  the original one ([pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md)).
-  Do not report lost filters on page two from the file alone; repeat the complete body instead,
-  which is correct whether or not the two bodies are merged:
-
-  ```json
-  "pagination": {
-    "body": {
-      "filters": "{{parameters.filters}}",
-      "page": "{{pagination.page}}"
-    }
-  }
-  ```
-
+  `"filters": { /* unchanged */ }` needs the conditional rules and evidence requirements in
+  [pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md#identify-the-providers-protocol-first).
+  Check the request method and type, both body shapes, and `mergeWithParent` before deciding
+  which fields carry forward. Do not report lost filters or repeat the complete body solely
+  because of the comment; apply the guide's rule for that case and verify any claimed loss
+  against the continuation request.
 - The comment or the dead code itself is cosmetic: never blocking, and not a reason to delete
   or rewrite it when no finding requires the change. A change that only removes comments would
   turn a plain approve into an adjustment for nothing. When building, resolve the gap a TODO

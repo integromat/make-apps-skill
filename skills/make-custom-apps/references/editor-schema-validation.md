@@ -40,7 +40,8 @@ The schemas check component files only. Parameter and interface specs that a fie
 a custom function builds at runtime never reach the editor validation, so a clean result says nothing about
 them. Read that code against `parameters.json` and the type pages yourself, with the rules in
 [Dependent options, fields, and interfaces](parameters-and-rpcs.md#dependent-options-fields-and-interfaces):
-valid keys, a Make `type` for every field (`text`, not `string`) and a `name` on every field. A generated
+valid keys, a Make `type` for every field (`text`, not `string`) and a `name` on every value-bearing
+field (display-only banners need no name). A generated
 `name` is the key under which scenarios save the mapped value and that the module reads, so check its spelling
 before the first release. After release, changing an RPC or a function that builds dynamic parameters is a
 documented breaking change: when a misspelled name is still read consistently, keep it and correct the `label`
