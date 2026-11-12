@@ -66,6 +66,41 @@ Approval impact follows [Approval gating](review-and-qa.md#2a-approval-gating): 
 
 Source: [Pagination specification and limits](https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination.md).
 
+### Reads that claim items take their batch size from the Limit
+
+For an ordinary read, a fixed provider page size with `response.limit` is correct: records
+beyond the Limit are simply not emitted, and the search best practice asks for the largest
+page size. Sending a smaller page for a small Limit is an optional optimisation, never a
+finding; if you do it, derive the offset step from the same expression as the page size.
+
+A read that changes provider state is different: receiving from a queue, claiming or
+leasing items, or marking them as read. `response.limit` trims the bundles only after the
+provider has handed the items out, so a batch larger than the Limit hides the extra items
+until a timeout, or consumes them, without any bundle carrying them. Send the smaller of the
+Limit and the documented maximum as the batch size, for example
+`{{min(ifempty(parameters.limit, 10), 10)}}` for a maximum of 10. Keep the `ifempty`
+fallback, because a search Limit may be left empty to return everything.
+
+Such a read often pages by re-sending the identical request, each call returning the next
+items. A pagination block with nothing that changes per page is valid only for such a read;
+on any other endpoint it fetches the first page again. When a claiming read pages, every
+call claims a full batch, so the last one can claim more than the Limit leaves room for.
+Either cap the Limit at the provider maximum and send one request, or size each later call by
+the items still missing (count the items received so far in `response.temp`).
+
+### Leave the Limit stop to `response.limit`
+
+Do not re-implement the Limit inside `pagination.condition`: Make already stops paging
+once `response.limit` items are collected. A condition such as
+`{{pagination.page * 50 < parameters.limit}}` only adds risk, because `pagination.page` is
+already the upcoming page, so it stops one page early (a Limit of 100 returns 50 records).
+The same slip against a provider record total, `{{pagination.page * 50 < body.total}}`,
+skips the last page; the records already requested are `(pagination.page - 1) * 50`. A page
+size that appears only in the condition, and is not sent in the request, also depends on the
+provider's default page size staying the same. Use the condition for the provider's own
+signal (cursor, has-more flag, total), and test Limits of exactly one page, one page plus
+one record, and two full pages.
+
 ## Page-number pagination
 
 **`pagination.page` starts at 1 and advances automatically. After the first request,
@@ -122,6 +157,62 @@ URL, method, and body overrides have their own replacement behavior. An alternat
 pagination endpoint can require a different method or body; inspect it explicitly.
 
 Source: [Pagination patterns and merging](https://developers.make.com/custom-apps-documentation/component-blocks/api/pagination.md).
+
+### Cursor or next link in a response header
+
+Some providers return the continuation in a response header instead of the body.
+`headers` is available to the pagination `condition` and to the override fields, like
+`body`. Read the header name in lower case, as it appears in a logged response, not in the
+provider's capitalisation such as `headers.Link`. A hyphenated name needs backticks or
+`get()`, because `{{headers.x-next-cursor}}` is evaluated as a subtraction.
+
+~~~json
+{"pagination": {
+  "qs": {"after": "{{headers.`x-next-cursor`}}"},
+  "condition": "{{headers.`x-next-cursor`}}"
+}}
+~~~
+
+For a `Link` header, follow only the URL of the `rel="next"` entry, and let the condition
+and the URL test the same relation:
+
+~~~json
+{"pagination": {
+  "url": "{{replace(headers.link, '/^.*<([^>]+)>;\\s*rel=\"next\".*$/', '$1')}}",
+  "condition": "{{contains(headers.link, 'rel=\"next\"')}}"
+}}
+~~~
+
+A bare `contains(headers.link, 'next')` is also true when the word only appears inside
+another link's URL, and `replace()` returns the whole header unchanged when its pattern does
+not match, so the module then requests the header text as a URL. A custom function that
+returns the next URL or nothing, used for both fields, avoids the mismatch. The next-URL
+rules above (query merging, allowed destination hosts, retained credentials) still apply.
+
+### Lookups by a list of IDs
+
+An ID filter limits which records match; it does not establish that the endpoint is
+unpaginated. Check the provider's pagination contract even when the user supplies every ID.
+For example, the [WordPress posts API](https://developer.wordpress.org/rest-api/reference/posts/#arguments)
+accepts an `include` ID filter alongside `page` and `per_page` (default `10`). Preserve
+pagination when that contract requires it to retrieve all matching records.
+
+For a provider-documented unpaginated batch-get endpoint, declare its documented per-call ID
+cap on the input array and state it in the help. On a module that is already released, add the bound only where
+the provider already rejects a longer list; where it silently drops IDs, state the cap in the
+help and treat a new bound as a compatibility change ([limits the help text already states](parameters-and-rpcs.md#limits-the-help-text-already-states)):
+
+~~~json
+{"name": "ids", "type": "array", "label": "IDs", "spec": {"type": "text", "label": "ID"},
+ "validate": {"maxItems": 25}, "help": "Up to 25 IDs per run."}
+~~~
+
+Pagination does not lift that batch-get input cap. Do not ask for a `pagination` block on a
+provider-documented unpaginated endpoint.
+An existing cursor block there stops after the first call only when its `condition` tests the
+cursor; without one it re-sends the same IDs and repeats their records until the Limit or the
+pagination request cap stops it. Either way it suggests that the module handles more IDs than
+one call accepts.
 
 ## Universal and multi-request boundaries
 

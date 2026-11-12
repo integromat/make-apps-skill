@@ -20,9 +20,10 @@ Make's public review prerequisites require functional test scenarios and recent,
 
 Use the current public rules, not internal category codes or an old app's style as universal requirements.
 Approval impact is decided separately in [Approval gating](#2a-approval-gating).
-Report an **Error** for a demonstrated class (a) to (d) defect, **Warning** for risk or missing evidence, and
-**Suggestion** for optional improvement; a demonstrated convention or quality deviation is recorded as a Warning
-or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
+Report an **Error** for a demonstrated class (a) to (d) defect, except credential masking (a missing
+`log.sanitize` path): Warning, still `blocks` and fixed; see How to record. Report a **Warning** for risk or
+missing evidence, and **Suggestion** for optional improvement; a demonstrated convention or quality
+deviation is recorded as a Warning or Suggestion, since only class (a) to (d) defects use the Error level. Cite the applicable rule and exact component/section for each finding.
 
 Assess each finding before deriving the overall verdict. A finding that blocks under [Approval gating](#2a-approval-gating) is fixed (approve with adjustments), including class (b) findings; only the scam reasons under Reject end in rejection; advisory findings leave the component acceptable; each finding keeps its own approvalImpact even when another finding already rejects the app. Keep recommendations and uncertainty in their evidence-based categories. Existing route-alias and optional Endpoint rules remain unchanged, as do every required execution and publication gate.
 
@@ -81,6 +82,100 @@ values into CLI/API create values. Validate the selected operation's contract se
 For worked synthetic examples and a per-check application table, see
 [role application examples](../examples/current-knowledge/guides/role-application-examples.md) and
 [review sweeps](review-sweeps.md).
+
+### Leftover editor-template modules
+
+A module created from an editor template keeps plausible defaults until each part is replaced: a
+generic path such as `/users` or `/users/{{parameters.id}}`, an `iterate` of `body.users`, template
+inputs (`id`, `email`, `name`, `search`, `limit`), a matching interface, and `item.created` as a
+trigger date. Approved apps were seen still shipping such modules, usually hidden or labelled as not
+for use, and occasionally visible under a label for an operation the request never performs. Sweep
+every module, hidden ones included, and compare its label and description with its request, inputs
+and interface.
+
+- Template comments alone prove nothing: finished modules often keep them, and the documentation's
+  own snippets use the same comment style. Judge the request, not the comments.
+- An executable module in the intended review scope whose request does not perform the operation
+  its label names has a functional defect (class (a)), including a newly created hidden module.
+  Implement it when the provider documentation determines the operation;
+  otherwise report an unverified advisory finding that names the missing fact and the decision
+  (implement it or hide it). Do not delete a module from a released app in a review: saved
+  scenarios may use it, and even a hidden module still runs in them
+  ([labels-visibility](../examples/current-knowledge/guides/labels-visibility.md#module-distribution-visibility-not-parameterhidden)).
+- Hidden status or a not-for-use label alone does not prove retirement: [new modules start
+  hidden](https://developers.make.com/custom-apps-documentation/create-your-first-app/test-your-app),
+  and [hidden modules can still execute in existing scenarios](https://developers.make.com/custom-apps-documentation/create-your-first-app/app-visibility).
+  Require explicit retirement evidence (such as a maintained module inventory or deprecation notes)
+  and evidence that the module is outside the intended review scope before leaving its template
+  implementation unchanged with an advisory note. Fix established defects in executable, in-scope
+  modules regardless of visibility. One leftover module is never a trash rejection while the rest
+  of the app works.
+- When authoring, start from a blank module or replace every template part before the module is made
+  visible. Delete an unfinished module only if it was never visible in a released version.
+
+```json
+{ "url": "/users", "method": "GET", "qs": { "search": "{{parameters.search}}" },
+  "response": { "iterate": "{{body.users}}", "output": "{{item}}" } }
+```
+
+In a module labelled for another resource, this shape is the template, not an implementation.
+
+### Identifying values in samples
+
+Samples are part of the app definition and are shown to the app's users while they set up a module,
+so a sample copied from a real run distributes whatever that run returned. Approved apps were seen
+carrying account numbers inside resource URLs and resource names, personal email addresses,
+phone-number chat identifiers, message or session handles and trace IDs. Check every static sample
+for values that identify a real account, person or resource.
+
+- Replace only the identifying part with a neutral placeholder of the same type and shape: a
+  zero-filled account number inside an otherwise unchanged URL, an `example.com` email address or
+  tenant host, a short dummy handle, a fictional phone number. Keep every key, nesting level and
+  value type so the sample still matches the interface. This changes values only; the rule to
+  preserve existing samples still holds.
+- A live credential, API key, access token or signed URL in a sample is a secret stored in plain
+  text (class (b)) and is fixed. Other identifying values are advisory with a clear fix, so replace
+  them (approve with adjustments).
+- Not a finding: the provider's public hosts and support addresses, documented example values, and
+  values that are already placeholders or redacted.
+
+```json
+{ "resourceUrl": "https://api.example.com/accounts/000000000000/items/42",
+  "handle": "dummy-handle", "email": "user@example.com" }
+```
+
+Make's review prerequisites ask that test scenarios and their logs contain no personal or sensitive
+data; samples taken from those runs need the same care.[8][19]
+
+### Identifiers inside nested selects
+
+`required` belongs to each parameter; a nested child does not inherit it from its parent select. The
+Select documentation's nested-RPC example marks both the parent and the nested child
+`required: true`. A child that supplies an identifier for the request path needs its own flag, as
+any path parameter does
+([interfaces-required](../examples/current-knowledge/guides/interfaces-required.md#required-parameters)).
+Otherwise the form accepts an empty value and the request goes out with an empty path segment, for
+example `DELETE /items/` instead of `DELETE /items/{id}`. The provider then answers for another route,
+with an error or a different operation, instead of Make's required-field validation stopping it.
+
+- In Get, Update, Delete and other single-record modules, trace every identifier the request always
+  needs to its declaration, including `nested` arrays (on the parameter, in its `options` object or
+  its placeholder, or on an option) and fields an RPC returns. A required parent does not cover its
+  child.
+- Compare sibling modules: the same nested identifier marked required in Get but not in Delete is
+  direct evidence of the gap.
+- Record it as the authoring correction that guide describes (advisory unless class (a) to (d)
+  applies) and add `required: true` on the child; the fix is clear, so apply it, and state the
+  compatibility impact in the finding, because the breaking-changes page lists changing `required`
+  from false to true. A saved scenario that leaves the value empty never reached the intended
+  record, so the flag replaces a misrouted request with Make's required-field validation.
+
+```json
+{ "name": "parentId", "type": "select", "label": "Parent", "required": true,
+  "options": { "store": "rpc://listParents", "nested": [
+    { "name": "id", "type": "select", "label": "Item", "options": "rpc://listItems", "required": true }
+  ] } }
+```
 
 ## 2a. Approval gating
 
@@ -161,6 +256,14 @@ with the wrong type; dropped 0, false or null, or missing empty-value handling; 
 documented maximum; non-advancing pagination; wrong output container or iterate path; invalid IML or JSON;
 a missing binding. Re-parse and re-check every adjusted file before returning it.
 
+Fix quality rules.
+
+- Evidence threshold: change an existing working mapping, output path or request only when the provider's schema or reference (not an abridged or illustrative example) or other cited evidence shows the current one is wrong. An example that omits a field is not evidence the field is absent. Otherwise keep the working code and report an advisory finding naming the doubt.
+- Scope: change only the files a finding requires. Do not touch README or documentation files, hidden modules or unrelated components unless a finding is about them, and make each change's explanation describe that change.
+- Prefer a minimal inline fix over a new helper. A new or changed helper function updates its test file in the same change.
+- Do not add requests, polling or retries the contract does not require. Verify the runtime semantics (pagination stop, repeat, retries) before changing them.
+- Prioritise functional defects. Credential masking (a missing `log.sanitize` path) is a minor fix: it is still fixed (approve with adjustments) and listed after the functional fixes, and it never displaces a functional one. A credential written to output or sent to another host is not masking and keeps its full severity.
+
 Defect classes (a) to (d):
 
 - (a) **Established functional failure** under the applicable contract. This list is open; it includes a request
@@ -177,8 +280,8 @@ Defect classes (a) to (d):
   and pagination on documented paged responses with no, or non-advancing, page progression.
 - (b) **Security or privacy**, always fixed (see the Outcome rules for what is adjusted and what is not a
   defect): a secret collected through a plain `text` (non-`password`) connection or install parameter; a
-  secret stored or logged in plain text, including a credential written to a log or output; missing log
-  sanitization of credentials; credential storage or refresh in connection data that is wrong; a credential
+  secret stored in plain text, including a credential written to output; missing log
+  sanitization of credentials (masking, a minor fix; see Fix quality rules and How to record); credential storage or refresh in connection data that is wrong; a credential
   placement or host the provider API does not accept; user- or data-controlled URLs and hostnames that
   untrusted scenario data could use to steer a credential elsewhere; a privacy defect that exposes user content
   against the user's choice; and missing webhook verification, only when the provider documents a verification
@@ -202,7 +305,7 @@ exposure that no change inside the app can remove leads to rejection. Never reje
 items, however many.
 
 How to record: a defect of class (a) to (d) uses the requirement-violation basis, Error severity and `blocks`;
-an open question that could hide a scam uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed security, credential-handling or privacy defect is a security finding with the fix applied; an unproven privacy or security question that is not a scam is advisory; a
+an open question that could hide a scam uses the unverified basis, Warning severity and `needs_evidence`, and rejects the review when it stays unsettled; a fixed security, credential-handling or privacy defect is a security finding with the fix applied; credential masking (a missing `log.sanitize` path) is a minor fix, recorded with Warning instead of Error severity, still `blocks` and fixed, and listed after the functional fixes, while a credential written to output or sent to another host is not masking and keeps Error severity; an unproven privacy or security question that is not a scam is advisory; a
 convention or quality point uses the recommendation or observation basis, Warning or
 Suggestion severity and `advisory`. State the single outcome (approve, approve with adjustments or reject) and,
 for adjustments, list each fix next to its finding; for a rejection, name the reason (scam, trash or an unremovable exposure). Name a service-specific field only where the review service

@@ -46,9 +46,9 @@ Finding statements:
 * Output converts `createdAt` but the interface still says `text`: matching declaration missing.
 * Output is only `{{body}}` with `createdAt` documented as non-ISO: conversion needed (documented requirement).
 * A field in the response but not in the interface: declaration gap, not data loss. Output that builds a new object omitting a required field: demonstrable loss.
-* Raw canonical ISO datetime text from HTTP JSON, output `{{body}}`, interface `date`, no traced conversion: record an explicit-conversion recommendation and unproven Date provenance. Not an automatic blocker, unambiguous violation or runtime failure: the focused output page recommends parsing, while the official full polling example emits an ISO field directly with a `date` interface. ISO spelling or the interface does not prove a Date conversion.
+* Raw canonical ISO datetime text from HTTP JSON, output `{{body}}`, interface `date`, no traced conversion: the value stays text, so parse it with the provider's format. Not a runtime failure, but a finding: the focused output page recommends parsing and marketplace review treats the unparsed value as Required; the official full polling example that emits an ISO field directly with a `date` interface is no exemption. ISO spelling or the interface does not prove a Date conversion.
 * Traced value already an actual Date (earlier valid conversion, identity pass-through): no redundant-conversion finding; do not require a second parse.
-* Not a finding: no `parseDate` token for `dueDay`, `localTime` or `sequence` (documented exceptions); verify meaning, zone and matching `date` interface for every emitted datetime.
+* Not a finding: no `parseDate` token for `dueDay` or `sequence` (documented exceptions); verify meaning, zone and matching `date` interface for every emitted datetime. `localTime` is `uncertain` while its zone is undocumented, not dismissed.
 
 Cursor control: a polling trigger may map `trigger.date` directly when the provider field is established as the documented comparable ISO representation for that cursor pattern; a value that merely looks ISO-shaped is not enough. That is a cursor pattern and says nothing about output typing. A documented epoch cursor does need interpretation in the stated unit.
 
@@ -60,7 +60,7 @@ Provider documentation requires an `X-Api-Version` header on some calls. The RES
 {
   "mappable_parameters": [
     { "name": "url", "type": "text", "required": true, "label": "URL",
-      "help": "Relative path only, starting with `/`, for example `/v1/items`. The fixed provider address is added for you; do not enter a full URL." },
+      "help": "Enter a path relative to `https://api.provider.example.com/api`. For example: `/v1/items`. Do not enter a full URL." },
     { "name": "method", "type": "select", "required": true, "default": "GET",
       "options": [
         { "label": "GET", "value": "GET" },
@@ -73,7 +73,7 @@ Provider documentation requires an `X-Api-Version` header on some calls. The RES
       "spec": [ { "name": "key", "type": "text" }, { "name": "value", "type": "text" } ] }
   ],
   "communication": {
-    "url": "https://api.provider.example.com/api/v1{{parameters.url}}",
+    "url": "https://api.provider.example.com/api/{{parameters.url}}",
     "method": "{{parameters.method}}",
     "headers": {
       "{{...}}": "{{toCollection(parameters.headers, 'key', 'value')}}"
@@ -82,7 +82,7 @@ Provider documentation requires an `X-Api-Version` header on some calls. The RES
 }
 ```
 
-Check 0, destination boundary: the displayed `url` puts a literal provider prefix that includes a fixed path (`https://api.provider.example.com/api/v1`) before the interpolated input, and the input help asks for a relative path starting with `/`. The literal must include the slash and path before any untrusted input. A prefix of only scheme and host (`https://api.provider.example.com{{parameters.url}}`) is not enough: by URL grammar the authority has not necessarily ended, so an input such as `@other.invalid/` is read as userinfo and the hostname becomes `other.invalid`. With the fixed `/api/v1` literal, the authority has already ended, so caller input stays in the path; `@` and `//` cannot override the host. An unrestricted `"url": "{{parameters.url}}"` is the unsafe form: the platform's request handling treats a complete URL as absolute and does not apply Base to it, so a user-typed absolute URL could send the connection's credentials to another server (hardening: add the fixed prefix and approve with adjustments, never reject), which the [universal module page](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module) says relative-only input exists to prevent. A fixed Base `baseUrl` alone does not close this. This is teaching guidance on a synthetic fixture, not a complete validator, and it does not claim live execution or that any provider or Make runtime was exercised. Whether the Base-auth header collides is a separate unknown (Check 2).
+Check 0, destination boundary: the displayed `url` puts a literal provider prefix that includes a fixed path (`https://api.provider.example.com/api/`) before the interpolated input, and the input help asks for a relative path starting with `/` and the version (the resulting double slash is removed automatically and is not a defect). The literal must close the host with `/` before any untrusted input. A prefix of only scheme and host (`https://api.provider.example.com{{parameters.url}}`) is not enough: by URL grammar the authority has not necessarily ended, so an input such as `@other.invalid/` is read as userinfo and the hostname becomes `other.invalid`. With the fixed `/api/` literal, the authority has already ended, so caller input stays in the path; `@` and `//` cannot override the host. An unrestricted `"url": "{{parameters.url}}"` is the unsafe form: the platform's request handling ignores Base `baseUrl` for a complete URL (Base headers still apply), so a user-typed absolute URL could send the connection's credentials to another server (hardening: add the fixed prefix and approve with adjustments, never reject), which the [universal module page](https://developers.make.com/custom-apps-documentation/app-components/modules/universal-module) says relative-only input exists to prevent. A fixed Base `baseUrl` alone does not close this. This is teaching guidance on a synthetic fixture, not a complete validator, and it does not claim live execution or that any provider or Make runtime was exercised. Whether the Base-auth header collides is a separate unknown (Check 2).
 
 Check 1, customization: the input exists (any equivalent name counts) and its value reaches the request headers through the spread. The caller can send `X-Api-Version`. No finding. Had there been no such input, the finding would be a REST capability gap, with impact raised because the provider requires a header, and still not a claim about authentication.
 
@@ -106,7 +106,7 @@ Record each applicable check as a row; opening a guide is not the same as applyi
 | Source | Rule | Applies because | Exception considered | Status | Evidence | Finding |
 | --- | --- | --- | --- | --- | --- | --- |
 | [dates-helpers](dates-helpers.md) | Output datetime: traced Date-producing conversion + `date` interface | `createdAt` emitted, zone documented UTC, non-ISO text converted by `parseDate` | date-only, time-only, unknown zone, numeric id | `passed` | output expression and interface entry locations | none |
-| [dates-helpers](dates-helpers.md) | Raw canonical ISO text, `date` interface, no traced conversion | Emitted datetime from HTTP JSON | already a traced Date value; documented exceptions | `uncertain` (recommendation; source ambiguity, ISO spelling or interface does not prove conversion) | output expression, interface entry | explicit-conversion recommendation, not a blocker or runtime claim |
+| [dates-helpers](dates-helpers.md) | Raw canonical ISO text, `date` interface, no traced conversion | Emitted datetime from HTTP JSON | already a traced Date value; documented exceptions | `finding` (ISO spelling or interface does not prove conversion) | output expression, interface entry | parse with the provider's format; Required in marketplace review, not a runtime claim |
 | [dates-helpers](dates-helpers.md) | Cursor maps directly | Trigger `type: date`, field established as the documented comparable ISO form | merely ISO-looking value; not an output exemption | `not_applicable` for parse | trigger block | none |
 | [headers-merge](headers-merge.md) | REST header customization | REST universal module | GraphQL subtype | `passed` | input and its header sink | none |
 | [headers-merge](headers-merge.md) | Credentials retained | Module sets headers | unauthenticated endpoint | `uncertain` (collision) | merge expression | evidence needed, not loss |

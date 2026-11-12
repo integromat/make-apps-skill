@@ -19,6 +19,28 @@ A public-only filter is a published-impact reporting choice, not a general maint
 Preserve unknown visibility; do not infer public status from labels, approval flags or missing fields.
 Hiding a module does not disable existing scenarios that use it.[6]
 
+### Find every copy of the provider version
+
+A version pinned as a header or path literal often lives in more than one place, and a Base change moves
+only the components that inherit it. Before a version upgrade, list every literal and classify each copy:
+
+| Copy | Why it exists | Upgrade action |
+| --- | --- | --- |
+| Base `headers` or `baseUrl` | The single source that modules and RPCs inherit. | Change it here. |
+| Connection check | Connection communication does not inherit Base. | Change it in the same edit as Base when the check calls a versioned endpoint, and re-check any `response.data` or `metadata` it reads from the response, since another version can return another shape. |
+| Connection token or refresh request | Connection communication does not inherit Base; many providers do not version their auth endpoints. | Change it only when the provider versions that endpoint, and handle it as an authentication migration (section 4), not as part of the version edit. |
+| Module or RPC header with the same value as Base | A same-named module header wins over Base, so it keeps the old value after Base moves. | Change it in the same edit as Base, or remove it so the component inherits; both send the new version. |
+| Module or RPC that rebuilds headers by hand (a whole-expression `headers`, or a `temp` copy of auth and version) | A whole-expression `headers` replaces Base, so the credential and version were copied. | Change every copied header; for new work, prefer the `"{{...}}"` spread so Base stays the source ([headers-merge](../examples/current-knowledge/guides/headers-merge.md)). |
+| Universal module whose fixed prefix stops before the version segment | The user's relative path carries the version. | Update the version in the help example only; keep the prefix, and leave saved paths as users wrote them. |
+| Pre-filled header row or other parameter `default` | A user-facing copy of the version. | Update it with Base; do not assume a changed default reaches scenarios that already saved the old value, and check which value the effective request sends. |
+| Communication fallback such as `ifempty(parameters.version, '<version>')` | A code default for an empty input. | Update it with Base; it changes the request of every scenario that leaves the input empty. |
+| Component with a different value on purpose | It needs a feature that only another version offers. | Keep it, with a comment that names the reason, and re-check it at every upgrade. |
+
+Read the effective request of webhook attach and detach calls before assuming they inherit Base.
+Record each copy in the version evidence so the upgrade diff shows it changed or deliberately kept.
+Base is the single source only for the modules and RPCs that inherit it. A copy left off this list is how
+a connection check, an RPC and a module end up on different versions that return different response shapes.
+
 ## 2. Evaluate every relevant provider change
 
 Collect and deduplicate the relevant official changelog, reference and migration URLs.
@@ -83,6 +105,44 @@ Review the whole effective contract, not only whether JSON parses.
 For deprecations, use documented warnings/help and compatible alternatives where possible rather than
 silently deleting an input. Announce removals before rollout through the approved communication process.[32]
 Do not infer permission to contact users or post release announcements from a maintenance request.
+
+### Adapt a changed provider response instead of changing the published output
+
+When a provider version moves data (a field becomes `null` and its value appears in new sibling fields,
+a value moves under a nested object, a serialized string splits into typed fields), changing the published
+output or interface to follow it breaks existing mappings.[32] Change `response.output` only to rebuild
+the previously published fields from the new response, so saved scenarios keep their mappings:
+
+- Prefer built-in IML in `response.output`; custom IML functions are not available by default
+  ([IML functions](iml-functions.md)). Apply the same mapping to nested records that carry the same shape.
+- Rebuild only what the new response can supply. Say in help or the interface which old fields can no
+  longer be filled, rather than inventing values.
+- Exposing a new field as well is additive; dropping or retyping a field the interface declares is not.
+- Test the new shape, the old shape (left unchanged), nested records, and `null` or missing input.
+
+### Deprecate in place
+
+Removing or changing a select option, removing a parameter, or replacing a connection can break saved
+scenarios.[32] Keep the old element working and make its status visible at the level where it changes:
+
+- **Select option:** keep the option and its `value`; add `(deprecated)` to the label and put a `warning`
+  banner in its `nested` parameters that names the replacement. No option-level deprecation attribute is
+  documented, so this label-and-banner form is an inferred pattern.
+- **Parameter:** move it to advanced, add `[Deprecated]` to the label and help that names the replacement;
+  add a banner when users must notice it.[32] Raise a clear error for it on the app side only when the
+  provider already refuses the parameter.[32]
+- **Module:** label it `Module name (deprecated)`
+  ([module labels](https://developers.make.com/custom-apps-documentation/best-practices/naming-conventions/modules/module-labels.md)),
+  say in the description what replaces it and that it is kept for existing scenarios, and hide it so new
+  scenarios pick the replacement; hidden modules keep running.[6] To stop a module entirely after the
+  announced removal, make it fail with a message that points to the replacement rather than deleting it.[32]
+  The modules API also has a deprecate/undeprecate operation;[39] its effect on the editor is not described
+  there, so keep the label, description and visibility steps.
+- **Connection:** rename it with `(deprecated)`, add the replacement, and in every module, RPC and webhook
+  that used it attach the new connection first and the deprecated one as the alternative.[32]
+
+Users then see what to migrate to, while scenarios built on the old option, parameter, module or connection
+keep running until they move or the announced shutdown takes effect.
 
 ## 5. Apply section updates without losing unrelated configuration
 

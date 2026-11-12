@@ -10,7 +10,7 @@ For each applicable check, record: source/rule, strength (documented requirement
 
 | Sweep | Inspect | Decide yourself (a name or locator is not enough) | Guide |
 | --- | --- | --- | --- |
-| Temporal fields | Every emitted date/time field: output expression or helper, interface declaration, sample | Meaning, provider zone and unit; whether the conversion is real; exceptions (date-only, time-only, unknown zone, non-timestamp numbers). Cursor mapping is separate from output typing; `parseDate` absence alone proves nothing. JSON ISO text is text and a `date` interface is not proof of conversion; raw ISO pass-through is a conversion recommendation with a documented source ambiguity, not an automatic blocker; an already-Date traced value needs no second parse. | [dates-helpers](../examples/current-knowledge/guides/dates-helpers.md) |
+| Temporal fields | Every emitted date/time field: output expression or helper, interface declaration, sample | Meaning, provider zone and unit; whether the conversion is real; exceptions (date-only, time-only, unknown zone, non-timestamp numbers). Cursor mapping is separate from output typing; check the conversion, not the `parseDate` token. JSON ISO text is text and a `date` interface is not proof of conversion; raw ISO pass-through is parsed with the provider's format (Required in marketplace review), an undocumented zone is uncertain rather than dismissed, and an already-Date traced value, such as one the app's own IML function parses, needs no second parse. | [dates-helpers](../examples/current-knowledge/guides/dates-helpers.md) |
 | Request headers | Universal subtype, all input branches, input-to-header sink, Base auth, collection vs expression form | REST: is any equivalent header input present and reaching the request. GraphQL: no Headers input is not by itself a REST-convention finding, but still check that provider-required headers can be sent. Credential retention is a separate trace; collision ordering is a bounded model, not proven precedence. | [headers-merge](../examples/current-knowledge/guides/headers-merge.md) |
 | Selectors | Selector location, effective mode, mappability, RPC links and input counts, parent stores | Operation role and provider hierarchy. Get/Update/Delete mappable identifiers require edit mode; Search/List and Create are recommendations; many RPC inputs differ from many results. Do not invent lookup routes. | [selectors-mode](../examples/current-knowledge/guides/selectors-mode.md) |
 | Routes | Exact method and path; provider documentation and its completeness | Whether the evidence is authoritative and exhaustive for that operation. Absence from partial documentation is an evidence gap, never a proven broken route; a deprecated route is not thereby removed. | [compatibility-evidence](../examples/current-knowledge/guides/compatibility-evidence.md) |
@@ -24,6 +24,90 @@ For each applicable check, record: source/rule, strength (documented requirement
 | Labels and descriptions | Labels, descriptions, help text against the request each module performs | Cosmetic (casing, grammar) is minor and never blocking. A label or description that promises behaviour the request lacks (for example "permanently" on an archive) is functional and needs human tracing. Preserve the module visibility row above; it is a separate check. | [labels-visibility](../examples/current-knowledge/guides/labels-visibility.md) |
 | Output, interface, samples | Output projection or spread, interface entries, sample values, and the actual interface and empty-value handling in the output | Names, types and samples agree; omit, clear and set behave as promised; falsy values survive. Dates are one case of this, not the whole check. | [interfaces-required](../examples/current-knowledge/guides/interfaces-required.md), [outputs-empty-values-updates](../examples/current-knowledge/guides/outputs-empty-values-updates.md) |
 | Endpoints | Only if the request or review scope names SDK Endpoints | Endpoints are optional; absence is not a finding. Review them only when explicitly in scope. | [optional-endpoints](../examples/current-knowledge/guides/optional-endpoints.md) |
+
+### Sweep: lookup results that build the next request
+
+Inspect every request array in which an earlier request stores a value from its response in
+`temp` (often the first item of a filtered list, such as `body.items[1].id`) and a later
+request puts that value into its `url`, path, query, body or headers.
+
+Decide whether the lookup can succeed without a usable value: a list or search that answers
+2xx with an empty list, or a documented optional field that is absent. A missing path resolves
+to empty without any error, and an empty value inside URL text becomes an empty string, so the
+next request silently runs against a different or malformed route. A write can land on a
+parent route or the collection root, a read on a malformed path, and the user sees a confusing
+provider error or none at all. A 4xx for no match already stops the module through error
+handling, before `valid` runs; the silent case is the 2xx one.
+
+- A route whose documented response is a list or search result can answer a no-match with an
+  empty 2xx list; that documentation is enough evidence. An unguarded chain on it is a
+  functional defect (class (a) in [Approval gating](review-and-qa.md#2a-approval-gating)). Fix
+  it on the lookup request with `response.valid` and a message that names the missing input.
+  Where an absent value is a legitimate outcome, give the later request a `condition` instead
+  (object form with `default` when the module must still return something). Apply the same fix
+  to every module that repeats the lookup.
+- When the provider documentation cannot settle the no-match behaviour (for example a
+  single-object route whose not-found answer is undocumented), record the check as `uncertain`
+  with that missing fact rather than adding an unexplained guard.
+- The lookup itself is legitimate ([requests, files and multi-step](../examples/current-knowledge/guides/requests-files-multistep.md));
+  its extra request per run is a design point, not a finding.
+
+```json
+[
+  {
+    "url": "/lists",
+    "qs": { "name": "{{parameters.listName}}" },
+    "response": {
+      "valid": {
+        "condition": "{{length(body.items) > 0}}",
+        "message": "No list named '{{parameters.listName}}' was found."
+      },
+      "temp": { "listId": "{{body.items[1].id}}" }
+    }
+  },
+  { "url": "/lists/{{temp.listId}}/entries", "method": "POST", "body": "{{parameters.entry}}" }
+]
+```
+
+Guide: [errors and rate limits](../examples/current-knowledge/guides/errors-and-rate-limits.md)
+(failures inside successful responses; errors in multi-step communication).
+
+### Sweep: comments and commented-out code
+
+Component files are parsed as JSON with comments, and approved apps were seen shipping comments
+routinely: template explanations, notes, and commented-out alternative requests, option blocks
+or whole `pagination` blocks. A comment does nothing at runtime, so it is neither a defect nor
+evidence. Read every comment anyway, as the author's own statement about the component, and
+test it against the active code:
+
+- A comment that admits a gap names a check to run: "add pagination" on an options RPC, a
+  commented-out `pagination` block, a TODO about unhandled error fields, or a note that a
+  provider field cannot drive the stop condition. Apply the matching sweep or checklist item
+  to the active code (pagination where the provider pages, the RPC record budget, documented
+  error shapes) and report what that check finds, not the comment.
+- A comment that claims behaviour is not proof. A pagination body that writes
+  `"filters": { /* unchanged */ }` needs the conditional rules and evidence requirements in
+  [pagination and trigger state](../examples/current-knowledge/guides/pagination-and-trigger-state.md#identify-the-providers-protocol-first).
+  Check the request method and type, both body shapes, and `mergeWithParent` before deciding
+  which fields carry forward. Do not report lost filters or repeat the complete body solely
+  because of the comment; apply the guide's rule for that case and verify any claimed loss
+  against the continuation request.
+- The comment or the dead code itself is cosmetic: never blocking, and not a reason to delete
+  or rewrite it when no finding requires the change. A change that only removes comments would
+  turn a plain approve into an adjustment for nothing. When building, resolve the gap a TODO
+  names instead of shipping the note, and keep one active definition instead of a
+  commented-out alternative, so the next reviewer does not have to guess which one is meant.
+
+## Mandatory per-component checklist
+
+For every component, answer each item below as `finding`, `passed`, `not_applicable` or `uncertain` with the missing fact (never skip silently):
+
+- Output dates are parsed to the Make date type where the provider value is a real timestamp.
+- Documented error shapes (4xx bodies, including 422 validation errors) are handled in Base or the module, consistent with the provider.
+- Authentication is inherited from Base or the connection and not duplicated in modules.
+- Pagination exists where the provider pages results: for list and search modules and also for pickers and RPCs; RPC paging stays within the RPC record budget above.
+- Output and interface agree: no stale or missing fields.
+- File inputs and outputs keep their file semantics (name, data, MIME type).
 
 ## Auth-alias counterexample review
 

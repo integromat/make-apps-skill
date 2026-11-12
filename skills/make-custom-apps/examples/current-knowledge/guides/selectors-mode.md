@@ -8,6 +8,23 @@ A select backed by a remote procedure call (RPC) lets users pick a record instea
 
 An option RPC returns an array of `{ "label": ..., "value": ... }` (`default: true` is optional). A select refers to it as `"options": "rpc://listProjects"` or in object form `{ "store": "rpc://listProjects", "nested": [...] }`. A fields RPC returns parameter specs (`name`, `type`, `label`, ...) and is referenced from `interface` or a `parameters` array, not from `options`. Using one where the other is expected is a schema confusion: the user sees the wrong thing, or nothing.
 
+### Grouped options
+
+See [parameters and RPCs](../../../references/parameters-and-rpcs.md#grouped-options) — the `grouped: true` shape for long lists with natural categories, values unique across groups, and confirming RPC-loaded groups in the form.
+
+### Option order
+
+**Documented behaviour.** Options are unsorted by default and appear in the order they arrive. The select's `sort` attribute (`"text"` or `"number"`) sorts them in the form, which also replaces any order the RPC produced. When another order helps more (newest first), leave `sort` off and order the list before it reaches the select. Either ask the provider to sort (a sort query parameter), or sort in the RPC with the IML function `sort(array; [order]; [key])` ([array functions](https://help.make.com/array-functions)), where `order` is `asc`, `desc`, `asc ci` or `desc ci`.
+
+~~~json
+"response": {
+  "iterate": "{{sort(body.items, 'desc', 'created')}}",
+  "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+}
+~~~
+
+**Pitfall (not stated on the public page; confirm in the module).** The order comes before the key, and both are quoted strings. Written key-first, `sort(body.items, 'created', 'desc')`, the first argument is not an order keyword, so it is read as the key and the list comes back ascending. Written unquoted, `sort(body.items, desc, created)`, both arguments are empty variables and the list keeps the provider's order. Both forms pass upload and look plausible. Also, `iterate` runs once per response page, so an RPC-side sort orders each page, not the whole list. When the list spans pages and `response.limit` cuts it, prefer provider-side ordering so that the first options really are the newest.
+
 ## Describing options that need explanation
 
 **Inferred UX guidance, not a documented requirement.** The public [Select page](https://developers.make.com/custom-apps-documentation/block-elements/parameters/select) documents the option forms (`value`/`label` pairs, `nested`, `store`) and the [mappable-parameters best practices](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters) cover select behaviour in mappable forms. Neither page gives guidance on an option-level `description`, so do not cite either as the source of that field or of this advice. It is a UX judgment: when the choices are not self-explanatory (for example two access levels whose difference the label cannot carry), and the authoring or editor schema you are working against accepts `option.description`, give each option its own short `description` next to `label` and `value`, instead of explaining the differing meanings in the field's help text or leaving users to guess. Verify that the section is accepted on upload and that the description is present in the read-back. If it is rejected or dropped, fall back to the field's help text. The shape, where accepted:
@@ -57,6 +74,17 @@ A child select appears after the parent is chosen. The documented form is:
 
 **Inferred implementation pattern.** A child RPC that never reads its parent value loads the same list for every parent, so the nesting achieves nothing; one that reads a parameter that is not an ancestor reads something that may not be filled in. The checker's `CK-SELECTOR-NESTED` rule inspects the RPC text for those two cases. The parent still has to load: do not add `mode: "edit"` to the parent of a nested select merely to satisfy the mode rule, because that is not what the documentation's own nested example requires of every module kind.
 
+**Documented form: nested fields from an RPC.** `nested` holds *parameters*, so besides an inline array it accepts an RPC URL. It can sit on the options object (`"options": { "store": ..., "nested": "rpc://getItemTypeFields" }`), so the fields follow whichever option is chosen. It can also sit on a single option (`{ "label": ..., "value": ..., "nested": "rpc://getOptionFields" }`), so the fields appear for that option only. That RPC is a fields RPC: it reads the chosen value from `parameters.<parent>` and returns parameter specs (`name`, `type`, `label`, ...), not `{label, value}` pairs. A fields RPC under `nested` is therefore correct and is not the options/schema confusion described in "The pieces"; an *options* RPC placed directly in `nested` is.
+
+~~~json
+{
+  "name": "itemType", "type": "select", "label": "Item type", "required": true,
+  "options": { "store": "rpc://listItemTypes", "nested": "rpc://getItemTypeFields" }
+}
+~~~
+
+**Inferred implementation pattern.** A nested fields RPC may have nothing to add for some choices. A communication branch whose `condition` is false, or a `response.output` of `null`, returns no field, and nothing appears under the select. That is not a defect. Requiredness that depends on the choice follows "Conditionally required fields" in [parameters-and-rpcs](../../../references/parameters-and-rpcs.md#form-quality-ux-guidance-not-schema-rules). Test each choice, including one that adds nothing.
+
 ## RPC inputs, parent values and what a picker must (not) cover
 
 * **Parameters reach RPCs automatically.** The module's parameters are passed to a linked RPC, and nested child RPCs also receive the parent's value. An RPC with an empty `parameters` declaration does not prove that module values are unavailable to it; the declaration describes the RPC's own inputs. Do not report a "missing parameter" on that basis alone.
@@ -64,6 +92,9 @@ A child select appears after the parent is chosen. The documented form is:
 * **A picker is a convenience.** A dropdown does not need to list every object in a large account; a bounded sample plus manual mapping is a legitimate design ([rpc-page-budgets](rpc-page-budgets.md)). An ID missing from a sampled list is not invalid: mapped values are not restricted by the options, and static values are not validated against RPC-loaded options. Likewise, the absence of a picker proves a defect only when the provider offers a lookup and the task's scope includes one.
 * **Connection lists must match.** An RPC's connection list has to match the parent module's, even when the RPC makes no request at all.
 * **Metadata-driven options.** Keep the provider's stable identifier as `value` and the display text as `label`. Two options with the same label must not collapse into one choice. See [dynamic-data-and-files](dynamic-data-and-files.md) for schema-style RPCs.
+* **Fixed context through the `rpc://` query string (documented).** One RPC can serve several fields that differ slightly: `"options": "rpc://listItems?status=open"` passes `status` to the RPC as `parameters.status`, and a repeated key sends an array. Whether a value such as `active=false` arrives as text or as a boolean, and which value wins when a module field has the same name, are not documented, so do not test such an argument for truthiness. The checks are in [parameters and RPCs](../../../references/parameters-and-rpcs.md#fixed-arguments-in-an-rpc-reference).
+* **A picker must list from the scope the module acts in (inferred implementation pattern).** An RPC inherits Base, not the calling module's own `headers` or `qs`. When modules scope each request with a value from a module field (an organisation, workspace or tenant header or query parameter), every RPC behind a select or search button of those modules has to send the same value, read from the same `parameters.<scopeField>` (module parameters reach linked RPCs automatically). Otherwise the picker lists records from the account's default scope while the module reads or writes another, and the user picks IDs that do not exist where the request runs. Compare each module's scoping header or query parameter with the RPCs its pickers call, and test with a non-default scope. A mapped scope value follows the "mapped parent" rule above. A picker that offers IDs the module cannot use is the functional failure named under Approval impact below.
+* **Search button (ID finder) on a typed field (documented).** A text field with an `rpc` search button keeps the identifier a typed field, and after a pick it shows the **value**, not the label. `mode` belongs to selects, so do not report a missing `mode: "edit"` on such a field; its `rpc://` name must still resolve and the RPC must share the module's connection. Syntax, conventions and the search RPC: [parameters and RPCs](../../../references/parameters-and-rpcs.md#search-buttons-id-finder).
 
 ## Rationale
 
@@ -77,6 +108,8 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 * Pointing `options` at a fields RPC, or `interface` at an options RPC.
 * Forgetting that a connection-less RPC cannot be called from a module that has a connection.
 * Expecting the label in mapping mode. Only the value arrives.
+* A hand-written `options` value that is not the provider's exact value: label and value swapped (`{ "label": "item_group", "value": "Item group" }`), or casing that differs from the provider's enum. The value is what the request sends, so compare every hand-written value with the provider's documented list. A repeated identical entry shows twice in the dropdown.
+* A select whose options each reveal a different nested field ("by state", "by date range"), translated by a helper that sends the first non-empty nested field in a fixed order. That ignores the user's choice. Branch on the select's own value instead (`{{switch(parameters.filterKind, 'state', parameters.state, 'range', parameters.range)}}`), and check that every option value is one the request or helper actually compares. A misspelt value that nothing compares goes unnoticed until a user picks it.
 
 ## Exceptions and applicability
 
@@ -91,6 +124,9 @@ The user-facing goal is simple: find the thing without knowing its ID, and still
 * Search/List hierarchy and Create advice: **documented recommendation**.
 * Per-option `description` for options with differing meanings: **inferred UX guidance**. The public Select and mappable-parameters pages were checked and give no option-description guidance; the Select page supports only the adjacent option syntax (`value`, `label`, `nested`, `store`). Advisory only, depends on the schema in use accepting the field, and needs upload/read-back evidence.
 * Parent-value reading checks and the options/schema separation: **inferred implementation pattern** over declared fixtures. The checker does not run RPCs or know a provider's real hierarchy; it cannot tell a high-level from a low-level entity.
+* `nested` as an RPC URL (on the options object or on one option), the grouped options syntax, the select `sort` attribute, `rpc://` query parameters and the search button (`rpc` with `label`, `url` and `parameters`; the field shows the value after a pick; no `default: true` there): **documented behaviour / syntax**. A search button for large, searchable record sets: **documented recommendation**.
+* A nested fields RPC returning no field, an options RPC returning groups, and the IML `sort` argument order: **inferred implementation pattern**. None of these is stated on the public pages, although the `sort(array; [order]; [key])` signature itself is on the array functions page; what is inferred is how a key-first or unquoted call behaves. Re-test them in the module.
+* Group design, the choice of option order, the picker-scope rule and the hand-written option checks: **inferred implementation pattern / inferred UX guidance**. These are advisory, except where a picker offers IDs or values that the consuming request cannot use (see Approval impact).
 
 ## Fixtures
 
@@ -113,3 +149,7 @@ Static, synthetic teaching fixtures; the checker reads the declared RPC, paramet
 * https://developers.make.com/custom-apps-documentation/component-blocks/interface (the interface an RPC-backed schema fills)
 * https://developers.make.com/custom-apps-documentation/best-practices/remote-procedure-calls
 * https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/mappable-parameters (mappable select behaviour; no option description guidance)
+* https://developers.make.com/custom-apps-documentation/block-elements/parameters/select#grouped and #sort (grouped options syntax; `sort` attribute, unsorted by default)
+* https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-options-rpc#search-button (search button: value shown after a pick, no `default: true`, `ifempty(..., undefined)` filters) and #send-query-to-rpc (`rpc://` query parameters, repeated keys as an array)
+* https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-fields-rpc#select-parameter-with-nested-dynamic-parameters-under-a-specific-option (`nested` as a fields RPC on one option)
+* https://help.make.com/array-functions (`sort(array; [order]; [key])`)

@@ -44,6 +44,55 @@ Prefer direct mapping when the provider accepts the supplied value and preserve
 Sources: [JavaScript-like IML, operators, indexing, and ifempty](https://developers.make.com/custom-apps-documentation/block-elements/iml.md),
 [Empty-value handling](https://developers.make.com/custom-apps-documentation/best-practices/input-parameters/processing-of-input-parameters.md#handling-arrays-nulls-and-empty-strings).
 
+### toCollection on user-entered rows
+
+`toCollection(rows, 'name', 'value')` turns user-entered name/value rows into a collection,
+and it does so quietly: a repeated name keeps only the last row's value, and a row with an
+empty name is dropped. An empty or missing array gives an empty collection, so a spread
+`"{{...}}": "{{toCollection(parameters.rows, 'name', 'value')}}"` adds nothing. Each value is
+passed through unchanged, so it keeps the type its sub-field produced (text stays text).
+
+When you build or change such an array, especially one whose rows become body fields, query
+parameters or custom fields:
+
+- mark the name sub-field `required`, so a row is not lost without a message;
+- say in the array's `help` that a repeated name keeps the last value;
+- give the value sub-field the type the provider expects.
+
+In an existing array these are advice, not a defect, unless a lost or overwritten row is
+shown to break a request.
+
+### split() is not JavaScript split
+
+IML `split(text, separator)` trims each item and drops empty items:
+`split('a, b,,c', ',')` returns `["a", "b", "c"]`, and a leading or doubled separator
+creates no empty position. A comma-separated text input therefore needs no extra trimming
+in IML, and a review should not report missing trimming there. Do not read positions with
+`get(split(...), n)` when segments can be empty, because they shift. Inside a custom
+function, `value.split(',')` keeps spaces and empty strings: use
+`value.split(',').map((s) => s.trim()).filter(Boolean)` or call `iml.split()`.
+
+### URL-safe base64
+
+`base64()` and `sha256(text, 'base64')` return standard base64 (`+`, `/` and `=` padding).
+URL-safe base64 (`-` and `_`, usually without padding), as used by a PKCE
+`code_challenge`, JWT segments and some message APIs, is not a built-in IML function. The
+OAuth 2 PKCE example calls `base64url(...)`; that call works only when the app defines a
+custom function with that name, and otherwise fails with a "function not found" error.
+Without custom functions, convert in IML:
+
+```text
+{{replace(replace(replace(sha256(temp.code_verifier, 'base64'), '+', '-'), '/', '_'), '=', '')}}
+```
+
+IML `replace()` with a plain search string replaces every occurrence. Inside a function,
+JavaScript `'a+b+c'.replace('+', '-')` replaces only the first one, so use
+`.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')`. Decoding needs no
+conversion: `toBinary(value, 'base64')` accepts both alphabets, with or without padding.
+Keep the encoding in one place and test it with input whose standard encoding contains `+`
+and `/`. A challenge that still contains `+`, `/` or `=` does not match the verifier, so the
+token exchange fails.
+
 ## Custom function contract
 
 Pass all required values as explicit arguments. Do not assume a custom JavaScript
@@ -67,6 +116,34 @@ performance or package availability reproduces the app runtime.
 
 Sources: [Function runtime and limits](https://developers.make.com/custom-apps-documentation/app-components/iml-functions.md),
 [IML built-ins and JSON conversion](https://developers.make.com/custom-apps-documentation/block-elements/iml.md).
+
+### Serialize values instead of splicing them into text
+
+Treat names and values that come from the user, the connection or the provider as data for
+a serializer, never as text to splice. JSON text built as `'{"' + name + '":' + ...` in a
+function, or as `parseJSON('{"k":"' + parameters.k + '"}')` in IML, fails or gains extra
+members when a table name, column, file name, free-text value or even an API key contains a
+quote, a backslash or a line break.
+
+- In a function, build an object (`const out = {}; out[name] = rows; return out;`) and return
+  it, or pass it to `JSON.stringify()` when the caller needs a string.
+- In IML, put the structure in the directive (`"body": {"k": "{{parameters.k}}"}`).
+- When the body has to stay text, for example because a signature covers the exact sent
+  bytes, wrap every spliced value in `createJSON()` and guard optional values: when an absent
+  value arrives as `undefined`, `createJSON()` returns nothing and
+  `'{"k":' + createJSON(parameters.k) + '}'` becomes `{"k":}`. Use
+  `ifempty(createJSON(parameters.k), 'null')` or leave the member out. Outside this text-body
+  case, keep objects as objects ([requests-and-responses.md](requests-and-responses.md)).
+- `escapeHTML()` (`iml.escapeHTML()` in a function) replaces only `&`, `<` and `>`. Inside a
+  quoted HTML attribute value, after `escapeHTML()`, also replace `"` with `&quot;` (and `'`
+  with `&#39;` in a single-quoted one). Replacing line breaks with `<br>` is formatting, not
+  escaping.
+- In a MIME message, multipart part or other header block assembled as text, remove CR and LF
+  from every user value (header names and values, file names, display names), so a value
+  cannot start a new header line.
+
+Test each assembled text with a value containing `"`, `\`, a line break and non-ASCII text,
+and with each optional value left empty, not only the happy path.
 
 ## Reuse a small testable function
 
@@ -176,6 +253,26 @@ are an evidence limitation and advice, not an automatic defect or approval block
 task's explicit review criteria or request-scope requirements (which can block when unmet) require them or the helper's actual behavior lacks essential
 evidence. Demonstrably incorrect behavior stays a finding.
 
+### Run the shipped tests, not only read them
+
+Execute every shipped test against the current function source: with the editor's
+**Run IML test**, or with the local harness above when the helper makes no `iml.*` call. A
+test that cannot run locally only because the harness lacks `iml` is an evidence limit, not a
+finding. Tests that fail or cannot run were seen in approved apps; look for these forms:
+
+- an assertion on a property the function never sets, such as
+  `assert.strictEqual(attr.time, false)` when the code never adds `time`;
+- `strictEqual` against a fresh array or object (`assert.strictEqual(fn(x), [])`), which
+  always fails because `[] !== []`; use `deepStrictEqual`;
+- a call the IML tests page does not document, such as a Jest-style
+  `expect(...).toEqual(...)` or a `require()` of a fixture or module. Rewrite it with `it`
+  and the documented `assert` functions.
+
+Report a red test, or one the editor's **Run IML test** cannot execute, as a finding. Decide
+from the real call sites whether the test or the function is wrong, and fix that side: a wrong
+function is a demonstrated defect; a wrong test alone is advisory under [Approval
+gating](review-and-qa.md#2a-approval-gating) and is fixed because the fix is clear.
+
 ## Transformation and verification gate
 
 - Test absent, null, empty-string, zero, false, and normal inputs where meaningful.
@@ -193,3 +290,21 @@ evidence. Demonstrably incorrect behavior stays a finding.
 
 Sources: [Conditional empty removal](https://developers.make.com/custom-apps-documentation/app-components/iml-functions/removal-of-empty-collections-and-nulls.md),
 [Full-update behavior](https://developers.make.com/custom-apps-documentation/app-components/iml-functions/handling-of-full-update-approach-in-update-modules.md).
+
+### Normalize before hashing identifiers
+
+When a provider requires personal identifiers (email, phone, names, address parts) to
+arrive hashed, its per-field normalization is part of the contract: a wrongly normalized
+hash is accepted by the API and silently never matches.
+
+- Apply each field's documented rule (trim, lowercase, allowed characters, phone format)
+  before hashing, for example `sha256(lower(trim(parameters.email)))`. Rules differ per field
+  and per provider; do not copy them from another integration.
+- Hash only present, non-blank values and leave the field out otherwise. `sha256()` of a
+  missing value fails the module, and `sha256('')` returns the digest of the empty string
+  (`e3b0c442…`), which a provider can accept as a real value.
+- Pass fields the provider wants raw (for example an IP address or user agent) through
+  unhashed, and keep it visible which fields are hashed and which are raw.
+- Use the digest encoding the provider expects; `sha256()` returns hex by default.
+- Test mixed-case, padded, formatted and blank inputs against the provider's documented
+  examples.

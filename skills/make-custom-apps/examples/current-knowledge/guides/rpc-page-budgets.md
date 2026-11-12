@@ -25,6 +25,60 @@ Notice what this means: "150 records at 50 per page" is the 3×page recommendati
 }
 ```
 
+### When a page is not a list of records
+
+**Documented behaviour.** Without `iterate`, `output` is evaluated once on the response body (the body itself when `output` is absent), and that value is the page's result.
+
+**Inferred implementation pattern.** Make requests the next page only while the page's result is a non-empty list. Two shapes never produce one: a dynamic fields or interface RPC whose `output` builds one object from the page (for example a single `collection` whose `spec` a helper builds from `body.data`), and a request step without `output` that only copies the page into `temp` while the provider answers with an object. Their `pagination` block never sends a second request, even when its `condition` is true and the provider's cursor, count or has-more flag says more records exist. The fields or records from later pages are silently missing and the execution stays green.
+
+Choose one of these instead:
+
+* When one request at the provider's maximum page size covers every record the endpoint can return, ask for that size and drop the `pagination` block, so the configuration does not suggest paging that never happens.
+* Otherwise collect the pages into `temp` with a bounded `repeat` that stops on the provider's next-page signal and on a page cap ([requests-files-multistep](requests-files-multistep.md)), and build the object in the same step's `output`. `response.temp` is applied before `output`, and the last repetition's output, built from every collected page, is the result. Put the cap in the condition and keep the literal `limit` above it as a safety net; reaching the `limit` is not the way the loop should end.
+
+```json
+{
+  "url": "/fields",
+  "qs": { "limit": 100, "page": "{{ifempty(temp.page, 1)}}" },
+  "response": {
+    "temp": {
+      "records": "{{merge(ifempty(temp.records, emptyarray), body.data)}}",
+      "page": "{{ifempty(temp.page, 1) + 1}}",
+      "more": "{{body.has_more}}"
+    },
+    "output": "{{buildFieldsSpec(temp.records)}}"
+  },
+  "repeat": { "condition": "{{temp.more && temp.page <= 5}}", "limit": 10 }
+}
+```
+
+Choose the cap from the provider's documented maximum and the 40-second budget, and test with more records than one page holds: the result must contain records from the second page.
+
+### Counting chunks by hand in a `repeat` loop
+
+**Documented behaviour.** A `repeat` request always runs once; its condition is evaluated after each request and reads `temp`. `slice(array; start; end)` counts from 0 (the first item has index 0), unlike `get` and `[n]` access, which count from 1.
+
+**Inferred implementation pattern.** When an RPC sends a list in fixed-size chunks (for example one batch call per 100 IDs to fetch labels), store the list in `temp.items` and a counter `temp.page` of 1 in an earlier step, advance the counter in `response.temp`, and derive both the slice and the stop from that one counter. When the condition runs, the counter already names the next chunk, so `(temp.page - 1) * temp.size` is the number of items sent so far:
+
+```json
+{
+  "condition": "{{length(temp.items) > 0}}",
+  "url": "/labels/batch",
+  "method": "POST",
+  "temp": { "size": 100 },
+  "body": { "ids": "{{map(slice(temp.items, (temp.page - 1) * temp.size, temp.page * temp.size), 'id')}}" },
+  "response": {
+    "temp": {
+      "page": "{{temp.page + 1}}",
+      "labels": "{{merge(ifempty(temp.labels, emptyarray), body.data)}}"
+    }
+  },
+  "repeat": { "condition": "{{length(temp.items) > (temp.page - 1) * temp.size}}", "limit": 20 }
+}
+```
+
+Two plausible-looking variants lose items without an error. Stopping on `length(temp.items) >= temp.page * temp.size` looks one chunk ahead and drops the last partial chunk: a list of 150 sends only the first 100. Stopping on `length(temp.items) >= (temp.page - 1) * temp.size` and shifting later slices by `+ 1` skips one item per later chunk (index 100, 200, and so on) and sends an empty request when the length is an exact multiple of the size. Gate the step with a `condition` so an empty list sends no request. Test lists of 0, size, size + 1, 2 × size and 2 × size + 1 items and check that every item is sent exactly once and that no request is empty. Each chunk is one more request inside the RPC's 40 seconds, so bound the list so that its chunks fit both that budget and the literal `repeat.limit`.
+
 ## Choosing the numbers
 
 1. Find the provider's maximum and default page size; use a size at or below the maximum.
@@ -34,6 +88,30 @@ Notice what this means: "150 records at 50 per page" is the 3×page recommendati
 5. If users may legitimately need more than the budget, give them a mappable field alongside the select; do not raise the budget past the 40-second reality.
 
 The checker's `CK-BUDGET-PAGE` rule tests that a fixture's `qs.limit` equals its declared page size, that records do not exceed pages × size, that stated numbers stay within the documented hard limits, and that the next-page expression agrees with the first request's page base. `CK-BUDGET-BOUND` tests that `response.limit` is a positive fixed integer within the declared record budget. That is a deliberately narrow fixture restriction (the literal form is the convention); it does not claim that every mapped limit is wrong on the platform, and the checker is not broadened to evaluate bounded expressions.
+
+### When the help text states the list size
+
+**Inferred implementation pattern.** Help such as "Select (from the first 500) or map the ID" or "Shows up to 300, newest first" is a promise about the RPC. Three numbers must agree: the size in the help, what the requests actually ask the provider for (page size × pages), and `response.limit`. `response.limit` only cuts the result and only a paging request fetches more; neither raises the page size. A request that sets no page size receives the provider's default page (for example 25 records), so a selector with `response.limit: 500` and "first 500" in its help can show 25 options. A user who does not find the record in the short list is not told that it was cut off, and so does not know to map the ID.
+
+* Set the page size explicitly in the request: in `qs`, or as an argument inside a GraphQL query or a JSON body when the provider takes it there.
+* Paginate, or not, so that page size × pages reaches the stated number within the budget above, and set `response.limit` to that same number.
+* Write the real number and order in the help, and keep the field mappable so a record outside the list can still be entered by ID (step 5 above; `mode: "edit"` where the module role calls for it, see [selectors-mode](selectors-mode.md)).
+* Help text copied from a sibling selector often causes the mismatch, so check each selector against its own RPC.
+
+```json
+{
+  "url": "/graphql",
+  "method": "POST",
+  "body": { "query": "{ items(limit: 500) { id name } }" },
+  "response": {
+    "limit": 500,
+    "iterate": "{{body.data.items}}",
+    "output": { "label": "{{item.name}}", "value": "{{item.id}}" }
+  }
+}
+```
+
+The matching help reads "Select (from the first 500) or map the item ID." In a review, a disagreeing number is dropdown-budget advice (see Evidence and limits): fix the request size, or fix the help so that it states what the list really shows.
 
 ## Where the rest of pagination lives
 
@@ -51,6 +129,9 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 * Putting a `delay` between pages and forgetting it eats the 40 seconds.
 * Fetching all pages for an RPC and filtering in IML when the provider supports a search parameter.
 * Raising the budget because "the user has 800 projects". That is a UX problem, not a limit to bypass.
+* A `pagination` block on a request whose page result is one object (a helper-built field `collection`, or an object body that is only copied into `temp`). It never fetches the second page.
+* A hand-counted `repeat` loop whose stop looks one chunk ahead, or whose `slice` start is shifted by `+ 1` because `get` counts from 1 (`slice` counts from 0).
+* Help text that promises "first 500" while the request asks for the provider's default page.
 
 ## Exceptions and applicability
 
@@ -64,6 +145,8 @@ A user opens a dropdown; two minutes of crawling is not acceptable and the platf
 * **Approval impact** ([Approval gating](../../../references/review-and-qa.md#2a-approval-gating)). A bounded option or dropdown RPC budget is the recommended design; its bounds and the 500-item output limit are advisory. A truncated budget is a class (a) defect only when a search, list or trigger that promises all matching records silently drops them; a broken page progression (for example skipping pages or ignoring a documented next-page signal) is class (a) wherever it occurs.
 * 3-request and 3×page-size budgets, the 300-500 range: **documented recommendation**.
 * Consistency between page size, qs and limit in a fixture: **inferred implementation pattern**. The checker does not call a provider, measure latency or know any real page maximum.
+* `output` without `iterate` evaluated once per response, a `repeat` condition evaluated after each request and reading `temp`, and `slice` counting from 0: **documented behaviour**. That pagination does not go past a page whose result is not a list, that `response.temp` is applied before `output` and the last repetition's output is the result, the chunk arithmetic, and the agreement of help text, request page size and `response.limit`: **inferred implementation pattern**.
+* **Approval impact of the new cases.** An inert `pagination` block, or a chunk loop that skips items, counts as the broken page progression above when the provider can return more than one page or the list can exceed one chunk; fix it. When one request at the provider's maximum covers every possible record, the unused block is only misleading configuration and advisory. A help-text list size that disagrees with the request is advisory: fix the number or the text.
 
 ## Fixtures
 
@@ -84,3 +167,7 @@ Static, synthetic teaching fixtures. The numbers in them illustrate the declared
 * https://developers.make.com/custom-apps-documentation/app-components/rpcs/dynamic-sample-rpc
 * https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/limit
 * https://developers.make.com/custom-apps-documentation/component-blocks/epoch
+* https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/output
+* https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests#repeat
+* https://help.make.com/array-functions
+* https://help.make.com/general-functions

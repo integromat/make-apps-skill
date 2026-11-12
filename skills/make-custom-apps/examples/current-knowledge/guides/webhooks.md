@@ -20,6 +20,83 @@ When attach or detach uses `connection.*` credentials, associate the intended co
 
 If detach reads a name attach never saved, detach cannot find the provider-side webhook and orphans pile up on the provider. The checker's `CK-WEBHOOK-IDENTITY` rule tests that every `webhook.<name>` in detach is among attach's `response.data` keys. One-time secrets returned by attach must be persisted this way too, because the provider will not show them again; mask them in `log.sanitize` (`CK-SECRET-LOG`).
 
+### One webhook, several provider subscriptions
+
+**Inferred implementation pattern** (documented `response.data`, `repeat`, `temp` and [request-less items](https://developers.make.com/custom-apps-documentation/component-blocks/api/request-less-communication)). Some attach RPCs create one provider subscription per selected event, with `repeat` or a `communication` array. When every pass writes the same `response.data` key, such as `externalHookId`, only the last id is kept. Detach then removes one subscription, and the others keep posting to a URL that no scenario listens to. `CK-WEBHOOK-IDENTITY` still passes, because detach reads a name that attach did save, so check the loop by hand.
+
+* If the provider accepts a list of events, prefer one subscription that covers all the selected events.
+* With a fixed `communication` array, give each request its own `response.data` key, and give detach one request per key.
+* With `repeat`, collect every id in `temp`, save the whole list on each pass, and make detach loop over it. `repeat` checks its condition after each request, so the first request always runs: make the event list required. `limit` must be a literal number; set it higher than the number of events a user can select.
+* If a later pass fails, attach fails, and the subscriptions it already created can stay at the provider, because a failed attach saves nothing for detach to use. In detach, a 404 for one id that is already gone fails the loop at that id and leaves the rest. Test both cases.
+
+```json
+{
+  "attach": [
+    { "temp": { "i": 1, "n": "{{length(parameters.events)}}", "ids": [] } },
+    {
+      "url": "/subscriptions",
+      "method": "POST",
+      "body": { "url": "{{webhook.url}}", "event": "{{get(parameters.events, temp.i)}}" },
+      "response": {
+        "temp": { "ids": "{{add(temp.ids, body.id)}}", "i": "{{temp.i + 1}}" },
+        "data": { "externalHookIds": "{{temp.ids}}" }
+      },
+      "repeat": { "condition": "{{temp.i <= temp.n}}", "limit": 20 }
+    }
+  ],
+  "detach": [
+    { "temp": { "i": 1, "n": "{{length(webhook.externalHookIds)}}" } },
+    {
+      "condition": "{{temp.n > 0}}",
+      "url": "/subscriptions/{{get(webhook.externalHookIds, temp.i)}}",
+      "method": "DELETE",
+      "response": { "temp": { "i": "{{temp.i + 1}}" } },
+      "repeat": { "condition": "{{temp.i <= temp.n}}", "limit": 20 }
+    }
+  ]
+}
+```
+
+### An empty detach: forgotten or deliberate
+
+**Inferred implementation pattern** (documented detach purpose). Detach deletes from the provider what attach registered. Some exported detach files contain only comments, such as an unedited template, and no `url`. Such a detach makes no request, so the provider keeps posting to a Make URL that no longer exists. This is not a missing export, which stays `uncertain`: the file is there, and it is empty. When the provider documents a removal route, it is the missing-detach case in [Evidence and limits](#evidence-and-limits). In an app with several webhooks, open every detach file, because one forgotten template can sit next to correct ones.
+
+When the provider documents no way to remove the registration, an empty detach is the honest implementation. Do not invent a removal call. Do not overwrite the registration with an empty or dummy callback either, unless the provider documents that as removal, because the overwrite can have side effects of its own. Make the limitation visible instead: give the reason in a detach comment, and tell users in a `warning` banner in the webhook's parameters that deleting the webhook in Make does not unregister it at the provider (see [Providers that keep only one registration](#providers-that-keep-only-one-registration)). A reviewer checks the claim against the provider documentation.
+
+```jsonc
+{
+  // Intentionally empty: the provider documents no route to remove this registration.
+  // The webhook parameters show a warning banner about this.
+}
+```
+
+### Providers that keep only one registration
+
+**Inferred implementation pattern** (documented `warning` banner). Some providers keep a single callback per account, resource or topic. Registering a new URL silently replaces the previous one, and the earlier scenario stops receiving events without any error. Tell users before they create the webhook: put a `warning` banner in the webhook's parameters that names the scope and the effect. Keep the text within the recommended 50 to 300 characters.
+
+```json
+[
+  { "type": "banner", "theme": "warning", "title": "One webhook per workspace", "text": "Only one webhook per workspace is supported. Creating a new webhook replaces the previous one, which then stops receiving events." }
+]
+```
+
+The same constraint affects detach. When a newer webhook has replaced the registration, the older webhook's detach can remove the registration that the newer one depends on. Clean up only the exact remote subscription that attach created ([webhooks and polling](../../../references/webhooks-and-polling.md#implement-attach-and-detach-together), step 6). Detach sees only what attach saved. So if the provider can report its current callback, save `webhook.url` in attach's `response.data` (for example as `hookUrl`), read the current callback first in detach, and remove it only when it equals `webhook.hookUrl`.
+
+### A registration that did not happen must fail attach
+
+**Documented behaviour** ([valid](https://developers.make.com/custom-apps-documentation/component-blocks/api/handling-responses/valid)). Without `valid`, a response with a status from 200 to 399 is valid. Some providers answer a failed registration with a 200 and an error envelope, for example GraphQL `errors` or `success: false`. Without `valid`, attach then succeeds anyway: the user sees a webhook that looks created but never receives an event, and detach later runs with an empty id.
+
+**Inferred implementation pattern.** Make attach fail on the value that proves the registration, usually the id that `response.data` saves. The message below is a fallback; add the provider's documented error field to it ([errors and rate limits](errors-and-rate-limits.md)).
+
+```json
+{
+  "response": {
+    "valid": { "condition": "{{body.id}}", "message": "The provider did not register the webhook: no webhook id in the response." },
+    "data": { "externalHookId": "{{body.id}}" }
+  }
+}
+```
+
 ## Verification versus signatures
 
 **Documented behaviour.** The webhook specification has a `verification` block with a `condition` and a `respond`. It exists for providers that send a challenge: when `condition` (an expression over `body`, `query`, `headers`, `method`) is true, Make sends the `respond` and does not run the trigger. Example: `"condition": "{{if(body.code, true, false)}}"` with `status: 202`.
@@ -33,6 +110,24 @@ A challenge reply proves that the endpoint answered a handshake. It is not reque
 * Reserialising parsed JSON can change the signed bytes, so a signature check needs a documented raw-payload mechanism. Do not invent a runtime variable for the raw body.
 * A helper called `verifySignature` or a declared secret field proves nothing about security by itself.
 * That a generic fixture cannot demonstrate a provider's signature scheme does not make provider verification optional. When a provider documents signing, the author still has to test it against the real provider (see [compatibility-evidence](compatibility-evidence.md)); the missing proof is a gap to close, not a reason to skip the check.
+
+### Signature checks: traps to look for
+
+**Inferred implementation pattern.** This guide still demonstrates no signature scheme, and the raw-bytes rule above still applies. When an app checks a provider's signature in the webhook's own communication, look for these traps. Each one fails silently.
+
+* **HMAC arity.** `sha256` returns an HMAC only when a key is given, and the key is the third argument, after the output encoding: `sha256(message, 'hex', secret)` ([text functions](https://help.make.com/text-and-binary-functions)). `sha256(message, secret)` passes the secret as the encoding and returns a plain hash, so the comparison never matches. `sha1` and `sha512` take the key in the same place.
+* **Hyphenated header names.** Read them with backticks, as in ``headers.`x-signature` `` ([IML](https://developers.make.com/custom-apps-documentation/block-elements/iml)). Without backticks, `headers.x-signature` is read as a subtraction.
+* **The secret.** Attach saves a per-webhook signing secret in `response.data` and masks it, as in [Attach and detach identity](#attach-and-detach-identity). In a dedicated webhook, the receiver reads saved values through `parameters` or its alias `data`.
+* **Rejecting a failed check.** Compute `respond.status` (an IML string) so that a failed check gets a 4xx, and let `output` yield no bundle in that case. A 4xx here answers a rejected delivery, so it is not the accepted-delivery pitfall below. Do not gate the check with a top-level `condition`: it can end processing before `respond`, and the provider then gets Make's default success answer. Some apps reject through `verification` with an inverted condition and a 4xx. That also rejects, but this guide keeps `verification` for challenges, so new code uses `respond`. The checker's `CK-WEBHOOK-VERIFY` and `CK-WEBHOOK-DELIVERY` model accepted requests only and expect a literal 2xx status, so neither checks a computed rejection status.
+
+```json
+{
+  "respond": { "type": "json", "status": "{{if(temp.accepted, 200, 401)}}", "body": { "accepted": "{{temp.accepted}}" } },
+  "output": "{{if(temp.accepted, body, false)}}"
+}
+```
+
+Here `temp.accepted` holds the result of the provider's check, computed in the receiver's `temp`. The public page does not state the order in which the receiver evaluates these directives, so prove the gate before you rely on it. Test a genuine, a tampered and, when the provider sends a timestamp, a stale delivery against the real provider (see [compatibility-evidence](compatibility-evidence.md)), and confirm that each rejected delivery gets the 4xx and produces no bundle. Never describe the check as verification that Make performs.
 
 ## Delivery and acknowledgement
 

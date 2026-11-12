@@ -23,6 +23,45 @@ checked against `api-oauth.json` when it holds OAuth steps (`authorize`, `token`
 `install`, `installSpec` and the app metadata. The script lists them as not validated. Report them the same
 way: read them by hand, and do not count them as passed.
 
+### The schemas do not parse IML
+
+Most expression fields are plain strings in the schemas, and the few that check for IML only require a `{{`
+somewhere before a `}}`. Unbalanced parentheses therefore pass wherever an expression is allowed, and an
+unclosed `{{` passes in every plain string field, such as a `url`. A clean result says nothing about
+expression syntax. Check every `{{ }}` yourself, in every component and not only in module requests: RPC,
+webhook and connection communication, `iterate`, `temp`, `output`, `pagination`, error `message` and
+`attach`, including branches a test run rarely reaches.
+
+- Count `(` against `)` inside each `{{ }}` after removing quoted strings and backtick-quoted property names. A
+  parenthesis or brace inside them belongs to the string or the name, and GraphQL or JSON text around the
+  expression has its own braces.
+- Make does not report the parse error. A parenthesis missing or extra at the very end of an expression is
+  usually closed silently and still returns the intended value, which is why the typo survives testing:
+  `{{map(parameters.ids, 'id'}}` still returns the IDs. Inside nested calls the same typo moves an argument to
+  another function without any error: `{{if(parameters.status, lower(parameters.status, 'open')}}` passes
+  `'open'` to `lower`, so an empty status returns empty instead of `open`. An unclosed `{{`, as in
+  `/items/{{parameters.id}/details`, is sent as literal text.
+- It is still syntactically invalid IML, a class (a) defect even when the current output looks right
+  ([Approval gating](review-and-qa.md#2a-approval-gating)): the recovery is not documented behavior. Fix it by
+  adding the missing delimiter or deleting the extra one, and keep the rest of the expression unchanged. Where
+  the intended argument list is not clear, put the delimiter where the parser closes it today, so the current
+  behavior stays the same, and say so in the finding.
+
+### Specs built at runtime are not validated
+
+The schemas check component files only. Parameter and interface specs that a fields RPC, an interface RPC or
+a custom function builds at runtime never reach the editor validation, so a clean result says nothing about
+them. Read that code against `parameters.json` and the type pages yourself, with the rules in
+[Dependent options, fields, and interfaces](parameters-and-rpcs.md#dependent-options-fields-and-interfaces):
+valid keys, a Make `type` for every field (`text`, not `string`) and a `name` on every value-bearing
+field (display-only banners need no name). A generated
+`name` is the key under which scenarios save the mapped value and that the module reads, so check its spelling
+before the first release. After release, changing an RPC or a function that builds dynamic parameters is a
+documented breaking change: when a misspelled name is still read consistently, keep it and correct the `label`
+instead ([Preserve existing contracts](maintenance.md#4-preserve-existing-contracts)). When the misspelling
+breaks the request or the mapping, it is a class (a) defect: fix it and state the compatibility impact
+([Approval gating](review-and-qa.md#2a-approval-gating)).
+
 ## 2. Read the warnings
 
 An unknown key (`additionalProperties`) or an invalid enum value usually means the runtime ignores or misreads

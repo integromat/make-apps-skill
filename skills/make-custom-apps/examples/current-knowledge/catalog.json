@@ -66,7 +66,7 @@
     {
       "id": "dates-helpers",
       "title": "Dates and app helpers",
-      "summary": "Polling triggers need an order that matches the provider request and, where the provider format is not auto-parsed, a date that Make can actually parse (temporal exceptions apply; canonical ISO text is a documented ambiguity, not a blanket must-parse); helper functions must be defined, reachable and genuinely transform their input.",
+      "summary": "Polling triggers need an order that matches the provider request and, where the provider format is not auto-parsed, a date that Make can actually parse (temporal exceptions apply; a documented ISO cursor value maps directly, while output date-times are parsed even when ISO); helper functions must be defined, reachable and genuinely transform their input.",
       "guide": "guides/dates-helpers.md",
       "sources": ["doc-trigger", "doc-iml", "doc-epoch", "doc-input-processing", "doc-iml-tests", "doc-bp-mappable-parameters", "research-generic-complete-app"],
       "recipes": ["dates-helper-trace"]
@@ -245,7 +245,7 @@
       "rules": ["CK-DATE-ORDER", "CK-DATE-PARSE", "CK-HELPER-TRACE"],
       "applicability": {
         "appliesWhen": ["A polling trigger uses type date with a provider timestamp.", "A module output calls an app helper on a provider field."],
-        "notWhen": ["The trigger uses type id and no date field.", "The provider already returns ISO 8601 with an explicit offset or UTC marker."],
+        "notWhen": ["The trigger uses type id and no date field.", "The trigger date is already ISO 8601 with an explicit offset or UTC marker (cursor only; output date-times are still parsed)."],
         "exceptions": [
           { "condition": "The provider value is date-only or time-only.", "effect": "Do not append a zone or time; a helper must preserve such values unchanged, and the trigger needs a provider-specific decision." },
           { "condition": "The provider timestamp carries no timezone.", "effect": "Treating it as UTC is an assumption to record, not a fact; confirm the provider's zone before relying on ordering." },
