@@ -99,6 +99,16 @@ Use an array of request specifications for a sequential chain. Persist only requ
 intermediate values in `temp` and define final output at the end. A later request
 cannot recover an earlier HTTP error by treating that failed response as success.
 
+An entry in the chain may have no `url`. Make sends no HTTP request for that entry and
+continues with the next one, so it is not a failing or missing request. Apps use such an
+entry to prepare `temp` values or to check input before the real request. In a review,
+do not report it as a broken request, do not probe the provider for the route it "would"
+call, and do not remove it as a fix; assess what its directives do. This is observed
+runtime behavior (a run through such an entry succeeds); the public
+[Making requests](https://developers.make.com/custom-apps-documentation/component-blocks/api/making-requests.md)
+page lists `url` as required and does not describe this case, so confirm in a run before
+a finding depends on how the entry's own `response` directives are evaluated.
+
 For full-replacement updates, confirm actual provider behavior rather than assuming
 PUT always replaces or PATCH always preserves. When replacement is required, fetch
 the current object, merge explicitly supplied changes, then write it back. Preserve
