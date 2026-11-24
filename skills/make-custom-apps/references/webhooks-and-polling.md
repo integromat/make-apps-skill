@@ -58,8 +58,9 @@ inside an HTTP request's `response` object simply because an action uses that sh
 - Use `body`, `headers`, `query`, and `method` for the incoming webhook request.
 - Separate challenge verification from ordinary events with `verification.condition`.
   Set the exact verification response status, encoding, headers, and body.
-- Use `condition` for documented event filtering. For batched event payloads, use
-  webhook iteration and output; do not place that iteration in instant-trigger communication.
+- Use `condition` for documented event filtering. For batched event payloads, split the
+  delivery with webhook-level `iterate` and `output`; the instant trigger's own `iterate`
+  works on the response of its read-back request, not on the delivered payload.
 - Validate the provider's event-authentication mechanism separately from the challenge.
   A successful challenge is not proof that later deliveries are authentic.
 - Verify signature algorithms, timestamp/replay rules, and raw-byte requirements before
@@ -68,9 +69,20 @@ inside an HTTP request's `response` object simply because an action uses that sh
 - Treat duplicate delivery as possible. Preserve a useful event ID and document the
   deduplication responsibility; do not promise exactly-once processing from HTTP delivery.
 
-An instant trigger can optionally make **one** enrichment request for each webhook
-item, using `payload.*`. Its communication does not support iteration or pagination.
-After that request, `body` is the enrichment response, not the original webhook body.
+An instant trigger can optionally read the record back for each webhook item, using
+`payload.*`. After that request, `body` is the response, not the original webhook body.
+Its communication does not paginate: every request is sent once, so only the first page of
+a list endpoint is read.
+
+The instant-trigger documentation page also says that `iterate` is not available. In
+practice, `response.iterate` (with its `condition`) and a `communication` array of several
+requests do run in an instant trigger; this has been observed in production runs. In a
+review, do not rewrite a trigger only because it uses `iterate` or more than one request:
+that is not a defect and the rewrite changes working behaviour. What to check instead is
+whether the trigger depends on a second page (for example a list filtered down to the
+delivered ID, where the record may not be on the first page), and report that with its
+evidence class. When building a new trigger, prefer a single read-back request by ID where
+the provider offers one.
 
 Sources: [Webhook communication](https://developers.make.com/custom-apps-documentation/app-components/webhooks.md),
 [Instant-trigger constraints](https://developers.make.com/custom-apps-documentation/app-components/modules/instant-trigger.md).
